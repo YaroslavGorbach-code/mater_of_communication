@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">delusional generator</string>
+
+    <string-array name="TextUnderThumb_items">
+        <item>Аналогия</item>
+        <item>Обобщение</item>
+        <item>Разобобщения</item>
+    </string-array>
+
+    <string-array name="Worlds_items">
+        <item>год</item>
+        <item>человек</item>
+        <item>время</item>
+        <item>дело</item>
+        <item>жизнь</item>
+        <item>день</item>
+        <item>рука</item>
+        <item>работа</item>
+        <item>слово</item>
+        <item>место</item>
+
+        <item>вопрос</item>
+        <item>лицо</item>
+        <item>глаз</item>
+        <item>странак</item>
+        <item>друг</item>
+        <item>сторона</item>
+        <item>дом</item>
+        <item>случай</item>
+        <item>ребенок</item>
+        <item>голова</item>
+
+        <item>верскак</item>
+        <item>город</item>
+        <item>женщина</item>
+        <item>проблема</item>
+        <item>земля</item>
+        <item>машина</item>
+        <item>нога</item>
+        <item>вода</item>
+        <item>дверь</item>
+        <item>число</item>
+
+        <item>книга</item>
+        <item>ночь</item>
+        <item>стол</item>
+        <item>танк</item>
+        <item>яблоко</item>
+        <item>хлеб</item>
+        <item>мясо</item>
+        <item>масло</item>
+        <item>молоко</item>
+        <item>Нож</item>
+
+        <item>ветчина</item>
+        <item>яйцо</item>
+        <item>вода</item>
+        <item>сигареты</item>
+        <item>вагон</item>
+        <item>бинокль</item>
+        <item>бетон</item>
+
+    </string-array>
+
+</resources>
