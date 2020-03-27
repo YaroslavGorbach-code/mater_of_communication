@@ -23,10 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="216dp"
         android:src="@drawable/ic_up"
-        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/chronometer"
         app:layout_constraintTop_toBottomOf="@+id/chronometer"
-        tools:visibility="visible" />
+ />
 
     <TextView
         android:id="@+id/textUnderThumb"
@@ -35,10 +34,9 @@
         android:layout_marginTop="76dp"
         android:gravity="center"
         android:text="thumb"
-        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/thumb_iv"
         app:layout_constraintTop_toTopOf="@+id/thumb_iv"
-        tools:visibility="visible"/>
+ />
 
     <Button
         android:id="@+id/buttonNextWorld"
@@ -47,6 +45,18 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="19dp"
         android:text="слудющее слово"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/buttonFinishEx1"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:text="завершить"
+        android:gravity="center"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:background="?android:colorBackground"
-        android:src="@drawable/ic_play"
+        android:src="@drawable/ic_pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -67,13 +77,13 @@
         android:id="@+id/world_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
         android:gravity="center"
-        android:layout_marginBottom="76dp"
         android:text="Слово"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="50dp"
-        android:visibility="invisible"
+
         app:layout_constraintBottom_toTopOf="@+id/thumb_iv"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+/>
 </androidx.constraintlayout.widget.ConstraintLayout>

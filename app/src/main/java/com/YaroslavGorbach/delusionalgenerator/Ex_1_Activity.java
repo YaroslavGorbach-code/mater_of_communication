@@ -19,10 +19,11 @@ public class Ex_1_Activity extends AppCompatActivity {
     private ImageButton mButtonStartPause;
     private Chronometer mChronometer;
     private long mPauseOffSet = 0;
-    boolean mButtonState = true;
+    boolean mButtonState = false;
     private TextView mTextUnderThumb;
     private Button mButtonNextWorld;
     private TextView mWorld;
+    private Button mButtonFinish;
     Random r = new Random();
     String [] mArrayTextUnderThumb = {};
     String [] mArrayWorlds = {};
@@ -32,16 +33,8 @@ public class Ex_1_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ex_1);
-        mButtonStartPause = findViewById(R.id.button);
-        mChronometer = findViewById(R.id.chronometer);
-        mThumb = findViewById(R.id.thumb_iv);
-        mTextUnderThumb = findViewById(R.id.textUnderThumb);
-        mButtonNextWorld = findViewById(R.id.buttonNextWorld);
-        mWorld = findViewById(R.id.world_tv);
-
-        mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_items);
-        mArrayWorlds = getResources().getStringArray(R.array.Worlds_items);
-
+        initializeComponents();
+        mChronometer.start();
 
         mButtonStartPause.setOnClickListener(v->{
 
@@ -50,21 +43,18 @@ public class Ex_1_Activity extends AppCompatActivity {
                 mButtonStartPause.setImageResource(R.drawable.ic_pause);
                 mButtonState = false;
                 mChronometer.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
-                mChronometer.start();
                 showOrHideButtons(true);
-                setThumbAndText();
-                setWorld();
-
-
-
+                mChronometer.start();
+                mButtonFinish.setVisibility(View.INVISIBLE);
 
             }else{
 
-                mButtonStartPause.setImageResource(R.drawable.ic_play);
+                mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
                 mButtonState = true;
                 mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer.getBase();
                 mChronometer.stop();
                 mButtonNextWorld.setVisibility(View.INVISIBLE);
+                mButtonFinish.setVisibility(View.VISIBLE);
 
             }
 
@@ -78,7 +68,24 @@ public class Ex_1_Activity extends AppCompatActivity {
 
         });
 
+        mButtonFinish.setOnClickListener(v->{
+            finish();
+        });
+
     }
+
+    private void initializeComponents(){
+        mButtonStartPause = findViewById(R.id.button);
+        mChronometer = findViewById(R.id.chronometer);
+        mThumb = findViewById(R.id.thumb_iv);
+        mTextUnderThumb = findViewById(R.id.textUnderThumb);
+        mButtonNextWorld = findViewById(R.id.buttonNextWorld);
+        mWorld = findViewById(R.id.world_tv);
+        mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_items);
+        mArrayWorlds = getResources().getStringArray(R.array.Worlds_items);
+        mButtonFinish = findViewById(R.id.buttonFinishEx1);
+    }
+
 
     private void setThumbAndText(){
 
