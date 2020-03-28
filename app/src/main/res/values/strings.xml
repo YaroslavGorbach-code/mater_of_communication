@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">delusional generator</string>
 
-    <string-array name="TextUnderThumb_items">
+    <string-array name="TextUnderThumb_items_ex1">
         <item>Аналогия</item>
         <item>Обобщение</item>
         <item>Разобобщения</item>
     </string-array>
 
-    <string-array name="Worlds_items">
+    <string-array name="Worlds_items_ex1">
         <item>год</item>
         <item>человек</item>
         <item>время</item>

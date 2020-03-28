@@ -43,9 +43,9 @@ public class Ex_1_Activity extends AppCompatActivity {
                 mButtonStartPause.setImageResource(R.drawable.ic_pause);
                 mButtonState = false;
                 mChronometer.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
-                showOrHideButtons(true);
                 mChronometer.start();
                 mButtonFinish.setVisibility(View.INVISIBLE);
+                mButtonNextWorld.setVisibility(View.VISIBLE);
 
             }else{
 
@@ -81,8 +81,8 @@ public class Ex_1_Activity extends AppCompatActivity {
         mTextUnderThumb = findViewById(R.id.textUnderThumb);
         mButtonNextWorld = findViewById(R.id.buttonNextWorld);
         mWorld = findViewById(R.id.world_tv);
-        mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_items);
-        mArrayWorlds = getResources().getStringArray(R.array.Worlds_items);
+        mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_items_ex1);
+        mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
         mButtonFinish = findViewById(R.id.buttonFinishEx1);
     }
 
@@ -107,25 +107,6 @@ public class Ex_1_Activity extends AppCompatActivity {
 
         mWorld.setText(mArrayWorlds[r.nextInt(47)]);
 
-    }
-
-    private void showOrHideButtons(boolean buttonState){
-
-        if (buttonState){
-
-            mThumb.setVisibility(View.VISIBLE);
-            mTextUnderThumb.setVisibility(View.VISIBLE);
-            mButtonNextWorld.setVisibility(View.VISIBLE);
-            mWorld.setVisibility(View.VISIBLE);
-
-        }else {
-
-            mThumb.setVisibility(View.INVISIBLE);
-            mTextUnderThumb.setVisibility(View.INVISIBLE);
-            mButtonNextWorld.setVisibility(View.INVISIBLE);
-            mWorld.setVisibility(View.INVISIBLE);
-
-        }
     }
 
 }
