@@ -11,37 +11,58 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Random;
 
-
-public class Ex_1_Activity extends AppCompatActivity {
-
+public class Ex_2_6Activity extends AppCompatActivity {
     private ImageButton mButtonStartPause;
     private Chronometer mChronometer;
     private long mPauseOffSet = 0;
     boolean mButtonState = false;
-    private TextView mTextUnderThumb;
     private Button mButtonNextWorld;
     private TextView mWorld;
     private Button mButtonFinish;
     private Toolbar mToolbar;
     Random r = new Random();
-    String [] mArrayTextUnderThumb = {};
+    int mIdEx;
     String [] mArrayWorlds = {};
-    private ImageView mThumb;
+    public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ex_1);
+        setContentView(R.layout.activity_ex_2);
         initializeComponents();
         mChronometer.start();
+
+        switch (mIdEx){
+            case 2:
+                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("Чем ворон похож на стул");
+            break;
+
+            case 3:
+                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("Чем ворон похож на стул 2");
+                break;
+
+            case 4:
+                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("Продвинутое сявязывание");
+                break;
+
+            case 5:
+                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("О чем вижу, о том и пою");
+                break;
+
+            case 6:
+                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("Другие варианты сокращений");
+                break;
+        }
+
+
 
 
         mToolbar.setOnMenuItemClickListener(v->{
@@ -52,7 +73,7 @@ public class Ex_1_Activity extends AppCompatActivity {
         });
 
         mToolbar.setNavigationOnClickListener(v->{
-        finish();
+            finish();
         });
 
         mButtonStartPause.setOnClickListener(v->{
@@ -82,9 +103,6 @@ public class Ex_1_Activity extends AppCompatActivity {
         mButtonNextWorld.setOnClickListener(v->{
 
             setWorld();
-            setThumbAndText();
-            getThisData();
-
 
         });
 
@@ -95,35 +113,18 @@ public class Ex_1_Activity extends AppCompatActivity {
     }
 
     private void initializeComponents(){
-        mButtonStartPause = findViewById(R.id.button);
-        mChronometer = findViewById(R.id.chronometer);
-        mThumb = findViewById(R.id.thumb_iv);
-        mTextUnderThumb = findViewById(R.id.textUnderThumb);
-        mButtonNextWorld = findViewById(R.id.buttonNextWorld);
-        mWorld = findViewById(R.id.world_tv);
-        mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_items_ex1);
-        mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
-        mButtonFinish = findViewById(R.id.buttonFinishEx1);
-        mToolbar = findViewById(R.id.toolbar_ex1);
+        mButtonStartPause = findViewById(R.id.button_2);
+        mChronometer = findViewById(R.id.chronometer_2);
+        mButtonNextWorld = findViewById(R.id.buttonNextWorld_2);
+        mWorld = findViewById(R.id.world_tv_2);
+        mButtonFinish = findViewById(R.id.buttonFinishEx2);
+        mToolbar = findViewById(R.id.toolbar_ex2);
         mToolbar.inflateMenu(R.menu.menu_ex);
-    }
-
-
-    private void setThumbAndText(){
-
-        mTextUnderThumb.setText(mArrayTextUnderThumb[r.nextInt(3)]);
-        if (mTextUnderThumb.getText().equals("Аналогия")){
-
-            mThumb.setImageResource(R.drawable.ic_right);
-        }else if(mTextUnderThumb.getText().equals("Разобобщения")){
-
-            mThumb.setImageResource(R.drawable.ic_down);
-        }else if(mTextUnderThumb.getText().equals("Обобщение")){
-
-            mThumb.setImageResource(R.drawable.ic_up);
-        }
+        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX, -1);
 
     }
+
+
 
     private void setWorld(){
 
@@ -131,18 +132,5 @@ public class Ex_1_Activity extends AppCompatActivity {
 
     }
 
-    private void getThisData(){
-        //получаем текущую дату
-        Date currentDate = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
-        String dateText = dateFormat.format(currentDate);
-
-        //получаем время из секундомера в минутах
-        long time = ((SystemClock.elapsedRealtime() - mChronometer.getBase())/1000) / 60;
-
-
-
-
-
-    }
 }
+

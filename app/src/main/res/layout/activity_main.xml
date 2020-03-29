@@ -71,6 +71,7 @@
        />
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/statistics_ex1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_timeline"
@@ -123,6 +124,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/statistics_ex2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_timeline"
@@ -177,6 +179,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/statistics_ex3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_timeline"
@@ -230,6 +233,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/statistics_ex4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_timeline"
@@ -282,6 +286,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/statistics_ex5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_timeline"
@@ -303,7 +308,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Другие варианыт сокращений"
+            android:text="Другие варианты сокращений"
             android:gravity="center"
             android:textSize="25dp"
             android:textColor="#D3943E06"
@@ -335,6 +340,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/statistics_ex6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_timeline"
