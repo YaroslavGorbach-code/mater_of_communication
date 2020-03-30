@@ -83,7 +83,6 @@ public class Ex_1_Activity extends AppCompatActivity {
 
             setWorld();
             setThumbAndText();
-            getThisData();
 
 
         });
@@ -131,16 +130,16 @@ public class Ex_1_Activity extends AppCompatActivity {
 
     }
 
-    private void getThisData(){
+    private void insertDateAndTime(){
         //получаем текущую дату
         Date currentDate = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
-        String dateText = dateFormat.format(currentDate);
+        String date = dateFormat.format(currentDate);
 
         //получаем время из секундомера в минутах
         long time = ((SystemClock.elapsedRealtime() - mChronometer.getBase())/1000) / 60;
 
-
+        Repo.getInstance(this).insertDateAndTime(1, date, time);
 
 
 
