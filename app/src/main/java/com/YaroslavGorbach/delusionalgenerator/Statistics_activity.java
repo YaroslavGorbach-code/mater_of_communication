@@ -28,22 +28,14 @@ public class Statistics_activity extends AppCompatActivity  {
         });
 
         mToolbar.setOnMenuItemClickListener(v->{
-
-            
-            Repo.getInstance(this).clearStatistic(mIdEx);
-            recreate();
+            DialogClearStatistics.crete(mIdEx).show(getSupportFragmentManager(),null);
             return true;
+
         });
 
-
-        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntries(mIdEx), "Минуты");
-
-        BarData data = new BarData(Repo.getInstance(this).getLabels(mIdEx), bardataset);
-        mChart.setData(data); // set the data and list of labels into chart
-        mChart.setDescription("Сколько минут потрачено на упражнение в определенный день");  // set the description
-        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        mChart.animateY(2000);
-
+        createChart();
+        Repo.getInstance(this).addListener(this::createChart);
+        
     }
 
 
@@ -54,5 +46,13 @@ public class Statistics_activity extends AppCompatActivity  {
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
     }
 
+private  void createChart(){
+    BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntries(mIdEx), "Минуты");
+    BarData data = new BarData(Repo.getInstance(this).getLabels(mIdEx), bardataset);
+    mChart.setData(data); // set the data and list of labels into chart
+    mChart.setDescription("Сколько минут потрачено на упражнение в определенный день");  // set the description
+    bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+    mChart.animateY(2000);
+}
 
 }

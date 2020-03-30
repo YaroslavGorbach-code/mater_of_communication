@@ -10,11 +10,16 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Repo extends SQLiteOpenHelper {
 
-   private static Repo sInstance;
+    public interface Listener{
+        void onDataChange();
+    }
 
+    private static Repo sInstance;
     public static Repo getInstance(Context context){
 
         if (sInstance==null){
@@ -22,7 +27,7 @@ public class Repo extends SQLiteOpenHelper {
         }
         return sInstance;
     }
-
+    private final Set<Listener> mListeners = new HashSet<>();
     public static final String DB_NAME = "generator.db";
     public static final int VERSION = 4;
 
@@ -105,7 +110,20 @@ public class Repo extends SQLiteOpenHelper {
 
     public void clearStatistic(int mIdEx) {
         getWritableDatabase().delete(TABLE_NAME_S,ID_EX_ID + "=" + mIdEx,null);
+        notifyChange();
     }
 
+    private void notifyChange(){
+        for(Listener listener : mListeners) listener.onDataChange();
+    }
 
+    //реализація шаблона наблюдатель
+    public void addListener(Listener listener){
+
+        mListeners.add(listener);
+    }
+    //реализація шаблона наблюдатель
+    public void removeListener(Listener listener){
+        mListeners.remove(listener);
+    }
 }
