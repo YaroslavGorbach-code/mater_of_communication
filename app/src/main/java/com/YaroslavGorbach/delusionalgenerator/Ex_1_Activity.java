@@ -88,6 +88,7 @@ public class Ex_1_Activity extends AppCompatActivity {
         });
 
         mButtonFinish.setOnClickListener(v->{
+            insertMyDateAndTime();
             finish();
         });
 
@@ -130,7 +131,7 @@ public class Ex_1_Activity extends AppCompatActivity {
 
     }
 
-    private void insertDateAndTime(){
+    private void insertMyDateAndTime(){
         //получаем текущую дату
         Date currentDate = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());

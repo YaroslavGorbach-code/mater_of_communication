@@ -12,6 +12,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class Ex_2_6Activity extends AppCompatActivity {
@@ -107,6 +111,7 @@ public class Ex_2_6Activity extends AppCompatActivity {
         });
 
         mButtonFinish.setOnClickListener(v->{
+            insertMyDateAndTime();
             finish();
         });
 
@@ -129,6 +134,21 @@ public class Ex_2_6Activity extends AppCompatActivity {
     private void setWorld(){
 
         mWorld.setText(mArrayWorlds[r.nextInt(47)]);
+
+    }
+
+    private void insertMyDateAndTime(){
+        //получаем текущую дату
+        Date currentDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
+        String date = dateFormat.format(currentDate);
+
+        //получаем время из секундомера в минутах
+        long time = ((SystemClock.elapsedRealtime() - mChronometer.getBase())/1000) / 60;
+
+        Repo.getInstance(this).insertDateAndTime(mIdEx, date, time);
+
+
 
     }
 

@@ -24,7 +24,7 @@ public class Repo extends SQLiteOpenHelper {
     }
 
     public static final String DB_NAME = "generator.db";
-    public static final int VERSION = 3;
+    public static final int VERSION = 4;
 
     //S means Sessions
     public static final String TABLE_NAME_S = "books";
@@ -48,7 +48,7 @@ public class Repo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_SQL_S);
-        insertTESTDateAndTime(db);
+        //insertTESTDateAndTime(db);
 
     }
 

@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class Statistics_activity extends AppCompatActivity  {
     private BarChart mChart;
     private Toolbar mToolbar;
-
+    int mIdEx;
+    public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +26,14 @@ public class Statistics_activity extends AppCompatActivity  {
             finish();
         });
 
+        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).
+                getEntries(mIdEx), "Минуты");
 
-        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntries(1), "Минуты");
-
-
-
-        BarData data = new BarData(Repo.getInstance(this).getLabels(1), bardataset);
+        BarData data = new BarData(Repo.getInstance(this).getLabels(mIdEx), bardataset);
         mChart.setData(data); // set the data and list of labels into chart
         mChart.setDescription("Сколько минут потрачено на упражнение в определенный день");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        mChart.animateY(3000);
+        mChart.animateY(2000);
 
     }
 
@@ -42,6 +41,7 @@ public class Statistics_activity extends AppCompatActivity  {
     private void initializeComponents(){
         mChart = findViewById(R.id.chart);
         mToolbar = findViewById(R.id.toolbar_statistics);
+        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
     }
 
 

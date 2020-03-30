@@ -63,32 +63,32 @@ public class MainActivity extends AppCompatActivity {
 
         mStatisticsButton_ex1.setOnClickListener(v->{
             startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 1));
+                    putExtra(Statistics_activity.EXTRA_ID_EX, 1));
         });
 
         mStatisticsButton_ex2.setOnClickListener(v->{
             startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 2));
+                    putExtra(Statistics_activity.EXTRA_ID_EX, 2));
         });
 
         mStatisticsButton_ex3.setOnClickListener(v->{
             startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 3));
+                    putExtra(Statistics_activity.EXTRA_ID_EX, 3));
         });
 
         mStatisticsButton_ex4.setOnClickListener(v->{
             startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 4));
+                    putExtra(Statistics_activity.EXTRA_ID_EX, 4));
         });
 
         mStatisticsButton_ex5.setOnClickListener(v->{
             startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 5));
+                    putExtra(Statistics_activity.EXTRA_ID_EX, 5));
         });
 
         mStatisticsButton_ex6.setOnClickListener(v->{
             startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 6));
+                    putExtra(Statistics_activity.EXTRA_ID_EX, 6));
         });
 
 
