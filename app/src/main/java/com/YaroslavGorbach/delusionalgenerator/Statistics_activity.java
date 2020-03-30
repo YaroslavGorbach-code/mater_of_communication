@@ -22,12 +22,21 @@ public class Statistics_activity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statigi_activity);
         initializeComponents();
+
         mToolbar.setNavigationOnClickListener(v->{
             finish();
         });
 
-        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).
-                getEntries(mIdEx), "Минуты");
+        mToolbar.setOnMenuItemClickListener(v->{
+
+            
+            Repo.getInstance(this).clearStatistic(mIdEx);
+            recreate();
+            return true;
+        });
+
+
+        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntries(mIdEx), "Минуты");
 
         BarData data = new BarData(Repo.getInstance(this).getLabels(mIdEx), bardataset);
         mChart.setData(data); // set the data and list of labels into chart
@@ -41,6 +50,7 @@ public class Statistics_activity extends AppCompatActivity  {
     private void initializeComponents(){
         mChart = findViewById(R.id.chart);
         mToolbar = findViewById(R.id.toolbar_statistics);
+        mToolbar.inflateMenu(R.menu.menu_statistic);
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
     }
 

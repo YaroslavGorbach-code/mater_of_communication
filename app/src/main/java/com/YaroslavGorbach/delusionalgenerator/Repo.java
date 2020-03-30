@@ -103,27 +103,9 @@ public class Repo extends SQLiteOpenHelper {
         return labels;
     }
 
-    public void insertTESTDateAndTime(SQLiteDatabase db){
-        ContentValues cv = new ContentValues();
-        cv.put(ID_EX_ID, 1);
-        cv.put(DATE_S, "22.22");
-        cv.put(TIME_S, 15f);
-        cv.put(ID_EX_ID, 1);
-        db.insert(TABLE_NAME_S,null,cv);
-
-
-        cv.put(ID_EX_ID, 1);
-        cv.put(DATE_S, "22.22");
-        cv.put(TIME_S, 30f);
-        cv.put(ID_EX_ID, 1);
-        db.insert(TABLE_NAME_S,null,cv);
-
-
-        cv.put(ID_EX_ID, 1);
-        cv.put(DATE_S, "22.22");
-        cv.put(TIME_S, 20f);
-        cv.put(ID_EX_ID, 1);
-        db.insert(TABLE_NAME_S,null,cv);
-
+    public void clearStatistic(int mIdEx) {
+        getWritableDatabase().delete(TABLE_NAME_S,ID_EX_ID + "=" + mIdEx,null);
     }
+
+
 }
