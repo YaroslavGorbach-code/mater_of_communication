@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Statistics_activity"></activity>
+        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".Statistics_activity" />
         <activity android:name=".Ex_2_6Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Ex_1_Activity" />
+        <receiver android:name=".ReminderBroadcast"/>
     </application>
 
 </manifest>

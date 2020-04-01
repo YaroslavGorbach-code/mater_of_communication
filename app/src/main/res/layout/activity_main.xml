@@ -54,9 +54,10 @@
         android:layout_marginTop="35dp"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/notification_ex1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_notification"
+        android:src="@drawable/ic_help_outline"
         android:layout_gravity="bottom"
         android:background="@drawable/ruond_button"
         android:layout_margin="20dp"/>
@@ -107,9 +108,10 @@
             android:layout_marginTop="35dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/notification_ex2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_notification"
+            android:src="@drawable/ic_help_outline"
             android:layout_gravity="bottom"
             android:background="@drawable/ruond_button"
             android:layout_margin="20dp"/>
@@ -162,9 +164,10 @@
             android:layout_marginTop="35dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/notification_ex3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_notification"
+            android:src="@drawable/ic_help_outline"
             android:layout_gravity="bottom"
             android:background="@drawable/ruond_button"
             android:layout_margin="20dp"/>
@@ -216,9 +219,10 @@
             android:layout_marginTop="35dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/notification_ex4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_notification"
+            android:src="@drawable/ic_help_outline"
             android:layout_gravity="bottom"
             android:background="@drawable/ruond_button"
             android:layout_margin="20dp"/>
@@ -269,9 +273,10 @@
             android:layout_marginTop="35dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/notification_ex5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_notification"
+            android:src="@drawable/ic_help_outline"
             android:layout_gravity="bottom"
             android:background="@drawable/ruond_button"
             android:layout_margin="20dp"/>
@@ -323,9 +328,10 @@
             android:layout_marginTop="35dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/notification_ex6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_notification"
+            android:src="@drawable/ic_help_outline"
             android:layout_gravity="bottom"
             android:background="@drawable/ruond_button"
             android:layout_margin="20dp"/>

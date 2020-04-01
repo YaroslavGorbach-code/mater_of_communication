@@ -41,7 +41,10 @@ public class Ex_1_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ex_1);
         initializeComponents();
+        //запуск секундомера
         mChronometer.start();
+        //устанавливаем первое слово
+        setWorld();
 
 
         mToolbar.setOnMenuItemClickListener(v->{
@@ -56,6 +59,7 @@ public class Ex_1_Activity extends AppCompatActivity {
         });
 
         mButtonStartPause.setOnClickListener(v->{
+
 
             if(mButtonState){
 

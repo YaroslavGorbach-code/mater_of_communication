@@ -38,6 +38,7 @@ public class Ex_2_6Activity extends AppCompatActivity {
         setContentView(R.layout.activity_ex_2);
         initializeComponents();
         mChronometer.start();
+        setWorld();
 
         switch (mIdEx){
             case 2:

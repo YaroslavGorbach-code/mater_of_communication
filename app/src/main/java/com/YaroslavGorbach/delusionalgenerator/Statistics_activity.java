@@ -10,8 +10,6 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
-
 public class Statistics_activity extends AppCompatActivity  {
     private BarChart mChart;
     private Toolbar mToolbar;
@@ -20,7 +18,7 @@ public class Statistics_activity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statigi_activity);
+        setContentView(R.layout.activity_statistics_activity);
         initializeComponents();
 
         mToolbar.setNavigationOnClickListener(v->{
@@ -35,7 +33,7 @@ public class Statistics_activity extends AppCompatActivity  {
 
         createChart();
         Repo.getInstance(this).addListener(this::createChart);
-        
+
     }
 
 
