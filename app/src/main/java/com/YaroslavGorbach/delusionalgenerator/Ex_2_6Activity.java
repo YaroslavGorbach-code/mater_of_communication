@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -38,7 +39,7 @@ public class Ex_2_6Activity extends AppCompatActivity {
         setContentView(R.layout.activity_ex_2);
         initializeComponents();
         mChronometer.start();
-        setWorld();
+
 
         switch (mIdEx){
             case 2:
@@ -66,7 +67,7 @@ public class Ex_2_6Activity extends AppCompatActivity {
                 mToolbar.setTitle("Другие варианты сокращений");
                 break;
         }
-
+        setWorld();
 
 
 

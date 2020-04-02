@@ -17,7 +17,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, "test");
-        Intent ii = new Intent(context, MainActivity.class);
+        Intent ii = new Intent(context, Main2Activity.class);
         ii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, ii, PendingIntent.FLAG_UPDATE_CURRENT);
 

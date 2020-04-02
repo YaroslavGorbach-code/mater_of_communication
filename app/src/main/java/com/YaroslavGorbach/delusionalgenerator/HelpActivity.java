@@ -23,19 +23,15 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
         initializeComponents();
-
-
-
+        
         mToolbar.setNavigationOnClickListener(v->{
 
             finish();
         });
 
-
-
         switch (mIdEx){
             case 1:
-                mToolbar. setTitle("лингвистические пирамиды");
+                mToolbar. setTitle("Лингвистические пирамиды");
                 break;
             case 2:
                 mToolbar. setTitle("Чем ворон похож на стол");
