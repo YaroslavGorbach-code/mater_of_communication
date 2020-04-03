@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,7 +16,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, "test");
-        Intent ii = new Intent(context, Main2Activity.class);
+        Intent ii = new Intent(context, MainActivity.class);
         ii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, ii, PendingIntent.FLAG_UPDATE_CURRENT);
 

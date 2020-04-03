@@ -20,51 +20,72 @@
             android:layout_height="56dp"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Лингвистические пирамиды"
-            app:titleTextColor="#ffffff"
-            >
-        </androidx.appcompat.widget.Toolbar>
+            app:titleTextColor="#ffffff"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <Chronometer
         android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginTop="34dp"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <ImageView
-        android:id="@+id/thumb_iv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:src="@drawable/ic_up"
-        app:layout_constraintStart_toStartOf="@+id/chronometer"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer" />
 
-    <TextView
-        android:id="@+id/textUnderThumb"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout_ex1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:gravity="center"
-        android:text="thumb"
-        app:layout_constraintStart_toStartOf="@+id/thumb_iv"
-        app:layout_constraintTop_toTopOf="@+id/thumb_iv" />
+        android:layout_marginTop="222dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/world_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Слово"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="50dp"
+            tools:layout_editor_absoluteY="220dp" />
+
+        <ImageView
+            android:id="@+id/thumb_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/ic_up"
+            tools:layout_editor_absoluteY="382dp" />
+
+        <TextView
+            android:id="@+id/textUnderThumb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="thumb"
+            tools:layout_editor_absoluteY="459dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonNextWorld"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
         android:drawableEnd="@drawable/ic_arrow_right"
         android:text="слудющее слово"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonFinishEx1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -73,36 +94,25 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="7dp"
         android:gravity="center"
         android:text="завершить"
         android:textColor="#FF0000"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/buttonNextWorld" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="36dp"
         android:background="?selectableItemBackground"
         android:src="@drawable/ic_pause"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonFinishEx1" />
 
-    <TextView
-        android:id="@+id/world_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:gravity="center"
-        android:text="Слово"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="50dp"
 
-        app:layout_constraintBottom_toTopOf="@+id/thumb_iv"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

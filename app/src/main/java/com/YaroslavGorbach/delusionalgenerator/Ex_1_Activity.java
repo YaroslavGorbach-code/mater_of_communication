@@ -10,13 +10,16 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 
@@ -35,6 +38,7 @@ public class Ex_1_Activity extends AppCompatActivity {
     String [] mArrayTextUnderThumb = {};
     String [] mArrayWorlds = {};
     private ImageView mThumb;
+    private LinearLayout mCenterLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +96,16 @@ public class Ex_1_Activity extends AppCompatActivity {
         });
 
         mButtonFinish.setOnClickListener(v->{
+
             insertMyDateAndTime();
             finish();
+
+        });
+        mCenterLayout.setOnClickListener(v->{
+
+            setWorld();
+            setThumbAndText();
+
         });
 
     }
@@ -110,6 +122,7 @@ public class Ex_1_Activity extends AppCompatActivity {
         mButtonFinish = findViewById(R.id.buttonFinishEx1);
         mToolbar = findViewById(R.id.toolbar_ex1);
         mToolbar.inflateMenu(R.menu.menu_ex);
+        mCenterLayout = findViewById(R.id.linearLayout_ex1);
     }
 
 
@@ -132,6 +145,7 @@ public class Ex_1_Activity extends AppCompatActivity {
     private void setWorld(){
 
         mWorld.setText(mArrayWorlds[r.nextInt(47)]);
+        animateThumb();
 
     }
 
@@ -148,5 +162,13 @@ public class Ex_1_Activity extends AppCompatActivity {
 
 
 
+    }
+    private void animateThumb(){
+        YoYo.with(Techniques.RotateIn)
+                .duration(500)
+                .playOn(mThumb);
+        YoYo.with(Techniques.RotateIn)
+                .duration(500)
+                .playOn(mTextUnderThumb);
     }
 }
