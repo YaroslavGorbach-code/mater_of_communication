@@ -144,7 +144,7 @@ public class Ex_1_Activity extends AppCompatActivity {
 
     private void setWorld(){
 
-        mWorld.setText(mArrayWorlds[r.nextInt(47)]);
+        mWorld.setText(mArrayWorlds[r.nextInt(90)]);
         animateThumb();
 
     }

@@ -31,6 +31,9 @@ public class Ex_2_6Activity extends AppCompatActivity {
     Random r = new Random();
     int mIdEx;
     String [] mArrayWorlds = {};
+    String [] mArrayWorlds_ex2_living = {};
+    String [] mArrayWorlds_ex2_not_living = {};
+
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
     @Override
@@ -43,7 +46,8 @@ public class Ex_2_6Activity extends AppCompatActivity {
 
         switch (mIdEx){
             case 2:
-                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_ex2_living);
+                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
                 mToolbar.setTitle("Чем ворон похож на стул");
             break;
 
@@ -135,7 +139,18 @@ public class Ex_2_6Activity extends AppCompatActivity {
 
     private void setWorld(){
 
-        mWorld.setText(mArrayWorlds[r.nextInt(47)]);
+        if (mIdEx == 2){
+
+            mWorld.setText(String.format("%s - %s", mArrayWorlds_ex2_living[r.nextInt(90)],
+                    mArrayWorlds_ex2_not_living[r.nextInt(90)]));
+
+        }
+        else {
+
+            mWorld.setText( mArrayWorlds[r.nextInt(90)]);
+
+        }
+
 
     }
 

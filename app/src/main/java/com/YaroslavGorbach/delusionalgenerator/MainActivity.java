@@ -35,99 +35,65 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeComponents();
 
-        mStartButton_ex1.setOnClickListener(v->{
-            startActivity(new Intent(this, Ex_1_Activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 1));
-        });
+        mStartButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, Ex_1_Activity.class).
+                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 1)));
 
-        mStartButton_ex2.setOnClickListener(v->{
-            startActivity(new Intent(this, Ex_2_6Activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 2));
-        });
+        mStartButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
+                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 2)));
 
-        mStartButton_ex3.setOnClickListener(v->{
-            startActivity(new Intent(this, Ex_2_6Activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 3));
-        });
+        mStartButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
+                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 3)));
 
-        mStartButton_ex4.setOnClickListener(v->{
-            startActivity(new Intent(this, Ex_2_6Activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 4));
-        });
+        mStartButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
+                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 4)));
 
-        mStartButton_ex5.setOnClickListener(v->{
-            startActivity(new Intent(this, Ex_2_6Activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 5));
-        });
+        mStartButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
+                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 5)));
 
-        mStartButton_ex6.setOnClickListener(v->{
-            startActivity(new Intent(this, Ex_2_6Activity.class).
-                    putExtra(Ex_2_6Activity.EXTRA_ID_EX, 6));
-        });
+        mStartButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
+                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 6)));
 
 
 
-        mStatisticsButton_ex1.setOnClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Statistics_activity.EXTRA_ID_EX, 1));
-        });
 
-        mStatisticsButton_ex2.setOnClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Statistics_activity.EXTRA_ID_EX, 2));
-        });
+        mStatisticsButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 1)));
 
-        mStatisticsButton_ex3.setOnClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Statistics_activity.EXTRA_ID_EX, 3));
-        });
+        mStatisticsButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 2)));
 
-        mStatisticsButton_ex4.setOnClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Statistics_activity.EXTRA_ID_EX, 4));
-        });
+        mStatisticsButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 3)));
 
-        mStatisticsButton_ex5.setOnClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Statistics_activity.EXTRA_ID_EX, 5));
-        });
+        mStatisticsButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 4)));
 
-        mStatisticsButton_ex6.setOnClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class).
-                    putExtra(Statistics_activity.EXTRA_ID_EX, 6));
-        });
+        mStatisticsButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 5)));
+
+        mStatisticsButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 6)));
 
 
 
-        mNotificationButton_ex1.setOnClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class).
-                    putExtra(HelpActivity.EXTRA_ID, 1));
-        });
 
-        mNotificationButton_ex2.setOnClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class).
-                    putExtra(HelpActivity.EXTRA_ID, 2));
-        });
+        mNotificationButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 1)));
 
-        mNotificationButton_ex3.setOnClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class).
-                    putExtra(HelpActivity.EXTRA_ID, 3));
-        });
+        mNotificationButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 2)));
 
-        mNotificationButton_ex4.setOnClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class).
-                    putExtra(HelpActivity.EXTRA_ID, 4));
-        });
+        mNotificationButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 3)));
 
-        mNotificationButton_ex5.setOnClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class).
-                    putExtra(HelpActivity.EXTRA_ID, 5));
-        });
+        mNotificationButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 4)));
 
-        mNotificationButton_ex6.setOnClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class).
-                    putExtra(HelpActivity.EXTRA_ID, 6));
-        });
+        mNotificationButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 5)));
+
+        mNotificationButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 6)));
 
     }
 
@@ -146,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
         mStatisticsButton_ex5 = findViewById(R.id.statistics_ex5);
         mStatisticsButton_ex6 = findViewById(R.id.statistics_ex6);
 
-        mNotificationButton_ex1 = findViewById(R.id.notification_ex1);
-        mNotificationButton_ex2 = findViewById(R.id.notification_ex2);
-        mNotificationButton_ex3 = findViewById(R.id.notification_ex3);
-        mNotificationButton_ex4 = findViewById(R.id.notification_ex4);
-        mNotificationButton_ex5 = findViewById(R.id.notification_ex5);
-        mNotificationButton_ex6 = findViewById(R.id.notification_ex6);
+        mNotificationButton_ex1 = findViewById(R.id.help_ex1);
+        mNotificationButton_ex2 = findViewById(R.id.help_ex2);
+        mNotificationButton_ex3 = findViewById(R.id.help_ex3);
+        mNotificationButton_ex4 = findViewById(R.id.help_ex4);
+        mNotificationButton_ex5 = findViewById(R.id.help_ex5);
+        mNotificationButton_ex6 = findViewById(R.id.help_ex6);
 
     }
 }
