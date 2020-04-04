@@ -3,25 +3,21 @@ package com.YaroslavGorbach.delusionalgenerator;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-
-import java.util.Calendar;
+import android.widget.TextView;
 
 public class HelpActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     int mIdEx;
+    private TextView mExName;
+    private TextView mAimOfExercise;
+    private TextView mHawToPerformTheExercise;
     public static final String EXTRA_ID = "EXTRA_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notifications);
+        setContentView(R.layout.activity_help);
         initializeComponents();
 
         mToolbar.setNavigationOnClickListener(v->{
@@ -31,22 +27,25 @@ public class HelpActivity extends AppCompatActivity {
 
         switch (mIdEx){
             case 1:
-                mToolbar. setTitle("Лингвистические пирамиды");
+                mToolbar.setTitle("Лингвистические пирамиды");
+                mExName.setText("Лингвистические пирамиды");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_1));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_1));
                 break;
             case 2:
-                mToolbar. setTitle("Чем ворон похож на стол");
+                mToolbar.setTitle("Чем ворон похож на стол");
                 break;
             case 3:
-                mToolbar. setTitle("Чем ворон похож на стол 2");
+                mToolbar.setTitle("Чем ворон похож на стол 2");
                 break;
             case 4:
-                mToolbar. setTitle("Продвинутое связывание");
+                mToolbar.setTitle("Продвинутое связывание");
                 break;
             case 5:
-                mToolbar. setTitle("О чем вижу, о том и пою");
+                mToolbar.setTitle("О чем вижу, о том и пою");
                 break;
             case 6:
-                mToolbar. setTitle("Другие варианты сокращений");
+                mToolbar.setTitle("Другие варианты сокращений");
                 break;
         }
 
@@ -55,6 +54,9 @@ public class HelpActivity extends AppCompatActivity {
     private void initializeComponents(){
         mToolbar = findViewById(R.id.toolbar_notification);
         mIdEx = getIntent().getIntExtra(EXTRA_ID,-1);
+        mExName = findViewById(R.id.exercises_name);
+        mAimOfExercise = findViewById(R.id.aim_of_exercise);
+        mHawToPerformTheExercise = findViewById(R.id.haw_to_perform);
 
     }
 

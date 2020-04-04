@@ -129,6 +129,11 @@ public class ExercisesActivity extends AppCompatActivity {
 
         });
 
+        mThumb.setOnClickListener(v->{
+            setThumbAndText();
+            animateThumb();
+        });
+
         mButtonNextWorld.setOnClickListener(v->{
 
             setWorld();
@@ -141,7 +146,7 @@ public class ExercisesActivity extends AppCompatActivity {
         });
 
         setWorld();
-        
+
     }
 
     private void initializeComponents(){
