@@ -315,4 +315,176 @@
         <item>таблетка</item>
 
     </string-array>
+
+    <string-array name="Worlds_items_ex3_not_living">
+        <item>забор</item>
+        <item>дыня</item>
+        <item>рообот</item>
+        <item>кровать</item>
+        <item>телефон</item>
+        <item>какао</item>
+        <item>палатка</item>
+        <item>гриб</item>
+        <item>палка</item>
+        <item>меч</item>
+
+        <item>светофор</item>
+        <item>кабель</item>
+        <item>насос</item>
+        <item>чашка</item>
+        <item>стол</item>
+        <item>абсент</item>
+        <item>автобус</item>
+        <item>трава</item>
+        <item>акваланг</item>
+        <item>амулет</item>
+
+        <item>ананас</item>
+        <item>аорта</item>
+        <item>атом</item>
+        <item>багажник</item>
+        <item>багет</item>
+        <item>кофе</item>
+        <item>орех</item>
+        <item>тюль</item>
+        <item>спутник</item>
+        <item>ковёр</item>
+
+        <item>книга</item>
+        <item>паспорт</item>
+        <item>антена</item>
+        <item>танк</item>
+        <item>яблоко</item>
+        <item>хлеб</item>
+        <item>мясо</item>
+        <item>масло</item>
+        <item>молоко</item>
+        <item>нож</item>
+
+        <item>ветчина</item>
+        <item>яйцо</item>
+        <item>вода</item>
+        <item>сигарета</item>
+        <item>вагон</item>
+        <item>бинокль</item>
+        <item>бетон</item>
+        <item>кабель</item>
+        <item>монитор</item>
+        <item>патрон</item>
+
+        <item>микрофон</item>
+        <item>часы</item>
+        <item>картон</item>
+        <item>тумбочка</item>
+        <item>базука</item>
+        <item>баклажан</item>
+        <item>небо</item>
+        <item>карандаш</item>
+        <item>космос</item>
+        <item>монета</item>
+
+        <item>торт</item>
+        <item>банка</item>
+        <item>салют</item>
+        <item>кактус</item>
+        <item>ваза</item>
+        <item>портфель</item>
+        <item>бандура</item>
+        <item>ведро</item>
+        <item>бамбук</item>
+        <item>базальт</item>
+
+        <item>бинт</item>
+        <item>барабан</item>
+        <item>бомба</item>
+        <item>вазелин</item>
+        <item>велосипед</item>
+        <item>веник</item>
+        <item>воз</item>
+        <item>воск</item>
+        <item>гайка</item>
+        <item>галстук</item>
+
+        <item>герб</item>
+        <item>гель</item>
+        <item>бомба</item>
+        <item>динамит</item>
+        <item>дыня</item>
+        <item>жгут</item>
+        <item>куртка</item>
+        <item>батарея</item>
+        <item>носок</item>
+        <item>таблетка</item>
+
+    </string-array>
+
+    <string-array name="Worlds_items_ex3_filings">
+        <item>злость</item>
+        <item>гнев</item>
+        <item>возмущение</item>
+        <item>ненависть</item>
+        <item>обида</item>
+        <item>зависть</item>
+        <item>отвращение</item>
+        <item>страх</item>
+        <item>волнение</item>
+        <item>опасение</item>
+
+        <item>застенчивость</item>
+        <item>усталость</item>
+        <item>скука</item>
+        <item>шок</item>
+        <item>изумление</item>
+        <item>потрясение</item>
+        <item>энтузиазм</item>
+        <item>возбужденность</item>
+        <item>страсть</item>
+        <item>эйфория</item>
+
+        <item>умиление</item>
+        <item>решимость</item>
+        <item>дерзость</item>
+        <item>оптимизм</item>
+        <item>гордость</item>
+        <item>счастье</item>
+        <item>радость</item>
+        <item>блаженство</item>
+        <item>восхищение</item>
+        <item>удовольствие</item>
+
+        <item>очарование</item>
+        <item>надежда</item>
+        <item>заитересованность</item>
+        <item>интерес</item>
+        <item>живость</item>
+        <item>спокойствие</item>
+        <item>облегчение</item>
+        <item>расслабленность</item>
+        <item>довольство</item>
+        <item>комфорт</item>
+
+        <item>сдержанность</item>
+        <item>любовь</item>
+        <item>восхищение</item>
+        <item>благоговение</item>
+        <item>ревность</item>
+        <item>привязаность</item>
+        <item>безопасность</item>
+        <item>уважение</item>
+        <item>симпатия</item>
+        <item>сочуствие</item>
+
+        <item>нежность</item>
+        <item>великодушие</item>
+        <item>озадаченность</item>
+        <item>нежность</item>
+        <item>дружелюбие</item>
+        <item>смятение</item>
+        <item>сопротивление</item>
+        <item>бунтарство</item>
+        <item>досада</item>
+        <item>сердитость</item>
+
+
+    </string-array>
 </resources>

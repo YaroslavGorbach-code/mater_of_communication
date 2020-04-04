@@ -33,6 +33,7 @@ public class Ex_2_6Activity extends AppCompatActivity {
     String [] mArrayWorlds = {};
     String [] mArrayWorlds_ex2_living = {};
     String [] mArrayWorlds_ex2_not_living = {};
+    String [] mArrayWorlds_ex3_filings = {};
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
@@ -52,7 +53,8 @@ public class Ex_2_6Activity extends AppCompatActivity {
             break;
 
             case 3:
-                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
+                mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
                 mToolbar.setTitle("Чем ворон похож на стул 2");
                 break;
 
@@ -142,6 +144,11 @@ public class Ex_2_6Activity extends AppCompatActivity {
         if (mIdEx == 2){
 
             mWorld.setText(String.format("%s - %s", mArrayWorlds_ex2_living[r.nextInt(90)],
+                    mArrayWorlds_ex2_not_living[r.nextInt(90)]));
+
+        } else if(mIdEx == 3){
+
+            mWorld.setText(String.format("%s - %s", mArrayWorlds_ex3_filings[r.nextInt(60)],
                     mArrayWorlds_ex2_not_living[r.nextInt(90)]));
 
         }
