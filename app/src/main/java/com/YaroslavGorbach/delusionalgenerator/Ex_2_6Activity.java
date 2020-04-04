@@ -28,11 +28,12 @@ public class Ex_2_6Activity extends AppCompatActivity {
     private Toolbar mToolbar;
     Random r = new Random();
     int mIdEx;
-    String [] mArrayWorlds_ex1 = {};
     String [] mArrayWorlds_ex2_living = {};
     String [] mArrayWorlds_ex2_not_living = {};
     String [] mArrayWorlds_ex3_filings = {};
     String [] mArrayWorlds_ex4 = {};
+    String [] mArrayWorlds_ex5 = {};
+    String [] mArrayWorlds_ex6 = {};
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
@@ -63,12 +64,12 @@ public class Ex_2_6Activity extends AppCompatActivity {
                 break;
 
             case 5:
-                mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex5);
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 break;
 
             case 6:
-                mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_ex6);
                 mToolbar.setTitle("Другие варианты сокращений");
                 break;
         }
@@ -142,34 +143,35 @@ public class Ex_2_6Activity extends AppCompatActivity {
 
         if (mIdEx == 2){
 
-            mWorld.setText(String.format("%s - %s", mArrayWorlds_ex2_living[r.nextInt(90)],
-                    mArrayWorlds_ex2_not_living[r.nextInt(90)]));
+            mWorld.setText(String.format("%s - %s", mArrayWorlds_ex2_living[r.nextInt(mArrayWorlds_ex2_living.length)],
+                    mArrayWorlds_ex2_not_living[r.nextInt(mArrayWorlds_ex2_not_living.length)]));
 
         } else if(mIdEx == 3){
 
-            mWorld.setText(String.format("%s - %s", mArrayWorlds_ex3_filings[r.nextInt(60)],
-                    mArrayWorlds_ex2_not_living[r.nextInt(90)]));
+            mWorld.setText(String.format("%s - %s", mArrayWorlds_ex3_filings[r.nextInt(mArrayWorlds_ex3_filings.length)],
+                    mArrayWorlds_ex2_not_living[r.nextInt(mArrayWorlds_ex2_not_living.length)]));
 
         } else if(mIdEx == 4){
 
-            String worl_1 = mArrayWorlds_ex4[r.nextInt(140)];
-            String worl_2 = mArrayWorlds_ex4[r.nextInt(140)];
-            
+            String worl_1 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
+            String worl_2 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
+
             if (worl_1.equals(worl_2)){
 
-                worl_1 = mArrayWorlds_ex4[r.nextInt(140)];
-
+                worl_1 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
             }
 
             mWorld.setText(String.format("%s - %s", worl_1, worl_2));
 
+        } else if(mIdEx == 5){
+
+            mWorld.setText( mArrayWorlds_ex5[r.nextInt(mArrayWorlds_ex5.length)]);
+
+        } else if(mIdEx == 6){
+
+            mWorld.setText( mArrayWorlds_ex6[r.nextInt(mArrayWorlds_ex6.length)]);
+
         }
-        else {
-
-            mWorld.setText( mArrayWorlds_ex1[r.nextInt(90)]);
-
-        }
-
 
     }
 

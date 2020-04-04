@@ -50,7 +50,7 @@
         <item>мясо</item>
         <item>масло</item>
         <item>молоко</item>
-        <item>Нож</item>
+        <item>нож</item>
 
         <item>ветчина</item>
         <item>яйцо</item>
@@ -106,6 +106,160 @@
         <item>батарея</item>
         <item>носок</item>
         <item>таблетка</item>
+
+        <item>забор</item>
+        <item>дыня</item>
+        <item>рообот</item>
+        <item>кровать</item>
+        <item>телефон</item>
+        <item>какао</item>
+        <item>палатка</item>
+        <item>гриб</item>
+        <item>палка</item>
+        <item>меч</item>
+
+        <item>светофор</item>
+        <item>кабель</item>
+        <item>насос</item>
+        <item>чашка</item>
+        <item>стол</item>
+        <item>абсент</item>
+        <item>автобус</item>
+        <item>трава</item>
+        <item>акваланг</item>
+        <item>амулет</item>
+
+        <item>ананас</item>
+        <item>аорта</item>
+        <item>атом</item>
+        <item>багажник</item>
+        <item>багет</item>
+        <item>кофе</item>
+        <item>орех</item>
+        <item>тюль</item>
+        <item>спутник</item>
+        <item>ковёр</item>
+
+        <item>книга</item>
+        <item>паспорт</item>
+        <item>антена</item>
+        <item>танк</item>
+        <item>яблоко</item>
+        <item>хлеб</item>
+        <item>мясо</item>
+        <item>масло</item>
+        <item>молоко</item>
+        <item>нож</item>
+
+        <item>ветчина</item>
+        <item>яйцо</item>
+        <item>вода</item>
+        <item>сигарета</item>
+        <item>вагон</item>
+        <item>бинокль</item>
+        <item>бетон</item>
+        <item>кабель</item>
+        <item>монитор</item>
+        <item>патрон</item>
+
+        <item>микрофон</item>
+        <item>часы</item>
+        <item>картон</item>
+        <item>тумбочка</item>
+        <item>базука</item>
+        <item>баклажан</item>
+        <item>небо</item>
+        <item>карандаш</item>
+        <item>космос</item>
+        <item>монета</item>
+
+        <item>торт</item>
+        <item>банка</item>
+        <item>салют</item>
+        <item>кактус</item>
+        <item>ваза</item>
+        <item>портфель</item>
+        <item>бандура</item>
+        <item>ведро</item>
+        <item>бамбук</item>
+        <item>базальт</item>
+
+        <item>бинт</item>
+        <item>барабан</item>
+        <item>бомба</item>
+        <item>вазелин</item>
+        <item>велосипед</item>
+        <item>веник</item>
+        <item>воз</item>
+        <item>воск</item>
+        <item>гайка</item>
+        <item>галстук</item>
+
+        <item>герб</item>
+        <item>гель</item>
+        <item>бомба</item>
+        <item>динамит</item>
+        <item>дыня</item>
+        <item>жгут</item>
+        <item>куртка</item>
+        <item>батарея</item>
+        <item>носок</item>
+        <item>таблетка</item>
+
+        <item>труба</item>
+        <item>крыша</item>
+        <item>сено</item>
+        <item>танец</item>
+        <item>плац</item>
+        <item>отвертка</item>
+        <item>помидор</item>
+        <item>столб</item>
+        <item>тень</item>
+        <item>белок</item>
+
+        <item>груша</item>
+        <item>цветок</item>
+        <item>таранька</item>
+        <item>шуба</item>
+        <item>мех</item>
+        <item>хвост</item>
+        <item>самовар</item>
+        <item>пляж</item>
+        <item>обои</item>
+        <item>марка</item>
+
+        <item>пистолет</item>
+        <item>тюльпан</item>
+        <item>планета</item>
+        <item>доска</item>
+        <item>лодка</item>
+        <item>марля</item>
+        <item>пластырь</item>
+        <item>жгут</item>
+        <item>тесак</item>
+        <item>парашют</item>
+
+        <item>турбулентность</item>
+        <item>корм</item>
+        <item>сетка</item>
+        <item>хлопушка</item>
+        <item>карбюратор</item>
+        <item>кулак</item>
+        <item>зубы</item>
+        <item>мяч</item>
+        <item>футболка</item>
+        <item>мельница</item>
+
+        <item>алмаз</item>
+        <item>золото</item>
+        <item>майнкрафт</item>
+        <item>самолет</item>
+        <item>мука</item>
+        <item>журнал</item>
+        <item>штанга</item>
+        <item>весы</item>
+        <item>канат</item>
+        <item>мазь</item>
 
     </string-array>
 
@@ -642,6 +796,539 @@
         <item>весы</item>
         <item>канат</item>
         <item>мазь</item>
+
+    </string-array>
+
+    <string-array name="Worlds_items_ex5">
+        <item>забор</item>
+        <item>человек</item>
+        <item>наушники</item>
+        <item>волосы</item>
+        <item>телефон</item>
+        <item>какао</item>
+        <item>рука</item>
+        <item>гриб</item>
+        <item>палка</item>
+        <item>меч</item>
+
+        <item>светофор</item>
+        <item>спрут</item>
+        <item>насос</item>
+        <item>чашка</item>
+        <item>стол</item>
+        <item>абсент</item>
+        <item>автобус</item>
+        <item>аист</item>
+        <item>акваланг</item>
+        <item>амулет</item>
+
+        <item>ананас</item>
+        <item>аорта</item>
+        <item>атом</item>
+        <item>багажник</item>
+        <item>багет</item>
+        <item>кофе</item>
+        <item>орех</item>
+        <item>тюль</item>
+        <item>голубь</item>
+        <item>ковёр</item>
+
+        <item>книга</item>
+        <item>паспорт</item>
+        <item>баклан</item>
+        <item>танк</item>
+        <item>яблоко</item>
+        <item>хлеб</item>
+        <item>мясо</item>
+        <item>масло</item>
+        <item>молоко</item>
+        <item>нож</item>
+
+        <item>ветчина</item>
+        <item>яйцо</item>
+        <item>вода</item>
+        <item>сигарета</item>
+        <item>вагон</item>
+        <item>бинокль</item>
+        <item>бетон</item>
+        <item>кабель</item>
+        <item>монитор</item>
+        <item>патрон</item>
+
+        <item>микрофон</item>
+        <item>часы</item>
+        <item>картон</item>
+        <item>тумбочка</item>
+        <item>базука</item>
+        <item>баклажан</item>
+        <item>лошадь</item>
+        <item>карандаш</item>
+        <item>тунец</item>
+        <item>монета</item>
+
+        <item>торт</item>
+        <item>банка</item>
+        <item>салют</item>
+        <item>кактус</item>
+        <item>ваза</item>
+        <item>портфель</item>
+        <item>бандура</item>
+        <item>ведро</item>
+        <item>бамбук</item>
+        <item>базальт</item>
+
+        <item>бинт</item>
+        <item>барабан</item>
+        <item>бомба</item>
+        <item>вазелин</item>
+        <item>велосипед</item>
+        <item>веник</item>
+        <item>воз</item>
+        <item>воск</item>
+        <item>гайка</item>
+        <item>галстук</item>
+
+        <item>герб</item>
+        <item>гель</item>
+        <item>бомба</item>
+        <item>динамит</item>
+        <item>дыня</item>
+        <item>жгут</item>
+        <item>жерех</item>
+        <item>батарея</item>
+        <item>носок</item>
+        <item>таблетка</item>
+
+        <item>забор</item>
+        <item>дыня</item>
+        <item>рообот</item>
+        <item>кровать</item>
+        <item>телефон</item>
+        <item>какао</item>
+        <item>палатка</item>
+        <item>гриб</item>
+        <item>палка</item>
+        <item>меч</item>
+
+        <item>светофор</item>
+        <item>кабель</item>
+        <item>насос</item>
+        <item>чашка</item>
+        <item>стол</item>
+        <item>абсент</item>
+        <item>автобус</item>
+        <item>трава</item>
+        <item>акваланг</item>
+        <item>амулет</item>
+
+        <item>ананас</item>
+        <item>аорта</item>
+        <item>атом</item>
+        <item>багажник</item>
+        <item>багет</item>
+        <item>кофе</item>
+        <item>орех</item>
+        <item>тюль</item>
+        <item>спутник</item>
+        <item>ковёр</item>
+
+        <item>книга</item>
+        <item>паспорт</item>
+        <item>антена</item>
+        <item>танк</item>
+        <item>яблоко</item>
+        <item>хлеб</item>
+        <item>мясо</item>
+        <item>масло</item>
+        <item>молоко</item>
+        <item>нож</item>
+
+        <item>ветчина</item>
+        <item>яйцо</item>
+        <item>вода</item>
+        <item>сигарета</item>
+        <item>вагон</item>
+        <item>бинокль</item>
+        <item>бетон</item>
+        <item>кабель</item>
+        <item>монитор</item>
+        <item>патрон</item>
+
+        <item>микрофон</item>
+        <item>часы</item>
+        <item>картон</item>
+        <item>тумбочка</item>
+        <item>базука</item>
+        <item>баклажан</item>
+        <item>небо</item>
+        <item>карандаш</item>
+        <item>космос</item>
+        <item>монета</item>
+
+        <item>торт</item>
+        <item>банка</item>
+        <item>салют</item>
+        <item>кактус</item>
+        <item>ваза</item>
+        <item>портфель</item>
+        <item>бандура</item>
+        <item>ведро</item>
+        <item>бамбук</item>
+        <item>базальт</item>
+
+        <item>бинт</item>
+        <item>барабан</item>
+        <item>бомба</item>
+        <item>вазелин</item>
+        <item>велосипед</item>
+        <item>веник</item>
+        <item>воз</item>
+        <item>воск</item>
+        <item>гайка</item>
+        <item>галстук</item>
+
+        <item>герб</item>
+        <item>гель</item>
+        <item>бомба</item>
+        <item>динамит</item>
+        <item>дыня</item>
+        <item>жгут</item>
+        <item>куртка</item>
+        <item>батарея</item>
+        <item>носок</item>
+        <item>таблетка</item>
+
+        <item>труба</item>
+        <item>крыша</item>
+        <item>сено</item>
+        <item>танец</item>
+        <item>плац</item>
+        <item>отвертка</item>
+        <item>помидор</item>
+        <item>столб</item>
+        <item>тень</item>
+        <item>белок</item>
+
+        <item>груша</item>
+        <item>цветок</item>
+        <item>таранька</item>
+        <item>шуба</item>
+        <item>мех</item>
+        <item>хвост</item>
+        <item>самовар</item>
+        <item>пляж</item>
+        <item>обои</item>
+        <item>марка</item>
+
+        <item>пистолет</item>
+        <item>тюльпан</item>
+        <item>планета</item>
+        <item>доска</item>
+        <item>лодка</item>
+        <item>марля</item>
+        <item>пластырь</item>
+        <item>жгут</item>
+        <item>тесак</item>
+        <item>парашют</item>
+
+        <item>турбулентность</item>
+        <item>корм</item>
+        <item>сетка</item>
+        <item>хлопушка</item>
+        <item>карбюратор</item>
+        <item>кулак</item>
+        <item>зубы</item>
+        <item>мяч</item>
+        <item>футболка</item>
+        <item>мельница</item>
+
+        <item>алмаз</item>
+        <item>золото</item>
+        <item>майнкрафт</item>
+        <item>самолет</item>
+        <item>мука</item>
+        <item>журнал</item>
+        <item>штанга</item>
+        <item>весы</item>
+        <item>канат</item>
+        <item>мазь</item>
+    </string-array>
+
+    <string-array name="Worlds_items_ex6">
+        <item>ААЛ</item>
+        <item>ААС</item>
+        <item>ААЕ</item>
+        <item>ААЦ</item>
+        <item>АБЛ</item>
+        <item>АБО</item>
+        <item>АБС</item>
+        <item>АЖД</item>
+        <item>АМЗ</item>
+        <item>БАВ</item>
+
+        <item>БАЗ</item>
+        <item>БАЛ</item>
+        <item>БАМ</item>
+        <item>БАН</item>
+        <item>БГП</item>
+        <item>БГМУ</item>
+        <item>БДДС</item>
+        <item>БДМ</item>
+        <item>БЖП</item>
+        <item>БЗ</item>
+
+        <item>ВАГ</item>
+        <item>ВАД</item>
+        <item>ВАЗ</item>
+        <item>ВАНО</item>
+        <item>ВАП</item>
+        <item>ВАСУ</item>
+        <item>ВАТ</item>
+        <item>ВВЦ</item>
+        <item>ВГК</item>
+        <item>ВГО</item>
+
+        <item>ГАБС</item>
+        <item>ГАБТ</item>
+        <item>ГАБ</item>
+        <item>ГАУ</item>
+        <item>ГАТС</item>
+        <item>ГАЦ</item>
+        <item>ДАЗ</item>
+        <item>ДАК</item>
+        <item>ДАС</item>
+        <item>ДМС</item>
+
+        <item>ДНБ</item>
+        <item>ДНГ</item>
+        <item>ДНТУ</item>
+        <item>ДПР</item>
+        <item>ДРП</item>
+        <item>ЕВ</item>
+        <item>ЕВГУ</item>
+        <item>ЕГС</item>
+        <item>ЕДК</item>
+        <item>ЕРК</item>
+
+        <item>ЕРУ</item>
+        <item>ЕРФ</item>
+        <item>ЕРП</item>
+        <item>ЕСН</item>
+        <item>ЕФО</item>
+        <item>ЖИ</item>
+        <item>ЖМ</item>
+        <item>ЖПУ</item>
+        <item>ЖЭУ</item>
+        <item>ЖЭК</item>
+
+        <item>ЗАБ</item>
+        <item>ЗАЗ</item>
+        <item>ЗАК</item>
+        <item>ЗАПУ</item>
+        <item>ЗАС</item>
+        <item>ЗБД</item>
+        <item>ЗБР</item>
+        <item>ЗОЖ</item>
+        <item>ЗЗО</item>
+        <item>ИАБ</item>
+
+        <item>ИАП</item>
+        <item>ИАС</item>
+        <item>ИБ</item>
+        <item>ИБВ</item>
+        <item>ИВЦ</item>
+        <item>ИВЧ</item>
+        <item>ИДД</item>
+        <item>ИДК</item>
+        <item>ИТШ</item>
+        <item>ИТЦ</item>
+
+        <item>КАВ</item>
+        <item>КАД</item>
+        <item>КАЗ</item>
+        <item>КДБ</item>
+        <item>КДВО</item>
+        <item>КДД</item>
+        <item>КДЛ</item>
+        <item>КДН</item>
+        <item>КНК</item>
+        <item>КМН</item>
+
+        <item>ЛАГ</item>
+        <item>ЛАМ</item>
+        <item>ЛАК</item>
+        <item>ЛАПТ</item>
+        <item>ЛАЦ</item>
+        <item>ЛБ</item>
+        <item>ЛБГ</item>
+        <item>ЛБК</item>
+        <item>ЛБУ</item>
+        <item>ЛИС</item>
+
+        <item>ЛКФ</item>
+        <item>МАД</item>
+        <item>МЧС</item>
+        <item>МВД</item>
+        <item>МВЛ</item>
+        <item>МВФ</item>
+        <item>МВХ</item>
+        <item>МВЦ</item>
+        <item>МВТУ</item>
+        <item>МГТУ</item>
+
+        <item>МКВ</item>
+        <item>МКБС</item>
+        <item>МТЗ</item>
+        <item>МТИ</item>
+        <item>НАД</item>
+        <item>НАЗ</item>
+        <item>НКТ</item>
+        <item>НКТС</item>
+        <item>НКУ</item>
+        <item>НКЦ</item>
+
+        <item>НОУ</item>
+        <item>НОТА</item>
+        <item>НЛП</item>
+        <item>НПЛ</item>
+        <item>ОАЕ</item>
+        <item>ОАК</item>
+        <item>ОАО</item>
+        <item>ОБМ</item>
+        <item>ОБЛ</item>
+        <item>ОБР</item>
+
+        <item>ОБТИ</item>
+        <item>ОБУК</item>
+        <item>ОПГ</item>
+        <item>ОТП</item>
+        <item>ОТН</item>
+        <item>ПАБ</item>
+        <item>ПАЗ</item>
+        <item>ПАКС</item>
+        <item>ПАСО</item>
+        <item>ПАТ</item>
+
+        <item>ПБА</item>
+        <item>ПБД</item>
+        <item>ПБС</item>
+        <item>НПЛ</item>
+        <item>ПБУ</item>
+        <item>ППР</item>
+        <item>ПСКС</item>
+        <item>РАБ</item>
+        <item>РАД</item>
+        <item>РАДО</item>
+
+        <item>РАШ</item>
+        <item>РАЭ</item>
+        <item>РБ</item>
+        <item>РЖ</item>
+        <item>РЖА</item>
+        <item>РЖДС</item>
+        <item>РНД</item>
+        <item>РНН</item>
+        <item>САВ</item>
+        <item>САВЗ</item>
+
+        <item>САП</item>
+        <item>САС</item>
+        <item>САТРБ</item>
+        <item>САТО</item>
+        <item>СБД</item>
+        <item>СБК</item>
+        <item>СБУ</item>
+        <item>СВД</item>
+        <item>САВ</item>
+        <item>САВЗ</item>
+
+        <item>ТАК</item>
+        <item>ТАС</item>
+        <item>ТЕС</item>
+        <item>ТНТ</item>
+        <item>ТМТ</item>
+        <item>ТНТП</item>
+        <item>ТНР</item>
+        <item>УАО</item>
+        <item>УАН</item>
+        <item>УАХ</item>
+
+        <item>УБТ</item>
+        <item>УВК</item>
+        <item>УВС</item>
+        <item>УВТ</item>
+        <item>УВГ</item>
+        <item>УКФ</item>
+        <item>ТНР</item>
+        <item>УАО</item>
+        <item>УАН</item>
+        <item>УАХ</item>
+
+        <item>ФАЖ</item>
+        <item>ФАК</item>
+        <item>ФАЛ</item>
+        <item>ФАЛА</item>
+        <item>ФГУ</item>
+        <item>ФДА</item>
+        <item>ФДП</item>
+        <item>ЯВ</item>
+        <item>ФЛК</item>
+        <item>ФМЦ</item>
+
+        <item>ХАБ</item>
+        <item>ХДС</item>
+        <item>ХЛ</item>
+        <item>ХМЗ</item>
+        <item>ХОЛ</item>
+        <item>ХПК</item>
+        <item>ХСС</item>
+        <item>ХТС</item>
+        <item>ХХ</item>
+        <item>ЮРК</item>
+
+        <item>ЮКОС</item>
+        <item>ЦАБ</item>
+        <item>ЦАМ</item>
+        <item>ЦБД</item>
+        <item>ЦБТ</item>
+        <item>ЦВО</item>
+        <item>ЦВУ</item>
+        <item>ЦГА</item>
+        <item>ЦГМ</item>
+        <item>ЦСКА</item>
+
+        <item>ЧАЗ</item>
+        <item>ЧАК</item>
+        <item>ЧАМ</item>
+        <item>ЧГК</item>
+        <item>ЧГУ</item>
+        <item>ЧМТ</item>
+        <item>ЧН</item>
+        <item>ЧОК</item>
+        <item>ЧОХ</item>
+        <item>ЮК</item>
+
+        <item>ШАМ</item>
+        <item>ШАС</item>
+        <item>ШВ</item>
+        <item>ШЗУ</item>
+        <item>ШИК</item>
+        <item>ЩМ</item>
+        <item>ЩН</item>
+        <item>ЩР</item>
+        <item>ЩПС</item>
+        <item>ЮВХ</item>
+
+        <item>ЭАМ</item>
+        <item>ЭАН</item>
+        <item>ЭАУ</item>
+        <item>ЭВО</item>
+        <item>ЭВТ</item>
+        <item>ЭПК</item>
+        <item>ЭПМ</item>
+        <item>ЮАС</item>
+        <item>ЮАУ</item>
+        <item>ЮВ</item>
 
     </string-array>
 </resources>
