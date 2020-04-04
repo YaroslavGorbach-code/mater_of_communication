@@ -35,23 +35,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeComponents();
 
-        mStartButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, Ex_1_Activity.class).
-                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 1)));
+        mStartButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 1)));
 
-        mStartButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
-                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 2)));
+        mStartButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 2)));
 
-        mStartButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
-                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 3)));
+        mStartButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 3)));
 
-        mStartButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
-                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 4)));
+        mStartButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 4)));
 
-        mStartButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
-                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 5)));
+        mStartButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 5)));
 
-        mStartButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, Ex_2_6Activity.class).
-                putExtra(Ex_2_6Activity.EXTRA_ID_EX, 6)));
+        mStartButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 6)));
 
 
 

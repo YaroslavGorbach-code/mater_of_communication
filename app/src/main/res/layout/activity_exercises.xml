@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ex_1_Activity">
+    tools:context=".ExercisesActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -20,7 +20,7 @@
             android:layout_height="56dp"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Лингвистические пирамиды"
-            app:titleTextColor="#ffffff"></androidx.appcompat.widget.Toolbar>
+            app:titleTextColor="#ffffff"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <Chronometer
@@ -40,8 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="222dp"
         android:orientation="vertical"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -67,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:src="@drawable/ic_up"
+            android:visibility="invisible"
             tools:layout_editor_absoluteY="382dp" />
 
         <TextView
@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="thumb"
+            android:visibility="invisible"
             tools:layout_editor_absoluteY="459dp" />
     </LinearLayout>
 

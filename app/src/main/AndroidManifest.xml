@@ -18,8 +18,7 @@
         </activity>
         <activity android:name=".HelpActivity" />
         <activity android:name=".Statistics_activity" />
-        <activity android:name=".Ex_2_6Activity" />
-        <activity android:name=".Ex_1_Activity" />
+        <activity android:name=".ExercisesActivity" />
 
         <receiver android:name=".ReminderBroadcast" />
     </application>

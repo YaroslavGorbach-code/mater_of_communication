@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">delusional generator</string>
 
-    <string-array name="TextUnderThumb_items_ex1">
+    <string-array name="TextUnderThumb_ex1">
         <item>Аналогия</item>
         <item>Обобщение</item>
         <item>Разобобщения</item>
@@ -313,7 +313,7 @@
         <item>пудель</item>
         <item>спортсмен</item>
         <item>официант</item>
-        <item>приц</item>
+        <item>принц</item>
         <item>принцесса</item>
         <item>парикмахер</item>
         <item>гастарбайтер</item>
