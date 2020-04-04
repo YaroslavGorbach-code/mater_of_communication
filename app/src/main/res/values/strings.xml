@@ -487,4 +487,161 @@
 
 
     </string-array>
+
+    <string-array name="Worlds_items_ex4">
+        <item>забор</item>
+        <item>дыня</item>
+        <item>рообот</item>
+        <item>кровать</item>
+        <item>телефон</item>
+        <item>какао</item>
+        <item>палатка</item>
+        <item>гриб</item>
+        <item>палка</item>
+        <item>меч</item>
+
+        <item>светофор</item>
+        <item>кабель</item>
+        <item>насос</item>
+        <item>чашка</item>
+        <item>стол</item>
+        <item>абсент</item>
+        <item>автобус</item>
+        <item>трава</item>
+        <item>акваланг</item>
+        <item>амулет</item>
+
+        <item>ананас</item>
+        <item>аорта</item>
+        <item>атом</item>
+        <item>багажник</item>
+        <item>багет</item>
+        <item>кофе</item>
+        <item>орех</item>
+        <item>тюль</item>
+        <item>спутник</item>
+        <item>ковёр</item>
+
+        <item>книга</item>
+        <item>паспорт</item>
+        <item>антена</item>
+        <item>танк</item>
+        <item>яблоко</item>
+        <item>хлеб</item>
+        <item>мясо</item>
+        <item>масло</item>
+        <item>молоко</item>
+        <item>нож</item>
+
+        <item>ветчина</item>
+        <item>яйцо</item>
+        <item>вода</item>
+        <item>сигарета</item>
+        <item>вагон</item>
+        <item>бинокль</item>
+        <item>бетон</item>
+        <item>кабель</item>
+        <item>монитор</item>
+        <item>патрон</item>
+
+        <item>микрофон</item>
+        <item>часы</item>
+        <item>картон</item>
+        <item>тумбочка</item>
+        <item>базука</item>
+        <item>баклажан</item>
+        <item>небо</item>
+        <item>карандаш</item>
+        <item>космос</item>
+        <item>монета</item>
+
+        <item>торт</item>
+        <item>банка</item>
+        <item>салют</item>
+        <item>кактус</item>
+        <item>ваза</item>
+        <item>портфель</item>
+        <item>бандура</item>
+        <item>ведро</item>
+        <item>бамбук</item>
+        <item>базальт</item>
+
+        <item>бинт</item>
+        <item>барабан</item>
+        <item>бомба</item>
+        <item>вазелин</item>
+        <item>велосипед</item>
+        <item>веник</item>
+        <item>воз</item>
+        <item>воск</item>
+        <item>гайка</item>
+        <item>галстук</item>
+
+        <item>герб</item>
+        <item>гель</item>
+        <item>бомба</item>
+        <item>динамит</item>
+        <item>дыня</item>
+        <item>жгут</item>
+        <item>куртка</item>
+        <item>батарея</item>
+        <item>носок</item>
+        <item>таблетка</item>
+
+        <item>труба</item>
+        <item>крыша</item>
+        <item>сено</item>
+        <item>танец</item>
+        <item>плац</item>
+        <item>отвертка</item>
+        <item>помидор</item>
+        <item>столб</item>
+        <item>тень</item>
+        <item>белок</item>
+
+        <item>груша</item>
+        <item>цветок</item>
+        <item>таранька</item>
+        <item>шуба</item>
+        <item>мех</item>
+        <item>хвост</item>
+        <item>самовар</item>
+        <item>пляж</item>
+        <item>обои</item>
+        <item>марка</item>
+
+        <item>писталет</item>
+        <item>тюльпан</item>
+        <item>планета</item>
+        <item>доска</item>
+        <item>лодка</item>
+        <item>марля</item>
+        <item>пластырь</item>
+        <item>жгут</item>
+        <item>тесак</item>
+        <item>парашют</item>
+
+        <item>турбулентность</item>
+        <item>корм</item>
+        <item>сетка</item>
+        <item>хлопушка</item>
+        <item>карбюратор</item>
+        <item>кулак</item>
+        <item>зубы</item>
+        <item>мяч</item>
+        <item>футболка</item>
+        <item>мельница</item>
+
+        <item>алмаз</item>
+        <item>золото</item>
+        <item>майнкрафт</item>
+        <item>самолет</item>
+        <item>мука</item>
+        <item>журнал</item>
+        <item>штанга</item>
+        <item>весы</item>
+        <item>канат</item>
+        <item>мазь</item>
+
+    </string-array>
 </resources>

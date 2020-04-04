@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -30,10 +28,11 @@ public class Ex_2_6Activity extends AppCompatActivity {
     private Toolbar mToolbar;
     Random r = new Random();
     int mIdEx;
-    String [] mArrayWorlds = {};
+    String [] mArrayWorlds_ex1 = {};
     String [] mArrayWorlds_ex2_living = {};
     String [] mArrayWorlds_ex2_not_living = {};
     String [] mArrayWorlds_ex3_filings = {};
+    String [] mArrayWorlds_ex4 = {};
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
@@ -59,17 +58,17 @@ public class Ex_2_6Activity extends AppCompatActivity {
                 break;
 
             case 4:
-                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex4);
                 mToolbar.setTitle("Продвинутое сявязывание");
                 break;
 
             case 5:
-                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 break;
 
             case 6:
-                mArrayWorlds = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Другие варианты сокращений");
                 break;
         }
@@ -151,10 +150,23 @@ public class Ex_2_6Activity extends AppCompatActivity {
             mWorld.setText(String.format("%s - %s", mArrayWorlds_ex3_filings[r.nextInt(60)],
                     mArrayWorlds_ex2_not_living[r.nextInt(90)]));
 
+        } else if(mIdEx == 4){
+
+            String worl_1 = mArrayWorlds_ex4[r.nextInt(140)];
+            String worl_2 = mArrayWorlds_ex4[r.nextInt(140)];
+            
+            if (worl_1.equals(worl_2)){
+
+                worl_1 = mArrayWorlds_ex4[r.nextInt(140)];
+
+            }
+
+            mWorld.setText(String.format("%s - %s", worl_1, worl_2));
+
         }
         else {
 
-            mWorld.setText( mArrayWorlds[r.nextInt(90)]);
+            mWorld.setText( mArrayWorlds_ex1[r.nextInt(90)]);
 
         }
 
