@@ -35,17 +35,19 @@ public class ExercisesActivity extends AppCompatActivity {
     int mIdEx;
     private ImageView mThumb;
     private TextView mTextUnderThumb;
+    private TextView mShort_des;
 
-    String [] mArrayTextUnderThumb = {};
-    String [] mArrayWorlds_ex1 = {};
-    String [] mArrayWorlds_ex2_living = {};
-    String [] mArrayWorlds_ex2_not_living = {};
-    String [] mArrayWorlds_ex3_filings = {};
-    String [] mArrayWorlds_ex4 = {};
-    String [] mArrayWorlds_ex5 = {};
-    String [] mArrayWorlds_ex6 = {};
-    String [] mArrayWorlds_ex7 = {};
-    String [] mArrayWorlds_ex8 = {};
+
+   private String [] mArrayTextUnderThumb = {};
+   private String [] mArrayWorlds_ex1 = {};
+   private String [] mArrayWorlds_ex2_living = {};
+   private String [] mArrayWorlds_ex2_not_living = {};
+   private  String [] mArrayWorlds_ex3_filings = {};
+   private String [] mArrayWorlds_ex4 = {};
+   private String [] mArrayWorlds_ex5 = {};
+   private String [] mArrayWorlds_ex6 = {};
+   private String [] mArrayWorlds_ex7 = {};
+   private String [] mArrayWorlds_ex8 = {};
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
@@ -65,6 +67,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 mToolbar.setTitle("Лингвистические пирамиды");
                 mTextUnderThumb.setVisibility(View.VISIBLE);
                 mThumb.setVisibility(View.VISIBLE);
+                mShort_des.setText("Обобщайте, разобобщайте, и переходите по аналогиям.");
                 break;
             }
 
@@ -72,35 +75,42 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_ex2_living);
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
                 mToolbar.setTitle("Чем ворон похож на стул");
+                mShort_des.setText("Найдите сходство.");
             break;
 
             case 3:
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
+                mShort_des.setText("Найдите сходство.");
                 break;
 
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Продвинутое сявязывание");
+                mShort_des.setText("Найдите сходства.");
                 break;
 
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("О чем вижу, о том и пою");
+                mShort_des.setText("Говорите максимально долго об этом.");
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_ex6);
                 mToolbar.setTitle("Другие варианты сокращений");
+                mShort_des.setText("Придумайте необычную расшифровку.");
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Волшебный нейминг");
+                mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных.");
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Купля-продажа");
+                mShort_des.setText("Продайте это.");
                 break;
         }
 
@@ -181,6 +191,7 @@ public class ExercisesActivity extends AppCompatActivity {
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX, -1);
         mThumb = findViewById(R.id.thumb_iv);
         mTextUnderThumb = findViewById(R.id.textUnderThumb);
+        mShort_des = findViewById(R.id.description_short);
 
     }
 
