@@ -27,25 +27,35 @@ public class HelpActivity extends AppCompatActivity {
 
         switch (mIdEx){
             case 1:
-                mToolbar.setTitle("Лингвистические пирамиды");
                 mExName.setText("Лингвистические пирамиды");
                 mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_1));
                 mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_1));
                 break;
             case 2:
-                mToolbar.setTitle("Чем ворон похож на стол");
+
+                mExName.setText("Чем ворон похож на стол");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_2));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_2));
                 break;
             case 3:
-                mToolbar.setTitle("Чем ворон похож на стол 2");
+                mExName.setText("Чем ворон похож на стол (чувства)");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_3));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_3));
                 break;
             case 4:
-                mToolbar.setTitle("Продвинутое связывание");
+                mExName.setText("Продвинутое связывание");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_4));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_4));
                 break;
             case 5:
-                mToolbar.setTitle("О чем вижу, о том и пою");
+                mExName.setText("О чем вижу, о том и пою");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_5));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_5));
                 break;
             case 6:
-                mToolbar.setTitle("Другие варианты сокращений");
+                mExName.setText("Другие варианты сокращений");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_6));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_6));
                 break;
         }
 

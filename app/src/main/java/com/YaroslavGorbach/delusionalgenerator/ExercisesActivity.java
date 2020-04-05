@@ -74,7 +74,7 @@ public class ExercisesActivity extends AppCompatActivity {
             case 3:
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
-                mToolbar.setTitle("Чем ворон похож на стул 2");
+                mToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 break;
 
             case 4:

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="Описание"
+            app:title="Описание упражнения"
             app:titleTextColor="#ffffff" />
     </com.google.android.material.appbar.AppBarLayout>
 
