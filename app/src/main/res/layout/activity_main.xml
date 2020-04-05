@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Чем ворон похож \n на стол (чувства)" />
+                android:text="Купля-\nпродажа" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -514,7 +514,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Чем ворон похож \n на стол (чувства)" />
+                android:text="Волшебный \n нейминг" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.appcompat.widget.AppCompatImageButton

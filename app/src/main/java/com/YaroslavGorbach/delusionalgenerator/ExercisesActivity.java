@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -43,6 +44,8 @@ public class ExercisesActivity extends AppCompatActivity {
     String [] mArrayWorlds_ex4 = {};
     String [] mArrayWorlds_ex5 = {};
     String [] mArrayWorlds_ex6 = {};
+    String [] mArrayWorlds_ex7 = {};
+    String [] mArrayWorlds_ex8 = {};
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
@@ -78,12 +81,12 @@ public class ExercisesActivity extends AppCompatActivity {
                 break;
 
             case 4:
-                mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex4);
+                mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Продвинутое сявязывание");
                 break;
 
             case 5:
-                mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex5);
+                mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 break;
 
@@ -91,14 +94,32 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_ex6);
                 mToolbar.setTitle("Другие варианты сокращений");
                 break;
+            case 7:
+                mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("Волшебный нейминг");
+                break;
+            case 8:
+                mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mToolbar.setTitle("Купля-продажа");
+                break;
         }
 
 
         mToolbar.setOnMenuItemClickListener(v->{
+                    startActivity(new Intent(this, HelpActivity.class)
+                            .putExtra(HelpActivity.EXTRA_ID, mIdEx));
 
-            // TODO: 29.03.2020 Открытие помощи по упражнению
+                    if (!mButtonState){
+                        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
+                        mButtonState = true;
+                        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer.getBase();
+                        mChronometer.stop();
+                        mButtonNextWorld.setVisibility(View.INVISIBLE);
+                        mButtonFinish.setVisibility(View.VISIBLE);
+                    }
+
+
             return true;
-
         });
 
         mToolbar.setNavigationOnClickListener(v->{
@@ -201,6 +222,14 @@ public class ExercisesActivity extends AppCompatActivity {
 
             case 6:
                 mWorld.setText(mArrayWorlds_ex6[r.nextInt(mArrayWorlds_ex6.length)]);
+                break;
+
+            case 7:
+                mWorld.setText(mArrayWorlds_ex7[r.nextInt(mArrayWorlds_ex7.length)]);
+                break;
+
+            case 8:
+                mWorld.setText(mArrayWorlds_ex8[r.nextInt(mArrayWorlds_ex8.length)]);
                 break;
 
         }

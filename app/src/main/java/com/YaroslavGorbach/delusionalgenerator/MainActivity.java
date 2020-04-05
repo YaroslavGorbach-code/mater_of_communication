@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mStartButton_ex4;
     private ImageButton mStartButton_ex5;
     private ImageButton mStartButton_ex6;
+    private ImageButton mStartButton_ex7;
+    private ImageButton mStartButton_ex8;
 
     private ImageButton mStatisticsButton_ex1;
     private ImageButton mStatisticsButton_ex2;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mStatisticsButton_ex4;
     private ImageButton mStatisticsButton_ex5;
     private ImageButton mStatisticsButton_ex6;
+    private ImageButton mStatisticsButton_ex7;
+    private ImageButton mStatisticsButton_ex8;
 
     private ImageButton mNotificationButton_ex1;
     private ImageButton mNotificationButton_ex2;
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mNotificationButton_ex4;
     private ImageButton mNotificationButton_ex5;
     private ImageButton mNotificationButton_ex6;
+    private ImageButton mNotificationButton_ex7;
+    private ImageButton mNotificationButton_ex8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         mStartButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
                 putExtra(ExercisesActivity.EXTRA_ID_EX, 6)));
 
+        mStartButton_ex7.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 7)));
+
+        mStartButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 8)));
 
 
 
@@ -73,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
         mStatisticsButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
                 putExtra(Statistics_activity.EXTRA_ID_EX, 6)));
+
+        mStatisticsButton_ex7.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 7)));
+
+        mStatisticsButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 8)));
 
 
 
@@ -95,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
         mNotificationButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
                 putExtra(HelpActivity.EXTRA_ID, 6)));
 
+        mNotificationButton_ex7.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 7)));
+
+        mNotificationButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 8)));
+
     }
 
     private void initializeComponents(){
@@ -104,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
         mStartButton_ex4 = findViewById(R.id.start_ex4);
         mStartButton_ex5 = findViewById(R.id.start_ex5);
         mStartButton_ex6 = findViewById(R.id.start_ex6);
+        mStartButton_ex7 = findViewById(R.id.start_ex7);
+        mStartButton_ex8 = findViewById(R.id.start_ex8);
 
         mStatisticsButton_ex1 = findViewById(R.id.statistics_ex1);
         mStatisticsButton_ex2 = findViewById(R.id.statistics_ex2);
@@ -111,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
         mStatisticsButton_ex4 = findViewById(R.id.statistics_ex4);
         mStatisticsButton_ex5 = findViewById(R.id.statistics_ex5);
         mStatisticsButton_ex6 = findViewById(R.id.statistics_ex6);
+        mStatisticsButton_ex7 = findViewById(R.id.statistics_ex7);
+        mStatisticsButton_ex8 = findViewById(R.id.statistics_ex8);
 
         mNotificationButton_ex1 = findViewById(R.id.help_ex1);
         mNotificationButton_ex2 = findViewById(R.id.help_ex2);
@@ -118,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
         mNotificationButton_ex4 = findViewById(R.id.help_ex4);
         mNotificationButton_ex5 = findViewById(R.id.help_ex5);
         mNotificationButton_ex6 = findViewById(R.id.help_ex6);
+        mNotificationButton_ex7 = findViewById(R.id.help_ex7);
+        mNotificationButton_ex8 = findViewById(R.id.help_ex8);
 
     }
 }
