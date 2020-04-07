@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ExercisesActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="412dp" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -27,44 +34,46 @@
     <TextView
         android:id="@+id/world_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="159dp"
+        android:layout_height="200dp"
         android:gravity="center"
         android:text="Слово"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textUnderThumb"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_short" />
+        app:layout_constraintTop_toBottomOf="@+id/description_short"
+        app:layout_constraintVertical_bias="0.45" />
 
     <ImageView
         android:id="@+id/thumb_iv"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:src="@drawable/ic_up"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textUnderThumb"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textUnderThumb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="326dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="thumb"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_short" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView9"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-       android:layout_margin="10dp"
         app:cardBackgroundColor="#FF6D00"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,52 +91,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="56dp"
                 android:gravity="center"
                 android:text="завершить"
                 android:textColor="#FF0000"
                 android:textSize="25sp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toEndOf="@+id/buttonNextWorld" />
+                app:layout_constraintEnd_toEndOf="@+id/button"
+                app:layout_constraintStart_toStartOf="@+id/button" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="250dp"
-                android:layout_marginEnd="250dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginBottom="3dp"
                 android:background="?selectableItemBackground"
                 android:src="@drawable/ic_pause"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonNextWorld" />
 
             <Button
                 android:id="@+id/buttonNextWorld"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginEnd="61dp"
                 android:drawableEnd="@drawable/ic_arrow_right"
                 android:text="слудющее слово"
                 android:textColor="#ffffff"
                 android:textSize="25sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/buttonFinishEx1"
+                app:layout_constraintBottom_toTopOf="@+id/button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <Chronometer
-                android:id="@+id/chronometer"
+                android:id="@+id/chronometer_allTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="35dp"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
-                app:layout_constraintStart_toEndOf="@+id/buttonFinishEx1"
-                app:layout_constraintTop_toBottomOf="@+id/buttonNextWorld" />
+                app:layout_constraintEnd_toEndOf="@+id/buttonNextWorld"
+                app:layout_constraintTop_toTopOf="@+id/button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

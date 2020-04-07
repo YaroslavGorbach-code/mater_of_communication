@@ -54,7 +54,7 @@ public class ExercisesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises);
+        setContentView(R.layout.activity_exercises2);
         initializeComponents();
         mChronometer.start();
 
@@ -182,7 +182,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
     private void initializeComponents(){
         mButtonStartPause = findViewById(R.id.button);
-        mChronometer = findViewById(R.id.chronometer);
+        mChronometer = findViewById(R.id.chronometer_allTime);
         mButtonNextWorld = findViewById(R.id.buttonNextWorld);
         mWorld = findViewById(R.id.world_tv);
         mButtonFinish = findViewById(R.id.buttonFinishEx1);
