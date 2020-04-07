@@ -136,6 +136,8 @@ public class ExercisesActivity extends AppCompatActivity {
                         mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
                         mButtonState = true;
                         mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+                        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
+                        mChronometer_1worldTime.stop();
                         mChronometer_allTime.stop();
                         mButtonNextWorld.setVisibility(View.INVISIBLE);
                         mButtonFinish.setVisibility(View.VISIBLE);
@@ -186,7 +188,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
             setWorld();
             mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
-            
+
 
         });
 
@@ -206,7 +208,7 @@ public class ExercisesActivity extends AppCompatActivity {
         mWorld = findViewById(R.id.world_tv);
         mButtonFinish = findViewById(R.id.buttonFinishEx1);
         mToolbar = findViewById(R.id.toolbar_ex1);
-        mToolbar.inflateMenu(R.menu.menu_ex);
+        mToolbar.inflateMenu(R.menu.menu_ex_desk);
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX, -1);
         mThumb = findViewById(R.id.thumb_iv);
         mTextUnderThumb = findViewById(R.id.textUnderThumb);

@@ -1,12 +1,15 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Toolbar mToolbar;
 
     private ImageButton mStartButton_ex1;
     private ImageButton mStartButton_ex2;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeComponents();
@@ -118,9 +122,40 @@ public class MainActivity extends AppCompatActivity {
         mNotificationButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
                 putExtra(HelpActivity.EXTRA_ID, 8)));
 
+        mToolbar.setOnMenuItemClickListener(v->{
+
+           switch (v.getItemId()){
+               case R.id.theme:
+
+                   DialogChooseTheme dialog = new DialogChooseTheme();
+                   dialog.show(getSupportFragmentManager(),"Выбор темы");
+
+                   break;
+               case R.id.rate:
+
+
+
+                   break;
+               case R.id.share:
+
+                   break;
+               case R.id.aboutApp:
+
+                   break;
+           }
+
+            return true;
+        });
+
     }
 
+
+
+
     private void initializeComponents(){
+
+        mToolbar = findViewById(R.id.toolbar_main);
+
         mStartButton_ex1 = findViewById(R.id.start_ex1);
         mStartButton_ex2 = findViewById(R.id.start_ex2);
         mStartButton_ex3 = findViewById(R.id.start_ex3);
@@ -148,6 +183,39 @@ public class MainActivity extends AppCompatActivity {
         mNotificationButton_ex7 = findViewById(R.id.help_ex7);
         mNotificationButton_ex8 = findViewById(R.id.help_ex8);
 
+    }
+
+    private void setTheme(){
+        String color = Repo.getInstance(MainActivity.this).getThemeState();
+        switch (color){
+
+            case "blue":
+
+                setTheme(R.style.AppTheme_blue);
+
+                break;
+
+            case "green":
+
+                setTheme(R.style.AppTheme_green);
+                break;
+
+            case "orange":
+
+                setTheme(R.style.AppTheme_orange);
+                break;
+
+            case "red":
+
+                setTheme(R.style.AppTheme_red);
+                break;
+
+            case "purple":
+
+                setTheme(R.style.AppTheme_purple);
+                break;
+
+        }
     }
 }
 

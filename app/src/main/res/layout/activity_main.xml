@@ -573,10 +573,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:title="Бредогенератор"
-            app:titleTextColor="#ffffff" />
+            app:titleTextColor="#ffffff"
+            app:menu="@menu/menu_main"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

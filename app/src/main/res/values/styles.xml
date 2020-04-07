@@ -1,12 +1,60 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme_orange" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF7120</item>
-        <item name="colorPrimaryDark">#A74511</item>
+        <item name="colorPrimary">#FF5722</item>
+        <item name="colorPrimaryDark">#B43B18</item>
+        <item name="colorAccent">#FD0000</item>
+        <item name="secondIconsColor">#B3FF5722</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="iconPlayColor">#E6FF5722</item>
+        <item name="rippleColor">#33FF5722</item>
+    </style>
+
+    <style name="AppTheme_blue" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#00BCD4</item>
+        <item name="colorPrimaryDark">#007181</item>
         <item name="colorAccent">#FD0000</item>
         <item name="android:textColorSecondary">#ffffff</item>
+        <item name="secondIconsColor">#B300BCD4</item>
+        <item name="iconPlayColor">#CC00BCD4</item>
+        <item name="rippleColor">#3300BCD4</item>
     </style>
+
+    <style name="AppTheme_green" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#4CAF50</item>
+        <item name="colorPrimaryDark">#316B33</item>
+        <item name="colorAccent">#FD0000</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="secondIconsColor">#B34CAF50</item>
+        <item name="iconPlayColor">#CC4CAF50</item>
+        <item name="rippleColor">#334CAF50</item>
+    </style>
+
+    <style name="AppTheme_purple" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#4D2D88</item>
+        <item name="colorAccent">#FD0000</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="secondIconsColor">#B3673AB7</item>
+        <item name="iconPlayColor">#CC673AB7</item>
+        <item name="rippleColor">#339C27B0</item>
+    </style>
+
+    <style name="AppTheme_red" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#E91E63</item>
+        <item name="colorPrimaryDark">#A21642</item>
+        <item name="colorAccent">#FD0000</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="secondIconsColor">#B3E91E63</item>
+        <item name="iconPlayColor">#CCE91E63</item>
+        <item name="rippleColor">#33E91E63</item>
+    </style>
+
 
 </resources>

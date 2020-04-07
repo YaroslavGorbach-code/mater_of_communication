@@ -15,6 +15,9 @@ import java.util.Set;
 
 public class Repo extends SQLiteOpenHelper {
 
+
+
+
     public interface Listener{
         void onDataChange();
     }
@@ -29,7 +32,7 @@ public class Repo extends SQLiteOpenHelper {
     }
     private final Set<Listener> mListeners = new HashSet<>();
     public static final String DB_NAME = "generator.db";
-    public static final int VERSION = 4;
+    public static final int VERSION = 8;
 
     //S means Sessions
     public static final String TABLE_NAME_S = "books";
@@ -38,11 +41,23 @@ public class Repo extends SQLiteOpenHelper {
     public static final String DATE_S = "date";
     public static final String TIME_S = "time";
 
+    public static final String TABLE_NAME_T = "thems";
+    public static final String ID_T = "id";
+    public static final String STATE_T = "state";
+    public static final String COLOR_T = "color";
+
+
     public static final String CREATE_SQL_S = "CREATE TABLE " + TABLE_NAME_S + " (" +
             ID_S + " INTEGER PRIMARY KEY, " +
             ID_EX_ID + " INTEGER NOT NULL, " +
             DATE_S + " TEXT NOT NULL, " +
             TIME_S + " INTEGER NOT NULL " +
+            " );";
+
+    public static final String CREATE_SQL_T = "CREATE TABLE " + TABLE_NAME_T + " (" +
+            ID_T + " INTEGER PRIMARY KEY, " +
+            STATE_T + " INTEGER NOT NULL, " +
+            COLOR_T + " TEXT NOT NULL " +
             " );";
 
     private Repo(Context context){
@@ -53,15 +68,20 @@ public class Repo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_SQL_S);
-        //insertTESTDateAndTime(db);
+
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_S);
-        onCreate(db);
+        if (oldVersion == 7 && newVersion == 8){
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_T);
+            db.execSQL(CREATE_SQL_T);
+            addThemes(db);
+        }
+
 
     }
 
@@ -107,11 +127,41 @@ public class Repo extends SQLiteOpenHelper {
 
         return labels;
     }
+    public void resetOldThemeState(){
+        ContentValues cv = new ContentValues();
+        cv.put(STATE_T, 0);
+        getWritableDatabase().update(TABLE_NAME_T, cv,STATE_T + "=" + 1, null);
+    }
+    public void changeTheme(String color) {
 
+        ContentValues cv = new ContentValues();
+        cv.put(STATE_T, 1);
+        getWritableDatabase().update(TABLE_NAME_T, cv, COLOR_T + "=" + "'" + color + "'", null );
+
+    }
+
+    public String getThemeState() {
+        String color = null;
+        String[] cols = {ID_T, STATE_T, COLOR_T};
+        Cursor c = getReadableDatabase().query(TABLE_NAME_T, cols, STATE_T + "=" + 1, null,
+        null, null, null);
+
+        if(c.moveToFirst()){
+
+            color = c.getString(2);
+        }
+
+        c.close();
+        return color;
+
+
+    }
     public void clearStatistic(int mIdEx) {
         getWritableDatabase().delete(TABLE_NAME_S,ID_EX_ID + "=" + mIdEx,null);
         notifyChange();
     }
+
+
 
     private void notifyChange(){
         for(Listener listener : mListeners) listener.onDataChange();
@@ -125,5 +175,31 @@ public class Repo extends SQLiteOpenHelper {
     //реализація шаблона наблюдатель
     public void removeListener(Listener listener){
         mListeners.remove(listener);
+    }
+
+    private void addThemes(SQLiteDatabase db){
+
+        ContentValues cv = new ContentValues();
+        cv.put(STATE_T, 0);
+        cv.put(COLOR_T, "blue");
+        db.insert(TABLE_NAME_T, null, cv);
+
+        cv.put(STATE_T, 0);
+        cv.put(COLOR_T, "green");
+        db.insert(TABLE_NAME_T, null, cv);
+
+        cv.put(STATE_T, 1);
+        cv.put(COLOR_T, "orange");
+        db.insert(TABLE_NAME_T, null, cv);
+
+        cv.put(STATE_T, 0);
+        cv.put(COLOR_T, "purple");
+        db.insert(TABLE_NAME_T, null, cv);
+
+        cv.put(STATE_T, 0);
+        cv.put(COLOR_T, "red");
+        db.insert(TABLE_NAME_T, null, cv);
+
+
     }
 }
