@@ -6,11 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -24,8 +26,10 @@ import java.util.Random;
 
 public class ExercisesActivity extends AppCompatActivity {
     private ImageButton mButtonStartPause;
-    private Chronometer mChronometer;
+    private Chronometer mChronometer_allTime;
+    private Chronometer mChronometer_1worldTime;
     private long mPauseOffSet = 0;
+    private long mWorldTimePauseOffSet = 0;
     boolean mButtonState = false;
     private Button mButtonNextWorld;
     private TextView mWorld;
@@ -36,13 +40,14 @@ public class ExercisesActivity extends AppCompatActivity {
     private ImageView mThumb;
     private TextView mTextUnderThumb;
     private TextView mShort_des;
+    private RelativeLayout mThumbAndTextUnter_ly;
 
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
    private String [] mArrayWorlds_ex2_living = {};
    private String [] mArrayWorlds_ex2_not_living = {};
-   private  String [] mArrayWorlds_ex3_filings = {};
+   private String [] mArrayWorlds_ex3_filings = {};
    private String [] mArrayWorlds_ex4 = {};
    private String [] mArrayWorlds_ex5 = {};
    private String [] mArrayWorlds_ex6 = {};
@@ -56,7 +61,8 @@ public class ExercisesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises2);
         initializeComponents();
-        mChronometer.start();
+        mChronometer_allTime.start();
+        mChronometer_1worldTime.start();
 
 
         switch (mIdEx){
@@ -76,6 +82,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
                 mToolbar.setTitle("Чем ворон похож на стул");
                 mShort_des.setText("Найдите сходство.");
+                hideThumb();
             break;
 
             case 3:
@@ -83,34 +90,40 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 mShort_des.setText("Найдите сходство.");
+                hideThumb();
                 break;
 
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Продвинутое сявязывание");
                 mShort_des.setText("Найдите сходства.");
+                hideThumb();
                 break;
 
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 mShort_des.setText("Говорите максимально долго об этом.");
+                hideThumb();
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_ex6);
                 mToolbar.setTitle("Другие варианты сокращений");
                 mShort_des.setText("Придумайте необычную расшифровку.");
+                hideThumb();
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Волшебный нейминг");
                 mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных.");
+                hideThumb();
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Купля-продажа");
                 mShort_des.setText("Продайте это.");
+                hideThumb();
                 break;
         }
 
@@ -122,8 +135,8 @@ public class ExercisesActivity extends AppCompatActivity {
                     if (!mButtonState){
                         mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
                         mButtonState = true;
-                        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer.getBase();
-                        mChronometer.stop();
+                        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+                        mChronometer_allTime.stop();
                         mButtonNextWorld.setVisibility(View.INVISIBLE);
                         mButtonFinish.setVisibility(View.VISIBLE);
                     }
@@ -142,8 +155,10 @@ public class ExercisesActivity extends AppCompatActivity {
 
                 mButtonStartPause.setImageResource(R.drawable.ic_pause);
                 mButtonState = false;
-                mChronometer.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
-                mChronometer.start();
+                mChronometer_allTime.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
+                mChronometer_allTime.start();
+                mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime() - mWorldTimePauseOffSet);
+                mChronometer_1worldTime.start();
                 mButtonFinish.setVisibility(View.INVISIBLE);
                 mButtonNextWorld.setVisibility(View.VISIBLE);
 
@@ -151,8 +166,10 @@ public class ExercisesActivity extends AppCompatActivity {
 
                 mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
                 mButtonState = true;
-                mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer.getBase();
-                mChronometer.stop();
+                mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+                mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
+                mChronometer_allTime.stop();
+                mChronometer_1worldTime.stop();
                 mButtonNextWorld.setVisibility(View.INVISIBLE);
                 mButtonFinish.setVisibility(View.VISIBLE);
 
@@ -168,6 +185,8 @@ public class ExercisesActivity extends AppCompatActivity {
         mButtonNextWorld.setOnClickListener(v->{
 
             setWorld();
+            mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
+            
 
         });
 
@@ -182,7 +201,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
     private void initializeComponents(){
         mButtonStartPause = findViewById(R.id.button);
-        mChronometer = findViewById(R.id.chronometer_allTime);
+        mChronometer_allTime = findViewById(R.id.chronometer_allTime);
         mButtonNextWorld = findViewById(R.id.buttonNextWorld);
         mWorld = findViewById(R.id.world_tv);
         mButtonFinish = findViewById(R.id.buttonFinishEx1);
@@ -192,6 +211,8 @@ public class ExercisesActivity extends AppCompatActivity {
         mThumb = findViewById(R.id.thumb_iv);
         mTextUnderThumb = findViewById(R.id.textUnderThumb);
         mShort_des = findViewById(R.id.description_short);
+        mChronometer_1worldTime = findViewById(R.id.chronometer_1world_time);
+        mThumbAndTextUnter_ly = findViewById(R.id.thumbAndTextUnder);
 
     }
 
@@ -262,6 +283,10 @@ public class ExercisesActivity extends AppCompatActivity {
 
     }
 
+    private void hideThumb(){
+        mWorld.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+    }
+
     private void animateThumb(){
         YoYo.with(Techniques.RotateIn)
                 .duration(500)
@@ -278,7 +303,7 @@ public class ExercisesActivity extends AppCompatActivity {
         String date = dateFormat.format(currentDate);
 
         //получаем время из секундомера в минутах
-        long time = ((SystemClock.elapsedRealtime() - mChronometer.getBase())/1000) / 60;
+        long time = ((SystemClock.elapsedRealtime() - mChronometer_allTime.getBase())/1000) / 60;
 
         Repo.getInstance(this).insertDateAndTime(mIdEx, date, time);
 
