@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,17 +12,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.DialogFragment;
 
 public class DialogChooseTheme extends AppCompatDialogFragment {
-    private Button mRedButton;
-    private Button mGreenButton;
-    private Button mPurpleButton;
-    private Button mOrandeButton;
-    private Button mBlueButton;
 
 
+    public interface ChooseThemesListener {
+        public void onClickTheme(DialogFragment dialog);
+    }
 
+    private ChooseThemesListener listener;
 
+    // Override the Fragment.onAttach() method to instantiate the Listener
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+
+            listener = (ChooseThemesListener) context;
+
+        } catch (ClassCastException e) {
+
+            throw new ClassCastException("must implement NoticeDialogListener");
+        }
+    }
 
     @NonNull
     @Override
@@ -39,36 +54,25 @@ public class DialogChooseTheme extends AppCompatDialogFragment {
                     }
                 });
 
-        view.findViewById(R.id.redButton).setOnClickListener(v -> {
-                    Repo.getInstance(view.getContext()).resetOldThemeState();
-                   Repo.getInstance(view.getContext()).changeTheme("red");
-                });
+          view.findViewById(R.id.redButton).setOnClickListener(v -> setTheme("red"));
 
-          view.findViewById(R.id.greenButton).setOnClickListener(v -> {
-              Repo.getInstance(view.getContext()).resetOldThemeState();
-              Repo.getInstance(view.getContext()).changeTheme("green");
-          });
+          view.findViewById(R.id.greenButton).setOnClickListener(v -> setTheme("green"));
 
-          view.findViewById(R.id.purpleButton).setOnClickListener(v -> {
-              Repo.getInstance(view.getContext()).resetOldThemeState();
-              Repo.getInstance(view.getContext()).changeTheme("purple");
-          });
+          view.findViewById(R.id.purpleButton).setOnClickListener(v -> setTheme("purple"));
 
-          view.findViewById(R.id.orangeButton).setOnClickListener(v -> {
-              Repo.getInstance(view.getContext()).resetOldThemeState();
-              Repo.getInstance(view.getContext()).changeTheme("orange");
-          });
+          view.findViewById(R.id.orangeButton).setOnClickListener(v -> setTheme("orange"));
 
-          view.findViewById(R.id.blueButton).setOnClickListener(v -> {
-              Repo.getInstance(view.getContext()).resetOldThemeState();
-              Repo.getInstance(view.getContext()).changeTheme("blue");
-          });
+          view.findViewById(R.id.blueButton).setOnClickListener(v -> setTheme("blue"));
 
-
-        return builder.create();
+            return builder.create();
 
     }
 
+    private void setTheme(String color){
+        Repo.getInstance(getContext()).resetOldThemeState();
+        Repo.getInstance(getContext()).changeTheme(color);
+        listener.onClickTheme(DialogChooseTheme.this);
+    }
 
 }
 

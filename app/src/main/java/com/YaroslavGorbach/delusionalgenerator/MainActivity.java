@@ -2,12 +2,13 @@ package com.YaroslavGorbach.delusionalgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener {
 
     private Toolbar mToolbar;
 
@@ -134,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                case R.id.rate:
 
 
-
                    break;
                case R.id.share:
 
@@ -216,6 +216,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
+    }
+
+
+    @Override
+    public void onClickTheme(DialogFragment dialog) {
+        recreate();
     }
 }
 

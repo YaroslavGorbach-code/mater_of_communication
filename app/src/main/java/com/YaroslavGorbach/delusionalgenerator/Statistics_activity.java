@@ -17,6 +17,7 @@ public class Statistics_activity extends AppCompatActivity  {
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_activity);
         initializeComponents();
@@ -52,5 +53,38 @@ private  void createChart(){
     bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
     mChart.animateY(2000);
 }
+
+    private void setTheme(){
+        String color = Repo.getInstance(Statistics_activity.this).getThemeState();
+        switch (color){
+
+            case "blue":
+
+                setTheme(R.style.AppTheme_blue);
+
+                break;
+
+            case "green":
+
+                setTheme(R.style.AppTheme_green);
+                break;
+
+            case "orange":
+
+                setTheme(R.style.AppTheme_orange);
+                break;
+
+            case "red":
+
+                setTheme(R.style.AppTheme_red);
+                break;
+
+            case "purple":
+
+                setTheme(R.style.AppTheme_purple);
+                break;
+
+        }
+    }
 
 }
