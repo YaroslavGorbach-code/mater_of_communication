@@ -68,7 +68,8 @@ public class Repo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_SQL_S);
-
+        db.execSQL(CREATE_SQL_T);
+        addThemes(db);
 
 
     }
@@ -76,11 +77,11 @@ public class Repo extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        if (oldVersion == 7 && newVersion == 8){
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_T);
-            db.execSQL(CREATE_SQL_T);
-            addThemes(db);
-        }
+//        if (oldVersion == 7 && newVersion == 8){
+//            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_T);
+//            db.execSQL(CREATE_SQL_T);
+//            addThemes(db);
+//        }
 
 
     }

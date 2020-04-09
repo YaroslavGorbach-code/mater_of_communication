@@ -87,4 +87,9 @@ private  void createChart(){
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        Repo.getInstance(this).removeListener(this::createChart);
+        super.onDestroy();
+    }
 }
