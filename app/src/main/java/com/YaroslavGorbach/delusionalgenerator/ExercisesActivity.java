@@ -80,14 +80,14 @@ public class ExercisesActivity extends AppCompatActivity {
 
             case 2:
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_ex2_living);
-                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
+                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Чем ворон похож на стул");
                 mShort_des.setText("Найдите сходство.");
                 hideThumb();
             break;
 
             case 3:
-                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex2_not_living);
+                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 mShort_des.setText("Найдите сходство.");
@@ -132,6 +132,7 @@ public class ExercisesActivity extends AppCompatActivity {
         mToolbar.setOnMenuItemClickListener(v->{
                     startActivity(new Intent(this, HelpActivity.class)
                             .putExtra(HelpActivity.EXTRA_ID, mIdEx));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
 
                     if (!mButtonState){
                         mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);

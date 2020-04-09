@@ -46,82 +46,131 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         setContentView(R.layout.activity_main);
         initializeComponents();
 
-        mStartButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 1)));
+        mStartButton_ex1.setOnClickListener(v->{
+            startActivity(new Intent(this, ExercisesActivity.class).
+                    putExtra(ExercisesActivity.EXTRA_ID_EX, 1));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 2)));
+        mStartButton_ex2.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 2));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 3)));
+        mStartButton_ex3.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 3));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 4)));
+        mStartButton_ex4.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 4));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 5)));
+        mStartButton_ex5.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 5));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 6)));
+        mStartButton_ex6.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 6));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex7.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 7)));
+        mStartButton_ex7.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 7));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mStartButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 8)));
-
-
-
-        mStatisticsButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 1)));
-
-        mStatisticsButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 2)));
-
-        mStatisticsButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 3)));
-
-        mStatisticsButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 4)));
-
-        mStatisticsButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 5)));
-
-        mStatisticsButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 6)));
-
-        mStatisticsButton_ex7.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 7)));
-
-        mStatisticsButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, Statistics_activity.class).
-                putExtra(Statistics_activity.EXTRA_ID_EX, 8)));
+        mStartButton_ex8.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 8));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
 
 
+        mStatisticsButton_ex1.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 1));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex1.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 1)));
+        mStatisticsButton_ex2.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 2));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex2.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 2)));
+        mStatisticsButton_ex3.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 3));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex3.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 3)));
+        mStatisticsButton_ex4.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 4));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex4.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 4)));
+        mStatisticsButton_ex5.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 5));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex5.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 5)));
+        mStatisticsButton_ex6.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 6));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex6.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 6)));
+        mStatisticsButton_ex7.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 7));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex7.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 7)));
+        mStatisticsButton_ex8.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 8));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
-        mNotificationButton_ex8.setOnClickListener(v-> startActivity(new Intent(this, HelpActivity.class).
-                putExtra(HelpActivity.EXTRA_ID, 8)));
+
+
+
+        mNotificationButton_ex1.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 1));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex2.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 2));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex3.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 3));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex4.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 4));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex5.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 5));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex6.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 6));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex7.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 7));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
+
+        mNotificationButton_ex8.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 8));
+            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
+        });
 
         mToolbar.setOnMenuItemClickListener(v->{
 
@@ -130,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
                    DialogChooseTheme dialog = new DialogChooseTheme();
                    dialog.show(getSupportFragmentManager(),"Выбор темы");
+                   overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
 
                    break;
                case R.id.rate:
@@ -141,6 +191,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                    break;
                case R.id.aboutApp:
 
+                   DialogAboutApp dialog2 = new DialogAboutApp();
+                   dialog2.show(getSupportFragmentManager(),"AboutApp");
+                   overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
                    break;
            }
 

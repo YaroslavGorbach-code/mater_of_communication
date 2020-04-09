@@ -65,6 +65,7 @@
             android:layout_below="@+id/thumb_iv"
             android:layout_centerInParent="true"
             android:text="thumb"
+            android:textColor="?colorPrimary"
             tools:visibility="visible"
             android:visibility="invisible"
             />
