@@ -40,8 +40,6 @@ public class ExercisesActivity extends AppCompatActivity {
     private ImageView mThumb;
     private TextView mTextUnderThumb;
     private TextView mShort_des;
-    private RelativeLayout mThumbAndTextUnter_ly;
-
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -68,7 +66,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
         switch (mIdEx){
 
-            case 1:{
+            case 1:
                 mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 mToolbar.setTitle("Лингвистические пирамиды");
@@ -76,7 +74,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 mThumb.setVisibility(View.VISIBLE);
                 mShort_des.setText("Обобщайте, разобобщайте, и переходите по аналогиям.");
                 break;
-            }
+
 
             case 2:
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_ex2_living);
@@ -132,7 +130,6 @@ public class ExercisesActivity extends AppCompatActivity {
         mToolbar.setOnMenuItemClickListener(v->{
                     startActivity(new Intent(this, HelpActivity.class)
                             .putExtra(HelpActivity.EXTRA_ID, mIdEx));
-            overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
 
                     if (!mButtonState){
                         mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
@@ -216,7 +213,6 @@ public class ExercisesActivity extends AppCompatActivity {
         mTextUnderThumb = findViewById(R.id.textUnderThumb);
         mShort_des = findViewById(R.id.description_short);
         mChronometer_1worldTime = findViewById(R.id.chronometer_1world_time);
-        mThumbAndTextUnter_ly = findViewById(R.id.thumbAndTextUnder);
 
     }
 
