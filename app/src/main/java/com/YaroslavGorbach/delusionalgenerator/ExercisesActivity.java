@@ -58,7 +58,7 @@ public class ExercisesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises2);
+        setContentView(R.layout.activity_exercises);
         initializeComponents();
         mChronometer_allTime.start();
         mChronometer_1worldTime.start();
