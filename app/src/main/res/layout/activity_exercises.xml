@@ -42,10 +42,10 @@
     </TextView>
 
     <RelativeLayout
-        android:id="@+id/thumbAndTextUnder"
+        android:id="@+id/thumbAndText"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="150dp"
+        android:visibility="gone"
         >
 
         <ImageView
@@ -53,8 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_up"
-            android:visibility="invisible"
-            tools:visibility="visible"
             android:layout_centerInParent="true"
             />
 
@@ -66,8 +64,6 @@
             android:layout_centerInParent="true"
             android:text="thumb"
             android:textColor="?colorPrimary"
-            tools:visibility="visible"
-            android:visibility="invisible"
             />
     </RelativeLayout>
 
@@ -76,8 +72,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView9"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_height="170dp"
         app:cardBackgroundColor="?cardColor"
         app:cardCornerRadius="20dp"
         android:layout_margin="20dp"
@@ -92,7 +87,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
+    android:layout_marginBottom="10dp"
    >
     <Button
         android:id="@+id/buttonFinishEx1"
@@ -103,7 +98,7 @@
         android:gravity="center"
         android:text="завершить"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:visibility="invisible"
         tools:visibility="visible"
         />
@@ -115,7 +110,7 @@
         android:drawableEnd="@drawable/ic_arrow_right"
         android:text="слудющее слово"
         android:textColor="#ffffff"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_gravity="center"
         />
 </FrameLayout>

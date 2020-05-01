@@ -6,7 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -40,6 +39,7 @@ public class ExercisesActivity extends AppCompatActivity {
     private ImageView mThumb;
     private TextView mTextUnderThumb;
     private TextView mShort_des;
+    private RelativeLayout mThumbAndText;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -59,19 +59,21 @@ public class ExercisesActivity extends AppCompatActivity {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
+
+        /*Поиск всех view и запуск секундомера*/
         initializeComponents();
         mChronometer_allTime.start();
         mChronometer_1worldTime.start();
 
 
+        /*В зависимости от айди упражнения мы выбираем потходяшии слова и иницыализируем наши view*/
         switch (mIdEx){
 
             case 1:
                 mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 mToolbar.setTitle("Лингвистические пирамиды");
-                mTextUnderThumb.setVisibility(View.VISIBLE);
-                mThumb.setVisibility(View.VISIBLE);
+                mThumbAndText.setVisibility(View.VISIBLE);
                 mShort_des.setText("Обобщайте, разобобщайте, и переходите по аналогиям.");
                 break;
 
@@ -81,7 +83,6 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Чем ворон похож на стул");
                 mShort_des.setText("Найдите сходство.");
-                hideThumb();
             break;
 
             case 3:
@@ -89,44 +90,39 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 mShort_des.setText("Найдите сходство.");
-                hideThumb();
                 break;
 
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Продвинутое сявязывание");
                 mShort_des.setText("Найдите сходства.");
-                hideThumb();
                 break;
 
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 mShort_des.setText("Говорите максимально долго об этом.");
-                hideThumb();
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_ex6);
                 mToolbar.setTitle("Другие варианты сокращений");
                 mShort_des.setText("Придумайте необычную расшифровку.");
-                hideThumb();
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Волшебный нейминг");
                 mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных.");
-                hideThumb();
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_ex1);
                 mToolbar.setTitle("Купля-продажа");
                 mShort_des.setText("Продайте это.");
-                hideThumb();
                 break;
         }
 
 
+        /*Оброботка нажатия на кнопку помощи по упражнению.*/
         mToolbar.setOnMenuItemClickListener(v->{
                     startActivity(new Intent(this, HelpActivity.class)
                             .putExtra(HelpActivity.EXTRA_ID, mIdEx));
@@ -146,10 +142,12 @@ public class ExercisesActivity extends AppCompatActivity {
             return true;
         });
 
+        /*Остановка активити при нажатии на стрелку назад*/
         mToolbar.setNavigationOnClickListener(v->{
             finish();
         });
 
+        /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
         mButtonStartPause.setOnClickListener(v->{
 
             if(mButtonState){
@@ -178,11 +176,14 @@ public class ExercisesActivity extends AppCompatActivity {
 
         });
 
+        /*При нажатии на большой палец смена его состояния*/
         mThumb.setOnClickListener(v->{
             setThumbAndText();
             animateThumb();
         });
 
+        /*Установка нового слова и обнуление секундомера
+        который показывает время потраченое на одно слово */
         mButtonNextWorld.setOnClickListener(v->{
 
             setWorld();
@@ -191,6 +192,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
         });
 
+        /*Завершение упражнения при нажатии */
         mButtonFinish.setOnClickListener(v->{
             insertMyDateAndTime();
             finish();
@@ -200,6 +202,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
     }
 
+    /*поиск всех view*/
     private void initializeComponents(){
         mButtonStartPause = findViewById(R.id.button);
         mChronometer_allTime = findViewById(R.id.chronometer_allTime);
@@ -213,11 +216,12 @@ public class ExercisesActivity extends AppCompatActivity {
         mTextUnderThumb = findViewById(R.id.textUnderThumb);
         mShort_des = findViewById(R.id.description_short);
         mChronometer_1worldTime = findViewById(R.id.chronometer_1world_time);
+        mThumbAndText = findViewById(R.id.thumbAndText);
 
     }
 
 
-
+    /*В зависимости от айди упражнения устанавливаем в textView правельное слово или пару слов*/
     private void setWorld(){
 
         switch (mIdEx) {
@@ -267,6 +271,7 @@ public class ExercisesActivity extends AppCompatActivity {
         }
     }
 
+    /*Уставнока значения борльшого пальца*/
     private void setThumbAndText(){
 
         mTextUnderThumb.setText(mArrayTextUnderThumb[r.nextInt(mArrayTextUnderThumb.length)]);
@@ -283,10 +288,8 @@ public class ExercisesActivity extends AppCompatActivity {
 
     }
 
-    private void hideThumb(){
-        mWorld.setGravity(Gravity.CENTER | Gravity.BOTTOM);
-    }
 
+    /*Анимацыя для большого пальца*/
     private void animateThumb(){
         YoYo.with(Techniques.RotateIn)
                 .duration(500)
@@ -296,6 +299,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 .playOn(mTextUnderThumb);
     }
 
+    /*Установка темы*/
     private void setTheme(){
         String color = Repo.getInstance(ExercisesActivity.this).getThemeState();
         switch (color){
@@ -329,6 +333,7 @@ public class ExercisesActivity extends AppCompatActivity {
         }
     }
 
+    /*Метод используеться для ведения статистики*/
     private void insertMyDateAndTime(){
         //получаем текущую дату
         Date currentDate = new Date();

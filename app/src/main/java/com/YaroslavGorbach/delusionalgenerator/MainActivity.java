@@ -52,10 +52,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Показ диалога с описанием приложения если оно открываеться впервые*/
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
         firstOpen = sharedPreferences.getBoolean(FIRST_OPEN, true);
-
-
         if(firstOpen){
             DialogFirstOpenMainActivity dialog = new DialogFirstOpenMainActivity();
             dialog.show(getSupportFragmentManager(),"first open");
@@ -67,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
         initializeComponents();
 
+        /*Оброботка нажатий для кнопок которые запускают упражнения*/
         mStartButton_ex1.setOnClickListener(v->{
             startActivity(new Intent(this, ExercisesActivity.class).
                     putExtra(ExercisesActivity.EXTRA_ID_EX, 1));
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         });
 
 
-
+        /*Оброботка нажатий на кнопки которые отвечают за открытие статистики упражнения*/
         mStatisticsButton_ex1.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
                 putExtra(Statistics_activity.EXTRA_ID_EX, 1));
 
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
 
 
-
+        /*Оброботка нажатий на кнопки которые отвечают за открытие помощи по упражнению*/
         mNotificationButton_ex1.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
                 putExtra(HelpActivity.EXTRA_ID, 1));
 
@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
         });
 
+        /*Оброботка нажатий на елементы меню*/
         mToolbar.setOnMenuItemClickListener(v->{
 
            switch (v.getItemId()){
@@ -235,6 +236,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
 
 
+    /*Поиск и иницыализацыя всех view*/
     private void initializeComponents(){
 
         mToolbar = findViewById(R.id.toolbar_main);
@@ -268,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
     }
 
+    /*Установка темы*/
     private void setTheme(){
         String color = Repo.getInstance(MainActivity.this).getThemeState();
         switch (color){
@@ -302,6 +305,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     }
 
 
+    /*Пересоздание активити при выборе новой темы*/
     @Override
     public void onClickTheme(DialogFragment dialog) {
         recreate();
