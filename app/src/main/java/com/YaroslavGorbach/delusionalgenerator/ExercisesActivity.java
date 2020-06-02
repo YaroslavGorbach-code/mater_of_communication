@@ -70,7 +70,7 @@ public class ExercisesActivity extends AppCompatActivity {
         switch (mIdEx){
 
             case 1:
-                mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 mToolbar.setTitle("Лингвистические пирамиды");
                 mThumbAndText.setVisibility(View.VISIBLE);
@@ -79,43 +79,43 @@ public class ExercisesActivity extends AppCompatActivity {
 
 
             case 2:
-                mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_ex2_living);
-                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_Alive);
+                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Чем ворон похож на стул");
                 mShort_des.setText("Найдите сходство.");
             break;
 
             case 3:
-                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_ex1);
-                mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_ex3_filings);
+                mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_filings);
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 mShort_des.setText("Найдите сходство.");
                 break;
 
             case 4:
-                mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Продвинутое сявязывание");
                 mShort_des.setText("Найдите сходства.");
                 break;
 
             case 5:
-                mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 mShort_des.setText("Говорите максимально долго об этом.");
                 break;
 
             case 6:
-                mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_ex6);
+                mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_abbreviations);
                 mToolbar.setTitle("Другие варианты сокращений");
                 mShort_des.setText("Придумайте необычную расшифровку.");
                 break;
             case 7:
-                mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Волшебный нейминг");
                 mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных.");
                 break;
             case 8:
-                mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_ex1);
+                mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Купля-продажа");
                 mShort_des.setText("Продайте это.");
                 break;
@@ -185,21 +185,16 @@ public class ExercisesActivity extends AppCompatActivity {
         /*Установка нового слова и обнуление секундомера
         который показывает время потраченое на одно слово */
         mButtonNextWorld.setOnClickListener(v->{
-
             setWorld();
             mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
-
-
         });
 
         /*Завершение упражнения при нажатии */
         mButtonFinish.setOnClickListener(v->{
-            insertMyDateAndTime();
             finish();
         });
 
         setWorld();
-
     }
 
     /*поиск всех view*/
@@ -349,5 +344,11 @@ public class ExercisesActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        insertMyDateAndTime();
+    }
 }
+
 
