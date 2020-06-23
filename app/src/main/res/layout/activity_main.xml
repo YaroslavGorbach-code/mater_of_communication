@@ -631,7 +631,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Волшебный \n нейминг" />
+                        android:text="Вспомнить \n все" />
 
 
                 </com.google.android.material.appbar.AppBarLayout>
@@ -699,7 +699,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Купля-\nпродажа"/>
+                        android:text="В соавторстве \n с Далем"/>
 
 
                 </com.google.android.material.appbar.AppBarLayout>

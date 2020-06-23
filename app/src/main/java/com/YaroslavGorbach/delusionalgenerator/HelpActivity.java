@@ -68,6 +68,16 @@ public class HelpActivity extends AppCompatActivity {
                 mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_8));
                 mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_8));
                 break;
+            case 9:
+                mExName.setText("Вспомнить все");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_9));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_9));
+                break;
+            case 10:
+                mExName.setText("В соавторстве с Далем");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_10));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_10));
+                break;
         }
 
     }
@@ -113,34 +123,6 @@ public class HelpActivity extends AppCompatActivity {
 
         }
     }
-
-    //Создание канала для уведомления
-//        private void createChanel(){
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//            {
-//                String channelId = "test";
-//                NotificationChannel channel = new NotificationChannel(channelId, "Channel human readable title",
-//                        NotificationManager.IMPORTANCE_HIGH);
-//                NotificationManager manager = getSystemService(NotificationManager.class);
-//                manager.createNotificationChannel(channel);
-//            }
-//        }
-//
-//        //показ уведомления
-//        private void startNotification(){
-//
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.set(Calendar.HOUR_OF_DAY,14);
-//            calendar.set(Calendar.MINUTE,40);
-//            calendar.set(Calendar.SECOND, 0);
-//
-//             Intent intent = new Intent(HelpActivity.this, ReminderBroadcast.class);
-//             PendingIntent pendingIntent = PendingIntent.getBroadcast(HelpActivity.this,0,
-//                     intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-//        }
 
     }
 

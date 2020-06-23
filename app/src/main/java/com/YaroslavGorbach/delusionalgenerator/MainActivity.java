@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     private ImageButton mStartButton_ex6;
     private ImageButton mStartButton_ex7;
     private ImageButton mStartButton_ex8;
+    private ImageButton mStartButton_ex9;
+    private ImageButton mStartButton_ex10;
+
 
     private ImageButton mStatisticsButton_ex1;
     private ImageButton mStatisticsButton_ex2;
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     private ImageButton mStatisticsButton_ex6;
     private ImageButton mStatisticsButton_ex7;
     private ImageButton mStatisticsButton_ex8;
+    private ImageButton mStatisticsButton_ex9;
+    private ImageButton mStatisticsButton_ex10;
+
 
     private ImageButton mNotificationButton_ex1;
     private ImageButton mNotificationButton_ex2;
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     private ImageButton mNotificationButton_ex6;
     private ImageButton mNotificationButton_ex7;
     private ImageButton mNotificationButton_ex8;
+    private ImageButton mNotificationButton_ex9;
+    private ImageButton mNotificationButton_ex10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +115,16 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
         });
 
+        mStartButton_ex9.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 9));
+
+        });
+
+        mStartButton_ex10.setOnClickListener(v-> {startActivity(new Intent(this, ExercisesActivity.class).
+                putExtra(ExercisesActivity.EXTRA_ID_EX, 10));
+
+        });
+
 
         /*Оброботка нажатий на кнопки которые отвечают за открытие статистики упражнения*/
         mStatisticsButton_ex1.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
@@ -118,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                 putExtra(Statistics_activity.EXTRA_ID_EX, 2));
 
         });
-
         mStatisticsButton_ex3.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
                 putExtra(Statistics_activity.EXTRA_ID_EX, 3));
 
@@ -146,6 +163,16 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
         mStatisticsButton_ex8.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
                 putExtra(Statistics_activity.EXTRA_ID_EX, 8));
+
+        });
+
+        mStatisticsButton_ex9.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 9));
+
+        });
+
+        mStatisticsButton_ex10.setOnClickListener(v-> {startActivity(new Intent(this, Statistics_activity.class).
+                putExtra(Statistics_activity.EXTRA_ID_EX, 10));
 
         });
 
@@ -189,6 +216,16 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
         mNotificationButton_ex8.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
                 putExtra(HelpActivity.EXTRA_ID, 8));
+
+        });
+
+        mNotificationButton_ex9.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 9));
+
+        });
+
+        mNotificationButton_ex10.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+                putExtra(HelpActivity.EXTRA_ID, 10));
 
         });
 
@@ -249,6 +286,8 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         mStartButton_ex6 = findViewById(R.id.start_ex6);
         mStartButton_ex7 = findViewById(R.id.start_ex7);
         mStartButton_ex8 = findViewById(R.id.start_ex8);
+        mStartButton_ex9 = findViewById(R.id.start_ex9);
+        mStartButton_ex10 = findViewById(R.id.start_ex10);
 
         mStatisticsButton_ex1 = findViewById(R.id.statistics_ex1);
         mStatisticsButton_ex2 = findViewById(R.id.statistics_ex2);
@@ -258,6 +297,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         mStatisticsButton_ex6 = findViewById(R.id.statistics_ex6);
         mStatisticsButton_ex7 = findViewById(R.id.statistics_ex7);
         mStatisticsButton_ex8 = findViewById(R.id.statistics_ex8);
+        mStatisticsButton_ex9 = findViewById(R.id.statistics_ex9);
+        mStatisticsButton_ex10 = findViewById(R.id.statistics_ex10);
+
 
         mNotificationButton_ex1 = findViewById(R.id.help_ex1);
         mNotificationButton_ex2 = findViewById(R.id.help_ex2);
@@ -267,6 +309,10 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         mNotificationButton_ex6 = findViewById(R.id.help_ex6);
         mNotificationButton_ex7 = findViewById(R.id.help_ex7);
         mNotificationButton_ex8 = findViewById(R.id.help_ex8);
+        mNotificationButton_ex9 = findViewById(R.id.help_ex9);
+        mNotificationButton_ex10 = findViewById(R.id.help_ex10);
+
+
 
     }
 

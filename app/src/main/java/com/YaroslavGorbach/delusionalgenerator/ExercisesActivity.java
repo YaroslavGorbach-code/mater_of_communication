@@ -51,6 +51,9 @@ public class ExercisesActivity extends AppCompatActivity {
    private String [] mArrayWorlds_ex6 = {};
    private String [] mArrayWorlds_ex7 = {};
    private String [] mArrayWorlds_ex8 = {};
+   private String [] mArrayWorlds_ex9 = {};
+   private String [] mArrayWorlds_ex10 = {};
+
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
 
@@ -118,6 +121,16 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Купля-продажа");
                 mShort_des.setText("Продайте это.");
+                break;
+            case 9:
+                mArrayWorlds_ex9 = getResources().getStringArray(R.array.letters);
+                mToolbar.setTitle("Вспомнить все");
+                mShort_des.setText("назовите 15 слов, которые начинаются с этой буквы");
+                break;
+            case 10:
+                mArrayWorlds_ex10 = getResources().getStringArray(R.array.Terms);
+                mToolbar.setTitle("В соавторстве с Далем");
+                mShort_des.setText("Дайте определение слову");
                 break;
         }
 
@@ -261,6 +274,14 @@ public class ExercisesActivity extends AppCompatActivity {
 
             case 8:
                 mWorld.setText(mArrayWorlds_ex8[r.nextInt(mArrayWorlds_ex8.length)]);
+                break;
+
+            case 9:
+                mWorld.setText(mArrayWorlds_ex9[r.nextInt(mArrayWorlds_ex9.length)]);
+                break;
+
+            case 10:
+                mWorld.setText(mArrayWorlds_ex10[r.nextInt(mArrayWorlds_ex10.length)]);
                 break;
 
         }
