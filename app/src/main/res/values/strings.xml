@@ -1073,7 +1073,141 @@
         <item>Кириллица</item>
         <item>Конверсия</item>
         <item>Морфема</item>
-
     </string-array>
 
+<string-array name="professions">
+    <item>Резчик по камню</item>
+    <item>Хирург</item>
+    <item>Космонавт</item>
+    <item>Режиссер</item>
+    <item>Графический дизайнер</item>
+    <item>Web-дизайнер</item>
+    <item>Архитектор-проектировщик</item>
+    <item>Дизайнер</item>
+    <item>Реаниматолог</item>
+    <item>Ландшафтный архитектор</item>
+    <item>Кондитер</item>
+    <item>Архитектор-реставратор</item>
+    <item>Пожарный</item>
+    <item>Пилот</item>
+    <item>Бионик</item>
+    <item>Лаборант химического анализа</item>
+    <item>Артист кино</item>
+    <item>Градостроитель</item>
+    <item>Частный детектив</item>
+    <item>Звукорежиссер</item>
+    <item>Авиационный инженер</item>
+    <item>Исследователь</item>
+    <item>Астрофизик</item>
+    <item>Спасатель</item>
+    <item>Архитектор</item>
+    <item>Генетик</item>
+    <item>Судебный эксперт</item>
+    <item>Медицинский лабораторный техник</item>
+    <item>Вирусолог</item>
+    <item>Судья</item>
+    <item>Руководитель</item>
+    <item>Программист-разработчик</item>
+    <item>Повар</item>
+    <item>Авиадиспетчер</item>
+    <item>Продюсер</item>
+    <item>Инженер</item>
+    <item>Иллюстратор</item>
+    <item>Инженер-испытатель</item>
+    <item>Журналист-международник</item>
+    <item>Фотожурналист</item>
+    <item>Биотехнолог</item>
+    <item>Web-программист</item>
+    <item>Реставратор</item>
+    <item>Дизайнер интерьера</item>
+    <item>Актёр</item>
+    <item>Бортпроводник (стюардесса)</item>
+    <item>Звукооператор</item>
+    <item>Военный лётчик</item>
+    <item>Нейропсихолог</item>
+    <item>Телеведущий</item>
+    <item>Астроном</item>
+    <item>Биохимик</item>
+    <item>Кинолог</item>
+    <item>Системный программист</item>
+    <item>Химик</item>
+    <item>Следователь</item>
+    <item>Прокурор</item>
+    <item>Пластический хирург</item>
+    <item>Врач</item>
+    <item>Адвокат</item>
+    <item>Биофизик</item>
+    <item>Специалист по системам безопасности</item>
+    <item>Психотерапевт</item>
+    <item>Ветеринарный фельдшер</item>
+    <item>Mobile-разработчик</item>
+    <item>Ветеринар</item>
+    <item>Переводчик</item>
+    <item>Художник</item>
+    <item>Дипломат</item>
+    <item>Корреспондент</item>
+    <item>Стоматолог-хирург</item>
+    <item>Анестезиолог</item>
+    <item>Администратор базы данных</item>
+    <item>Сценарист</item>
+    <item>Журналист</item>
+    <item>Композитор</item>
+    <item>Дизайнер одежды</item>
+    <item>Географ</item>
+    <item>Инженер-строитель</item>
+    <item>Педиатр</item>
+    <item>Зоолог</item>
+    <item>Менеджер по рекламе</item>
+    <item>Технолог по нефтепереработке</item>
+    <item>Живописец</item>
+    <item>Психолог</item>
+    <item>Лаборант</item>
+    <item>Музыкант</item>
+    <item>Юрист</item>
+    <item>Модельер</item>
+    <item>Археолог</item>
+    <item>Экспедитор</item>
+    <item>Учитель истории</item>
+    <item>Видеооператор</item>
+    <item>Бармен</item>
+    <item>Ведущий радио и телевидения</item>
+    <item>Озеленитель</item>
+    <item>Учитель английского языка</item>
+    <item>Дегустатор</item>
+    <item>Писатель</item>
+    <item>Диспетчер</item>
+    <item>Пекарь</item>
+    <item>Декоратор</item>
+    <item>Фотограф</item>
+    <item>Невролог</item>
+    <item>Страховой агент</item>
+    <item>Ювелир</item>
+    <item>Механик</item>
+    <item>Редактор</item>
+    <item>Художник-скульптор</item>
+    <item>Редактор</item>
+    <item>Стоматолог</item>
+    <item>Начальник отдела персонала</item>
+    <item>Инструктор по фитнесу</item>
+    <item>Водолаз</item>
+    <item>Учитель танцев</item>
+    <item>Социолог</item>
+    <item>Винодел</item>
+    <item>Банкир</item>
+    <item>Агент банка</item>
+    <item>Певец</item>
+    <item>Физик</item>
+    <item>Дизайнер мебели</item>
+    <item>Гитарист</item>
+    <item>Лингвист</item>
+    <item>Блогер</item>
+    <item>Дрессировщик</item>
+    <item>Хореограф</item>
+    <item>Каскадер</item>
+    <item>Фермер</item>
+    <item>Военнослужащий</item>
+    <item>Сомелье</item>
+    <item>Математик</item>
+
+</string-array>
 </resources>

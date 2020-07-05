@@ -53,6 +53,8 @@ public class ExercisesActivity extends AppCompatActivity {
    private String [] mArrayWorlds_ex8 = {};
    private String [] mArrayWorlds_ex9 = {};
    private String [] mArrayWorlds_ex10 = {};
+   private String [] mArrayWorlds_ex11 = {};
+   private String [] mArrayWorlds_ex12 = {};
 
 
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
@@ -77,7 +79,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 mToolbar.setTitle("Лингвистические пирамиды");
                 mThumbAndText.setVisibility(View.VISIBLE);
-                mShort_des.setText("Обобщайте, разобобщайте, и переходите по аналогиям.");
+                mShort_des.setText("Обобщайте, разобобщайте, и переходите по аналогиям");
                 break;
 
 
@@ -85,52 +87,62 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_Alive);
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Чем ворон похож на стул");
-                mShort_des.setText("Найдите сходство.");
+                mShort_des.setText("Найдите сходство");
             break;
 
             case 3:
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_filings);
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
-                mShort_des.setText("Найдите сходство.");
+                mShort_des.setText("Найдите сходство");
                 break;
 
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Продвинутое сявязывание");
-                mShort_des.setText("Найдите сходства.");
+                mShort_des.setText("Найдите сходства");
                 break;
 
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("О чем вижу, о том и пою");
-                mShort_des.setText("Говорите максимально долго об этом.");
+                mShort_des.setText("Говорите максимально долго об этом");
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_abbreviations);
                 mToolbar.setTitle("Другие варианты сокращений");
-                mShort_des.setText("Придумайте необычную расшифровку.");
+                mShort_des.setText("Придумайте необычную расшифровку");
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Волшебный нейминг");
-                mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных.");
+                mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных");
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Купля-продажа");
-                mShort_des.setText("Продайте это.");
+                mShort_des.setText("Продайте это");
                 break;
             case 9:
                 mArrayWorlds_ex9 = getResources().getStringArray(R.array.letters);
                 mToolbar.setTitle("Вспомнить все");
-                mShort_des.setText("назовите 15 слов, которые начинаются с этой буквы");
+                mShort_des.setText("Назовите 15 слов, которые начинаются с этой буквы");
                 break;
             case 10:
                 mArrayWorlds_ex10 = getResources().getStringArray(R.array.Terms);
                 mToolbar.setTitle("В соавторстве с Далем");
                 mShort_des.setText("Дайте определение слову");
+                break;
+            case 11:
+                mArrayWorlds_ex11 = getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mToolbar.setTitle("Тест Роршаха");
+                mShort_des.setText("Придумайте чем ето может быть еще");
+                break;
+            case 12:
+                mArrayWorlds_ex12 = getResources().getStringArray(R.array.professions);
+                mToolbar.setTitle("Хуже уже не будет");
+                mShort_des.setText("Придумайте ситуацию или фразу худшего в мире");
                 break;
         }
 
@@ -282,6 +294,14 @@ public class ExercisesActivity extends AppCompatActivity {
 
             case 10:
                 mWorld.setText(mArrayWorlds_ex10[r.nextInt(mArrayWorlds_ex10.length)]);
+                break;
+
+            case 11:
+                mWorld.setText(mArrayWorlds_ex11[r.nextInt(mArrayWorlds_ex11.length)]);
+                break;
+
+            case 12:
+                mWorld.setText(mArrayWorlds_ex12[r.nextInt(mArrayWorlds_ex12.length)]);
                 break;
 
         }
