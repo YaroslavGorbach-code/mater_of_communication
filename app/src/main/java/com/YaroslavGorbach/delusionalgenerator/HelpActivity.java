@@ -78,6 +78,18 @@ public class HelpActivity extends AppCompatActivity {
                 mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_10));
                 mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_10));
                 break;
+
+            case 11:
+                mExName.setText("Тест Роршаха");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_11));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_11));
+                break;
+
+            case 12:
+                mExName.setText("Хуже уже не будет");
+                mAimOfExercise.setText(getResources().getString(R.string.Aim_of_exercise_12));
+                mHawToPerformTheExercise.setText(getResources().getString(R.string.Haw_to_perform_exercise_12));
+                break;
         }
 
     }

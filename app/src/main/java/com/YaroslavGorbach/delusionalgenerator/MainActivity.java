@@ -254,12 +254,12 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
         });
 
-        mNotificationButton_ex9.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+        mNotificationButton_ex11.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
                 putExtra(HelpActivity.EXTRA_ID, 11));
 
         });
 
-        mNotificationButton_ex10.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
+        mNotificationButton_ex12.setOnClickListener(v-> {startActivity(new Intent(this, HelpActivity.class).
                 putExtra(HelpActivity.EXTRA_ID, 12));
 
         });
