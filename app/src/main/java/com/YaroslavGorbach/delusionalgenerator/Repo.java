@@ -162,8 +162,6 @@ public class Repo extends SQLiteOpenHelper {
         notifyChange();
     }
 
-
-
     private void notifyChange(){
         for(Listener listener : mListeners) listener.onDataChange();
     }

@@ -10,7 +10,11 @@
         <item name="android:textColorSecondary">#ffffff</item>
         <item name="iconPlayColor">#E6FF5722</item>
         <item name="rippleColor">#33FF5722</item>
+        <item name="rippleColorTab2">#33872000</item>
         <item name="cardColor">#FF5722</item>
+        <item name="tabColor">#FF5722</item>
+        <item name="tabIndicatorColor">#FF5722</item>
+        <item name="floatingActionButtonBackground">#FF5722</item>
     </style>
 
     <style name="AppTheme_blue" parent="Theme.AppCompat.Light.NoActionBar">
@@ -22,7 +26,13 @@
         <item name="secondIconsColor">#B300BCD4</item>
         <item name="iconPlayColor">#CC00BCD4</item>
         <item name="rippleColor">#3300BCD4</item>
+        <item name="rippleColorTab2">#33005A65</item>
         <item name="cardColor">#00BCD4</item>
+        <item name="tabColor">#00BCD4</item>
+        <item name="tabIndicatorColor">#00BCD4</item>
+        <item name="floatingActionButtonBackground">#00BCD4</item>
+
+
 
     </style>
 
@@ -35,7 +45,13 @@
         <item name="secondIconsColor">#B34CAF50</item>
         <item name="iconPlayColor">#CC4CAF50</item>
         <item name="rippleColor">#334CAF50</item>
+        <item name="rippleColorTab2">#33005103</item>
         <item name="cardColor">#4CAF50</item>
+        <item name="tabColor">#4CAF50</item>
+        <item name="tabIndicatorColor">#4CAF50</item>
+        <item name="floatingActionButtonBackground">#4CAF50</item>
+
+
     </style>
 
     <style name="AppTheme_purple" parent="Theme.AppCompat.Light.NoActionBar">
@@ -47,7 +63,14 @@
         <item name="secondIconsColor">#B3673AB7</item>
         <item name="iconPlayColor">#CC673AB7</item>
         <item name="rippleColor">#339C27B0</item>
+        <item name="rippleColorTab2">#33460051</item>
         <item name="cardColor">#673AB7</item>
+        <item name="tabColor">#673AB7</item>
+        <item name="tabIndicatorColor">#673AB7</item>
+        <item name="floatingActionButtonBackground">#673AB7</item>
+
+
+
     </style>
 
     <style name="AppTheme_red" parent="Theme.AppCompat.Light.NoActionBar">
@@ -59,7 +82,11 @@
         <item name="secondIconsColor">#B3E91E63</item>
         <item name="iconPlayColor">#CCE91E63</item>
         <item name="rippleColor">#33E91E63</item>
+        <item name="rippleColorTab2">#336A0024</item>
         <item name="cardColor">#E91E63</item>
+        <item name="tabColor">#E91E63</item>
+        <item name="tabIndicatorColor">#E91E63</item>
+        <item name="floatingActionButtonBackground">#E91E63</item>
     </style>
 
 
