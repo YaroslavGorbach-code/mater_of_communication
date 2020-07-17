@@ -18,8 +18,17 @@
             android:layout_height="56dp"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Лингвистические пирамиды"
-            app:titleTextColor="#ffffff" />
+            app:titleTextColor="#FFFFFF" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewTab1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-6043694180023070/2709885324">
+    </com.google.android.gms.ads.AdView>
+
     <TextView
         android:id="@+id/description_short"
         android:layout_width="wrap_content"
@@ -29,6 +38,7 @@
         android:gravity="center"
         android:padding="8dp">
     </TextView>
+
     <TextView
         android:id="@+id/world_tv"
         android:layout_width="match_parent"

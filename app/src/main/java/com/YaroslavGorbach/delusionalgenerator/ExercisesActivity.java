@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.ads.mediation.AbstractAdViewAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,7 +37,7 @@ public class ExercisesActivity extends AppCompatActivity {
     private TextView mWorld;
     private Button mButtonFinish;
     private Toolbar mToolbar;
-    Random r = new Random();
+    private Random r = new Random();
     int mIdEx;
     private ImageView mThumb;
     private TextView mTextUnderThumb;
@@ -64,6 +67,11 @@ public class ExercisesActivity extends AppCompatActivity {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
+
+        AdView mAdView;
+        mAdView = findViewById(R.id.adViewTab1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         /*Поиск всех view и запуск секундомера*/
         initializeComponents();

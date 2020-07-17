@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.YaroslavGorbach.delusionalgenerator">
+    <uses-permission android:name="android.permission.INTERNETN"/>
 
     <application
         android:allowBackup="true"
@@ -31,6 +32,10 @@
         <activity android:name=".ExercisesActivity"
             android:screenOrientation="portrait"
             />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6043694180023070~2901457019"/>
 
     </application>
 
