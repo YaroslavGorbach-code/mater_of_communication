@@ -32,17 +32,19 @@ public class ExercisesActivity extends AppCompatActivity {
     private Chronometer mChronometer_1worldTime;
     private long mPauseOffSet = 0;
     private long mWorldTimePauseOffSet = 0;
-    boolean mButtonState = false;
+    private boolean mButtonState = false;
     private Button mButtonNextWorld;
     private TextView mWorld;
     private Button mButtonFinish;
     private Toolbar mToolbar;
     private Random r = new Random();
-    int mIdEx;
+    private int mIdEx;
     private ImageView mThumb;
     private TextView mTextUnderThumb;
     private TextView mShort_des;
     private RelativeLayout mThumbAndText;
+    private TextView mWorldCounter;
+    private int mWorldCount;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -220,6 +222,8 @@ public class ExercisesActivity extends AppCompatActivity {
         mButtonNextWorld.setOnClickListener(v->{
             setWorld();
             mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
+            mWorldCount++;
+            mWorldCounter.setText(String.format("%s/%s", mWorldCount, 0));
         });
 
         /*Завершение упражнения при нажатии */
@@ -245,6 +249,7 @@ public class ExercisesActivity extends AppCompatActivity {
         mShort_des = findViewById(R.id.description_short);
         mChronometer_1worldTime = findViewById(R.id.chronometer_1world_time);
         mThumbAndText = findViewById(R.id.thumbAndText);
+        mWorldCounter = findViewById(R.id.world_counter);
 
     }
 
