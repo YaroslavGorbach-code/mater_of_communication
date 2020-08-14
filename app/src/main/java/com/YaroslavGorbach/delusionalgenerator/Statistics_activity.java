@@ -39,7 +39,7 @@ public class Statistics_activity extends AppCompatActivity  {
 
 
     private void initializeComponents(){
-        mChart = findViewById(R.id.chart);
+        mChart = findViewById(R.id.chartMinutes);
         mToolbar = findViewById(R.id.toolbar_statistics);
         mToolbar.inflateMenu(R.menu.menu_statistic);
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
