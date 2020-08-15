@@ -11,10 +11,12 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 public class Statistics_activity extends AppCompatActivity  {
-    private BarChart mChart;
+    private BarChart mChartMinutes;
+    private BarChart mChartWorldCount;
     private Toolbar mToolbar;
     int mIdEx;
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
@@ -32,27 +34,39 @@ public class Statistics_activity extends AppCompatActivity  {
 
         });
 
-        createChart();
-        Repo.getInstance(this).addListener(this::createChart);
+        createTimeChart();
+        createWorldCounterChart();
+        Repo.getInstance(this).addListener(this::createTimeChart);
+        Repo.getInstance(this).addListener(this::createWorldCounterChart);
 
     }
 
 
     private void initializeComponents(){
-        mChart = findViewById(R.id.chartMinutes);
+        mChartMinutes = findViewById(R.id.chartMinutes);
+        mChartWorldCount = findViewById(R.id.chartWorlds);
         mToolbar = findViewById(R.id.toolbar_statistics);
         mToolbar.inflateMenu(R.menu.menu_statistic);
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
     }
 
-private  void createChart(){
-    BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntries(mIdEx), "Минуты");
-    BarData data = new BarData(Repo.getInstance(this).getLabels(mIdEx), bardataset);
-    mChart.setData(data); // set the data and list of labels into chart
-    mChart.setDescription("Сколько минут потрачено на упражнение в определенный день");  // set the description
-    bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
-    mChart.animateY(2000);
-}
+    private  void createTimeChart(){
+        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntriesTime(mIdEx), "Минуты");
+        BarData data = new BarData(Repo.getInstance(this).getTimeLabels(mIdEx), bardataset);
+        mChartMinutes.setData(data); // set the data and list of labels into chart
+        mChartMinutes.setDescription("Количество потраченого времени на упражнение");  // set the description
+        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        mChartMinutes.animateY(2000);
+    }
+
+    private  void createWorldCounterChart(){
+        BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntriesWorldCount(mIdEx), "Слова");
+        BarData data = new BarData(Repo.getInstance(this).getWorldCountLabels(mIdEx), bardataset);
+        mChartWorldCount.setData(data); // set the data and list of labels into chart
+        mChartWorldCount.setDescription("Количество пройденых слов в определенный день");  // set the description
+        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        mChartWorldCount.animateY(2000);
+    }
 
     private void setTheme(){
         String color = Repo.getInstance(Statistics_activity.this).getThemeState();
@@ -89,7 +103,8 @@ private  void createChart(){
 
     @Override
     protected void onDestroy() {
-        Repo.getInstance(this).removeListener(this::createChart);
+        Repo.getInstance(this).removeListener(this::createTimeChart);
+        Repo.getInstance(this).removeListener(this::createWorldCounterChart);
         super.onDestroy();
     }
 }

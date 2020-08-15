@@ -45,6 +45,7 @@ public class ExercisesActivity extends AppCompatActivity {
     private RelativeLayout mThumbAndText;
     private TextView mWorldCounter;
     private int mWorldCount;
+    private int mMaxWorldCount;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -79,6 +80,10 @@ public class ExercisesActivity extends AppCompatActivity {
         initializeComponents();
         mChronometer_allTime.start();
         mChronometer_1worldTime.start();
+
+        //установка максимального зщначения для счетчика слов
+        mMaxWorldCount = Repo.getInstance(this).getMaxWorldCount(mIdEx);
+        mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
 
 
         /*В зависимости от айди упражнения мы выбираем потходяшии слова и иницыализируем наши view*/
@@ -223,7 +228,7 @@ public class ExercisesActivity extends AppCompatActivity {
             setWorld();
             mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
             mWorldCount++;
-            mWorldCounter.setText(String.format("%s/%s", mWorldCount, 0));
+            mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
         });
 
         /*Завершение упражнения при нажатии */
@@ -393,8 +398,7 @@ public class ExercisesActivity extends AppCompatActivity {
         long time = ((SystemClock.elapsedRealtime() - mChronometer_allTime.getBase())/1000) / 60;
 
         Repo.getInstance(this).insertDateAndTime(mIdEx, date, time);
-
-
+        Repo.getInstance(this).insertDateAndCountWorlds(mIdEx, date, mWorldCount);
 
     }
 
