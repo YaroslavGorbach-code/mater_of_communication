@@ -94,7 +94,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 mToolbar.setTitle("Лингвистические пирамиды");
                 mThumbAndText.setVisibility(View.VISIBLE);
-                mShort_des.setText("Обобщайте, разобобщайте, и переходите по аналогиям");
+                mShort_des.setText("Обобщайте, разобобщайте и переходите по аналогиям");
                 break;
 
 

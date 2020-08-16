@@ -9,6 +9,421 @@
 
     <string-array name="Worlds_items_notAlive">
 
+        <item>абсент</item>
+        <item>авианосец</item>
+        <item>автобус</item>
+        <item>автомагистраль</item>
+        <item>автомат</item>
+        <item>автомобиль</item>
+        <item>аккумулятор</item>
+        <item>алгебра</item>
+        <item>алкоголь</item>
+        <item>алмаз</item>
+
+        <item>алоэ</item>
+        <item>алтарь</item>
+        <item>алыча</item>
+        <item>альбом</item>
+        <item>аммиак</item>
+        <item>ампула</item>
+        <item>амулет</item>
+        <item>ананас</item>
+        <item>антибиотик</item>
+        <item>антиквариат</item>
+
+        <item>антисептик</item>
+        <item>аорта</item>
+        <item>аптека</item>
+        <item>арахис</item>
+        <item>арбалет</item>
+        <item>арбуз</item>
+        <item>арка</item>
+        <item>арматура</item>
+        <item>арфа</item>
+        <item>асфальт</item>
+
+        <item>атлас</item>
+        <item>атом</item>
+        <item>аттестат</item>
+        <item>аэродром</item>
+        <item>багет</item>
+        <item>базальт</item>
+        <item>байдарка</item>
+        <item>баклажан</item>
+        <item>бакенбарды</item>
+        <item>бактерия</item>
+
+        <item>баллон</item>
+        <item>бальзам</item>
+        <item>бамбук</item>
+        <item>банан</item>
+        <item>бандаж</item>
+        <item>бандура</item>
+        <item>банка</item>
+        <item>бант</item>
+        <item>барабан</item>
+        <item>баррикада</item>
+
+        <item>батарея</item>
+        <item>батарейка</item>
+        <item>батон</item>
+        <item>батут</item>
+        <item>башня</item>
+        <item>бензин</item>
+        <item>билет</item>
+        <item>бикини</item>
+        <item>бильярд</item>
+        <item>бинт</item>
+
+        <item>бисер</item>
+        <item>бисквит</item>
+        <item>блюдце</item>
+        <item>блокнот</item>
+        <item>боб</item>
+        <item>боеголовка</item>
+        <item>бокал</item>
+        <item>болт</item>
+        <item>бомба</item>
+        <item>борода</item>
+
+        <item>бородавка</item>
+        <item>борщ</item>
+        <item>боулинг</item>
+        <item>бочка</item>
+        <item>боярышник</item>
+        <item>браслет</item>
+        <item>бревно</item>
+        <item>брелок</item>
+        <item>брикет</item>
+        <item>бриллиант</item>
+
+        <item>бровь</item>
+        <item>бронежилет</item>
+        <item>бронепоезд</item>
+        <item>бронза</item>
+        <item>брошь</item>
+        <item>брошюра</item>
+        <item>брусника</item>
+        <item>брусья</item>
+        <item>брынза</item>
+        <item>брюки</item>
+
+        <item>бублик</item>
+        <item>будильник</item>
+        <item>букет</item>
+        <item>булава</item>
+        <item>булка</item>
+        <item>бульдозер</item>
+        <item>бульон</item>
+        <item>бумага</item>
+        <item>бумажник</item>
+        <item>бумеранг</item>
+
+        <item>бусы</item>
+        <item>бутерброд</item>
+        <item>бутон</item>
+        <item>бутсы</item>
+        <item>бутылка</item>
+        <item>вагон</item>
+        <item>ваза</item>
+        <item>вазелин</item>
+        <item>вакцина</item>
+        <item>валик</item>
+        <item>варенье</item>
+        <item>вареники</item>
+
+        <item>ватрушка</item>
+        <item>вафля</item>
+        <item>ведро</item>
+        <item>вена</item>
+        <item>веник</item>
+        <item>верёвка</item>
+        <item>верстак</item>
+        <item>вертолёт</item>
+        <item>весы</item>
+        <item>ветка</item>
+
+        <item>ветровка</item>
+        <item>вешалка</item>
+        <item>взрывчатка</item>
+        <item>взятка</item>
+        <item>видеокамера</item>
+        <item>визитка</item>
+        <item>вилка</item>
+        <item>вилы</item>
+        <item>винтовка</item>
+        <item>вирус</item>
+
+        <item>витамины</item>
+        <item>вишня</item>
+        <item>возок</item>
+        <item>вольтметр</item>
+        <item>вольфрам</item>
+        <item>газета</item>
+        <item>газировка</item>
+        <item>газон</item>
+        <item>галстук</item>
+        <item>гамак</item>
+
+        <item>гамбургер</item>
+        <item>гармошка</item>
+        <item>гарнир</item>
+        <item>гейзер</item>
+        <item>гель</item>
+        <item>генератор</item>
+        <item>гильза</item>
+        <item>гипс</item>
+        <item>гиря</item>
+        <item>гитара</item>
+
+        <item>глаз</item>
+        <item>глазурь</item>
+        <item>глина</item>
+        <item>глинтвейн</item>
+        <item>гнездо</item>
+        <item>гонг</item>
+        <item>горох</item>
+        <item>грабли</item>
+        <item>графин</item>
+        <item>графит</item>
+
+        <item>губка</item>
+        <item>дверь</item>
+        <item>двигатель</item>
+        <item>детонатор</item>
+        <item>джем</item>
+        <item>джинсы</item>
+        <item>диктофон</item>
+        <item>динамик</item>
+        <item>динамит</item>
+        <item>диплом</item>
+
+        <item>диск</item>
+        <item>доллар</item>
+        <item>домино</item>
+        <item>доска</item>
+        <item>доспехи</item>
+        <item>дрель</item>
+        <item>дрова</item>
+        <item>дротик</item>
+        <item>дубинка</item>
+        <item>духовка</item>
+
+        <item>дым</item>
+        <item>жезл</item>
+        <item>желатин</item>
+        <item>желе</item>
+        <item>желток</item>
+        <item>желчь</item>
+        <item>жир</item>
+        <item>журнал</item>
+        <item>забор</item>
+        <item>заварка</item>
+
+        <item>загон</item>
+        <item>замок</item>
+        <item>зелёнка</item>
+        <item>зерно</item>
+        <item>золото</item>
+        <item>изюм</item>
+        <item>инжир</item>
+        <item>йогурт</item>
+        <item>йод</item>
+        <item>кадило</item>
+
+        <item>кактус</item>
+        <item>канат</item>
+        <item>капкан</item>
+        <item>карта</item>
+        <item>кегли</item>
+        <item>кекс</item>
+        <item>кинжал</item>
+        <item>кисель</item>
+        <item>клей</item>
+        <item>кольчуга</item>
+
+        <item>компас</item>
+        <item>конверт</item>
+        <item>копейка</item>
+        <item>копилка</item>
+        <item>корзина</item>
+        <item>костыль</item>
+        <item>котёл</item>
+        <item>кочерга</item>
+        <item>кошелёк</item>
+        <item>лак</item>
+
+        <item>ластик</item>
+        <item>лезвие</item>
+        <item>линза</item>
+        <item>лифт</item>
+        <item>лобзик</item>
+        <item>магнит</item>
+        <item>магнитола</item>
+        <item>магнитофон</item>
+        <item>мазь</item>
+        <item>ментол</item>
+
+        <item>метла</item>
+        <item>меч</item>
+        <item>микрофон</item>
+        <item>миксер</item>
+        <item>микстура</item>
+        <item>мина</item>
+        <item>молот</item>
+        <item>мука</item>
+        <item>муравейник</item>
+        <item>мята</item>
+
+        <item>навигатор</item>
+        <item>навоз</item>
+        <item>напильник</item>
+        <item>наручники</item>
+        <item>настойка</item>
+        <item>обруч</item>
+        <item>одеколон</item>
+        <item>одуванчик</item>
+        <item>ожерелье</item>
+        <item>окурок</item>
+
+        <item>пакет</item>
+        <item>палатка</item>
+        <item>палитра</item>
+        <item>пальма</item>
+        <item>памперс</item>
+        <item>памятник</item>
+        <item>папоротник</item>
+        <item>парус</item>
+        <item>перо</item>
+        <item>петарда</item>
+
+        <item>печь</item>
+        <item>пиала</item>
+        <item>пианино</item>
+        <item>пиджак</item>
+        <item>пластмасса</item>
+        <item>пластырь</item>
+        <item>платина</item>
+        <item>платок</item>
+        <item>плесень</item>
+        <item>плойка</item>
+
+        <item>пломба</item>
+        <item>плот</item>
+        <item>поганка</item>
+        <item>погоны</item>
+        <item>подарок</item>
+        <item>поднос</item>
+        <item>подоконник</item>
+        <item>подорожник</item>
+        <item>подошва</item>
+        <item>подсвечник</item>
+
+        <item>позвоночник</item>
+        <item>покрышка</item>
+        <item>поплавок</item>
+        <item>порох</item>
+        <item>портфель</item>
+        <item>посох</item>
+        <item>презерватив</item>
+        <item>прищепка</item>
+        <item>пульт</item>
+        <item>пыль</item>
+
+        <item>радиатор</item>
+        <item>радио</item>
+        <item>ракета</item>
+        <item>ракетница</item>
+        <item>ракушка</item>
+        <item>рапира</item>
+        <item>ремень</item>
+        <item>рог</item>
+        <item>родник</item>
+        <item>розетка</item>
+
+        <item>ртуть</item>
+        <item>рюмка</item>
+        <item>ряска</item>
+        <item>сабля</item>
+        <item>сажа</item>
+        <item>салат</item>
+        <item>самогон</item>
+        <item>самокат</item>
+        <item>самоцвет</item>
+        <item>сахар</item>
+
+        <item>сачок</item>
+        <item>сверло</item>
+        <item>светильник</item>
+        <item>свеча</item>
+        <item>светофор</item>
+        <item>свиток</item>
+        <item>сейф</item>
+        <item>сено</item>
+        <item>сера</item>
+        <item>сервиз</item>
+
+        <item>серебро</item>
+        <item>сеть</item>
+        <item>сигара</item>
+        <item>сигнализация</item>
+        <item>сидр</item>
+        <item>сироп</item>
+        <item>скакалка</item>
+        <item>скамейка</item>
+        <item>скафандр</item>
+        <item>скелет</item>
+
+        <item>смола</item>
+        <item>телевизор</item>
+        <item>телефон</item>
+        <item>термос</item>
+        <item>тиски</item>
+        <item>тростник</item>
+        <item>уголь</item>
+        <item>удочка</item>
+        <item>указка</item>
+        <item>фанера</item>
+
+        <item>фантик</item>
+        <item>фара</item>
+        <item>фен</item>
+        <item>флакон</item>
+        <item>фляга</item>
+        <item>фольга</item>
+        <item>фонтан</item>
+        <item>фоторужьё</item>
+        <item>хлорка</item>
+        <item>светомузыка</item>
+
+        <item>целлофан</item>
+        <item>чемодан</item>
+        <item>череп</item>
+        <item>черника</item>
+        <item>черпак</item>
+        <item>чехол</item>
+        <item>чехол</item>
+        <item>чугун</item>
+        <item>чучело</item>
+        <item>шалаш</item>
+
+        <item>шашка</item>
+        <item>шерсть</item>
+        <item>шило</item>
+        <item>шина</item>
+        <item>шишка</item>
+        <item>шкатулка</item>
+        <item>шлем</item>
+        <item>шляпа</item>
+        <item>штанга</item>
+        <item>штатив</item>
+
+        <item>щебёнка</item>
+        <item>эмаль</item>
+        <item>эхолот</item>
+        <item>юла</item>
+        <item>якорь</item>
+
         <item>кольцо</item>
         <item>щит</item>
         <item>кувалда</item>
