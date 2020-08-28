@@ -82,6 +82,7 @@ public class Repo extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_SQL_S);
         db.execSQL(CREATE_SQL_T);
+        db.execSQL(CREATE_SQL_W);
         addThemes(db);
 
 
@@ -90,11 +91,7 @@ public class Repo extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        if (oldVersion == 9 && newVersion == 10){
-            db.execSQL("DROP TABLE IF EXISTS worldsCount" );
             db.execSQL(CREATE_SQL_W);
-        }
-
 
     }
 

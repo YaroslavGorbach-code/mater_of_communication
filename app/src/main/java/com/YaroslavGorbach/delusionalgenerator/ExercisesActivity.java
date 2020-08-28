@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.ads.mediation.AbstractAdViewAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -46,6 +45,8 @@ public class ExercisesActivity extends AppCompatActivity {
     private TextView mWorldCounter;
     private int mWorldCount;
     private int mMaxWorldCount;
+    private boolean mIsRecording = false;
+    private Button mStartRecordingButton;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -216,6 +217,21 @@ public class ExercisesActivity extends AppCompatActivity {
 
         });
 
+        /*Оброботка нажатия на кнопку начать и остановить запись голоса*/
+        mStartRecordingButton.setOnClickListener(v -> {
+            if (mIsRecording){
+                mStartRecordingButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_voice_stop,
+                        0, 0, 0);
+                mStartRecordingButton.setText("Начать запись");
+                mIsRecording = false;
+            }else {
+                mStartRecordingButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_voice_recording,
+                        0, 0, 0);
+                mStartRecordingButton.setText("Остановить запись");
+                mIsRecording = true;
+            }
+        });
+
         /*При нажатии на большой палец смена его состояния*/
         mThumb.setOnClickListener(v->{
             setThumbAndText();
@@ -255,6 +271,8 @@ public class ExercisesActivity extends AppCompatActivity {
         mChronometer_1worldTime = findViewById(R.id.chronometer_1world_time);
         mThumbAndText = findViewById(R.id.thumbAndText);
         mWorldCounter = findViewById(R.id.world_counter);
+        mStartRecordingButton = findViewById(R.id.buttonStartRecording);
+
 
     }
 
