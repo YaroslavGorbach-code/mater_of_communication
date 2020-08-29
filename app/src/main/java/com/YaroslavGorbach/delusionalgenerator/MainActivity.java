@@ -54,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         mToolbar.setOnMenuItemClickListener(v->{
 
            switch (v.getItemId()){
+
+               case R.id.records:
+
+                   startActivity(new Intent(this, AudioListActivity.class));
+
+                   break;
+
                case R.id.theme:
 
                    DialogChooseTheme dialog = new DialogChooseTheme();

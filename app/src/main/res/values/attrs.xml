@@ -9,7 +9,5 @@
         <attr name="tabColor" format="color"/>
         <attr name="tabIndicatorColor" format="color"/>
         <attr name="floatingActionButtonBackground" format="color"/>
-
-
     </declare-styleable>
 </resources>

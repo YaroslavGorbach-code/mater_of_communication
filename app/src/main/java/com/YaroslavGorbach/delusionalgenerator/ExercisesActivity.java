@@ -486,7 +486,9 @@ public class ExercisesActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         insertMyDateAndTime();
-        stopRecording();
+        if(mIsRecording){
+            stopRecording();
+        }
     }
 }
 
