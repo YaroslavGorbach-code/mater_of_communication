@@ -2,8 +2,12 @@ package com.YaroslavGorbach.delusionalgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -13,12 +17,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,6 +53,10 @@ public class ExercisesActivity extends AppCompatActivity {
     private int mMaxWorldCount;
     private boolean mIsRecording = false;
     private Button mStartRecordingButton;
+    private static final String recordPermission = Manifest.permission.RECORD_AUDIO;
+    private static final int PERMISSION_CODE = 21;
+    private MediaRecorder mediaRecorder;
+    private String recordFile;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -220,15 +230,11 @@ public class ExercisesActivity extends AppCompatActivity {
         /*Оброботка нажатия на кнопку начать и остановить запись голоса*/
         mStartRecordingButton.setOnClickListener(v -> {
             if (mIsRecording){
-                mStartRecordingButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_voice_stop,
-                        0, 0, 0);
-                mStartRecordingButton.setText("Начать запись");
-                mIsRecording = false;
+                stopRecording();
             }else {
-                mStartRecordingButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_voice_recording,
-                        0, 0, 0);
-                mStartRecordingButton.setText("Остановить запись");
-                mIsRecording = true;
+                if(checkRecordPermission()){
+                    startRecording();
+                }
             }
         });
 
@@ -253,6 +259,62 @@ public class ExercisesActivity extends AppCompatActivity {
         });
 
         setWorld();
+    }
+
+    private boolean checkRecordPermission() {
+        //Check permission
+        if (ActivityCompat.checkSelfPermission(this, recordPermission) == PackageManager.PERMISSION_GRANTED) {
+            //Permission Granted
+            return true;
+        } else {
+            //Permission not granted, ask for permission
+            ActivityCompat.requestPermissions(this, new String[]{recordPermission}, PERMISSION_CODE);
+            return false;
+        }
+    }
+
+    private void stopRecording() {
+
+        mStartRecordingButton.setText("Начать запись");
+        mIsRecording = false;
+        Toast.makeText(this, "Запись сохранена: " + recordFile, Toast.LENGTH_SHORT).show();
+        mediaRecorder.stop();
+        mediaRecorder.release();
+        mediaRecorder = null;
+    }
+
+    private void startRecording() {
+
+        mStartRecordingButton.setText("Остановить запись");
+        mIsRecording = true;
+
+        //Get app external directory path
+        String recordPath = this.getExternalFilesDir("/").getAbsolutePath();
+
+        //Get current date and time
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());
+        Date now = new Date();
+
+        //initialize filename variable with date and time at the end to ensure the new file wont overwrite previous file
+        recordFile = mToolbar.getTitle()+ " " + formatter.format(now) + ".3gp";
+
+        //filenameText.setText("Recording, File Name : " + recordFile);
+
+        //Setup Media Recorder for recording
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setOutputFile(recordPath + "/" + recordFile);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            mediaRecorder.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Start Recording
+        mediaRecorder.start();
     }
 
     /*поиск всех view*/
@@ -424,6 +486,7 @@ public class ExercisesActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         insertMyDateAndTime();
+        stopRecording();
     }
 }
 
