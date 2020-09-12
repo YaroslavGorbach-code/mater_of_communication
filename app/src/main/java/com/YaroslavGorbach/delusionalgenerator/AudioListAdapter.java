@@ -18,9 +18,16 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
 
     private onItemListClick onItemListClick;
 
+    public interface onItemListClick {
+        void onClickListener(File file, int position);
+
+    }
+
     public AudioListAdapter(File[] allFiles, onItemListClick onItemListClick) {
         this.allFiles = allFiles;
         this.onItemListClick = onItemListClick;
+        notifyDataSetChanged();
+
     }
 
     @NonNull
@@ -42,7 +49,8 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
         return allFiles.length;
     }
 
-    public class AudioViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public class AudioViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView list_image;
         private TextView list_title;
@@ -55,18 +63,13 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
             list_title = itemView.findViewById(R.id.list_title);
             list_date = itemView.findViewById(R.id.list_date);
 
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(c ->{
+                onItemListClick.onClickListener(allFiles[getAdapterPosition()], getAdapterPosition());
+            });
 
         }
 
-        @Override
-        public void onClick(View v) {
-            onItemListClick.onClickListener(allFiles[getAdapterPosition()], getAdapterPosition());
-        }
-    }
 
-    public interface onItemListClick {
-        void onClickListener(File file, int position);
     }
 
 }
