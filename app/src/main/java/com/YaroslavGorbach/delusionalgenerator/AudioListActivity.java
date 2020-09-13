@@ -64,7 +64,7 @@ public class AudioListActivity extends AppCompatActivity {
         }
         mToolbar.setNavigationOnClickListener(v-> finish());
         mToolbar.setOnMenuItemClickListener(c->{
-            // TODO: 12.09.2020 показать диалог подтверждения удаления 
+            // TODO: 12.09.2020 показать диалог подтверждения удаления
             for(File f:mAllFiles){
             f.delete();
             }

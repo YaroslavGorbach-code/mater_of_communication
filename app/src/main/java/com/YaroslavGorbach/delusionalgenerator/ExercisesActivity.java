@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
@@ -231,9 +232,12 @@ public class ExercisesActivity extends AppCompatActivity {
         mStartRecordingButton.setOnClickListener(v -> {
             if (mIsRecording){
                 stopRecording();
+
             }else {
                 if(checkRecordPermission()){
                     startRecording();
+                    mStartRecordingButton.setClickable(false);
+                    new Handler().postDelayed(() -> mStartRecordingButton.setClickable(true), 1000);
                 }
             }
         });
@@ -274,7 +278,6 @@ public class ExercisesActivity extends AppCompatActivity {
     }
 
     private void stopRecording() {
-
         mStartRecordingButton.setText("Начать запись");
         mIsRecording = false;
         Toast.makeText(this, "Запись сохранена: " + recordFile, Toast.LENGTH_SHORT).show();
