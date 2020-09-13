@@ -59,7 +59,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            list_image = itemView.findViewById(R.id.list_image_view);
+            list_image = itemView.findViewById(R.id.list_play_button);
             list_title = itemView.findViewById(R.id.list_title);
             list_date = itemView.findViewById(R.id.list_date);
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class AudioListActivity extends AppCompatActivity {
+public class AudioListActivity extends AppCompatActivity implements DialogDeleteRecords.DeleteRecordsListener {
 
     private BottomSheetBehavior mBottomSheetBehavior;
     private RecyclerView mAudioList;
@@ -64,11 +65,7 @@ public class AudioListActivity extends AppCompatActivity {
         }
         mToolbar.setNavigationOnClickListener(v-> finish());
         mToolbar.setOnMenuItemClickListener(c->{
-            // TODO: 12.09.2020 показать диалог подтверждения удаления
-            for(File f:mAllFiles){
-            f.delete();
-            }
-            recreate();
+            new DialogDeleteRecords().show(getSupportFragmentManager(),"deleteAllRecords");
             return true;
         });
 
@@ -89,6 +86,8 @@ public class AudioListActivity extends AppCompatActivity {
         mAudioList.setHasFixedSize(true);
         mAudioList.setLayoutManager(new LinearLayoutManager(this));
         mAudioList.setAdapter(mAudioListAdapter);
+        mAudioList.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
 
         // фикс бага который скрывает плеер если потянуть вниз
         mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -118,9 +117,11 @@ public class AudioListActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                int progress = seekBar.getProgress();
-                mediaPlayer.seekTo(progress);
-                resumeAudio();
+                if (mediaPlayer!=null){
+                    int progress = seekBar.getProgress();
+                    mediaPlayer.seekTo(progress);
+                    resumeAudio();
+                }
             }
         });
 
@@ -137,13 +138,17 @@ public class AudioListActivity extends AppCompatActivity {
         buttonAgo.setOnClickListener(v -> {
             int progress = playerSeekbar.getProgress();
             progress -=800;
-            mediaPlayer.seekTo(progress);
+            if(mediaPlayer!=null){
+                mediaPlayer.seekTo(progress);
+            }
         });
 
         buttonForward.setOnClickListener(v ->{
             int progress = playerSeekbar.getProgress();
             progress +=800;
-            mediaPlayer.seekTo(progress);
+            if(mediaPlayer!=null){
+                mediaPlayer.seekTo(progress);
+            }
         });
         
     }
@@ -158,10 +163,13 @@ public class AudioListActivity extends AppCompatActivity {
     }
 
     private void pauseAudio() {
-        mediaPlayer.pause();
-        playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_play_btn, null));
-        isPlaying = false;
-        seekbarHandler.removeCallbacks(updateSeekbar);
+        if (mediaPlayer!=null){
+            mediaPlayer.pause();
+            playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_play_btn, null));
+            isPlaying = false;
+            seekbarHandler.removeCallbacks(updateSeekbar);
+        }
+
     }
 
 
@@ -177,11 +185,11 @@ public class AudioListActivity extends AppCompatActivity {
         }
         playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
         playerFilename.setText(fileToPlay.getName());
-        playerHeader.setText("Playing");
+        playerHeader.setText("Играет...");
         isPlaying = true;
         mediaPlayer.setOnCompletionListener(mp -> {
             stopAudio();
-            playerHeader.setText("Finished");
+            playerHeader.setText("Закончено");
             isPlaying = false;
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         });
@@ -205,7 +213,7 @@ public class AudioListActivity extends AppCompatActivity {
 
     private void stopAudio() {
         playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_play_btn, null));
-        playerHeader.setText("Stopped");
+        playerHeader.setText("Остановлено");
         isPlaying = false;
         mediaPlayer.stop();
         seekbarHandler.removeCallbacks(updateSeekbar);
@@ -267,4 +275,11 @@ public class AudioListActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClickDelete() {
+        for(File f:mAllFiles){
+            f.delete();
+        }
+        recreate();
+    }
 }

@@ -164,7 +164,7 @@ public class ExercisesActivity extends AppCompatActivity {
             case 11:
                 mArrayWorlds_ex11 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mToolbar.setTitle("Тест Роршаха");
-                mShort_des.setText("Придумайте чем ето может быть еще");
+                mShort_des.setText("Придумайте чем это может быть еще");
                 break;
             case 12:
                 mArrayWorlds_ex12 = getResources().getStringArray(R.array.professions);

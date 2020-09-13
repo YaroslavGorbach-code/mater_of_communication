@@ -18,7 +18,7 @@ public class DialogChooseTheme extends AppCompatDialogFragment {
 
 
     public interface ChooseThemesListener {
-        public void onClickTheme(DialogFragment dialog);
+         void onClickTheme(DialogFragment dialog);
     }
 
     private ChooseThemesListener listener;

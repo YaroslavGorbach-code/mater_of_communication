@@ -38,7 +38,7 @@
             android:layout_weight="3"
             android:paddingTop="24dp"
             android:paddingBottom="24dp"
-            android:text="Media Player"
+            android:text="Проигрыватель"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
@@ -50,7 +50,7 @@
             android:paddingTop="24dp"
             android:paddingEnd="24dp"
             android:paddingBottom="24dp"
-            android:text="Not Playing"
+            android:text="Не играет"
             android:textAlignment="textEnd"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
@@ -61,7 +61,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="File Name"
+        android:text="Название файла"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textAlignment="center"
