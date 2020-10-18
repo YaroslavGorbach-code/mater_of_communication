@@ -1,13 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
-import androidx.work.WorkRequest;
+
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -17,14 +11,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import java.util.Calendar;
-import java.util.Date;
-
-import static androidx.work.ExistingWorkPolicy.REPLACE;
-import static java.util.concurrent.TimeUnit.MICROSECONDS;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class RemembersActivity extends AppCompatActivity {
 
@@ -35,6 +23,18 @@ public class RemembersActivity extends AppCompatActivity {
     private CheckBox mCheckF;
     private CheckBox mCheckS;
     private CheckBox mCheckSt;
+
+    private AlarmManager mAlarmManager;
+    private Intent mReminderIntent;
+
+    private PendingIntent mPendingIntentM;
+    private PendingIntent mPendingIntentT;
+    private PendingIntent mPendingIntentW;
+    private PendingIntent mPendingIntentTh;
+    private PendingIntent mPendingIntentF;
+    private PendingIntent mPendingIntentS;
+    private PendingIntent mPendingIntentSt;
+
 
     private static final String CHANNEL_ID = "CHANNEL_ID";
     private static final int NOTIFICATION_ID_1 = 1;
@@ -53,80 +53,94 @@ public class RemembersActivity extends AppCompatActivity {
         mCheckS = findViewById(R.id.appCompatCheckBoxSn);
         mCheckSt = findViewById(R.id.appCompatCheckBoxSt);
 
+
+        mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        mReminderIntent = new Intent(RemembersActivity.this, ReminderBroadcast.class);
+
+        mPendingIntentM = PendingIntent.getBroadcast(RemembersActivity.this, 1, mReminderIntent, 0);
+        mPendingIntentT = PendingIntent.getBroadcast(RemembersActivity.this, 2, mReminderIntent, 0);
+        mPendingIntentW = PendingIntent.getBroadcast(RemembersActivity.this, 3, mReminderIntent, 0);
+        mPendingIntentTh = PendingIntent.getBroadcast(RemembersActivity.this, 4, mReminderIntent, 0);
+        mPendingIntentF = PendingIntent.getBroadcast(RemembersActivity.this, 5, mReminderIntent, 0);
+        mPendingIntentS = PendingIntent.getBroadcast(RemembersActivity.this, 6, mReminderIntent, 0);
+        mPendingIntentSt = PendingIntent.getBroadcast(RemembersActivity.this, 7, mReminderIntent, 0);
+
+
+
         mCheckM.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 1);
                 calendar.set(Calendar.HOUR_OF_DAY, 18);
                 calendar.set(Calendar.MINUTE, 50);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentM);
+            }else {
+                mAlarmManager.cancel(mPendingIntentM);
             }
         });
 
         mCheckT.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 2);
                 calendar.set(Calendar.HOUR_OF_DAY, 18);
                 calendar.set(Calendar.MINUTE, 50);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentT);
+            }else {
+                mAlarmManager.cancel(mPendingIntentT);
             }
         });
 
         mCheckW.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 3);
                 calendar.set(Calendar.HOUR_OF_DAY, 20);
                 calendar.set(Calendar.MINUTE, 5);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentW);
+            }else {
+                mAlarmManager.cancel(mPendingIntentW);
             }
         });
 
         mCheckTh.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 4);
                 calendar.set(Calendar.HOUR_OF_DAY, 20);
                 calendar.set(Calendar.MINUTE, 10);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentTh);
+            }else{
+                mAlarmManager.cancel(mPendingIntentTh);
             }
         });
 
         mCheckF.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 5);
                 calendar.set(Calendar.HOUR_OF_DAY, 18);
                 calendar.set(Calendar.MINUTE, 50);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentF);
+            }else {
+                mAlarmManager.cancel(mPendingIntentF);
             }
         });
 
         mCheckSt.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 6);
                 calendar.set(Calendar.HOUR_OF_DAY, 18);
                 calendar.set(Calendar.MINUTE, 50);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentS);
+            }else {
+                mAlarmManager.cancel(mPendingIntentS);
             }
         });
 
         mCheckS.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, 7);
                 calendar.set(Calendar.HOUR_OF_DAY, 18);
                 calendar.set(Calendar.MINUTE, 50);
-
-                setAlarm(calendar);
+                setAlarm(calendar, mPendingIntentSt);
+            }else {
+                mAlarmManager.cancel(mPendingIntentSt);
             }
         });
 
@@ -144,19 +158,14 @@ public class RemembersActivity extends AppCompatActivity {
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             NotificationManager notificationManager = getApplicationContext().getSystemService(NotificationManager.class);
+            assert notificationManager != null;
             notificationManager.createNotificationChannel(channel);
         }
     }
 
-    private void setAlarm(Calendar calendar){
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent intent = new Intent(RemembersActivity.this, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                RemembersActivity.this, 0, intent, 0);
-
-        assert alarmManager != null;
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pendingIntent);
+    private void setAlarm(Calendar calendar, PendingIntent pendingIntent){
+        assert mAlarmManager != null;
+        mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY * 6, pendingIntent);
     }
 }
