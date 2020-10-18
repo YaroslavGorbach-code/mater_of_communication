@@ -10,7 +10,11 @@
     </item>
 
     <item android:title="Темы"
-         android:id="@+id/theme">
+    android:id="@+id/theme">
+</item>
+
+    <item android:title="Напоминания"
+        android:id="@+id/remember">
     </item>
 
     <item android:title="Оценить"

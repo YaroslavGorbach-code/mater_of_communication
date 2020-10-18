@@ -17,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.File;
@@ -55,34 +57,43 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
         setContentView(R.layout.activity_audio_list);
         initializeComponents();
 
+        /*Получаем файлы из деректории*/
         String path = this.getExternalFilesDir("/").getAbsolutePath();
         File directory = new File(path);
         mAllFiles = directory.listFiles();
+
+        /*Сортировка файлов по дате измененя*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             if (mAllFiles != null){
                 Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
             }
         }
+
+        /*Работа з тулбаром*/
         mToolbar.setNavigationOnClickListener(v-> finish());
         mToolbar.setOnMenuItemClickListener(c->{
             new DialogDeleteRecords().show(getSupportFragmentManager(),"deleteAllRecords");
             return true;
         });
 
-        mAudioListAdapter = new AudioListAdapter(mAllFiles, new AudioListAdapter.onItemListClick() {
-            @Override
-            public void onClickListener(File file, int position) {
-                fileToPlay = file;
-                if(isPlaying){
-                    stopAudio();
-                    playAudio(fileToPlay);
-                } else {
-                    playAudio(fileToPlay);
-                }
-            }
+        /*Показ банера*/
+        AdView mAdView;
+        mAdView = findViewById(R.id.adViewTab3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
+        /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
+        mAudioListAdapter = new AudioListAdapter(mAllFiles, (file, position) -> {
+            fileToPlay = file;
+            if(isPlaying){
+                stopAudio();
+                playAudio(fileToPlay);
+            } else {
+                playAudio(fileToPlay);
+            }
         });
 
+        /*Настройка списка*/
         mAudioList.setHasFixedSize(true);
         mAudioList.setLayoutManager(new LinearLayoutManager(this));
         mAudioList.setAdapter(mAudioListAdapter);
@@ -104,6 +115,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
             }
         });
 
+        /*Настройка перемотки записи з помощу сик бара*/
         playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -125,6 +137,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
             }
         });
 
+        /*Оброботка нажатия на кнопку пауза/плей в плеере*/
         playBtn.setOnClickListener(v -> {
             if(isPlaying){
                 pauseAudio();
@@ -135,6 +148,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
             }
         });
 
+        /*Перемотка назад*/
         buttonAgo.setOnClickListener(v -> {
             int progress = playerSeekbar.getProgress();
             progress -=800;
@@ -143,6 +157,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
             }
         });
 
+        /*Перемотка вперед*/
         buttonForward.setOnClickListener(v ->{
             int progress = playerSeekbar.getProgress();
             progress +=800;
@@ -201,6 +216,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
         seekbarHandler.postDelayed(updateSeekbar, 0);
     }
 
+    /*Метот для отображения прогреса в плеере */
     private void updateRunnable() {
         updateSeekbar = new Runnable() {
             @Override
@@ -275,6 +291,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
         }
     }
 
+    /*Удаление всех файлов*/
     @Override
     public void onClickDelete() {
         for(File f:mAllFiles){

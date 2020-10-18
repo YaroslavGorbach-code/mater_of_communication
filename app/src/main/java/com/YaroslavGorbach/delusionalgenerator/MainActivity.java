@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
 
                    break;
+               case R.id.remember:
+
+                   startActivity(new Intent(this, RemembersActivity.class));
+
+                   break;
                case R.id.rate:
 
                    Uri uriUrl = Uri.parse("https://play.google.com/store/apps/details?id=com.YaroslavGorbach.delusionalgenerator");

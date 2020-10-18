@@ -7,8 +7,8 @@ android {
         applicationId "com.YaroslavGorbach.delusionalgenerator"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 13
-        versionName "1.6.1"
+        versionCode 14
+        versionName "1.7.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,9 +47,9 @@ dependencies {
     implementation "com.android.support:support-compat:28.0.0"
 
     //noinspection GradleCompatible
-    compile 'com.android.support:support-compat:25.1.1'
-    compile 'com.daimajia.easing:library:2.0@aar'
-    compile 'com.daimajia.androidanimations:library:2.3@aar'
-
+    implementation 'com.android.support:support-compat:25.1.1'
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+    implementation "androidx.work:work-runtime:2.4.0"
     implementation 'com.google.android.gms:play-services-ads:19.2.0'
 }

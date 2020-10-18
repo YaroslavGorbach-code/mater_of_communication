@@ -83,6 +83,7 @@ public class ExercisesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
 
+        /*Показ банера*/
         AdView mAdView;
         mAdView = findViewById(R.id.adViewTab1);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -277,6 +278,7 @@ public class ExercisesActivity extends AppCompatActivity {
         }
     }
 
+    /*Остановка записи*/
     private void stopRecording() {
         mStartRecordingButton.setText("Начать запись");
         mIsRecording = false;
@@ -286,6 +288,7 @@ public class ExercisesActivity extends AppCompatActivity {
         mediaRecorder = null;
     }
 
+    /*Старт записи*/
     private void startRecording() {
 
         mStartRecordingButton.setText("Остановить запись");

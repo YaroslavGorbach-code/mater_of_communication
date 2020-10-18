@@ -21,12 +21,20 @@
             app:menu="@menu/menu_recordings_del"/>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewTab3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        android:layout_marginTop="60dp"
+        app:adUnitId="ca-app-pub-6043694180023070/2709885324">
+    </com.google.android.gms.ads.AdView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/audio_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="110dp"
         android:layout_marginBottom="60dp"/>
 
     <include layout="@layout/player_sheet" />
