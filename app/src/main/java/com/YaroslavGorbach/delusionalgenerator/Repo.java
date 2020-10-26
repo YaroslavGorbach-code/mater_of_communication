@@ -32,7 +32,7 @@ public class Repo extends SQLiteOpenHelper {
     }
     private final Set<Listener> mListeners = new HashSet<>();
     public static final String DB_NAME = "generator.db";
-    public static final int VERSION = 10;
+    public static final int VERSION = 11;
 
     //S means Sessions
     public static final String TABLE_NAME_S = "books";
@@ -51,6 +51,11 @@ public class Repo extends SQLiteOpenHelper {
     public static final String ID_EX_W = "idEx";
     public static final String DATE_W = "date";
     public static final String COUNT_W = "count";
+
+    public static final String TABLE_NAME_N = "notifications";
+    public static final String ID_N = "id";
+    public static final String CHECK_N = "checkn";
+    public static final String DATE_N = "date";
 
 
     public static final String CREATE_SQL_S = "CREATE TABLE " + TABLE_NAME_S + " (" +
@@ -73,6 +78,12 @@ public class Repo extends SQLiteOpenHelper {
             COUNT_W + " INTEGER " +
             " );";
 
+    public static final String CREATE_SQL_N = "CREATE TABLE " + TABLE_NAME_N + " (" +
+            ID_N + " INTEGER PRIMARY KEY, " +
+            CHECK_N + " INTEGER NOT NULL, " +
+            DATE_N + " TEXT NOT NULL " +
+            " );";
+
     private Repo(Context context){
         super(context,DB_NAME,null,VERSION);
 
@@ -83,16 +94,15 @@ public class Repo extends SQLiteOpenHelper {
         db.execSQL(CREATE_SQL_S);
         db.execSQL(CREATE_SQL_T);
         db.execSQL(CREATE_SQL_W);
+        db.execSQL(CREATE_SQL_N);
         addThemes(db);
-
-
+        addDaysForNotifications(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-            db.execSQL(CREATE_SQL_W);
-
+        db.execSQL(CREATE_SQL_N);
+        addDaysForNotifications(db);
     }
 
     public void insertDateAndTime(int idEx, String date, float time) {
@@ -220,9 +230,28 @@ public class Repo extends SQLiteOpenHelper {
 
         c.close();
         return color;
-
-
     }
+
+    public boolean getNotificationState(int dayId) {
+        boolean state = false;
+        String[] cols = {ID_N, CHECK_N, DATE_N};
+        Cursor c = getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + dayId, null,
+                null, null, null);
+
+        if(c.moveToFirst()){
+            state = c.getInt(1) != 0;
+        }
+        c.close();
+
+        return state;
+    }
+
+    public void changeNotificationState(int dayId, int state) {
+        ContentValues cv = new ContentValues();
+        cv.put(CHECK_N, state);
+        getWritableDatabase().update(TABLE_NAME_N,cv,ID_N + "=" + dayId,null);
+    }
+
     public void clearStatistic(int mIdEx) {
         getWritableDatabase().delete(TABLE_NAME_S,ID_EX_ID + "=" + mIdEx,null);
         getWritableDatabase().delete(TABLE_NAME_W,ID_EX_W + "=" + mIdEx,null);
@@ -267,5 +296,43 @@ public class Repo extends SQLiteOpenHelper {
         db.insert(TABLE_NAME_T, null, cv);
 
 
+    }
+
+    private void addDaysForNotifications(SQLiteDatabase db){
+        ContentValues cv = new ContentValues();
+        cv.put(ID_N, 1);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
+
+        cv.put(ID_N, 2);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
+
+        cv.put(ID_N, 3);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
+
+        cv.put(ID_N, 4);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
+
+        cv.put(ID_N, 5);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
+
+        cv.put(ID_N, 6);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
+
+        cv.put(ID_N, 7);
+        cv.put(CHECK_N, 0);
+        cv.put(DATE_N, "00:00");
+        db.insert(TABLE_NAME_N, null, cv);
     }
 }
