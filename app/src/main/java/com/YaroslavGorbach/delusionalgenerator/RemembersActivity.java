@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 
@@ -46,6 +47,8 @@ public class RemembersActivity extends AppCompatActivity {
     private PendingIntent mPendingIntentS;
     private PendingIntent mPendingIntentSt;
 
+    private Toolbar mToolbar;
+
     private Repo mRepo;
 
 
@@ -57,6 +60,8 @@ public class RemembersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remembers);
         createNotificationChannel();
+
+        mToolbar = findViewById(R.id.toolbar_remember);
 
         mCheckM = findViewById(R.id.appCompatCheckBoxM);
         mCheckT = findViewById(R.id.appCompatCheckBoxT);
@@ -98,6 +103,10 @@ public class RemembersActivity extends AppCompatActivity {
 
         setNotifyTime();
         mRepo.addListener(this::setNotifyTime);
+
+        mToolbar.setNavigationOnClickListener(v->{
+            finish();
+        });
 
         mTimePikerM.setOnClickListener(view -> {
             TimePickerFragment.newInstance(1)

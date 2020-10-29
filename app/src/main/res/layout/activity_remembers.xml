@@ -18,10 +18,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_main"
+            android:id="@+id/toolbar_remember"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            app:title="Бредогенератор"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Напоминания"
             app:titleTextColor="#ffffff" />
 
     </com.google.android.material.appbar.AppBarLayout>

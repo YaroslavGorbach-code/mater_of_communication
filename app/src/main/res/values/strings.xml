@@ -980,7 +980,7 @@
 
         <item>кондитер</item>
         <item>повар</item>
-        <item>поет</item>
+        <item>поэт</item>
         <item>селедка</item>
         <item>лев</item>
         <item>волк</item>
@@ -1001,7 +1001,7 @@
         <item>сантехник</item>
 
         <item>танкист</item>
-        <item>аладин</item>
+        <item>аладдин</item>
         <item>джин</item>
         <item>бригадир</item>
         <item>тарантул</item>
@@ -1010,6 +1010,208 @@
         <item>барбер</item>
         <item>неандерталец</item>
         <item>рэпер</item>
+
+        <item>абориген</item>
+        <item>аборигенка</item>
+        <item>авиапассажир</item>
+        <item>авиастроитель</item>
+        <item>гонщик</item>
+        <item>автозаправщик</item>
+        <item>автоинспектор</item>
+        <item>пилот</item>
+        <item>слесарь</item>
+        <item>агент</item>
+        <item>агитатор</item>
+        <item>агроном</item>
+
+        <item>адам</item>
+        <item>адвокат</item>
+        <item>актер</item>
+        <item>акула</item>
+        <item>акушер</item>
+        <item>алкаш</item>
+        <item>аллах</item>
+        <item>альбинос</item>
+        <item>альпака</item>
+        <item>альпинист</item>
+        <item>американка</item>
+        <item>анархист</item>
+
+        <item>ангел</item>
+        <item>апостол</item>
+        <item>араб</item>
+        <item>арматурщик</item>
+        <item>аспирант</item>
+        <item>атлет</item>
+        <item>африканка</item>
+        <item>бабай</item>
+        <item>бабочка</item>
+        <item>бабуин</item>
+        <item>бактерия</item>
+        <item>балбес</item>
+
+        <item>бацилла</item>
+        <item>баянист</item>
+        <item>беркут</item>
+        <item>бес</item>
+        <item>библиотекарь</item>
+        <item>бизнесмен</item>
+        <item>биолог</item>
+        <item>блоха</item>
+        <item>бобер</item>
+        <item>богатырь</item>
+        <item>бомж</item>
+        <item>личинка</item>
+        <item>морская звезда</item>
+
+        <item>лебедь</item>
+        <item>фотограф</item>
+        <item>воин</item>
+        <item>петух</item>
+        <item>слон</item>
+        <item>лиса</item>
+        <item>медуза</item>
+        <item>пловец</item>
+        <item>комар</item>
+        <item>гепард</item>
+        <item>таракан</item>
+
+        <item>крокодил</item>
+        <item>певец</item>
+        <item>преступник</item>
+        <item>госпожа</item>
+        <item>ловелас</item>
+        <item>жук</item>
+        <item>кит</item>
+        <item>индейка</item>
+        <item>цапля</item>
+        <item>проститутка</item>
+        <item>краб</item>
+        <item>бульдог</item>
+        <item>любовница</item>
+        <item>паук</item>
+        <item>тарантул</item>
+        <item>камбала</item>
+        <item>ленивец</item>
+        <item>дирижер</item>
+
+        <item>стриптизерша</item>
+        <item>сутенер</item>
+        <item>баран</item>
+        <item>овца</item>
+        <item>заяц</item>
+        <item>кролик</item>
+        <item>выдра</item>
+        <item>скорпион</item>
+        <item>вошь</item>
+
+        <item>попугай</item>
+        <item>гусь</item>
+        <item>сторож</item>
+        <item>гном</item>
+        <item>комик</item>
+        <item>тигр</item>
+        <item>моль</item>
+        <item>червь</item>
+        <item>касатка</item>
+
+        <item>кошка</item>
+        <item>горностай</item>
+        <item>ящерица</item>
+        <item>дракон</item>
+        <item>тренер</item>
+        <item>жираф</item>
+        <item>кореш</item>
+        <item>единорог</item>
+        <item>лесник</item>
+
+        <item>утка</item>
+        <item>подруга</item>
+        <item>сноубордист</item>
+        <item>эльф</item>
+        <item>слесарь</item>
+        <item>бегемот</item>
+        <item>воробей</item>
+        <item>лошадь</item>
+        <item>вампир</item>
+        <item>стая</item>
+        <item>бурундук</item>
+        <item>хоббит</item>
+        <item>медведь</item>
+        <item>официантка</item>
+        <item>президент</item>
+        <item>рабыня</item>
+        <item>сокол</item>
+        <item>ласточка</item>
+
+        <item>жена</item>
+        <item>скат</item>
+        <item>носорог</item>
+        <item>зебра</item>
+        <item>олень</item>
+        <item>пони</item>
+        <item>осьминог</item>
+        <item>стюардесса</item>
+        <item>птеродактиль</item>
+
+        <item>змея</item>
+        <item>кобра</item>
+        <item>кассир</item>
+        <item>угрь</item>
+        <item>енот</item>
+        <item>рак</item>
+        <item>священник</item>
+        <item>игрок</item>
+        <item>волк</item>
+
+        <item>кондуктор</item>
+        <item>улитка</item>
+        <item>шмель</item>
+        <item>кенгуру</item>
+        <item>учитель</item>
+        <item>сосед</item>
+        <item>еж</item>
+        <item>корова</item>
+        <item>гиена</item>
+
+        <item>хомяк</item>
+        <item>продавщица</item>
+        <item>черепаха</item>
+        <item>лось</item>
+        <item>крыса</item>
+        <item>астронавт</item>
+        <item>пчела</item>
+        <item>аист</item>
+        <item>вахтерша</item>
+
+        <item>ворон</item>
+        <item>голубь</item>
+        <item>красавица</item>
+        <item>дикобраз</item>
+        <item>страус</item>
+        <item>дельфин</item>
+        <item>гоблин</item>
+        <item>мул</item>
+        <item>буйвол</item>
+
+        <item>курица</item>
+        <item>переводчик</item>
+        <item>павлин</item>
+        <item>клещ</item>
+        <item>сперматазоид</item>
+        <item>едсестра</item>
+        <item>душа</item>
+        <item>гоблин</item>
+        <item>моль</item>
+
+        <item>лиса</item>
+        <item>цапля</item>
+        <item>осьминог</item>
+        <item>павлин</item>
+        <item>гиена</item>
+        <item>дикобраз</item>
+        <item>ворон</item>
+
 
     </string-array>
 

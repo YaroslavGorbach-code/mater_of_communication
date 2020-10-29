@@ -333,43 +333,43 @@ public class Repo extends SQLiteOpenHelper {
         cv.put(ID_N, 1);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 2);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 3);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 4);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 5);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 6);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 7);
         cv.put(CHECK_N, 0);
         cv.put(HOUR_N, 12);
-        cv.put(MINUTE_N, 12);
+        cv.put(MINUTE_N, 30);
         db.insert(TABLE_NAME_N, null, cv);
     }
 }

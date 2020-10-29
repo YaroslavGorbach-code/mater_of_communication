@@ -8,6 +8,9 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_arrow_back;
+import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_notifi;
+
 public class ReminderBroadcast extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "CHANNEL_ID";
@@ -21,8 +24,9 @@ public class ReminderBroadcast extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_arrow_back)
-                .setContentTitle("textTitle")
-                .setContentText("textContent")
+                .setContentTitle("Бредогенератор сам себя не прокачает!")
+                .setContentText("Пора чуть-чуть поговорить.")
+                .setSmallIcon(ic_notifi)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
