@@ -15,9 +15,6 @@ import java.util.Set;
 
 public class Repo extends SQLiteOpenHelper {
 
-
-
-
     public interface Listener{
         void onDataChange();
     }
@@ -32,7 +29,7 @@ public class Repo extends SQLiteOpenHelper {
     }
     private final Set<Listener> mListeners = new HashSet<>();
     public static final String DB_NAME = "generator.db";
-    public static final int VERSION = 11;
+    public static final int VERSION = 12;
 
     //S means Sessions
     public static final String TABLE_NAME_S = "books";
@@ -55,7 +52,9 @@ public class Repo extends SQLiteOpenHelper {
     public static final String TABLE_NAME_N = "notifications";
     public static final String ID_N = "id";
     public static final String CHECK_N = "checkn";
-    public static final String DATE_N = "date";
+    public static final String HOUR_N = "hour";
+    public static final String MINUTE_N = "minute";
+
 
 
     public static final String CREATE_SQL_S = "CREATE TABLE " + TABLE_NAME_S + " (" +
@@ -81,7 +80,9 @@ public class Repo extends SQLiteOpenHelper {
     public static final String CREATE_SQL_N = "CREATE TABLE " + TABLE_NAME_N + " (" +
             ID_N + " INTEGER PRIMARY KEY, " +
             CHECK_N + " INTEGER NOT NULL, " +
-            DATE_N + " TEXT NOT NULL " +
+            HOUR_N + " TEXT NOT NULL, " +
+            MINUTE_N + " TEXT NOT NULL " +
+
             " );";
 
     private Repo(Context context){
@@ -234,7 +235,7 @@ public class Repo extends SQLiteOpenHelper {
 
     public boolean getNotificationState(int dayId) {
         boolean state = false;
-        String[] cols = {ID_N, CHECK_N, DATE_N};
+        String[] cols = {ID_N, CHECK_N, HOUR_N, MINUTE_N};
         Cursor c = getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + dayId, null,
                 null, null, null);
 
@@ -246,6 +247,35 @@ public class Repo extends SQLiteOpenHelper {
         return state;
     }
 
+    public String getNotifyHourByDayId(int id) {
+        String hour = "00";
+        String[] cols = {ID_N, CHECK_N, HOUR_N, MINUTE_N};
+        Cursor c =  getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + id,
+                null, null, null, null);
+        if (c.moveToFirst()){
+            hour = c.getString(2);
+        }
+        return hour;
+    }
+
+    public String getNotifyMinuteByDayId(int id) {
+        String minute = "00";
+        String[] cols = {ID_N, CHECK_N, HOUR_N, MINUTE_N};
+        Cursor c =  getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + id,
+                null, null, null, null);
+        if (c.moveToFirst()){
+            minute = c.getString(3);
+        }
+        return minute;
+    }
+
+    public void setNotificationTime(int dayId, String hourOfDay, String minute) {
+        ContentValues cv = new ContentValues();
+        cv.put(HOUR_N, hourOfDay);
+        cv.put(MINUTE_N, minute);
+        getWritableDatabase().update(TABLE_NAME_N, cv, ID_N + "=" + dayId, null);
+        notifyChange();
+    }
     public void changeNotificationState(int dayId, int state) {
         ContentValues cv = new ContentValues();
         cv.put(CHECK_N, state);
@@ -302,37 +332,44 @@ public class Repo extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(ID_N, 1);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 2);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 3);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 4);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 5);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 6);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
 
         cv.put(ID_N, 7);
         cv.put(CHECK_N, 0);
-        cv.put(DATE_N, "00:00");
+        cv.put(HOUR_N, 12);
+        cv.put(MINUTE_N, 12);
         db.insert(TABLE_NAME_N, null, cv);
     }
 }
