@@ -57,6 +57,7 @@ public class RemembersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remembers);
         createNotificationChannel();
@@ -208,7 +209,7 @@ public class RemembersActivity extends AppCompatActivity {
         mCheckF.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK, Calendar.FEBRUARY);
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
                 calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(mRepo.getNotifyHourByDayId(5)));
                 calendar.set(Calendar.MINUTE, Integer.parseInt(mRepo.getNotifyMinuteByDayId(5)));
                 setAlarm(calendar, mPendingIntentF);
@@ -283,9 +284,38 @@ public class RemembersActivity extends AppCompatActivity {
                 AlarmManager.INTERVAL_DAY * 6, pendingIntent);
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mRepo.removeListener(this::setNotifyTime);
+    }
+
+    /*Установка темы*/
+    private void setTheme(){
+        String color = Repo.getInstance(RemembersActivity.this).getThemeState();
+        switch (color){
+
+            case "blue":
+                setTheme(R.style.AppTheme_blue);
+                break;
+
+            case "green":
+                setTheme(R.style.AppTheme_green);
+                break;
+
+            case "orange":
+                setTheme(R.style.AppTheme_orange);
+                break;
+
+            case "red":
+                setTheme(R.style.AppTheme_red);
+                break;
+
+            case "purple":
+                setTheme(R.style.AppTheme_purple);
+                break;
+
+        }
     }
 }
