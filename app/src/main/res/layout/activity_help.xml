@@ -12,13 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_notification"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Описание упражнения"
             app:titleTextColor="#ffffff" />
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView

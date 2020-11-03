@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="Статистика"
+            style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
             app:titleTextColor="#ffffff"
             app:navigationIcon="@drawable/ic_arrow_back"/>
     </com.google.android.material.appbar.AppBarLayout>

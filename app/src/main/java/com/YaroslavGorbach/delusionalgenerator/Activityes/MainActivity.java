@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogFirstOpenMainActivity;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.SampleFragmentPagerAdapter;
@@ -32,14 +34,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Получаем ViewPager и устанавливаем в него адаптер
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(
-                new SampleFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this));
-
-        // Передаём ViewPager в TabLayout
-        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
@@ -54,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         }
 
         mToolbar = findViewById(R.id.toolbar_main);
+
+       ExercisesFragment_v_2 fragmentExercises = ExercisesFragment_v_2.newInstance();
+       getSupportFragmentManager().beginTransaction()
+               .replace(R.id.main_activity_container,fragmentExercises).commit();
 
         /*Оброботка нажатий на елементы меню*/
         mToolbar.setOnMenuItemClickListener(v->{
