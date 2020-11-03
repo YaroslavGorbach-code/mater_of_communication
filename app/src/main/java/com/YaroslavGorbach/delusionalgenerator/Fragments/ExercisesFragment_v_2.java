@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -22,6 +23,7 @@ import com.YaroslavGorbach.delusionalgenerator.Adapters.AudioListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class ExercisesFragment_v_2 extends Fragment {
+
 
     private RecyclerView mRecyclerView_category_1;
     private RecyclerView mRecyclerView_category_2;
@@ -62,6 +65,7 @@ public class ExercisesFragment_v_2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercises_version_2, container, false);
         mRecyclerView_category_1 = view.findViewById(R.id.recyclerView_category_1);
+
         mExercises_category_1.add(new Exercise(1, "test1",1));
         mExercises_category_1.add(new Exercise(1, "test1",1));
         mExercises_category_1.add(new Exercise(1, "test1",1));
@@ -78,6 +82,7 @@ public class ExercisesFragment_v_2 extends Fragment {
         mExercises_category_3.add(new Exercise(1, "test3",1));
         mExercises_category_3.add(new Exercise(1, "test3",1));
         mExercises_category_3.add(new Exercise(1, "test3",1));
+
 
 
         /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/

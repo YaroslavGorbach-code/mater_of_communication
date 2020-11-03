@@ -1,9 +1,11 @@
 package com.YaroslavGorbach.delusionalgenerator.Activityes;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +14,9 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -30,7 +34,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class AudioListActivity extends AppCompatActivity implements DialogDeleteRecords.DeleteRecordsListener {
+public class AudioListFragment extends Fragment implements DialogDeleteRecords.DeleteRecordsListener {
 
     private BottomSheetBehavior mBottomSheetBehavior;
     private RecyclerView mAudioList;
@@ -54,42 +58,52 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
 
     private Toolbar mToolbar;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setTheme();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_audio_list);
-        initializeComponents();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_audio_list, container, false);
+
+        ConstraintLayout mPlayerSheet = view.findViewById(R.id.player_sheet);
+        mBottomSheetBehavior = BottomSheetBehavior.from(mPlayerSheet);
+        mAudioList = view.findViewById(R.id.audio_list_view);
+        playBtn = view.findViewById(R.id.player_play_btn);
+        playerHeader = view.findViewById(R.id.player_header_title);
+        playerFilename = view.findViewById(R.id.player_filename);
+        playerSeekbar = view.findViewById(R.id.player_seekbar);
+        buttonAgo = view.findViewById(R.id.buttonAgo);
+        buttonForward = view.findViewById(R.id.buttonForward);
+
+        //mToolbar = view.findViewById(R.id.toolbar_records);
 
         /*Получаем файлы из деректории*/
-        String path = this.getExternalFilesDir("/").getAbsolutePath();
+        String path = getContext().getExternalFilesDir("/").getAbsolutePath();
         File directory = new File(path);
         mAllFiles = directory.listFiles();
 
         /*Сортировка файлов по дате измененя*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (mAllFiles != null){
+            if (mAllFiles != null) {
                 Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
             }
         }
 
         /*Работа з тулбаром*/
-        mToolbar.setNavigationOnClickListener(v-> finish());
-        mToolbar.setOnMenuItemClickListener(c->{
-            new DialogDeleteRecords().show(getSupportFragmentManager(),"deleteAllRecords");
-            return true;
-        });
+//        mToolbar.setNavigationOnClickListener(v-> finish());
+//        mToolbar.setOnMenuItemClickListener(c->{
+//            new DialogDeleteRecords().show(getSupportFragmentManager(),"deleteAllRecords");
+//            return true;
+//        });
 
         /*Показ банера*/
         AdView mAdView;
-        mAdView = findViewById(R.id.adViewTab3);
+        mAdView = view.findViewById(R.id.adViewTab3);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
         /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
         mAudioListAdapter = new AudioListAdapter(mAllFiles, (file, position) -> {
             fileToPlay = file;
-            if(isPlaying){
+            if (isPlaying) {
                 stopAudio();
                 playAudio(fileToPlay);
             } else {
@@ -99,16 +113,16 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
 
         /*Настройка списка*/
         mAudioList.setHasFixedSize(true);
-        mAudioList.setLayoutManager(new LinearLayoutManager(this));
+        mAudioList.setLayoutManager(new LinearLayoutManager(getContext()));
         mAudioList.setAdapter(mAudioListAdapter);
-        mAudioList.addItemDecoration(new DividerItemDecoration(this,
+        mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL));
 
         // фикс бага который скрывает плеер если потянуть вниз
         mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if(newState == BottomSheetBehavior.STATE_HIDDEN){
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }
             }
@@ -133,7 +147,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (mediaPlayer!=null){
+                if (mediaPlayer != null) {
                     int progress = seekBar.getProgress();
                     mediaPlayer.seekTo(progress);
                     resumeAudio();
@@ -143,10 +157,10 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
 
         /*Оброботка нажатия на кнопку пауза/плей в плеере*/
         playBtn.setOnClickListener(v -> {
-            if(isPlaying){
+            if (isPlaying) {
                 pauseAudio();
             } else {
-                if(fileToPlay != null){
+                if (fileToPlay != null) {
                     resumeAudio();
                 }
             }
@@ -155,21 +169,22 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
         /*Перемотка назад*/
         buttonAgo.setOnClickListener(v -> {
             int progress = playerSeekbar.getProgress();
-            progress -=800;
-            if(mediaPlayer!=null){
+            progress -= 800;
+            if (mediaPlayer != null) {
                 mediaPlayer.seekTo(progress);
             }
         });
 
         /*Перемотка вперед*/
-        buttonForward.setOnClickListener(v ->{
+        buttonForward.setOnClickListener(v -> {
             int progress = playerSeekbar.getProgress();
-            progress +=800;
-            if(mediaPlayer!=null){
+            progress += 800;
+            if (mediaPlayer != null) {
                 mediaPlayer.seekTo(progress);
             }
         });
-        
+
+        return view;
     }
 
     private void resumeAudio() {
@@ -213,7 +228,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         });
 
-       playerSeekbar.setMax(mediaPlayer.getDuration());
+        playerSeekbar.setMax(mediaPlayer.getDuration());
 
         seekbarHandler = new Handler();
         updateRunnable();
@@ -239,53 +254,12 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
         seekbarHandler.removeCallbacks(updateSeekbar);
     }
 
-    private void initializeComponents() {
 
-        ConstraintLayout mPlayerSheet = findViewById(R.id.player_sheet);
-        mBottomSheetBehavior = BottomSheetBehavior.from(mPlayerSheet);
-        mAudioList = findViewById(R.id.audio_list_view);
-        playBtn = findViewById(R.id.player_play_btn);
-        playerHeader = findViewById(R.id.player_header_title);
-        playerFilename = findViewById(R.id.player_filename);
-        playerSeekbar = findViewById(R.id.player_seekbar);
-        buttonAgo = findViewById(R.id.buttonAgo);
-        buttonForward = findViewById(R.id.buttonForward);
-        mToolbar = findViewById(R.id.toolbar_records);
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
-    private void setTheme(){
-        String color = Repo.getInstance(AudioListActivity.this).getThemeState();
-        switch (color){
-
-            case "blue":
-
-                setTheme(R.style.AppTheme_blue);
-
-                break;
-
-            case "green":
-
-                setTheme(R.style.AppTheme_green);
-                break;
-
-            case "orange":
-
-                setTheme(R.style.AppTheme_orange);
-                break;
-
-            case "red":
-
-                setTheme(R.style.AppTheme_red);
-                break;
-
-            case "purple":
-
-                setTheme(R.style.AppTheme_purple);
-                break;
-
-        }
-    }
 
     @Override
     public void onStop() {
@@ -301,6 +275,7 @@ public class AudioListActivity extends AppCompatActivity implements DialogDelete
         for(File f:mAllFiles){
             f.delete();
         }
-        recreate();
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.main_activity_container, new AudioListFragment()).commit();
     }
 }

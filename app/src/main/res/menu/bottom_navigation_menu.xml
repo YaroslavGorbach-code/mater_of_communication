@@ -1,16 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/page_ex"
         android:enabled="true"
         android:title="Упражнения"
         android:icon="@drawable/ic_notifi"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/page_star"
         android:enabled="true"
         android:title="Избранные"
         android:icon="@drawable/ic_baseline_star"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/page_voice"
         android:enabled="true"
         android:title="Записи"
         android:icon="@drawable/ic_voice_stop"/>

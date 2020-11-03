@@ -19,6 +19,7 @@ import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.SampleFragmentPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     public static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
     public static final String FIRST_OPEN = "FIRST_OPEN";
     private Toolbar mToolbar;
+    private BottomNavigationView mBottomNavigationView;
 
 
     @Override
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mBottomNavigationView = findViewById(R.id.bottom_navigation);
 
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
@@ -50,19 +54,37 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         mToolbar = findViewById(R.id.toolbar_main);
 
        ExercisesFragment_v_2 fragmentExercises = ExercisesFragment_v_2.newInstance();
-       getSupportFragmentManager().beginTransaction()
+        AudioListFragment fragmentAudioList = new AudioListFragment();
+
+        getSupportFragmentManager().beginTransaction()
                .replace(R.id.main_activity_container,fragmentExercises).commit();
+
+        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()){
+
+                case (R.id.page_ex):
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_activity_container, fragmentExercises).commit();
+                    return true;
+
+                case (R.id.page_star):
+                    return true;
+
+
+                case (R.id.page_voice):
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_activity_container, fragmentAudioList).commit();
+                    return true;
+            }
+            return false;
+        });
 
         /*Оброботка нажатий на елементы меню*/
         mToolbar.setOnMenuItemClickListener(v->{
 
            switch (v.getItemId()){
 
-               case R.id.records:
 
-                   startActivity(new Intent(this, AudioListActivity.class));
-
-                   break;
 
                case R.id.theme:
 
