@@ -1,8 +1,7 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Activityes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 
 
 import android.annotation.SuppressLint;
@@ -15,6 +14,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.ReminderBroadcast;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.TimePickerFragment;
 
 import java.util.Calendar;
 

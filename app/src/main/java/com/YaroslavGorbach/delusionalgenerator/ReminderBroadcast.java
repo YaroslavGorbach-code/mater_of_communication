@@ -8,7 +8,8 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_arrow_back;
+import com.YaroslavGorbach.delusionalgenerator.Activityes.MainActivity;
+
 import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_notifi;
 
 public class ReminderBroadcast extends BroadcastReceiver {

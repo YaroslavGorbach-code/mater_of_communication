@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -7,6 +7,8 @@ import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
 import androidx.fragment.app.DialogFragment;
+
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 
 import java.util.Calendar;
 

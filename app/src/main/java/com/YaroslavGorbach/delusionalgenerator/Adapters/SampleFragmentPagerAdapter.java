@@ -1,10 +1,14 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Adapters;
 
 import android.content.Context;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.TongueTwisterFragment;
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 2;
@@ -24,7 +28,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = new Fragment();
         switch (position){
             case 0:
-                fragment = ExercisesFragment.newInstance();
+                fragment = ExercisesFragment_v_2.newInstance();
                 break;
             case 1:
                 fragment = TongueTwisterFragment.newInstance();

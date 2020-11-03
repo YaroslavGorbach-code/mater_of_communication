@@ -1,6 +1,5 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+
+import com.YaroslavGorbach.delusionalgenerator.Activityes.ExercisesActivity;
+import com.YaroslavGorbach.delusionalgenerator.Activityes.HelpActivity;
+import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.Activityes.Statistics_activity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,7 +74,7 @@ public class ExercisesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exercises, container, false);
+        View view = inflater.inflate(R.layout.fragment_exercises_version_2, container, false);
 
         mStartButton_ex1 = view.findViewById(R.id.start_ex1);
         mStartButton_ex2 = view.findViewById(R.id.start_ex2);

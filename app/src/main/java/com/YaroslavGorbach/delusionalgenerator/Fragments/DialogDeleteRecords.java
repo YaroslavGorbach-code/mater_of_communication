@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,7 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-    public class DialogDeleteRecords  extends AppCompatDialogFragment {
+import com.YaroslavGorbach.delusionalgenerator.R;
+
+public class DialogDeleteRecords  extends AppCompatDialogFragment {
 
         public interface DeleteRecordsListener{
             void onClickDelete();

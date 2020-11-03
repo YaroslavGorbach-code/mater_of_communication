@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 
 public class DialogClearStatistics extends AppCompatDialogFragment {
 
