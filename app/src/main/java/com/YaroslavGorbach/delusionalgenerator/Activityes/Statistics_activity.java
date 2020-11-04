@@ -5,7 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
-import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogClearStatistics;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogClearStatistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.github.mikephil.charting.charts.BarChart;

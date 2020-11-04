@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.YaroslavGorbach.delusionalgenerator.Activityes.ExercisesActivity;
+import com.YaroslavGorbach.delusionalgenerator.Activityes.Exercises1Activity;
 import com.YaroslavGorbach.delusionalgenerator.Activityes.HelpActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Activityes.Statistics_activity;
@@ -123,62 +123,62 @@ public class ExercisesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /*Оброботка нажатий для кнопок которые запускают упражнения*/
-        mStartButton_ex1.setOnClickListener(v->{ startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                    putExtra(ExercisesActivity.EXTRA_ID_EX, 1));
+        mStartButton_ex1.setOnClickListener(v->{ startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                    putExtra(Exercises1Activity.EXTRA_ID_EX, 1));
         });
 
-        mStartButton_ex2.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 2));
-
-        });
-
-        mStartButton_ex3.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 3));
+        mStartButton_ex2.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 2));
 
         });
 
-        mStartButton_ex4.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 4));
+        mStartButton_ex3.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 3));
 
         });
 
-        mStartButton_ex5.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 5));
+        mStartButton_ex4.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 4));
 
         });
 
-        mStartButton_ex6.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 6));
+        mStartButton_ex5.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 5));
 
         });
 
-        mStartButton_ex7.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 7));
+        mStartButton_ex6.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 6));
 
         });
 
-        mStartButton_ex8.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 8));
+        mStartButton_ex7.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 7));
 
         });
 
-        mStartButton_ex9.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 9));
+        mStartButton_ex8.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 8));
 
         });
 
-        mStartButton_ex10.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 10));
+        mStartButton_ex9.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 9));
 
         });
 
-        mStartButton_ex11.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 11));
+        mStartButton_ex10.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 10));
 
         });
 
-        mStartButton_ex12.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), ExercisesActivity.class).
-                putExtra(ExercisesActivity.EXTRA_ID_EX, 12));
+        mStartButton_ex11.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 11));
+
+        });
+
+        mStartButton_ex12.setOnClickListener(v-> {startActivity(new Intent(view.getContext(), Exercises1Activity.class).
+                putExtra(Exercises1Activity.EXTRA_ID_EX, 12));
 
         });
 

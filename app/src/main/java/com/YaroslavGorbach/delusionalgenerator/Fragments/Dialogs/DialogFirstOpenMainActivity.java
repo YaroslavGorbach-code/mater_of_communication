@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Fragments;
+package com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,19 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 
-public class DialogChooseTheme extends AppCompatDialogFragment {
+public class DialogFirstOpenMainActivity extends AppCompatDialogFragment {
 
 
-    public interface ChooseThemesListener {
-         void onClickTheme(DialogFragment dialog);
-    }
-
-    private ChooseThemesListener listener;
+    private DialogChooseTheme.ChooseThemesListener listener;
 
     // Override the Fragment.onAttach() method to instantiate the Listener
     @Override
@@ -32,7 +27,7 @@ public class DialogChooseTheme extends AppCompatDialogFragment {
 
         try {
 
-            listener = (ChooseThemesListener) context;
+            listener = (DialogChooseTheme.ChooseThemesListener) context;
 
         } catch (ClassCastException e) {
 
@@ -46,7 +41,7 @@ public class DialogChooseTheme extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_chose_theme,null);
+        View view = inflater.inflate(R.layout.dialog_first_open_main_activity,null);
 
         builder.setView(view)
                 .setNegativeButton("Закрыть", new DialogInterface.OnClickListener() {
@@ -56,25 +51,28 @@ public class DialogChooseTheme extends AppCompatDialogFragment {
                     }
                 });
 
-          view.findViewById(R.id.redButton).setOnClickListener(v -> setTheme("red"));
+        view.findViewById(R.id.redButton).setOnClickListener(v -> setTheme("red"));
 
-          view.findViewById(R.id.greenButton).setOnClickListener(v -> setTheme("green"));
+        view.findViewById(R.id.greenButton).setOnClickListener(v -> setTheme("green"));
 
-          view.findViewById(R.id.purpleButton).setOnClickListener(v -> setTheme("purple"));
+        view.findViewById(R.id.purpleButton).setOnClickListener(v -> setTheme("purple"));
 
-          view.findViewById(R.id.orangeButton).setOnClickListener(v -> setTheme("orange"));
+        view.findViewById(R.id.orangeButton).setOnClickListener(v -> setTheme("orange"));
 
-          view.findViewById(R.id.blueButton).setOnClickListener(v -> setTheme("blue"));
+        view.findViewById(R.id.blueButton).setOnClickListener(v -> setTheme("blue"));
 
-            return builder.create();
+        return builder.create();
 
     }
 
     private void setTheme(String color){
         Repo.getInstance(getContext()).resetOldThemeState();
         Repo.getInstance(getContext()).changeTheme(color);
-        listener.onClickTheme(DialogChooseTheme.this);
+        listener.onClickTheme(DialogFirstOpenMainActivity.this);
+        dismiss();
+
     }
+
 
 }
 

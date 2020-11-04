@@ -1,8 +1,7 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -22,9 +21,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.AudioListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogDeleteRecords;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;

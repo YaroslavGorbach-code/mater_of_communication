@@ -3,24 +3,21 @@ package com.YaroslavGorbach.delusionalgenerator.Activityes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogAboutApp;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogChooseTheme;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.DialogFirstOpenMainActivity;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Adapters.SampleFragmentPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener {
 

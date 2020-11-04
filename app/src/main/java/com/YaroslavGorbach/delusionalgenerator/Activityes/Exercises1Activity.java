@@ -34,7 +34,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-public class ExercisesActivity extends AppCompatActivity {
+public class Exercises1Activity extends AppCompatActivity {
     private ImageButton mButtonStartPause;
     private Chronometer mChronometer_allTime;
     private Chronometer mChronometer_1worldTime;
@@ -84,6 +84,7 @@ public class ExercisesActivity extends AppCompatActivity {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
+        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX, -1);
 
         /*Показ банера*/
         AdView mAdView;
@@ -334,7 +335,6 @@ public class ExercisesActivity extends AppCompatActivity {
         mButtonFinish = findViewById(R.id.buttonFinishEx1);
         mToolbar = findViewById(R.id.toolbar_ex1);
         mToolbar.inflateMenu(R.menu.menu_ex_desk);
-        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX, -1);
         mThumb = findViewById(R.id.thumb_iv);
         mTextUnderThumb = findViewById(R.id.textUnderThumb);
         mShort_des = findViewById(R.id.description_short);
@@ -443,7 +443,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
     /*Установка темы*/
     private void setTheme(){
-        String color = Repo.getInstance(ExercisesActivity.this).getThemeState();
+        String color = Repo.getInstance(Exercises1Activity.this).getThemeState();
         switch (color){
 
             case "blue":

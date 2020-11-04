@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Fragments;
+package com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
