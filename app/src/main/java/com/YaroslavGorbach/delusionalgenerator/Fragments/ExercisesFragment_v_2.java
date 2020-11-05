@@ -13,12 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.Activityes.Exercises1Activity;
+import com.YaroslavGorbach.delusionalgenerator.Activityes.ExerciseDescriptionActivity;
 import com.YaroslavGorbach.delusionalgenerator.Activityes.Exercises2Activity;
 import com.YaroslavGorbach.delusionalgenerator.Activityes.Exercises3Activity;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
+
+import static com.YaroslavGorbach.delusionalgenerator.Activityes.ExerciseDescriptionActivity.EXTRA_ID_EX;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,8 +71,9 @@ public class ExercisesFragment_v_2 extends Fragment {
                 if (id>1){
                     id++;
                 }
-                startActivity(new Intent(getContext(), Exercises1Activity.class).
-                        putExtra(Exercises1Activity.EXTRA_ID_EX, id));
+                startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
+                        .putExtra(EXTRA_ID_EX, id));
+
             });
 
             mRecyclerView_category_1.setHasFixedSize(true);

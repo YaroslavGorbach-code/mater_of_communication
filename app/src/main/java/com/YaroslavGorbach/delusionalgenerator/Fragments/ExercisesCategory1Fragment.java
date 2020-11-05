@@ -1,8 +1,8 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,7 +11,9 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
@@ -20,21 +22,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.YaroslavGorbach.delusionalgenerator.Activityes.HelpActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
-public class Exercises1Activity extends AppCompatActivity {
+public class ExercisesCategory1Fragment extends Fragment {
     private ImageButton mButtonStartPause;
     private Chronometer mChronometer_allTime;
     private Chronometer mChronometer_1worldTime;
@@ -44,7 +49,6 @@ public class Exercises1Activity extends AppCompatActivity {
     private Button mButtonNextWorld;
     private TextView mWorld;
     private Button mButtonFinish;
-    private Toolbar mToolbar;
     private Random r = new Random();
     private int mIdEx;
     private ImageView mThumb;
@@ -60,6 +64,7 @@ public class Exercises1Activity extends AppCompatActivity {
     private static final int PERMISSION_CODE = 21;
     private MediaRecorder mediaRecorder;
     private String recordFile;
+    private String mExName;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -77,28 +82,62 @@ public class Exercises1Activity extends AppCompatActivity {
    private String [] mArrayWorlds_ex12 = {};
 
 
-    public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
+    private static final String ARG_ID_EX = "ARG_ID_EX";
+
+    public ExercisesCategory1Fragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param exId Parameter 1.
+     * @return A new instance of fragment ExerciseDescriptionFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ExercisesCategory1Fragment newInstance(int exId) {
+        ExercisesCategory1Fragment fragment = new ExercisesCategory1Fragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_ID_EX, exId);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setTheme();
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises);
-        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX, -1);
+        if (getArguments() != null) {
+            mIdEx = getArguments().getInt(ARG_ID_EX, -1);
+        }
+    }
 
-        /*Показ банера*/
-        AdView mAdView;
-        mAdView = findViewById(R.id.adViewTab1);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_exercises, container, false);
+
+        mButtonStartPause = view.findViewById(R.id.button);
+        mChronometer_allTime = view.findViewById(R.id.chronometer_allTime);
+        mButtonNextWorld = view.findViewById(R.id.buttonNextWorld);
+        mWorld = view.findViewById(R.id.world_tv);
+        mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
+
+        mThumb = view.findViewById(R.id.thumb_iv);
+        mTextUnderThumb = view.findViewById(R.id.textUnderThumb);
+        mShort_des = view.findViewById(R.id.description_short);
+        mChronometer_1worldTime = view.findViewById(R.id.chronometer_1world_time);
+        mThumbAndText = view.findViewById(R.id.thumbAndText);
+        mWorldCounter = view.findViewById(R.id.world_counter);
+        mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
+
 
         /*Поиск всех view и запуск секундомера*/
-        initializeComponents();
         mChronometer_allTime.start();
         mChronometer_1worldTime.start();
 
         //установка максимального зщначения для счетчика слов
-        mMaxWorldCount = Repo.getInstance(this).getMaxWorldCount(mIdEx);
+        mMaxWorldCount = Repo.getInstance(getContext()).getMaxWorldCount(mIdEx);
         mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
 
 
@@ -108,7 +147,7 @@ public class Exercises1Activity extends AppCompatActivity {
             case 1:
                 mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
-                mToolbar.setTitle("Лингвистические пирамиды");
+                mExName = "Лингвистические пирамиды";
                 mThumbAndText.setVisibility(View.VISIBLE);
                 mShort_des.setText("Обобщайте, разобобщайте и переходите по аналогиям");
                 break;
@@ -117,91 +156,66 @@ public class Exercises1Activity extends AppCompatActivity {
             case 2:
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_Alive);
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mToolbar.setTitle("Чем ворон похож на стул");
+                mExName = "Чем ворон похож на стул";
                 mShort_des.setText("Найдите сходство");
-            break;
+                break;
 
             case 3:
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_filings);
-                mToolbar.setTitle("Чем ворон похож на стул (чувства)");
+                mExName = "Чем ворон похож на стул (чувства)";
                 mShort_des.setText("Найдите сходство");
                 break;
 
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mToolbar.setTitle("Продвинутое сявязывание");
+                mExName = "Продвинутое сявязывание";
                 mShort_des.setText("Найдите сходства");
                 break;
 
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mToolbar.setTitle("О чем вижу, о том и пою");
+                mExName = "О чем вижу, о том и пою";
                 mShort_des.setText("Говорите максимально долго об этом");
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_abbreviations);
-                mToolbar.setTitle("Другие варианты сокращений");
+                mExName = "Другие варианты сокращений";
                 mShort_des.setText("Придумайте необычную расшифровку");
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mToolbar.setTitle("Волшебный нейминг");
+                mExName = "Волшебный нейминг";
                 mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных");
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mToolbar.setTitle("Купля-продажа");
+                mExName = "Купля-продажа";
                 mShort_des.setText("Продайте это");
                 break;
             case 9:
                 mArrayWorlds_ex9 = getResources().getStringArray(R.array.letters);
-                mToolbar.setTitle("Вспомнить все");
+                mExName = "Вспомнить все";
                 mShort_des.setText("Назовите 15 слов, которые начинаются с этой буквы");
                 break;
             case 10:
                 mArrayWorlds_ex10 = getResources().getStringArray(R.array.Terms);
-                mToolbar.setTitle("В соавторстве с Далем");
+                mExName = "В соавторстве с Далем";
                 mShort_des.setText("Дайте определение слову");
                 break;
             case 11:
                 mArrayWorlds_ex11 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mToolbar.setTitle("Тест Роршаха");
+                mExName = "Тест Роршаха";
                 mShort_des.setText("Придумайте чем это может быть еще");
                 break;
             case 12:
                 mArrayWorlds_ex12 = getResources().getStringArray(R.array.professions);
-                mToolbar.setTitle("Хуже уже не будет");
+                mExName = "Хуже уже не будет";
                 mShort_des.setText("Придумайте ситуацию или фразу худшего в мире");
                 break;
         }
 
-
-        /*Оброботка нажатия на кнопку помощи по упражнению.*/
-        mToolbar.setOnMenuItemClickListener(v->{
-                    startActivity(new Intent(this, HelpActivity.class)
-                            .putExtra(HelpActivity.EXTRA_ID, mIdEx));
-
-                    if (!mButtonState){
-                        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
-                        mButtonState = true;
-                        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
-                        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
-                        mChronometer_1worldTime.stop();
-                        mChronometer_allTime.stop();
-                        mButtonNextWorld.setVisibility(View.INVISIBLE);
-                        mButtonFinish.setVisibility(View.VISIBLE);
-                    }
-
-
-            return true;
-        });
-
-        /*Остановка активити при нажатии на стрелку назад*/
-        mToolbar.setNavigationOnClickListener(v->{
-            finish();
-        });
 
         /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
         mButtonStartPause.setOnClickListener(v->{
@@ -263,20 +277,25 @@ public class Exercises1Activity extends AppCompatActivity {
 
         /*Завершение упражнения при нажатии */
         mButtonFinish.setOnClickListener(v->{
-            finish();
+            Objects.requireNonNull(getActivity()).getFragmentManager().popBackStack();
         });
 
         setWorld();
+
+        return view;
     }
+
+
+
 
     private boolean checkRecordPermission() {
         //Check permission
-        if (ActivityCompat.checkSelfPermission(this, recordPermission) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), recordPermission) == PackageManager.PERMISSION_GRANTED) {
             //Permission Granted
             return true;
         } else {
             //Permission not granted, ask for permission
-            ActivityCompat.requestPermissions(this, new String[]{recordPermission}, PERMISSION_CODE);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{recordPermission}, PERMISSION_CODE);
             return false;
         }
     }
@@ -285,7 +304,7 @@ public class Exercises1Activity extends AppCompatActivity {
     private void stopRecording() {
         mStartRecordingButton.setText("Начать запись");
         mIsRecording = false;
-        Toast.makeText(this, "Запись сохранена: " + recordFile, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Запись сохранена: " + recordFile, Toast.LENGTH_SHORT).show();
         mediaRecorder.stop();
         mediaRecorder.release();
         mediaRecorder = null;
@@ -298,14 +317,14 @@ public class Exercises1Activity extends AppCompatActivity {
         mIsRecording = true;
 
         //Get app external directory path
-        String recordPath = this.getExternalFilesDir("/").getAbsolutePath();
+        String recordPath = Objects.requireNonNull(getActivity()).getExternalFilesDir("/").getAbsolutePath();
 
         //Get current date and time
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());
         Date now = new Date();
 
         //initialize filename variable with date and time at the end to ensure the new file wont overwrite previous file
-        recordFile = mToolbar.getTitle()+ " " + formatter.format(now) + ".3gp";
+        recordFile = mExName + " " + formatter.format(now) + ".3gp";
 
         //filenameText.setText("Recording, File Name : " + recordFile);
 
@@ -326,25 +345,7 @@ public class Exercises1Activity extends AppCompatActivity {
         mediaRecorder.start();
     }
 
-    /*поиск всех view*/
-    private void initializeComponents(){
-        mButtonStartPause = findViewById(R.id.button);
-        mChronometer_allTime = findViewById(R.id.chronometer_allTime);
-        mButtonNextWorld = findViewById(R.id.buttonNextWorld);
-        mWorld = findViewById(R.id.world_tv);
-        mButtonFinish = findViewById(R.id.buttonFinishEx1);
-        mToolbar = findViewById(R.id.toolbar_ex1);
-        mToolbar.inflateMenu(R.menu.menu_ex_desk);
-        mThumb = findViewById(R.id.thumb_iv);
-        mTextUnderThumb = findViewById(R.id.textUnderThumb);
-        mShort_des = findViewById(R.id.description_short);
-        mChronometer_1worldTime = findViewById(R.id.chronometer_1world_time);
-        mThumbAndText = findViewById(R.id.thumbAndText);
-        mWorldCounter = findViewById(R.id.world_counter);
-        mStartRecordingButton = findViewById(R.id.buttonStartRecording);
 
-
-    }
 
 
     /*В зависимости от айди упражнения устанавливаем в textView правельное слово или пару слов*/
@@ -441,39 +442,7 @@ public class Exercises1Activity extends AppCompatActivity {
                 .playOn(mTextUnderThumb);
     }
 
-    /*Установка темы*/
-    private void setTheme(){
-        String color = Repo.getInstance(Exercises1Activity.this).getThemeState();
-        switch (color){
 
-            case "blue":
-
-                setTheme(R.style.AppTheme_blue);
-
-                break;
-
-            case "green":
-
-                setTheme(R.style.AppTheme_green);
-                break;
-
-            case "orange":
-
-                setTheme(R.style.AppTheme_orange);
-                break;
-
-            case "red":
-
-                setTheme(R.style.AppTheme_red);
-                break;
-
-            case "purple":
-
-                setTheme(R.style.AppTheme_purple);
-                break;
-
-        }
-    }
 
     /*Метод используеться для ведения статистики*/
     private void insertMyDateAndTime(){
@@ -485,19 +454,20 @@ public class Exercises1Activity extends AppCompatActivity {
         //получаем время из секундомера в минутах
         long time = ((SystemClock.elapsedRealtime() - mChronometer_allTime.getBase())/1000) / 60;
 
-        Repo.getInstance(this).insertDateAndTime(mIdEx, date, time);
-        Repo.getInstance(this).insertDateAndCountWorlds(mIdEx, date, mWorldCount);
+        Repo.getInstance(getContext()).insertDateAndTime(mIdEx, date, time);
+        Repo.getInstance(getContext()).insertDateAndCountWorlds(mIdEx, date, mWorldCount);
 
     }
+
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        insertMyDateAndTime();
-        if(mIsRecording){
-            stopRecording();
+    public void onStop() {
+            super.onStop();
+            insertMyDateAndTime();
+            if(mIsRecording){
+                stopRecording();
+            }
         }
-    }
 }
 
 
