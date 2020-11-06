@@ -4,17 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.Fragments.ExerciseDescriptionFragment;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory1Fragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
-
-import java.util.Objects;
 
 public class ExerciseDescriptionActivity extends AppCompatActivity {
     private MaterialToolbar mToolbar;
@@ -26,7 +21,7 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exersice_description2);
         mToolbar = findViewById(R.id.toolbar_ex_category_1);
-        mToolbar.inflateMenu(R.menu.menu_ex_desk);
+        mToolbar.inflateMenu(R.menu.menu_ex_open_statistic);
         mExId = getIntent().getIntExtra(EXTRA_ID_EX, -1);
 
         /*Показ банера*/
@@ -86,8 +81,8 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
 
         /*Оброботка нажатия на кнопку помощи по упражнению.*/
         mToolbar.setOnMenuItemClickListener(v->{
-            startActivity(new Intent(this, HelpActivity.class)
-                    .putExtra(HelpActivity.EXTRA_ID, mExId));
+            startActivity(new Intent(this, Statistics_activity.class)
+                    .putExtra(Statistics_activity.EXTRA_ID_EX, mExId));
             return true;
         });
                 /*Остановка активити при нажатии на стрелку назад*/

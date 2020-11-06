@@ -18,8 +18,7 @@ public class Repo_2 {
         mExDao = database.exercise_dao();
     }
 
-    public void insertEx(Exercise exercise){
-        new Thread(() -> mExDao.insert(exercise)).start();
+    public void insertEx(Exercise exercise){ new Thread(() -> mExDao.insert(exercise)).start();
     }
 
     public void deleteEx(Exercise exercise){

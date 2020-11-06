@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +41,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
     private AudioListAdapter mAudioListAdapter;
     private MediaPlayer mediaPlayer = null;
     private boolean isPlaying = false;
+    private boolean isPause = false;
 
     private ImageButton playBtn;
     private TextView playerHeader;
@@ -53,8 +55,6 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
     private Runnable updateSeekbar;
 
     private File fileToPlay = null;
-
-    private Toolbar mToolbar;
 
     @Nullable
     @Override
@@ -84,13 +84,10 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
                 Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
             }
         }
+        new Thread(() -> {
 
-        /*Работа з тулбаром*/
-//        mToolbar.setNavigationOnClickListener(v-> finish());
-//        mToolbar.setOnMenuItemClickListener(c->{
-//            new DialogDeleteRecords().show(getSupportFragmentManager(),"deleteAllRecords");
-//            return true;
-//        });
+        }).start();
+
 
         /*Показ банера*/
         AdView mAdView;
@@ -98,12 +95,12 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+
         /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
         mAudioListAdapter = new AudioListAdapter(mAllFiles, (file, position) -> {
             fileToPlay = file;
             if (isPlaying) {
-                stopAudio();
-                playAudio(fileToPlay);
+             pauseAudio();
             } else {
                 playAudio(fileToPlay);
             }
@@ -121,6 +118,9 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
+                if (!isPlaying && !isPause){
                     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }
             }
@@ -189,7 +189,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         mediaPlayer.start();
         playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
         isPlaying = true;
-
+        isPause = false;
         updateRunnable();
         seekbarHandler.postDelayed(updateSeekbar, 0);
     }
@@ -199,6 +199,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
             mediaPlayer.pause();
             playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_play_btn, null));
             isPlaying = false;
+            isPause = true;
             seekbarHandler.removeCallbacks(updateSeekbar);
         }
 
@@ -207,7 +208,6 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
 
     private void playAudio(File fileToPlay) {
         mediaPlayer = new MediaPlayer();
-        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         try {
             mediaPlayer.setDataSource(fileToPlay.getAbsolutePath());
             mediaPlayer.prepare();
@@ -215,14 +215,18 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         } catch (IOException e) {
             e.printStackTrace();
         }
-        playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
+        playBtn.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
         playerFilename.setText(fileToPlay.getName());
         playerHeader.setText("Играет...");
         isPlaying = true;
+        isPause = false;
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
         mediaPlayer.setOnCompletionListener(mp -> {
             stopAudio();
             playerHeader.setText("Закончено");
             isPlaying = false;
+            isPause = false;
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         });
 
@@ -245,11 +249,14 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
     }
 
     private void stopAudio() {
-        playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_play_btn, null));
+        playBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_player_play_btn, null));
         playerHeader.setText("Остановлено");
         isPlaying = false;
+        isPause = true;
         mediaPlayer.stop();
         seekbarHandler.removeCallbacks(updateSeekbar);
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
     }
 
 
@@ -273,7 +280,5 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         for(File f:mAllFiles){
             f.delete();
         }
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.main_activity_container, new AudioListFragment()).commit();
     }
 }

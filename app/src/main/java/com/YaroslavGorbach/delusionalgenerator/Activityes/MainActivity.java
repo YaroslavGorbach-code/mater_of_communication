@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
        ExercisesFragment_v_2 fragmentExercises = ExercisesFragment_v_2.newInstance();
         AudioListFragment fragmentAudioList = new AudioListFragment();
+        FavoritExsFragment favoritExsFragment = new FavoritExsFragment();
 
         getSupportFragmentManager().beginTransaction()
                .replace(R.id.main_activity_container,fragmentExercises).commit();
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     return true;
 
                 case (R.id.page_star):
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_activity_container, favoritExsFragment).commit();
                     return true;
 
 

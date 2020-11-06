@@ -1,11 +1,9 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -22,14 +20,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.YaroslavGorbach.delusionalgenerator.Activityes.HelpActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -83,6 +77,10 @@ public class ExercisesCategory1Fragment extends Fragment {
 
 
     private static final String ARG_ID_EX = "ARG_ID_EX";
+
+    public interface FinishEx{
+        void onFinish();
+    }
 
     public ExercisesCategory1Fragment() {
         // Required empty public constructor
@@ -277,8 +275,8 @@ public class ExercisesCategory1Fragment extends Fragment {
 
         /*Завершение упражнения при нажатии */
         mButtonFinish.setOnClickListener(v->{
-            Objects.requireNonNull(getActivity()).getFragmentManager().popBackStack();
-        });
+                getActivity().finish();
+            });
 
         setWorld();
 
@@ -464,6 +462,14 @@ public class ExercisesCategory1Fragment extends Fragment {
     public void onStop() {
             super.onStop();
             insertMyDateAndTime();
+        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
+        mButtonState = true;
+        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
+        mChronometer_allTime.stop();
+        mChronometer_1worldTime.stop();
+        mButtonNextWorld.setVisibility(View.INVISIBLE);
+        mButtonFinish.setVisibility(View.VISIBLE);
             if(mIsRecording){
                 stopRecording();
             }

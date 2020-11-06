@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:justificationMode="inter_word"
                 android:padding="10dp"
-                android:text="test test test tets test test test teste tset etste"
+                android:text="@string/Haw_to_perform_exercise_1"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_start_ex_category_1"
         style="?attr/materialButtonOutlinedStyle"
@@ -82,7 +81,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:text="Начать !"
-        android:textSize="25dp"
+        android:padding="20dp"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
