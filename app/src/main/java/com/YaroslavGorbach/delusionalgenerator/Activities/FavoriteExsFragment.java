@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FavoritExsFragment#newInstance} factory method to
+ * Use the {@link FavoriteExsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoritExsFragment extends Fragment {
+public class FavoriteExsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class FavoritExsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FavoritExsFragment() {
+    public FavoriteExsFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class FavoritExsFragment extends Fragment {
      * @return A new instance of fragment FavoritExsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavoritExsFragment newInstance(String param1, String param2) {
-        FavoritExsFragment fragment = new FavoritExsFragment();
+    public static FavoriteExsFragment newInstance(String param1, String param2) {
+        FavoriteExsFragment fragment = new FavoriteExsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -461,7 +461,15 @@ public class ExercisesCategory1Fragment extends Fragment {
     @Override
     public void onStop() {
             super.onStop();
-            insertMyDateAndTime();
+            if(mIsRecording){
+                stopRecording();
+            }
+        }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        insertMyDateAndTime();
         mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
         mButtonState = true;
         mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
@@ -470,10 +478,10 @@ public class ExercisesCategory1Fragment extends Fragment {
         mChronometer_1worldTime.stop();
         mButtonNextWorld.setVisibility(View.INVISIBLE);
         mButtonFinish.setVisibility(View.VISIBLE);
-            if(mIsRecording){
-                stopRecording();
-            }
+        if(mIsRecording){
+            stopRecording();
         }
+    }
 }
 
 

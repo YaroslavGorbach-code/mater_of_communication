@@ -15,11 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme_orange"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activityes.ExerciseDescriptionActivity"></activity>
-        <activity android:name=".Activityes.Exercises3Activity" />
-        <activity android:name=".Activityes.Exercises2Activity" />
+        <activity android:name=".Activities.ExerciseDescriptionActivity"></activity>
         <activity
-            android:name=".Activityes.MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -29,11 +27,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activityes.HelpActivity"
+            android:name=".Activities.HelpActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".Activityes.Statistics_activity"
+            android:name=".Activities.Statistics_activity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -41,7 +39,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".Activityes.RemembersActivity"
+            android:name=".Activities.RemembersActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 

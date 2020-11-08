@@ -13,14 +13,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.Activityes.ExerciseDescriptionActivity;
-import com.YaroslavGorbach.delusionalgenerator.Activityes.Exercises2Activity;
-import com.YaroslavGorbach.delusionalgenerator.Activityes.Exercises3Activity;
+import com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
-import static com.YaroslavGorbach.delusionalgenerator.Activityes.ExerciseDescriptionActivity.EXTRA_ID_EX;
+import static com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity.EXTRA_ID_EX;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,14 +61,9 @@ public class ExercisesFragment_v_2 extends Fragment {
         mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
 
         mExercisesViewModel.getExByCategory(1).observe(getViewLifecycleOwner(), exercises -> {
-
             mAdapter_category_1 = new ExercisesListAdapter(exercises, (exercise, position) -> {
-
-                // TODO: разабраться с этим id
                 int id = exercise.id;
-                if (id>1){
-                    id++;
-                }
+
                 startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
                         .putExtra(EXTRA_ID_EX, id));
 
@@ -86,8 +79,10 @@ public class ExercisesFragment_v_2 extends Fragment {
         mExercisesViewModel.getExByCategory(2).observe(getViewLifecycleOwner(), exercises -> {
 
             mAdapter_category_2 = new ExercisesListAdapter(exercises, (exercise, position) -> {
+                int id = exercise.id;
 
-                startActivity(new Intent(getContext(), Exercises2Activity.class));
+                startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
+                .putExtra(EXTRA_ID_EX, id));
 
             });
 
@@ -101,7 +96,10 @@ public class ExercisesFragment_v_2 extends Fragment {
         mExercisesViewModel.getExByCategory(3).observe(getViewLifecycleOwner(), exercises -> {
 
             mAdapter_category_3 = new ExercisesListAdapter(exercises, (exercise, position) -> {
-                startActivity(new Intent(getContext(), Exercises3Activity.class));
+                int id = exercise.id;
+
+                startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
+                        .putExtra(EXTRA_ID_EX, id));
 
             });
 
@@ -112,30 +110,6 @@ public class ExercisesFragment_v_2 extends Fragment {
         });
 
 
-
-        /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
-
-//        mAdapter_category_2 = new ExercisesListAdapter(mExercises_category_2, (exercise, position) -> {
-//
-//        });
-//        mAdapter_category_3 = new ExercisesListAdapter(mExercises_category_3, (exercise, position) -> {
-//
-//        });
-
-        /*Настройка списка*/
-
-
-//        /*Настройка списка*/
-//        mRecyclerView_category_2.setHasFixedSize(true);
-//        mRecyclerView_category_2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
-//                false));
-//        mRecyclerView_category_2.setAdapter(mAdapter_category_2);
-//
-//        /*Настройка списка*/
-//        mRecyclerView_category_3.setHasFixedSize(true);
-//        mRecyclerView_category_3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
-//                false));
-//        mRecyclerView_category_3.setAdapter(mAdapter_category_3);
 
         return view;
     }

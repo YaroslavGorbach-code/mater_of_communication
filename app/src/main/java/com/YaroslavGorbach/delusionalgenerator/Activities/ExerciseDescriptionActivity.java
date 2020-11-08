@@ -1,11 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.YaroslavGorbach.delusionalgenerator.Fragments.ExerciseDescriptionFragment;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesDescriptionFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -36,24 +36,18 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
             case 1:
                 mToolbar.setTitle("Лингвистические пирамиды");
                 break;
-
-
             case 2:
                 mToolbar.setTitle("Чем ворон похож на стул");
                 break;
-
             case 3:
                 mToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 break;
-
             case 4:
                 mToolbar.setTitle("Продвинутое сявязывание");
                 break;
-
             case 5:
                 mToolbar.setTitle("О чем вижу, о том и пою");
                 break;
-
             case 6:
                 mToolbar.setTitle("Другие варианты сокращений");
                 break;
@@ -75,9 +69,28 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
             case 12:
                 mToolbar.setTitle("Хуже уже не будет");
                 break;
+            case 20:
+                mToolbar.setTitle("Существительные");
+                break;
+            case 21:
+                mToolbar.setTitle("Прилагательные");
+                break;
+            case 22:
+                mToolbar.setTitle("Глаголы");
+                break;
+            case 30:
+                mToolbar.setTitle("Простые скороговорки");
+                break;
+            case 31:
+                mToolbar.setTitle("Сложные скороговорки");
+                break;
+            case 32:
+                mToolbar.setTitle("Очень сложные скороговорки");
+                break;
+
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
-                ExerciseDescriptionFragment.newInstance(mExId)).commit();
+                ExercisesDescriptionFragment.newInstance(mExId)).commit();
 
         /*Оброботка нажатия на кнопку помощи по упражнению.*/
         mToolbar.setOnMenuItemClickListener(v->{

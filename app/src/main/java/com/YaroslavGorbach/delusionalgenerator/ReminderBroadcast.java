@@ -8,7 +8,7 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.YaroslavGorbach.delusionalgenerator.Activityes.MainActivity;
+import com.YaroslavGorbach.delusionalgenerator.Activities.MainActivity;
 
 import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_notifi;
 

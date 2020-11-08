@@ -1,9 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogClearStatistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -16,6 +18,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 public class Statistics_activity extends AppCompatActivity  {
     private BarChart mChartMinutes;
     private BarChart mChartWorldCount;
+    private CardView mChartMinutes_cv;
     private Toolbar mToolbar;
     int mIdEx;
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
@@ -26,6 +29,15 @@ public class Statistics_activity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_activity);
         initializeComponents();
+
+        switch (mIdEx){
+            case 20:
+            case 21:
+            case 22:
+                mChartMinutes_cv.setVisibility(View.GONE);
+                break;
+
+        }
 
         mToolbar.setNavigationOnClickListener(v->{
             finish();
@@ -50,6 +62,7 @@ public class Statistics_activity extends AppCompatActivity  {
         mChartWorldCount = findViewById(R.id.chartWorlds);
         mToolbar = findViewById(R.id.toolbar_statistics);
         mToolbar.inflateMenu(R.menu.menu_statistic);
+        mChartMinutes_cv = findViewById(R.id.cardView2);
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
     }
 

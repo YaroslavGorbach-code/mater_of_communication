@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,11 +57,12 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
 
     private File fileToPlay = null;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_audio_list, container, false);
-
         ConstraintLayout mPlayerSheet = view.findViewById(R.id.player_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(mPlayerSheet);
         mAudioList = view.findViewById(R.id.audio_list_view);
@@ -70,6 +72,8 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         playerSeekbar = view.findViewById(R.id.player_seekbar);
         buttonAgo = view.findViewById(R.id.buttonAgo);
         buttonForward = view.findViewById(R.id.buttonForward);
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
 
         //mToolbar = view.findViewById(R.id.toolbar_records);
 
@@ -117,11 +121,11 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                }
+//                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+//                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//                }
                 if (!isPlaying && !isPause){
-                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
 
@@ -186,12 +190,14 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
     }
 
     private void resumeAudio() {
-        mediaPlayer.start();
-        playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
-        isPlaying = true;
-        isPause = false;
-        updateRunnable();
-        seekbarHandler.postDelayed(updateSeekbar, 0);
+        if (mediaPlayer!=null){
+            mediaPlayer.start();
+            playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
+            isPlaying = true;
+            isPause = false;
+            updateRunnable();
+            seekbarHandler.postDelayed(updateSeekbar, 0);
+        }
     }
 
     private void pauseAudio() {
@@ -227,7 +233,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
             playerHeader.setText("Закончено");
             isPlaying = false;
             isPause = false;
-            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         });
 
         playerSeekbar.setMax(mediaPlayer.getDuration());
@@ -255,7 +261,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         isPause = true;
         mediaPlayer.stop();
         seekbarHandler.removeCallbacks(updateSeekbar);
-        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
     }
 

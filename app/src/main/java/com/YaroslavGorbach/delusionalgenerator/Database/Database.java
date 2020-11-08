@@ -42,15 +42,16 @@ public abstract class Database extends RoomDatabase {
             new Thread(() -> {
                 mDao.insert(new Exercise(1,"Лингвистические пирамиды",1,0, 0));
                 mDao.insert(new Exercise(2,"Чем ворон похож на стол",1,0, 0));
-                mDao.insert(new Exercise(3,"Продвинутое связывание",1,0, 0));
-                mDao.insert(new Exercise(4,"О чем вижу, о том и пою",1,0, 0));
-                mDao.insert(new Exercise(5,"Другие варианты сокращений",1,0, 0));
-                mDao.insert(new Exercise(6,"Волшебный нейминг",1,0, 0));
-                mDao.insert(new Exercise(7,"Купля - продажа",1,0, 0));
-                mDao.insert(new Exercise(8,"Вспомнить все",1,0, 0));
-                mDao.insert(new Exercise(9,"В соавторстве с Далем",1,0, 0));
-                mDao.insert(new Exercise(10,"Тест Роршаха",1,0, 0));
-                mDao.insert(new Exercise(11,"Хуже уже не будет",1,0, 0));
+                mDao.insert(new Exercise(3,"Чем ворон похож на стул (чувства)",1,0, 0));
+                mDao.insert(new Exercise(4,"Продвинутое связывание",1,0, 0));
+                mDao.insert(new Exercise(5,"О чем вижу, о том и пою",1,0, 0));
+                mDao.insert(new Exercise(6,"Другие варианты сокращений",1,0, 0));
+                mDao.insert(new Exercise(7,"Волшебный нейминг",1,0, 0));
+                mDao.insert(new Exercise(8,"Купля - продажа",1,0, 0));
+                mDao.insert(new Exercise(9,"Вспомнить все",1,0, 0));
+                mDao.insert(new Exercise(10,"В соавторстве с Далем",1,0, 0));
+                mDao.insert(new Exercise(11,"Тест Роршаха",1,0, 0));
+                mDao.insert(new Exercise(12,"Хуже уже не будет",1,0, 0));
 
 
                 mDao.insert(new Exercise(20,"Существительные",2,0, 0));

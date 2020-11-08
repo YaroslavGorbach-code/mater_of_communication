@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
        ExercisesFragment_v_2 fragmentExercises = ExercisesFragment_v_2.newInstance();
         AudioListFragment fragmentAudioList = new AudioListFragment();
-        FavoritExsFragment favoritExsFragment = new FavoritExsFragment();
+        FavoriteExsFragment favoriteExsFragment = new FavoriteExsFragment();
 
         getSupportFragmentManager().beginTransaction()
                .replace(R.id.main_activity_container,fragmentExercises).commit();
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
                 case (R.id.page_star):
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_activity_container, favoritExsFragment).commit();
+                            .replace(R.id.main_activity_container, favoriteExsFragment).commit();
                     return true;
 
 

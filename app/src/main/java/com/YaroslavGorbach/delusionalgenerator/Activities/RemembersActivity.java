@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Activityes;
+package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

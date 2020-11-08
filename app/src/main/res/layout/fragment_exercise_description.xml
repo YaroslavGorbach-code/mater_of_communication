@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ExerciseDescriptionFragment">
+    tools:context=".Fragments.ExercisesDescriptionFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".Fragments.ExerciseDescriptionFragment">
+            tools:context=".Fragments.ExercisesDescriptionFragment">
 
             <TextView
                 android:id="@+id/exercises_name"
@@ -30,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Имя упражнения" />
+                android:text="Цель упражнения" />
 
             <TextView
                 android:id="@+id/textView_aim_ex"
