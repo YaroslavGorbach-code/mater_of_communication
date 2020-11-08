@@ -70,7 +70,7 @@ public class Statistics_activity extends AppCompatActivity  {
         BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntriesTime(mIdEx), "Минуты");
         BarData data = new BarData(Repo.getInstance(this).getTimeLabels(mIdEx), bardataset);
         mChartMinutes.setData(data); // set the data and list of labels into chart
-        mChartMinutes.setDescription("Количество потраченого времени на упражнение");  // set the description
+        mChartMinutes.setDescription("Количество минут потраченых на сессию");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         mChartMinutes.animateY(2000);
     }
@@ -79,7 +79,7 @@ public class Statistics_activity extends AppCompatActivity  {
         BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntriesWorldCount(mIdEx), "Слова");
         BarData data = new BarData(Repo.getInstance(this).getWorldCountLabels(mIdEx), bardataset);
         mChartWorldCount.setData(data); // set the data and list of labels into chart
-        mChartWorldCount.setDescription("Количество пройденых слов в определенный день");  // set the description
+        mChartWorldCount.setDescription("Количество пройденых слов за сессию");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         mChartWorldCount.animateY(2000);
     }
