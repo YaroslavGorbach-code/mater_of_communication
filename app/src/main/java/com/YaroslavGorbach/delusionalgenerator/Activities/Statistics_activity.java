@@ -6,6 +6,8 @@ import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogClearStatistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -19,6 +21,7 @@ public class Statistics_activity extends AppCompatActivity  {
     private BarChart mChartMinutes;
     private BarChart mChartWorldCount;
     private CardView mChartMinutes_cv;
+    private CardView mChartWords_cv;
     private Toolbar mToolbar;
     int mIdEx;
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
@@ -63,6 +66,7 @@ public class Statistics_activity extends AppCompatActivity  {
         mToolbar = findViewById(R.id.toolbar_statistics);
         mToolbar.inflateMenu(R.menu.menu_statistic);
         mChartMinutes_cv = findViewById(R.id.cardView2);
+        mChartWords_cv = findViewById(R.id.cardView1);
         mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
     }
 

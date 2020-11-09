@@ -20,18 +20,17 @@
             app:titleTextColor="#ffffff"
             app:navigationIcon="@drawable/ic_arrow_back"/>
     </com.google.android.material.appbar.AppBarLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="56dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView1"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
@@ -49,8 +48,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -63,12 +62,10 @@
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/chartMinutes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
 
 
 </LinearLayout>
