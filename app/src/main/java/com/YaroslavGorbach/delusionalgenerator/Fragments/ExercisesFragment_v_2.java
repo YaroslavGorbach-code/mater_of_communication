@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,8 +37,9 @@ public class ExercisesFragment_v_2 extends Fragment {
     private ExercisesListAdapter mAdapter_category_2;
     private ExercisesListAdapter mAdapter_category_3;
 
-
-
+    private TextView mAllExsCategory1;
+    private TextView mAllExsCategory2;
+    private TextView mAllExsCategory3;
 
     private ExercisesViewModel mExercisesViewModel;
 
@@ -58,12 +60,17 @@ public class ExercisesFragment_v_2 extends Fragment {
         mRecyclerView_category_1 = view.findViewById(R.id.recyclerView_category_1);
         mRecyclerView_category_2 = view.findViewById(R.id.recyclerView_category_2);
         mRecyclerView_category_3 = view.findViewById(R.id.recyclerView_category_3);
+
+        mAllExsCategory1 = view.findViewById(R.id.textViewAll1);
+        mAllExsCategory2 = view.findViewById(R.id.textViewAll2);
+        mAllExsCategory3 = view.findViewById(R.id.textViewAll3);
+
         mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
 
         mExercisesViewModel.getExByCategory(1).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter_category_1 = new ExercisesListAdapter(exercises, (exercise, position) -> {
-                int id = exercise.id;
 
+                int id = exercise.id;
                 startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
                         .putExtra(EXTRA_ID_EX, id));
 
@@ -109,6 +116,19 @@ public class ExercisesFragment_v_2 extends Fragment {
             mRecyclerView_category_3.setAdapter(mAdapter_category_3);
         });
 
+        mAllExsCategory1.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction().replace(R.id.main_activity_container,
+                   AllExsByCategoryFragment.newInstance(1)).commit();
+        });
+
+        mAllExsCategory2.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction().replace(R.id.main_activity_container,
+                    AllExsByCategoryFragment.newInstance(2)).commit();
+        });
+        mAllExsCategory3.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction().replace(R.id.main_activity_container,
+                    AllExsByCategoryFragment.newInstance(3)).commit();
+        });
 
 
         return view;

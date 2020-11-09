@@ -30,7 +30,9 @@ public class ExercisesCategory3Fragment extends Fragment {
 
     private TextView mTwisters_tv;
     private ImageButton mNextTwistButton;
+    private TextView mTongueTwisterHelp_tv;
     private String[] mTwists = {};
+    private int mClickCounter = 1;
     private Random r = new Random();
     private AdView mAdView;
     private int mExId;
@@ -68,6 +70,7 @@ public class ExercisesCategory3Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tongue_twister, container, false);
         mTwisters_tv = view.findViewById(R.id.twisters);
         mNextTwistButton = view.findViewById(R.id.nextTwist);
+        mTongueTwisterHelp_tv = view.findViewById(R.id.tongue_twister_help);
 
         switch (mExId){
             case 30:
@@ -90,8 +93,32 @@ public class ExercisesCategory3Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setTwist();
+        mTongueTwisterHelp_tv.setText("Проговаривайте тест медленно");
         mNextTwistButton.setOnClickListener(v -> {
-            setTwist();
+            switch (mClickCounter){
+                case 1:
+                    mTongueTwisterHelp_tv.setText("Беззвучно произнесите скороговорку. Движениями губ.");
+                    mClickCounter++;
+                    break;
+                case 2:
+                    mTongueTwisterHelp_tv.setText("Произнесите текст в пол голоса, шепотом");
+                    mClickCounter++;
+                    break;
+                case 3:
+                    mTongueTwisterHelp_tv.setText("Произнесите вслух, громко, но все ещё медленно и четко");
+                    mClickCounter++;
+                    break;
+                case 4:
+                    mTongueTwisterHelp_tv.setText("Теперь пробуйте произносить текст в разных стилях, с раной интонацией, с разной скоростью");
+                    mClickCounter++;
+                    break;
+                case 5:
+                    setTwist();
+                    mClickCounter = 1;
+                    mTongueTwisterHelp_tv.setText("Проговаривайте тест медленно");
+                    break;
+            }
+
         });
 
         mAdView = view.findViewById(R.id.adViewTab2);

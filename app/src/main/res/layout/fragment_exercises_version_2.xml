@@ -38,8 +38,20 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Для развития легкости речи"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_1"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewAll1"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewAll1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Все(12)"
+                    android:textColor="#0079DA"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_1"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -82,9 +94,22 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Для увеличения словарного запаса"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_2"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewAll2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewAll2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Все(3)"
+                    android:textColor="#0079DA"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_category_2"
@@ -127,8 +152,19 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Скороговорки"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_3"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewAll3"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewAll3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Все(3)"
+                    android:textColor="#0079DA"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
