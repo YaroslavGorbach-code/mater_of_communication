@@ -33,4 +33,12 @@ public class Repo_2 {
         return mExDao.getExercisesByCategory(category);
     }
 
+    public LiveData<List<Exercise>> getFavoriteExs() {
+        return mExDao.getFavoriteExercises();
+    }
+
+    public LiveData<Exercise> getExerciseById(int id) {
+        return mExDao.getExerciseById(id);
+    }
+
 }

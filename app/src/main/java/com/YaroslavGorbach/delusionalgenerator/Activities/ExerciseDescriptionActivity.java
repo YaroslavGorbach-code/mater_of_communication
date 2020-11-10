@@ -1,10 +1,16 @@
 package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 
+import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesDescriptionFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
@@ -15,20 +21,47 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
     private MaterialToolbar mToolbar;
     private int mExId;
     public static final String EXTRA_ID_EX = "EXTRA_ID_EX";
+    private Exercise mExercise;
+    private ExercisesViewModel mViewModel;
+    private Menu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exersice_description2);
+        mViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
         mToolbar = findViewById(R.id.toolbar_ex_category_1);
-        mToolbar.inflateMenu(R.menu.menu_ex_open_statistic);
+        mToolbar.inflateMenu(R.menu.menu_description);
         mExId = getIntent().getIntExtra(EXTRA_ID_EX, -1);
+        mMenu = mToolbar.getMenu();
+
 
         /*Показ банера*/
         AdView mAdView;
         mAdView = findViewById(R.id.adViewTab1);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        mViewModel.getExerciseById(mExId).observe(this, new Observer<Exercise>() {
+            @Override
+            public void onChanged(Exercise exercise) {
+                mExercise = exercise;
+
+                switch (exercise.favorite){
+                    case 1:
+                     mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                                ExerciseDescriptionActivity.this, R.drawable.ic_baseline_star));
+                        break;
+
+                    case 0:
+                        mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                                ExerciseDescriptionActivity.this, R.drawable.ic_star_outline));
+                        break;
+                }
+            }
+        });
+
+
 
         /*В зависимости от айди упражнения мы выбираем потходяшии слова и иницыализируем наши view*/
         switch (mExId){
@@ -94,8 +127,32 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
 
         /*Оброботка нажатия на кнопку помощи по упражнению.*/
         mToolbar.setOnMenuItemClickListener(v->{
-            startActivity(new Intent(this, Statistics_activity.class)
-                    .putExtra(Statistics_activity.EXTRA_ID_EX, mExId));
+            switch (v.getItemId()){
+                case R.id.add_to_favorite:
+
+                    switch (mExercise.favorite){
+                        case 0:
+                            mExercise.favorite = 1;
+                            mViewModel.update(mExercise);
+                           v.setIcon(ContextCompat.getDrawable(
+                                 ExerciseDescriptionActivity.this, R.drawable.ic_baseline_star));
+                            break;
+
+                        case 1:
+                            mExercise.favorite = 0;
+                            mViewModel.update(mExercise);
+                            v.setIcon(ContextCompat.getDrawable(
+                                    ExerciseDescriptionActivity.this, R.drawable.ic_star_outline));
+                            break;
+                    }
+
+                    break;
+                case R.id.open_statistic_ex:
+                    startActivity(new Intent(this, Statistics_activity.class)
+                            .putExtra(Statistics_activity.EXTRA_ID_EX, mExId));
+                    break;
+            }
+
             return true;
         });
                 /*Остановка активити при нажатии на стрелку назад*/

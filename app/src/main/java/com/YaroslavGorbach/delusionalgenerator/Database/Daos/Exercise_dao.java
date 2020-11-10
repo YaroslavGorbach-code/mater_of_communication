@@ -25,6 +25,9 @@ public interface Exercise_dao {
     @Query("SELECT * FROM exercises_table WHERE category = :category ORDER BY id ASC")
     LiveData<List<Exercise>> getExercisesByCategory(int category);
 
+    @Query("SELECT * FROM exercises_table WHERE id = :id")
+    LiveData<Exercise> getExerciseById(int id);
+
     @Query("SELECT * FROM exercises_table WHERE favorite = 1 ORDER BY id ASC")
     LiveData<List<Exercise>> getFavoriteExercises();
 

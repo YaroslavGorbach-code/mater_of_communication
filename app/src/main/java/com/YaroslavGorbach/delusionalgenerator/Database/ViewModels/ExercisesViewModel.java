@@ -37,4 +37,12 @@ public class ExercisesViewModel extends AndroidViewModel {
         return mRepo.getExByCategory(category);
     }
 
+    public LiveData<List<Exercise>> getFavoriteExs() {
+        return mRepo.getFavoriteExs();
+    }
+
+    public LiveData<Exercise> getExerciseById(int id) {
+        return mRepo.getExerciseById(id);
+    }
+
 }

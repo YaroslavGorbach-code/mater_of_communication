@@ -15,6 +15,7 @@ import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.FavoriteExsFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
