@@ -32,6 +32,8 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
         mToolbar = findViewById(R.id.toolbar_ex_category_1);
         mToolbar.inflateMenu(R.menu.menu_description);
+        mToolbar.setNavigationIcon(ContextCompat.getDrawable(
+                ExerciseDescriptionActivity.this, R.drawable.ic_arrow_back));
         mExId = getIntent().getIntExtra(EXTRA_ID_EX, -1);
         mMenu = mToolbar.getMenu();
 
@@ -42,22 +44,20 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        mViewModel.getExerciseById(mExId).observe(this, new Observer<Exercise>() {
-            @Override
-            public void onChanged(Exercise exercise) {
-                mExercise = exercise;
+        /*Установка иконки в туллбар в зависимости от того упражнение в избранном или нет*/
+        mViewModel.getExerciseById(mExId).observe(this, exercise -> {
+            mExercise = exercise;
 
-                switch (exercise.favorite){
-                    case 1:
-                     mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
-                                ExerciseDescriptionActivity.this, R.drawable.ic_baseline_star));
-                        break;
+            switch (exercise.favorite){
+                case 1:
+                 mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            ExerciseDescriptionActivity.this, R.drawable.ic_baseline_star));
+                    break;
 
-                    case 0:
-                        mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
-                                ExerciseDescriptionActivity.this, R.drawable.ic_star_outline));
-                        break;
-                }
+                case 0:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            ExerciseDescriptionActivity.this, R.drawable.ic_star_outline));
+                    break;
             }
         });
 
@@ -122,10 +122,11 @@ public class ExerciseDescriptionActivity extends AppCompatActivity {
                 break;
 
         }
+        /*Устновка фрагмента с описанием для упражнения*/
         getSupportFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
                 ExercisesDescriptionFragment.newInstance(mExId)).commit();
 
-        /*Оброботка нажатия на кнопку помощи по упражнению.*/
+        /*Оброботка нажатия на иконки тулбара*/
         mToolbar.setOnMenuItemClickListener(v->{
             switch (v.getItemId()){
                 case R.id.add_to_favorite:

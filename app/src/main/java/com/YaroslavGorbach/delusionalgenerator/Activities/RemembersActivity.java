@@ -23,7 +23,7 @@ import com.YaroslavGorbach.delusionalgenerator.Fragments.TimePickerFragment;
 import java.util.Calendar;
 
 public class RemembersActivity extends AppCompatActivity {
-
+    // TODO: 10.11.2020 переделать полностю систему оповищений
     private CheckBox mCheckM;
     private CheckBox mCheckT;
     private CheckBox mCheckW;
@@ -106,6 +106,7 @@ public class RemembersActivity extends AppCompatActivity {
         mCheckSt.setChecked(mRepo.getNotificationState(6));
         mCheckS.setChecked(mRepo.getNotificationState(7));
 
+        /*Оброботка нажатий на элименты нижней навигации*/
         setNotifyTime();
         mRepo.addListener(this::setNotifyTime);
 

@@ -29,7 +29,6 @@ public class AllExsByCategoryFragment extends Fragment {
 
     private static final String ARG_EX_CATEGORY_ID = "ARG_EX_CATEGORY_ID";
 
-    // TODO: Rename and change types of parameters
     private int mExCategoryId;
     private ExercisesViewModel mExercisesViewModel;
     private ExercisesGridListAdapter mAdapter;
@@ -41,7 +40,6 @@ public class AllExsByCategoryFragment extends Fragment {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static AllExsByCategoryFragment newInstance(int mExCategoryId){
         AllExsByCategoryFragment fragment = new AllExsByCategoryFragment();
         Bundle args = new Bundle();
@@ -65,6 +63,7 @@ public class AllExsByCategoryFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_all_exs_by_category, container, false);
     mRecycler = view.findViewById(R.id.list_exs_by_category);
 
+        /*Создаем адаптер*/
         mExercisesViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
@@ -79,5 +78,11 @@ public class AllExsByCategoryFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
     }
 }

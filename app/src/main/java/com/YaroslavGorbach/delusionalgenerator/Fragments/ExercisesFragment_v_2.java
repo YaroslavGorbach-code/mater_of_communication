@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +20,7 @@ import com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionAct
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity.EXTRA_ID_EX;
 
@@ -27,6 +30,8 @@ import static com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescrip
  * create an instance of this fragment.
  */
 public class ExercisesFragment_v_2 extends Fragment {
+
+    private BottomNavigationView mBottomNavigationView;
 
 
     private RecyclerView mRecyclerView_category_1;
@@ -64,6 +69,16 @@ public class ExercisesFragment_v_2 extends Fragment {
         mAllExsCategory1 = view.findViewById(R.id.textViewAll1);
         mAllExsCategory2 = view.findViewById(R.id.textViewAll2);
         mAllExsCategory3 = view.findViewById(R.id.textViewAll3);
+
+        mBottomNavigationView = view.findViewById(R.id.bttm_nav);
+
+
+
+
+        AudioListFragment fragmentAudioList = new AudioListFragment();
+        FavoriteExsFragment favoriteExsFragment = new FavoriteExsFragment();
+        ExercisesFragment_v_2 fragmentExercises = ExercisesFragment_v_2.newInstance();
+
 
         mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
 
@@ -117,21 +132,35 @@ public class ExercisesFragment_v_2 extends Fragment {
         });
 
         mAllExsCategory1.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction().replace(R.id.main_activity_container,
-                   AllExsByCategoryFragment.newInstance(1)).commit();
+            Navigation.findNavController(view).navigate(R.id.action_exercisesFragment_v_2_to_allExsByCategoryFragment);
+            getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
         });
 
         mAllExsCategory2.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction().replace(R.id.main_activity_container,
-                    AllExsByCategoryFragment.newInstance(2)).commit();
+            Navigation.findNavController(view).navigate(R.id.action_exercisesFragment_v_2_to_allExsByCategoryFragment);
+            getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
         });
         mAllExsCategory3.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction().replace(R.id.main_activity_container,
-                    AllExsByCategoryFragment.newInstance(3)).commit();
+            Navigation.findNavController(view).navigate(R.id.action_exercisesFragment_v_2_to_allExsByCategoryFragment);
+            getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
         });
 
-
-        return view;
+        /*Оброботка нажатий на элименты нижней навигации*/
+//        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()){
+//                case (R.id.page_ex):
+//                    Navigation.findNavController(view).navigate(R.id.action_exercisesFragment_v_2_self);
+//                    return true;
+//                case (R.id.page_star):
+//                    Navigation.findNavController(view).navigate(R.id.action_exercisesFragment_v_2_to_favoriteExsFragment);
+//                    return true;
+//                case (R.id.page_voice):
+//                    Navigation.findNavController(view).navigate(R.id.action_exercisesFragment_v_2_to_audioListFragment);
+//                    return true;
+//            }
+//            return false;
+//        });
+            return view;
     }
 
     @Override

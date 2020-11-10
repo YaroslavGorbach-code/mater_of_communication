@@ -78,22 +78,11 @@ public class ExercisesCategory1Fragment extends Fragment {
 
     private static final String ARG_ID_EX = "ARG_ID_EX";
 
-    public interface FinishEx{
-        void onFinish();
-    }
 
     public ExercisesCategory1Fragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param exId Parameter 1.
-     * @return A new instance of fragment ExerciseDescriptionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static ExercisesCategory1Fragment newInstance(int exId) {
         ExercisesCategory1Fragment fragment = new ExercisesCategory1Fragment();
         Bundle args = new Bundle();

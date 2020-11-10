@@ -1,17 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_ex"
+        android:id="@+id/exercisesFragment_v_2"
         android:enabled="true"
         android:title="Упражнения"
+        android:orderInCategory="1"
         android:icon="@drawable/ic_notifi"/>
     <item
-        android:id="@+id/page_star"
+        android:id="@+id/favoriteExsFragment"
         android:enabled="true"
         android:title="Избранные"
+        android:orderInCategory="2"
         android:icon="@drawable/ic_baseline_star"/>
     <item
-        android:id="@+id/page_voice"
+        android:id="@+id/audioListFragment"
         android:enabled="true"
         android:title="Записи"
+        android:orderInCategory="3"
         android:icon="@drawable/ic_voice_stop"/>
 </menu>

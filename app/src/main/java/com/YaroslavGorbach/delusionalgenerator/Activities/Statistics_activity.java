@@ -31,8 +31,16 @@ public class Statistics_activity extends AppCompatActivity  {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_activity);
-        initializeComponents();
 
+        mChartMinutes = findViewById(R.id.chartMinutes);
+        mChartWorldCount = findViewById(R.id.chartWorlds);
+        mToolbar = findViewById(R.id.toolbar_statistics);
+        mToolbar.inflateMenu(R.menu.menu_statistic);
+        mChartMinutes_cv = findViewById(R.id.cardView2);
+        mChartWords_cv = findViewById(R.id.cardView1);
+        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
+
+        /*Если статисти для упражнений второй категории то убрать чарт с минутами*/
         switch (mIdEx){
             case 20:
             case 21:
@@ -42,16 +50,18 @@ public class Statistics_activity extends AppCompatActivity  {
 
         }
 
+        /*Оброботка нажатия на стрелку назад*/
         mToolbar.setNavigationOnClickListener(v->{
             finish();
         });
 
+        /*Показ диалога который для удаления статистики*/
         mToolbar.setOnMenuItemClickListener(v->{
             DialogClearStatistics.crete(mIdEx).show(getSupportFragmentManager(),null);
             return true;
-
         });
 
+        /*Потписка на слушателей*/
         createTimeChart();
         createWorldCounterChart();
         Repo.getInstance(this).addListener(this::createTimeChart);
@@ -59,17 +69,7 @@ public class Statistics_activity extends AppCompatActivity  {
 
     }
 
-
-    private void initializeComponents(){
-        mChartMinutes = findViewById(R.id.chartMinutes);
-        mChartWorldCount = findViewById(R.id.chartWorlds);
-        mToolbar = findViewById(R.id.toolbar_statistics);
-        mToolbar.inflateMenu(R.menu.menu_statistic);
-        mChartMinutes_cv = findViewById(R.id.cardView2);
-        mChartWords_cv = findViewById(R.id.cardView1);
-        mIdEx = getIntent().getIntExtra(EXTRA_ID_EX,-1);
-    }
-
+    /*Создаем чарт для времени*/
     private  void createTimeChart(){
         BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntriesTime(mIdEx), "Минуты");
         BarData data = new BarData(Repo.getInstance(this).getTimeLabels(mIdEx), bardataset);
@@ -79,6 +79,7 @@ public class Statistics_activity extends AppCompatActivity  {
         mChartMinutes.animateY(2000);
     }
 
+    /*Создаем чарт для количества слов*/
     private  void createWorldCounterChart(){
         BarDataSet bardataset = new BarDataSet(Repo.getInstance(this).getEntriesWorldCount(mIdEx), "Слова");
         BarData data = new BarData(Repo.getInstance(this).getWorldCountLabels(mIdEx), bardataset);
@@ -122,6 +123,7 @@ public class Statistics_activity extends AppCompatActivity  {
     }
 
     @Override
+    /*Отписка от слушателей*/
     protected void onDestroy() {
         Repo.getInstance(this).removeListener(this::createTimeChart);
         Repo.getInstance(this).removeListener(this::createWorldCounterChart);

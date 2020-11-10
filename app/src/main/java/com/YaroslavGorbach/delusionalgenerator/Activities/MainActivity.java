@@ -3,11 +3,14 @@ package com.YaroslavGorbach.delusionalgenerator.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment;
@@ -25,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     public static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
     public static final String FIRST_OPEN = "FIRST_OPEN";
     private Toolbar mToolbar;
-    private BottomNavigationView mBottomNavigationView;
 
 
     @Override
@@ -34,8 +36,11 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
+        NavHostFragment navHostFragment =(NavHostFragment)getSupportFragmentManager()
+                .findFragmentById(R.id.fragment);
+        NavigationUI.setupWithNavController(bottomNavigationView,
+                navHostFragment.getNavController());
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
@@ -49,85 +54,60 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
             editor.apply();
         }
 
-        mToolbar = findViewById(R.id.toolbar_main);
-
-       ExercisesFragment_v_2 fragmentExercises = ExercisesFragment_v_2.newInstance();
-        AudioListFragment fragmentAudioList = new AudioListFragment();
-        FavoriteExsFragment favoriteExsFragment = new FavoriteExsFragment();
-
-        getSupportFragmentManager().beginTransaction()
-               .replace(R.id.main_activity_container,fragmentExercises).commit();
-
-        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
-
-                case (R.id.page_ex):
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_activity_container, fragmentExercises).commit();
-                    return true;
-
-                case (R.id.page_star):
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_activity_container, favoriteExsFragment).commit();
-                    return true;
 
 
-                case (R.id.page_voice):
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_activity_container, fragmentAudioList).commit();
-                    return true;
-            }
-            return false;
-        });
+        /*Установка фрагмента с листом из упражнений в контейнер главного экрана*/
 
-        /*Оброботка нажатий на елементы меню*/
-        mToolbar.setOnMenuItemClickListener(v->{
-
-           switch (v.getItemId()){
 
 
 
-               case R.id.theme:
-
-                   DialogChooseTheme dialog = new DialogChooseTheme();
-                   dialog.show(getSupportFragmentManager(),"Выбор темы");
-
-
-                   break;
-               case R.id.remember:
-
-                   startActivity(new Intent(this, RemembersActivity.class));
-
-                   break;
-               case R.id.rate:
-
-                   Uri uriUrl = Uri.parse("https://play.google.com/store/apps/details?id=com.YaroslavGorbach.delusionalgenerator");
-                   Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-                   startActivity(launchBrowser);
-
-                   break;
-               case R.id.share:
-
-                   Intent sendIntent = new Intent();
-                   sendIntent.setAction(Intent.ACTION_SEND);
-                   sendIntent.putExtra(Intent.EXTRA_TEXT,
-                           "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
-                   sendIntent.setType("text/plain");
-                   startActivity(sendIntent);
-
-                   break;
-               case R.id.aboutApp:
-
-                   DialogAboutApp dialog2 = new DialogAboutApp();
-                   dialog2.show(getSupportFragmentManager(),"AboutApp");
-
-                   break;
-           }
-
-            return true;
-        });
+        /*Оброботка нажатий на елементы меню*/
+//        mToolbar.setOnMenuItemClickListener(v->{
+//
+//           switch (v.getItemId()){
+//
+//               case R.id.theme:
+//
+//                   DialogChooseTheme dialog = new DialogChooseTheme();
+//                   dialog.show(getSupportFragmentManager(),"Выбор темы");
+//
+//
+//                   break;
+//               case R.id.remember:
+//
+//                   startActivity(new Intent(this, RemembersActivity.class));
+//
+//                   break;
+//               case R.id.rate:
+//
+//                   Uri uriUrl = Uri.parse("https://play.google.com/store/apps/details?id=com.YaroslavGorbach.delusionalgenerator");
+//                   Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+//                   startActivity(launchBrowser);
+//
+//                   break;
+//               case R.id.share:
+//
+//                   Intent sendIntent = new Intent();
+//                   sendIntent.setAction(Intent.ACTION_SEND);
+//                   sendIntent.putExtra(Intent.EXTRA_TEXT,
+//                           "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+//                   sendIntent.setType("text/plain");
+//                   startActivity(sendIntent);
+//
+//                   break;
+//               case R.id.aboutApp:
+//
+//                   DialogAboutApp dialog2 = new DialogAboutApp();
+//                   dialog2.show(getSupportFragmentManager(),"AboutApp");
+//
+//                   break;
+//           }
+//
+//            return true;
+//        });
 
     }
+
 
     /*Установка темы*/
     private void setTheme(){
