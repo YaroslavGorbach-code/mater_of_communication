@@ -42,6 +42,8 @@ public class FavoriteExsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
+        getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
+
     }
 
     @Override

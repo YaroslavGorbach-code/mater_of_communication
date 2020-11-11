@@ -1,7 +1,11 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -24,13 +28,13 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Random;
 
 public class ExercisesCategory1Fragment extends Fragment {
@@ -59,6 +63,7 @@ public class ExercisesCategory1Fragment extends Fragment {
     private MediaRecorder mediaRecorder;
     private String recordFile;
     private String mExName;
+    private MaterialToolbar mMaterialToolbar;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -76,39 +81,28 @@ public class ExercisesCategory1Fragment extends Fragment {
    private String [] mArrayWorlds_ex12 = {};
 
 
-    private static final String ARG_ID_EX = "ARG_ID_EX";
-
-
     public ExercisesCategory1Fragment() {
     }
 
 
     public static ExercisesCategory1Fragment newInstance(int exId) {
-        ExercisesCategory1Fragment fragment = new ExercisesCategory1Fragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_ID_EX, exId);
-        fragment.setArguments(args);
-        return fragment;
+        return new ExercisesCategory1Fragment();
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mIdEx = getArguments().getInt(ARG_ID_EX, -1);
-        }
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_exercises, container, false);
+        View view = inflater.inflate(R.layout.fragment_exercises_category_1, container, false);
 
         mButtonStartPause = view.findViewById(R.id.button);
         mChronometer_allTime = view.findViewById(R.id.chronometer_allTime);
         mButtonNextWorld = view.findViewById(R.id.buttonNextWorld);
         mWorld = view.findViewById(R.id.world_tv);
         mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
+        mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_1);
+        mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         mThumb = view.findViewById(R.id.thumb_iv);
         mTextUnderThumb = view.findViewById(R.id.textUnderThumb);
@@ -117,7 +111,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         mThumbAndText = view.findViewById(R.id.thumbAndText);
         mWorldCounter = view.findViewById(R.id.world_counter);
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
-
+        mIdEx = ExercisesCategory1FragmentArgs.fromBundle(getArguments()).getIdEx();
 
         /*Поиск всех view и запуск секундомера*/
         mChronometer_allTime.start();
@@ -135,6 +129,7 @@ public class ExercisesCategory1Fragment extends Fragment {
                 mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 mExName = "Лингвистические пирамиды";
+                mMaterialToolbar.setTitle(mExName);
                 mThumbAndText.setVisibility(View.VISIBLE);
                 mShort_des.setText("Обобщайте, разобобщайте и переходите по аналогиям");
                 break;
@@ -144,6 +139,7 @@ public class ExercisesCategory1Fragment extends Fragment {
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_Alive);
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "Чем ворон похож на стул";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Найдите сходство");
                 break;
 
@@ -151,58 +147,81 @@ public class ExercisesCategory1Fragment extends Fragment {
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_filings);
                 mExName = "Чем ворон похож на стул (чувства)";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Найдите сходство");
                 break;
 
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "Продвинутое сявязывание";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Найдите сходства");
                 break;
 
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "О чем вижу, о том и пою";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Говорите максимально долго об этом");
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_abbreviations);
                 mExName = "Другие варианты сокращений";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Придумайте необычную расшифровку");
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "Волшебный нейминг";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных");
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "Купля-продажа";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Продайте это");
                 break;
             case 9:
                 mArrayWorlds_ex9 = getResources().getStringArray(R.array.letters);
                 mExName = "Вспомнить все";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Назовите 15 слов, которые начинаются с этой буквы");
                 break;
             case 10:
                 mArrayWorlds_ex10 = getResources().getStringArray(R.array.Terms);
                 mExName = "В соавторстве с Далем";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Дайте определение слову");
                 break;
             case 11:
                 mArrayWorlds_ex11 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "Тест Роршаха";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Придумайте чем это может быть еще");
                 break;
             case 12:
                 mArrayWorlds_ex12 = getResources().getStringArray(R.array.professions);
                 mExName = "Хуже уже не будет";
+                mMaterialToolbar.setTitle(mExName);
                 mShort_des.setText("Придумайте ситуацию или фразу худшего в мире");
                 break;
         }
+        setWorld();
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mMaterialToolbar.setNavigationOnClickListener(v -> {
+            NavDirections action = ExercisesCategory1FragmentDirections.
+                    actionExercisesCategory1FragmentToExercisesFragmentV2();
+            Navigation.findNavController(view).navigate(action);
+        });
 
         /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
         mButtonStartPause.setOnClickListener(v->{
@@ -262,22 +281,17 @@ public class ExercisesCategory1Fragment extends Fragment {
             mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
         });
 
-        /*Завершение упражнения при нажатии */
+        /*Завершение упражнения при нажатии*/
         mButtonFinish.setOnClickListener(v->{
-                getActivity().finish();
-            });
-
-        setWorld();
-
-        return view;
+            NavDirections action = ExercisesCategory1FragmentDirections.
+                    actionExercisesCategory1FragmentToExercisesFragmentV2();
+            Navigation.findNavController(view).navigate(action);
+        });
     }
-
-
-
 
     private boolean checkRecordPermission() {
         //Check permission
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), recordPermission) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireActivity(), recordPermission) == PackageManager.PERMISSION_GRANTED) {
             //Permission Granted
             return true;
         } else {
@@ -304,7 +318,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         mIsRecording = true;
 
         //Get app external directory path
-        String recordPath = Objects.requireNonNull(getActivity()).getExternalFilesDir("/").getAbsolutePath();
+        String recordPath = requireActivity().getExternalFilesDir("/").getAbsolutePath();
 
         //Get current date and time
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());

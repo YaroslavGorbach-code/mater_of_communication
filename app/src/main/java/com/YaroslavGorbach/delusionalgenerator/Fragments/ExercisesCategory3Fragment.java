@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,10 +41,7 @@ public class ExercisesCategory3Fragment extends Fragment {
     private int mExId;
     private long mStartExTime;
     private int mNumber_of_tongue_twisters = 0;
-
-    private static final String ARG_EX_ID = "ARG_EX_ID";
-
-
+    private MaterialToolbar mMaterialToolbar;
 
 
     public ExercisesCategory3Fragment() {
@@ -49,28 +49,25 @@ public class ExercisesCategory3Fragment extends Fragment {
     }
 
     public static ExercisesCategory3Fragment newInstance(int exId) {
-        ExercisesCategory3Fragment fragment = new ExercisesCategory3Fragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_EX_ID, exId);
-        fragment.setArguments(args);
-        return fragment;
+        return new ExercisesCategory3Fragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mExId = getArguments().getInt(ARG_EX_ID);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_tongue_twister, container, false);
+        View view = inflater.inflate(R.layout.fragment_exercises_category_3, container, false);
         mTwisters_tv = view.findViewById(R.id.twisters);
         mNextTwistButton = view.findViewById(R.id.nextTwist);
         mTongueTwisterHelp_tv = view.findViewById(R.id.tongue_twister_help);
+        mStartExTime = SystemClock.elapsedRealtime();
+        mExId = ExercisesCategory3FragmentArgs.fromBundle(getArguments()).getExId();
+        mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_3);
+        mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         switch (mExId){
             case 30:
@@ -84,15 +81,31 @@ public class ExercisesCategory3Fragment extends Fragment {
                 break;
         }
 
-        mStartExTime = SystemClock.elapsedRealtime();
         return view;
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setTwist();
+        mMaterialToolbar.setNavigationOnClickListener(v -> {
+            NavDirections action = ExercisesCategory3FragmentDirections.
+                    actionExercisesCategory3FragmentToExercisesFragmentV2();
+            Navigation.findNavController(view).navigate(action);
+        });
+
+        switch (mExId){
+            case 30:
+                mMaterialToolbar.setTitle("Простые скороговорки");
+                break;
+            case 31:
+                mMaterialToolbar.setTitle("Сложные скороговорки");
+                break;
+            case 32:
+                mMaterialToolbar.setTitle("Очень сложные скороговорки");
+                break;
+        }
+
         mTongueTwisterHelp_tv.setText("Проговаривайте тест медленно");
         mNextTwistButton.setOnClickListener(v -> {
             switch (mClickCounter){

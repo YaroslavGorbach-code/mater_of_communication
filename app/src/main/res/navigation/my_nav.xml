@@ -36,6 +36,21 @@
             android:name="exId"
             app:argType="integer"
             android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory3Fragment"
+            app:destination="@id/exercisesCategory3Fragment" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory2Fragment"
+            app:destination="@id/exercisesCategory2Fragment" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory1Fragment"
+            app:destination="@id/exercisesCategory1Fragment" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesFragment_v_2"
+            app:destination="@id/exercisesFragment_v_2" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
@@ -63,5 +78,60 @@
         <action
             android:id="@+id/action_allExsByCategoryFragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment" />
+        <action
+            android:id="@+id/action_allExsByCategoryFragment_to_exercisesFragment_v_2"
+            app:destination="@id/exercisesFragment_v_2" />
+    </fragment>
+    <fragment
+        android:id="@+id/exercisesCategory1Fragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory1Fragment"
+        android:label="activity_exercises"
+        tools:layout="@layout/fragment_exercises_category_1" >
+        <argument
+            android:name="idEx"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_exercisesCategory1Fragment_to_exercisesFragment_v_2"
+            app:destination="@id/exercisesFragment_v_2" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" >
+        <argument
+            android:name="exId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_exercisesDescriptionFragment"
+            app:destination="@id/exercisesDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exercisesCategory3Fragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory3Fragment"
+        android:label="fragment_tongue_twister"
+        tools:layout="@layout/fragment_exercises_category_3" >
+        <argument
+            android:name="exId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_exercisesCategory3Fragment_to_exercisesFragment_v_2"
+            app:destination="@id/exercisesFragment_v_2" />
+    </fragment>
+    <fragment
+        android:id="@+id/exercisesCategory2Fragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory2Fragment"
+        android:label="fragment_exercises_category2"
+        tools:layout="@layout/fragment_exercises_category_2" >
+        <argument
+            android:name="idEx"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_exercisesCategory2Fragment_to_exercisesFragment_v_2"
+            app:destination="@id/exercisesFragment_v_2" />
     </fragment>
 </navigation>

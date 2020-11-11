@@ -18,7 +18,7 @@ import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Utility;
-
+import com.google.android.material.appbar.MaterialToolbar;
 
 
 public class AllExsByCategoryFragment extends Fragment {
@@ -29,6 +29,7 @@ public class AllExsByCategoryFragment extends Fragment {
     private ExercisesViewModel mExercisesViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
+    private MaterialToolbar mMaterialToolbar;
 
 
     public AllExsByCategoryFragment() {
@@ -53,7 +54,14 @@ public class AllExsByCategoryFragment extends Fragment {
     mRecycler = view.findViewById(R.id.list_exs_by_category);
     mExCategoryId = AllExsByCategoryFragmentArgs.fromBundle(getArguments()).getCategoryId();
     mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+    mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
 
+    mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+    mMaterialToolbar.setNavigationOnClickListener(v -> {
+    NavDirections action = AllExsByCategoryFragmentDirections.
+            actionAllExsByCategoryFragmentToExercisesFragmentV2();
+    Navigation.findNavController(view).navigate(action);
+    });
 
         /*Создаем адаптер*/
         mExercisesViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
@@ -73,4 +81,9 @@ public class AllExsByCategoryFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMaterialToolbar.setNavigationIcon(null);
+    }
 }

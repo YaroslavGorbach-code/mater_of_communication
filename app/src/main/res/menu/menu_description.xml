@@ -4,7 +4,7 @@
 <item
     android:id="@+id/add_to_favorite"
     android:title="В избранные"
-    android:icon="@drawable/ic_baseline_star"
+    android:icon="@drawable/ic_star_outline"
     app:showAsAction="always">
 </item>
 

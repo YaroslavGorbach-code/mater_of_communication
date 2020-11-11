@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +53,7 @@ public class StatisticsFragment extends Fragment {
         mToolbar.inflateMenu(R.menu.menu_statistic);
         mChartMinutes_cv = view.findViewById(R.id.cardView2);
         mChartWords_cv = view.findViewById(R.id.cardView1);
-        //mIdEx =
+        mIdEx = StatisticsFragmentArgs.fromBundle(getArguments()).getExId();
 
 
         return view;
@@ -83,9 +85,11 @@ public class StatisticsFragment extends Fragment {
 
         }
         /*Оброботка нажатия на стрелку назад*/
-//        mToolbar.setNavigationOnClickListener(v->{
-//            finish();
-//        });
+        mToolbar.setNavigationOnClickListener(v->{
+            NavDirections action = StatisticsFragmentDirections.
+                    actionStatisticsFragmentToExercisesDescriptionFragment().setExId(mIdEx);
+            Navigation.findNavController(view).navigate(action);
+        });
 
 
     }
