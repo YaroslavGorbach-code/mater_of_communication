@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Statistics_activity"
+    tools:context=".Fragments.StatisticsFragment"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -66,6 +66,5 @@
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </LinearLayout>

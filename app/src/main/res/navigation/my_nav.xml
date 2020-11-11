@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/exercisesFragment_v_2"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment"
         android:label="fragment_exercises_version_2"
-        tools:layout="@layout/fragment_exercises_version_2" >
+        tools:layout="@layout/fragment_exercises" >
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_exercisesDescriptionFragment3"
             app:destination="@id/exercisesDescriptionFragment" />
@@ -20,17 +20,23 @@
             android:id="@+id/action_exercisesFragment_v_2_to_favoriteExsFragment"
             app:destination="@id/favoriteExsFragment" />
         <action
-            android:id="@+id/action_exercisesFragment_v_2_self"
-            app:destination="@id/exercisesFragment_v_2" />
-        <action
             android:id="@+id/action_exercisesFragment_v_2_to_allExsByCategoryFragment"
             app:destination="@id/allExsByCategoryFragment" />
+        <argument
+            android:name="idEx"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesDescriptionFragment"
         android:label="fragment_exercise_description"
-        tools:layout="@layout/fragment_exercise_description" />
+        tools:layout="@layout/fragment_exercise_description" >
+        <argument
+            android:name="exId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/audioListFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment"
@@ -40,10 +46,22 @@
         android:id="@+id/favoriteExsFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.FavoriteExsFragment"
         android:label="fragment_favorit_exs"
-        tools:layout="@layout/fragment_favorit_exs" />
+        tools:layout="@layout/fragment_favorit_exs" >
+        <action
+            android:id="@+id/action_favoriteExsFragment_to_exercisesDescriptionFragment"
+            app:destination="@id/exercisesDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/allExsByCategoryFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.AllExsByCategoryFragment"
         android:label="fragment_all_exs_by_category"
-        tools:layout="@layout/fragment_all_exs_by_category" />
+        tools:layout="@layout/fragment_all_exs_by_category" >
+        <argument
+            android:name="categoryId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_allExsByCategoryFragment_to_exercisesDescriptionFragment"
+            app:destination="@id/exercisesDescriptionFragment" />
+    </fragment>
 </navigation>

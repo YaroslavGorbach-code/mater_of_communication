@@ -5,8 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -14,20 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Utility;
 
-import static com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity.EXTRA_ID_EX;
 
 
 public class AllExsByCategoryFragment extends Fragment {
 
 
-    private static final String ARG_EX_CATEGORY_ID = "ARG_EX_CATEGORY_ID";
 
     private int mExCategoryId;
     private ExercisesViewModel mExercisesViewModel;
@@ -40,21 +36,14 @@ public class AllExsByCategoryFragment extends Fragment {
     }
 
 
-    public static AllExsByCategoryFragment newInstance(int mExCategoryId){
-        AllExsByCategoryFragment fragment = new AllExsByCategoryFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_EX_CATEGORY_ID, mExCategoryId);
-        fragment.setArguments(args);
-        return fragment;
+    public static AllExsByCategoryFragment newInstance(){
+        return new AllExsByCategoryFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mExCategoryId = getArguments().getInt(ARG_EX_CATEGORY_ID);
-        }
-        mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+    public void onStart() {
+        super.onStart();
+        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
     }
 
     @Override
@@ -62,13 +51,17 @@ public class AllExsByCategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_all_exs_by_category, container, false);
     mRecycler = view.findViewById(R.id.list_exs_by_category);
+    mExCategoryId = AllExsByCategoryFragmentArgs.fromBundle(getArguments()).getCategoryId();
+    mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+
 
         /*Создаем адаптер*/
         mExercisesViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
-                startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
-                        .putExtra(EXTRA_ID_EX, id));
+                NavDirections action = AllExsByCategoryFragmentDirections.
+                        actionAllExsByCategoryFragmentToExercisesDescriptionFragment().setExId(id);
+                Navigation.findNavController(view).navigate(action);
             });
 
            int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
@@ -80,9 +73,4 @@ public class AllExsByCategoryFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-    }
 }

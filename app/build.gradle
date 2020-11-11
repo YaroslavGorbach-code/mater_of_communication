@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
+
+
 
 android {
     compileSdkVersion 30
@@ -29,13 +32,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'androidx.navigation:navigation-fragment:2.2.2'
-    implementation 'androidx.navigation:navigation-ui:2.2.2'
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
     def room_version = "2.2.5"
     def lifecycle_version = "2.2.0"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     compile 'com.github.bluejamesbond:textjustify-android:2.1.6'
+
 
 
     implementation 'com.google.android.material:material:1.2.1'

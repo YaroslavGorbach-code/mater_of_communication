@@ -1,10 +1,11 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -12,13 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Utility;
-
-import static com.YaroslavGorbach.delusionalgenerator.Activities.ExerciseDescriptionActivity.EXTRA_ID_EX;
 
 public class FavoriteExsFragment extends Fragment {
 
@@ -41,6 +39,12 @@ public class FavoriteExsFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
@@ -55,8 +59,9 @@ public class FavoriteExsFragment extends Fragment {
         mExercisesViewModel.getFavoriteExs().observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
-                startActivity(new Intent(getContext(), ExerciseDescriptionActivity.class)
-                        .putExtra(EXTRA_ID_EX, id));
+                NavDirections action = FavoriteExsFragmentDirections.
+                        actionFavoriteExsFragmentToExercisesDescriptionFragment().setExId(id);
+                Navigation.findNavController(view).navigate(action);
             });
             int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
             mRecycler.setHasFixedSize(true);

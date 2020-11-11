@@ -1,63 +1,56 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ExercisesDescriptionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ExercisesDescriptionFragment extends Fragment {
-
-
-    private static final String ARG_ID_EX = "ARG_ID_EX";
 
 
     private int mExId;
     private MaterialButton mStartExButton;
     private TextView mAimEx_tv;
     private TextView mDescriptionEx_tv;
-
+    private Exercise mExercise;
+    private ExercisesViewModel mViewModel;
+    private Menu mMenu;
+    private MaterialToolbar mToolbar;
 
     public ExercisesDescriptionFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param exId Parameter 1.
-     * @return A new instance of fragment ExerciseDescriptionFragment.
-     */
+
+
     // TODO: Rename and change types and number of parameters
-    public static ExercisesDescriptionFragment newInstance(int exId) {
-        ExercisesDescriptionFragment fragment = new ExercisesDescriptionFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_ID_EX, exId);
-        fragment.setArguments(args);
-        return fragment;
+    public static ExercisesDescriptionFragment newInstance() {
+        return new ExercisesDescriptionFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mExId = getArguments().getInt(ARG_ID_EX, -1);
-        }
+    public void onStart() {
+        super.onStart();
+        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
     }
 
     @Override
@@ -67,9 +60,76 @@ public class ExercisesDescriptionFragment extends Fragment {
         mStartExButton = view.findViewById(R.id.button_start_ex_category_1);
         mAimEx_tv = view.findViewById(R.id.textView_aim_ex);
         mDescriptionEx_tv = view.findViewById(R.id.textView_description_ex);
+        mToolbar = view.findViewById(R.id.toolbar_ex_category_1);
+        mToolbar.inflateMenu(R.menu.menu_description);
+        mToolbar.setNavigationIcon(ContextCompat.getDrawable(
+                getContext(), R.drawable.ic_arrow_back));
+        mMenu = mToolbar.getMenu();
+        mViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+        mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
+
+        /*Установка иконки в туллбар в зависимости от того упражнение в избранном или нет*/
+        mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
+            mExercise = exercise;
+
+            switch (exercise.favorite){
+                case 1:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            getContext(), R.drawable.ic_baseline_star));
+                    break;
+
+                case 0:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            getContext(), R.drawable.ic_star_outline));
+                    break;
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        /*Показ банера*/
+        AdView mAdView;
+        mAdView = view.findViewById(R.id.adViewTab1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
+        /*Оброботка нажатия на иконки тулбара*/
+        mToolbar.setOnMenuItemClickListener(v->{
+            switch (v.getItemId()){
+                case R.id.add_to_favorite:
 
+                    switch (mExercise.favorite){
+                        case 0:
+                            mExercise.favorite = 1;
+                            mViewModel.update(mExercise);
+                            v.setIcon(ContextCompat.getDrawable(
+                                    getContext(), R.drawable.ic_baseline_star));
+                            break;
+
+                        case 1:
+                            mExercise.favorite = 0;
+                            mViewModel.update(mExercise);
+                            v.setIcon(ContextCompat.getDrawable(
+                                    getContext(), R.drawable.ic_star_outline));
+                            break;
+                    }
+
+                    break;
+//                case R.id.open_statistic_ex:
+//                    startActivity(new Intent(getContext(), Statistics_activity.class)
+//                            .putExtra(Statistics_activity.EXTRA_ID_EX, mExId));
+//                    break;
+            }
+
+            return true;
+        });
+
+        /*В зависимости от id упржанения устанавливаем соответствующий текст для описания упражнения*/
         switch (mExId){
 
             case  1:
@@ -159,26 +219,28 @@ public class ExercisesDescriptionFragment extends Fragment {
                 break;
         }
 
-        mStartExButton.setOnClickListener(v -> {
-            if (mExId<20 && mExId > 0){
-                getParentFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
-                        ExercisesCategory1Fragment.newInstance(mExId)).commit();
+        /*При клике на кнопку "Начать" открываем упражнение*/
 
-            }else if(mExId > 19 && mExId < 23){
-                getParentFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
-                        ExercisesCategory2Fragment.newInstance(mExId)).commit();
+//        mStartExButton.setOnClickListener(v -> {
+//            if (mExId<20 && mExId > 0){
+//                getParentFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
+//                        ExercisesCategory1Fragment.newInstance(mExId)).commit();
+//
+//            }else if(mExId > 19 && mExId < 23){
+//                getParentFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
+//                        ExercisesCategory2Fragment.newInstance(mExId)).commit();
+//
+//            } else if(mExId > 29 && mExId < 33){
+//                getParentFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
+//                        ExercisesCategory3Fragment.newInstance(mExId)).commit();
+//            }
+//
+//        });
 
-            } else if(mExId > 29 && mExId < 33){
-                getParentFragmentManager().beginTransaction().replace(R.id.exercise_description_container,
-                         ExercisesCategory3Fragment.newInstance(mExId)).commit();
-        }
+        /*Обработка нажатия стрелки назад*/
+//        mToolbar.setNavigationOnClickListener(v->{
+//            finish();
+//        });
 
-        });
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 }

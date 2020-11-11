@@ -6,19 +6,11 @@ import androidx.fragment.app.DialogFragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment_v_2;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.FavoriteExsFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Установка оброботки нажатий на элементы нижней навигации*/
         BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
         NavHostFragment navHostFragment =(NavHostFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.fragment);
