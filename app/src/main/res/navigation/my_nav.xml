@@ -26,6 +26,9 @@
             android:name="idEx"
             app:argType="integer"
             android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_exercisesFragment_v_2_to_settingsFragment2"
+            app:destination="@id/settingsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
@@ -134,4 +137,9 @@
             android:id="@+id/action_exercisesCategory2Fragment_to_exercisesFragment_v_2"
             app:destination="@id/exercisesFragment_v_2" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

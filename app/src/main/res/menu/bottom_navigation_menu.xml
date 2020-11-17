@@ -17,4 +17,12 @@
         android:title="Записи"
         android:orderInCategory="3"
         android:icon="@drawable/ic_voice_stop"/>
+
+    <item
+        android:id="@+id/settingsFragment2"
+        android:enabled="true"
+        android:title="Настройки"
+        android:orderInCategory="4"
+        android:icon="@drawable/ic_settings"/>
+
 </menu>

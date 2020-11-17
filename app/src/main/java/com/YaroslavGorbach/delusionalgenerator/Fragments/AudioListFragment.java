@@ -75,23 +75,22 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
 
-        //mToolbar = view.findViewById(R.id.toolbar_records);
-
-        /*Получаем файлы из деректории*/
-        String path = getContext().getExternalFilesDir("/").getAbsolutePath();
-        File directory = new File(path);
-        mAllFiles = directory.listFiles();
-
-        /*Сортировка файлов по дате измененя*/
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (mAllFiles != null) {
-                Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
-            }
-        }
         new Thread(() -> {
+            /*Получаем файлы из деректории*/
+            String path = getContext().getExternalFilesDir("/").getAbsolutePath();
+            File directory = new File(path);
+            mAllFiles = directory.listFiles();
 
         }).start();
 
+        new Thread(() -> {
+            /*Сортировка файлов по дате измененя*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (mAllFiles != null) {
+                    Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
+                }
+            }
+        }).start();
 
         /*Показ банера*/
         AdView mAdView;
@@ -192,7 +191,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
     private void resumeAudio() {
         if (mediaPlayer!=null){
             mediaPlayer.start();
-            playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
+            playBtn.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
             isPlaying = true;
             isPause = false;
             updateRunnable();
@@ -203,7 +202,7 @@ public class AudioListFragment extends Fragment implements DialogDeleteRecords.D
     private void pauseAudio() {
         if (mediaPlayer!=null){
             mediaPlayer.pause();
-            playBtn.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_player_play_btn, null));
+            playBtn.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_play_btn, null));
             isPlaying = false;
             isPause = true;
             seekbarHandler.removeCallbacks(updateSeekbar);

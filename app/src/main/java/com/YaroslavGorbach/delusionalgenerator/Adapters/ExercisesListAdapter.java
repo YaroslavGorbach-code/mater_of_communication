@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.TimeAgo;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.List;
@@ -43,6 +44,7 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
     @Override
     public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
         holder.ex_name.setText(mExercises.get(position).name);
+        Glide.with(holder.itemView.getContext()).load(mExercises.get(position).pic).into(holder.ex_image);
     }
 
     @Override
@@ -53,10 +55,12 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
         private TextView ex_name;
+        private ImageView ex_image;
 
         public ExerciseViewHolder (@NonNull View itemView) {
             super(itemView);
             ex_name = itemView.findViewById(R.id.item_ex_name);
+            ex_image = itemView.findViewById(R.id.ex_item_image);
             itemView.setOnClickListener(c ->{
                 onItemListClick.onClickListener(mExercises.get(getAdapterPosition()), getAdapterPosition());
             });
