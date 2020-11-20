@@ -15,13 +15,8 @@ import java.util.Calendar;
 public class TimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 
-    public static TimePickerFragment newInstance(int dayId) {
-        TimePickerFragment f = new TimePickerFragment();
-
-        Bundle args = new Bundle();
-        args.putInt("dayId", dayId);
-        f.setArguments(args);
-        return f;
+    public static TimePickerFragment newInstance() {
+        return new TimePickerFragment();
     }
 
     @Override
@@ -46,6 +41,6 @@ public class TimePickerFragment extends DialogFragment
         if (minute < 10){
             min = "0"+ minute;
         }
-        repo.setNotificationTime(getArguments().getInt("dayId", 0), hour, min);
+        repo.setNotificationTime(hour, min);
     }
 }

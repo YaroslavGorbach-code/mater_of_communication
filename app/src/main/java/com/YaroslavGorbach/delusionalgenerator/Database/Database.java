@@ -56,12 +56,12 @@ public abstract class Database extends RoomDatabase {
 
 
                 mDao.insert(new Exercise(20,"Существительные",2,R.drawable.ex13_backgraund, 0));
-                mDao.insert(new Exercise(21,"Прилагательные",2,R.drawable.gradient_14, 0));
-                mDao.insert(new Exercise(22,"Глаголы",2,R.drawable.gradient_15, 0));
+                mDao.insert(new Exercise(21,"Прилагательные",2,R.drawable.ex14_backgraund, 0));
+                mDao.insert(new Exercise(22,"Глаголы",2,R.drawable.ex15_backgraund, 0));
 
-                mDao.insert(new Exercise(30,"Простые",3,R.drawable.gradient_16, 0));
-                mDao.insert(new Exercise(31,"Сложные",3,R.drawable.gradient_17, 0));
-                mDao.insert(new Exercise(32,"Очень сложные",3,R.drawable.gradient_18, 0));
+                mDao.insert(new Exercise(30,"Простые",3,R.drawable.ex16_backgraund, 0));
+                mDao.insert(new Exercise(31,"Сложные",3,R.drawable.ex17_backgraund, 0));
+                mDao.insert(new Exercise(32,"Очень сложные",3,R.drawable.ex18_backgraund, 0));
 
 
 

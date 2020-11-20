@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
     public static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
     public static final String FIRST_OPEN = "FIRST_OPEN";
-    private Toolbar mToolbar;
 
 
     @Override
@@ -47,57 +46,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
             editor.apply();
         }
 
-
-
-        /*Установка фрагмента с листом из упражнений в контейнер главного экрана*/
-
-
-
-
-        /*Оброботка нажатий на елементы меню*/
-//        mToolbar.setOnMenuItemClickListener(v->{
-//
-//           switch (v.getItemId()){
-//
-//               case R.id.theme:
-//
-//                   DialogChooseTheme dialog = new DialogChooseTheme();
-//                   dialog.show(getSupportFragmentManager(),"Выбор темы");
-//
-//
-//                   break;
-//               case R.id.remember:
-//
-//                   startActivity(new Intent(this, RemembersActivity.class));
-//
-//                   break;
-//               case R.id.rate:
-//
-//                   Uri uriUrl = Uri.parse("https://play.google.com/store/apps/details?id=com.YaroslavGorbach.delusionalgenerator");
-//                   Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-//                   startActivity(launchBrowser);
-//
-//                   break;
-//               case R.id.share:
-//
-//                   Intent sendIntent = new Intent();
-//                   sendIntent.setAction(Intent.ACTION_SEND);
-//                   sendIntent.putExtra(Intent.EXTRA_TEXT,
-//                           "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
-//                   sendIntent.setType("text/plain");
-//                   startActivity(sendIntent);
-//
-//                   break;
-//               case R.id.aboutApp:
-//
-//                   DialogAboutApp dialog2 = new DialogAboutApp();
-//                   dialog2.show(getSupportFragmentManager(),"AboutApp");
-//
-//                   break;
-//           }
-//
-//            return true;
-//        });
 
     }
 
