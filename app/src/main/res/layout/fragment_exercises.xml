@@ -40,14 +40,14 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground">
+                    android:focusable="true">
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:textColor="#FF916F"
                         android:text="Для развития легкости речи"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_1"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll1"
@@ -97,13 +97,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusable="true"
-                    android:foreground="?selectableItemBackground">
+                    >
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:textColor="#FF916F"
                         android:text="Для увеличения словарного запаса"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_2"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll2"
@@ -152,14 +153,14 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground">
+                    android:focusable="true">
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:textColor="#FF916F"
                         android:text="Скороговорки"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_3"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll3"

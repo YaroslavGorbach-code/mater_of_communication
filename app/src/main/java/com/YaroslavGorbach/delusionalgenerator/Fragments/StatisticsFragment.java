@@ -80,7 +80,7 @@ public class StatisticsFragment extends Fragment {
             case 20:
             case 21:
             case 22:
-                mChartMinutes_cv.setVisibility(View.GONE);
+                //mChartMinutes_cv.setVisibility(View.GONE);
                 break;
 
         }

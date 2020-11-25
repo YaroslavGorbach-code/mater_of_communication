@@ -5,10 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
+
+import androidx.annotation.Nullable;
 
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -106,6 +112,7 @@ public class Repo extends SQLiteOpenHelper {
         db.execSQL(CREATE_SQL_N);
         addNotification(db);
     }
+
 
     public void insertDateAndTime(int idEx, String date, float time) {
         ContentValues cv = new ContentValues();

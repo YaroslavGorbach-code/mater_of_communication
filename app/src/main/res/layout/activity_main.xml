@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
@@ -17,12 +18,15 @@
             android:id="@+id/toolbar_main_a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_recordings_del"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Бредогенератор" />
+            app:title="Бредогенератор"
+            app:titleTextColor="#FFFFFF" />
+
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <fragment
         android:id="@+id/fragment"
@@ -45,6 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment"
         app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

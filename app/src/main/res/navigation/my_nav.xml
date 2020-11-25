@@ -59,7 +59,11 @@
         android:id="@+id/audioListFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment"
         android:label="activity_audio_list"
-        tools:layout="@layout/activity_audio_list" />
+        tools:layout="@layout/activity_audio_list" >
+        <action
+            android:id="@+id/action_audioListFragment_self"
+            app:destination="@id/audioListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteExsFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.FavoriteExsFragment"

@@ -24,6 +24,12 @@ public class DialogDeleteRecords  extends AppCompatDialogFragment {
 
         private DeleteRecordsListener mListener;
 
+        public static DialogDeleteRecords newInstance (DeleteRecordsListener listener){
+
+            return new DialogDeleteRecords();
+
+        }
+
         @Override
         public void onAttach(@NonNull Context context) {
             super.onAttach(context);
@@ -34,7 +40,7 @@ public class DialogDeleteRecords  extends AppCompatDialogFragment {
 
             } catch (ClassCastException e) {
 
-                throw new ClassCastException("must implement NoticeDialogListener");
+                throw new ClassCastException("must implement Listener");
             }
         }
 

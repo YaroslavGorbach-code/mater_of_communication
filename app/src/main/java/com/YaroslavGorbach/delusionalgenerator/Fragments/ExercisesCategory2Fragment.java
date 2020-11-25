@@ -10,6 +10,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercises_category_2, container, false);
         mWordCounter_tv = view.findViewById(R.id.worldCounterText);
         mTimer_tv = view.findViewById(R.id.timer);
-        mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
+        mExId = ExercisesCategory2FragmentArgs.fromBundle(getArguments()).getIdEx();
         mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_2);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
@@ -106,6 +107,7 @@ public class ExercisesCategory2Fragment extends Fragment {
             public void onFinish() {
                 //loadConfeti()
                 mIsRunning = false;
+                insertMyDateAndTime();
             }
         }.start();
 
@@ -124,6 +126,11 @@ public class ExercisesCategory2Fragment extends Fragment {
         Date currentDate = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
         String date = dateFormat.format(currentDate);
+
+        long time = 10;
+
+
+        Repo.getInstance(getContext()).insertDateAndTime(mExId, date, time);
         Repo.getInstance(getContext()).insertDateAndCountWorlds(mExId, date, mWordCountValue);
 
     }

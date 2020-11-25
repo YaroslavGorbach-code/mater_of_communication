@@ -25,6 +25,7 @@ import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.ReminderBroadcast;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Calendar;
 
@@ -46,7 +47,6 @@ public class SettingsFragment extends Fragment {
     private TextView mTimePicker;
     private Repo mRepo;
     private static final String CHANNEL_ID = "CHANNEL_ID";
-    private static final int NOTIFICATION_ID_1 = 1;
     private PendingIntent mPendingIntent;
     private AlarmManager mAlarmManager;
     private Intent mReminderIntent;
@@ -57,6 +57,13 @@ public class SettingsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.getMenu().getItem(0).setVisible(false);
+    }
 
     public static SettingsFragment newInstance() {
         return new SettingsFragment();

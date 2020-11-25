@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 
 /**
@@ -56,13 +57,16 @@ public class ExercisesFragment extends Fragment {
     public void onStart() {
         super.onStart();
         getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-        getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
+       MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+       toolbar.setVisibility(View.VISIBLE);
+       toolbar.getMenu().getItem(0).setVisible(false);
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercises, container, false);
+
         mRecyclerView_category_1 = view.findViewById(R.id.recyclerView_category_1);
         mRecyclerView_category_2 = view.findViewById(R.id.recyclerView_category_2);
         mRecyclerView_category_3 = view.findViewById(R.id.recyclerView_category_3);
@@ -126,6 +130,8 @@ public class ExercisesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         mAllExsCategory1.setOnClickListener(v -> {
             NavDirections action = ExercisesFragmentDirections.
                     actionExercisesFragmentV2ToAllExsByCategoryFragment().setCategoryId(1);

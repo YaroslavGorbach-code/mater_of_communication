@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -12,11 +13,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Utility;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class FavoriteExsFragment extends Fragment {
 
@@ -25,6 +28,9 @@ public class FavoriteExsFragment extends Fragment {
     private ExercisesViewModel mExercisesViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
+    private TextView mTextViewNoData;
+    private AppCompatImageView mImageNoData;
+
 
 
     public FavoriteExsFragment() {
@@ -42,7 +48,9 @@ public class FavoriteExsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-        getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.getMenu().getItem(0).setVisible(false);
 
     }
 
@@ -58,6 +66,9 @@ public class FavoriteExsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorit_exs, container, false);
         mRecycler = view.findViewById(R.id.list_favorite_exs);
 
+        mTextViewNoData = view.findViewById(R.id.favorite_fragment_text_nothing);
+        mImageNoData = view.findViewById(R.id.favorite_fragment_image_nothing);
+
         mExercisesViewModel.getFavoriteExs().observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
@@ -69,6 +80,17 @@ public class FavoriteExsFragment extends Fragment {
             mRecycler.setHasFixedSize(true);
             mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
             mRecycler.setAdapter(mAdapter);
+
+            if (exercises != null && exercises.size() > 0){
+                mImageNoData.setVisibility(View.GONE);
+                mTextViewNoData.setVisibility(View.GONE);
+                mRecycler.setVisibility(View.VISIBLE);
+            }else {
+                mImageNoData.setVisibility(View.VISIBLE);
+                mTextViewNoData.setVisibility(View.VISIBLE);
+                mRecycler.setVisibility(View.GONE);
+            }
+
         });
 
 

@@ -123,7 +123,7 @@ public class ExercisesDescriptionFragment extends Fragment {
 
                     break;
 
-                case R.id.open_statistic_ex:
+                case R.id.delete_files:
                     NavDirections action = ExercisesDescriptionFragmentDirections.
                             actionExercisesDescriptionFragmentToStatisticsFragment().setExId(mExId);
                     Navigation.findNavController(view).navigate(action);

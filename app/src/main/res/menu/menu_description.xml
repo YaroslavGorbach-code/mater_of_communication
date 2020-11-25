@@ -9,7 +9,7 @@
 </item>
 
     <item
-        android:id="@+id/open_statistic_ex"
+        android:id="@+id/delete_files"
         android:title="статистика"
         android:icon="@drawable/ic_timeline"
         app:showAsAction="always">
