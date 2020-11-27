@@ -44,10 +44,14 @@
             app:destination="@id/statisticsFragment" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory3Fragment"
-            app:destination="@id/exercisesCategory3Fragment" />
+            app:destination="@id/exercisesCategory3Fragment"
+            app:popUpTo="@id/exercisesDescriptionFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory2Fragment"
-            app:destination="@id/exercisesCategory2Fragment" />
+            app:destination="@id/exercisesCategory2Fragment"
+            app:popUpTo="@id/exercisesDescriptionFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory1Fragment"
             app:destination="@id/exercisesCategory1Fragment"
@@ -116,10 +120,6 @@
             android:name="exId"
             app:argType="integer"
             android:defaultValue="-1" />
-        <action
-            android:id="@+id/action_statisticsFragment_to_exercisesDescriptionFragment"
-            app:destination="@id/exercisesDescriptionFragment"
-           />
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory3Fragment"

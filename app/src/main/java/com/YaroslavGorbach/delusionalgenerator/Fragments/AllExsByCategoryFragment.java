@@ -66,7 +66,7 @@ public class AllExsByCategoryFragment extends Fragment {
     mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
     mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
     mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-
+    getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
         return view;
     }
 
