@@ -9,6 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragments.ExercisesFragment">
 
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -21,7 +22,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewTask1"

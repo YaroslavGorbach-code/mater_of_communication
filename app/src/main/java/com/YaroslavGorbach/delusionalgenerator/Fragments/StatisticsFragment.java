@@ -55,7 +55,6 @@ public class StatisticsFragment extends Fragment {
         mChartWords_cv = view.findViewById(R.id.cardView1);
         mIdEx = StatisticsFragmentArgs.fromBundle(getArguments()).getExId();
 
-
         return view;
     }
 
@@ -80,15 +79,13 @@ public class StatisticsFragment extends Fragment {
             case 20:
             case 21:
             case 22:
-                //mChartMinutes_cv.setVisibility(View.GONE);
+                mChartMinutes_cv.setVisibility(View.GONE);
                 break;
 
         }
         /*Оброботка нажатия на стрелку назад*/
         mToolbar.setNavigationOnClickListener(v->{
-            NavDirections action = StatisticsFragmentDirections.
-                    actionStatisticsFragmentToExercisesDescriptionFragment().setExId(mIdEx);
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).popBackStack();
         });
 
 

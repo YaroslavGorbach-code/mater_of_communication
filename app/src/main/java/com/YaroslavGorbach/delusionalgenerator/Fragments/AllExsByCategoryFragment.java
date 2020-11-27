@@ -65,14 +65,18 @@ public class AllExsByCategoryFragment extends Fragment {
     mExCategoryId = AllExsByCategoryFragmentArgs.fromBundle(getArguments()).getCategoryId();
     mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
     mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
-
-
     mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-    mMaterialToolbar.setNavigationOnClickListener(v -> {
-    NavDirections action = AllExsByCategoryFragmentDirections.
-            actionAllExsByCategoryFragmentToExercisesFragmentV2();
-    Navigation.findNavController(view).navigate(action);
-    });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mMaterialToolbar.setNavigationOnClickListener(v -> {
+            // TODO: 11/26/2020 ЗАМЕНИТЬ ВЕЗЬДЕ ГДЕ НУЖНО ВЕРНУТЬСЯ НАЗАД 
+            Navigation.findNavController(view).popBackStack();
+        });
 
         /*Создаем адаптер*/
         mExercisesViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
@@ -83,14 +87,12 @@ public class AllExsByCategoryFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             });
 
-           int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
+            int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
             mRecycler.setHasFixedSize(true);
             mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
             mRecycler.setAdapter(mAdapter);
 
         });
-
-        return view;
     }
 
     @Override

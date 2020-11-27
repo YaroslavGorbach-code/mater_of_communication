@@ -89,7 +89,6 @@ public class SettingsFragment extends Fragment {
         mRepo = Repo.getInstance(getContext());
         mCheckBox.setChecked(mRepo.getNotificationState());
 
-
         return view;
     }
 

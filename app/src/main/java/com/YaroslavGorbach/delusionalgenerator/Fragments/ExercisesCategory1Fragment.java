@@ -218,9 +218,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mMaterialToolbar.setNavigationOnClickListener(v -> {
-            NavDirections action = ExercisesCategory1FragmentDirections.
-                    actionExercisesCategory1FragmentToExercisesFragmentV2();
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).popBackStack();
         });
 
         /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
@@ -283,9 +281,7 @@ public class ExercisesCategory1Fragment extends Fragment {
 
         /*Завершение упражнения при нажатии*/
         mButtonFinish.setOnClickListener(v->{
-            NavDirections action = ExercisesCategory1FragmentDirections.
-                    actionExercisesCategory1FragmentToExercisesFragmentV2();
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).popBackStack();
         });
     }
 
@@ -345,8 +341,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         //Start Recording
         mediaRecorder.start();
     }
-
-
 
 
     /*В зависимости от айди упражнения устанавливаем в textView правельное слово или пару слов*/

@@ -89,9 +89,7 @@ public class ExercisesCategory3Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setTwist();
         mMaterialToolbar.setNavigationOnClickListener(v -> {
-            NavDirections action = ExercisesCategory3FragmentDirections.
-                    actionExercisesCategory3FragmentToExercisesFragmentV2();
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).popBackStack();
         });
 
         switch (mExId){

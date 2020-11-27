@@ -50,7 +50,10 @@
             app:destination="@id/exercisesCategory2Fragment" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory1Fragment"
-            app:destination="@id/exercisesCategory1Fragment" />
+            app:destination="@id/exercisesCategory1Fragment"
+            app:popUpTo="@id/exercisesDescriptionFragment"
+            app:popUpToInclusive="true"
+            />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesFragment_v_2"
             app:destination="@id/exercisesFragment_v_2" />
@@ -100,7 +103,9 @@
             android:defaultValue="-1" />
         <action
             android:id="@+id/action_exercisesCategory1Fragment_to_exercisesFragment_v_2"
-            app:destination="@id/exercisesFragment_v_2" />
+            app:destination="@id/exercisesFragment_v_2"
+
+            />
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
@@ -113,7 +118,8 @@
             android:defaultValue="-1" />
         <action
             android:id="@+id/action_statisticsFragment_to_exercisesDescriptionFragment"
-            app:destination="@id/exercisesDescriptionFragment" />
+            app:destination="@id/exercisesDescriptionFragment"
+           />
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory3Fragment"

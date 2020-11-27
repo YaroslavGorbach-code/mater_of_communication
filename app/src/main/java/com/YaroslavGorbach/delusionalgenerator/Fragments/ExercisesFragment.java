@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesView
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import static androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +30,6 @@ import com.google.android.material.appbar.MaterialToolbar;
  * create an instance of this fragment.
  */
 public class ExercisesFragment extends Fragment {
-
 
     private RecyclerView mRecyclerView_category_1;
     private RecyclerView mRecyclerView_category_2;
@@ -89,6 +91,7 @@ public class ExercisesFragment extends Fragment {
             mRecyclerView_category_1.setHasFixedSize(true);
             mRecyclerView_category_1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
                     false));
+            mAdapter_category_1.setStateRestorationPolicy(PREVENT_WHEN_EMPTY);
             mRecyclerView_category_1.setAdapter(mAdapter_category_1);
         });
 
@@ -105,6 +108,7 @@ public class ExercisesFragment extends Fragment {
             mRecyclerView_category_2.setHasFixedSize(true);
             mRecyclerView_category_2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
                     false));
+            mAdapter_category_2.setStateRestorationPolicy(PREVENT_WHEN_EMPTY);
             mRecyclerView_category_2.setAdapter(mAdapter_category_2);
         });
 
@@ -121,6 +125,7 @@ public class ExercisesFragment extends Fragment {
             mRecyclerView_category_3.setHasFixedSize(true);
             mRecyclerView_category_3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
                     false));
+            mAdapter_category_3.setStateRestorationPolicy(PREVENT_WHEN_EMPTY);
             mRecyclerView_category_3.setAdapter(mAdapter_category_3);
         });
 
@@ -150,5 +155,4 @@ public class ExercisesFragment extends Fragment {
             Navigation.findNavController(view).navigate(action);
         });
     }
-
 }

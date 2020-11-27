@@ -35,6 +35,8 @@ public class ExercisesCategory2Fragment extends Fragment {
     private boolean mIsRunning = false;
     private TextView mWordCounter_tv;
     private TextView mTimer_tv;
+    private TextView mWhatTodo_tv;
+
     private MaterialToolbar mMaterialToolbar;
 
 
@@ -42,7 +44,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ExercisesCategory2Fragment newInstance(int exId) {
+    public static ExercisesCategory2Fragment newInstance() {
         return new ExercisesCategory2Fragment();
     }
 
@@ -56,6 +58,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         mExId = ExercisesCategory2FragmentArgs.fromBundle(getArguments()).getIdEx();
         mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_2);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mWhatTodo_tv = view.findViewById(R.id.whatToDo);
 
         startTimer(START_MILLI_SECONDS);
         mIsRunning = true;
@@ -68,20 +71,25 @@ public class ExercisesCategory2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mMaterialToolbar.setNavigationOnClickListener(v -> {
-            NavDirections action = ExercisesCategory2FragmentDirections.
-                    actionExercisesCategory2FragmentToExercisesFragmentV2();
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).popBackStack();
         });
 
         switch (mExId){
         case 20:
         mMaterialToolbar.setTitle("Существительные");
+        mWhatTodo_tv.setText("Нозовите как можно больше существительных(Кто? Что?). После каждого названого слова нажмите" +
+                " на экран, для учета результата");
         break;
         case 21:
         mMaterialToolbar.setTitle("Прилагательные");
+            mWhatTodo_tv.setText("Нозовите как можно больше прилагательных(Какой? Какое?). После каждого названого слова нажмите" +
+                    " на экран, для учета результата");
         break;
         case 22:
         mMaterialToolbar.setTitle("Глаголы");
+            mWhatTodo_tv.setText("Нозовите как можно больше глаголов(Что делать? Что сделать?). После каждого названого слова нажмите" +
+                    " на экран, для учета результата");
+
         break;
     }
 

@@ -261,9 +261,7 @@ public class ExercisesDescriptionFragment extends Fragment {
 
         /*Обработка нажатия стрелки назад*/
         mToolbar.setNavigationOnClickListener(v->{
-            NavDirections action = ExercisesDescriptionFragmentDirections.
-                    actionExercisesDescriptionFragmentToExercisesFragmentV2();
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).popBackStack();
         });
 
     }
