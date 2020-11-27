@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -36,6 +37,7 @@ public class ExercisesCategory2Fragment extends Fragment {
     private TextView mWordCounter_tv;
     private TextView mTimer_tv;
     private TextView mWhatTodo_tv;
+    private ConstraintLayout mClickAria;
 
     private MaterialToolbar mMaterialToolbar;
 
@@ -59,6 +61,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_2);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mWhatTodo_tv = view.findViewById(R.id.whatToDo);
+        mClickAria = view.findViewById(R.id.clickAria);
 
         startTimer(START_MILLI_SECONDS);
         mIsRunning = true;
@@ -93,7 +96,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         break;
     }
 
-        view.setOnClickListener(v -> {
+        mClickAria.setOnClickListener(v -> {
             if (mIsRunning){
                 mWordCountValue +=1;
                 mWordCounter_tv.setText("Названо слов: " + mWordCountValue);

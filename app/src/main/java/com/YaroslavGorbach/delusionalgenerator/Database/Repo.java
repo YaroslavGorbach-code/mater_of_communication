@@ -34,7 +34,7 @@ public class Repo extends SQLiteOpenHelper {
     }
     private final Set<Listener> mListeners = new HashSet<>();
     public static final String DB_NAME = "generator.db";
-    public static final int VERSION = 13;
+    public static final int VERSION = 14;
 
     //S means Sessions
     public static final String TABLE_NAME_S = "books";
@@ -107,7 +107,6 @@ public class Repo extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("DROP TABLE IF EXISTS notifications");
         db.execSQL(CREATE_SQL_N);
         addNotification(db);
