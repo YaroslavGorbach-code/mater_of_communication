@@ -1,15 +1,20 @@
 <resources>
 
-    <style name="My_BottomNavigationView" parent="">
-        <item name="colorPrimary">#FF8E6A</item>
+
+    <style name="Widget.App.BottomNavigationViewOrange" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationViewOrange</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationViewOrange" parent="">
+        <item name="colorPrimary">#FFFFFF</item>
         <item name="colorOnPrimary">#FF5722</item>
     </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme_orange" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF916F</item>
-        <item name="colorPrimaryDark">#FF6B3C</item>
+        <item name="colorPrimary">#FF6E41</item>
+        <item name="colorPrimaryDark">#FF4408</item>
         <item name="colorAccent">#FD0000</item>
         <item name="secondIconsColor">#B3FF5722</item>
         <item name="iconPlayColor">#E6FF5722</item>
@@ -18,23 +23,23 @@
         <item name="cardColor">#FF5722</item>
         <item name="tabColor">#FF5722</item>
         <item name="tabIndicatorColor">#FF5722</item>
-        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewOrange</item>
         <item name="floatingActionButtonBackground">#FF5722</item>
     </style>
 
-    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    <style name="Widget.App.BottomNavigationViewBlue" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationViewBlue</item>
     </style>
 
-    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+    <style name="ThemeOverlay.App.BottomNavigationViewBlue" parent="">
         <item name="colorPrimary">#FFFFFF</item>
-        <item name="colorOnPrimary">#FF5722</item>
+        <item name="colorOnPrimary">#FF00BCD4</item>
     </style>
 
     <style name="AppTheme_blue" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#00BCD4</item>
-        <item name="colorPrimaryDark">#007181</item>
+        <item name="colorPrimary">#00BED6</item>
+        <item name="colorPrimaryDark">#008193</item>
         <item name="colorAccent">#FD0000</item>
         <item name="secondIconsColor">#B300BCD4</item>
         <item name="iconPlayColor">#CC00BCD4</item>
@@ -42,56 +47,80 @@
         <item name="rippleColorTab2">#33005A65</item>
         <item name="cardColor">#00BCD4</item>
         <item name="tabColor">#00BCD4</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewBlue</item>
         <item name="tabIndicatorColor">#00BCD4</item>
         <item name="floatingActionButtonBackground">#00BCD4</item>
+    </style>
 
+    <style name="Widget.App.BottomNavigationViewGreen" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationViewGreen</item>
+    </style>
 
-
+    <style name="ThemeOverlay.App.BottomNavigationViewGreen" parent="">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorOnPrimary">#FF4CAF50</item>
     </style>
 
     <style name="AppTheme_green" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#4CAF50</item>
-        <item name="colorPrimaryDark">#316B33</item>
+        <item name="colorPrimary">#54C358</item>
+        <item name="colorPrimaryDark">#439546</item>
         <item name="colorAccent">#FD0000</item>
         <item name="secondIconsColor">#B34CAF50</item>
         <item name="iconPlayColor">#CC4CAF50</item>
         <item name="rippleColor">#334CAF50</item>
         <item name="rippleColorTab2">#33005103</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewGreen</item>
         <item name="cardColor">#4CAF50</item>
         <item name="tabColor">#4CAF50</item>
         <item name="tabIndicatorColor">#4CAF50</item>
         <item name="floatingActionButtonBackground">#4CAF50</item>
+    </style>
 
+    <style name="Widget.App.BottomNavigationViewPurple" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationViewPurple</item>
+    </style>
 
+    <style name="ThemeOverlay.App.BottomNavigationViewPurple" parent="">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorOnPrimary">#FF673AB7</item>
     </style>
 
     <style name="AppTheme_purple" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#673AB7</item>
-        <item name="colorPrimaryDark">#4D2D88</item>
+        <item name="colorPrimary">#7842D6</item>
+        <item name="colorPrimaryDark">#6539B6</item>
         <item name="colorAccent">#FD0000</item>
         <item name="secondIconsColor">#B3673AB7</item>
         <item name="iconPlayColor">#CC673AB7</item>
         <item name="rippleColor">#339C27B0</item>
         <item name="rippleColorTab2">#33460051</item>
         <item name="cardColor">#673AB7</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewPurple</item>
         <item name="tabColor">#673AB7</item>
         <item name="tabIndicatorColor">#673AB7</item>
         <item name="floatingActionButtonBackground">#673AB7</item>
+    </style>
 
+    <style name="Widget.App.BottomNavigationViewRed" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationViewRed
+        </item>
+    </style>
 
-
+    <style name="ThemeOverlay.App.BottomNavigationViewRed" parent="">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorOnPrimary">#E91E63</item>
     </style>
 
     <style name="AppTheme_red" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#E91E63</item>
-        <item name="colorPrimaryDark">#A21642</item>
+        <item name="colorPrimary">#FF256F</item>
+        <item name="colorPrimaryDark">#C52557</item>
         <item name="colorAccent">#FD0000</item>
         <item name="secondIconsColor">#B3E91E63</item>
         <item name="iconPlayColor">#CCE91E63</item>
         <item name="rippleColor">#33E91E63</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewRed</item>
         <item name="rippleColorTab2">#336A0024</item>
         <item name="cardColor">#E91E63</item>
         <item name="tabColor">#E91E63</item>

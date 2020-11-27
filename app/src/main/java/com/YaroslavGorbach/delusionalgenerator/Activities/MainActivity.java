@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
             new DialogDeleteRecords().show(getSupportFragmentManager(),"delete");
             return true;
         });
-
-
-
     }
 
 
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         String mPath = this.getExternalFilesDir("/").getAbsolutePath();
         File directory = new File(mPath);
         File[] allFiles = directory.listFiles();
-        /*Получаем файлы из деректории*/
+
         if (allFiles != null) {
             for (File f : allFiles) {
                 f.delete();

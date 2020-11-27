@@ -11,7 +11,7 @@
     <item
         android:id="@+id/delete_files"
         android:title="статистика"
-        android:icon="@drawable/ic_timeline"
+        android:icon="@drawable/ic_bar_chart"
         app:showAsAction="always">
     </item>
 

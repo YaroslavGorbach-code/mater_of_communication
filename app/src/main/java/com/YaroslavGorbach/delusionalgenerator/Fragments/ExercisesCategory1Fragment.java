@@ -162,14 +162,14 @@ public class ExercisesCategory1Fragment extends Fragment {
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mExName = "О чем вижу, о том и пою";
                 mMaterialToolbar.setTitle(mExName);
-                mShort_des.setText("Говорите максимально долго об этом");
+                mShort_des.setText("Описывайте максимально долго данный предмет");
                 break;
 
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_abbreviations);
                 mExName = "Другие варианты сокращений";
                 mMaterialToolbar.setTitle(mExName);
-                mShort_des.setText("Придумайте необычную расшифровку");
+                mShort_des.setText("Придумайте необычную расшифровку аббревиатуры");
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_notAlive);
@@ -187,7 +187,7 @@ public class ExercisesCategory1Fragment extends Fragment {
                 mArrayWorlds_ex9 = getResources().getStringArray(R.array.letters);
                 mExName = "Вспомнить все";
                 mMaterialToolbar.setTitle(mExName);
-                mShort_des.setText("Назовите 15 слов, которые начинаются с этой буквы");
+                mShort_des.setText("Назовите 15 слов на эту букву");
                 break;
             case 10:
                 mArrayWorlds_ex10 = getResources().getStringArray(R.array.Terms);

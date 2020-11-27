@@ -108,7 +108,7 @@ public class ExercisesCategory3Fragment extends Fragment {
         mNextTwistButton.setOnClickListener(v -> {
             switch (mClickCounter){
                 case 1:
-                    mTongueTwisterHelp_tv.setText("Беззвучно произнесите скороговорку. Движениями губ.");
+                    mTongueTwisterHelp_tv.setText("Беззвучно произнесите скороговорку. Движениями губ");
                     mClickCounter++;
                     break;
                 case 2:

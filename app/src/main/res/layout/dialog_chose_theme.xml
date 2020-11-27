@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
+        android:textColor="?colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:text="Выберите тему"
         android:padding="20dp"
@@ -18,31 +19,31 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 
- <Button
+ <ImageButton
      android:id="@+id/redButton"
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:background="@drawable/choose_theme_red_round"
      android:layout_marginEnd="5dp"/>
-    <Button
+    <ImageButton
         android:id="@+id/blueButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/choose_theme_blue_round"/>
-    <Button
+    <ImageButton
         android:id="@+id/greenButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/choose_theme_green_round"/>
-    <Button
+    <ImageButton
         android:id="@+id/orangeButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/choose_theme_orange_round"/>
-    <Button
+    <ImageButton
         android:id="@+id/purpleButton"
         android:layout_width="50dp"
         android:layout_height="50dp"

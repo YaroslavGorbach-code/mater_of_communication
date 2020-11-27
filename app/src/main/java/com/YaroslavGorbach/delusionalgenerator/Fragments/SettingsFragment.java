@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.ReminderBroadcast;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -43,6 +44,7 @@ public class SettingsFragment extends Fragment {
     private ConstraintLayout mRate;
     private ConstraintLayout mShare;
     private ConstraintLayout mAboutApp;
+    private ConstraintLayout mThemes;
     private AppCompatCheckBox mCheckBox;
     private TextView mTimePicker;
     private Repo mRepo;
@@ -84,6 +86,7 @@ public class SettingsFragment extends Fragment {
         mRate = view.findViewById(R.id.rate);
         mShare = view.findViewById(R.id.share);
         mAboutApp = view.findViewById(R.id.aboutApp);
+        mThemes = view.findViewById(R.id.themes);
         mCheckBox = view.findViewById(R.id.notificationCheckBox);
         mTimePicker = view.findViewById(R.id.timePiker);
         mRepo = Repo.getInstance(getContext());
@@ -105,6 +108,8 @@ public class SettingsFragment extends Fragment {
             mCheckBox.setChecked(false);
         });
 
+
+
         mCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 Calendar calendar = Calendar.getInstance();
@@ -117,6 +122,10 @@ public class SettingsFragment extends Fragment {
                 mAlarmManager.cancel(mPendingIntent);
                 mRepo.changeNotificationState(0);
             }
+        });
+
+        mThemes.setOnClickListener(v -> {
+            new DialogChooseTheme().show(getParentFragmentManager(),"themes");
         });
 
         mNotifications.setOnClickListener(v->{
