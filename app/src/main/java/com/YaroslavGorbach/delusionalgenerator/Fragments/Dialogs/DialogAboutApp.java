@@ -32,9 +32,7 @@ public class DialogAboutApp extends AppCompatDialogFragment {
                     }
                 });
 
-
             return builder.create();
-
     }
 
 

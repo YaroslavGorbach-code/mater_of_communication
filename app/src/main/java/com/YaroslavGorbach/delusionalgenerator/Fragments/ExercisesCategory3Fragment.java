@@ -74,10 +74,10 @@ public class ExercisesCategory3Fragment extends Fragment {
                 mTwists = getResources().getStringArray(R.array.twisters_easy);
                 break;
             case 31:
-                mTwists = getResources().getStringArray(R.array.twisters_easy);
+                mTwists = getResources().getStringArray(R.array.twisters_hard);
                 break;
             case 32:
-                mTwists = getResources().getStringArray(R.array.twisters_easy);
+                mTwists = getResources().getStringArray(R.array.twisters_very_hard);
                 break;
         }
 
