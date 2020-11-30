@@ -37,7 +37,6 @@ public class ExercisesCategory3Fragment extends Fragment {
     private String[] mTwists = {};
     private int mClickCounter = 1;
     private Random r = new Random();
-    private AdView mAdView;
     private int mExId;
     private long mStartExTime;
     private int mNumber_of_tongue_twisters = 0;
@@ -132,7 +131,7 @@ public class ExercisesCategory3Fragment extends Fragment {
 
         });
 
-        mAdView = view.findViewById(R.id.adViewTab2);
+        AdView mAdView = view.findViewById(R.id.adViewTabEx3);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }

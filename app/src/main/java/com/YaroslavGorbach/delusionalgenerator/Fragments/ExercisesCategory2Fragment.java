@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.DateFormat;
@@ -38,6 +40,7 @@ public class ExercisesCategory2Fragment extends Fragment {
     private TextView mTimer_tv;
     private TextView mWhatTodo_tv;
     private ConstraintLayout mClickAria;
+    private TextView mRecord_tv;
 
     private MaterialToolbar mMaterialToolbar;
 
@@ -62,6 +65,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mWhatTodo_tv = view.findViewById(R.id.whatToDo);
         mClickAria = view.findViewById(R.id.clickAria);
+        mRecord_tv = view.findViewById(R.id.worldRecordText);
 
         startTimer(START_MILLI_SECONDS);
         mIsRunning = true;
@@ -72,6 +76,10 @@ public class ExercisesCategory2Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        AdView mAdView = view.findViewById(R.id.adViewTabEx2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         mMaterialToolbar.setNavigationOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();
@@ -119,8 +127,11 @@ public class ExercisesCategory2Fragment extends Fragment {
                 //loadConfeti()
                 mIsRunning = false;
                 insertMyDateAndTime();
+                mRecord_tv.setVisibility(View.VISIBLE);
+                mRecord_tv.setText("Рекорд " + Repo.getInstance(getContext()).getMaxWorldCount(mExId));
             }
         }.start();
+
 
     }
 

@@ -15,10 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.YaroslavGorbach.delusionalgenerator.Activities.MainActivity;
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Utility;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class FavoriteExsFragment extends Fragment {
@@ -76,9 +80,14 @@ public class FavoriteExsFragment extends Fragment {
                         actionFavoriteExsFragmentToExercisesDescriptionFragment().setExId(id);
                 Navigation.findNavController(view).navigate(action);
             });
-            int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
+            //int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
             mRecycler.setHasFixedSize(true);
-            mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
+            //mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
+
+            FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
+            layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+            mRecycler.setLayoutManager(layoutManager);
+
             mRecycler.setAdapter(mAdapter);
 
             if (exercises != null && exercises.size() > 0){
@@ -86,6 +95,29 @@ public class FavoriteExsFragment extends Fragment {
                 mTextViewNoData.setVisibility(View.GONE);
                 mRecycler.setVisibility(View.VISIBLE);
             }else {
+                String color = Repo.getInstance(getContext()).getThemeState();
+                switch (color){
+                    case "blue":
+                        mImageNoData.setImageResource(R.drawable.no_data_blue);
+                        break;
+
+                    case "green":
+                        mImageNoData.setImageResource(R.drawable.no_data_green);
+                        break;
+
+                    case "orange":
+                        mImageNoData.setImageResource(R.drawable.no_files);
+                        break;
+
+                    case "red":
+                        mImageNoData.setImageResource(R.drawable.no_data_red);
+                        break;
+
+                    case "purple":
+                        mImageNoData.setImageResource(R.drawable.no_data_purpure);
+                        break;
+
+                }
                 mImageNoData.setVisibility(View.VISIBLE);
                 mTextViewNoData.setVisibility(View.VISIBLE);
                 mRecycler.setVisibility(View.GONE);

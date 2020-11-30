@@ -28,6 +28,8 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
@@ -216,6 +218,10 @@ public class ExercisesCategory1Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        AdView mAdView = view.findViewById(R.id.adViewTabEx1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         mMaterialToolbar.setNavigationOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();

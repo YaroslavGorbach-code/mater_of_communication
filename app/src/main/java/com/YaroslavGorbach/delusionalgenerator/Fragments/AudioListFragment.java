@@ -119,6 +119,28 @@ public class AudioListFragment extends Fragment  {
                 mTextViewNoData.setVisibility(View.GONE);
                 mCoordinatorLayout.setVisibility(View.VISIBLE);
             }else {
+                String color = Repo.getInstance(getContext()).getThemeState();
+                switch (color) {
+                    case "blue":
+                        mImageNoData.setImageResource(R.drawable.no_data_blue);
+                        break;
+
+                    case "green":
+                        mImageNoData.setImageResource(R.drawable.no_data_green);
+                        break;
+
+                    case "orange":
+                        mImageNoData.setImageResource(R.drawable.no_files);
+                        break;
+
+                    case "red":
+                        mImageNoData.setImageResource(R.drawable.no_data_red);
+                        break;
+
+                    case "purple":
+                        mImageNoData.setImageResource(R.drawable.no_data_purpure);
+                        break;
+                }
                 mImageNoData.setVisibility(View.VISIBLE);
                 mTextViewNoData.setVisibility(View.VISIBLE);
                 mCoordinatorLayout.setVisibility(View.GONE);
@@ -127,8 +149,7 @@ public class AudioListFragment extends Fragment  {
         }).start();
 
         /*Показ банера*/
-        AdView mAdView;
-        mAdView = view.findViewById(R.id.adViewTab3);
+        AdView mAdView = view.findViewById(R.id.adViewTabAudioList);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

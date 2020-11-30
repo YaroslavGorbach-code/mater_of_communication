@@ -27,7 +27,6 @@ import com.google.android.material.button.MaterialButton;
 
 public class ExercisesDescriptionFragment extends Fragment {
 
-
     private int mExId;
     private MaterialButton mStartExButton;
     private TextView mAimEx_tv;
@@ -43,7 +42,6 @@ public class ExercisesDescriptionFragment extends Fragment {
 
 
 
-    // TODO: Rename and change types and number of parameters
     public static ExercisesDescriptionFragment newInstance() {
         return new ExercisesDescriptionFragment();
     }
@@ -94,8 +92,7 @@ public class ExercisesDescriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /*Показ банера*/
-        AdView mAdView;
-        mAdView = view.findViewById(R.id.adViewTab1);
+        AdView mAdView = view.findViewById(R.id.adViewTabDescription);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

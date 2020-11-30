@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,9 +16,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -26,6 +29,10 @@ import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Utility;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -33,13 +40,12 @@ import java.util.List;
 
 public class AllExsByCategoryFragment extends Fragment {
 
-
-
     private int mExCategoryId;
     private ExercisesViewModel mExercisesViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
     private MaterialToolbar mMaterialToolbar;
+    private CardView mCardView;
 
 
     public AllExsByCategoryFragment() {
@@ -66,6 +72,7 @@ public class AllExsByCategoryFragment extends Fragment {
     mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
     mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
     mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+    mCardView = view.findViewById(R.id.gridItem);
     getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
         return view;
     }
@@ -74,7 +81,6 @@ public class AllExsByCategoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mMaterialToolbar.setNavigationOnClickListener(v -> {
-            // TODO: 11/26/2020 ЗАМЕНИТЬ ВЕЗЬДЕ ГДЕ НУЖНО ВЕРНУТЬСЯ НАЗАД 
             Navigation.findNavController(view).popBackStack();
         });
 
@@ -87,9 +93,16 @@ public class AllExsByCategoryFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             });
 
-            int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
+
+
+            //int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 180);
             mRecycler.setHasFixedSize(true);
-            mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
+            //mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
+
+            FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
+            layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+            mRecycler.setLayoutManager(layoutManager);
+
             mRecycler.setAdapter(mAdapter);
 
         });

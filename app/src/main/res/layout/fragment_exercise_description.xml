@@ -20,7 +20,7 @@
 
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adViewTab1"
+        android:id="@+id/adViewTabDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:adSize="BANNER"
@@ -35,7 +35,7 @@
         android:layout_height="450dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adViewTab1">
+        app:layout_constraintTop_toBottomOf="@+id/adViewTabDescription">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
