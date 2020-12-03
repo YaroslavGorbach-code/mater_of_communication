@@ -207,7 +207,7 @@
         <item>канат</item>
         <item>капкан</item>
         <item>карта</item>
-        <item>кегли</item>
+        <item>кегля</item>
         <item>кекс</item>
         <item>кинжал</item>
         <item>кисель</item>
@@ -264,7 +264,7 @@
         <item>перо</item>
         <item>петарда</item>
         <item>печь</item>
-        <item>пиала</item>
+        <item>пила</item>
         <item>пианино</item>
         <item>пиджак</item>
         <item>пластмасса</item>
@@ -359,7 +359,6 @@
         <item>черника</item>
         <item>черпак</item>
         <item>чехол</item>
-        <item>чехол</item>
         <item>чугун</item>
         <item>чучело</item>
         <item>шалаш</item>
@@ -422,7 +421,7 @@
         <item>дымоход</item>
         <item>селфи-палка</item>
         <item>макароны</item>
-        <item>линолиум</item>
+        <item>линолеум</item>
         <item>пассатижи</item>
         <item>отвертка</item>
         <item>изолента</item>
@@ -450,7 +449,7 @@
         <item>скотч</item>
         <item>магнитола</item>
         <item>колесо</item>
-        <item>крусло</item>
+        <item>кресло</item>
         <item>руль</item>
         <item>торт</item>
         <item>грязь</item>
@@ -483,7 +482,7 @@
         <item>бензопила</item>
         <item>бензонасос</item>
         <item>бензоколонка</item>
-        <item>бацила</item>
+        <item>бацилла</item>
         <item>сабля</item>
         <item>граната</item>
         <item>бульдозер</item>
@@ -528,7 +527,7 @@
         <item>маршрутка</item>
         <item>табак</item>
         <item>кальян</item>
-        <item>макасины</item>
+        <item>мокасины</item>
         <item>кран</item>
         <item>тазик</item>
         <item>метла</item>
@@ -605,7 +604,6 @@
         <item>стол</item>
         <item>абсент</item>
         <item>автобус</item>
-        <item>аист</item>
         <item>акваланг</item>
         <item>амулет</item>
         <item>ананас</item>
@@ -616,11 +614,9 @@
         <item>кофе</item>
         <item>орех</item>
         <item>тюль</item>
-        <item>голубь</item>
         <item>ковёр</item>
         <item>книга</item>
         <item>паспорт</item>
-        <item>баклан</item>
         <item>танк</item>
         <item>яблоко</item>
         <item>хлеб</item>
@@ -638,7 +634,6 @@
         <item>кабель</item>
         <item>монитор</item>
         <item>патрон</item>
-        <item>микрофон</item>
         <item>часы</item>
         <item>картон</item>
         <item>тумбочка</item>
@@ -646,8 +641,6 @@
         <item>баклажан</item>
         <item>лошадь</item>
         <item>карандаш</item>
-        <item>тунец</item>
-        <item>монета</item>
         <item>торт</item>
         <item>банка</item>
         <item>салют</item>
@@ -670,11 +663,9 @@
         <item>галстук</item>
         <item>герб</item>
         <item>гель</item>
-        <item>бомба</item>
         <item>динамит</item>
         <item>дыня</item>
         <item>жгут</item>
-        <item>жерех</item>
         <item>батарея</item>
         <item>носок</item>
         <item>таблетка</item>
@@ -687,8 +678,6 @@
         <item>палатка</item>
         <item>гриб</item>
         <item>палка</item>
-        <item>меч</item>
-        <item>светофор</item>
         <item>кабель</item>
         <item>насос</item>
         <item>чашка</item>
@@ -698,21 +687,16 @@
         <item>трава</item>
         <item>акваланг</item>
         <item>амулет</item>
-        <item>ананас</item>
         <item>аорта</item>
-        <item>атом</item>
         <item>багажник</item>
         <item>багет</item>
-        <item>кофе</item>
         <item>орех</item>
-        <item>тюль</item>
         <item>спутник</item>
         <item>ковёр</item>
         <item>книга</item>
         <item>паспорт</item>
         <item>антена</item>
         <item>танк</item>
-        <item>яблоко</item>
         <item>хлеб</item>
         <item>мясо</item>
         <item>масло</item>
@@ -728,7 +712,6 @@
         <item>кабель</item>
         <item>монитор</item>
         <item>патрон</item>
-        <item>микрофон</item>
         <item>часы</item>
         <item>картон</item>
         <item>тумбочка</item>
@@ -756,12 +739,9 @@
         <item>веник</item>
         <item>воз</item>
         <item>воск</item>
-        <item>гайка</item>
         <item>галстук</item>
         <item>герб</item>
         <item>гель</item>
-        <item>бомба</item>
-        <item>динамит</item>
         <item>дыня</item>
         <item>жгут</item>
         <item>куртка</item>
@@ -771,7 +751,6 @@
         <item>труба</item>
         <item>крыша</item>
         <item>сено</item>
-        <item>танец</item>
         <item>плац</item>
         <item>отвертка</item>
         <item>помидор</item>
@@ -791,14 +770,12 @@
         <item>пистолет</item>
         <item>тюльпан</item>
         <item>планета</item>
-        <item>доска</item>
         <item>лодка</item>
         <item>марля</item>
         <item>пластырь</item>
         <item>жгут</item>
         <item>тесак</item>
         <item>парашют</item>
-        <item>турбулентность</item>
         <item>корм</item>
         <item>сетка</item>
         <item>хлопушка</item>
@@ -818,5 +795,120 @@
         <item>весы</item>
         <item>канат</item>
         <item>мазь</item>
+        <item>гайка</item>
+        <item>фартук</item>
+        <item>каска</item>
+        <item>парусник</item>
+        <item>кнут</item>
+        <item>монитор</item>
+        <item>полотенце</item>
+        <item>бархат</item>
+        <item>плов</item>
+        <item>валун</item>
+        <item>сверло</item>
+        <item>картонка</item>
+        <item>запонка</item>
+        <item>туфля</item>
+        <item>плот</item>
+        <item>холодец</item>
+        <item>подкова</item>
+        <item>ресторан</item>
+        <item>улей</item>
+        <item>вафля</item>
+        <item>гильза</item>
+        <item>чернильница</item>
+        <item>холестерин</item>
+        <item>платочек</item>
+        <item>пропуск</item>
+        <item>зачетка</item>
+        <item>флешка</item>
+        <item>каучук</item>
+        <item>оливка</item>
+        <item>тушенка</item>
+        <item>блендер</item>
+        <item>лежак</item>
+        <item>скрепка</item>
+        <item>спичка</item>
+        <item>мольберт</item>
+        <item>штык</item>
+        <item>секундомер</item>
+        <item>степлер</item>
+        <item>линейка</item>
+        <item>дискета</item>
+        <item>верстак</item>
+        <item>клавиша</item>
+        <item>перхоть</item>
+        <item>термометр</item>
+        <item>одуванчик</item>
+        <item>соус</item>
+        <item>радиоприемник</item>
+        <item>поводок</item>
+        <item>плетень</item>
+        <item>кардиограмма</item>
+        <item>подшипник</item>
+        <item>транспортир</item>
+        <item>леденец</item>
+        <item>кольчуга</item>
+        <item>фарфор</item>
+        <item>шнапс</item>
+        <item>винтик</item>
+        <item>колесница</item>
+        <item>паста</item>
+        <item>плеть</item>
+        <item>телескоп</item>
+        <item>коряга</item>
+        <item>папироса</item>
+        <item>реферат</item>
+        <item>вертел</item>
+        <item>носки</item>
+        <item>люстра</item>
+        <item>кальсоны</item>
+        <item>навоз</item>
+        <item>видеокассета</item>
+        <item>кувалда</item>
+        <item>герань</item>
+        <item>дрожжи</item>
+        <item>снеговик</item>
+        <item>гирлянда</item>
+        <item>телеграф</item>
+        <item>манекен</item>
+        <item>гвоздика</item>
+        <item>мотороллер</item>
+        <item>керосин</item>
+        <item>монумент</item>
+        <item>коромысло</item>
+        <item>морфин</item>
+        <item>пружина</item>
+        <item>пробирка</item>
+        <item>обелиск</item>
+        <item>зонд</item>
+        <item>рябина</item>
+        <item>кий</item>
+        <item>хрусталь</item>
+        <item>стог</item>
+        <item>шлагбаум</item>
+        <item>пудинг</item>
+        <item>электробритва</item>
+        <item>вешалка</item>
+        <item>столешница</item>
+        <item>ночник</item>
+        <item>бензовоз</item>
+        <item>портянка</item>
+        <item>пенициллин</item>
+        <item>амперметр</item>
+        <item>антенна</item>
+        <item>аспирин</item>
+        <item>балалайка</item>
+        <item>барометр</item>
+        <item>бархат</item>
+        <item>блокнот</item>
+        <item>ватман</item>
+        <item>велотренажер</item>
+        <item>галера</item>
+        <item>герань</item>
+        <item>гель</item>
+        <item>джемпер</item>
+        <item>жемчуг</item>
+        <item>клинок</item>
     </string-array>
 </resources>
