@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
@@ -47,7 +46,7 @@ public class ExercisesCategory3Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ExercisesCategory3Fragment newInstance(int exId) {
+    public static ExercisesCategory3Fragment newInstance() {
         return new ExercisesCategory3Fragment();
     }
 
@@ -68,20 +67,12 @@ public class ExercisesCategory3Fragment extends Fragment {
         mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_3);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
-        switch (mExId){
-            case 30:
-                mTwists = getResources().getStringArray(R.array.twisters_easy);
-                break;
-            case 31:
-                mTwists = getResources().getStringArray(R.array.twisters_hard);
-                break;
-            case 32:
-                mTwists = getResources().getStringArray(R.array.twisters_very_hard);
-                break;
-        }
-
+        /*получаем слова из резурсов*/
+        getTwisters();
         return view;
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -91,18 +82,19 @@ public class ExercisesCategory3Fragment extends Fragment {
             Navigation.findNavController(view).popBackStack();
         });
 
-        switch (mExId){
-            case 30:
-                mMaterialToolbar.setTitle("Простые скороговорки");
-                break;
-            case 31:
-                mMaterialToolbar.setTitle("Сложные скороговорки");
-                break;
-            case 32:
-                mMaterialToolbar.setTitle("Очень сложные скороговорки");
-                break;
-        }
+        /*установка тексна в туллбар*/
+        setToolbarTitle();
 
+        /*оброботка клика на кнопку для показа слудующей скороговорки*/
+        nextTwisterButtonClickListener();
+
+        /*показ банера*/
+        AdView mAdView = view.findViewById(R.id.adViewTabEx3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    private void nextTwisterButtonClickListener() {
         mTongueTwisterHelp_tv.setText("Проговаривайте тест медленно");
         mNextTwistButton.setOnClickListener(v -> {
             switch (mClickCounter){
@@ -130,10 +122,34 @@ public class ExercisesCategory3Fragment extends Fragment {
             }
 
         });
+    }
 
-        AdView mAdView = view.findViewById(R.id.adViewTabEx3);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+    private void setToolbarTitle() {
+        switch (mExId){
+            case 30:
+                mMaterialToolbar.setTitle("Простые скороговорки");
+                break;
+            case 31:
+                mMaterialToolbar.setTitle("Сложные скороговорки");
+                break;
+            case 32:
+                mMaterialToolbar.setTitle("Очень сложные скороговорки");
+                break;
+        }
+    }
+
+    private void getTwisters() {
+        switch (mExId){
+            case 30:
+                mTwists = getResources().getStringArray(R.array.twisters_easy);
+                break;
+            case 31:
+                mTwists = getResources().getStringArray(R.array.twisters_hard);
+                break;
+            case 32:
+                mTwists = getResources().getStringArray(R.array.twisters_very_hard);
+                break;
+        }
     }
 
     private void setTwist() {

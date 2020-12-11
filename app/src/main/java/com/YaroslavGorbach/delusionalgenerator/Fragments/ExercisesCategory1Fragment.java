@@ -97,7 +97,7 @@ public class ExercisesCategory1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercises_category_1, container, false);
-
+        /*Поиск всех view и запуск секундомера*/
         mButtonStartPause = view.findViewById(R.id.button);
         mChronometer_allTime = view.findViewById(R.id.chronometer_allTime);
         mButtonNextWorld = view.findViewById(R.id.buttonNextWorld);
@@ -105,7 +105,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
         mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_1);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-
         mThumb = view.findViewById(R.id.thumb_iv);
         mTextUnderThumb = view.findViewById(R.id.textUnderThumb);
         mShort_des = view.findViewById(R.id.description_short);
@@ -114,8 +113,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         mWorldCounter = view.findViewById(R.id.world_counter);
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
         mIdEx = ExercisesCategory1FragmentArgs.fromBundle(getArguments()).getIdEx();
-
-        /*Поиск всех view и запуск секундомера*/
         mChronometer_allTime.start();
         mChronometer_1worldTime.start();
 
@@ -125,6 +122,90 @@ public class ExercisesCategory1Fragment extends Fragment {
 
 
         /*В зависимости от айди упражнения мы выбираем потходяшии слова и иницыализируем наши view*/
+        getWordsByExId();
+        setWorld();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        /*показ банера*/
+        AdView mAdView = view.findViewById(R.id.adViewTabEx1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        /*навигация назад*/
+        mMaterialToolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(view).popBackStack();
+        });
+
+        /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
+        mButtonStartPause.setOnClickListener(v->{
+
+            if(mButtonState){
+
+                mButtonStartPause.setImageResource(R.drawable.ic_pause);
+                mButtonState = false;
+                mChronometer_allTime.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
+                mChronometer_allTime.start();
+                mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime() - mWorldTimePauseOffSet);
+                mChronometer_1worldTime.start();
+                mButtonFinish.setVisibility(View.INVISIBLE);
+                mButtonNextWorld.setVisibility(View.VISIBLE);
+
+            }else{
+
+                mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
+                mButtonState = true;
+                mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+                mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
+                mChronometer_allTime.stop();
+                mChronometer_1worldTime.stop();
+                mButtonNextWorld.setVisibility(View.INVISIBLE);
+                mButtonFinish.setVisibility(View.VISIBLE);
+
+            }
+
+        });
+
+        /*Оброботка нажатия на кнопку начать и остановить запись голоса*/
+        mStartRecordingButton.setOnClickListener(v -> {
+            if (mIsRecording){
+                stopRecording();
+
+            }else {
+                if(checkRecordPermission()){
+                    startRecording();
+                    mStartRecordingButton.setClickable(false);
+                    new Handler().postDelayed(() -> mStartRecordingButton.setClickable(true), 1000);
+                }
+            }
+        });
+
+        /*При нажатии на большой палец смена его состояния*/
+        mThumb.setOnClickListener(v->{
+            setThumbAndText();
+            animateThumb();
+        });
+
+        /*Установка нового слова и обнуление секундомера
+        который показывает время потраченое на одно слово */
+        mButtonNextWorld.setOnClickListener(v->{
+            setWorld();
+            mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
+            mWorldCount++;
+            mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
+        });
+
+        /*Завершение упражнения при нажатии стрелки назад*/
+        mButtonFinish.setOnClickListener(v->{
+            Navigation.findNavController(view).popBackStack();
+        });
+    }
+
+    private void getWordsByExId() {
         switch (mIdEx){
 
             case 1:
@@ -210,85 +291,6 @@ public class ExercisesCategory1Fragment extends Fragment {
                 mShort_des.setText("Придумайте ситуацию или фразу худшего в мире");
                 break;
         }
-        setWorld();
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        AdView mAdView = view.findViewById(R.id.adViewTabEx1);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-        mMaterialToolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
-
-        /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
-        mButtonStartPause.setOnClickListener(v->{
-
-            if(mButtonState){
-
-                mButtonStartPause.setImageResource(R.drawable.ic_pause);
-                mButtonState = false;
-                mChronometer_allTime.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
-                mChronometer_allTime.start();
-                mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime() - mWorldTimePauseOffSet);
-                mChronometer_1worldTime.start();
-                mButtonFinish.setVisibility(View.INVISIBLE);
-                mButtonNextWorld.setVisibility(View.VISIBLE);
-
-            }else{
-
-                mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
-                mButtonState = true;
-                mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
-                mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
-                mChronometer_allTime.stop();
-                mChronometer_1worldTime.stop();
-                mButtonNextWorld.setVisibility(View.INVISIBLE);
-                mButtonFinish.setVisibility(View.VISIBLE);
-
-            }
-
-        });
-
-        /*Оброботка нажатия на кнопку начать и остановить запись голоса*/
-        mStartRecordingButton.setOnClickListener(v -> {
-            if (mIsRecording){
-                stopRecording();
-
-            }else {
-                if(checkRecordPermission()){
-                    startRecording();
-                    mStartRecordingButton.setClickable(false);
-                    new Handler().postDelayed(() -> mStartRecordingButton.setClickable(true), 1000);
-                }
-            }
-        });
-
-        /*При нажатии на большой палец смена его состояния*/
-        mThumb.setOnClickListener(v->{
-            setThumbAndText();
-            animateThumb();
-        });
-
-        /*Установка нового слова и обнуление секундомера
-        который показывает время потраченое на одно слово */
-        mButtonNextWorld.setOnClickListener(v->{
-            setWorld();
-            mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime());
-            mWorldCount++;
-            mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
-        });
-
-        /*Завершение упражнения при нажатии*/
-        mButtonFinish.setOnClickListener(v->{
-            Navigation.findNavController(view).popBackStack();
-        });
     }
 
     private boolean checkRecordPermission() {

@@ -3,7 +3,6 @@ package com.YaroslavGorbach.delusionalgenerator.Fragments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.res.ResourcesCompat;
@@ -13,14 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -29,7 +26,6 @@ import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.AudioListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -67,7 +63,6 @@ public class AudioListFragment extends Fragment  {
 
 
     private File fileToPlay = null;
-
     private CoordinatorLayout mCoordinatorLayout;
     private AppCompatImageView mImageNoData;
     private TextView mTextViewNoData;
@@ -101,52 +96,7 @@ public class AudioListFragment extends Fragment  {
         mToolbar.inflateMenu(R.menu.menu_recordings_del);
         mToolbar.getMenu().getItem(0).setVisible(true);
 
-        new Thread(() -> {
-            /*Получаем файлы из деректории*/
-            String mPath = getContext().getExternalFilesDir("/").getAbsolutePath();
-            File directory = new File(mPath);
-            mAllFiles = directory.listFiles();
-
-            /*Сортировка файлов по дате измененя*/
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if (mAllFiles != null) {
-                    Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
-                }
-            }
-
-            if (mAllFiles != null && mAllFiles.length > 0){
-                mImageNoData.setVisibility(View.GONE);
-                mTextViewNoData.setVisibility(View.GONE);
-                mCoordinatorLayout.setVisibility(View.VISIBLE);
-            }else {
-                String color = Repo.getInstance(getContext()).getThemeState();
-                switch (color) {
-                    case "blue":
-                        mImageNoData.setImageResource(R.drawable.no_data_blue);
-                        break;
-
-                    case "green":
-                        mImageNoData.setImageResource(R.drawable.no_data_green);
-                        break;
-
-                    case "orange":
-                        mImageNoData.setImageResource(R.drawable.no_files);
-                        break;
-
-                    case "red":
-                        mImageNoData.setImageResource(R.drawable.no_data_red);
-                        break;
-
-                    case "purple":
-                        mImageNoData.setImageResource(R.drawable.no_data_purpure);
-                        break;
-                }
-                mImageNoData.setVisibility(View.VISIBLE);
-                mTextViewNoData.setVisibility(View.VISIBLE);
-                mCoordinatorLayout.setVisibility(View.GONE);
-            }
-
-        }).start();
+        new Thread(this::getFilesFromDir).start();
 
         /*Показ банера*/
         AdView mAdView = view.findViewById(R.id.adViewTabAudioList);
@@ -154,61 +104,21 @@ public class AudioListFragment extends Fragment  {
         mAdView.loadAd(adRequest);
 
         /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
-        mAudioListAdapter = new AudioListAdapter(mAllFiles, (file, position) -> {
-            fileToPlay = file;
-            if (isPlaying) {
-             pauseAudio();
-            } else {
-                playAudio(fileToPlay);
-            }
-        });
+        setAdapterForListOfRecords();
 
-        /*Настройка списка*/
-        mAudioList.setHasFixedSize(true);
-        mAudioList.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAudioList.setAdapter(mAudioListAdapter);
-        mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
-                DividerItemDecoration.VERTICAL));
-
-        // фикс бага который скрывает плеер если потянуть вниз
-        mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
-                if (!isPlaying && !isPause){
-                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                //We cant do anything here for this app
-            }
-        });
+        /*Спрятать плеер если не играет*/
+        setBottomSheetSate();
 
         /*Настройка перемотки записи з помощу сик бара*/
-        playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        setOnSeekBarChangeListener();
 
-            }
+        /*Оброботка нажатия на кнопки плеера*/
+        clicksListenersForButtonsStartStopBackForward();
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                pauseAudio();
-            }
+        return view;
+    }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (mediaPlayer != null) {
-                    int progress = seekBar.getProgress();
-                    mediaPlayer.seekTo(progress);
-                    resumeAudio();
-                }
-            }
-        });
-
-        /*Оброботка нажатия на кнопку пауза/плей в плеере*/
+    private void clicksListenersForButtonsStartStopBackForward() {
         playBtn.setOnClickListener(v -> {
             if (isPlaying) {
                 pauseAudio();
@@ -236,8 +146,110 @@ public class AudioListFragment extends Fragment  {
                 mediaPlayer.seekTo(progress);
             }
         });
+    }
 
-        return view;
+    private void setOnSeekBarChangeListener() {
+        playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                pauseAudio();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if (mediaPlayer != null) {
+                    int progress = seekBar.getProgress();
+                    mediaPlayer.seekTo(progress);
+                    resumeAudio();
+                }
+            }
+        });
+    }
+
+    private void setAdapterForListOfRecords() {
+        mAudioListAdapter = new AudioListAdapter(mAllFiles, (file, position) -> {
+            fileToPlay = file;
+            if (isPlaying) {
+             pauseAudio();
+            } else {
+                playAudio(fileToPlay);
+            }
+        });
+        /*Настройка списка*/
+        mAudioList.setHasFixedSize(true);
+        mAudioList.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAudioList.setAdapter(mAudioListAdapter);
+        mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
+    }
+
+    private void setBottomSheetSate() {
+        mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+                if (!isPlaying && !isPause){
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                //We cant do anything here for this app
+            }
+        });
+    }
+
+    private void getFilesFromDir(){
+        /*Получаем файлы из деректории*/
+        String mPath = getContext().getExternalFilesDir("/").getAbsolutePath();
+        File directory = new File(mPath);
+        mAllFiles = directory.listFiles();
+
+        /*Сортировка файлов по дате измененя*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (mAllFiles != null) {
+                Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
+            }
+        }
+
+        /*Если файлов нет, покзать картинку "Нет данных"*/
+        if (mAllFiles != null && mAllFiles.length > 0){
+            mImageNoData.setVisibility(View.GONE);
+            mTextViewNoData.setVisibility(View.GONE);
+            mCoordinatorLayout.setVisibility(View.VISIBLE);
+        }else {
+            String color = Repo.getInstance(getContext()).getThemeState();
+            switch (color) {
+                case "blue":
+                    mImageNoData.setImageResource(R.drawable.no_data_blue);
+                    break;
+
+                case "green":
+                    mImageNoData.setImageResource(R.drawable.no_data_green);
+                    break;
+
+                case "orange":
+                    mImageNoData.setImageResource(R.drawable.no_files);
+                    break;
+
+                case "red":
+                    mImageNoData.setImageResource(R.drawable.no_data_red);
+                    break;
+
+                case "purple":
+                    mImageNoData.setImageResource(R.drawable.no_data_purpure);
+                    break;
+            }
+            mImageNoData.setVisibility(View.VISIBLE);
+            mTextViewNoData.setVisibility(View.VISIBLE);
+            mCoordinatorLayout.setVisibility(View.GONE);
+        }
     }
 
     private void resumeAudio() {

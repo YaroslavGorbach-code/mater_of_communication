@@ -29,27 +29,36 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
     public static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
     public static final String FIRST_OPEN = "FIRST_OPEN";
-    private  NavHostFragment mNavHostFragment;
-
-    private MaterialToolbar mToolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mToolbar = findViewById(R.id.toolbar_main_a);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar_main_a);
 
         /*Установка оброботки нажатий на элементы нижней навигации*/
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
-         mNavHostFragment =(NavHostFragment)getSupportFragmentManager()
-                .findFragmentById(R.id.fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView,
-                mNavHostFragment.getNavController());
+        bottomNavigationClickListener();
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
+        showFirsOpenDialog();
+
+        /*Установка лисенера для кнопки на тулбаре которая очищает саписок записей*/
+        toolbar.setOnMenuItemClickListener(item -> {
+            new DialogDeleteRecords().show(getSupportFragmentManager(),"delete");
+            return true;
+        });
+    }
+
+    private void bottomNavigationClickListener() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment);
+        NavigationUI.setupWithNavController(bottomNavigationView,
+                navHostFragment.getNavController());
+    }
+
+    private void showFirsOpenDialog() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
         boolean firstOpen = sharedPreferences.getBoolean(FIRST_OPEN, true);
         if(firstOpen){
@@ -60,10 +69,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
             editor.putBoolean(FIRST_OPEN, false);
             editor.apply();
         }
-        mToolbar.setOnMenuItemClickListener(item -> {
-            new DialogDeleteRecords().show(getSupportFragmentManager(),"delete");
-            return true;
-        });
     }
 
 
@@ -113,9 +118,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
             for (File f : allFiles) {
                 f.delete();
             }
+            /*обновляем фрагмент*/
             NavDirections action = AudioListFragmentDirections.actionAudioListFragmentSelf();
             Navigation.findNavController(this,R.id.fragment).navigate(action);
-
         }
     }
 }

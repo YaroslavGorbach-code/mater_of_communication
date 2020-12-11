@@ -75,13 +75,8 @@ public class StatisticsFragment extends Fragment {
         });
 
         /*Если статисти для упражнений второй категории то убрать чарт с минутами*/
-        switch (mIdEx){
-            case 20:
-            case 21:
-            case 22:
-                mChartMinutes_cv.setVisibility(View.GONE);
-                break;
-
+        if (mIdEx == 22) {
+            mChartMinutes_cv.setVisibility(View.GONE);
         }
         /*Оброботка нажатия на стрелку назад*/
         mToolbar.setNavigationOnClickListener(v->{

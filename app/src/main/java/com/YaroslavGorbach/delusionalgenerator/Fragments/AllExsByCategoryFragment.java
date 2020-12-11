@@ -45,13 +45,10 @@ public class AllExsByCategoryFragment extends Fragment {
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
     private MaterialToolbar mMaterialToolbar;
-    private CardView mCardView;
-
 
     public AllExsByCategoryFragment() {
         // Required empty public constructor
     }
-
 
     public static AllExsByCategoryFragment newInstance(){
         return new AllExsByCategoryFragment();
@@ -72,7 +69,6 @@ public class AllExsByCategoryFragment extends Fragment {
     mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
     mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
     mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-    mCardView = view.findViewById(R.id.gridItem);
     getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
         return view;
     }
@@ -85,6 +81,10 @@ public class AllExsByCategoryFragment extends Fragment {
         });
 
         /*Создаем адаптер*/
+        setGridListAdapter(view);
+    }
+
+    private void setGridListAdapter(@NonNull View view) {
         mExercisesViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
@@ -92,19 +92,13 @@ public class AllExsByCategoryFragment extends Fragment {
                         actionAllExsByCategoryFragmentToExercisesDescriptionFragment().setExId(id);
                 Navigation.findNavController(view).navigate(action);
             });
-
-
-
             //int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 180);
-            mRecycler.setHasFixedSize(true);
             //mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
-
+            mRecycler.setHasFixedSize(true);
             FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
             layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
             mRecycler.setLayoutManager(layoutManager);
-
             mRecycler.setAdapter(mAdapter);
-
         });
     }
 

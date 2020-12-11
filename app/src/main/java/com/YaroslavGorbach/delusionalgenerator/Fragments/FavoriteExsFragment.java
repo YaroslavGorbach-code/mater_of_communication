@@ -69,10 +69,13 @@ public class FavoriteExsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorit_exs, container, false);
         mRecycler = view.findViewById(R.id.list_favorite_exs);
-
         mTextViewNoData = view.findViewById(R.id.favorite_fragment_text_nothing);
         mImageNoData = view.findViewById(R.id.favorite_fragment_image_nothing);
+        setAdapter(view);
+        return view;
+    }
 
+    private void setAdapter(View view) {
         mExercisesViewModel.getFavoriteExs().observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
@@ -80,16 +83,17 @@ public class FavoriteExsFragment extends Fragment {
                         actionFavoriteExsFragmentToExercisesDescriptionFragment().setExId(id);
                 Navigation.findNavController(view).navigate(action);
             });
+
             //int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
-            mRecycler.setHasFixedSize(true);
             //mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
 
+            mRecycler.setHasFixedSize(true);
             FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
             layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
             mRecycler.setLayoutManager(layoutManager);
-
             mRecycler.setAdapter(mAdapter);
 
+            /*если список пустой показать картинку*/
             if (exercises != null && exercises.size() > 0){
                 mImageNoData.setVisibility(View.GONE);
                 mTextViewNoData.setVisibility(View.GONE);
@@ -124,8 +128,5 @@ public class FavoriteExsFragment extends Fragment {
             }
 
         });
-
-
-        return view;
     }
 }

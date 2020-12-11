@@ -80,7 +80,6 @@ public class SettingsFragment extends Fragment {
         mAlarmManager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
         mReminderIntent = new Intent(getContext(), ReminderBroadcast.class);
         mPendingIntent = PendingIntent.getBroadcast(getContext(), 1, mReminderIntent, 0);
-
         mNotifications = view.findViewById(R.id.notifications);
         mConnection = view.findViewById(R.id.connection);
         mRate = view.findViewById(R.id.rate);
@@ -91,7 +90,6 @@ public class SettingsFragment extends Fragment {
         mTimePicker = view.findViewById(R.id.timePiker);
         mRepo = Repo.getInstance(getContext());
         mCheckBox.setChecked(mRepo.getNotificationState());
-
         return view;
     }
 

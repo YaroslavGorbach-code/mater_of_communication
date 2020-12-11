@@ -19,9 +19,7 @@ import java.io.File;
 import java.util.List;
 
 public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdapter.ExerciseViewHolder> {
-
     private List<Exercise> mExercises;
-
     private final onItemListClick onItemListClick;
 
     public interface onItemListClick {
@@ -32,7 +30,6 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
         this.mExercises = exercises;
         this.onItemListClick = onItemListClick;
         notifyDataSetChanged();
-
     }
 
     @NonNull

@@ -58,6 +58,8 @@ public class ExercisesCategory2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercises_category_2, container, false);
+
+        /*поиск всех вью и старт таймера*/
         mWordCounter_tv = view.findViewById(R.id.worldCounterText);
         mTimer_tv = view.findViewById(R.id.timer);
         mExId = ExercisesCategory2FragmentArgs.fromBundle(getArguments()).getIdEx();
@@ -66,10 +68,8 @@ public class ExercisesCategory2Fragment extends Fragment {
         mWhatTodo_tv = view.findViewById(R.id.whatToDo);
         mClickAria = view.findViewById(R.id.clickAria);
         mRecord_tv = view.findViewById(R.id.worldRecordText);
-
         startTimer(START_MILLI_SECONDS);
         mIsRunning = true;
-
         return view;
     }
 
@@ -77,14 +77,27 @@ public class ExercisesCategory2Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*показ банера*/
         AdView mAdView = view.findViewById(R.id.adViewTabEx2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        /*завершить упражнение при клике на стрелку назад*/
         mMaterialToolbar.setNavigationOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();
         });
 
+        setExDescription();
+
+        mClickAria.setOnClickListener(v -> {
+            if (mIsRunning){
+                mWordCountValue +=1;
+                mWordCounter_tv.setText("Названо слов: " + mWordCountValue);
+            }
+        });
+    }
+
+    private void setExDescription() {
         switch (mExId){
         case 20:
         mMaterialToolbar.setTitle("Существительные");
@@ -103,13 +116,6 @@ public class ExercisesCategory2Fragment extends Fragment {
 
         break;
     }
-
-        mClickAria.setOnClickListener(v -> {
-            if (mIsRunning){
-                mWordCountValue +=1;
-                mWordCounter_tv.setText("Названо слов: " + mWordCountValue);
-            }
-        });
     }
 
     private void startTimer(long time_in_seconds) {

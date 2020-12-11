@@ -15,15 +15,12 @@ import com.YaroslavGorbach.delusionalgenerator.TimeAgo;
 import java.io.File;
 
 public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.AudioViewHolder> {
-
     private File[] allFiles;
     private TimeAgo timeAgo;
-
     private onItemListClick onItemListClick;
 
     public interface onItemListClick {
         void onClickListener(File file, int position);
-
     }
 
     public AudioListAdapter(File[] allFiles, onItemListClick onItemListClick) {
@@ -55,14 +52,11 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView list_image;
         private TextView list_title;
         private TextView list_date;
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            list_image = itemView.findViewById(R.id.list_play_button);
             list_title = itemView.findViewById(R.id.list_title);
             list_date = itemView.findViewById(R.id.list_date);
 

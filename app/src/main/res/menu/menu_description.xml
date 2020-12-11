@@ -9,7 +9,7 @@
 </item>
 
     <item
-        android:id="@+id/delete_files"
+        android:id="@+id/show_chart"
         android:title="статистика"
         android:icon="@drawable/ic_bar_chart"
         app:showAsAction="always">

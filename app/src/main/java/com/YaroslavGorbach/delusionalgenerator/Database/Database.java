@@ -15,26 +15,18 @@ import java.util.Date;
 
 @androidx.room.Database(entities = {Exercise.class},  version = 2)
 public abstract class Database extends RoomDatabase {
-
     private static Database sInstance;
-
     public abstract Exercise_dao exercise_dao();
 
-
     public static synchronized Database getInstance(Context context){
-
         if (sInstance == null){
-
             sInstance = Room.databaseBuilder(context.getApplicationContext(), Database.class, "counter.db")
                     .fallbackToDestructiveMigration()
                     .addCallback(rdc)
                     .build();
         }
-
         return sInstance;
-
     }
-
 
     private static RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
         public void onCreate(SupportSQLiteDatabase db) {
@@ -62,8 +54,6 @@ public abstract class Database extends RoomDatabase {
                 mDao.insert(new Exercise(30,"Простые",3,R.drawable.ex16_backgraund, 0));
                 mDao.insert(new Exercise(31,"Сложные",3,R.drawable.ex17_backgraund, 0));
                 mDao.insert(new Exercise(32,"Очень сложные",3,R.drawable.ex18_backgraund, 0));
-
-
 
             }).start();
         }

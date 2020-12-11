@@ -57,6 +57,7 @@ public class ExercisesDescriptionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercise_description, container, false);
+        /*инициализация вюх и провайдера*/
         mStartExButton = view.findViewById(R.id.button_start_ex_category_1);
         mAimEx_tv = view.findViewById(R.id.textView_aim_ex);
         mDescriptionEx_tv = view.findViewById(R.id.textView_description_ex);
@@ -69,21 +70,7 @@ public class ExercisesDescriptionFragment extends Fragment {
         mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
 
         /*Установка иконки в туллбар в зависимости от того упражнение в избранном или нет*/
-        mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
-            mExercise = exercise;
-
-            switch (exercise.favorite){
-                case 1:
-                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
-                            getContext(), R.drawable.ic_baseline_star));
-                    break;
-
-                case 0:
-                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
-                            getContext(), R.drawable.ic_star_outline));
-                    break;
-            }
-        });
+        setFavoriteToolbarIcon();
 
         return view;
     }
@@ -96,12 +83,13 @@ public class ExercisesDescriptionFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        /*В зависимости от id упржанения устанавливаем соответствующий текст для описания упражнения*/
+        setDescriptionText();
 
         /*Оброботка нажатия на иконки тулбара*/
         mToolbar.setOnMenuItemClickListener(v->{
             switch (v.getItemId()){
                 case R.id.add_to_favorite:
-
                     switch (mExercise.favorite){
                         case 0:
                             mExercise.favorite = 1;
@@ -109,7 +97,6 @@ public class ExercisesDescriptionFragment extends Fragment {
                             v.setIcon(ContextCompat.getDrawable(
                                     getContext(), R.drawable.ic_baseline_star));
                             break;
-
                         case 1:
                             mExercise.favorite = 0;
                             mViewModel.update(mExercise);
@@ -117,10 +104,9 @@ public class ExercisesDescriptionFragment extends Fragment {
                                     getContext(), R.drawable.ic_star_outline));
                             break;
                     }
-
                     break;
 
-                case R.id.delete_files:
+                case R.id.show_chart:
                     NavDirections action = ExercisesDescriptionFragmentDirections.
                             actionExercisesDescriptionFragmentToStatisticsFragment().setExId(mExId);
                     Navigation.findNavController(view).navigate(action);
@@ -130,7 +116,21 @@ public class ExercisesDescriptionFragment extends Fragment {
             return true;
         });
 
-        /*В зависимости от id упржанения устанавливаем соответствующий текст для описания упражнения*/
+
+
+        /*При клике на кнопку "Начать" открываем подходящее упражнение упражнение*/
+        mStartExButton.setOnClickListener(v -> {
+            startEx(view);
+        });
+
+        /*Обработка нажатия стрелки назад*/
+        mToolbar.setNavigationOnClickListener(v->{
+            Navigation.findNavController(view).popBackStack();
+        });
+
+    }
+
+    private void setDescriptionText() {
         switch (mExId){
 
             case  1:
@@ -236,30 +236,38 @@ public class ExercisesDescriptionFragment extends Fragment {
                 mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_32));
                 break;
         }
+    }
 
-        /*При клике на кнопку "Начать" открываем упражнение*/
+    private void startEx(@NonNull View view) {
+        if (mExId<20 && mExId > 0){
+            NavDirections action = ExercisesDescriptionFragmentDirections.
+                    actionExercisesDescriptionFragmentToExercisesCategory1Fragment().setIdEx(mExId);
+            Navigation.findNavController(view).navigate(action);
+        }else if(mExId > 19 && mExId < 23){
+            NavDirections action = ExercisesDescriptionFragmentDirections.
+                    actionExercisesDescriptionFragmentToExercisesCategory2Fragment().setIdEx(mExId);
+            Navigation.findNavController(view).navigate(action);
+        } else if(mExId > 29 && mExId < 33){
+            NavDirections action = ExercisesDescriptionFragmentDirections.
+                    actionExercisesDescriptionFragmentToExercisesCategory3Fragment().setExId(mExId);
+            Navigation.findNavController(view).navigate(action);
+        }
+    }
 
-        mStartExButton.setOnClickListener(v -> {
-            if (mExId<20 && mExId > 0){
-                NavDirections action = ExercisesDescriptionFragmentDirections.
-                        actionExercisesDescriptionFragmentToExercisesCategory1Fragment().setIdEx(mExId);
-                Navigation.findNavController(view).navigate(action);
-            }else if(mExId > 19 && mExId < 23){
-                NavDirections action = ExercisesDescriptionFragmentDirections.
-                        actionExercisesDescriptionFragmentToExercisesCategory2Fragment().setIdEx(mExId);
-                Navigation.findNavController(view).navigate(action);
-            } else if(mExId > 29 && mExId < 33){
-                NavDirections action = ExercisesDescriptionFragmentDirections.
-                        actionExercisesDescriptionFragmentToExercisesCategory3Fragment().setExId(mExId);
-                Navigation.findNavController(view).navigate(action);
+    private void setFavoriteToolbarIcon() {
+        mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
+            mExercise = exercise;
+            switch (exercise.favorite){
+                case 1:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            getContext(), R.drawable.ic_baseline_star));
+                    break;
+
+                case 0:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            getContext(), R.drawable.ic_star_outline));
+                    break;
             }
-
         });
-
-        /*Обработка нажатия стрелки назад*/
-        mToolbar.setNavigationOnClickListener(v->{
-            Navigation.findNavController(view).popBackStack();
-        });
-
     }
 }
