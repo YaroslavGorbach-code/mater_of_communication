@@ -46,7 +46,11 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
 
     @Override
     public int getItemCount() {
-        return allFiles.length;
+        if (allFiles!=null){
+            return allFiles.length;
+        }else {
+            return 0;
+        }
     }
 
 
