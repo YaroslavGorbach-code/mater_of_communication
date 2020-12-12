@@ -59,7 +59,6 @@ public class AudioListFragment extends Fragment  {
     private SeekBar playerSeekbar;
     private Handler seekbarHandler;
     private Runnable updateSeekbar;
-    private Repo mRepo;
 
 
     private File fileToPlay = null;
@@ -70,7 +69,6 @@ public class AudioListFragment extends Fragment  {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @SuppressLint("RestrictedApi")
@@ -91,12 +89,12 @@ public class AudioListFragment extends Fragment  {
         mImageNoData = view.findViewById(R.id.audio_fragment_image_nothing);
         mTextViewNoData = view.findViewById(R.id.audio_fragment_text_nothing);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        mRepo = Repo.getInstance(getContext());
         mToolbar = getActivity().findViewById(R.id.toolbar_main_a);
         mToolbar.inflateMenu(R.menu.menu_recordings_del);
         mToolbar.getMenu().getItem(0).setVisible(true);
 
-        new Thread(this::getFilesFromDir).start();
+        /*Получаем файлы из деректории*/
+        getFilesFromDir();
 
         /*Показ банера*/
         AdView mAdView = view.findViewById(R.id.adViewTabAudioList);
@@ -180,6 +178,7 @@ public class AudioListFragment extends Fragment  {
                 playAudio(fileToPlay);
             }
         });
+
         /*Настройка списка*/
         mAudioList.setHasFixedSize(true);
         mAudioList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -192,7 +191,6 @@ public class AudioListFragment extends Fragment  {
         mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
                 if (!isPlaying && !isPause){
                     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
@@ -207,16 +205,17 @@ public class AudioListFragment extends Fragment  {
 
     private void getFilesFromDir(){
         /*Получаем файлы из деректории*/
-        String mPath = getContext().getExternalFilesDir("/").getAbsolutePath();
-        File directory = new File(mPath);
-        mAllFiles = directory.listFiles();
+            String mPath = getContext().getExternalFilesDir("/").getAbsolutePath();
+            File directory = new File(mPath);
+            mAllFiles = directory.listFiles();
 
-        /*Сортировка файлов по дате измененя*/
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (mAllFiles != null) {
-                Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
+            /*Сортировка файлов по дате измененя*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (mAllFiles != null) {
+                    Arrays.sort(mAllFiles, Comparator.comparingLong(File::lastModified).reversed());
+                }
             }
-        }
+
 
         /*Если файлов нет, покзать картинку "Нет данных"*/
         if (mAllFiles != null && mAllFiles.length > 0){
@@ -271,7 +270,6 @@ public class AudioListFragment extends Fragment  {
             isPause = true;
             seekbarHandler.removeCallbacks(updateSeekbar);
         }
-
     }
 
 
