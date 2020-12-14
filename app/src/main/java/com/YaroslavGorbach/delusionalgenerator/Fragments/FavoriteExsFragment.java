@@ -28,7 +28,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class FavoriteExsFragment extends Fragment {
 
 
-    // TODO: Rename and change types of parameters
     private ExercisesViewModel mExercisesViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
@@ -42,7 +41,6 @@ public class FavoriteExsFragment extends Fragment {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static FavoriteExsFragment newInstance(){
         FavoriteExsFragment fragment = new FavoriteExsFragment();
         return fragment;

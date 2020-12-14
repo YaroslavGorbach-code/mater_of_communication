@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="?colorPrimary"
-                        android:text="Скороговорки"
+                        android:text="Для развития дикции"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_3"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll3"
                         app:layout_constraintStart_toStartOf="parent"

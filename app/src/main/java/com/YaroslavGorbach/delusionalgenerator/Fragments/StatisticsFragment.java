@@ -28,7 +28,6 @@ public class StatisticsFragment extends Fragment {
     private BarChart mChartMinutes;
     private BarChart mChartWorldCount;
     private CardView mChartMinutes_cv;
-    private CardView mChartWords_cv;
     private Toolbar mToolbar;
     int mIdEx;
 
@@ -37,9 +36,7 @@ public class StatisticsFragment extends Fragment {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static StatisticsFragment newInstance() {
-
         return new StatisticsFragment();
     }
 
@@ -52,7 +49,6 @@ public class StatisticsFragment extends Fragment {
         mToolbar = view.findViewById(R.id.toolbar_statistics);
         mToolbar.inflateMenu(R.menu.menu_statistic);
         mChartMinutes_cv = view.findViewById(R.id.cardView2);
-        mChartWords_cv = view.findViewById(R.id.cardView1);
         mIdEx = StatisticsFragmentArgs.fromBundle(getArguments()).getExId();
 
         return view;
@@ -75,7 +71,7 @@ public class StatisticsFragment extends Fragment {
         });
 
         /*Если статисти для упражнений второй категории то убрать чарт с минутами*/
-        if (mIdEx == 22) {
+        if (mIdEx == 22 || mIdEx == 20 || mIdEx == 21) {
             mChartMinutes_cv.setVisibility(View.GONE);
         }
         /*Оброботка нажатия на стрелку назад*/

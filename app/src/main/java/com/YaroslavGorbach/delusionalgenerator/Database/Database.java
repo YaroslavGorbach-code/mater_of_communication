@@ -1,10 +1,13 @@
 package com.YaroslavGorbach.delusionalgenerator.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.room.OnConflictStrategy;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Exercise_dao;
@@ -13,7 +16,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Date;
 
-@androidx.room.Database(entities = {Exercise.class},  version = 2)
+@androidx.room.Database(entities = {Exercise.class},  version = 3)
 public abstract class Database extends RoomDatabase {
     private static Database sInstance;
     public abstract Exercise_dao exercise_dao();
@@ -21,14 +24,27 @@ public abstract class Database extends RoomDatabase {
     public static synchronized Database getInstance(Context context){
         if (sInstance == null){
             sInstance = Room.databaseBuilder(context.getApplicationContext(), Database.class, "counter.db")
-                    .fallbackToDestructiveMigration()
+                    .addMigrations(MIGRATION_2_3)
                     .addCallback(rdc)
                     .build();
         }
         return sInstance;
     }
 
-    private static RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            ContentValues cv = new ContentValues();
+            cv.put("name", "Простые скороговорки");
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 30", null );
+            cv.put("name", "Сложные скороговорки");
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 31", null );
+            cv.put("name", "Очень сложные скороговорки");
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 32", null );
+     }
+    };
+
+    private static final RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
         public void onCreate(SupportSQLiteDatabase db) {
             Exercise_dao mDao;
             mDao = sInstance.exercise_dao();
@@ -51,9 +67,9 @@ public abstract class Database extends RoomDatabase {
                 mDao.insert(new Exercise(21,"Прилагательные",2,R.drawable.ex14_backgraund, 0));
                 mDao.insert(new Exercise(22,"Глаголы",2,R.drawable.ex15_backgraund, 0));
 
-                mDao.insert(new Exercise(30,"Простые",3,R.drawable.ex16_backgraund, 0));
-                mDao.insert(new Exercise(31,"Сложные",3,R.drawable.ex17_backgraund, 0));
-                mDao.insert(new Exercise(32,"Очень сложные",3,R.drawable.ex18_backgraund, 0));
+                mDao.insert(new Exercise(30,"Простые скороговорки",3,R.drawable.ex16_backgraund, 0));
+                mDao.insert(new Exercise(31,"Сложные скороговорки",3,R.drawable.ex17_backgraund, 0));
+                mDao.insert(new Exercise(32,"Очень сложные скороговорки",3,R.drawable.ex18_backgraund, 0));
 
             }).start();
         }
