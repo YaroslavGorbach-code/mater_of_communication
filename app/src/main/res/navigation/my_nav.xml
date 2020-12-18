@@ -40,9 +40,6 @@
             app:argType="integer"
             android:defaultValue="-1" />
         <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment" />
-        <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory3Fragment"
             app:destination="@id/exercisesCategory3Fragment"
             app:popUpTo="@id/exercisesDescriptionFragment"
@@ -61,6 +58,9 @@
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesFragment_v_2"
             app:destination="@id/exercisesFragment_v_2" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"

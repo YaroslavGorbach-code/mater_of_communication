@@ -7,11 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +66,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         mWhatTodo_tv = view.findViewById(R.id.whatToDo);
         mClickAria = view.findViewById(R.id.clickAria);
         mRecord_tv = view.findViewById(R.id.worldRecordText);
-        startTimer(START_MILLI_SECONDS);
+        startTimer();
         mIsRunning = true;
         return view;
     }
@@ -118,8 +116,8 @@ public class ExercisesCategory2Fragment extends Fragment {
     }
     }
 
-    private void startTimer(long time_in_seconds) {
-        new CountDownTimer(time_in_seconds, 1000) {
+    private void startTimer() {
+        new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -132,7 +130,6 @@ public class ExercisesCategory2Fragment extends Fragment {
             public void onFinish() {
                 //loadConfeti()
                 mIsRunning = false;
-                insertMyDateAndTime();
                 mRecord_tv.setVisibility(View.VISIBLE);
                 mRecord_tv.setText("Рекорд " + Repo.getInstance(getContext()).getMaxWorldCount(mExId));
             }
