@@ -7,15 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.TimeAgo;
 import com.bumptech.glide.Glide;
 
-import java.io.File;
 import java.util.List;
 
 public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdapter.ExerciseViewHolder> {

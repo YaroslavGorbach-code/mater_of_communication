@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.daimajia.androidanimations.library.Techniques;
@@ -33,7 +39,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -66,6 +71,7 @@ public class ExercisesCategory1Fragment extends Fragment {
     private String recordFile;
     private String mExName;
     private MaterialToolbar mMaterialToolbar;
+    private LiveData<Exercise> mEx;
 
    private String [] mArrayTextUnderThumb = {};
    private String [] mArrayWorlds_ex1 = {};
@@ -81,13 +87,15 @@ public class ExercisesCategory1Fragment extends Fragment {
    private String [] mArrayWorlds_ex10 = {};
    private String [] mArrayWorlds_ex11 = {};
    private String [] mArrayWorlds_ex12 = {};
+    private String [] mArrayWorlds_ex13 = {};
+
 
 
     public ExercisesCategory1Fragment() {
     }
 
 
-    public static ExercisesCategory1Fragment newInstance(int exId) {
+    public static ExercisesCategory1Fragment newInstance() {
         return new ExercisesCategory1Fragment();
     }
 
@@ -115,6 +123,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         mIdEx = ExercisesCategory1FragmentArgs.fromBundle(getArguments()).getIdEx();
         mChronometer_allTime.start();
         mChronometer_1worldTime.start();
+        mEx = new Repo_2(getActivity().getApplication()).getExerciseById(mIdEx);
 
         //установка максимального зщначения для счетчика слов
         mMaxWorldCount = Repo.getInstance(getContext()).getMaxWorldCount(mIdEx);
@@ -137,9 +146,11 @@ public class ExercisesCategory1Fragment extends Fragment {
         mAdView.loadAd(adRequest);
 
         /*навигация назад*/
-        mMaterialToolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
+        mMaterialToolbar.setNavigationOnClickListener(v ->
+                Navigation.findNavController(view).popBackStack());
+
+        mEx.observe(getViewLifecycleOwner(), exercise ->
+                mExName = exercise.name);
 
         /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
         mButtonStartPause.setOnClickListener(v->{
@@ -207,88 +218,79 @@ public class ExercisesCategory1Fragment extends Fragment {
 
     private void getWordsByExId() {
         switch (mIdEx){
-
             case 1:
                 mArrayWorlds_ex1 = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayTextUnderThumb = getResources().getStringArray(R.array.TextUnderThumb_ex1);
-                mExName = "Лингвистические пирамиды";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Лингвистические пирамиды");
                 mThumbAndText.setVisibility(View.VISIBLE);
-                mShort_des.setText("Обобщайте, разобобщайте и переходите по аналогиям");
+                mShort_des.setText("Обобщайте, разобобщайте, переходите по аналогиям");
                 break;
-
-
             case 2:
                 mArrayWorlds_ex2_living = getResources().getStringArray(R.array.Worlds_items_Alive);
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mExName = "Чем ворон похож на стул";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Чем ворон похож на стол");
                 mShort_des.setText("Найдите сходство");
                 break;
-
             case 3:
                 mArrayWorlds_ex2_not_living = getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayWorlds_ex3_filings = getResources().getStringArray(R.array.Worlds_items_filings);
                 mExName = "Чем ворон похож на стул (чувства)";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Чем ворон похож на стул (чувства)");
                 mShort_des.setText("Найдите сходство");
                 break;
-
             case 4:
                 mArrayWorlds_ex4 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mExName = "Продвинутое сявязывание";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Продвинутое связывание");
                 mShort_des.setText("Найдите сходства");
                 break;
-
             case 5:
                 mArrayWorlds_ex5 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mExName = "О чем вижу, о том и пою";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("О чем вижу, о том и пою");
                 mShort_des.setText("Описывайте максимально долго данный предмет");
                 break;
-
             case 6:
                 mArrayWorlds_ex6 = getResources().getStringArray(R.array.Worlds_items_abbreviations);
-                mExName = "Другие варианты сокращений";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Другие варианты сокращений");
                 mShort_des.setText("Придумайте необычную расшифровку аббревиатуры");
+                mButtonNextWorld.setText("Следующая аббревиатура");
+                mButtonNextWorld.setTextSize(17);
                 break;
             case 7:
                 mArrayWorlds_ex7 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mExName = "Волшебный нейминг";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Волшебный нейминг");
                 mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных");
                 break;
             case 8:
                 mArrayWorlds_ex8 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mExName = "Купля-продажа";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Купля - продажа");
                 mShort_des.setText("Продайте это");
                 break;
             case 9:
                 mArrayWorlds_ex9 = getResources().getStringArray(R.array.letters);
-                mExName = "Вспомнить все";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Вспомнить все");
                 mShort_des.setText("Назовите 15 слов на эту букву");
+                mButtonNextWorld.setText("Следующая буква");
                 break;
             case 10:
                 mArrayWorlds_ex10 = getResources().getStringArray(R.array.Terms);
-                mExName = "В соавторстве с Далем";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("В соавторстве с Далем");
                 mShort_des.setText("Дайте определение слову");
                 break;
             case 11:
                 mArrayWorlds_ex11 = getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mExName = "Тест Роршаха";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Тест Роршаха");
                 mShort_des.setText("Придумайте чем это может быть еще");
                 break;
             case 12:
                 mArrayWorlds_ex12 = getResources().getStringArray(R.array.professions);
-                mExName = "Хуже уже не будет";
-                mMaterialToolbar.setTitle(mExName);
+                mMaterialToolbar.setTitle("Хуже уже не будет");
                 mShort_des.setText("Придумайте ситуацию или фразу худшего в мире");
+                break;
+            case 13:
+                mArrayWorlds_ex13 = getResources().getStringArray(R.array.questions);
+                mMaterialToolbar.setTitle("Вопрос - ответ");
+                mShort_des.setText("Ответьте на вопрос максимально развернуто");
+                mButtonNextWorld.setText("Следующий вопрос");
                 break;
         }
     }
@@ -350,29 +352,23 @@ public class ExercisesCategory1Fragment extends Fragment {
         mediaRecorder.start();
     }
 
-
     /*В зависимости от айди упражнения устанавливаем в textView правельное слово или пару слов*/
+    @SuppressLint("WrongConstant")
     private void setWorld(){
-
         switch (mIdEx) {
-
             case 1:
                 mWorld.setText(mArrayWorlds_ex1[r.nextInt(mArrayWorlds_ex1.length)]);
                 setThumbAndText();
                 animateThumb();
                 break;
-
             case 2:
                 mWorld.setText(String.format("%s - %s", mArrayWorlds_ex2_living[r.nextInt(mArrayWorlds_ex2_living.length)],
                         mArrayWorlds_ex2_not_living[r.nextInt(mArrayWorlds_ex2_not_living.length)]));
                 break;
-
             case 3:
                 mWorld.setText(String.format("%s - %s", mArrayWorlds_ex3_filings[r.nextInt(mArrayWorlds_ex3_filings.length)],
                         mArrayWorlds_ex2_not_living[r.nextInt(mArrayWorlds_ex2_not_living.length)]));
                 break;
-
-
             case 4:
                 String worl_1 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
                 String worl_2 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
@@ -381,37 +377,36 @@ public class ExercisesCategory1Fragment extends Fragment {
                 }
                 mWorld.setText(String.format("%s - %s", worl_1, worl_2));
                 break;
-
             case 5:
                 mWorld.setText(mArrayWorlds_ex5[r.nextInt(mArrayWorlds_ex5.length)]);
                 break;
-
             case 6:
                 mWorld.setText(mArrayWorlds_ex6[r.nextInt(mArrayWorlds_ex6.length)]);
                 break;
-
             case 7:
                 mWorld.setText(mArrayWorlds_ex7[r.nextInt(mArrayWorlds_ex7.length)]);
                 break;
-
             case 8:
                 mWorld.setText(mArrayWorlds_ex8[r.nextInt(mArrayWorlds_ex8.length)]);
                 break;
-
             case 9:
                 mWorld.setText(mArrayWorlds_ex9[r.nextInt(mArrayWorlds_ex9.length)]);
                 break;
-
             case 10:
                 mWorld.setText(mArrayWorlds_ex10[r.nextInt(mArrayWorlds_ex10.length)]);
                 break;
-
             case 11:
                 mWorld.setText(mArrayWorlds_ex11[r.nextInt(mArrayWorlds_ex11.length)]);
                 break;
-
             case 12:
                 mWorld.setText(mArrayWorlds_ex12[r.nextInt(mArrayWorlds_ex12.length)]);
+                break;
+            case 13:
+                mWorld.setText(mArrayWorlds_ex13[r.nextInt(mArrayWorlds_ex13.length)]);
+                mWorld.setTextSize(25);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    mWorld.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+                }
                 break;
 
         }
@@ -434,7 +429,6 @@ public class ExercisesCategory1Fragment extends Fragment {
 
     }
 
-
     /*Анимацыя для большого пальца*/
     private void animateThumb(){
         YoYo.with(Techniques.RotateIn)
@@ -444,24 +438,6 @@ public class ExercisesCategory1Fragment extends Fragment {
                 .duration(500)
                 .playOn(mTextUnderThumb);
     }
-
-
-
-    /*Метод используеться для ведения статистики*/
-    private void insertMyDateAndTime(){
-        //получаем текущую дату
-        Date currentDate = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
-        String date = dateFormat.format(currentDate);
-
-        //получаем время из секундомера в минутах
-        long time = ((SystemClock.elapsedRealtime() - mChronometer_allTime.getBase())/1000) / 60;
-
-        Repo.getInstance(getContext()).insertDateAndTime(mIdEx, date, time);
-        Repo.getInstance(getContext()).insertDateAndCountWorlds(mIdEx, date, mWorldCount);
-
-    }
-
 
     @Override
     public void onStop() {
@@ -474,18 +450,15 @@ public class ExercisesCategory1Fragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        insertMyDateAndTime();
-        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
-        mButtonState = true;
-        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
-        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
+        DateAndTime.insertDataToStatistic(getContext(), mIdEx, mWorldCount, mChronometer_allTime.getBase());
+//        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
+//        mButtonState = true;
+//        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+//        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
         mChronometer_allTime.stop();
         mChronometer_1worldTime.stop();
-        mButtonNextWorld.setVisibility(View.INVISIBLE);
-        mButtonFinish.setVisibility(View.VISIBLE);
-        if(mIsRecording){
-            stopRecording();
-        }
+//        mButtonNextWorld.setVisibility(View.INVISIBLE);
+//        mButtonFinish.setVisibility(View.VISIBLE);
     }
 }
 

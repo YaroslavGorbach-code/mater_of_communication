@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -22,10 +22,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Random;
 
 public class ExercisesCategory3Fragment extends Fragment {
@@ -86,7 +82,9 @@ public class ExercisesCategory3Fragment extends Fragment {
         setToolbarTitle();
 
         /*оброботка клика на кнопку для показа слудующей скороговорки*/
-        nextTwisterButtonClickListener();
+        mNextTwistButton.setOnClickListener(v->{
+            nextTwisterButtonClickListener();
+        });
 
         /*показ банера*/
         AdView mAdView = view.findViewById(R.id.adViewTabEx3);
@@ -95,8 +93,6 @@ public class ExercisesCategory3Fragment extends Fragment {
     }
 
     private void nextTwisterButtonClickListener() {
-        mTongueTwisterHelp_tv.setText("Проговаривайте тест медленно");
-        mNextTwistButton.setOnClickListener(v -> {
             switch (mClickCounter){
                 case 1:
                     mTongueTwisterHelp_tv.setText("Беззвучно произнесите скороговорку. Движениями губ");
@@ -117,11 +113,9 @@ public class ExercisesCategory3Fragment extends Fragment {
                 case 5:
                     setTwist();
                     mClickCounter = 1;
-                    mTongueTwisterHelp_tv.setText("Проговаривайте тест медленно");
+                    mTongueTwisterHelp_tv.setText("Проговаривайте текст медленно");
                     break;
             }
-
-        });
     }
 
     private void setToolbarTitle() {
@@ -160,23 +154,9 @@ public class ExercisesCategory3Fragment extends Fragment {
         mNumber_of_tongue_twisters++;
     }
 
-    /*Метод используеться для ведения статистики*/
-    private void insertMyDateAndTime(){
-        //получаем текущую дату
-        Date currentDate = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
-        String date = dateFormat.format(currentDate);
-
-        //получаем время из секундомера в минутах
-        long time = ((SystemClock.elapsedRealtime() - mStartExTime)/1000) / 60;
-
-        Repo.getInstance(getContext()).insertDateAndTime(mExId, date, time);
-        Repo.getInstance(getContext()).insertDateAndCountWorlds(mExId, date, mNumber_of_tongue_twisters);
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        insertMyDateAndTime();
+        DateAndTime.insertDataToStatistic(getContext(), mExId, mNumber_of_tongue_twisters, mStartExTime);
     }
 }

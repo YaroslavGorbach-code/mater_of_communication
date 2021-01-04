@@ -26,14 +26,14 @@
         app:adUnitId="ca-app-pub-6043694180023070/2709885324"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_ex_category_3"></com.google.android.gms.ads.AdView>
+        app:layout_constraintTop_toBottomOf="@id/toolbar_ex_category_3"/>
 
     <TextView
         android:id="@+id/tongue_twister_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="What to do"
+        android:text="Проговаривайте текст медленно"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

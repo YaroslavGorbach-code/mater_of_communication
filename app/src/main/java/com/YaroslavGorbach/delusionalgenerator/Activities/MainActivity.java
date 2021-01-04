@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
             case "purple":
                 setTheme(R.style.AppTheme_purple);
                 break;
-
         }
     }
 

@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -92,16 +93,10 @@ public class ExercisesDescriptionFragment extends Fragment {
                 case R.id.add_to_favorite:
                     switch (mExercise.favorite){
                         case 0:
-                            mExercise.favorite = 1;
-                            mViewModel.update(mExercise);
-                            v.setIcon(ContextCompat.getDrawable(
-                                    getContext(), R.drawable.ic_baseline_star));
+                            addExToFavorite(v, 1, R.drawable.ic_baseline_star);
                             break;
                         case 1:
-                            mExercise.favorite = 0;
-                            mViewModel.update(mExercise);
-                            v.setIcon(ContextCompat.getDrawable(
-                                    getContext(), R.drawable.ic_star_outline));
+                            addExToFavorite(v, 0, R.drawable.ic_star_outline);
                             break;
                     }
                     break;
@@ -112,12 +107,9 @@ public class ExercisesDescriptionFragment extends Fragment {
                     Navigation.findNavController(view).navigate(action);
                     break;
             }
-
             return true;
         });
-
-
-
+        
         /*При клике на кнопку "Начать" открываем подходящее упражнение упражнение*/
         mStartExButton.setOnClickListener(v -> {
             startEx(view);
@@ -128,6 +120,13 @@ public class ExercisesDescriptionFragment extends Fragment {
             Navigation.findNavController(view).popBackStack();
         });
 
+    }
+
+    private void addExToFavorite(MenuItem v, int favorite, int icon) {
+        mExercise.favorite = favorite;
+        mViewModel.update(mExercise);
+        v.setIcon(ContextCompat.getDrawable(
+                getContext(), icon));
     }
 
     private void setDescriptionText() {
@@ -199,7 +198,11 @@ public class ExercisesDescriptionFragment extends Fragment {
                 mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_12));
                 mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_12));
                 break;
-
+            case 13:
+                mToolbar.setTitle("Вопрос - ответ");
+                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_13));
+                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_13));
+                break;
             case 20:
                 mToolbar.setTitle("Существительные");
                 mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_20));
@@ -220,20 +223,20 @@ public class ExercisesDescriptionFragment extends Fragment {
 
             case 30:
                 mToolbar.setTitle("Простые скороговорки");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30));
+                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30_32));
+                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30_32));
                 break;
 
             case 31:
                 mToolbar.setTitle("Сложные скороговорки");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_31));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_31));
+                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30_32));
+                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30_32));
                 break;
 
             case 32:
                 mToolbar.setTitle("Очень сложные скороговорки");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_32));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_32));
+                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30_32));
+                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30_32));
                 break;
         }
     }

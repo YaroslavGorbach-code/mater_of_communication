@@ -16,21 +16,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 
 public class ExercisesCategory2Fragment extends Fragment {
 
     private int mExId;
-    private final long START_MILLI_SECONDS = 60000L;
     private long mTime_in_milli_seconds = 0L;
     private int mWordCountValue = 0;
     private boolean mIsRunning = false;
@@ -120,18 +115,19 @@ public class ExercisesCategory2Fragment extends Fragment {
         new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-
                 mTime_in_milli_seconds = millisUntilFinished;
                 updateTextUI();
-
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 //loadConfeti()
                 mIsRunning = false;
-                mRecord_tv.setVisibility(View.VISIBLE);
-                mRecord_tv.setText("Рекорд " + Repo.getInstance(getContext()).getMaxWorldCount(mExId));
+                if (Repo.getInstance(getContext()).getMaxWorldCount(mExId)!=0){
+                    mRecord_tv.setVisibility(View.VISIBLE);
+                    mRecord_tv.setText("Рекорд: " + Repo.getInstance(getContext()).getMaxWorldCount(mExId));
+                }
             }
         }.start();
 
@@ -145,24 +141,10 @@ public class ExercisesCategory2Fragment extends Fragment {
             mTimer_tv.setText(minute + ":" + seconds);
     }
 
-    /*Метод используеться для ведения статистики*/
-    private void insertMyDateAndTime(){
-        //получаем текущую дату
-        Date currentDate = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
-        String date = dateFormat.format(currentDate);
-
-        long time = 10;
-
-
-        Repo.getInstance(getContext()).insertDateAndTime(mExId, date, time);
-        Repo.getInstance(getContext()).insertDateAndCountWorlds(mExId, date, mWordCountValue);
-
-    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        insertMyDateAndTime();
+        DateAndTime.insertDataToStatistic(getContext(), mExId, mWordCountValue, 10);
     }
 }

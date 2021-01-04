@@ -47,14 +47,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-6043694180023070/2709885324"/>
+            app:adUnitId="ca-app-pub-6043694180023070/2709885324" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/audio_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
-          />
+            android:layout_marginTop="55dp" />
 
         <include layout="@layout/player_sheet" />
 

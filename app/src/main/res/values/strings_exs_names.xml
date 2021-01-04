@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ling_piramidy" type="string">Лингвистические пирамиды</item>
+    <item name="chem_voron_pohoj_na_stol" type="string">Чем ворон похож на стол</item>
+    <item name="chem_voron_pohoj_na_stol_chuvstva" type="string">Чем ворон похож на стул (чувства)</item>
+    <item name="prodvinutoe_svyazivanie" type="string">Продвинутое связывание</item>
+    <item name="o_chem_vithu_o_tom_i_poyu" type="string">О чем вижу, о том и пою</item>
+    <item name="drugie_varianti_sokrascheniy" type="string">Другие варианты сокращений</item>
+    <item name="volshebniy_neyming" type="string">Волшебный нейминг</item>
+    <item name="kuplya_prodaga" type="string">Купля - продажа</item>
+    <item name="vspomnit_vse" type="string">Вспомнить все</item>
+    <item name="test_rorshaha" type="string">Тест Роршаха</item>
+    <item name="huje_udje_ne_budet" type="string">Хуже уже не будет</item>
+    <item name="vopros_otvet" type="string">Вопрос - ответ</item>
+    <item name="v_soavtorstve_s_dalem" type="string">В соавторстве с Далем</item>
+
+
+</resources>

@@ -122,7 +122,7 @@ public class Repo extends SQLiteOpenHelper {
 
     }
 
-    public void insertDateAndCountWorlds(int idEx, String date, int worldsCount) {
+    public void insertDateAndValue(int idEx, String date, int worldsCount) {
         ContentValues cv = new ContentValues();
         cv.put(ID_EX_W, idEx);
         cv.put(DATE_W, date);

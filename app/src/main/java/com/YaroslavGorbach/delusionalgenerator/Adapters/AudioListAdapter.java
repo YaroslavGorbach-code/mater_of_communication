@@ -3,14 +3,13 @@ package com.YaroslavGorbach.delusionalgenerator.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.TimeAgo;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.TimeAgo;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Helpers;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;

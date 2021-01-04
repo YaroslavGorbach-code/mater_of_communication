@@ -16,7 +16,6 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,7 @@ public class AudioListFragment extends Fragment  {
     private boolean isPlaying = false;
     private boolean isPause = false;
 
-    private ImageButton playBtn;
+    private ImageButton playResumeButton;
     private TextView playerHeader;
     private TextView playerFilename;
 
@@ -79,7 +78,7 @@ public class AudioListFragment extends Fragment  {
         ConstraintLayout mPlayerSheet = view.findViewById(R.id.player_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(mPlayerSheet);
         mAudioList = view.findViewById(R.id.audio_list_view);
-        playBtn = view.findViewById(R.id.player_play_btn);
+        playResumeButton = view.findViewById(R.id.player_play_btn);
         playerHeader = view.findViewById(R.id.player_header_title);
         playerFilename = view.findViewById(R.id.player_filename);
         playerSeekbar = view.findViewById(R.id.player_seekbar);
@@ -104,53 +103,27 @@ public class AudioListFragment extends Fragment  {
         /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
         setAdapterForListOfRecords();
 
-        /*Спрятать плеер если не играет*/
-        setBottomSheetSate();
-
-        /*Настройка перемотки записи з помощу сик бара*/
-        setOnSeekBarChangeListener();
-
-        /*Оброботка нажатия на кнопки плеера*/
-        clicksListenersForButtonsStartStopBackForward();
-
         return view;
     }
 
-    private void clicksListenersForButtonsStartStopBackForward() {
-        playBtn.setOnClickListener(v -> {
-            if (isPlaying) {
-                pauseAudio();
-            } else {
-                if (fileToPlay != null) {
-                    resumeAudio();
-                }
-            }
-        });
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        /*старт/пауза*/
+        playResumeButton.setOnClickListener(v -> pauseResume());
 
         /*Перемотка назад*/
-        buttonAgo.setOnClickListener(v -> {
-            int progress = playerSeekbar.getProgress();
-            progress -= 1000;
-            if (mediaPlayer != null) {
-                mediaPlayer.seekTo(progress);
-            }
-        });
+        buttonAgo.setOnClickListener(v -> temSecondsAgo());
 
         /*Перемотка вперед*/
-        buttonForward.setOnClickListener(v -> {
-            int progress = playerSeekbar.getProgress();
-            progress += 1000;
-            if (mediaPlayer != null) {
-                mediaPlayer.seekTo(progress);
-            }
-        });
-    }
+        buttonForward.setOnClickListener(v -> tenSecondsForward());
 
-    private void setOnSeekBarChangeListener() {
+        /*Настройка перемотки записи з помощу сик бара*/
         playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
             }
 
             @Override
@@ -167,7 +140,50 @@ public class AudioListFragment extends Fragment  {
                 }
             }
         });
+
+        /*Спрятать плеер если не играет*/
+        mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (isPlaying){
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                //We cant do anything here for this app
+            }
+        });
+
     }
+
+    private void tenSecondsForward() {
+        int progress = playerSeekbar.getProgress();
+        progress += 1000;
+        if (mediaPlayer != null) {
+            mediaPlayer.seekTo(progress);
+        }
+    }
+
+    private void temSecondsAgo() {
+        int progress = playerSeekbar.getProgress();
+        progress -= 1000;
+        if (mediaPlayer != null) {
+            mediaPlayer.seekTo(progress);
+        }
+    }
+
+    private void pauseResume() {
+        if (isPlaying) {
+            pauseAudio();
+        } else {
+            if (fileToPlay != null) {
+                resumeAudio();
+            }
+        }
+    }
+
 
     private void setAdapterForListOfRecords() {
         mAudioListAdapter = new AudioListAdapter(mAllFiles, (file, position) -> {
@@ -185,22 +201,6 @@ public class AudioListFragment extends Fragment  {
         mAudioList.setAdapter(mAudioListAdapter);
         mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL));
-    }
-
-    private void setBottomSheetSate() {
-        mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (!isPlaying && !isPause){
-                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                //We cant do anything here for this app
-            }
-        });
     }
 
     private void getFilesFromDir(){
@@ -253,8 +253,9 @@ public class AudioListFragment extends Fragment  {
 
     private void resumeAudio() {
         if (mediaPlayer!=null){
+            playerHeader.setText("Играет...");
             mediaPlayer.start();
-            playBtn.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
+            playResumeButton.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
             isPlaying = true;
             isPause = false;
             updateRunnable();
@@ -265,7 +266,8 @@ public class AudioListFragment extends Fragment  {
     private void pauseAudio() {
         if (mediaPlayer!=null){
             mediaPlayer.pause();
-            playBtn.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_play_btn, null));
+            playerHeader.setText("Пауза");
+            playResumeButton.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_play_btn, null));
             isPlaying = false;
             isPause = true;
             seekbarHandler.removeCallbacks(updateSeekbar);
@@ -282,7 +284,7 @@ public class AudioListFragment extends Fragment  {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        playBtn.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
+        playResumeButton.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
         playerFilename.setText(fileToPlay.getName());
         playerHeader.setText("Играет...");
         isPlaying = true;
@@ -316,27 +318,20 @@ public class AudioListFragment extends Fragment  {
     }
 
     private void stopAudio() {
-        playBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_player_play_btn, null));
+        playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_player_play_btn, null));
         playerHeader.setText("Остановлено");
         isPlaying = false;
         isPause = true;
         mediaPlayer.stop();
         seekbarHandler.removeCallbacks(updateSeekbar);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
     }
 
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
 
     @Override
     public void onResume() {
         super.onResume();
         mToolbar.getMenu().getItem(0).setVisible(true);
-        Log.println(Log.VERBOSE, "test", "onResume");
     }
 
     @Override
