@@ -2,14 +2,13 @@ package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,21 +27,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory1ViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.Permissions;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Random;
+import java.util.Set;
 
 public class ExercisesCategory1Fragment extends Fragment {
     private ImageButton mButtonStartPause;
@@ -50,7 +52,6 @@ public class ExercisesCategory1Fragment extends Fragment {
     private Chronometer mChronometer_1worldTime;
     private long mPauseOffSet = 0;
     private long mWorldTimePauseOffSet = 0;
-    private boolean mButtonState = false;
     private Button mButtonNextWorld;
     private TextView mWorld;
     private Button mButtonFinish;
@@ -63,12 +64,9 @@ public class ExercisesCategory1Fragment extends Fragment {
     private TextView mWorldCounter;
     private int mWorldCount;
     private int mMaxWorldCount;
-    private boolean mIsRecording = false;
     private Button mStartRecordingButton;
-    private static final String recordPermission = Manifest.permission.RECORD_AUDIO;
-    private static final int PERMISSION_CODE = 21;
-    private MediaRecorder mediaRecorder;
-    private String recordFile;
+
+
     private String mExName;
     private MaterialToolbar mMaterialToolbar;
     private LiveData<Exercise> mEx;
@@ -87,12 +85,10 @@ public class ExercisesCategory1Fragment extends Fragment {
    private String [] mArrayWorlds_ex10 = {};
    private String [] mArrayWorlds_ex11 = {};
    private String [] mArrayWorlds_ex12 = {};
-    private String [] mArrayWorlds_ex13 = {};
-
-
-
-    public ExercisesCategory1Fragment() {
-    }
+   private String [] mArrayWorlds_ex13 = {};
+   private Set<String> mSetWorlds_ex14 = new LinkedHashSet<>();
+   private ExerciseCategory1ViewModel mViewModel;
+   private boolean mChronometerState;
 
 
     public static ExercisesCategory1Fragment newInstance() {
@@ -120,19 +116,15 @@ public class ExercisesCategory1Fragment extends Fragment {
         mThumbAndText = view.findViewById(R.id.thumbAndText);
         mWorldCounter = view.findViewById(R.id.world_counter);
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
-        mIdEx = ExercisesCategory1FragmentArgs.fromBundle(getArguments()).getIdEx();
-        mChronometer_allTime.start();
-        mChronometer_1worldTime.start();
-        mEx = new Repo_2(getActivity().getApplication()).getExerciseById(mIdEx);
+        mIdEx = ExercisesCategory1FragmentArgs.fromBundle(requireArguments()).getIdEx();
+
+        mViewModel = new ViewModelProvider(this).get(ExerciseCategory1ViewModel.class);
+
+        mEx = mViewModel.getExerciseById(mIdEx);
 
         //установка максимального зщначения для счетчика слов
         mMaxWorldCount = Repo.getInstance(getContext()).getMaxWorldCount(mIdEx);
         mWorldCounter.setText(String.format("%s/%s", mWorldCount, mMaxWorldCount));
-
-
-        /*В зависимости от айди упражнения мы выбираем потходяшии слова и иницыализируем наши view*/
-        getWordsByExId();
-        setWorld();
         return view;
     }
 
@@ -140,10 +132,15 @@ public class ExercisesCategory1Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*запуск секундомера*/
+        startChronometer();
+
+        /*В зависимости от айди упражнения мы выбираем потходяшии слова и иницыализируем наши view*/
+        getWordsByExId();
+        setWorld();
+
         /*показ банера*/
-        AdView mAdView = view.findViewById(R.id.adViewTabEx1);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        AdMob.showBanner(view.findViewById(R.id.adViewTabEx1));
 
         /*навигация назад*/
         mMaterialToolbar.setNavigationOnClickListener(v ->
@@ -154,45 +151,24 @@ public class ExercisesCategory1Fragment extends Fragment {
 
         /*Оброботка нажатий на кнопки запуска и остановки секундомера*/
         mButtonStartPause.setOnClickListener(v->{
-
-            if(mButtonState){
-
-                mButtonStartPause.setImageResource(R.drawable.ic_pause);
-                mButtonState = false;
-                mChronometer_allTime.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
-                mChronometer_allTime.start();
-                mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime() - mWorldTimePauseOffSet);
-                mChronometer_1worldTime.start();
-                mButtonFinish.setVisibility(View.INVISIBLE);
-                mButtonNextWorld.setVisibility(View.VISIBLE);
-
-            }else{
-
-                mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
-                mButtonState = true;
-                mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
-                mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
-                mChronometer_allTime.stop();
-                mChronometer_1worldTime.stop();
-                mButtonNextWorld.setVisibility(View.INVISIBLE);
-                mButtonFinish.setVisibility(View.VISIBLE);
-
-            }
-
-        });
+                if(mChronometerState){
+                    stopChronometer();
+                } else{
+                    startChronometer();
+                }
+           });
 
         /*Оброботка нажатия на кнопку начать и остановить запись голоса*/
         mStartRecordingButton.setOnClickListener(v -> {
-            if (mIsRecording){
-                stopRecording();
-
-            }else {
-                if(checkRecordPermission()){
-                    startRecording();
-                    mStartRecordingButton.setClickable(false);
-                    new Handler().postDelayed(() -> mStartRecordingButton.setClickable(true), 1000);
+                if (mViewModel._isRecording.getValue()){
+                    stopRecording();
+                }else {
+                    if(new Permissions().checkRecordPermission(getActivity())){
+                        startRecording();
+                        mStartRecordingButton.setClickable(false);
+                        new Handler().postDelayed(() -> mStartRecordingButton.setClickable(true), 1000);
+                    }
                 }
-            }
         });
 
         /*При нажатии на большой палец смена его состояния*/
@@ -214,6 +190,28 @@ public class ExercisesCategory1Fragment extends Fragment {
         mButtonFinish.setOnClickListener(v->{
             Navigation.findNavController(view).popBackStack();
         });
+    }
+
+    private void stopChronometer() {
+        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
+        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
+        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
+        mChronometer_allTime.stop();
+        mChronometer_1worldTime.stop();
+        mButtonNextWorld.setVisibility(View.INVISIBLE);
+        mButtonFinish.setVisibility(View.VISIBLE);
+        mChronometerState = false;
+    }
+
+    private void startChronometer() {
+        mButtonStartPause.setImageResource(R.drawable.ic_pause);
+        mChronometer_allTime.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
+        mChronometer_allTime.start();
+        mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime() - mWorldTimePauseOffSet);
+        mChronometer_1worldTime.start();
+        mButtonFinish.setVisibility(View.INVISIBLE);
+        mButtonNextWorld.setVisibility(View.VISIBLE);
+        mChronometerState = true;
     }
 
     private void getWordsByExId() {
@@ -289,67 +287,31 @@ public class ExercisesCategory1Fragment extends Fragment {
             case 13:
                 mArrayWorlds_ex13 = getResources().getStringArray(R.array.questions);
                 mMaterialToolbar.setTitle("Вопрос - ответ");
-                mShort_des.setText("Ответьте на вопрос максимально развернуто");
+                mShort_des.setText("Ответьте на вопрос, максимально развернуто");
                 mButtonNextWorld.setText("Следующий вопрос");
+                break;
+            case 14:
+                mSetWorlds_ex14.addAll(Set.of((getResources().getStringArray(R.array.Worlds_items_Alive))));
+                mSetWorlds_ex14.addAll(Set.of(getResources().getStringArray(R.array.Worlds_items_notAlive)));
+                mSetWorlds_ex14.addAll(Set.of(getResources().getStringArray(R.array.professions)));
+                mMaterialToolbar.setTitle("Рассказчик - импровизатор");
+                mShort_des.setText("Составьте рассказ, используя данные слова");
+                mButtonNextWorld.setText("Составте расказ, используя данные слова");
                 break;
         }
     }
 
-    private boolean checkRecordPermission() {
-        //Check permission
-        if (ActivityCompat.checkSelfPermission(requireActivity(), recordPermission) == PackageManager.PERMISSION_GRANTED) {
-            //Permission Granted
-            return true;
-        } else {
-            //Permission not granted, ask for permission
-            ActivityCompat.requestPermissions(getActivity(), new String[]{recordPermission}, PERMISSION_CODE);
-            return false;
-        }
-    }
 
     /*Остановка записи*/
     private void stopRecording() {
         mStartRecordingButton.setText("Начать запись");
-        mIsRecording = false;
-        Toast.makeText(getContext(), "Запись сохранена: " + recordFile, Toast.LENGTH_SHORT).show();
-        mediaRecorder.stop();
-        mediaRecorder.release();
-        mediaRecorder = null;
+        mViewModel.stopRecording(getContext());
     }
 
     /*Старт записи*/
     private void startRecording() {
-
         mStartRecordingButton.setText("Остановить запись");
-        mIsRecording = true;
-
-        //Get app external directory path
-        String recordPath = requireActivity().getExternalFilesDir("/").getAbsolutePath();
-
-        //Get current date and time
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());
-        Date now = new Date();
-
-        //initialize filename variable with date and time at the end to ensure the new file wont overwrite previous file
-        recordFile = mExName + " " + formatter.format(now) + ".3gp";
-
-        //filenameText.setText("Recording, File Name : " + recordFile);
-
-        //Setup Media Recorder for recording
-        mediaRecorder = new MediaRecorder();
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mediaRecorder.setOutputFile(recordPath + "/" + recordFile);
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
-        try {
-            mediaRecorder.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //Start Recording
-        mediaRecorder.start();
+        mViewModel.startRecording(mExName, requireActivity());
     }
 
     /*В зависимости от айди упражнения устанавливаем в textView правельное слово или пару слов*/
@@ -408,6 +370,18 @@ public class ExercisesCategory1Fragment extends Fragment {
                     mWorld.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
                 }
                 break;
+//            case 14:
+//                Set<String> words = new LinkedHashSet<>();
+//
+//                while (words.size() == 5){
+//                    words.add(mSetWorlds_ex14.[r.nextInt(mSetWorlds_ex14.size())]);
+//                }
+//
+//                for (int i = 0; i < 5; i++){
+//                    words[i] =
+//                }
+//                mWorld.setText(mArrayWorlds_ex14[r.nextInt(mArrayWorlds_ex14.length)]);
+//                break;
 
         }
     }
@@ -417,13 +391,10 @@ public class ExercisesCategory1Fragment extends Fragment {
 
         mTextUnderThumb.setText(mArrayTextUnderThumb[r.nextInt(mArrayTextUnderThumb.length)]);
         if (mTextUnderThumb.getText().equals("Аналогия")){
-
             mThumb.setImageResource(R.drawable.ic_right);
         }else if(mTextUnderThumb.getText().equals("Разобобщения")){
-
             mThumb.setImageResource(R.drawable.ic_down);
         }else if(mTextUnderThumb.getText().equals("Обобщение")){
-
             mThumb.setImageResource(R.drawable.ic_up);
         }
 
@@ -442,23 +413,17 @@ public class ExercisesCategory1Fragment extends Fragment {
     @Override
     public void onStop() {
             super.onStop();
-            if(mIsRecording){
-                stopRecording();
-            }
+                if (mViewModel._isRecording.getValue()){
+                    stopRecording();
+                }
         }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         DateAndTime.insertDataToStatistic(getContext(), mIdEx, mWorldCount, mChronometer_allTime.getBase());
-//        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
-//        mButtonState = true;
-//        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
-//        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
         mChronometer_allTime.stop();
         mChronometer_1worldTime.stop();
-//        mButtonNextWorld.setVisibility(View.INVISIBLE);
-//        mButtonFinish.setVisibility(View.VISIBLE);
     }
 }
 

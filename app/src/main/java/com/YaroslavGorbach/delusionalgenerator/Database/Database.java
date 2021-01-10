@@ -16,7 +16,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Date;
 
-@androidx.room.Database(entities = {Exercise.class},  version = 4)
+@androidx.room.Database(entities = {Exercise.class},  version = 5)
 public abstract class Database extends RoomDatabase {
     private static Database sInstance;
     public abstract Exercise_dao exercise_dao();
@@ -26,6 +26,7 @@ public abstract class Database extends RoomDatabase {
             sInstance = Room.databaseBuilder(context.getApplicationContext(), Database.class, "counter.db")
                     .addMigrations(MIGRATION_2_3)
                     .addMigrations(MIGRATION_3_4)
+                    .addMigrations(MIGRATION_4_5)
                     .addCallback(rdc)
                     .build();
         }
@@ -59,7 +60,7 @@ public abstract class Database extends RoomDatabase {
             cv.put("pic", R.drawable.ex1_backgraund_v_2);
             database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 1", null );
             cv.put("sort_order", "2");
-            cv.put("pic", R.drawable.ex2_backgraund_v_2);
+            cv.put("pic", R.drawable.ex2_backgraund_v_3);
             database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 2", null );
             cv.put("sort_order", "3");
             cv.put("pic", R.drawable.ex3_backgraund_v_2);
@@ -115,6 +116,22 @@ public abstract class Database extends RoomDatabase {
         }
     };
 
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            ContentValues cv = new ContentValues();
+            cv.put("pic", R.drawable.ex3_backgraund_v_2);
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 3", null );
+            cv.put("pic", R.drawable.ex4_backgraund_v_2);
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 4", null );
+            cv.put("pic", R.drawable.ex5_backgraund_v_2);
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 5", null );
+            cv.put("pic", R.drawable.ex6_backgraund_v_2);
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 6", null );
+        }
+
+    };
+
     private static final RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
         public void onCreate(SupportSQLiteDatabase db) {
             Exercise_dao mDao;
@@ -133,6 +150,8 @@ public abstract class Database extends RoomDatabase {
                 mDao.insert(new Exercise(11,"Тест Роршаха",1,R.drawable.ex11_backgraund_v_2, 0,11));
                 mDao.insert(new Exercise(12,"Хуже уже не будет",1,R.drawable.ex12_backgraund_v_2, 0,12));
                 mDao.insert(new Exercise(13,"Вопрос - ответ",1,R.drawable.ex13_backgraund_v_2, 0,13));
+                mDao.insert(new Exercise(14,"Рассказчик - импровизатор",1,R.drawable.ex13_backgraund_v_2, 0,14));
+
 
                 mDao.insert(new Exercise(20,"Существительные",2,R.drawable.ex20_backgraund_v_2, 0,1));
                 mDao.insert(new Exercise(21,"Прилагательные",2,R.drawable.ex21_backgraund_v_2, 0,2));

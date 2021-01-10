@@ -25,7 +25,7 @@ import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.ReminderBroadcast;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.ReminderBroadcast;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Calendar;

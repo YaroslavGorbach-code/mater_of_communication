@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator;
+package com.YaroslavGorbach.delusionalgenerator.Helpers;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -9,6 +9,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.YaroslavGorbach.delusionalgenerator.Activities.MainActivity;
+import com.YaroslavGorbach.delusionalgenerator.R;
 
 import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_notifi;
 

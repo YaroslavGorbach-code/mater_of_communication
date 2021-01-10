@@ -51,15 +51,13 @@ public class AllExsByCategoryFragment extends Fragment {
     mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
     mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
     getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
+    mMaterialToolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMaterialToolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
         /*Создаем адаптер*/
         setGridListAdapter(view);
     }

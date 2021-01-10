@@ -33,7 +33,7 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notifi" />
 
-        <receiver android:name=".ReminderBroadcast" />
+        <receiver android:name=".Helpers.ReminderBroadcast" />
     </application>
 
 </manifest>
