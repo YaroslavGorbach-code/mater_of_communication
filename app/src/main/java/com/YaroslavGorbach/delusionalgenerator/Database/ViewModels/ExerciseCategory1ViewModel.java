@@ -33,7 +33,7 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     }
 
     public final MutableLiveData<Boolean> _isRecording = new MutableLiveData<>(false);
-   // public LiveData<Boolean> isRecording = _isRecording;
+   public LiveData<Boolean> isRecording = _isRecording;
 
     /*Остановка записи*/
     public void stopRecording(Context context) {

@@ -160,7 +160,7 @@ public class ExercisesCategory1Fragment extends Fragment {
 
         /*Оброботка нажатия на кнопку начать и остановить запись голоса*/
         mStartRecordingButton.setOnClickListener(v -> {
-                if (mViewModel._isRecording.getValue()){
+                if (mViewModel.isRecording.getValue()){
                     stopRecording();
                 }else {
                     if(new Permissions().checkRecordPermission(getActivity())){
@@ -413,7 +413,7 @@ public class ExercisesCategory1Fragment extends Fragment {
     @Override
     public void onStop() {
             super.onStop();
-                if (mViewModel._isRecording.getValue()){
+                if (mViewModel.isRecording.getValue()){
                     stopRecording();
                 }
         }
