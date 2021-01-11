@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
@@ -14,12 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory3ViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExerciseCategory3ViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Random;
@@ -29,18 +31,10 @@ public class ExercisesCategory3Fragment extends Fragment {
     private TextView mTwisters_tv;
     private ImageButton mNextTwistButton;
     private TextView mTongueTwisterHelp_tv;
-    private String[] mTwists = {};
-    private int mClickCounter = 1;
-    private Random r = new Random();
     private int mExId;
     private long mStartExTime;
-    private int mNumber_of_tongue_twisters = 0;
     private MaterialToolbar mMaterialToolbar;
-
-
-    public ExercisesCategory3Fragment() {
-        // Required empty public constructor
-    }
+    private ExerciseCategory3ViewModel mViewModel;
 
     public static ExercisesCategory3Fragment newInstance() {
         return new ExercisesCategory3Fragment();
@@ -62,60 +56,60 @@ public class ExercisesCategory3Fragment extends Fragment {
         mExId = ExercisesCategory3FragmentArgs.fromBundle(getArguments()).getExId();
         mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_3);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mViewModel = new ViewModelProvider(this, new ExerciseCategory3ViewModelFactory(getActivity().getApplication(),
+                mExId)).get(ExerciseCategory3ViewModel.class);
 
-        /*получаем слова из резурсов*/
-        getTwisters();
         return view;
     }
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setTwist();
+
         mMaterialToolbar.setNavigationOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();
         });
 
-        /*установка тексна в туллбар*/
+        /*показ банера*/
+        AdMob.showBanner(view.findViewById(R.id.adViewTabEx3));
+
+        /*установка текста в туллбар*/
         setToolbarTitle();
 
         /*оброботка клика на кнопку для показа слудующей скороговорки*/
         mNextTwistButton.setOnClickListener(v->{
-            nextTwisterButtonClickListener();
+            mViewModel.nextClick();
         });
 
-        /*показ банера*/
-        AdView mAdView = view.findViewById(R.id.adViewTabEx3);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
-
-    private void nextTwisterButtonClickListener() {
-            switch (mClickCounter){
+        /*в зависимости од количества кликов устанавливаем инструкцию и скороговорку*/
+        mViewModel.clickCounter.observe(getViewLifecycleOwner(), clickValue -> {
+            switch (clickValue) {
+                case 0:
+                case 5:
+                    mTongueTwisterHelp_tv.setText("Проговаривайте текст медленно");
+                    setTwist();
+                    break;
                 case 1:
                     mTongueTwisterHelp_tv.setText("Беззвучно произнесите скороговорку. Движениями губ");
-                    mClickCounter++;
                     break;
                 case 2:
                     mTongueTwisterHelp_tv.setText("Произнесите текст в пол голоса, шепотом");
-                    mClickCounter++;
                     break;
                 case 3:
                     mTongueTwisterHelp_tv.setText("Произнесите вслух, громко, но все ещё медленно и четко");
-                    mClickCounter++;
                     break;
                 case 4:
-                    mTongueTwisterHelp_tv.setText("Теперь пробуйте произносить текст в разных стилях, с раной интонацией, с разной скоростью");
-                    mClickCounter++;
-                    break;
-                case 5:
-                    setTwist();
-                    mClickCounter = 1;
-                    mTongueTwisterHelp_tv.setText("Проговаривайте текст медленно");
+                    mTongueTwisterHelp_tv.setText("Теперь пробуйте произносить текст в разных стилях, с разной интонацией, с разной скоростью");
                     break;
             }
+        });
+    }
+
+    private void setTwist(){
+        YoYo.with(Techniques.FadeIn)
+                .duration(400)
+                .playOn(mTwisters_tv);
+        mTwisters_tv.setText(mViewModel.getTwist());
     }
 
     private void setToolbarTitle() {
@@ -132,31 +126,9 @@ public class ExercisesCategory3Fragment extends Fragment {
         }
     }
 
-    private void getTwisters() {
-        switch (mExId){
-            case 30:
-                mTwists = getResources().getStringArray(R.array.twisters_easy);
-                break;
-            case 31:
-                mTwists = getResources().getStringArray(R.array.twisters_hard);
-                break;
-            case 32:
-                mTwists = getResources().getStringArray(R.array.twisters_very_hard);
-                break;
-        }
-    }
-
-    private void setTwist() {
-        YoYo.with(Techniques.FadeIn)
-                .duration(400)
-                .playOn(mTwisters_tv);
-        mTwisters_tv.setText(mTwists[r.nextInt(mTwists.length)]);
-        mNumber_of_tongue_twisters++;
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        DateAndTime.insertDataToStatistic(getContext(), mExId, mNumber_of_tongue_twisters, mStartExTime);
+        DateAndTime.insertDataToStatistic(getContext(), mExId, mViewModel.numberOfTwisters.getValue(), mStartExTime);
     }
 }
