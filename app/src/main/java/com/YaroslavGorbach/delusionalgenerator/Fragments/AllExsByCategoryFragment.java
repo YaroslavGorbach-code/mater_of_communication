@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.AllExsByCategoryViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -25,7 +26,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class AllExsByCategoryFragment extends Fragment {
 
     private int mExCategoryId;
-    private ExercisesViewModel mExercisesViewModel;
+    private AllExsByCategoryViewModel mViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
     private MaterialToolbar mMaterialToolbar;
@@ -47,11 +48,11 @@ public class AllExsByCategoryFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_all_exs_by_category, container, false);
     mRecycler = view.findViewById(R.id.list_exs_by_category);
     mExCategoryId = AllExsByCategoryFragmentArgs.fromBundle(getArguments()).getCategoryId();
-    mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
     mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
     mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
     getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
     mMaterialToolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
+    mViewModel = new ViewModelProvider(this).get(AllExsByCategoryViewModel.class);
         return view;
     }
 
@@ -63,7 +64,7 @@ public class AllExsByCategoryFragment extends Fragment {
     }
 
     private void setGridListAdapter(@NonNull View view) {
-        mExercisesViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
+        mViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 NavDirections action = AllExsByCategoryFragmentDirections.
                         actionAllExsByCategoryFragmentToExercisesDescriptionFragment().setExId(exercise.id);

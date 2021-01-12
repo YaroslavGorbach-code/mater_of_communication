@@ -12,11 +12,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
 
-public class ExerciseCategory2ViewModel extends AndroidViewModel {
+public class ExerciseCategory2ViewModel extends ViewModel {
 
     // This is when the game is over
     private final long DONE = 0L;
@@ -41,8 +42,7 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
     public LiveData<Integer> countValue = _countValue;
 
 
-    public ExerciseCategory2ViewModel(@NonNull Application application) {
-        super(application);
+    public ExerciseCategory2ViewModel() {
         startTimer();
     }
 
