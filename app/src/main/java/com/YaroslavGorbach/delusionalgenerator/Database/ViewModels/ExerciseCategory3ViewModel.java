@@ -39,7 +39,7 @@ public class ExerciseCategory3ViewModel extends AndroidViewModel {
     private final MutableLiveData<Integer> _numberOfTwisters = new MutableLiveData<>(1);
     public LiveData<Integer> numberOfTwisters = _numberOfTwisters;
 
-    public void nextClick(){
+    public void onClick(){
         if (_clickCounter.getValue() !=5){
             _clickCounter.setValue(_clickCounter.getValue() + 1);
         }else {

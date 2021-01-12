@@ -24,8 +24,6 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.Random;
-
 public class ExercisesCategory3Fragment extends Fragment {
 
     private TextView mTwisters_tv;
@@ -78,7 +76,7 @@ public class ExercisesCategory3Fragment extends Fragment {
 
         /*оброботка клика на кнопку для показа слудующей скороговорки*/
         mNextTwistButton.setOnClickListener(v->{
-            mViewModel.nextClick();
+            mViewModel.onClick();
         });
 
         /*в зависимости од количества кликов устанавливаем инструкцию и скороговорку*/
