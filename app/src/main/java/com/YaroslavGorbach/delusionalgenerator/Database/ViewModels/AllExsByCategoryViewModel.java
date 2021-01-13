@@ -1,11 +1,10 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories;
+package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
