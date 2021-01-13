@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesDescriptionViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExercisesDescriptionViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
@@ -29,7 +30,6 @@ import com.google.android.material.button.MaterialButton;
 
 
 public class ExercisesDescriptionFragment extends Fragment {
-
     private int mExId;
     private MaterialButton mStartExButton;
     private TextView mAimEx_tv;
@@ -59,8 +59,9 @@ public class ExercisesDescriptionFragment extends Fragment {
         mToolbar.setNavigationIcon(ContextCompat.getDrawable(
                 view.getContext(), R.drawable.ic_arrow_back));
         mMenu = mToolbar.getMenu();
-        mViewModel = new ViewModelProvider(this).get(ExercisesDescriptionViewModel.class);
         mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
+        mViewModel = new ViewModelProvider(this, new ExercisesDescriptionViewModelFactory(
+                getActivity().getApplication(),mExId)).get(ExercisesDescriptionViewModel.class);
 
         /*Установка иконки в туллбар в зависимости от того упражнение в избранном или нет*/
         setFavoriteToolbarIcon();
