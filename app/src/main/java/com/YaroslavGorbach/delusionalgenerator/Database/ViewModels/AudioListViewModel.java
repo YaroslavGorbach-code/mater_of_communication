@@ -23,6 +23,8 @@ import java.util.Comparator;
 public class AudioListViewModel extends AndroidViewModel {
 
     private MediaPlayer mediaPlayer = null;
+    private Handler seekBarHandler;
+    private Runnable updateSeekBar;
 
     private final MutableLiveData<File[]> _files = new MutableLiveData<>();
     public LiveData<File[]> files = _files;
@@ -32,6 +34,9 @@ public class AudioListViewModel extends AndroidViewModel {
 
     private final MutableLiveData<Boolean> _eventPause = new MutableLiveData<>();
     public LiveData<Boolean> eventPause = _eventPause;
+
+    private final MutableLiveData<Integer> _seekBarProgress = new MutableLiveData<>();
+    public LiveData<Integer> seekBarProgress = _seekBarProgress;
 
     public AudioListViewModel(@NonNull Application application) {
         super(application);
@@ -66,12 +71,16 @@ public class AudioListViewModel extends AndroidViewModel {
             mediaPlayer.prepare();
             mediaPlayer.start();
             _eventPlaying.setValue(true);
+            seekBarHandler = new Handler();
+            updateRunnable();
+            seekBarHandler.postDelayed(updateSeekBar, 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
         mediaPlayer.setOnCompletionListener(mp -> {
             mediaPlayer = null;
             _eventPlaying.setValue(false);
+            seekBarHandler.removeCallbacks(updateSeekBar);
         });
     }
 
@@ -79,6 +88,9 @@ public class AudioListViewModel extends AndroidViewModel {
         if (mediaPlayer!=null){
             mediaPlayer.stop();
             mediaPlayer = null;
+            if (updateSeekBar!=null){
+                seekBarHandler.removeCallbacks(updateSeekBar);
+            }
         }
 
     }
@@ -87,6 +99,8 @@ public class AudioListViewModel extends AndroidViewModel {
         if (mediaPlayer!=null){
             mediaPlayer.start();
             _eventPause.setValue(false);
+            updateRunnable();
+            seekBarHandler.postDelayed(updateSeekBar, 0);
         }
     }
 
@@ -94,6 +108,7 @@ public class AudioListViewModel extends AndroidViewModel {
         if (mediaPlayer!=null){
             mediaPlayer.pause();
             _eventPause.setValue(true);
+            seekBarHandler.removeCallbacks(updateSeekBar);
         }
     }
 
@@ -116,4 +131,18 @@ public class AudioListViewModel extends AndroidViewModel {
             getMediaPlayer().seekTo(seekBarProgress);
         }
     }
+
+    /*Метот для отображения прогреса в плеере */
+    private void updateRunnable() {
+        updateSeekBar = new Runnable() {
+            @Override
+            public void run() {
+                if (mediaPlayer!=null){
+                    seekBarHandler.postDelayed(this, 100);
+                    _seekBarProgress.setValue(mediaPlayer.getCurrentPosition());
+                }
+            }
+        };
+    }
+
 }

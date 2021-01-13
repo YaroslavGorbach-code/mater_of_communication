@@ -45,21 +45,13 @@ public class AudioListFragment extends Fragment  {
     private BottomSheetBehavior mBottomSheetBehavior;
     private RecyclerView mAudioList;
     private AudioListAdapter mAudioListAdapter;
-
     private ImageButton playResumeButton;
     private TextView playerHeader;
     private TextView playerFilename;
-
     private MaterialToolbar mToolbar;
-
     private ImageButton buttonAgo;
     private ImageButton buttonForward;
-
     private SeekBar playerSeekbar;
-    private Handler seekbarHandler;
-    private Runnable updateSeekbar;
-
-
     private CoordinatorLayout mCoordinatorLayout;
     private AppCompatImageView mImageNoData;
     private TextView mTextViewNoData;
@@ -101,7 +93,6 @@ public class AudioListFragment extends Fragment  {
 
         return view;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -157,7 +148,6 @@ public class AudioListFragment extends Fragment  {
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
             }
         });
-
     }
 
     private void setAdapterForListOfRecords() {
@@ -197,7 +187,8 @@ public class AudioListFragment extends Fragment  {
 
             mAudioListAdapter = new AudioListAdapter(files, (file, position) -> {
                 playerFilename.setText(file.getName());
-                if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue()) && mViewModel.getMediaPlayer() != null) {
+                if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue())
+                        && mViewModel.getMediaPlayer() != null) {
                     mViewModel.stopAudio();
                 }
                     new Handler().postDelayed(() -> mViewModel.playAudio(file), 500);
@@ -216,17 +207,11 @@ public class AudioListFragment extends Fragment  {
                         getResources(), R.drawable.ic_player_pause_btn, null));
                 playerHeader.setText("Играет...");
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
                 playerSeekbar.setMax(mViewModel.getMediaPlayer().getDuration());
-
-                seekbarHandler = new Handler();
-                updateRunnable();
-                seekbarHandler.postDelayed(updateSeekbar, 0);
             }else{
                 playerHeader.setText("Закончено");
                 playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_play_btn, null));
-                seekbarHandler.removeCallbacks(updateSeekbar);
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
             });
@@ -236,31 +221,18 @@ public class AudioListFragment extends Fragment  {
                 playerHeader.setText("Пауза");
                 playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_play_btn, null));
-                seekbarHandler.removeCallbacks(updateSeekbar);
             }else{
                 playerHeader.setText("Играет...");
                 playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_pause_btn, null));
-                updateRunnable();
-                seekbarHandler.postDelayed(updateSeekbar, 0);
             }
         });
+
+        mViewModel.seekBarProgress.observe(getViewLifecycleOwner(), progress -> {
+            playerSeekbar.setProgress(progress);
+        });
+
     }
-
-    /*Метот для отображения прогреса в плеере */
-    private void updateRunnable() {
-        updateSeekbar = new Runnable() {
-            @Override
-            public void run() {
-                if (mViewModel.getMediaPlayer()!=null){
-                    playerSeekbar.setProgress(mViewModel.getMediaPlayer().getCurrentPosition());
-                    seekbarHandler.postDelayed(this, 100);
-                }
-
-            }
-        };
-    }
-
 
     @Override
     public void onResume() {
@@ -271,18 +243,13 @@ public class AudioListFragment extends Fragment  {
     @Override
     public void onStop() {
         super.onStop();
-        if (mViewModel.getMediaPlayer() !=null){
             mViewModel.pauseAudio();
-        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mViewModel.getMediaPlayer() !=null && updateSeekbar !=null){
             mViewModel.stopAudio();
-            seekbarHandler.removeCallbacks(updateSeekbar);
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        }
     }
 }
