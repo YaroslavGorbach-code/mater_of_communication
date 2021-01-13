@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.FavoriteExsFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -25,23 +25,11 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class FavoriteExsFragment extends Fragment {
 
 
-    private ExercisesViewModel mExercisesViewModel;
+    private FavoriteExsFragmentViewModel mViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
     private TextView mTextViewNoData;
     private AppCompatImageView mImageNoData;
-
-
-
-    public FavoriteExsFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static FavoriteExsFragment newInstance(){
-        FavoriteExsFragment fragment = new FavoriteExsFragment();
-        return fragment;
-    }
 
     @Override
     public void onStart() {
@@ -56,7 +44,7 @@ public class FavoriteExsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(FavoriteExsFragmentViewModel.class);
     }
 
     @Override
@@ -71,16 +59,13 @@ public class FavoriteExsFragment extends Fragment {
     }
 
     private void setAdapter(View view) {
-        mExercisesViewModel.getFavoriteExs().observe(getViewLifecycleOwner(), exercises -> {
+        mViewModel.getFavoriteExs().observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
                 NavDirections action = FavoriteExsFragmentDirections.
                         actionFavoriteExsFragmentToExercisesDescriptionFragment().setExId(id);
                 Navigation.findNavController(view).navigate(action);
             });
-
-            //int mNoOfColumns = Utility.calculateNoOfColumns(getContext(), 190);
-            //mRecycler.setLayoutManager(new StaggeredGridLayoutManager( mNoOfColumns, StaggeredGridLayoutManager.VERTICAL));
 
             mRecycler.setHasFixedSize(true);
             FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());

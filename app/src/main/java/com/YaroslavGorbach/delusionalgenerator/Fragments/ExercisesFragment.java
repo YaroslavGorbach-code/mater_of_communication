@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExercisesFragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
