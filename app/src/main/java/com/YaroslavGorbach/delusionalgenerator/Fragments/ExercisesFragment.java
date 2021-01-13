@@ -18,17 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExercisesFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import static androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ExercisesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ExercisesFragment extends Fragment {
 
     private RecyclerView mRecyclerView_category_1;
@@ -43,25 +39,16 @@ public class ExercisesFragment extends Fragment {
     private TextView mAllExsCategory2;
     private TextView mAllExsCategory3;
 
-    private ExercisesViewModel mExercisesViewModel;
+    private ExercisesFragmentViewModel mViewModel;
 
-
-    public ExercisesFragment() {
-        // Required empty public constructor
-    }
-
-    public static ExercisesFragment newInstance() {
-        return new ExercisesFragment();
-    }
 
     @Override
     public void onStart() {
         super.onStart();
         getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-       MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-       toolbar.setVisibility(View.VISIBLE);
-       toolbar.getMenu().getItem(0).setVisible(false);
-
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.getMenu().getItem(0).setVisible(false);
     }
 
     @Override
@@ -73,7 +60,7 @@ public class ExercisesFragment extends Fragment {
         mAllExsCategory1 = view.findViewById(R.id.textViewAll1);
         mAllExsCategory2 = view.findViewById(R.id.textViewAll2);
         mAllExsCategory3 = view.findViewById(R.id.textViewAll3);
-        mExercisesViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(ExercisesFragmentViewModel.class);
         setAdapters(view);
         return view;
     }
@@ -104,7 +91,7 @@ public class ExercisesFragment extends Fragment {
     }
 
     private void setAdapters(View view) {
-        mExercisesViewModel.getExByCategory(1).observe(getViewLifecycleOwner(), exercises -> {
+        mViewModel.getExByCategory(1).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter_category_1 = new ExercisesListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
                 NavDirections action = ExercisesFragmentDirections.
@@ -120,7 +107,7 @@ public class ExercisesFragment extends Fragment {
         });
 
 
-        mExercisesViewModel.getExByCategory(2).observe(getViewLifecycleOwner(), exercises -> {
+        mViewModel.getExByCategory(2).observe(getViewLifecycleOwner(), exercises -> {
 
             mAdapter_category_2 = new ExercisesListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
@@ -137,7 +124,7 @@ public class ExercisesFragment extends Fragment {
         });
 
 
-        mExercisesViewModel.getExByCategory(3).observe(getViewLifecycleOwner(), exercises -> {
+        mViewModel.getExByCategory(3).observe(getViewLifecycleOwner(), exercises -> {
 
             mAdapter_category_3 = new ExercisesListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
