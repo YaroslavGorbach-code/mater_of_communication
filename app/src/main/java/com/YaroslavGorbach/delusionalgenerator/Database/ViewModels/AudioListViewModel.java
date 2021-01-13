@@ -33,7 +33,6 @@ public class AudioListViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> _eventPause = new MutableLiveData<>();
     public LiveData<Boolean> eventPause = _eventPause;
 
-
     public AudioListViewModel(@NonNull Application application) {
         super(application);
         getFilesFromDir(application);
@@ -60,9 +59,7 @@ public class AudioListViewModel extends AndroidViewModel {
     }
 
     public void playAudio(File fileToPlay) {
-        if (mediaPlayer!=null){
             stopAudio();
-        }
         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(fileToPlay.getAbsolutePath());
@@ -100,4 +97,23 @@ public class AudioListViewModel extends AndroidViewModel {
         }
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        stopAudio();
+    }
+
+    public void tenSecondsAgo(int seekBarProgress) {
+        seekBarProgress -= 10000;
+        if (getMediaPlayer() != null) {
+            getMediaPlayer().seekTo(seekBarProgress);
+        }
+    }
+
+    public void tenSecondsForward(int seekBarProgress) {
+        seekBarProgress += 10000;
+        if (getMediaPlayer() != null) {
+            getMediaPlayer().seekTo(seekBarProgress);
+        }
+    }
 }

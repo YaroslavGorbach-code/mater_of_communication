@@ -49,7 +49,6 @@ public class AudioListFragment extends Fragment  {
     private ImageButton playResumeButton;
     private TextView playerHeader;
     private TextView playerFilename;
-    private ConstraintLayout mPlayerSheet;
 
     private MaterialToolbar mToolbar;
 
@@ -61,7 +60,6 @@ public class AudioListFragment extends Fragment  {
     private Runnable updateSeekbar;
 
 
-    //private File fileToPlay = null;
     private CoordinatorLayout mCoordinatorLayout;
     private AppCompatImageView mImageNoData;
     private TextView mTextViewNoData;
@@ -77,7 +75,7 @@ public class AudioListFragment extends Fragment  {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)  {
         View view = inflater.inflate(R.layout.activity_audio_list, container, false);
-        mPlayerSheet = view.findViewById(R.id.player_sheet);
+        ConstraintLayout mPlayerSheet = view.findViewById(R.id.player_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(mPlayerSheet);
         mAudioList = view.findViewById(R.id.audio_list_view);
         playResumeButton = view.findViewById(R.id.player_play_btn);
@@ -119,10 +117,10 @@ public class AudioListFragment extends Fragment  {
         });
 
         /*Перемотка назад*/
-        buttonAgo.setOnClickListener(v -> temSecondsAgo());
+        buttonAgo.setOnClickListener(v -> mViewModel.tenSecondsAgo(playerSeekbar.getProgress()));
 
         /*Перемотка вперед*/
-        buttonForward.setOnClickListener(v -> tenSecondsForward());
+        buttonForward.setOnClickListener(v -> mViewModel.tenSecondsForward(playerSeekbar.getProgress()));
 
         /*Настройка перемотки записи з помощу сик бара*/
         playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -162,24 +160,6 @@ public class AudioListFragment extends Fragment  {
 
     }
 
-    private void tenSecondsForward() {
-        int progress = playerSeekbar.getProgress();
-        progress += 1000;
-        if (mViewModel.getMediaPlayer() != null) {
-            mViewModel.getMediaPlayer().seekTo(progress);
-        }
-    }
-
-    private void temSecondsAgo() {
-        int progress = playerSeekbar.getProgress();
-        progress -= 1000;
-        if (mViewModel.getMediaPlayer() != null) {
-            mViewModel.getMediaPlayer().seekTo(progress);
-        }
-    }
-
-
-
     private void setAdapterForListOfRecords() {
         mViewModel.files.observe(getViewLifecycleOwner(), files -> {
 
@@ -216,10 +196,11 @@ public class AudioListFragment extends Fragment  {
             }
 
             mAudioListAdapter = new AudioListAdapter(files, (file, position) -> {
+                playerFilename.setText(file.getName());
                 if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue()) && mViewModel.getMediaPlayer() != null) {
                     mViewModel.stopAudio();
                 }
-                new Handler().postDelayed(() -> mViewModel.playAudio(file), 600);
+                    new Handler().postDelayed(() -> mViewModel.playAudio(file), 500);
             });
             /*Настройка списка*/
             mAudioList.setHasFixedSize(true);
@@ -233,7 +214,6 @@ public class AudioListFragment extends Fragment  {
             if (isPaying){
                 playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_pause_btn, null));
-                //playerFilename.setText(.getName());
                 playerHeader.setText("Играет...");
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
@@ -242,8 +222,10 @@ public class AudioListFragment extends Fragment  {
                 seekbarHandler = new Handler();
                 updateRunnable();
                 seekbarHandler.postDelayed(updateSeekbar, 0);
-
             }else{
+                playerHeader.setText("Закончено");
+                playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                        getResources(), R.drawable.ic_player_play_btn, null));
                 seekbarHandler.removeCallbacks(updateSeekbar);
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
@@ -263,35 +245,7 @@ public class AudioListFragment extends Fragment  {
                 seekbarHandler.postDelayed(updateSeekbar, 0);
             }
         });
-
     }
-
-
-//    private void resumeAudio() {
-//        if (mViewModel.mediaPlayer!=null){
-//            playerHeader.setText("Играет...");
-//            mViewModel.mediaPlayer.start();
-//            playResumeButton.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_pause_btn, null));
-//            isPlaying = true;
-//            isPause = false;
-//            updateRunnable();
-//            seekbarHandler.postDelayed(updateSeekbar, 0);
-//        }
-//    }
-
-//    private void pauseAudio() {
-//        if (mViewModel.mediaPlayer!=null){
-//            mViewModel.mediaPlayer.pause();
-//            playerHeader.setText("Пауза");
-//            playResumeButton.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_player_play_btn, null));
-//            isPlaying = false;
-//            isPause = true;
-//            seekbarHandler.removeCallbacks(updateSeekbar);
-//        }
-//    }
-
-
-
 
     /*Метот для отображения прогреса в плеере */
     private void updateRunnable() {
@@ -300,14 +254,12 @@ public class AudioListFragment extends Fragment  {
             public void run() {
                 if (mViewModel.getMediaPlayer()!=null){
                     playerSeekbar.setProgress(mViewModel.getMediaPlayer().getCurrentPosition());
-                    seekbarHandler.postDelayed(this, 500);
+                    seekbarHandler.postDelayed(this, 100);
                 }
 
             }
         };
     }
-
-
 
 
     @Override
@@ -319,7 +271,18 @@ public class AudioListFragment extends Fragment  {
     @Override
     public void onStop() {
         super.onStop();
-            mViewModel.stopAudio();
+        if (mViewModel.getMediaPlayer() !=null){
+            mViewModel.pauseAudio();
+        }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mViewModel.getMediaPlayer() !=null && updateSeekbar !=null){
+            mViewModel.stopAudio();
+            seekbarHandler.removeCallbacks(updateSeekbar);
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
+    }
 }
