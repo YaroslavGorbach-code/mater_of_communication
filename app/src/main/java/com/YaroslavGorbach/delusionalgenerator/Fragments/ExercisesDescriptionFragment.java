@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesDescriptionViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -33,14 +35,9 @@ public class ExercisesDescriptionFragment extends Fragment {
     private TextView mAimEx_tv;
     private TextView mDescriptionEx_tv;
     private Exercise mExercise;
-    private ExercisesViewModel mViewModel;
+    private ExercisesDescriptionViewModel mViewModel;
     private Menu mMenu;
     private MaterialToolbar mToolbar;
-
-
-    public static ExercisesDescriptionFragment newInstance() {
-        return new ExercisesDescriptionFragment();
-    }
 
     @Override
     public void onStart() {
@@ -62,12 +59,11 @@ public class ExercisesDescriptionFragment extends Fragment {
         mToolbar.setNavigationIcon(ContextCompat.getDrawable(
                 view.getContext(), R.drawable.ic_arrow_back));
         mMenu = mToolbar.getMenu();
-        mViewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(ExercisesDescriptionViewModel.class);
         mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
 
         /*Установка иконки в туллбар в зависимости от того упражнение в избранном или нет*/
         setFavoriteToolbarIcon();
-
         return view;
     }
 
@@ -75,12 +71,19 @@ public class ExercisesDescriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /*Показ банера*/
-        AdView mAdView = view.findViewById(R.id.adViewTabDescription);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        AdMob.showBanner(view.findViewById(R.id.adViewTabDescription));
 
-        /*В зависимости от id упржанения устанавливаем соответствующий текст для описания упражнения*/
-        setDescriptionText();
+        mViewModel.exName.observe(getViewLifecycleOwner(), name->{
+            mToolbar.setTitle(name);
+        });
+
+        mViewModel.exAim.observe(getViewLifecycleOwner(), aim->{
+            mAimEx_tv.setText(aim);
+        });
+
+        mViewModel.exDescription.observe(getViewLifecycleOwner(), description->{
+            mDescriptionEx_tv.setText(description);
+        });
 
         /*Оброботка нажатия на иконки тулбара*/
         mToolbar.setOnMenuItemClickListener(v->{
@@ -114,7 +117,6 @@ public class ExercisesDescriptionFragment extends Fragment {
         mToolbar.setNavigationOnClickListener(v->{
             Navigation.findNavController(view).popBackStack();
         });
-
     }
 
     private void addExToFavorite(MenuItem v, int favorite, int icon) {
@@ -122,106 +124,6 @@ public class ExercisesDescriptionFragment extends Fragment {
         mViewModel.update(mExercise);
         v.setIcon(ContextCompat.getDrawable(
                 getContext(), icon));
-    }
-
-    private void setDescriptionText() {
-        switch (mExId){
-            case  1:
-                mToolbar.setTitle("Лингвистические пирамиды");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_1));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_1));
-                break;
-            case 2:
-                mToolbar.setTitle("Чем ворон похож на стол");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_2));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_2));
-                break;
-            case 3:
-                mToolbar.setTitle("Чем ворон похож на стул (чувства)");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_3));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_3));
-                break;
-            case 4:
-                mToolbar.setTitle("Продвинутое связывание");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_4));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_4));
-                break;
-            case 5:
-                mToolbar.setTitle("О чем вижу, о том и пою");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_5));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_5));
-                break;
-            case 6:
-                mToolbar.setTitle("Другие варианты сокращений");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_6));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_6));
-                break;
-            case 7:
-                mToolbar.setTitle("Волшебный нейминг");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_7));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_7));
-                break;
-            case 8:
-                mToolbar.setTitle("Купля - продажа");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_8));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_8));
-                break;
-            case 9:
-                mToolbar.setTitle("Вспомнить все");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_9));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_9));
-                break;
-            case 10:
-                mToolbar.setTitle("В соавторстве с Далем");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_10));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_10));
-                break;
-            case 11:
-                mToolbar.setTitle("Тест Роршаха");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_11));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_11));
-                break;
-            case 12:
-                mToolbar.setTitle("Хуже уже не будет");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_12));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_12));
-                break;
-            case 13:
-                mToolbar.setTitle("Вопрос - ответ");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_13));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_13));
-                break;
-            case 20:
-                mToolbar.setTitle("Существительные");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_20));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_20));
-                break;
-            case 21:
-                mToolbar.setTitle("Прилагательные");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_21));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_21));
-                break;
-            case 22:
-                mToolbar.setTitle("Глаголы");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_22));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_22));
-                break;
-            case 30:
-                mToolbar.setTitle("Простые скороговорки");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30_32));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30_32));
-                break;
-            case 31:
-                mToolbar.setTitle("Сложные скороговорки");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30_32));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30_32));
-                break;
-            case 32:
-                mToolbar.setTitle("Очень сложные скороговорки");
-                mAimEx_tv.setText(getResources().getString(R.string.Aim_of_exercise_30_32));
-                mDescriptionEx_tv.setText(getResources().getString(R.string.Haw_to_perform_exercise_30_32));
-                break;
-        }
     }
 
     private void startEx(@NonNull View view) {
