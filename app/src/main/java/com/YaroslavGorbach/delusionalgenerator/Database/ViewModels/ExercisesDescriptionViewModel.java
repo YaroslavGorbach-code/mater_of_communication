@@ -92,6 +92,11 @@ public class ExercisesDescriptionViewModel extends AndroidViewModel {
                 _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_13));
                 _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_13));
                 break;
+            case 14:
+                _exName.setValue("Рассказчик - импровизатор");
+                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_30_32));
+                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32));
+                break;
             case 20:
                 _exName.setValue("Существительные");
                 _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_20));
