@@ -25,11 +25,8 @@ public class DialogAboutApp extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.dialog_about_app,null);
 
         builder.setView(view)
-                .setNegativeButton("Закрыть", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                .setNegativeButton("Закрыть", (dialog, which) -> {
 
-                    }
                 });
 
             return builder.create();

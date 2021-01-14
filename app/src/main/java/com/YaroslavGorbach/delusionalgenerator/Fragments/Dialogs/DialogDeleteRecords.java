@@ -21,25 +21,15 @@ public class DialogDeleteRecords  extends AppCompatDialogFragment {
         public interface DeleteRecordsListener{
             void onClickDelete();
         }
-
         private DeleteRecordsListener mListener;
 
-        public static DialogDeleteRecords newInstance (DeleteRecordsListener listener){
-
-            return new DialogDeleteRecords();
-
-        }
 
         @Override
         public void onAttach(@NonNull Context context) {
             super.onAttach(context);
-
             try {
-
                 mListener = (DeleteRecordsListener) context;
-
             } catch (ClassCastException e) {
-
                 throw new ClassCastException("must implement Listener");
             }
         }
@@ -58,22 +48,15 @@ public class DialogDeleteRecords  extends AppCompatDialogFragment {
             textView.setTextSize(20F);
             textView.setPadding(40,40,40,20);
             textView.setTextColor(colorPrimary.data);
-
             builder
                     .setCustomTitle(textView)
                     .setPositiveButton("Да", (dialog, which) ->{
-
                         mListener.onClickDelete();
                         this.dismiss();
-
                     })
                     .setNegativeButton("Нет", (dialog, which) -> {
-
                     });
-
-
             return builder.create();
-
         }
     }
 

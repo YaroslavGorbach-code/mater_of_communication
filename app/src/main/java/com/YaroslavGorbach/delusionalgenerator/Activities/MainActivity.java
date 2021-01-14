@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -10,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.MainActivityViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.AllExsByCategoryFragmentDirections;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragmentDirections;
@@ -27,8 +29,9 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener,
         DialogDeleteRecords.DeleteRecordsListener {
 
-    public static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
-    public static final String FIRST_OPEN = "FIRST_OPEN";
+    private static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
+    private static final String FIRST_OPEN = "FIRST_OPEN";
+    private MainActivityViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MaterialToolbar toolbar = findViewById(R.id.toolbar_main_a);
+        mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         /*Установка оброботки нажатий на элементы нижней навигации*/
         bottomNavigationClickListener();
@@ -108,19 +112,11 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
     @Override
     public void onClickDelete() {
-        /*Получаем файлы из деректории*/
-        String mPath = this.getExternalFilesDir("/").getAbsolutePath();
-        File directory = new File(mPath);
-        File[] allFiles = directory.listFiles();
-
-        if (allFiles != null) {
-            for (File f : allFiles) {
-                f.delete();
-            }
+            mViewModel.deleteRecords(this.getExternalFilesDir("/").getAbsolutePath());
             /*обновляем фрагмент*/
             NavDirections action = AudioListFragmentDirections.actionAudioListFragmentSelf();
             Navigation.findNavController(this,R.id.fragment).navigate(action);
         }
     }
-}
+
 

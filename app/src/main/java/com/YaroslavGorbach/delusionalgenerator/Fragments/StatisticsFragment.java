@@ -31,15 +31,6 @@ public class StatisticsFragment extends Fragment {
     private Toolbar mToolbar;
     int mIdEx;
 
-    public StatisticsFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static StatisticsFragment newInstance() {
-        return new StatisticsFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

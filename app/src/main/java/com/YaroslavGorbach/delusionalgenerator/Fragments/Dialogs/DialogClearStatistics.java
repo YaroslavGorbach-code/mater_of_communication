@@ -31,14 +31,9 @@ public class DialogClearStatistics extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
         return new AlertDialog.Builder(requireContext()).setTitle("Вы действительно хотите очитить статистику?")
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Repo.getInstance(getContext()).clearStatistic(getArguments().getInt(ARG_EX_ID));
-                    }
-
-                }).setNegativeButton("Нет",null)
+                .setPositiveButton("Да", (dialog, which) ->
+                        Repo.getInstance(getContext()).clearStatistic(getArguments().getInt(ARG_EX_ID)))
+                .setNegativeButton("Нет",null)
                 .create();
     }
 }
