@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.github.mikephil.charting.data.BarEntry;
 
@@ -260,7 +262,7 @@ public class Repo extends SQLiteOpenHelper {
         Cursor c =  getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + 1,
                 null, null, null, null);
         if (c.moveToFirst()){
-            hour = c.getString(2);
+             hour = c.getString(2);
         }
         return hour;
     }
@@ -271,9 +273,22 @@ public class Repo extends SQLiteOpenHelper {
         Cursor c =  getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + 1,
                 null, null, null, null);
         if (c.moveToFirst()){
-            minute = c.getString(3);
+            minute =  c.getString(3);
         }
         return minute;
+    }
+
+    public String getNotifyHourAndMinute() {
+        String minute = "00";
+        String hour = "00";
+        String[] cols = {ID_N, CHECK_N, HOUR_N, MINUTE_N};
+        Cursor c =  getReadableDatabase().query(TABLE_NAME_N, cols, ID_N + "=" + 1,
+                null, null, null, null);
+        if (c.moveToFirst()){
+            minute = c.getString(3);
+            hour = c.getString(2);
+        }
+        return hour + ":" + minute;
     }
 
     public void setNotificationTime( String hourOfDay, String minute) {

@@ -54,7 +54,7 @@
             android:background="?selectableItemBackground"
             android:text="00:00"
             android:textColor="?secondIconsColor"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewAboutApp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewAboutApp" />

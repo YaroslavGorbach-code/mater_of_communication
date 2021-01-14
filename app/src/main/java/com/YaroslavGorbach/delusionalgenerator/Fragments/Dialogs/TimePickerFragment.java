@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Fragments;
+package com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -31,6 +31,7 @@ public class TimePickerFragment extends DialogFragment
                 DateFormat.is24HourFormat(getActivity()));
     }
 
+    @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         Repo repo = Repo.getInstance(getContext());
         String hour = String.valueOf(hourOfDay);
