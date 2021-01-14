@@ -34,6 +34,7 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     private String recordFile;
     private final Random r = new Random();
 
+
     private String [] mArrayTextUnderThumb = {};
     private String [] mArrayWorlds_ex1 = {};
     private String [] mArrayWorlds_ex2_living = {};
@@ -61,56 +62,111 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
             case 1:
                 mArrayWorlds_ex1 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayTextUnderThumb = application.getResources().getStringArray(R.array.TextUnderThumb_ex1);
+                _exName.setValue("Лингвистические пирамиды");
+                _exShortDesc.setValue("Обобщайте, разобобщайте, переходите по аналогиям");
+                _buttonNextText.setValue("следующее слово");
                 break;
             case 2:
                 mArrayWorlds_ex2_living = application.getResources().getStringArray(R.array.Worlds_items_Alive);
                 mArrayWorlds_ex2_not_living = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                _exName.setValue("Чем ворон похож на стол");
+                _exShortDesc.setValue("Найдите сходство");
+                _buttonNextText.setValue("следующие слова");
                 break;
             case 3:
                 mArrayWorlds_ex2_not_living = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
                 mArrayWorlds_ex3_filings = application.getResources().getStringArray(R.array.Worlds_items_filings);
+                _exName.setValue("Чем ворон похож на стул (чувства)");
+                _exShortDesc.setValue("Найдите сходство");
+                _buttonNextText.setValue("следующие слова");
                 break;
             case 4:
                 mArrayWorlds_ex4 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                _exName.setValue("Продвинутое связывание");
+                _exShortDesc.setValue("Найдите сходства");
+                _buttonNextText.setValue("следующие слова");
                 break;
             case 5:
                 mArrayWorlds_ex5 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                _exName.setValue("О чем вижу, о том и пою");
+                _exShortDesc.setValue("Описывайте максимально долго данный предмет");
+                _buttonNextText.setValue("следующее слово");
                 break;
             case 6:
                 mArrayWorlds_ex6 = application.getResources().getStringArray(R.array.Worlds_items_abbreviations);
+                _exName.setValue("Другие варианты сокращений");
+                _exShortDesc.setValue("Придумайте необычную расшифровку аббревиатуры");
+                _buttonNextText.setValue("следующая аббревиатура");
+
                 break;
             case 7:
                 mArrayWorlds_ex7 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                _exName.setValue("Волшебный нейминг");
+                _exShortDesc.setValue("Придумайте к этому слову 5 или больше смешных прилагательных");
+                _buttonNextText.setValue("следующее слово");
                 break;
             case 8:
                 mArrayWorlds_ex8 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                _exName.setValue("Купля - продажа");
+                _exShortDesc.setValue("Продайте это");
+                _buttonNextText.setValue("следующее слово");
                 break;
             case 9:
                 mArrayWorlds_ex9 = application.getResources().getStringArray(R.array.letters);
+                _exName.setValue("Вспомнить все");
+                _exShortDesc.setValue("Назовите 15 слов на эту букву");
+                _buttonNextText.setValue("следующая буква");
                 break;
             case 10:
                 mArrayWorlds_ex10 = application.getResources().getStringArray(R.array.Terms);
+                _exName.setValue("В соавторстве с Далем");
+                _exShortDesc.setValue("Дайте определение слову");
+                _buttonNextText.setValue("следующее слово");
                 break;
             case 11:
                 mArrayWorlds_ex11 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                _exName.setValue("Тест Роршаха");
+                _exShortDesc.setValue("Придумайте чем это может быть еще");
+                _buttonNextText.setValue("следующее слово");
                 break;
             case 12:
                 mArrayWorlds_ex12 = application.getResources().getStringArray(R.array.professions);
+                _exName.setValue("Хуже уже не будет");
+                _exShortDesc.setValue("Придумайте ситуацию или фразу худшего в мире");
+                _buttonNextText.setValue("следующая профессия");
                 break;
             case 13:
                 mArrayWorlds_ex13 = application.getResources().getStringArray(R.array.questions);
+                _exName.setValue("Вопрос - ответ");
+                _exShortDesc.setValue("Дайте развернутый ответ на вопрос");
+                _buttonNextText.setValue("следующий вопрос");
                 break;
             case 14:
                 mSetWorlds_ex14.addAll(Set.of((application.getResources().getStringArray(R.array.Worlds_items_Alive))));
                 mSetWorlds_ex14.addAll(Set.of(application.getResources().getStringArray(R.array.Worlds_items_notAlive)));
                 mSetWorlds_ex14.addAll(Set.of(application.getResources().getStringArray(R.array.professions)));
+                _exName.setValue("Рассказчик - импровизатор");
+                _exShortDesc.setValue("Составьте рассказ, используя данные слова");
+                _buttonNextText.setValue("следующие слова");
                 break;
         }
 
     }
 
     public final MutableLiveData<Boolean> _isRecording = new MutableLiveData<>(false);
-   public LiveData<Boolean> isRecording = _isRecording;
+    public LiveData<Boolean> isRecording = _isRecording;
+
+    public final MutableLiveData<String> _exName = new MutableLiveData<>();
+    public LiveData<String> exName = _exName;
+
+    public final MutableLiveData<String> _exShortDesc = new MutableLiveData<>();
+    public LiveData<String> exShortDesc = _exShortDesc;
+
+    public final MutableLiveData<String> _buttonNextText = new MutableLiveData<>();
+    public LiveData<String> buttonNextText = _buttonNextText;
+
+
+
 
     /*Остановка записи*/
     public void stopRecording(Context context) {

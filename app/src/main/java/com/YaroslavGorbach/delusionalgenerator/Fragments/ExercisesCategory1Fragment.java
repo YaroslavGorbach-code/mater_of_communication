@@ -100,8 +100,10 @@ public class ExercisesCategory1Fragment extends Fragment {
         /*запуск секундомера*/
         startChronometer();
 
-        /*устанавливаем подходящий текст в тулбар и в описание, устанавливаем слово*/
-        setExText();
+        /*устанавливаем подходящий текст в тулбар и на кнопку и в описание, устанавливаем слово*/
+        mViewModel.exName.observe(getViewLifecycleOwner(), exName-> mMaterialToolbar.setTitle(exName));
+        mViewModel.exShortDesc.observe(getViewLifecycleOwner(), shortDesc-> mShort_des.setText(shortDesc));
+        mViewModel.buttonNextText.observe(getViewLifecycleOwner(), buttonNextText-> mButtonNextWorld.setText(buttonNextText));
         changeWord();
 
         /*показ банера*/
@@ -179,75 +181,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         mChronometerState = true;
     }
 
-    private void setExText() {
-        switch (mIdEx){
-            case 1:
-                mMaterialToolbar.setTitle("Лингвистические пирамиды");
-                mThumbAndText.setVisibility(View.VISIBLE);
-                mShort_des.setText("Обобщайте, разобобщайте, переходите по аналогиям");
-                break;
-            case 2:
-                mMaterialToolbar.setTitle("Чем ворон похож на стол");
-                mShort_des.setText("Найдите сходство");
-                break;
-            case 3:
-                mExName = "Чем ворон похож на стул (чувства)";
-                mMaterialToolbar.setTitle("Чем ворон похож на стул (чувства)");
-                mShort_des.setText("Найдите сходство");
-                break;
-            case 4:
-                mMaterialToolbar.setTitle("Продвинутое связывание");
-                mShort_des.setText("Найдите сходства");
-                break;
-            case 5:
-                mMaterialToolbar.setTitle("О чем вижу, о том и пою");
-                mShort_des.setText("Описывайте максимально долго данный предмет");
-                break;
-            case 6:
-                mMaterialToolbar.setTitle("Другие варианты сокращений");
-                mShort_des.setText("Придумайте необычную расшифровку аббревиатуры");
-                mButtonNextWorld.setText("Следующая аббревиатура");
-                mButtonNextWorld.setTextSize(17);
-                break;
-            case 7:
-                mMaterialToolbar.setTitle("Волшебный нейминг");
-                mShort_des.setText("Придумайте к этому слову 5 или больше смешных прилагательных");
-                break;
-            case 8:
-                mMaterialToolbar.setTitle("Купля - продажа");
-                mShort_des.setText("Продайте это");
-                break;
-            case 9:
-                mMaterialToolbar.setTitle("Вспомнить все");
-                mShort_des.setText("Назовите 15 слов на эту букву");
-                mButtonNextWorld.setText("Следующая буква");
-                break;
-            case 10:
-                mMaterialToolbar.setTitle("В соавторстве с Далем");
-                mShort_des.setText("Дайте определение слову");
-                break;
-            case 11:
-                mMaterialToolbar.setTitle("Тест Роршаха");
-                mShort_des.setText("Придумайте чем это может быть еще");
-                break;
-            case 12:
-                mMaterialToolbar.setTitle("Хуже уже не будет");
-                mShort_des.setText("Придумайте ситуацию или фразу худшего в мире");
-                break;
-            case 13:
-                mMaterialToolbar.setTitle("Вопрос - ответ");
-                mShort_des.setText("Ответьте на вопрос, максимально развернуто");
-                mButtonNextWorld.setText("Следующий вопрос");
-                break;
-            case 14:
-                mMaterialToolbar.setTitle("Рассказчик - импровизатор");
-                mShort_des.setText("Составьте рассказ, используя данные слова");
-                mButtonNextWorld.setText("Составте расказ, используя данные слова");
-                break;
-        }
-    }
-
-
     /*Остановка записи*/
     private void stopRecording() {
         mStartRecordingButton.setText("Начать запись");
@@ -268,6 +201,9 @@ public class ExercisesCategory1Fragment extends Fragment {
             case 1:
                 setThumbAndText();
                 animateThumb();
+                break;
+            case 6:
+                mButtonNextWorld.setTextSize(17);
                 break;
             case 13:
                 mWorld.setTextSize(25);
@@ -293,7 +229,7 @@ public class ExercisesCategory1Fragment extends Fragment {
 
     /*Уставнока значения борльшого пальца*/
     private void setThumbAndText(){
-
+        mThumbAndText.setVisibility(View.VISIBLE);
         mTextUnderThumb.setText(mViewModel.getThumbWord());
         if (mTextUnderThumb.getText().equals("Аналогия")){
             mThumb.setImageResource(R.drawable.ic_right);
