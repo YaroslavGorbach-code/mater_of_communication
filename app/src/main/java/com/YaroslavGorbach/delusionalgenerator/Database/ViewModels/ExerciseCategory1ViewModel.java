@@ -19,8 +19,11 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
@@ -36,21 +39,20 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 
 
     private String [] mArrayTextUnderThumb = {};
-    private String [] mArrayWorlds_ex1 = {};
-    private String [] mArrayWorlds_ex2_living = {};
-    private String [] mArrayWorlds_ex2_not_living = {};
-    private String [] mArrayWorlds_ex3_filings = {};
-    private String [] mArrayWorlds_ex4 = {};
-    private String [] mArrayWorlds_ex5 = {};
-    private String [] mArrayWorlds_ex6 = {};
-    private String [] mArrayWorlds_ex7 = {};
-    private String [] mArrayWorlds_ex8 = {};
-    private String [] mArrayWorlds_ex9 = {};
-    private String [] mArrayWorlds_ex10 = {};
-    private String [] mArrayWorlds_ex11 = {};
-    private String [] mArrayWorlds_ex12 = {};
-    private String [] mArrayWorlds_ex13 = {};
-    private Set<String> mSetWorlds_ex14 = new LinkedHashSet<>();
+    private List<String> mWorlds_ex1 = new ArrayList<>();
+    private List<String> mWorlds_ex2_living = new ArrayList<>();
+    private List<String> mWorlds_ex2_not_living = new ArrayList<>();
+    private List<String> mWorlds_ex3_filings = new ArrayList<>();
+    private List<String> mWorlds_ex4 = new ArrayList<>();
+    private List<String> mWorlds_ex5 = new ArrayList<>();
+    private List<String> mWorlds_ex6 = new ArrayList<>();
+    private List<String> mWorlds_ex7 = new ArrayList<>();
+    private List<String> mWorlds_ex8 = new ArrayList<>();
+    private List<String> mWorlds_ex9 = new ArrayList<>();
+    private List<String> mWorlds_ex10 = new ArrayList<>();
+    private List<String> mWorlds_ex11 = new ArrayList<>();
+    private List<String> mWorlds_ex12 = new ArrayList<>();
+    private List<String> mWorlds_ex13 = new ArrayList<>();
 
     public ExerciseCategory1ViewModel(@NonNull Application application, int exId) {
         super(application);
@@ -60,94 +62,93 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 
         switch (exId){
             case 1:
-                mArrayWorlds_ex1 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex1 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 mArrayTextUnderThumb = application.getResources().getStringArray(R.array.TextUnderThumb_ex1);
                 _exName.setValue("Лингвистические пирамиды");
                 _exShortDesc.setValue("Обобщайте, разобобщайте, переходите по аналогиям");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 2:
-                mArrayWorlds_ex2_living = application.getResources().getStringArray(R.array.Worlds_items_Alive);
-                mArrayWorlds_ex2_not_living = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex2_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_Alive));
+                mWorlds_ex2_not_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 _exName.setValue("Чем ворон похож на стол");
                 _exShortDesc.setValue("Найдите сходство");
                 _buttonNextText.setValue("следующие слова");
                 break;
             case 3:
-                mArrayWorlds_ex2_not_living = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
-                mArrayWorlds_ex3_filings = application.getResources().getStringArray(R.array.Worlds_items_filings);
+                mWorlds_ex2_not_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
+                mWorlds_ex3_filings = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_filings));
                 _exName.setValue("Чем ворон похож на стул (чувства)");
                 _exShortDesc.setValue("Найдите сходство");
                 _buttonNextText.setValue("следующие слова");
                 break;
             case 4:
-                mArrayWorlds_ex4 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex4 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 _exName.setValue("Продвинутое связывание");
                 _exShortDesc.setValue("Найдите сходства");
                 _buttonNextText.setValue("следующие слова");
                 break;
             case 5:
-                mArrayWorlds_ex5 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex5 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 _exName.setValue("О чем вижу, о том и пою");
                 _exShortDesc.setValue("Описывайте максимально долго данный предмет");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 6:
-                mArrayWorlds_ex6 = application.getResources().getStringArray(R.array.Worlds_items_abbreviations);
+                mWorlds_ex6 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_abbreviations));
                 _exName.setValue("Другие варианты сокращений");
                 _exShortDesc.setValue("Придумайте необычную расшифровку аббревиатуры");
                 _buttonNextText.setValue("следующая аббревиатура");
 
                 break;
             case 7:
-                mArrayWorlds_ex7 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex7 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 _exName.setValue("Волшебный нейминг");
                 _exShortDesc.setValue("Придумайте к этому слову 5 или больше смешных прилагательных");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 8:
-                mArrayWorlds_ex8 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex8 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 _exName.setValue("Купля - продажа");
                 _exShortDesc.setValue("Продайте это");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 9:
-                mArrayWorlds_ex9 = application.getResources().getStringArray(R.array.letters);
+                mWorlds_ex9 = Arrays.asList(application.getResources().getStringArray(R.array.letters));
                 _exName.setValue("Вспомнить все");
                 _exShortDesc.setValue("Назовите 15 слов на эту букву");
                 _buttonNextText.setValue("следующая буква");
                 break;
             case 10:
-                mArrayWorlds_ex10 = application.getResources().getStringArray(R.array.Terms);
+                mWorlds_ex10 = Arrays.asList(application.getResources().getStringArray(R.array.Terms));
                 _exName.setValue("В соавторстве с Далем");
                 _exShortDesc.setValue("Дайте определение слову");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 11:
-                mArrayWorlds_ex11 = application.getResources().getStringArray(R.array.Worlds_items_notAlive);
+                mWorlds_ex11 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 _exName.setValue("Тест Роршаха");
                 _exShortDesc.setValue("Придумайте чем это может быть еще");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 12:
-                mArrayWorlds_ex12 = application.getResources().getStringArray(R.array.professions);
+                mWorlds_ex12 = Arrays.asList(application.getResources().getStringArray(R.array.professions));
                 _exName.setValue("Хуже уже не будет");
                 _exShortDesc.setValue("Придумайте ситуацию или фразу худшего в мире");
                 _buttonNextText.setValue("следующая профессия");
                 break;
             case 13:
-                mArrayWorlds_ex13 = application.getResources().getStringArray(R.array.questions);
+                mWorlds_ex13 = Arrays.asList(application.getResources().getStringArray(R.array.questions));
                 _exName.setValue("Вопрос - ответ");
                 _exShortDesc.setValue("Дайте развернутый ответ на вопрос");
                 _buttonNextText.setValue("следующий вопрос");
                 break;
             case 14:
-                mSetWorlds_ex14.addAll(Set.of((application.getResources().getStringArray(R.array.Worlds_items_Alive))));
-                mSetWorlds_ex14.addAll(Set.of(application.getResources().getStringArray(R.array.Worlds_items_notAlive)));
-                mSetWorlds_ex14.addAll(Set.of(application.getResources().getStringArray(R.array.professions)));
                 _exName.setValue("Рассказчик - импровизатор");
                 _exShortDesc.setValue("Составьте рассказ, используя данные слова");
                 _buttonNextText.setValue("следующие слова");
+                mWorlds_ex2_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_Alive));
+                mWorlds_ex2_not_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 break;
         }
 
@@ -164,8 +165,6 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 
     public final MutableLiveData<String> _buttonNextText = new MutableLiveData<>();
     public LiveData<String> buttonNextText = _buttonNextText;
-
-
 
 
     /*Остановка записи*/
@@ -213,43 +212,44 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     public String getWord() {
         switch (mIdEx) {
             case 1:
-                return mArrayWorlds_ex1[r.nextInt(mArrayWorlds_ex1.length)];
+                return mWorlds_ex1.get(r.nextInt(mWorlds_ex1.size()));
             case 2:
-                return String.format("%s - %s", mArrayWorlds_ex2_living[r.nextInt(mArrayWorlds_ex2_living.length)],
-                        mArrayWorlds_ex2_not_living[r.nextInt(mArrayWorlds_ex2_not_living.length)]);
+                return String.format("%s - %s", mWorlds_ex2_living.get(r.nextInt(mWorlds_ex2_living.size())),
+                        mWorlds_ex2_not_living.get(r.nextInt(mWorlds_ex2_not_living.size())));
             case 3:
-               return String.format("%s - %s", mArrayWorlds_ex3_filings[r.nextInt(mArrayWorlds_ex3_filings.length)],
-                       mArrayWorlds_ex2_not_living[r.nextInt(mArrayWorlds_ex2_not_living.length)]);
+               return String.format("%s - %s", mWorlds_ex3_filings.get(r.nextInt(mWorlds_ex3_filings.size())),
+                       mWorlds_ex2_not_living.get(r.nextInt(mWorlds_ex2_not_living.size())));
             case 4:
-                String word_1 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
-                String word_2 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
+                String word_1 = mWorlds_ex4.get(r.nextInt(mWorlds_ex4.size()));
+                String word_2 = mWorlds_ex4.get(r.nextInt(mWorlds_ex4.size()));
                 if (word_1.equals(word_2)) {
-                    word_1 = mArrayWorlds_ex4[r.nextInt(mArrayWorlds_ex4.length)];
+                    word_1 = mWorlds_ex4.get(r.nextInt(mWorlds_ex4.size()));
                 }
                 return String.format("%s - %s", word_1, word_2);
             case 5:
-                return mArrayWorlds_ex5[r.nextInt(mArrayWorlds_ex5.length)];
+                return mWorlds_ex5.get(r.nextInt(mWorlds_ex5.size()));
             case 6:
-                return mArrayWorlds_ex6[r.nextInt(mArrayWorlds_ex6.length)];
+                return mWorlds_ex6.get(r.nextInt(mWorlds_ex6.size()));
             case 7:
-                return mArrayWorlds_ex7[r.nextInt(mArrayWorlds_ex7.length)];
+                return mWorlds_ex7.get(r.nextInt(mWorlds_ex7.size()));
             case 8:
-                return mArrayWorlds_ex8[r.nextInt(mArrayWorlds_ex8.length)];
+                return mWorlds_ex8.get(r.nextInt(mWorlds_ex8.size()));
             case 9:
-               return mArrayWorlds_ex9[r.nextInt(mArrayWorlds_ex9.length)];
+                return mWorlds_ex9.get(r.nextInt(mWorlds_ex9.size()));
             case 10:
-               return mArrayWorlds_ex10[r.nextInt(mArrayWorlds_ex10.length)];
+                return mWorlds_ex10.get(r.nextInt(mWorlds_ex10.size()));
             case 11:
-                return mArrayWorlds_ex11[r.nextInt(mArrayWorlds_ex11.length)];
+                return mWorlds_ex11.get(r.nextInt(mWorlds_ex11.size()));
             case 12:
-                return mArrayWorlds_ex12[r.nextInt(mArrayWorlds_ex12.length)];
+                return mWorlds_ex12.get(r.nextInt(mWorlds_ex12.size()));
             case 13:
-                return mArrayWorlds_ex13[r.nextInt(mArrayWorlds_ex13.length)];
+                return mWorlds_ex13.get(r.nextInt(mWorlds_ex13.size()));
             case 14:
-//                mSetWorlds_ex14.addAll(Set.of((getResources().getStringArray(R.array.Worlds_items_Alive))));
-//                mSetWorlds_ex14.addAll(Set.of(getResources().getStringArray(R.array.Worlds_items_notAlive)));
-//                mSetWorlds_ex14.addAll(Set.of(getResources().getStringArray(R.array.professions)));
-//                break;
+                return String.format("%s, %s,  %s,  %s",
+                        mWorlds_ex2_living.get(r.nextInt(mWorlds_ex2_living.size())),
+                        mWorlds_ex2_not_living.get(r.nextInt(mWorlds_ex2_not_living.size())),
+                        mWorlds_ex2_living.get(r.nextInt(mWorlds_ex2_living.size())),
+                        mWorlds_ex2_not_living.get(r.nextInt(mWorlds_ex2_not_living.size())));
         }
         throw new IllegalArgumentException("Incorrect exercise id");
     }

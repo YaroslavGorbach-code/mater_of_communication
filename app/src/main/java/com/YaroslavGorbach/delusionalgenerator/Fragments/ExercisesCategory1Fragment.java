@@ -211,19 +211,9 @@ public class ExercisesCategory1Fragment extends Fragment {
                     mWorld.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
                 }
                 break;
-//            case 14:
-//                Set<String> words = new LinkedHashSet<>();
-//
-//                while (words.size() == 5){
-//                    words.add(mSetWorlds_ex14.[r.nextInt(mSetWorlds_ex14.size())]);
-//                }
-//
-//                for (int i = 0; i < 5; i++){
-//                    words[i] =
-//                }
-//                mWorld.setText(mArrayWorlds_ex14[r.nextInt(mArrayWorlds_ex14.length)]);
-//                break;
-
+            case 14:
+                mWorld.setTextSize(30);
+                break;
         }
     }
 
