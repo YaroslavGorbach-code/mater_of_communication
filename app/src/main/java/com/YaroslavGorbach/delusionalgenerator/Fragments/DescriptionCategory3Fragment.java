@@ -22,9 +22,14 @@ public class DescriptionCategory3Fragment extends Fragment {
     private static final String ARG_EX_ID = "id";
     private int mExId;
     private TextView mAimEx_tv;
-    private TextView mDescriptionEx_tv;
+    private TextView mDescriptionPart_1;
+    private TextView mDescriptionPart_2;
+    private TextView mDescriptionPart_3;
+    private TextView mDescriptionPart_4;
+    private TextView mDescriptionPart_5;
     private DescriptionCategory3FragmentViewModel mViewModel;
 
+    // TODO: 1/15/2021 во всех вбю фрагментов заменить родительський лайаут на скрол вью с констрейтом внутри
     public DescriptionCategory3Fragment() {
         // Required empty public constructor
     }
@@ -50,7 +55,11 @@ public class DescriptionCategory3Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.description_category_3_fragment, container, false);
         mAimEx_tv = view.findViewById(R.id.textView_aim_ex);
-        //mDescriptionEx_tv = view.findViewById(R.id.textView_description_ex);
+        mDescriptionPart_1 = view.findViewById(R.id.textView_description_ex_part_1);
+        mDescriptionPart_2 = view.findViewById(R.id.textView_description_ex_part_2);
+        mDescriptionPart_3 = view.findViewById(R.id.textView_description_ex_part_3);
+        mDescriptionPart_4 = view.findViewById(R.id.textView_description_ex_part_4);
+        mDescriptionPart_5 = view.findViewById(R.id.textView_description_ex_part_5);
         mViewModel = new ViewModelProvider(this, new DescriptionCategory3FragmentViewModelFactory(
                 getActivity().getApplication(),mExId)).get(DescriptionCategory3FragmentViewModel.class);
 
@@ -61,13 +70,12 @@ public class DescriptionCategory3Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel.exAim.observe(getViewLifecycleOwner(), aim->{
-            mAimEx_tv.setText(aim);
-        });
-//        mViewModel.exDescription.observe(getViewLifecycleOwner(), description->{
-//            mDescriptionEx_tv.setText(description);
-//        });
-
+        mViewModel.exAim.observe(getViewLifecycleOwner(), aim-> mAimEx_tv.setText(aim));
+        mViewModel.exDescription_1.observe(getViewLifecycleOwner(), part1-> mDescriptionPart_1.setText(part1));
+        mViewModel.exDescription_2.observe(getViewLifecycleOwner(), part2-> mDescriptionPart_2.setText(part2));
+        mViewModel.exDescription_3.observe(getViewLifecycleOwner(), part3-> mDescriptionPart_3.setText(part3));
+        mViewModel.exDescription_4.observe(getViewLifecycleOwner(), part4-> mDescriptionPart_4.setText(part4));
+        mViewModel.exDescription_5.observe(getViewLifecycleOwner(), part5-> mDescriptionPart_5.setText(part5));
     }
 }
 

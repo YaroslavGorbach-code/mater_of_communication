@@ -5,15 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory1FragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory2FragmentViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.DescriptionCategory1FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.DescriptionCategory2FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.R;
 

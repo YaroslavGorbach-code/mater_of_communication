@@ -76,31 +76,7 @@ public class DescriptionCategory1FragmentViewModel extends AndroidViewModel {
                 break;
             case 14:
                 _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_30_32));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32));
-                break;
-            case 20:
-                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_20));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_20));
-                break;
-            case 21:
-                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_21));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_21));
-                break;
-            case 22:
-                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_22));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_22));
-                break;
-            case 30:
-                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_30_32));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32));
-                break;
-            case 31:
-                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_30_32));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32));
-                break;
-            case 32:
-                _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_30_32));
-                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32));
+                _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_3));
                 break;
         }
     }
