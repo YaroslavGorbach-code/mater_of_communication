@@ -17,7 +17,7 @@
         android:id="@+id/ex_item_image"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
-        tool:src="@drawable/ex1_backgraund"
+        tool:src="@drawable/ex1_backgraund_v_2"
         android:layout_height="match_parent"/>
     <TextView
         android:id="@+id/item_ex_name"

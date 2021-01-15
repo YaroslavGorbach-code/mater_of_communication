@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="test toolbar">
+        app:title="test toolbar"
+        app:titleTextColor="?colorAccent">
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -32,80 +33,34 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="450dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_start_ex_category_1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adViewTabDescription">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".Fragments.ExercisesDescriptionFragment">
-
-            <TextView
-                android:id="@+id/exercises_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Цель упражнения"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView_aim_ex"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:padding="10dp"
-                android:text="test test test tets test test test teste tset etste"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/exercises_name"
-                tools:targetApi="o" />
+        app:layout_constraintTop_toBottomOf="@+id/adViewTabDescription"
+        app:layout_constraintVertical_bias="0.0">
 
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Как выполнять"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_aim_ex" />
-
-            <TextView
-                android:id="@+id/textView_description_ex"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:padding="10dp"
-                android:text="@string/Haw_to_perform_exercise_1"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                tools:targetApi="o" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_start_ex_category_1"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:padding="20dp"
         android:text="Начать !"
-        android:textSize="35dp"
+        android:textColor="?colorAccent"
+        android:textSize="30sp"
+        app:cornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:rippleColor="?colorAccent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,7 @@
             android:paddingTop="24dp"
             android:paddingBottom="24dp"
             android:text="Проигрыватель"
-            android:textColor="@android:color/white"
+            android:textColor="?colorPrimary"
             android:textSize="16sp" />
 
         <TextView
@@ -52,7 +52,7 @@
             android:paddingBottom="24dp"
             android:text="Не играет"
             android:textAlignment="textEnd"
-            android:textColor="@android:color/white"
+            android:textColor="?colorPrimary"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -71,9 +71,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/player_play_btn"
-        android:background="?colorPrimary"
+        android:background="?colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -83,9 +83,9 @@
         app:layout_constraintTop_toBottomOf="@+id/player_filename"
         app:srcCompat="@drawable/ic_player_play_btn" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonAgo"
-        android:background="?colorPrimary"
+        android:background="?colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -95,9 +95,9 @@
         app:layout_constraintTop_toTopOf="@+id/player_play_btn"
         app:srcCompat="@drawable/ic_player_back_btn" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonForward"
-        android:background="?colorPrimary"
+        android:background="?colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -107,7 +107,7 @@
         app:layout_constraintTop_toTopOf="@+id/player_play_btn"
         app:srcCompat="@drawable/ic_player_forward_btn" />
 
-    <SeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/player_seekbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

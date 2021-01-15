@@ -2,7 +2,9 @@ package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.res.ResourcesCompat;
@@ -45,13 +47,13 @@ public class AudioListFragment extends Fragment  {
     private BottomSheetBehavior mBottomSheetBehavior;
     private RecyclerView mAudioList;
     private AudioListAdapter mAudioListAdapter;
-    private ImageButton playResumeButton;
+    private AppCompatImageButton playResumeButton;
     private TextView playerHeader;
     private TextView playerFilename;
     private MaterialToolbar mToolbar;
-    private ImageButton buttonAgo;
-    private ImageButton buttonForward;
-    private SeekBar playerSeekbar;
+    private AppCompatImageButton buttonAgo;
+    private AppCompatImageButton buttonForward;
+    private AppCompatSeekBar playerSeekbar;
     private CoordinatorLayout mCoordinatorLayout;
     private AppCompatImageView mImageNoData;
     private TextView mTextViewNoData;

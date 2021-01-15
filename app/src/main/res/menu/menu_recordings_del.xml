@@ -4,7 +4,7 @@
     <item
         android:id="@+id/show_chart"
         android:title="Удалить все записи"
-        android:icon="@drawable/ic_delete"
+        android:icon="@drawable/ic_delete_forever"
         app:showAsAction="always"
         android:visible="false">
 

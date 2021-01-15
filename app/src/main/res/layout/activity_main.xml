@@ -23,7 +23,7 @@
             app:menu="@menu/menu_recordings_del"
             app:layout_constraintTop_toTopOf="parent"
             app:title="Бредогенератор"
-            app:titleTextColor="#FFFFFF" />
+            app:titleTextColor="?colorAccent" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
