@@ -29,7 +29,6 @@ public class DescriptionCategory3Fragment extends Fragment {
     private TextView mDescriptionPart_5;
     private DescriptionCategory3FragmentViewModel mViewModel;
 
-    // TODO: 1/15/2021 во всех вбю фрагментов заменить родительський лайаут на скрол вью с констрейтом внутри
     public DescriptionCategory3Fragment() {
         // Required empty public constructor
     }

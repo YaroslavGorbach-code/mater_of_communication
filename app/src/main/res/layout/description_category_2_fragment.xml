@@ -1,9 +1,16 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.DescriptionCategory2Fragment">
+    tools:context=".Fragments.DescriptionCategory1Fragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ImageHawToPerform"
@@ -27,31 +34,31 @@
         app:layout_constraintStart_toEndOf="@+id/ImageHawToPerform"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <TextView
-        android:id="@+id/exercises_name"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Цель"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="?colorAccent"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/exercises_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Цель"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="?colorAccent"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/textView_aim_ex"
-        android:layout_width="365dp"
-        android:layout_height="wrap_content"
-        android:letterSpacing="0.1"
-        android:padding="10dp"
-        android:text="@string/Aim_of_exercise_1"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
-        app:layout_constraintTop_toBottomOf="@+id/exercises_name" />
+        <TextView
+            android:id="@+id/textView_aim_ex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.1"
+            android:padding="10dp"
+            android:text="@string/Aim_of_exercise_1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintTop_toBottomOf="@+id/exercises_name" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/appCompatImageView"
@@ -63,19 +70,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercises_name" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Как выполнять"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="?colorAccent"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_aim_ex" />
-
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Как выполнять"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="?colorAccent"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_aim_ex" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
