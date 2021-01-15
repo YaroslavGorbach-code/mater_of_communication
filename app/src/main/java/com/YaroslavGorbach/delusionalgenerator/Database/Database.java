@@ -150,6 +150,8 @@ public abstract class Database extends RoomDatabase {
                 mDao.insert(new Exercise(11,"Тест Роршаха",1,R.drawable.ex11_backgraund_v_2, 0,11));
                 mDao.insert(new Exercise(12,"Хуже уже не будет",1,R.drawable.ex12_backgraund_v_2, 0,12));
                 mDao.insert(new Exercise(13,"Вопрос - ответ",1,R.drawable.ex13_backgraund_v_2, 0,13));
+
+                // TODO: 1/15/2021 добавить в миграцию
                 mDao.insert(new Exercise(14,"Рассказчик - импровизатор",1,R.drawable.ex13_backgraund_v_2, 0,14));
 
 

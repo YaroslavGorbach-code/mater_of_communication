@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesDescriptionViewModel;
@@ -29,8 +28,6 @@ import com.google.android.material.button.MaterialButton;
 public class ExercisesDescriptionFragment extends Fragment {
     private int mExId;
     private MaterialButton mStartExButton;
-    private TextView mAimEx_tv;
-    private TextView mDescriptionEx_tv;
     private Exercise mExercise;
     private ExercisesDescriptionViewModel mViewModel;
     private Menu mMenu;
@@ -49,8 +46,6 @@ public class ExercisesDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise_description, container, false);
         /*инициализация вюх и провайдера*/
         mStartExButton = view.findViewById(R.id.button_start_ex_category_1);
-        mAimEx_tv = view.findViewById(R.id.textView_aim_ex);
-        mDescriptionEx_tv = view.findViewById(R.id.textView_description_ex);
         mToolbar = view.findViewById(R.id.toolbar_description);
         mToolbar.inflateMenu(R.menu.menu_description);
         mToolbar.setNavigationIcon(ContextCompat.getDrawable(
@@ -60,8 +55,6 @@ public class ExercisesDescriptionFragment extends Fragment {
         mViewModel = new ViewModelProvider(this, new ExercisesDescriptionViewModelFactory(
                 getActivity().getApplication(),mExId)).get(ExercisesDescriptionViewModel.class);
 
-        /*Установка иконки в туллбар в зависимости от того упражнение в избранном или нет*/
-        setFavoriteToolbarIcon();
         return view;
     }
 
@@ -71,16 +64,42 @@ public class ExercisesDescriptionFragment extends Fragment {
         /*Показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabDescription));
 
-        mViewModel.exName.observe(getViewLifecycleOwner(), name->{
-            mToolbar.setTitle(name);
-        });
+        /*Установка титла и иконки в туллбар в зависимости от того упражнение в избранном или нет*/
+        mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
+            mExercise = exercise;
+            mToolbar.setTitle(exercise.name);
+            switch (exercise.favorite){
+                case 1:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            getContext(), R.drawable.ic_baseline_star));
+                    break;
 
-        mViewModel.exAim.observe(getViewLifecycleOwner(), aim->{
-            mAimEx_tv.setText(aim);
-        });
+                case 0:
+                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
+                            getContext(), R.drawable.ic_star_outline));
+                    break;
+            }
 
-        mViewModel.exDescription.observe(getViewLifecycleOwner(), description->{
-            mDescriptionEx_tv.setText(description);
+            switch (exercise.category){
+                case 1:
+                    getChildFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .add(R.id.fragmentDescription, DescriptionCategory1Fragment.newInstance(mExId), null)
+                            .commit();
+                    break;
+                case 2:
+                    getChildFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .add(R.id.fragmentDescription, DescriptionCategory2Fragment.newInstance(mExId), null)
+                            .commit();
+                    break;
+                case 3:
+                    getChildFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .add(R.id.fragmentDescription, DescriptionCategory3Fragment.newInstance(mExId), null)
+                            .commit();
+                    break;
+            }
         });
 
         /*Оброботка нажатия на иконки тулбара*/
@@ -125,35 +144,18 @@ public class ExercisesDescriptionFragment extends Fragment {
     }
 
     private void startEx(@NonNull View view) {
-        if (mExId<20 && mExId > 0){
+        if (mExercise.category == 1){
             NavDirections action = ExercisesDescriptionFragmentDirections.
                     actionExercisesDescriptionFragmentToExercisesCategory1Fragment().setIdEx(mExId);
             Navigation.findNavController(view).navigate(action);
-        }else if(mExId > 19 && mExId < 23){
+        }else if(mExercise.category == 2){
             NavDirections action = ExercisesDescriptionFragmentDirections.
                     actionExercisesDescriptionFragmentToExercisesCategory2Fragment().setIdEx(mExId);
             Navigation.findNavController(view).navigate(action);
-        } else if(mExId > 29 && mExId < 33){
+        } else if(mExercise.category == 3){
             NavDirections action = ExercisesDescriptionFragmentDirections.
                     actionExercisesDescriptionFragmentToExercisesCategory3Fragment().setExId(mExId);
             Navigation.findNavController(view).navigate(action);
         }
-    }
-
-    private void setFavoriteToolbarIcon() {
-        mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
-            mExercise = exercise;
-            switch (exercise.favorite){
-                case 1:
-                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
-                            getContext(), R.drawable.ic_baseline_star));
-                    break;
-
-                case 0:
-                    mMenu.getItem(0).setIcon(ContextCompat.getDrawable(
-                            getContext(), R.drawable.ic_star_outline));
-                    break;
-            }
-        });
     }
 }
