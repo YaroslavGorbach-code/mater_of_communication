@@ -32,11 +32,11 @@ public class DescriptionCategory3FragmentViewModel extends AndroidViewModel {
 
     public DescriptionCategory3FragmentViewModel(@NonNull Application application, int exId) {
         super(application);
+        _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_30_32));
         _exDescription_1.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32_part_1));
         _exDescription_2.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32_part_2));
         _exDescription_3.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32_part_3));
         _exDescription_4.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32_part_4));
         _exDescription_5.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_30_32_part_5));
-
     }
 }
