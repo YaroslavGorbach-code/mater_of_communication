@@ -39,15 +39,11 @@ public class DialogDeleteRecords  extends AppCompatDialogFragment {
         public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-            final TypedValue colorPrimary = new TypedValue ();
-            getContext().getTheme().resolveAttribute (R.attr.colorPrimary, colorPrimary, true);
-
 
             TextView textView = new TextView(getContext());
             textView.setText("Удалить все записи ?");
             textView.setTextSize(20F);
             textView.setPadding(40,40,40,20);
-            textView.setTextColor(colorPrimary.data);
             builder
                     .setCustomTitle(textView)
                     .setPositiveButton("Да", (dialog, which) ->{

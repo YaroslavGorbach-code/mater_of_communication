@@ -76,7 +76,7 @@
             android:layout_below="@+id/thumb_iv"
             android:layout_centerInParent="true"
             android:text="thumb"
-            android:textColor="?colorPrimary"
+            android:textColor="?colorAccent"
             />
     </RelativeLayout>
 

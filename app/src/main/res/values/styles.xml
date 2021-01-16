@@ -10,17 +10,42 @@
         <item name="colorOnPrimary">#FF5722</item>
     </style>
 
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">?colorAccent</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">?colorAccent</item>
+    </style>
+
+    <style name="DatePickerTheme.ButtonBarNegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@android:color/holo_red_light</item>
+        <item name="colorPrimaryDark">@android:color/holo_red_light</item>
+        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
+    </style>
+
 
     <!-- Base application theme. -->
     <style name="AppTheme_orange" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">?android:colorBackground</item>
         <item name="colorPrimaryDark">?android:colorBackground</item>
-        <item name="textColor">#8E6F65</item>
         <item name="colorAccent">#FF8A65</item>
         <item name="colorControlActivated">#FFFFFF</item>
         <item name="colorControlNormal">#9C9C9C</item>
         <item name="tabColor">#FF5722</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewOrange</item>
         <item name="floatingActionButtonBackground">#FF5722</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
@@ -38,11 +63,17 @@
 
     <style name="AppTheme_blue" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#00BED6</item>
-        <item name="colorPrimaryDark">#008193</item>
-        <item name="colorAccent">#FD0000</item>
+        <item name="colorPrimary">?android:colorBackground</item>
+        <item name="colorPrimaryDark">?android:colorBackground</item>
+        <item name="colorAccent">#80DEEA</item>
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="colorControlNormal">#9C9C9C</item>
         <item name="tabColor">#00BCD4</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewBlue</item>
+        <item name="floatingActionButtonBackground">#00BCD4</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="Widget.App.BottomNavigationViewGreen" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
@@ -56,11 +87,17 @@
 
     <style name="AppTheme_green" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#54C358</item>
-        <item name="colorPrimaryDark">#439546</item>
-        <item name="colorAccent">#FD0000</item>
-        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewGreen</item>
+        <item name="colorPrimary">?android:colorBackground</item>
+        <item name="colorPrimaryDark">?android:colorBackground</item>
+        <item name="colorAccent">#81C784</item>
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="colorControlNormal">#9C9C9C</item>
         <item name="tabColor">#4CAF50</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewGreen</item>
+        <item name="floatingActionButtonBackground">#4CAF50</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="Widget.App.BottomNavigationViewPurple" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
@@ -74,11 +111,17 @@
 
     <style name="AppTheme_purple" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#7842D6</item>
-        <item name="colorPrimaryDark">#6539B6</item>
-        <item name="colorAccent">#FD0000</item>
+        <item name="colorPrimary">?android:colorBackground</item>
+        <item name="colorPrimaryDark">?android:colorBackground</item>
+        <item name="colorAccent">#9575CD</item>
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="colorControlNormal">#9C9C9C</item>
+        <item name="tabColor">#9C27B0</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewPurple</item>
-        <item name="tabColor">#673AB7</item>
+        <item name="floatingActionButtonBackground">#9C27B0</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="Widget.App.BottomNavigationViewRed" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
@@ -93,11 +136,17 @@
 
     <style name="AppTheme_red" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF256F</item>
-        <item name="colorPrimaryDark">#C52557</item>
-        <item name="colorAccent">#FD0000</item>
-        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewRed</item>
+        <item name="colorPrimary">?android:colorBackground</item>
+        <item name="colorPrimaryDark">?android:colorBackground</item>
+        <item name="colorAccent">#F06292</item>
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="colorControlNormal">#9C9C9C</item>
         <item name="tabColor">#E91E63</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewRed</item>
+        <item name="floatingActionButtonBackground">#E91E63</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
 

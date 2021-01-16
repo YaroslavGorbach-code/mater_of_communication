@@ -1,7 +1,9 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
@@ -9,6 +11,7 @@ import android.widget.TimePicker;
 import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Calendar;
 
@@ -27,7 +30,7 @@ public class TimePickerFragment extends DialogFragment
         int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), this, hour, minute,
+        return new TimePickerDialog(getActivity(), R.style.DialogTheme, this, hour, minute,
                 DateFormat.is24HourFormat(getActivity()));
     }
 

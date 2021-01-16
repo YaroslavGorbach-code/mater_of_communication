@@ -85,8 +85,8 @@ public class SettingsFragment extends Fragment {
 
 
         mTimePicker.setOnClickListener(v->{
-            TimePickerFragment.newInstance()
-                    .show(getParentFragmentManager(), "timePicker");
+            TimePickerFragment dialog =  TimePickerFragment.newInstance();
+            dialog.show(getParentFragmentManager(), "timePicker");
             mCheckBox.setChecked(false);
         });
 
@@ -100,7 +100,8 @@ public class SettingsFragment extends Fragment {
         });
 
         mThemes.setOnClickListener(v -> {
-            new DialogChooseTheme().show(getParentFragmentManager(),"themes");
+            DialogChooseTheme dialog = new DialogChooseTheme();
+            dialog.show(getParentFragmentManager(),"themes");
         });
 
         mNotifications.setOnClickListener(v->{

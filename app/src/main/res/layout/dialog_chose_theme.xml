@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:textColor="?colorPrimary"
+        android:textColor="?colorAccent"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:text="Выберите тему"
         android:padding="20dp"

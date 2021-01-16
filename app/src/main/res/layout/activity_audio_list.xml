@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="Нет данных"
         android:visibility="gone"
-        android:textColor="?colorPrimary"
+        android:textColor="?colorAccent"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/audio_fragment_image_nothing"
         app:layout_constraintStart_toStartOf="@+id/audio_fragment_image_nothing"
