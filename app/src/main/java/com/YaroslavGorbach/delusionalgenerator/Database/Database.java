@@ -16,7 +16,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Date;
 
-@androidx.room.Database(entities = {Exercise.class},  version = 5)
+@androidx.room.Database(entities = {Exercise.class},  version = 6)
 public abstract class Database extends RoomDatabase {
     private static Database sInstance;
     public abstract Exercise_dao exercise_dao();
@@ -27,6 +27,7 @@ public abstract class Database extends RoomDatabase {
                     .addMigrations(MIGRATION_2_3)
                     .addMigrations(MIGRATION_3_4)
                     .addMigrations(MIGRATION_4_5)
+                    .addMigrations(MIGRATION_5_6)
                     .addCallback(rdc)
                     .build();
         }
@@ -132,6 +133,25 @@ public abstract class Database extends RoomDatabase {
 
     };
 
+    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            ContentValues cv = new ContentValues();
+            Exercise_dao mDao;
+            mDao = sInstance.exercise_dao();
+            new Thread(() -> {
+                mDao.insert(new Exercise(14,"Рассказчик - импровизатор",1,R.drawable.ex14_backgraund_v_2, 0,3));
+            }).start();
+
+            cv.put("pic", R.drawable.ex4_backgraund_v_3);
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 4", null );
+            cv.clear();
+            cv.put("sort_order", 14);
+            database.update("exercises_table", OnConflictStrategy.REPLACE, cv, "id = 3", null );
+        }
+
+    };
+
     private static final RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
         public void onCreate(SupportSQLiteDatabase db) {
             Exercise_dao mDao;
@@ -139,8 +159,8 @@ public abstract class Database extends RoomDatabase {
             new Thread(() -> {
                 mDao.insert(new Exercise(1,"Лингвистические пирамиды",1, R.drawable.ex1_backgraund_v_2, 0, 1));
                 mDao.insert(new Exercise(2,"Чем ворон похож на стол",1,R.drawable.ex2_backgraund_v_3, 0, 2));
-                mDao.insert(new Exercise(3,"Чем ворон похож на стул (чувства)",1,R.drawable.ex3_backgraund_v_2, 0,3));
-                mDao.insert(new Exercise(4,"Продвинутое связывание",1,R.drawable.ex4_backgraund_v_2, 0,4));
+                mDao.insert(new Exercise(14,"Рассказчик - импровизатор",1,R.drawable.ex14_backgraund_v_2, 0,3));
+                mDao.insert(new Exercise(4,"Продвинутое связывание",1,R.drawable.ex4_backgraund_v_3, 0,4));
                 mDao.insert(new Exercise(5,"О чем вижу, о том и пою",1,R.drawable.ex5_backgraund_v_2, 0,5));
                 mDao.insert(new Exercise(6,"Другие варианты сокращений",1,R.drawable.ex6_backgraund_v_2, 0,6));
                 mDao.insert(new Exercise(7,"Волшебный нейминг",1,R.drawable.ex7_backgraund_v_2, 0,7));
@@ -150,9 +170,7 @@ public abstract class Database extends RoomDatabase {
                 mDao.insert(new Exercise(11,"Тест Роршаха",1,R.drawable.ex11_backgraund_v_2, 0,11));
                 mDao.insert(new Exercise(12,"Хуже уже не будет",1,R.drawable.ex12_backgraund_v_2, 0,12));
                 mDao.insert(new Exercise(13,"Вопрос - ответ",1,R.drawable.ex13_backgraund_v_2, 0,13));
-
-                // TODO: 1/15/2021 добавить в миграцию
-                mDao.insert(new Exercise(14,"Рассказчик - импровизатор",1,R.drawable.ex13_backgraund_v_2, 0,14));
+                mDao.insert(new Exercise(3,"Чем ворон похож на стул (чувства)",1,R.drawable.ex3_backgraund_v_2, 0,14));
 
 
                 mDao.insert(new Exercise(20,"Существительные",2,R.drawable.ex20_backgraund_v_2, 0,1));

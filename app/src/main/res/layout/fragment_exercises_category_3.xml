@@ -32,11 +32,12 @@
 
     <TextView
         android:id="@+id/tongue_twister_help"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Проговаривайте текст медленно"
         android:textSize="15sp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adViewTabEx3" />
@@ -52,6 +53,7 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="test"
+        android:letterSpacing="0.1"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

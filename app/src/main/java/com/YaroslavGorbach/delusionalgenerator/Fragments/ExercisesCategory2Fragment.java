@@ -23,6 +23,8 @@ import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCateg
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -97,6 +99,9 @@ public class ExercisesCategory2Fragment extends Fragment {
                 //loadConfeti()
                 DateAndTime.insertDataToStatistic(getContext(), mExId, mCountValue, 10);
                 if (Repo.getInstance(getContext()).getMaxWorldCount(mExId)!=0){
+                    YoYo.with(Techniques.FadeIn)
+                            .duration(400)
+                            .playOn(mRecord_tv);
                     mRecord_tv.setVisibility(View.VISIBLE);
                     mRecord_tv.setText(getString(R.string.record, Repo.getInstance(getContext()).getMaxWorldCount(mExId)));
                 }

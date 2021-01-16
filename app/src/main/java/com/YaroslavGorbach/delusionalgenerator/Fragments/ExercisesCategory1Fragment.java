@@ -196,6 +196,9 @@ public class ExercisesCategory1Fragment extends Fragment {
     /*В зависимости от айди упражнения устанавливаем в textView правельное слово или пару слов*/
     @SuppressLint("WrongConstant")
     private void changeWord(){
+        YoYo.with(Techniques.FadeIn)
+                .duration(400)
+                .playOn(mWorld);
         mWorld.setText(mViewModel.getWord());
         switch (mIdEx) {
             case 1:
@@ -207,9 +210,6 @@ public class ExercisesCategory1Fragment extends Fragment {
                 break;
             case 13:
                 mWorld.setTextSize(25);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    mWorld.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
-                }
                 break;
             case 14:
                 mWorld.setTextSize(30);
