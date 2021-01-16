@@ -4,9 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
@@ -49,15 +51,14 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
 
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
-        private TextView ex_name;
-        private ImageView ex_image;
-
+        private final TextView ex_name;
+        private final ImageView ex_image;
         public ExerciseViewHolder (@NonNull View itemView) {
             super(itemView);
             ex_name = itemView.findViewById(R.id.item_ex_name);
             ex_image = itemView.findViewById(R.id.ex_item_image);
             itemView.setOnClickListener(c ->{
-                onItemListClick.onClickListener(mExercises.get(getAdapterPosition()), getAdapterPosition());
+                onItemListClick.onClickListener(mExercises.get(getAbsoluteAdapterPosition()), getAbsoluteAdapterPosition());
             });
 
         }

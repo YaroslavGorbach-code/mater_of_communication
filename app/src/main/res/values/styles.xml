@@ -116,10 +116,10 @@
         <item name="colorAccent">#9575CD</item>
         <item name="colorControlActivated">#FFFFFF</item>
         <item name="colorControlNormal">#9C9C9C</item>
-        <item name="tabColor">#9C27B0</item>
+        <item name="tabColor">#FF673AB7</item>
         <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewPurple</item>
-        <item name="floatingActionButtonBackground">#9C27B0</item>
+        <item name="floatingActionButtonBackground">#FF673AB7</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">?android:colorBackground</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>

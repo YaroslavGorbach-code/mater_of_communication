@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/page_ex"
+<ScrollView
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".Fragments.ExercisesFragment"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.ExercisesFragment">
-
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".Fragments.ExercisesFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,7 +20,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewTask1"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -46,8 +40,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:textColor="?colorAccent"
                         android:text="Для развития легкости речи"
+                        android:textColor="?colorAccent"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_1"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll1"
                         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +76,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewTask2"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -95,16 +89,15 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusable="true"
-                    >
+                    android:focusable="true">
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:textColor="?colorAccent"
                         android:text="Для увеличения словарного запаса"
+                        android:textColor="?colorAccent"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_2"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll2"
                         app:layout_constraintStart_toStartOf="parent"
@@ -139,11 +132,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewTask3"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -159,8 +154,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:textColor="?colorAccent"
                         android:text="Для развития дикции"
+                        android:textColor="?colorAccent"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView_category_3"
                         app:layout_constraintEnd_toStartOf="@+id/textViewAll3"
                         app:layout_constraintStart_toStartOf="parent"
@@ -194,5 +189,3 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>

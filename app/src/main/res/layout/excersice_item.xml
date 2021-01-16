@@ -8,10 +8,8 @@
     xmlns:tool="http://schemas.android.com/tools"
     app:cardCornerRadius="5dp"
     android:foreground="?selectableItemBackground"
-    android:focusable="true"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginStart="8dp">
+    android:layout_marginStart="8dp"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/ex_item_image"
