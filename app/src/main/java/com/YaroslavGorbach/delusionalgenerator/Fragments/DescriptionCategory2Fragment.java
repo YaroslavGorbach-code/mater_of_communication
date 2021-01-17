@@ -20,6 +20,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
         private TextView mAimEx_tv;
         private TextView mDescriptionEx_tv;
         private DescriptionCategory2FragmentViewModel mViewModel;
+        private TextView mPeriodEx_tv;
 
         public DescriptionCategory2Fragment() {
             // Required empty public constructor
@@ -47,6 +48,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
             View view = inflater.inflate(R.layout.description_category_2_fragment, container, false);
             mAimEx_tv = view.findViewById(R.id.textView_aim_ex);
             mDescriptionEx_tv = view.findViewById(R.id.textView_description_ex);
+            mPeriodEx_tv = view.findViewById(R.id.textView_period_ex);
             mViewModel = new ViewModelProvider(this, new DescriptionCategory2FragmentViewModelFactory(
                     getActivity().getApplication(),mExId)).get(DescriptionCategory2FragmentViewModel.class);
 
@@ -57,13 +59,9 @@ import com.YaroslavGorbach.delusionalgenerator.R;
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mViewModel.exAim.observe(getViewLifecycleOwner(), aim->{
-                mAimEx_tv.setText(aim);
-            });
-            mViewModel.exDescription.observe(getViewLifecycleOwner(), description->{
-                mDescriptionEx_tv.setText(description);
-            });
-
+            mViewModel.exAim.observe(getViewLifecycleOwner(), aim-> mAimEx_tv.setText(aim));
+            mViewModel.exDescription.observe(getViewLifecycleOwner(), description-> mDescriptionEx_tv.setText(description));
+            mViewModel.exPeriod.observe(getViewLifecycleOwner(), period ->mPeriodEx_tv.setText(period));
         }
     }
 

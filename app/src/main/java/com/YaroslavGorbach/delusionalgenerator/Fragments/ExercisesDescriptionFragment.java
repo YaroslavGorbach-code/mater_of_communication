@@ -24,6 +24,8 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
+import java.util.Objects;
+
 
 public class ExercisesDescriptionFragment extends Fragment {
     private int mExId;
@@ -32,6 +34,7 @@ public class ExercisesDescriptionFragment extends Fragment {
     private ExercisesDescriptionViewModel mViewModel;
     private Menu mMenu;
     private MaterialToolbar mToolbar;
+    private int mExCategory;
 
     @Override
     public void onStart() {
@@ -52,8 +55,10 @@ public class ExercisesDescriptionFragment extends Fragment {
                 view.getContext(), R.drawable.ic_arrow_back));
         mMenu = mToolbar.getMenu();
         mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
+        mExCategory = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExCategory();
         mViewModel = new ViewModelProvider(this, new ExercisesDescriptionViewModelFactory(
                 getActivity().getApplication(),mExId)).get(ExercisesDescriptionViewModel.class);
+
 
         return view;
     }
@@ -63,6 +68,24 @@ public class ExercisesDescriptionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         /*Показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabDescription));
+
+        switch (mExCategory){
+            case 1:
+                getParentFragmentManager().beginTransaction()
+                        .add(R.id.fragmentDescription, DescriptionCategory1Fragment.newInstance(mExId), null)
+                        .commit();
+                break;
+            case 2:
+                getParentFragmentManager().beginTransaction()
+                        .add(R.id.fragmentDescription, DescriptionCategory2Fragment.newInstance(mExId), null)
+                        .commit();
+                break;
+            case 3:
+                getParentFragmentManager().beginTransaction()
+                        .add(R.id.fragmentDescription, DescriptionCategory3Fragment.newInstance(mExId), null)
+                        .commit();
+                break;
+        }
 
         /*Установка титла и иконки в туллбар в зависимости от того упражнение в избранном или нет*/
         mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
@@ -80,26 +103,6 @@ public class ExercisesDescriptionFragment extends Fragment {
                     break;
             }
 
-            switch (exercise.category){
-                case 1:
-                    getChildFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .add(R.id.fragmentDescription, DescriptionCategory1Fragment.newInstance(mExId), null)
-                            .commit();
-                    break;
-                case 2:
-                    getChildFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .add(R.id.fragmentDescription, DescriptionCategory2Fragment.newInstance(mExId), null)
-                            .commit();
-                    break;
-                case 3:
-                    getChildFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .add(R.id.fragmentDescription, DescriptionCategory3Fragment.newInstance(mExId), null)
-                            .commit();
-                    break;
-            }
         });
 
         /*Оброботка нажатия на иконки тулбара*/

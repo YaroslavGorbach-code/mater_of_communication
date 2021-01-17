@@ -24,6 +24,7 @@ public class DescriptionCategory1Fragment extends Fragment {
     private TextView mAimEx_tv;
     private TextView mDescriptionEx_tv;
     private TextView mExample_tv;
+    private TextView mPeriodEx_tv;
     private DescriptionCategory1FragmentViewModel mViewModel;
 
 
@@ -55,6 +56,7 @@ public class DescriptionCategory1Fragment extends Fragment {
         mAimEx_tv = view.findViewById(R.id.textView_aim_ex);
         mDescriptionEx_tv = view.findViewById(R.id.textView_description_ex);
         mExample_tv = view.findViewById(R.id.textView_example_ex);
+        mPeriodEx_tv = view.findViewById(R.id.textView_period_ex);
         mViewModel = new ViewModelProvider(this, new DescriptionCategory1FragmentViewModelFactory(
                 getActivity().getApplication(),mExId)).get(DescriptionCategory1FragmentViewModel.class);
 
@@ -68,6 +70,7 @@ public class DescriptionCategory1Fragment extends Fragment {
         mViewModel.exAim.observe(getViewLifecycleOwner(), aim-> mAimEx_tv.setText(aim));
         mViewModel.exDescription.observe(getViewLifecycleOwner(), description-> mDescriptionEx_tv.setText(description));
         mViewModel.exExample.observe(getViewLifecycleOwner(), example-> mExample_tv.setText(example));
+        mViewModel.exPeriod.observe(getViewLifecycleOwner(), period -> mPeriodEx_tv.setText(period));
 
     }
 }

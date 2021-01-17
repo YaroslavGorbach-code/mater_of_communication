@@ -20,6 +20,10 @@ public class DescriptionCategory2FragmentViewModel extends AndroidViewModel {
     private final MutableLiveData<String> _exDescription = new MutableLiveData<>();
     public LiveData<String> exDescription = _exDescription;
 
+    private final MutableLiveData<String> _exPeriod = new MutableLiveData<>();
+    public LiveData<String> exPeriod = _exPeriod;
+
+
 
     public DescriptionCategory2FragmentViewModel(@NonNull Application application, int exId) {
         super(application);
@@ -29,14 +33,17 @@ public class DescriptionCategory2FragmentViewModel extends AndroidViewModel {
             case 20:
                 _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_20));
                 _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_20));
+                _exPeriod.setValue(application.getResources().getString(R.string.Period_exercise_20));
                 break;
             case 21:
                 _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_21));
                 _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_21));
+                _exPeriod.setValue(application.getResources().getString(R.string.Period_exercise_21));
                 break;
             case 22:
                 _exAim.setValue(application.getResources().getString(R.string.Aim_of_exercise_22));
                 _exDescription.setValue(application.getResources().getString(R.string.Haw_to_perform_exercise_22));
+                _exPeriod.setValue(application.getResources().getString(R.string.Period_exercise_22));
                 break;
         }
     }
