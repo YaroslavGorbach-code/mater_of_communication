@@ -61,6 +61,10 @@
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
             app:destination="@id/statisticsFragment" />
+        <argument
+            android:name="exCategory"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"

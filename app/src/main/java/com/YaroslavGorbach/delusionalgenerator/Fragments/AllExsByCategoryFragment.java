@@ -66,7 +66,9 @@ public class AllExsByCategoryFragment extends Fragment {
         mViewModel.getExByCategory(mExCategoryId).observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 NavDirections action = AllExsByCategoryFragmentDirections.
-                        actionAllExsByCategoryFragmentToExercisesDescriptionFragment().setExId(exercise.id);
+                        actionAllExsByCategoryFragmentToExercisesDescriptionFragment()
+                        .setExId(exercise.id)
+                        .setExCategory(mExCategoryId);
                 Navigation.findNavController(view).navigate(action);
             });
             mRecycler.setHasFixedSize(true);

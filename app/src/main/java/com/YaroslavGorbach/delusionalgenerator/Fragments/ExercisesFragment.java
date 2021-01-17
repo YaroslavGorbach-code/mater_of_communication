@@ -93,7 +93,9 @@ public class ExercisesFragment extends Fragment {
             mAdapter_category_1 = new ExercisesListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
                 NavDirections action = ExercisesFragmentDirections.
-                        actionExercisesFragmentV2ToExercisesDescriptionFragment3().setExId(id);
+                        actionExercisesFragmentV2ToExercisesDescriptionFragment3()
+                        .setExId(id)
+                        .setExCategory(1);
                 Navigation.findNavController(view).navigate(action);
             });
 
@@ -110,7 +112,9 @@ public class ExercisesFragment extends Fragment {
             mAdapter_category_2 = new ExercisesListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
                 NavDirections action = ExercisesFragmentDirections.
-                        actionExercisesFragmentV2ToExercisesDescriptionFragment3().setExId(id);
+                        actionExercisesFragmentV2ToExercisesDescriptionFragment3()
+                        .setExId(id)
+                        .setExCategory(2);
                 Navigation.findNavController(view).navigate(action);
             });
 
@@ -127,7 +131,9 @@ public class ExercisesFragment extends Fragment {
             mAdapter_category_3 = new ExercisesListAdapter(exercises, (exercise, position) -> {
                 int id = exercise.id;
                 NavDirections action = ExercisesFragmentDirections.
-                        actionExercisesFragmentV2ToExercisesDescriptionFragment3().setExId(id);
+                        actionExercisesFragmentV2ToExercisesDescriptionFragment3()
+                        .setExId(id)
+                        .setExCategory(3);
                 Navigation.findNavController(view).navigate(action);
             });
 
