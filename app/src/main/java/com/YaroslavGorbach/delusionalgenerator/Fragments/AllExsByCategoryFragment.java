@@ -68,7 +68,7 @@ public class AllExsByCategoryFragment extends Fragment {
                 NavDirections action = AllExsByCategoryFragmentDirections.
                         actionAllExsByCategoryFragmentToExercisesDescriptionFragment()
                         .setExId(exercise.id)
-                        .setExCategory(mExCategoryId);
+                        .setExCategory(exercise.category);
                 Navigation.findNavController(view).navigate(action);
             });
             mRecycler.setHasFixedSize(true);

@@ -65,7 +65,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">?android:colorBackground</item>
         <item name="colorPrimaryDark">?android:colorBackground</item>
-        <item name="colorAccent">#80DEEA</item>
+        <item name="colorAccent">#4DD0E1</item>
         <item name="colorControlActivated">#FFFFFF</item>
         <item name="colorControlNormal">#9C9C9C</item>
         <item name="tabColor">#00BCD4</item>

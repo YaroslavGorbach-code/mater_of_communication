@@ -38,7 +38,6 @@ public class FavoriteExsFragment extends Fragment {
         MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
         toolbar.setVisibility(View.VISIBLE);
         toolbar.getMenu().getItem(0).setVisible(false);
-
     }
 
     @Override
@@ -61,9 +60,10 @@ public class FavoriteExsFragment extends Fragment {
     private void setAdapter(View view) {
         mViewModel.getFavoriteExs().observe(getViewLifecycleOwner(), exercises -> {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
-                int id = exercise.id;
                 NavDirections action = FavoriteExsFragmentDirections.
-                        actionFavoriteExsFragmentToExercisesDescriptionFragment().setExId(id);
+                        actionFavoriteExsFragmentToExercisesDescriptionFragment()
+                        .setExId(exercise.id)
+                        .setExCategory(exercise.category);
                 Navigation.findNavController(view).navigate(action);
             });
 
@@ -79,34 +79,11 @@ public class FavoriteExsFragment extends Fragment {
                 mTextViewNoData.setVisibility(View.GONE);
                 mRecycler.setVisibility(View.VISIBLE);
             }else {
-                String color = Repo.getInstance(getContext()).getThemeState();
-                switch (color){
-                    case "blue":
-                        mImageNoData.setImageResource(R.drawable.no_data_blue);
-                        break;
-
-                    case "green":
-                        mImageNoData.setImageResource(R.drawable.no_data_green);
-                        break;
-
-                    case "orange":
-                        mImageNoData.setImageResource(R.drawable.no_files);
-                        break;
-
-                    case "red":
-                        mImageNoData.setImageResource(R.drawable.no_data_red);
-                        break;
-
-                    case "purple":
-                        mImageNoData.setImageResource(R.drawable.no_data_purpure);
-                        break;
-
-                }
+                mImageNoData.setImageResource(R.drawable.ic_no_data);
                 mImageNoData.setVisibility(View.VISIBLE);
                 mTextViewNoData.setVisibility(View.VISIBLE);
                 mRecycler.setVisibility(View.GONE);
             }
-
         });
     }
 }
