@@ -3,11 +3,10 @@ package com.YaroslavGorbach.delusionalgenerator.Helpers;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class TimeAgo {
+public class Time {
 
     public String getTimeAgo(long duration) {
         Date now = new Date();
-
         long seconds = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - duration);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(now.getTime() - duration);
         long hours = TimeUnit.MILLISECONDS.toHours(now.getTime() - duration);
@@ -29,6 +28,18 @@ public class TimeAgo {
             return days + " days ago";
         }
 
+    }
+
+    public String getFileDuration(long duration){
+        String seconds = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(duration));
+        String minutes = String.valueOf(TimeUnit.MILLISECONDS.toMinutes(duration));
+        String hours = String.valueOf(TimeUnit.MILLISECONDS.toHours(duration));
+
+        if (TimeUnit.MILLISECONDS.toMinutes(duration)<60){
+            return minutes +":"+seconds;
+        }else {
+            return hours +":"+minutes;
+        }
     }
 
 }

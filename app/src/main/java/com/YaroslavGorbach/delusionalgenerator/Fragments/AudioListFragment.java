@@ -140,7 +140,6 @@ public class AudioListFragment extends Fragment  {
         mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
                 if (newState == BottomSheetBehavior.STATE_HIDDEN){
                     mViewModel.stopAudio();
                 }
@@ -155,18 +154,9 @@ public class AudioListFragment extends Fragment  {
     private void setAdapterForListOfRecords() {
         mViewModel.files.observe(getViewLifecycleOwner(), files -> {
 
-            if (files != null && files.length > 0){
-                mImageNoData.setVisibility(View.GONE);
-                mTextViewNoData.setVisibility(View.GONE);
-                mCoordinatorLayout.setVisibility(View.VISIBLE);
-            }else {
-                mImageNoData.setImageResource(R.drawable.ic_no_data);
-                mImageNoData.setVisibility(View.VISIBLE);
-                mTextViewNoData.setVisibility(View.VISIBLE);
-                mCoordinatorLayout.setVisibility(View.GONE);
-            }
+            showImageNoData(files);
 
-            mAudioListAdapter = new AudioListAdapter(files, (file, position) -> {
+            mAudioListAdapter = new AudioListAdapter(files, (file) -> {
                 playerFilename.setText(file.getName());
                 if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue())
                         && mViewModel.getMediaPlayer() != null) {
@@ -213,6 +203,19 @@ public class AudioListFragment extends Fragment  {
             playerSeekbar.setProgress(progress);
         });
 
+    }
+
+    private void showImageNoData(File[] files) {
+        if (files != null && files.length > 0){
+            mImageNoData.setVisibility(View.GONE);
+            mTextViewNoData.setVisibility(View.GONE);
+            mCoordinatorLayout.setVisibility(View.VISIBLE);
+        }else {
+            mImageNoData.setImageResource(R.drawable.ic_no_data);
+            mImageNoData.setVisibility(View.VISIBLE);
+            mTextViewNoData.setVisibility(View.VISIBLE);
+            mCoordinatorLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override

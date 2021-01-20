@@ -9,17 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.Helpers.TimeAgo;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.Time;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.AudioViewHolder> {
     private File[] allFiles;
-    private TimeAgo timeAgo;
+    private Time time;
     private onItemListClick onItemListClick;
 
     public interface onItemListClick {
-        void onClickListener(File file, int position);
+        void onClickListener(File file);
     }
 
     public AudioListAdapter(File[] allFiles, onItemListClick onItemListClick) {
@@ -33,14 +34,13 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
     @Override
     public AudioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_list_item, parent, false);
-        timeAgo = new TimeAgo();
+        time = new Time();
         return new AudioViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AudioViewHolder holder, int position) {
-        holder.list_title.setText(allFiles[position].getName());
-        holder.list_date.setText(timeAgo.getTimeAgo(allFiles[position].lastModified()));
+        holder.bind(position);
     }
 
     @Override
@@ -55,21 +55,26 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView list_title;
-        private TextView list_date;
+        private final TextView title;
+        private final TextView date;
+        private final TextView duration;
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
-            list_title = itemView.findViewById(R.id.list_title);
-            list_date = itemView.findViewById(R.id.list_date);
+            title = itemView.findViewById(R.id.list_title);
+            date = itemView.findViewById(R.id.list_date);
+            duration = itemView.findViewById(R.id.file_duration);
 
             itemView.setOnClickListener(c ->{
-                onItemListClick.onClickListener(allFiles[getAdapterPosition()], getAdapterPosition());
+                onItemListClick.onClickListener(allFiles[getAbsoluteAdapterPosition()]);
             });
 
         }
 
-
+        private void bind(int position) {
+            title.setText(allFiles[position].getName());
+            date.setText(time.getTimeAgo(allFiles[position].lastModified()));
+            duration.setText(time.getFileDuration(allFiles[position].length()));
+        }
     }
-
 }

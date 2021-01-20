@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_exercises" >
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_exercisesDescriptionFragment3"
-            app:destination="@id/exercisesDescriptionFragment" />
+            app:destination="@id/exercisesDescriptionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popEnterAnim="@anim/fragment_open_enter" />
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_audioListFragment"
             app:destination="@id/audioListFragment" />
@@ -21,7 +23,9 @@
             app:destination="@id/favoriteExsFragment" />
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_allExsByCategoryFragment"
-            app:destination="@id/allExsByCategoryFragment" />
+            app:destination="@id/allExsByCategoryFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popEnterAnim="@anim/fragment_open_enter" />
         <argument
             android:name="idEx"
             app:argType="integer"
@@ -42,25 +46,31 @@
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory3Fragment"
             app:destination="@id/exercisesCategory3Fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/exercisesDescriptionFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory2Fragment"
             app:destination="@id/exercisesCategory2Fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/exercisesDescriptionFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory1Fragment"
             app:destination="@id/exercisesCategory1Fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/exercisesDescriptionFragment"
-            app:popUpToInclusive="true"
-            />
-        <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesFragment_v_2"
-            app:destination="@id/exercisesFragment_v_2" />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment" />
+            app:destination="@id/statisticsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <argument
             android:name="exCategory"
             app:argType="integer"
@@ -82,7 +92,9 @@
         tools:layout="@layout/fragment_favorit_exs" >
         <action
             android:id="@+id/action_favoriteExsFragment_to_exercisesDescriptionFragment"
-            app:destination="@id/exercisesDescriptionFragment" />
+            app:destination="@id/exercisesDescriptionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popEnterAnim="@anim/fragment_close_enter" />
     </fragment>
     <fragment
         android:id="@+id/allExsByCategoryFragment"
@@ -95,10 +107,9 @@
             android:defaultValue="-1" />
         <action
             android:id="@+id/action_allExsByCategoryFragment_to_exercisesDescriptionFragment"
-            app:destination="@id/exercisesDescriptionFragment" />
-        <action
-            android:id="@+id/action_allExsByCategoryFragment_to_exercisesFragment_v_2"
-            app:destination="@id/exercisesFragment_v_2" />
+            app:destination="@id/exercisesDescriptionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popEnterAnim="@anim/fragment_close_enter" />
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory1Fragment"
@@ -109,11 +120,6 @@
             android:name="idEx"
             app:argType="integer"
             android:defaultValue="-1" />
-        <action
-            android:id="@+id/action_exercisesCategory1Fragment_to_exercisesFragment_v_2"
-            app:destination="@id/exercisesFragment_v_2"
-
-            />
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
@@ -134,9 +140,6 @@
             android:name="exId"
             app:argType="integer"
             android:defaultValue="-1" />
-        <action
-            android:id="@+id/action_exercisesCategory3Fragment_to_exercisesFragment_v_2"
-            app:destination="@id/exercisesFragment_v_2" />
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory2Fragment"
@@ -148,11 +151,9 @@
             app:argType="integer"
             android:defaultValue="-1" />
         <action
-            android:id="@+id/action_exercisesCategory2Fragment_to_exercisesFragment_v_2"
-            app:destination="@id/exercisesFragment_v_2" />
-        <action
             android:id="@+id/action_exercisesCategory2Fragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/exercisesCategory2Fragment"
             app:popUpToInclusive="true" />
     </fragment>
