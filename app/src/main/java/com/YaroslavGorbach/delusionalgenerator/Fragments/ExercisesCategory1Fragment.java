@@ -8,11 +8,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +25,7 @@ import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory1ViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExerciseCategory1ViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
-import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.Permissions;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
@@ -252,7 +250,7 @@ public class ExercisesCategory1Fragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        DateAndTime.insertDataToStatistic(getContext(), mIdEx, mWorldCount, mChronometer_allTime.getBase());
+        Statistics.insertDataToStatistics(getContext(), mIdEx, mWorldCount, mChronometer_allTime.getBase());
         mChronometer_allTime.stop();
         mChronometer_1worldTime.stop();
     }

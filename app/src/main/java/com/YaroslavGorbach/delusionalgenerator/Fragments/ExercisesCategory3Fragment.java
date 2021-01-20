@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory3ViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExerciseCategory3ViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
-import com.YaroslavGorbach.delusionalgenerator.Helpers.DateAndTime;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -127,6 +127,6 @@ public class ExercisesCategory3Fragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        DateAndTime.insertDataToStatistic(getContext(), mExId, mViewModel.numberOfTwisters.getValue(), mStartExTime);
+        Statistics.insertDataToStatistics(getContext(), mExId, mViewModel.numberOfTwisters.getValue(), mStartExTime);
     }
 }

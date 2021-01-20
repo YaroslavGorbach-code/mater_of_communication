@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="record">Рекорд: %1$d</string>
+    <string name="finish_text">Названо слов: %1$d. Норма для этого упражнения %2$s. %3$s </string>
     <string name="value">Названо слов: %1$d</string>
+    <string-array name="resultBad">
+        <item>До нормы не дотягивает, нужно ещё тренироваться. Попробуйте завтра.</item>
+        <item>Неплохо, но нужно лучше. Попробуйте завтра.</item>
+    </string-array>
+
+    <string-array name="resultGood">
+        <item>Отличный результат! Ежедневные тренировки помогут держать словарный запас в тонусе.</item>
+        <item>У вас отличный словарный запас, но нет предела совершенству, развивайте его и дальше.</item>
+    </string-array>
 </resources>

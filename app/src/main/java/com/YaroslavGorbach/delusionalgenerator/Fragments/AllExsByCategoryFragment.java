@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -72,8 +73,7 @@ public class AllExsByCategoryFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             });
             mRecycler.setHasFixedSize(true);
-            FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
-            layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             mRecycler.setLayoutManager(layoutManager);
             mRecycler.setAdapter(mAdapter);
         });

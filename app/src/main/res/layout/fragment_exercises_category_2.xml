@@ -39,20 +39,25 @@
             android:background="?android:selectableItemBackgroundBorderless"
             android:focusable="true">
 
+            <nl.dionsegijn.konfetti.KonfettiView
+                android:id="@+id/viewKonfetti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
             <TextView
-                android:id="@+id/worldRecordText"
+                android:id="@+id/text_finished"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="Рекорд: 0"
+                android:letterSpacing="0.1"
+                android:padding="10dp"
                 android:textColor="?colorAccent"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/worldCounterText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timer"
-                app:layout_constraintVertical_bias="0.32999998"
+                app:layout_constraintEnd_toEndOf="@+id/worldCounterText"
+                app:layout_constraintStart_toStartOf="@+id/worldCounterText"
+                app:layout_constraintTop_toBottomOf="@+id/button_next"
+                tools:text="Названо слов: 55. Норма для этого упражнения 55. У вас отличный резульат"
                 tools:visibility="visible" />
 
             <TextView
@@ -61,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Что делать "
+                android:text="Что делать"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/adViewTabEx2" />
@@ -75,6 +80,43 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_finish"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:drawableLeft="@drawable/ic_arrow_back_colored"
+                android:padding="20dp"
+                android:text="закончить"
+                android:textColor="?colorAccent"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:cornerRadius="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/whatToDo"
+                app:rippleColor="?colorAccent"
+                tools:ignore="RtlHardcoded" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_next"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:drawableEnd="@drawable/ic_arrow_right_colored"
+                android:padding="20dp"
+                android:text="дальше"
+                android:textColor="?colorAccent"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:cornerRadius="40dp"
+                app:layout_constraintEnd_toEndOf="@+id/button_finish"
+                app:layout_constraintStart_toStartOf="@+id/button_finish"
+                app:layout_constraintTop_toBottomOf="@+id/button_finish"
+                app:rippleColor="?colorAccent" />
 
             <TextView
                 android:id="@+id/timer"

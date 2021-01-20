@@ -150,6 +150,11 @@
         <action
             android:id="@+id/action_exercisesCategory2Fragment_to_exercisesFragment_v_2"
             app:destination="@id/exercisesFragment_v_2" />
+        <action
+            android:id="@+id/action_exercisesCategory2Fragment_to_exercisesDescriptionFragment"
+            app:destination="@id/exercisesDescriptionFragment"
+            app:popUpTo="@id/exercisesCategory2Fragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment2"

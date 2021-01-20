@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.FavoriteExsFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -68,8 +70,7 @@ public class FavoriteExsFragment extends Fragment {
             });
 
             mRecycler.setHasFixedSize(true);
-            FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
-            layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             mRecycler.setLayoutManager(layoutManager);
             mRecycler.setAdapter(mAdapter);
 
