@@ -1,6 +1,14 @@
 package com.YaroslavGorbach.delusionalgenerator.Helpers;
 
+import android.text.format.DateUtils;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+
+import java.io.File;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Time {
@@ -30,16 +38,12 @@ public class Time {
 
     }
 
-    public String getFileDuration(long duration){
-        String seconds = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(duration));
-        String minutes = String.valueOf(TimeUnit.MILLISECONDS.toMinutes(duration));
-        String hours = String.valueOf(TimeUnit.MILLISECONDS.toHours(duration));
-
-        if (TimeUnit.MILLISECONDS.toMinutes(duration)<60){
-            return minutes +":"+seconds;
-        }else {
-            return hours +":"+minutes;
-        }
+    public String getFileDuration(File file){
+        long durationInMilSeconds = file.length();
+        String hms = String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationInMilSeconds),
+                TimeUnit.MILLISECONDS.toMinutes(durationInMilSeconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(durationInMilSeconds)),
+                TimeUnit.MILLISECONDS.toSeconds(durationInMilSeconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(durationInMilSeconds)));
+       return hms;
     }
 
 }

@@ -74,7 +74,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
         private void bind(int position) {
             title.setText(allFiles[position].getName());
             date.setText(time.getTimeAgo(allFiles[position].lastModified()));
-            duration.setText(time.getFileDuration(allFiles[position].length()));
+            duration.setText(time.getFileDuration(allFiles[position]));
         }
     }
 }

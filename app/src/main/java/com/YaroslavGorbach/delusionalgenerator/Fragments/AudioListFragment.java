@@ -9,55 +9,47 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.AudioListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.AudioListViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
 
 public class AudioListFragment extends Fragment  {
 
     private BottomSheetBehavior mBottomSheetBehavior;
     private RecyclerView mAudioList;
     private AudioListAdapter mAudioListAdapter;
-    private AppCompatImageButton playResumeButton;
-    private TextView playerHeader;
-    private TextView playerFilename;
+    private AppCompatImageButton mPlayResumeButton;
+    private TextView mPlayerHeader;
+    private TextView mPlayerFilename;
     private MaterialToolbar mToolbar;
-    private AppCompatImageButton buttonAgo;
-    private AppCompatImageButton buttonForward;
-    private AppCompatSeekBar playerSeekbar;
+    private AppCompatImageButton mButtonAgo;
+    private AppCompatImageButton mButtonForward;
+    private AppCompatSeekBar mPlayerSeekbar;
     private CoordinatorLayout mCoordinatorLayout;
     private AppCompatImageView mImageNoData;
     private TextView mTextViewNoData;
     private AudioListViewModel mViewModel;
+    private TextView mDurationProgress;
+    private TextView mDuration;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,18 +64,20 @@ public class AudioListFragment extends Fragment  {
         ConstraintLayout mPlayerSheet = view.findViewById(R.id.player_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(mPlayerSheet);
         mAudioList = view.findViewById(R.id.audio_list_view);
-        playResumeButton = view.findViewById(R.id.player_play_btn);
-        playerHeader = view.findViewById(R.id.player_header_title);
-        playerFilename = view.findViewById(R.id.player_filename);
-        playerSeekbar = view.findViewById(R.id.player_seekbar);
-        buttonAgo = view.findViewById(R.id.buttonAgo);
-        buttonForward = view.findViewById(R.id.buttonForward);
+        mPlayResumeButton = view.findViewById(R.id.player_play_btn);
+        mPlayerHeader = view.findViewById(R.id.player_header_title);
+        mPlayerFilename = view.findViewById(R.id.player_filename);
+        mPlayerSeekbar = view.findViewById(R.id.player_seekbar);
+        mButtonAgo = view.findViewById(R.id.buttonAgo);
+        mButtonForward = view.findViewById(R.id.buttonForward);
         mCoordinatorLayout = view.findViewById(R.id.coordinatorLayout);
         mImageNoData = view.findViewById(R.id.audio_fragment_image_nothing);
         mTextViewNoData = view.findViewById(R.id.audio_fragment_text_nothing);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         mToolbar = getActivity().findViewById(R.id.toolbar_main_a);
         mToolbar.inflateMenu(R.menu.menu_recordings_del);
+        mDuration = view.findViewById(R.id.file_duration);
+        mDurationProgress = view.findViewById(R.id.file_duration_process);
         mToolbar.getMenu().getItem(0).setVisible(true);
         mViewModel = new ViewModelProvider(this).get(AudioListViewModel.class);
 
@@ -101,7 +95,7 @@ public class AudioListFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
 
         /*старт/пауза*/
-        playResumeButton.setOnClickListener(v -> {
+        mPlayResumeButton.setOnClickListener(v -> {
             if (mViewModel.eventPause.getValue() != null && mViewModel.eventPause.getValue()){
                 mViewModel.resumeAudio();
             }else {
@@ -110,13 +104,13 @@ public class AudioListFragment extends Fragment  {
         });
 
         /*Перемотка назад*/
-        buttonAgo.setOnClickListener(v -> mViewModel.tenSecondsAgo(playerSeekbar.getProgress()));
+        mButtonAgo.setOnClickListener(v -> mViewModel.tenSecondsAgo(mPlayerSeekbar.getProgress()));
 
         /*Перемотка вперед*/
-        buttonForward.setOnClickListener(v -> mViewModel.tenSecondsForward(playerSeekbar.getProgress()));
+        mButtonForward.setOnClickListener(v -> mViewModel.tenSecondsForward(mPlayerSeekbar.getProgress()));
 
         /*Настройка перемотки записи з помощу сик бара*/
-        playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mPlayerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             }
@@ -157,7 +151,7 @@ public class AudioListFragment extends Fragment  {
             showImageNoData(files);
 
             mAudioListAdapter = new AudioListAdapter(files, (file) -> {
-                playerFilename.setText(file.getName());
+                mPlayerFilename.setText(file.getName());
                 if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue())
                         && mViewModel.getMediaPlayer() != null) {
                     mViewModel.stopAudio();
@@ -174,14 +168,14 @@ public class AudioListFragment extends Fragment  {
 
         mViewModel.eventPlaying.observe(getViewLifecycleOwner(), isPaying -> {
             if (isPaying){
-                playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_pause_btn, null));
-                playerHeader.setText("Играет...");
+                mPlayerHeader.setText("Играет...");
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                playerSeekbar.setMax(mViewModel.getMediaPlayer().getDuration());
+                mPlayerSeekbar.setMax(mViewModel.getMediaPlayer().getDuration());
             }else{
-                playerHeader.setText("Закончено");
-                playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                mPlayerHeader.setText("Закончено");
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_play_btn, null));
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
@@ -189,18 +183,18 @@ public class AudioListFragment extends Fragment  {
 
         mViewModel.eventPause.observe(getViewLifecycleOwner(), isPause -> {
             if (isPause){
-                playerHeader.setText("Пауза");
-                playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                mPlayerHeader.setText("Пауза");
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_play_btn, null));
             }else{
-                playerHeader.setText("Играет...");
-                playResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                mPlayerHeader.setText("Играет...");
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
                         getResources(), R.drawable.ic_player_pause_btn, null));
             }
         });
 
         mViewModel.seekBarProgress.observe(getViewLifecycleOwner(), progress -> {
-            playerSeekbar.setProgress(progress);
+            mPlayerSeekbar.setProgress(progress);
         });
 
     }
