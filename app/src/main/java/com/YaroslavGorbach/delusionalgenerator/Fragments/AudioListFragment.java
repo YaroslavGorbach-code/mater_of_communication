@@ -18,6 +18,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.AudioListAdapter;
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.AudioListViewModel;
+import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -32,7 +34,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.File;
 
-public class AudioListFragment extends Fragment  {
+public class AudioListFragment extends Fragment{
 
     private BottomSheetBehavior mBottomSheetBehavior;
     private RecyclerView mAudioList;
@@ -50,6 +52,7 @@ public class AudioListFragment extends Fragment  {
     private AudioListViewModel mViewModel;
     private TextView mDurationProgress;
     private TextView mDuration;
+    private Menu mMenu;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,18 +77,17 @@ public class AudioListFragment extends Fragment  {
         mImageNoData = view.findViewById(R.id.audio_fragment_image_nothing);
         mTextViewNoData = view.findViewById(R.id.audio_fragment_text_nothing);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        mToolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.inflateMenu(R.menu.menu_main);
         mDuration = view.findViewById(R.id.file_duration);
         mDurationProgress = view.findViewById(R.id.file_duration_process);
         mViewModel = new ViewModelProvider(this).get(AudioListViewModel.class);
-        mToolbar.getMenu().getItem(0).setVisible(true);
+
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mToolbar.getMenu().clear();
+        mToolbar.inflateMenu(R.menu.menu_records);
+        mMenu = mToolbar.getMenu();
 
         /*Показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabAudioList));
-
-        /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
-        setAdapterForListOfRecords();
 
         return view;
     }
@@ -94,6 +96,9 @@ public class AudioListFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*Инициализация адаптера и лисенера который отвечает за нажатие на елемент списка*/
+        mViewModel.files.observe(getViewLifecycleOwner(), this::showListOrNoData);
+
         /*старт/пауза*/
         mPlayResumeButton.setOnClickListener(v -> {
             if (mViewModel.eventPause.getValue() != null && mViewModel.eventPause.getValue()){
@@ -101,6 +106,50 @@ public class AudioListFragment extends Fragment  {
             }else {
                 mViewModel.pauseAudio();
             }
+        });
+
+        mToolbar.setOnMenuItemClickListener(item -> {
+            DialogDeleteRecords dialog = new DialogDeleteRecords();
+            dialog.setListener(() -> mViewModel.deleteRecords());
+            dialog.show(getParentFragmentManager(),"delete");
+            return true;
+        });
+
+        mViewModel.eventDeleteAllFiles.observe(getViewLifecycleOwner(), isDeleted ->{
+            if (isDeleted){
+                showNoData();
+            }
+        });
+
+        mViewModel.eventPlaying.observe(getViewLifecycleOwner(), isPaying -> {
+            if (isPaying){
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                        getResources(), R.drawable.ic_player_pause_btn, null));
+                mPlayerHeader.setText("Играет...");
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                mPlayerSeekbar.setMax(mViewModel.getMediaPlayer().getDuration());
+            }else{
+                mPlayerHeader.setText("Закончено");
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                        getResources(), R.drawable.ic_player_play_btn, null));
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
+
+        mViewModel.eventPause.observe(getViewLifecycleOwner(), isPause -> {
+            if (isPause){
+                mPlayerHeader.setText("Пауза");
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                        getResources(), R.drawable.ic_player_play_btn, null));
+            }else{
+                mPlayerHeader.setText("Играет...");
+                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
+                        getResources(), R.drawable.ic_player_pause_btn, null));
+            }
+        });
+
+        mViewModel.seekBarProgress.observe(getViewLifecycleOwner(), progress -> {
+            mPlayerSeekbar.setProgress(progress);
         });
 
         /*Перемотка назад*/
@@ -145,71 +194,48 @@ public class AudioListFragment extends Fragment  {
         });
     }
 
-    private void setAdapterForListOfRecords() {
-        mViewModel.files.observe(getViewLifecycleOwner(), files -> {
 
-            showImageNoData(files);
 
-            mAudioListAdapter = new AudioListAdapter(files, (file) -> {
-                mPlayerFilename.setText(file.getName());
-                if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue())
-                        && mViewModel.getMediaPlayer() != null) {
-                    mViewModel.stopAudio();
-                }
-                    new Handler().postDelayed(() -> mViewModel.playAudio(file), 500);
-            });
-            /*Настройка списка*/
-            mAudioList.setHasFixedSize(true);
-            mAudioList.setLayoutManager(new LinearLayoutManager(getContext()));
-            mAudioList.setAdapter(mAudioListAdapter);
-            mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
-                    DividerItemDecoration.VERTICAL));
-        });
-
-        mViewModel.eventPlaying.observe(getViewLifecycleOwner(), isPaying -> {
-            if (isPaying){
-                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
-                        getResources(), R.drawable.ic_player_pause_btn, null));
-                mPlayerHeader.setText("Играет...");
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                mPlayerSeekbar.setMax(mViewModel.getMediaPlayer().getDuration());
-            }else{
-                mPlayerHeader.setText("Закончено");
-                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
-                        getResources(), R.drawable.ic_player_play_btn, null));
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-            }
-            });
-
-        mViewModel.eventPause.observe(getViewLifecycleOwner(), isPause -> {
-            if (isPause){
-                mPlayerHeader.setText("Пауза");
-                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
-                        getResources(), R.drawable.ic_player_play_btn, null));
-            }else{
-                mPlayerHeader.setText("Играет...");
-                mPlayResumeButton.setImageDrawable(ResourcesCompat.getDrawable(
-                        getResources(), R.drawable.ic_player_pause_btn, null));
-            }
-        });
-
-        mViewModel.seekBarProgress.observe(getViewLifecycleOwner(), progress -> {
-            mPlayerSeekbar.setProgress(progress);
-        });
-
+    private void showListOrNoData(File[] files) {
+        if (files != null && files.length > 0){
+            showList(files);
+        }else {
+            showNoData();
+        }
     }
 
-    private void showImageNoData(File[] files) {
-        if (files != null && files.length > 0){
-            mImageNoData.setVisibility(View.GONE);
-            mTextViewNoData.setVisibility(View.GONE);
-            mCoordinatorLayout.setVisibility(View.VISIBLE);
-        }else {
-            mImageNoData.setImageResource(R.drawable.ic_no_data);
-            mImageNoData.setVisibility(View.VISIBLE);
-            mTextViewNoData.setVisibility(View.VISIBLE);
-            mCoordinatorLayout.setVisibility(View.GONE);
-        }
+    private void showNoData() {
+        mImageNoData.setImageResource(R.drawable.ic_no_data);
+        mImageNoData.setVisibility(View.VISIBLE);
+        mTextViewNoData.setVisibility(View.VISIBLE);
+        mCoordinatorLayout.setVisibility(View.GONE);
+    }
+
+    private void showList(File[] files) {
+        mImageNoData.setVisibility(View.GONE);
+        mTextViewNoData.setVisibility(View.GONE);
+        mCoordinatorLayout.setVisibility(View.VISIBLE);
+
+        mAudioListAdapter = new AudioListAdapter(files, (file) -> {
+            mPlayerFilename.setText(file.getName());
+            if ((mViewModel.eventPlaying.getValue() == null || mViewModel.eventPlaying.getValue())
+                    && mViewModel.getMediaPlayer() != null) {
+                mViewModel.stopAudio();
+            }
+            new Handler().postDelayed(() -> mViewModel.playAudio(file), 500);
+        });
+        /*Настройка списка*/
+        mAudioList.setHasFixedSize(true);
+        mAudioList.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAudioList.setAdapter(mAudioListAdapter);
+        mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mMenu.clear();
     }
 
     @Override
@@ -228,6 +254,6 @@ public class AudioListFragment extends Fragment  {
         super.onDestroy();
             mViewModel.stopAudio();
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-            mToolbar.getMenu().getItem(0).setVisible(false);
     }
+
 }

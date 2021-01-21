@@ -6,14 +6,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.MainActivityViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragmentDirections;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
@@ -23,32 +21,22 @@ import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener,
-        DialogDeleteRecords.DeleteRecordsListener {
+public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener{
 
     private static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
     private static final String FIRST_OPEN = "FIRST_OPEN";
-    private MainActivityViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MaterialToolbar toolbar = findViewById(R.id.toolbar_main_a);
-        mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         /*Установка оброботки нажатий на элементы нижней навигации*/
         setUpNavControllers();
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
         showFirsOpenDialog();
-
-        /*Установка лисенера для кнопки на тулбаре которая очищает саписок записей*/
-        toolbar.setOnMenuItemClickListener(item -> {
-            new DialogDeleteRecords().show(getSupportFragmentManager(),"delete");
-            return true;
-        });
     }
 
     private void setUpNavControllers() {
@@ -104,20 +92,12 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         }
     }
 
-
     /*Пересоздание активити при выборе новой темы*/
     @Override
     public void onClickTheme(DialogFragment dialog) {
         recreate();
     }
 
-    @Override
-    public void onClickDelete() {
-            mViewModel.deleteRecords(this.getExternalFilesDir("/").getAbsolutePath());
-            /*обновляем фрагмент*/
-            NavDirections action = AudioListFragmentDirections.actionAudioListFragmentSelf();
-            Navigation.findNavController(this,R.id.fragment).navigate(action);
-        }
     }
 
 

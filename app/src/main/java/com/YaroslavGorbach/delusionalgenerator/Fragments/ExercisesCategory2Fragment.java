@@ -43,7 +43,6 @@ public class ExercisesCategory2Fragment extends Fragment {
     private int mCountValue;
     private MaterialButton mFinish_bt;
     private MaterialButton mNext_bt;
-    private MaterialToolbar mMaterialToolbar;
     private ExerciseCategory2ViewModel mViewModel;
     private int mWordsNorm;
     private KonfettiView mKonfettiView;
@@ -56,8 +55,6 @@ public class ExercisesCategory2Fragment extends Fragment {
         mWordCounter_tv = view.findViewById(R.id.worldCounterText);
         mTimer_tv = view.findViewById(R.id.timer);
         mExId = ExercisesCategory2FragmentArgs.fromBundle(requireArguments()).getIdEx();
-        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mExShortDescription_tv = view.findViewById(R.id.whatToDo);
         mClickArea = view.findViewById(R.id.clickAria);
         mFinishText_tv = view.findViewById(R.id.text_finished);
@@ -76,14 +73,10 @@ public class ExercisesCategory2Fragment extends Fragment {
         /*показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabEx2));
 
-        mViewModel.exName.observe(getViewLifecycleOwner(), exName-> mMaterialToolbar.setTitle(exName));
         mViewModel.exShortDescription.observe(getViewLifecycleOwner(), exShortDesc->
                 mExShortDescription_tv.setText(exShortDesc));
         mViewModel.exNormWords.observe(getViewLifecycleOwner(), normWords-> mWordsNorm = normWords);
         mViewModel.nextExName.observe(getViewLifecycleOwner(), nextExName-> mNext_bt.setText(nextExName));
-
-        /*завершить упражнение при клике на стрелку назад*/
-        mMaterialToolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         /*при клике по экрану инкремент значения*/
         mClickArea.setOnClickListener(v -> mViewModel.valuePlus());

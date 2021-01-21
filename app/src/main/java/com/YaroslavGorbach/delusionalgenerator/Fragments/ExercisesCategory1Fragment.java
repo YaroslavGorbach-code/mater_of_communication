@@ -52,7 +52,6 @@ public class ExercisesCategory1Fragment extends Fragment {
     private int mWorldCount;
     private Button mStartRecordingButton;
     private String mExName;
-    private MaterialToolbar mMaterialToolbar;
     private LiveData<Exercise> mEx;
     private ExerciseCategory1ViewModel mViewModel;
     private boolean mChronometerState;
@@ -74,8 +73,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         mButtonNextWorld = view.findViewById(R.id.buttonNextWorld);
         mWorld = view.findViewById(R.id.world_tv);
         mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
-        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mThumb = view.findViewById(R.id.thumb_iv);
         mTextUnderThumb = view.findViewById(R.id.textUnderThumb);
         mShort_des = view.findViewById(R.id.description_short);
@@ -101,7 +98,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         startChronometer();
 
         /*устанавливаем подходящий текст в тулбар и на кнопку и в описание, устанавливаем слово*/
-        mViewModel.exName.observe(getViewLifecycleOwner(), exName-> mMaterialToolbar.setTitle(exName));
         mViewModel.exShortDesc.observe(getViewLifecycleOwner(), shortDesc-> mShort_des.setText(shortDesc));
         mViewModel.buttonNextText.observe(getViewLifecycleOwner(), buttonNextText-> mButtonNextWorld.setText(buttonNextText));
         changeWord();
@@ -110,8 +106,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         AdMob.showBanner(view.findViewById(R.id.adViewTabEx1));
 
         /*навигация назад*/
-        mMaterialToolbar.setNavigationOnClickListener(v ->
-                Navigation.findNavController(view).popBackStack());
 
         mEx.observe(getViewLifecycleOwner(), exercise ->
                 mExName = exercise.name);

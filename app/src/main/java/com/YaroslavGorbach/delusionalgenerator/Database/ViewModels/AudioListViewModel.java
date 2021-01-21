@@ -35,6 +35,9 @@ public class AudioListViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> _eventPause = new MutableLiveData<>();
     public LiveData<Boolean> eventPause = _eventPause;
 
+    private final MutableLiveData<Boolean> _eventDeleteAllFiles = new MutableLiveData<>();
+    public LiveData<Boolean> eventDeleteAllFiles = _eventDeleteAllFiles;
+
     private final MutableLiveData<Integer> _seekBarProgress = new MutableLiveData<>();
     public LiveData<Integer> seekBarProgress = _seekBarProgress;
 
@@ -109,6 +112,16 @@ public class AudioListViewModel extends AndroidViewModel {
             mediaPlayer.pause();
             _eventPause.setValue(true);
             seekBarHandler.removeCallbacks(updateSeekBar);
+        }
+    }
+
+    public void deleteRecords() {
+        if (_files.getValue() != null) {
+            stopAudio();
+            for (File f : _files.getValue()) {
+                f.delete();
+            }
+                _eventDeleteAllFiles.setValue(true);
         }
     }
 

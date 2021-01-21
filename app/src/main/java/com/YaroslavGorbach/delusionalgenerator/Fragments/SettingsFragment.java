@@ -35,7 +35,8 @@ import java.util.Calendar;
 
 import static android.content.Context.ALARM_SERVICE;
 
-public class SettingsFragment extends Fragment {
+public class
+SettingsFragment extends Fragment {
 
     private ConstraintLayout mNotifications;
     private ConstraintLayout mConnection;
@@ -83,13 +84,11 @@ public class SettingsFragment extends Fragment {
         setNotifyTime();
         mRepo.addListener(this::setNotifyTime);
 
-
         mTimePicker.setOnClickListener(v->{
             TimePickerFragment dialog =  TimePickerFragment.newInstance();
             dialog.show(getParentFragmentManager(), "timePicker");
             mCheckBox.setChecked(false);
         });
-
 
         mCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {

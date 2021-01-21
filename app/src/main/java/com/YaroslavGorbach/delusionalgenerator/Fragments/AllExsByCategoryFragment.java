@@ -29,12 +29,7 @@ public class AllExsByCategoryFragment extends Fragment {
     private AllExsByCategoryViewModel mViewModel;
     private ExercisesGridListAdapter mAdapter;
     private RecyclerView mRecycler;
-    private MaterialToolbar mMaterialToolbar;
 
-
-    public static AllExsByCategoryFragment newInstance(){
-        return new AllExsByCategoryFragment();
-    }
 
     @Override
     public void onStart() {
@@ -48,10 +43,7 @@ public class AllExsByCategoryFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_all_exs_by_category, container, false);
     mRecycler = view.findViewById(R.id.list_exs_by_category);
     mExCategoryId = AllExsByCategoryFragmentArgs.fromBundle(getArguments()).getCategoryId();
-    mMaterialToolbar = getActivity().findViewById(R.id.toolbar_main_a);
-    mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
     getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
-    mMaterialToolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
     mViewModel = new ViewModelProvider(this).get(AllExsByCategoryViewModel.class);
         return view;
     }
@@ -79,9 +71,4 @@ public class AllExsByCategoryFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mMaterialToolbar.setNavigationIcon(null);
-    }
 }

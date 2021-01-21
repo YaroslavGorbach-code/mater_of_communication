@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add_to_favorite_item_1"
+        android:title="В избранные"
+        android:icon="@drawable/ic_star_outline"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/show_chart_item_2"
+        android:title="статистика"
+        android:visible="true"
+        android:icon="@drawable/ic_bar_chart"
+        app:showAsAction="always">
+    </item>
+</menu>

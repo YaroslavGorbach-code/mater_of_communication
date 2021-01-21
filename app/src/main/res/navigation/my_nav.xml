@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/exercisesFragment_v_2"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment"
-        android:label="fragment_exercises_version_2"
+        android:label="Все упражнения"
         tools:layout="@layout/fragment_exercises" >
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_exercisesDescriptionFragment3"
@@ -37,7 +37,6 @@
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesDescriptionFragment"
-        android:label="fragment_exercise_description"
         tools:layout="@layout/fragment_exercise_description" >
         <argument
             android:name="exId"
@@ -79,16 +78,18 @@
     <fragment
         android:id="@+id/audioListFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment"
-        android:label="activity_audio_list"
+        android:label="Записи"
         tools:layout="@layout/activity_audio_list" >
         <action
             android:id="@+id/action_audioListFragment_self"
-            app:destination="@id/audioListFragment" />
+            app:destination="@id/audioListFragment"
+            app:popUpTo="@id/audioListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/favoriteExsFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.FavoriteExsFragment"
-        android:label="fragment_favorit_exs"
+        android:label="Избранные"
         tools:layout="@layout/fragment_favorit_exs" >
         <action
             android:id="@+id/action_favoriteExsFragment_to_exercisesDescriptionFragment"
@@ -124,7 +125,7 @@
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.StatisticsFragment"
-        android:label="fragment_statistics"
+        android:label="Статистика"
         tools:layout="@layout/fragment_statistics" >
         <argument
             android:name="exId"
@@ -160,6 +161,6 @@
     <fragment
         android:id="@+id/settingsFragment2"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="Главная"
         tools:layout="@layout/fragment_settings" />
 </navigation>

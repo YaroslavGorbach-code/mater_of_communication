@@ -33,7 +33,6 @@ public class ExercisesCategory3Fragment extends Fragment {
     private TextView mTongueTwisterHelp_tv;
     private int mExId;
     private long mStartExTime;
-    private MaterialToolbar mMaterialToolbar;
     private ExerciseCategory3ViewModel mViewModel;
 
 
@@ -51,8 +50,6 @@ public class ExercisesCategory3Fragment extends Fragment {
         mTongueTwisterHelp_tv = view.findViewById(R.id.tongue_twister_help);
         mStartExTime = SystemClock.elapsedRealtime();
         mExId = ExercisesCategory3FragmentArgs.fromBundle(requireArguments()).getExId();
-        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mViewModel = new ViewModelProvider(this, new ExerciseCategory3ViewModelFactory(requireActivity().getApplication(),
                 mExId)).get(ExerciseCategory3ViewModel.class);
 
@@ -63,15 +60,8 @@ public class ExercisesCategory3Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mMaterialToolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
-
         /*показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabEx3));
-
-        /*установка текста в туллбар*/
-        setToolbarTitle();
 
         /*оброботка клика на кнопку для показа слудующей скороговорки*/
         mNextTwistButton.setOnClickListener(v->{
@@ -107,20 +97,6 @@ public class ExercisesCategory3Fragment extends Fragment {
                 .duration(400)
                 .playOn(mTwisters_tv);
         mTwisters_tv.setText(mViewModel.getTwist());
-    }
-
-    private void setToolbarTitle() {
-        switch (mExId){
-            case 30:
-                mMaterialToolbar.setTitle("Простые скороговорки");
-                break;
-            case 31:
-                mMaterialToolbar.setTitle("Сложные скороговорки");
-                break;
-            case 32:
-                mMaterialToolbar.setTitle("Очень сложные скороговорки");
-                break;
-        }
     }
 
     @Override

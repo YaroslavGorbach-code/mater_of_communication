@@ -11,6 +11,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,6 +22,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.appbar.MaterialToolbar;
 
 
 public class StatisticsFragment extends Fragment {
@@ -28,8 +30,9 @@ public class StatisticsFragment extends Fragment {
     private BarChart mChartMinutes;
     private BarChart mChartWorldCount;
     private CardView mChartMinutes_cv;
-    private Toolbar mToolbar;
     int mIdEx;
+    private Menu mMenu;
+    private MaterialToolbar mToolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +40,12 @@ public class StatisticsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
         mChartMinutes = view.findViewById(R.id.chartMinutes);
         mChartWorldCount = view.findViewById(R.id.chartWorlds);
-        mToolbar = view.findViewById(R.id.toolbar_statistics);
-        mToolbar.inflateMenu(R.menu.menu_main);
+
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mToolbar.getMenu().clear();
+        mToolbar.inflateMenu(R.menu.menu_clear_statistics);
+        mMenu = mToolbar.getMenu();
+
         mChartMinutes_cv = view.findViewById(R.id.cardView2);
         mIdEx = StatisticsFragmentArgs.fromBundle(getArguments()).getExId();
 
@@ -65,12 +72,6 @@ public class StatisticsFragment extends Fragment {
         if (mIdEx == 22 || mIdEx == 20 || mIdEx == 21) {
             mChartMinutes_cv.setVisibility(View.GONE);
         }
-        /*Оброботка нажатия на стрелку назад*/
-        mToolbar.setNavigationOnClickListener(v->{
-            Navigation.findNavController(view).popBackStack();
-        });
-
-
     }
 
     /*Создаем чарт для времени*/
@@ -91,6 +92,11 @@ public class StatisticsFragment extends Fragment {
         mChartWorldCount.setDescription("Количество пройденых слов за сессию");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         mChartWorldCount.animateY(2000);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     @Override

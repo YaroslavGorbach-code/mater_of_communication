@@ -21,6 +21,8 @@ import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesDesc
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExercisesDescriptionViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
@@ -30,15 +32,10 @@ public class ExercisesDescriptionFragment extends Fragment {
     private MaterialButton mStartExButton;
     private Exercise mExercise;
     private ExercisesDescriptionViewModel mViewModel;
+    private int mExCategory;
     private Menu mMenu;
     private MaterialToolbar mToolbar;
-    private int mExCategory;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,16 +43,17 @@ public class ExercisesDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise_description, container, false);
         /*инициализация вюх и провайдера*/
         mStartExButton = view.findViewById(R.id.button_start_ex_category_1);
-        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.inflateMenu(R.menu.menu_main);
-        mToolbar.setNavigationIcon(ContextCompat.getDrawable(
-                view.getContext(), R.drawable.ic_arrow_back));
-        mMenu = mToolbar.getMenu();
+
         mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
         mExCategory = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExCategory();
         mViewModel = new ViewModelProvider(this, new ExercisesDescriptionViewModelFactory(
                 getActivity().getApplication(),mExId)).get(ExercisesDescriptionViewModel.class);
 
+        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mToolbar.getMenu().clear();
+        mToolbar.inflateMenu(R.menu.menu_description);
+        mMenu = mToolbar.getMenu();
 
         return view;
     }
@@ -83,6 +81,8 @@ public class ExercisesDescriptionFragment extends Fragment {
                         .commit();
                 break;
         }
+
+
 
         /*Установка титла и иконки в туллбар в зависимости от того упражнение в избранном или нет*/
         mViewModel.getExerciseById(mExId).observe(getViewLifecycleOwner(), exercise -> {
@@ -115,25 +115,20 @@ public class ExercisesDescriptionFragment extends Fragment {
                             break;
                     }
                     break;
-
-                case R.id.delete_all_files_item_0:
+                case R.id.show_chart_item_2:
                     NavDirections action = ExercisesDescriptionFragmentDirections.
                             actionExercisesDescriptionFragmentToStatisticsFragment().setExId(mExId);
-                    Navigation.findNavController(view).navigate(action);
+                    Navigation.findNavController(getView()).navigate(action);
                     break;
             }
             return true;
         });
-        
+
         /*При клике на кнопку "Начать" открываем подходящее упражнение упражнение*/
         mStartExButton.setOnClickListener(v -> {
             startEx(view);
         });
 
-        /*Обработка нажатия стрелки назад*/
-        mToolbar.setNavigationOnClickListener(v->{
-            Navigation.findNavController(view).popBackStack();
-        });
     }
 
     private void addExToFavorite(MenuItem v, int favorite, int icon) {
@@ -159,8 +154,10 @@ public class ExercisesDescriptionFragment extends Fragment {
         }
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mMenu.clear();
     }
 }

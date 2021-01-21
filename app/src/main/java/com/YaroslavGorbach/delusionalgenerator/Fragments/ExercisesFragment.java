@@ -46,8 +46,7 @@ public class ExercisesFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mMaterialToolbar.setTitle("Бредогенератор");
-        mMaterialToolbar.setNavigationIcon(null);
+        mMaterialToolbar.getMenu().clear();
         requireActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
     }
 
