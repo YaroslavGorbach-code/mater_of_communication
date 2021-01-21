@@ -39,14 +39,16 @@ public class ExercisesFragment extends Fragment {
 
     private ExercisesFragmentViewModel mViewModel;
 
+    private MaterialToolbar mMaterialToolbar;
+
 
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        toolbar.setVisibility(View.VISIBLE);
-        toolbar.getMenu().getItem(0).setVisible(false);
+        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mMaterialToolbar.setTitle("Бредогенератор");
+        mMaterialToolbar.setNavigationIcon(null);
+        requireActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
     }
 
     @Override

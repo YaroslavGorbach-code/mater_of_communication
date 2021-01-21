@@ -32,6 +32,8 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.Objects;
+
 public class ExercisesCategory1Fragment extends Fragment {
     private ImageButton mButtonStartPause;
     private Chronometer mChronometer_allTime;
@@ -72,7 +74,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         mButtonNextWorld = view.findViewById(R.id.buttonNextWorld);
         mWorld = view.findViewById(R.id.world_tv);
         mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
-        mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_1);
+        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mThumb = view.findViewById(R.id.thumb_iv);
         mTextUnderThumb = view.findViewById(R.id.textUnderThumb);
@@ -83,7 +85,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
         mIdEx = ExercisesCategory1FragmentArgs.fromBundle(requireArguments()).getIdEx();
         mViewModel = new ViewModelProvider(this, new ExerciseCategory1ViewModelFactory(
-                getActivity().getApplication(), mIdEx)).get(ExerciseCategory1ViewModel.class);
+                requireActivity().getApplication(), mIdEx)).get(ExerciseCategory1ViewModel.class);
         mEx = mViewModel.getExerciseById(mIdEx);
         return view;
     }

@@ -56,7 +56,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         mWordCounter_tv = view.findViewById(R.id.worldCounterText);
         mTimer_tv = view.findViewById(R.id.timer);
         mExId = ExercisesCategory2FragmentArgs.fromBundle(requireArguments()).getIdEx();
-        mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_2);
+        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mExShortDescription_tv = view.findViewById(R.id.whatToDo);
         mClickArea = view.findViewById(R.id.clickAria);

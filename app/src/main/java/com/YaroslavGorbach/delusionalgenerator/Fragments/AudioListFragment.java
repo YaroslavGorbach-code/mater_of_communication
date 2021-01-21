@@ -75,11 +75,11 @@ public class AudioListFragment extends Fragment  {
         mTextViewNoData = view.findViewById(R.id.audio_fragment_text_nothing);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         mToolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.inflateMenu(R.menu.menu_recordings_del);
+        mToolbar.inflateMenu(R.menu.menu_main);
         mDuration = view.findViewById(R.id.file_duration);
         mDurationProgress = view.findViewById(R.id.file_duration_process);
-        mToolbar.getMenu().getItem(0).setVisible(true);
         mViewModel = new ViewModelProvider(this).get(AudioListViewModel.class);
+        mToolbar.getMenu().getItem(0).setVisible(true);
 
         /*Показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabAudioList));
@@ -215,7 +215,6 @@ public class AudioListFragment extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
-        mToolbar.getMenu().getItem(0).setVisible(true);
     }
 
     @Override
@@ -229,5 +228,6 @@ public class AudioListFragment extends Fragment  {
         super.onDestroy();
             mViewModel.stopAudio();
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            mToolbar.getMenu().getItem(0).setVisible(false);
     }
 }

@@ -3,28 +3,25 @@ package com.YaroslavGorbach.delusionalgenerator.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.MainActivityViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.AllExsByCategoryFragmentDirections;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragmentDirections;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragmentDirections;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener,
         DialogDeleteRecords.DeleteRecordsListener {
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         /*Установка оброботки нажатий на элементы нижней навигации*/
-        bottomNavigationClickListener();
+        setUpNavControllers();
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
         showFirsOpenDialog();
@@ -54,12 +51,16 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         });
     }
 
-    private void bottomNavigationClickListener() {
+    private void setUpNavControllers() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView,
-                navHostFragment.getNavController());
+        MaterialToolbar toolbar = findViewById(R.id.toolbar_main_a);
+
+        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
     }
 
     private void showFirsOpenDialog() {

@@ -52,9 +52,9 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        toolbar.setVisibility(View.VISIBLE);
-        toolbar.getMenu().getItem(0).setVisible(false);
+//        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+//        toolbar.setVisibility(View.VISIBLE);
+//        toolbar.getMenu().getItem(0).setVisible(false);
 
     }
 

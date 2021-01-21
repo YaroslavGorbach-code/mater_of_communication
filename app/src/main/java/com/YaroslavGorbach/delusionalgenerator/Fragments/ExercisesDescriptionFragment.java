@@ -24,8 +24,6 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
-import java.util.Objects;
-
 
 public class ExercisesDescriptionFragment extends Fragment {
     private int mExId;
@@ -40,7 +38,6 @@ public class ExercisesDescriptionFragment extends Fragment {
     public void onStart() {
         super.onStart();
         getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
-        getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.GONE);
     }
 
     @Override
@@ -49,8 +46,8 @@ public class ExercisesDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise_description, container, false);
         /*инициализация вюх и провайдера*/
         mStartExButton = view.findViewById(R.id.button_start_ex_category_1);
-        mToolbar = view.findViewById(R.id.toolbar_description);
-        mToolbar.inflateMenu(R.menu.menu_description);
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mToolbar.inflateMenu(R.menu.menu_main);
         mToolbar.setNavigationIcon(ContextCompat.getDrawable(
                 view.getContext(), R.drawable.ic_arrow_back));
         mMenu = mToolbar.getMenu();
@@ -108,7 +105,7 @@ public class ExercisesDescriptionFragment extends Fragment {
         /*Оброботка нажатия на иконки тулбара*/
         mToolbar.setOnMenuItemClickListener(v->{
             switch (v.getItemId()){
-                case R.id.add_to_favorite:
+                case R.id.add_to_favorite_item_1:
                     switch (mExercise.favorite){
                         case 0:
                             addExToFavorite(v, 1, R.drawable.ic_baseline_star);
@@ -119,7 +116,7 @@ public class ExercisesDescriptionFragment extends Fragment {
                     }
                     break;
 
-                case R.id.show_chart:
+                case R.id.delete_all_files_item_0:
                     NavDirections action = ExercisesDescriptionFragmentDirections.
                             actionExercisesDescriptionFragmentToStatisticsFragment().setExId(mExId);
                     Navigation.findNavController(view).navigate(action);
@@ -160,5 +157,10 @@ public class ExercisesDescriptionFragment extends Fragment {
                     actionExercisesDescriptionFragmentToExercisesCategory3Fragment().setExId(mExId);
             Navigation.findNavController(view).navigate(action);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

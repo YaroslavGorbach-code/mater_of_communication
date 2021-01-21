@@ -24,6 +24,8 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.Objects;
+
 public class ExercisesCategory3Fragment extends Fragment {
 
     private TextView mTwisters_tv;
@@ -34,9 +36,6 @@ public class ExercisesCategory3Fragment extends Fragment {
     private MaterialToolbar mMaterialToolbar;
     private ExerciseCategory3ViewModel mViewModel;
 
-    public static ExercisesCategory3Fragment newInstance() {
-        return new ExercisesCategory3Fragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,10 +50,10 @@ public class ExercisesCategory3Fragment extends Fragment {
         mNextTwistButton = view.findViewById(R.id.nextTwist);
         mTongueTwisterHelp_tv = view.findViewById(R.id.tongue_twister_help);
         mStartExTime = SystemClock.elapsedRealtime();
-        mExId = ExercisesCategory3FragmentArgs.fromBundle(getArguments()).getExId();
-        mMaterialToolbar = view.findViewById(R.id.toolbar_ex_category_3);
+        mExId = ExercisesCategory3FragmentArgs.fromBundle(requireArguments()).getExId();
+        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
         mMaterialToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mViewModel = new ViewModelProvider(this, new ExerciseCategory3ViewModelFactory(getActivity().getApplication(),
+        mViewModel = new ViewModelProvider(this, new ExerciseCategory3ViewModelFactory(requireActivity().getApplication(),
                 mExId)).get(ExerciseCategory3ViewModel.class);
 
         return view;

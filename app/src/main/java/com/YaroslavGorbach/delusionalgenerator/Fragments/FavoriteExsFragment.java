@@ -36,10 +36,6 @@ public class FavoriteExsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        toolbar.setVisibility(View.VISIBLE);
-        toolbar.getMenu().getItem(0).setVisible(false);
     }
 
     @Override

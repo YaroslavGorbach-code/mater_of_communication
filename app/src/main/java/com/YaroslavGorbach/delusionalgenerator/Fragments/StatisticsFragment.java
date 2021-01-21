@@ -38,7 +38,7 @@ public class StatisticsFragment extends Fragment {
         mChartMinutes = view.findViewById(R.id.chartMinutes);
         mChartWorldCount = view.findViewById(R.id.chartWorlds);
         mToolbar = view.findViewById(R.id.toolbar_statistics);
-        mToolbar.inflateMenu(R.menu.menu_statistic);
+        mToolbar.inflateMenu(R.menu.menu_main);
         mChartMinutes_cv = view.findViewById(R.id.cardView2);
         mIdEx = StatisticsFragmentArgs.fromBundle(getArguments()).getExId();
 
