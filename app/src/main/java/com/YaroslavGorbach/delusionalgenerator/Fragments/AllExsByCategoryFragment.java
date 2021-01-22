@@ -16,11 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.AllExsByCategoryViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.AllExsByCategoryViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
-import com.google.android.material.appbar.MaterialToolbar;
 
 
 public class AllExsByCategoryFragment extends Fragment {

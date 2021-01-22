@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory2FragmentViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.DescriptionCategory2FragmentViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.DescriptionCategory2FragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.DescriptionCategory2FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
     public class DescriptionCategory2Fragment extends Fragment {

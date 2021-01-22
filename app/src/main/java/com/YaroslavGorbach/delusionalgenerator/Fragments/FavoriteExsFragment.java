@@ -16,16 +16,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesGridListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.FavoriteExsFragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.FavoriteExsFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.google.android.flexbox.AlignItems;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class FavoriteExsFragment extends Fragment {
-
 
     private FavoriteExsFragmentViewModel mViewModel;
     private ExercisesGridListAdapter mAdapter;
@@ -33,10 +28,6 @@ public class FavoriteExsFragment extends Fragment {
     private TextView mTextViewNoData;
     private AppCompatImageView mImageNoData;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +42,10 @@ public class FavoriteExsFragment extends Fragment {
         mRecycler = view.findViewById(R.id.list_favorite_exs);
         mTextViewNoData = view.findViewById(R.id.favorite_fragment_text_nothing);
         mImageNoData = view.findViewById(R.id.favorite_fragment_image_nothing);
+        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+        toolbar.setNavigationIcon(null);
+        toolbar.getMenu().clear();
         setAdapter(view);
         return view;
     }

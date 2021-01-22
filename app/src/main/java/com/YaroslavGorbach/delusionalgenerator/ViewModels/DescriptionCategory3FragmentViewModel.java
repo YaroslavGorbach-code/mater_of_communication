@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels;
 
 import android.app.Application;
 
@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class DescriptionCategory3FragmentViewModel extends AndroidViewModel {

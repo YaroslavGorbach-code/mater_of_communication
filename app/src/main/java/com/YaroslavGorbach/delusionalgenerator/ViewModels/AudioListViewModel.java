@@ -1,19 +1,15 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels;
 
 import android.app.Application;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
-import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import com.YaroslavGorbach.delusionalgenerator.R;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,10 +1,9 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels;
 
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.media.MediaRecorder;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,11 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import java.util.Set;
 
 public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 

@@ -17,12 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesDescriptionViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExercisesDescriptionViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExercisesDescriptionViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.ExercisesDescriptionViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 

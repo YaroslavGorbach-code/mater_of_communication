@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels;
 
 import android.app.Application;
 

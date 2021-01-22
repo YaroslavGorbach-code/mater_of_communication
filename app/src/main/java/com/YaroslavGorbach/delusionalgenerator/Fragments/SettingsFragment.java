@@ -1,12 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,17 +18,12 @@ import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.SettingsFragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.SettingsFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.TimePickerFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.Helpers.ReminderBroadcast;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import java.util.Calendar;
-
-import static android.content.Context.ALARM_SERVICE;
 
 public class
 SettingsFragment extends Fragment {
@@ -53,10 +43,9 @@ SettingsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-//        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-//        toolbar.setVisibility(View.VISIBLE);
-//        toolbar.getMenu().getItem(0).setVisible(false);
-
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+        toolbar.setNavigationIcon(null);
+        toolbar.getMenu().clear();
     }
 
     @Override

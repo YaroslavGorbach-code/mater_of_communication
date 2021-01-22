@@ -25,7 +25,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.AudioListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.AudioListViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.AudioListViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -57,6 +57,12 @@ public class AudioListFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
+        toolbar.setNavigationIcon(null);
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mToolbar.getMenu().clear();
+        mToolbar.inflateMenu(R.menu.menu_records);
+        mMenu = mToolbar.getMenu();
     }
 
     @SuppressLint("RestrictedApi")
@@ -81,10 +87,7 @@ public class AudioListFragment extends Fragment{
         mDurationProgress = view.findViewById(R.id.file_duration_process);
         mViewModel = new ViewModelProvider(this).get(AudioListViewModel.class);
 
-        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.getMenu().clear();
-        mToolbar.inflateMenu(R.menu.menu_records);
-        mMenu = mToolbar.getMenu();
+
 
         /*Показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabAudioList));
@@ -235,7 +238,6 @@ public class AudioListFragment extends Fragment{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mMenu.clear();
     }
 
     @Override

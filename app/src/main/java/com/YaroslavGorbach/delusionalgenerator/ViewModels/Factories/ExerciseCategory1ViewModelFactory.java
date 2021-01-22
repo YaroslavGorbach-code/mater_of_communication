@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories;
 
 import android.app.Application;
 
@@ -6,8 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory1ViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory3ViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExerciseCategory1ViewModel;
 
 public class ExerciseCategory1ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 

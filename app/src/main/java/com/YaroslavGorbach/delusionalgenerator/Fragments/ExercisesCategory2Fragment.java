@@ -15,14 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory2ViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExerciseCategory2ViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExerciseCategory2ViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.ExerciseCategory2ViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
 import nl.dionsegijn.konfetti.KonfettiView;

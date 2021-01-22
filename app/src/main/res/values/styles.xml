@@ -34,6 +34,10 @@
         <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
     </style>
+    
+    <style name="Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="colorControlNormal">?colorAccent</item>
+    </style>
 
 
     <!-- Base application theme. -->
@@ -43,7 +47,7 @@
         <item name="colorPrimaryDark">?android:colorBackground</item>
         <item name="colorAccent">#FF8A65</item>
         <item name="colorControlActivated">#FFFFFF</item>
-        <item name="colorControlNormal">#9C9C9C</item>
+        <item name="colorControlNormal">#DFDFDF</item>
         <item name="tabColor">#FF5722</item>
         <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewOrange</item>
@@ -67,7 +71,7 @@
         <item name="colorPrimaryDark">?android:colorBackground</item>
         <item name="colorAccent">#4DD0E1</item>
         <item name="colorControlActivated">#FFFFFF</item>
-        <item name="colorControlNormal">#9C9C9C</item>
+        <item name="colorControlNormal">#E3E3E3</item>
         <item name="tabColor">#00BCD4</item>
         <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewBlue</item>
@@ -91,7 +95,7 @@
         <item name="colorPrimaryDark">?android:colorBackground</item>
         <item name="colorAccent">#81C784</item>
         <item name="colorControlActivated">#FFFFFF</item>
-        <item name="colorControlNormal">#9C9C9C</item>
+        <item name="colorControlNormal">#E3E3E3</item>
         <item name="tabColor">#4CAF50</item>
         <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewGreen</item>
@@ -115,7 +119,7 @@
         <item name="colorPrimaryDark">?android:colorBackground</item>
         <item name="colorAccent">#9575CD</item>
         <item name="colorControlActivated">#FFFFFF</item>
-        <item name="colorControlNormal">#9C9C9C</item>
+        <item name="colorControlNormal">#E3E3E3</item>
         <item name="tabColor">#FF673AB7</item>
         <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewPurple</item>
@@ -140,7 +144,7 @@
         <item name="colorPrimaryDark">?android:colorBackground</item>
         <item name="colorAccent">#F06292</item>
         <item name="colorControlActivated">#FFFFFF</item>
-        <item name="colorControlNormal">#9C9C9C</item>
+        <item name="colorControlNormal">#E3E3E3</item>
         <item name="tabColor">#E91E63</item>
         <item name="alertDialogTheme">@style/DialogTheme</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationViewRed</item>

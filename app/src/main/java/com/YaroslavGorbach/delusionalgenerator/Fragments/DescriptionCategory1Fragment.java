@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory1FragmentViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.DescriptionCategory1FragmentViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.DescriptionCategory1FragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.DescriptionCategory1FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 

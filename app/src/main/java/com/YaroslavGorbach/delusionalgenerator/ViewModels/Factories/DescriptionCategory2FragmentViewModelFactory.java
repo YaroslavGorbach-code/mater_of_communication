@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories;
 
 import android.app.Application;
 
@@ -6,8 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory1FragmentViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory2FragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.DescriptionCategory2FragmentViewModel;
 
 public class DescriptionCategory2FragmentViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 

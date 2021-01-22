@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExercisesFragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExercisesFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -38,17 +38,8 @@ public class ExercisesFragment extends Fragment {
     private TextView mAllExsCategory3;
 
     private ExercisesFragmentViewModel mViewModel;
-
     private MaterialToolbar mMaterialToolbar;
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mMaterialToolbar.getMenu().clear();
-        requireActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,12 +50,13 @@ public class ExercisesFragment extends Fragment {
         mAllExsCategory1 = view.findViewById(R.id.textViewAll1);
         mAllExsCategory2 = view.findViewById(R.id.textViewAll2);
         mAllExsCategory3 = view.findViewById(R.id.textViewAll3);
+        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mMaterialToolbar.getMenu().clear();
+        requireActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
         mViewModel = new ViewModelProvider(this).get(ExercisesFragmentViewModel.class);
         setAdapters(view);
         return view;
     }
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -72,19 +64,25 @@ public class ExercisesFragment extends Fragment {
 
         mAllExsCategory1.setOnClickListener(v -> {
             NavDirections action = ExercisesFragmentDirections.
-                    actionExercisesFragmentV2ToAllExsByCategoryFragment().setCategoryId(1);
+                    actionExercisesFragmentV2ToAllExsByCategoryFragment()
+                    .setCategoryId(1)
+                    .setCategoryName(getString(R.string.category_1_name));
             Navigation.findNavController(view).navigate(action);
         });
 
         mAllExsCategory2.setOnClickListener(v -> {
             NavDirections action = ExercisesFragmentDirections.
-                    actionExercisesFragmentV2ToAllExsByCategoryFragment().setCategoryId(2);
+                    actionExercisesFragmentV2ToAllExsByCategoryFragment()
+                    .setCategoryId(2)
+                    .setCategoryName(getString(R.string.category_2_name));
             Navigation.findNavController(view).navigate(action);
         });
 
         mAllExsCategory3.setOnClickListener(v -> {
             NavDirections action = ExercisesFragmentDirections.
-                    actionExercisesFragmentV2ToAllExsByCategoryFragment().setCategoryId(3);
+                    actionExercisesFragmentV2ToAllExsByCategoryFragment()
+                    .setCategoryId(3)
+                    .setCategoryName(getString(R.string.category_3_name));
             Navigation.findNavController(view).navigate(action);
         });
     }

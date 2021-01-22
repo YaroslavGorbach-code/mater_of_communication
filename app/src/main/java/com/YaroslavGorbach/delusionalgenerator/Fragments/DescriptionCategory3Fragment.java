@@ -11,10 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory2FragmentViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.DescriptionCategory3FragmentViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.DescriptionCategory2FragmentViewModelFactory;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.DescriptionCategory3FragmentViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.DescriptionCategory3FragmentViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.DescriptionCategory3FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class DescriptionCategory3Fragment extends Fragment {

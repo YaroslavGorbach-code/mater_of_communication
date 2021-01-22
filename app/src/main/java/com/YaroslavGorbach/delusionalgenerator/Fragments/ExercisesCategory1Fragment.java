@@ -22,17 +22,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory1ViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExerciseCategory1ViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExerciseCategory1ViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.ExerciseCategory1ViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.Permissions;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.material.appbar.MaterialToolbar;
-
-import java.util.Objects;
 
 public class ExercisesCategory1Fragment extends Fragment {
     private ImageButton mButtonStartPause;

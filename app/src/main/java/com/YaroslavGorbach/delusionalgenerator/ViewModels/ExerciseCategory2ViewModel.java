@@ -1,24 +1,17 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.CountDownTimer;
 import android.text.format.DateUtils;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.arch.core.util.Function;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
-import androidx.lifecycle.ViewModel;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;

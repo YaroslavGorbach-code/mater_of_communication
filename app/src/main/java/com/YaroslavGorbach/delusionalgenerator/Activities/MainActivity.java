@@ -1,9 +1,12 @@
 package com.YaroslavGorbach.delusionalgenerator.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,10 +14,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragmentDirections;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
-import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogDeleteRecords;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
@@ -48,6 +50,22 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                 new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+//            switch (destination.getId()){
+//                case R.id.exercisesDescriptionFragment:
+//                    toolbar.setVisibility(View.GONE);
+//                case R.id.exercisesFragment_v_2:
+//                    toolbar.setVisibility(View.GONE);
+//                    break;
+//            }
+//            if(destination.getId() == R.id.) {
+//                bottomNavigationView.setVisibility(View.GONE);
+//            } else {
+//                toolbar.setVisibility(View.VISIBLE);
+//                bottomNavigationView.setVisibility(View.VISIBLE);
+//            }
+        });
 
     }
 

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -15,16 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.ExerciseCategory3ViewModel;
-import com.YaroslavGorbach.delusionalgenerator.Database.ViewModels.Factories.ExerciseCategory3ViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExerciseCategory3ViewModel;
+import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.ExerciseCategory3ViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.Helpers.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.material.appbar.MaterialToolbar;
-
-import java.util.Objects;
 
 public class ExercisesCategory3Fragment extends Fragment {
 

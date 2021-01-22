@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.Database.ViewModels;
+package com.YaroslavGorbach.delusionalgenerator.ViewModels;
 
 import android.app.Application;
 
@@ -9,18 +9,19 @@ import androidx.lifecycle.LiveData;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
 
-import java.util.List;
-
-public class ExercisesFragmentViewModel extends AndroidViewModel {
-
+public class ExercisesDescriptionViewModel extends AndroidViewModel {
     private final Repo_2 mRepo;
 
-    public ExercisesFragmentViewModel(@NonNull Application application) {
+    public ExercisesDescriptionViewModel(@NonNull Application application, int exId) {
         super(application);
         mRepo = new Repo_2(application);
     }
 
-    public LiveData<List<Exercise>> getExByCategory(int category) {
-        return mRepo.getExByCategory(category);
+    public void update(Exercise exercise){
+        mRepo.update(exercise);
+    }
+
+    public LiveData<Exercise> getExerciseById(int id) {
+        return mRepo.getExerciseById(id);
     }
 }

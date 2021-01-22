@@ -39,10 +39,11 @@ public class Time {
     }
 
     public String getFileDuration(File file){
-        long durationInMilSeconds = file.length();
-        String hms = String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationInMilSeconds),
-                TimeUnit.MILLISECONDS.toMinutes(durationInMilSeconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(durationInMilSeconds)),
-                TimeUnit.MILLISECONDS.toSeconds(durationInMilSeconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(durationInMilSeconds)));
+        double duration = file.getAbsoluteFile().length()/2;
+        long durationL = (long) duration;
+        String hms = String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationL),
+                TimeUnit.MILLISECONDS.toMinutes(durationL) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(durationL) % TimeUnit.MINUTES.toSeconds(1));
        return hms;
     }
 

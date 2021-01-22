@@ -7,6 +7,11 @@
         <item>Разобобщения</item>
     </string-array>
 
+    <string name="category_1_name">Для развития легкости речи</string>
+    <string name="category_2_name">Для увеличения словарного запаса</string>
+    <string name="category_3_name">Для развития дикции</string>
+
+
     <string name="about_app">
 Бредогенератор - это комплекс упражнений, которые помогут тебе научится разговаривать с кем угодно и о чем угодно.\n\n
 
