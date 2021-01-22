@@ -73,7 +73,7 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
         switch (exId){
             case 20:
                 _exName.setValue("Существительные");
-                _exShortDescription.setValue("Нозовите как можно больше существительных(Кто? Что?). " +
+                _exShortDescription.setValue("Назовите как можно больше существительных(Кто? Что?). " +
                         "После каждого названого слова, нажмите" +
                         " на экран, для учета результата");
                 _exNormWords.setValue(54);
@@ -81,7 +81,7 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
                 break;
             case 21:
                 _exName.setValue("Прилагательные");
-                _exShortDescription.setValue("Нозовите как можно больше прилагательных(Какой? Какое?)." +
+                _exShortDescription.setValue("Назовите как можно больше прилагательных(Какой? Какое?)." +
                         " После каждого названого слова, нажмите" +
                         " на экран, для учета результата");
                 _exNormWords.setValue(46);
@@ -90,7 +90,7 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
                 break;
             case 22:
                 _exName.setValue("Глаголы");
-                _exShortDescription.setValue("Нозовите как можно больше глаголов(Что делать? Что сделать?). После каждого названого слова, нажмите" +
+                _exShortDescription.setValue("Назовите как можно больше глаголов(Что делать? Что сделать?). После каждого названого слова, нажмите" +
                         " на экран, для учета результата");
                 _exNormWords.setValue(42);
                 _nextExName.setValue("Существительные");

@@ -21,8 +21,8 @@
         <item>петух</item>
         <item>тунец</item>
         <item>мопс</item>
-        <item>путин</item>
-        <item>зеленский</item>
+        <item>Путин</item>
+        <item>Зеленский</item>
         <item>военный</item>
         <item>стюардесса</item>
         <item>капитан</item>
@@ -69,20 +69,20 @@
         <item>волк</item>
         <item>муравей</item>
         <item>кузнец</item>
-        <item>кин конг</item>
+        <item>Кинг-Конг</item>
         <item>учитель</item>
         <item>акробат</item>
-        <item>актер</item>
+        <item>актёр</item>
         <item>джокер</item>
         <item>лыжник</item>
         <item>проводник</item>
         <item>единорог</item>
-        <item>вини пух</item>
+        <item>Винни-Пух</item>
         <item>депутат</item>
         <item>трубочист</item>
         <item>сантехник</item>
         <item>танкист</item>
-        <item>аладдин</item>
+        <item>Аладдин</item>
         <item>джин</item>
         <item>бригадир</item>
         <item>тарантул</item>
@@ -90,7 +90,7 @@
         <item>жерех</item>
         <item>барбер</item>
         <item>неандерталец</item>
-        <item>рэпер</item>
+        <item>репер</item>
         <item>абориген</item>
         <item>аборигенка</item>
         <item>авиапассажир</item>
@@ -103,9 +103,9 @@
         <item>агент</item>
         <item>агитатор</item>
         <item>агроном</item>
-        <item>адам</item>
+        <item>Адам</item>
         <item>адвокат</item>
-        <item>актер</item>
+        <item>актёр</item>
         <item>акула</item>
         <item>акушер</item>
         <item>алкаш</item>
@@ -168,7 +168,7 @@
         <item>тарантул</item>
         <item>камбала</item>
         <item>ленивец</item>
-        <item>дирижер</item>
+        <item>дирижёр</item>
         <item>стриптизерша</item>
         <item>сутенер</item>
         <item>баран</item>
@@ -226,7 +226,7 @@
         <item>змея</item>
         <item>кобра</item>
         <item>кассир</item>
-        <item>угрь</item>
+        <item>угорь</item>
         <item>енот</item>
         <item>рак</item>
         <item>священник</item>
@@ -238,7 +238,7 @@
         <item>кенгуру</item>
         <item>учитель</item>
         <item>сосед</item>
-        <item>еж</item>
+        <item>ёж</item>
         <item>корова</item>
         <item>гиена</item>
         <item>хомяк</item>
@@ -263,7 +263,7 @@
         <item>переводчик</item>
         <item>павлин</item>
         <item>клещ</item>
-        <item>сперматазоид</item>
+        <item>сперматозоид</item>
         <item>медсестра</item>
         <item>душа</item>
         <item>гоблин</item>
@@ -274,6 +274,5 @@
         <item>павлин</item>
         <item>гиена</item>
         <item>дикобраз</item>
-        <item>ворон</item>
     </string-array>
 </resources>

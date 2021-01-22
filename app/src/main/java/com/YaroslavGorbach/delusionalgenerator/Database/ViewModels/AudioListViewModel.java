@@ -58,7 +58,7 @@ public class AudioListViewModel extends AndroidViewModel {
 
         /*Сортировка файлов по дате измененя*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (_files != null) {
+            if (_files.getValue()!= null) {
                 File[] sortedFiles = _files.getValue();
                 Arrays.sort(sortedFiles, Comparator.comparingLong(File::lastModified).reversed());
                 _files.setValue(sortedFiles);

@@ -257,7 +257,7 @@
         <item>палатка</item>
         <item>палитра</item>
         <item>пальма</item>
-        <item>памперс</item>
+        <item>подгузник</item>
         <item>памятник</item>
         <item>папоротник</item>
         <item>парус</item>
@@ -280,7 +280,6 @@
         <item>подарок</item>
         <item>поднос</item>
         <item>подоконник</item>
-        <item>подорожник</item>
         <item>подошва</item>
         <item>подсвечник</item>
         <item>позвоночник</item>
@@ -380,7 +379,7 @@
         <item>кольцо</item>
         <item>щит</item>
         <item>кувалда</item>
-        <item>биткоин</item>
+        <item>биткойн</item>
         <item>камень</item>
         <item>спутник</item>
         <item>тюнер</item>
@@ -410,7 +409,7 @@
         <item>мормышка</item>
         <item>поплавок</item>
         <item>садок</item>
-        <item>спининг</item>
+        <item>спиннинг</item>
         <item>воблер</item>
         <item>блесна</item>
         <item>лезвие</item>
@@ -437,7 +436,7 @@
         <item>укроп</item>
         <item>чемодан</item>
         <item>кнопка</item>
-        <item>металоискатель</item>
+        <item>металлоискатель</item>
         <item>зеркало</item>
         <item>радиоприемник</item>
         <item>картошка</item>
@@ -556,20 +555,20 @@
         <item>куртка</item>
         <item>бита</item>
         <item>сундук</item>
-        <item>арболет</item>
+        <item>арбалет</item>
         <item>омлет</item>
         <item>помидор</item>
         <item>абрикос</item>
         <item>арбуз</item>
         <item>персик</item>
-        <item>агрус</item>
+        <item>аргус</item>
         <item>клубника</item>
         <item>огурец</item>
         <item>помидор</item>
         <item>лук</item>
         <item>душа</item>
-        <item>фантан</item>
-        <item>аватар</item>
+        <item>фонтан</item>
+        <item>Аватар</item>
         <item>сумка</item>
         <item>помада</item>
         <item>пена</item>
@@ -695,7 +694,7 @@
         <item>ковёр</item>
         <item>книга</item>
         <item>паспорт</item>
-        <item>антена</item>
+        <item>антенна</item>
         <item>танк</item>
         <item>хлеб</item>
         <item>мясо</item>
@@ -759,7 +758,7 @@
         <item>белок</item>
         <item>груша</item>
         <item>цветок</item>
-        <item>таранька</item>
+        <item>таранка</item>
         <item>шуба</item>
         <item>мех</item>
         <item>хвост</item>
