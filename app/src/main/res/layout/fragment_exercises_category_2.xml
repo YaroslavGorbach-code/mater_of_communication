@@ -42,6 +42,7 @@
                 android:padding="10dp"
                 android:textColor="?colorAccent"
                 android:textSize="20sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/worldCounterText"
                 app:layout_constraintStart_toStartOf="@+id/worldCounterText"
