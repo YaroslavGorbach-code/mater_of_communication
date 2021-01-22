@@ -38,7 +38,6 @@ public class ExercisesFragment extends Fragment {
     private TextView mAllExsCategory3;
 
     private ExercisesFragmentViewModel mViewModel;
-    private MaterialToolbar mMaterialToolbar;
 
 
     @Override
@@ -50,9 +49,6 @@ public class ExercisesFragment extends Fragment {
         mAllExsCategory1 = view.findViewById(R.id.textViewAll1);
         mAllExsCategory2 = view.findViewById(R.id.textViewAll2);
         mAllExsCategory3 = view.findViewById(R.id.textViewAll3);
-        mMaterialToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mMaterialToolbar.getMenu().clear();
-        requireActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
         mViewModel = new ViewModelProvider(this).get(ExercisesFragmentViewModel.class);
         setAdapters(view);
         return view;

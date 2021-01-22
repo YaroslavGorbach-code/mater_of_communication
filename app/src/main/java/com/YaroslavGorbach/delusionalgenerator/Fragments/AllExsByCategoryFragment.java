@@ -29,18 +29,11 @@ public class AllExsByCategoryFragment extends Fragment {
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_all_exs_by_category, container, false);
     mRecycler = view.findViewById(R.id.list_exs_by_category);
     mExCategoryId = AllExsByCategoryFragmentArgs.fromBundle(getArguments()).getCategoryId();
-    getActivity().findViewById(R.id.toolbar_main_a).setVisibility(View.VISIBLE);
     mViewModel = new ViewModelProvider(this).get(AllExsByCategoryViewModel.class);
         return view;
     }

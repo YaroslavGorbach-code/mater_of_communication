@@ -41,17 +41,12 @@ public class ExercisesDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise_description, container, false);
         /*инициализация вюх и провайдера*/
         mStartExButton = view.findViewById(R.id.button_start_ex_category_1);
-
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
+        mMenu = mToolbar.getMenu();
         mExId = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExId();
         mExCategory = ExercisesDescriptionFragmentArgs.fromBundle(getArguments()).getExCategory();
         mViewModel = new ViewModelProvider(this, new ExercisesDescriptionViewModelFactory(
                 getActivity().getApplication(),mExId)).get(ExercisesDescriptionViewModel.class);
-
-        getActivity().findViewById(R.id.bttm_nav).setVisibility(View.GONE);
-        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.getMenu().clear();
-        mToolbar.inflateMenu(R.menu.menu_description);
-        mMenu = mToolbar.getMenu();
 
         return view;
     }
@@ -152,10 +147,10 @@ public class ExercisesDescriptionFragment extends Fragment {
         }
     }
 
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mMenu.clear();
-    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        mMenu.clear();
+//    }
 }

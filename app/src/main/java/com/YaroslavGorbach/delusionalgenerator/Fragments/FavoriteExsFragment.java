@@ -43,9 +43,6 @@ public class FavoriteExsFragment extends Fragment {
         mTextViewNoData = view.findViewById(R.id.favorite_fragment_text_nothing);
         mImageNoData = view.findViewById(R.id.favorite_fragment_image_nothing);
         getActivity().findViewById(R.id.bttm_nav).setVisibility(View.VISIBLE);
-        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        toolbar.setNavigationIcon(null);
-        toolbar.getMenu().clear();
         setAdapter(view);
         return view;
     }

@@ -52,17 +52,11 @@ public class AudioListFragment extends Fragment{
     private AudioListViewModel mViewModel;
     private TextView mDurationProgress;
     private TextView mDuration;
-    private Menu mMenu;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        toolbar.setNavigationIcon(null);
-        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.getMenu().clear();
-        mToolbar.inflateMenu(R.menu.menu_records);
-        mMenu = mToolbar.getMenu();
     }
 
     @SuppressLint("RestrictedApi")
@@ -86,7 +80,7 @@ public class AudioListFragment extends Fragment{
         mDuration = view.findViewById(R.id.file_duration);
         mDurationProgress = view.findViewById(R.id.file_duration_process);
         mViewModel = new ViewModelProvider(this).get(AudioListViewModel.class);
-
+        mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
 
 
         /*Показ банера*/
@@ -197,8 +191,6 @@ public class AudioListFragment extends Fragment{
         });
     }
 
-
-
     private void showListOrNoData(File[] files) {
         if (files != null && files.length > 0){
             showList(files);
@@ -233,16 +225,6 @@ public class AudioListFragment extends Fragment{
         mAudioList.setAdapter(mAudioListAdapter);
         mAudioList.addItemDecoration(new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL));
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override

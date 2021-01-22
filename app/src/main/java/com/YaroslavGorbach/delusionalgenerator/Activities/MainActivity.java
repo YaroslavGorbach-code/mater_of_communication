@@ -12,9 +12,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         showFirsOpenDialog();
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void setUpNavControllers() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
         MaterialToolbar toolbar = findViewById(R.id.toolbar_main_a);
@@ -52,19 +55,40 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-//            switch (destination.getId()){
-//                case R.id.exercisesDescriptionFragment:
-//                    toolbar.setVisibility(View.GONE);
-//                case R.id.exercisesFragment_v_2:
-//                    toolbar.setVisibility(View.GONE);
-//                    break;
-//            }
-//            if(destination.getId() == R.id.) {
-//                bottomNavigationView.setVisibility(View.GONE);
-//            } else {
-//                toolbar.setVisibility(View.VISIBLE);
-//                bottomNavigationView.setVisibility(View.VISIBLE);
-//            }
+            switch (destination.getId()){
+                case R.id.exercisesDescriptionFragment:
+                    toolbar.getMenu().clear();
+                    toolbar.inflateMenu(R.menu.menu_description);
+                    bottomNavigationView.setVisibility(View.GONE);
+                    break;
+                case R.id.exercisesFragment_v_2:
+                    toolbar.getMenu().clear();
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.statisticsFragment:
+                    toolbar.getMenu().clear();
+                    toolbar.inflateMenu(R.menu.menu_clear_statistics);
+                    break;
+                case R.id.favoriteExsFragment:
+                case R.id.settingsFragment2:
+                    toolbar.setNavigationIcon(null);
+                    toolbar.getMenu().clear();
+                    break;
+                case R.id.audioListFragment:
+                    toolbar.setNavigationIcon(null);
+                    toolbar.getMenu().clear();
+                    toolbar.inflateMenu(R.menu.menu_records);
+                    break;
+                case R.id.allExsByCategoryFragment:
+                    bottomNavigationView.setVisibility(View.GONE);
+                    break;
+                case R.id.exercisesCategory1Fragment:
+                case R.id.exercisesCategory2Fragment:
+                case R.id.exercisesCategory3Fragment:
+                    toolbar.getMenu().clear();
+                    break;
+
+            }
         });
 
     }

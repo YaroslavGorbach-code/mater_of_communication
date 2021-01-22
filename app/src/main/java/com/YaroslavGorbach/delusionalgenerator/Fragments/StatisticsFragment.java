@@ -31,7 +31,6 @@ public class StatisticsFragment extends Fragment {
     private BarChart mChartWorldCount;
     private CardView mChartMinutes_cv;
     int mIdEx;
-    private Menu mMenu;
     private MaterialToolbar mToolbar;
 
     @Override
@@ -40,15 +39,9 @@ public class StatisticsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
         mChartMinutes = view.findViewById(R.id.chartMinutes);
         mChartWorldCount = view.findViewById(R.id.chartWorlds);
-
         mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
-        mToolbar.getMenu().clear();
-        mToolbar.inflateMenu(R.menu.menu_clear_statistics);
-        mMenu = mToolbar.getMenu();
-
         mChartMinutes_cv = view.findViewById(R.id.cardView2);
         mIdEx = StatisticsFragmentArgs.fromBundle(getArguments()).getExId();
-
         return view;
     }
 
@@ -92,11 +85,6 @@ public class StatisticsFragment extends Fragment {
         mChartWorldCount.setDescription("Количество пройденых слов за сессию");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         mChartWorldCount.animateY(2000);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 
     @Override

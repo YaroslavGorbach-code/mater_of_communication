@@ -40,13 +40,6 @@ SettingsFragment extends Fragment {
 
     private SettingsFragmentViewModel mViewModel;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar_main_a);
-        toolbar.setNavigationIcon(null);
-        toolbar.getMenu().clear();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
