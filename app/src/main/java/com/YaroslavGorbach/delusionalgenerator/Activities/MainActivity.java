@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     toolbar.inflateMenu(R.menu.menu_records);
                     break;
                 case R.id.allExsByCategoryFragment:
+                    toolbar.getMenu().clear();
                     bottomNavigationView.setVisibility(View.GONE);
                     break;
                 case R.id.exercisesCategory1Fragment:

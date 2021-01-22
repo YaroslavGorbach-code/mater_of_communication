@@ -22,7 +22,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:justificationMode="inter_word"
+                    android:letterSpacing="0.1"
+                    android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textSize="20dp"
                     android:text="@string/about_app"/>
