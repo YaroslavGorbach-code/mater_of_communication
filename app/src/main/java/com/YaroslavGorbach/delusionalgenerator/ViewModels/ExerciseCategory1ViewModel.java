@@ -12,8 +12,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo_2;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.io.IOException;
@@ -27,9 +27,9 @@ import java.util.Random;
 
 public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 
-    private final Repo_2 mRepo_2;
-    private final Repo mRepo;
-    private int mIdEx;
+    private final Repo mRepo_;
+    private final Repo_SQLite mRepoSQLite;
+    private final int mIdEx;
     private MediaRecorder mediaRecorder;
     private String recordFile;
     private final Random r = new Random();
@@ -51,118 +51,99 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     private List<String> mWorlds_ex12 = new ArrayList<>();
     private List<String> mWorlds_ex13 = new ArrayList<>();
 
+    private final MutableLiveData<Boolean> _isRecording = new MutableLiveData<>(false);
+    public LiveData<Boolean> isRecording = _isRecording;
+
+    private final MutableLiveData<String> _exShortDesc = new MutableLiveData<>();
+    public LiveData<String> exShortDesc = _exShortDesc;
+
+    private final MutableLiveData<String> _buttonNextText = new MutableLiveData<>();
+    public LiveData<String> buttonNextText = _buttonNextText;
+
     public ExerciseCategory1ViewModel(@NonNull Application application, int exId) {
         super(application);
-        mRepo_2 = new Repo_2(application);
-        mRepo = Repo.getInstance(application);
+        mRepo_ = new Repo(application);
+        mRepoSQLite = Repo_SQLite.getInstance(application);
         mIdEx = exId;
 
         switch (exId){
             case 1:
                 mWorlds_ex1 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 mArrayTextUnderThumb = application.getResources().getStringArray(R.array.TextUnderThumb_ex1);
-                _exName.setValue("Лингвистические пирамиды");
                 _exShortDesc.setValue("Обобщайте, разобобщайте, переходите по аналогиям");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 2:
                 mWorlds_ex2_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_Alive));
                 mWorlds_ex2_not_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
-                _exName.setValue("Чем ворон похож на стол");
                 _exShortDesc.setValue("Найдите сходство");
                 _buttonNextText.setValue("следующие слова");
                 break;
             case 3:
                 mWorlds_ex2_not_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 mWorlds_ex3_filings = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_filings));
-                _exName.setValue("Чем ворон похож на стул (чувства)");
                 _exShortDesc.setValue("Найдите сходство");
                 _buttonNextText.setValue("следующие слова");
                 break;
             case 4:
                 mWorlds_ex4 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
-                _exName.setValue("Продвинутое связывание");
                 _exShortDesc.setValue("Найдите сходства");
                 _buttonNextText.setValue("следующие слова");
                 break;
             case 5:
                 mWorlds_ex5 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
-                _exName.setValue("О чем вижу, о том и пою");
                 _exShortDesc.setValue("Описывайте максимально долго данный предмет");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 6:
                 mWorlds_ex6 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_abbreviations));
-                _exName.setValue("Другие варианты сокращений");
                 _exShortDesc.setValue("Придумайте необычную расшифровку аббревиатуры");
                 _buttonNextText.setValue("следующая аббревиатура");
 
                 break;
             case 7:
                 mWorlds_ex7 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
-                _exName.setValue("Волшебный нейминг");
                 _exShortDesc.setValue("Придумайте к этому слову 5 или больше смешных прилагательных");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 8:
                 mWorlds_ex8 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
-                _exName.setValue("Купля - продажа");
                 _exShortDesc.setValue("Продайте это");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 9:
                 mWorlds_ex9 = Arrays.asList(application.getResources().getStringArray(R.array.letters));
-                _exName.setValue("Вспомнить все");
                 _exShortDesc.setValue("Назовите 15 слов на эту букву");
                 _buttonNextText.setValue("следующая буква");
                 break;
             case 10:
                 mWorlds_ex10 = Arrays.asList(application.getResources().getStringArray(R.array.Terms));
-                _exName.setValue("В соавторстве с Далем");
                 _exShortDesc.setValue("Дайте определение слову");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 11:
                 mWorlds_ex11 = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
-                _exName.setValue("Тест Роршаха");
                 _exShortDesc.setValue("Придумайте чем это может быть еще");
                 _buttonNextText.setValue("следующее слово");
                 break;
             case 12:
                 mWorlds_ex12 = Arrays.asList(application.getResources().getStringArray(R.array.professions));
-                _exName.setValue("Хуже уже не будет");
                 _exShortDesc.setValue("Придумайте ситуацию или фразу худшего в мире");
                 _buttonNextText.setValue("следующая профессия");
                 break;
             case 13:
                 mWorlds_ex13 = Arrays.asList(application.getResources().getStringArray(R.array.questions));
-                _exName.setValue("Вопрос - ответ");
                 _exShortDesc.setValue("Дайте развернутый ответ на вопрос");
                 _buttonNextText.setValue("следующий вопрос");
                 break;
             case 14:
-                _exName.setValue("Рассказчик - импровизатор");
                 _exShortDesc.setValue("Составьте рассказ, используя данные слова");
                 _buttonNextText.setValue("следующие слова");
                 mWorlds_ex2_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_Alive));
                 mWorlds_ex2_not_living = Arrays.asList(application.getResources().getStringArray(R.array.Worlds_items_notAlive));
                 break;
         }
-
     }
-
-    public final MutableLiveData<Boolean> _isRecording = new MutableLiveData<>(false);
-    public LiveData<Boolean> isRecording = _isRecording;
-
-    public final MutableLiveData<String> _exName = new MutableLiveData<>();
-    public LiveData<String> exName = _exName;
-
-    public final MutableLiveData<String> _exShortDesc = new MutableLiveData<>();
-    public LiveData<String> exShortDesc = _exShortDesc;
-
-    public final MutableLiveData<String> _buttonNextText = new MutableLiveData<>();
-    public LiveData<String> buttonNextText = _buttonNextText;
-
 
     /*Остановка записи*/
     public void stopRecording(Context context) {
@@ -256,10 +237,10 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     }
 
     public LiveData<Exercise> getExerciseById(int mIdEx) {
-        return mRepo_2.getExerciseById(mIdEx);
+        return mRepo_.getExerciseById(mIdEx);
     }
 
     public int getMaxWorldCount(int exId){
-        return  mRepo.getMaxWorldCount(exId);
+        return  mRepoSQLite.getMaxWorldCount(exId);
     }
 }

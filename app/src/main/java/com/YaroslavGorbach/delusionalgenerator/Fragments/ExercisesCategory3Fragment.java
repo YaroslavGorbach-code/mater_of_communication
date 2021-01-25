@@ -64,7 +64,7 @@ public class ExercisesCategory3Fragment extends Fragment {
             mViewModel.onClick();
         });
 
-        /*в зависимости од количества кликов устанавливаем инструкцию и скороговорку*/
+        /*в зависимости от количества кликов устанавливаем инструкцию и скороговорку*/
         mViewModel.clickCounter.observe(getViewLifecycleOwner(), clickValue -> {
             switch (clickValue) {
                 case 0:

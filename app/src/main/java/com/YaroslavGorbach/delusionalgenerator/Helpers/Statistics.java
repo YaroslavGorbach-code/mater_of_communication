@@ -3,7 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.Helpers;
 import android.content.Context;
 import android.os.SystemClock;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,8 +18,8 @@ public class Statistics {
         DateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.getDefault());
         String date = dateFormat.format(currentDate);
         long time = ((SystemClock.elapsedRealtime() - baseTime)/1000) / 60;
-        Repo.getInstance(context).insertDateAndTime(exId, date, time);
-        Repo.getInstance(context).insertDateAndValue(exId, date, value);
+        Repo_SQLite.getInstance(context).insertDateAndTime(exId, date, time);
+        Repo_SQLite.getInstance(context).insertDateAndValue(exId, date, value);
     }
 
 }

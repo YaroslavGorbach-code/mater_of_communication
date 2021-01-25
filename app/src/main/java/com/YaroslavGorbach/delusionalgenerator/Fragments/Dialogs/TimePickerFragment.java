@@ -1,16 +1,14 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Calendar;
@@ -36,7 +34,7 @@ public class TimePickerFragment extends DialogFragment
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        Repo repo = Repo.getInstance(getContext());
+        Repo_SQLite repoSQLite = Repo_SQLite.getInstance(getContext());
         String hour = String.valueOf(hourOfDay);
         String min = String.valueOf(minute);
         if (hourOfDay < 10){
@@ -45,6 +43,6 @@ public class TimePickerFragment extends DialogFragment
         if (minute < 10){
             min = "0"+ minute;
         }
-        repo.setNotificationTime(hour, min);
+        repoSQLite.setNotificationTime(hour, min);
     }
 }

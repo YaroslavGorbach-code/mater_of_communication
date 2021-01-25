@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 
 public class DialogClearStatistics extends AppCompatDialogFragment {
 
@@ -32,7 +31,7 @@ public class DialogClearStatistics extends AppCompatDialogFragment {
 
         return new AlertDialog.Builder(requireContext()).setTitle("Вы действительно хотите очитить статистику?")
                 .setPositiveButton("Да", (dialog, which) ->
-                        Repo.getInstance(getContext()).clearStatistic(getArguments().getInt(ARG_EX_ID)))
+                        Repo_SQLite.getInstance(getContext()).clearStatistic(getArguments().getInt(ARG_EX_ID)))
                 .setNegativeButton("Нет",null)
                 .create();
     }

@@ -4,18 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogClearStatistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -52,8 +48,8 @@ public class StatisticsFragment extends Fragment {
         /*Потписка на слушателей*/
         createTimeChart();
         createWorldCounterChart();
-        Repo.getInstance(getContext()).addListener(this::createTimeChart);
-        Repo.getInstance(getContext()).addListener(this::createWorldCounterChart);
+        Repo_SQLite.getInstance(getContext()).addListener(this::createTimeChart);
+        Repo_SQLite.getInstance(getContext()).addListener(this::createWorldCounterChart);
 
         /*Показ диалога который для удаления статистики*/
         mToolbar.setOnMenuItemClickListener(v->{
@@ -69,8 +65,8 @@ public class StatisticsFragment extends Fragment {
 
     /*Создаем чарт для времени*/
     private  void createTimeChart(){
-        BarDataSet bardataset = new BarDataSet(Repo.getInstance(getContext()).getEntriesTime(mIdEx), "Минуты");
-        BarData data = new BarData(Repo.getInstance(getContext()).getTimeLabels(mIdEx), bardataset);
+        BarDataSet bardataset = new BarDataSet(Repo_SQLite.getInstance(getContext()).getEntriesTime(mIdEx), "Минуты");
+        BarData data = new BarData(Repo_SQLite.getInstance(getContext()).getTimeLabels(mIdEx), bardataset);
         mChartMinutes.setData(data); // set the data and list of labels into chart
         mChartMinutes.setDescription("Количество минут потраченых на сессию");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -79,8 +75,8 @@ public class StatisticsFragment extends Fragment {
 
     /*Создаем чарт для количества слов*/
     private  void createWorldCounterChart(){
-        BarDataSet bardataset = new BarDataSet(Repo.getInstance(getContext()).getEntriesWorldCount(mIdEx), "Слова");
-        BarData data = new BarData(Repo.getInstance(getContext()).getWorldCountLabels(mIdEx), bardataset);
+        BarDataSet bardataset = new BarDataSet(Repo_SQLite.getInstance(getContext()).getEntriesWorldCount(mIdEx), "Слова");
+        BarData data = new BarData(Repo_SQLite.getInstance(getContext()).getWorldCountLabels(mIdEx), bardataset);
         mChartWorldCount.setData(data); // set the data and list of labels into chart
         mChartWorldCount.setDescription("Количество пройденых слов за сессию");  // set the description
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -90,7 +86,7 @@ public class StatisticsFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Repo.getInstance(getContext()).removeListener(this::createTimeChart);
-        Repo.getInstance(getContext()).removeListener(this::createWorldCounterChart);
+        Repo_SQLite.getInstance(getContext()).removeListener(this::createTimeChart);
+        Repo_SQLite.getInstance(getContext()).removeListener(this::createWorldCounterChart);
     }
 }

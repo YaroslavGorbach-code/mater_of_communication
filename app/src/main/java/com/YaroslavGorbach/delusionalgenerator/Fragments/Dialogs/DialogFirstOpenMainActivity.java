@@ -13,7 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 
 public class DialogFirstOpenMainActivity extends AppCompatDialogFragment {
 
@@ -66,8 +66,8 @@ public class DialogFirstOpenMainActivity extends AppCompatDialogFragment {
     }
 
     private void setTheme(String color){
-        Repo.getInstance(getContext()).resetOldThemeState();
-        Repo.getInstance(getContext()).changeTheme(color);
+        Repo_SQLite.getInstance(getContext()).resetOldThemeState();
+        Repo_SQLite.getInstance(getContext()).changeTheme(color);
         listener.onClickTheme(DialogFirstOpenMainActivity.this);
         dismiss();
 

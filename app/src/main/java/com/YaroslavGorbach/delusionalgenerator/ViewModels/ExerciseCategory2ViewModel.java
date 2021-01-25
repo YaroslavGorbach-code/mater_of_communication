@@ -45,9 +45,6 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
     private final MutableLiveData<Integer> _countValue = new MutableLiveData<>(0);
     public LiveData<Integer> countValue = _countValue;
 
-    private final MutableLiveData<String> _exName = new MutableLiveData<>();
-    public LiveData<String> exName = _exName;
-
     private final MutableLiveData<String> _nextExName = new MutableLiveData<>();
     public LiveData<String> nextExName = _nextExName;
 
@@ -65,7 +62,6 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
         resoldGoodList = Arrays.asList(application.getResources().getStringArray(R.array.resultGood));
         switch (exId){
             case 20:
-                _exName.setValue("Существительные");
                 _exShortDescription.setValue("Назовите как можно больше существительных(Кто? Что?). " +
                         "После каждого названого слова, нажмите" +
                         " на экран, для учета результата");
@@ -73,16 +69,13 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
                 _nextExName.setValue("Прилагательные");
                 break;
             case 21:
-                _exName.setValue("Прилагательные");
                 _exShortDescription.setValue("Назовите как можно больше прилагательных(Какой? Какое?)." +
                         " После каждого названого слова, нажмите" +
                         " на экран, для учета результата");
                 _exNormWords.setValue(46);
                 _nextExName.setValue("Глаголы");
-
                 break;
             case 22:
-                _exName.setValue("Глаголы");
                 _exShortDescription.setValue("Назовите как можно больше глаголов(Что делать? Что сделать?). После каждого названого слова, нажмите" +
                         " на экран, для учета результата");
                 _exNormWords.setValue(42);

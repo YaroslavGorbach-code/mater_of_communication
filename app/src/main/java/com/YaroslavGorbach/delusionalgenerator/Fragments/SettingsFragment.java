@@ -17,13 +17,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.BuildConfig;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.ViewModels.SettingsFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogAboutApp;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.TimePickerFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.google.android.material.appbar.MaterialToolbar;
 
 public class
 SettingsFragment extends Fragment {
@@ -36,7 +35,7 @@ SettingsFragment extends Fragment {
     private ConstraintLayout mThemes;
     private AppCompatCheckBox mCheckBox;
     private TextView mTimePicker;
-    private Repo mRepo;
+    private Repo_SQLite mRepoSQLite;
 
     private SettingsFragmentViewModel mViewModel;
 
@@ -53,8 +52,8 @@ SettingsFragment extends Fragment {
         mThemes = view.findViewById(R.id.themes);
         mCheckBox = view.findViewById(R.id.notificationCheckBox);
         mTimePicker = view.findViewById(R.id.timePiker);
-        mRepo = Repo.getInstance(getContext());
-        mCheckBox.setChecked(mRepo.getNotificationState());
+        mRepoSQLite = Repo_SQLite.getInstance(getContext());
+        mCheckBox.setChecked(mRepoSQLite.getNotificationState());
         mViewModel = new ViewModelProvider(this).get(SettingsFragmentViewModel.class);
         return view;
     }
@@ -64,7 +63,7 @@ SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setNotifyTime();
-        mRepo.addListener(this::setNotifyTime);
+        mRepoSQLite.addListener(this::setNotifyTime);
 
         mTimePicker.setOnClickListener(v->{
             TimePickerFragment dialog =  TimePickerFragment.newInstance();
@@ -113,12 +112,12 @@ SettingsFragment extends Fragment {
     }
 
     private void setNotifyTime() {
-        mTimePicker.setText(mRepo.getNotifyHourAndMinute());
+        mTimePicker.setText(mRepoSQLite.getNotifyHourAndMinute());
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mRepo.removeListener(this::setNotifyTime);
+        mRepoSQLite.removeListener(this::setNotifyTime);
     }
 }

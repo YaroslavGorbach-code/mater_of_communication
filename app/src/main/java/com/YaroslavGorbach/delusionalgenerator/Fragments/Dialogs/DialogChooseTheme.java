@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
+import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 
 public class DialogChooseTheme extends AppCompatDialogFragment {
 
@@ -71,8 +71,8 @@ public class DialogChooseTheme extends AppCompatDialogFragment {
     }
 
     private void setTheme(String color){
-        Repo.getInstance(getContext()).resetOldThemeState();
-        Repo.getInstance(getContext()).changeTheme(color);
+        Repo_SQLite.getInstance(getContext()).resetOldThemeState();
+        Repo_SQLite.getInstance(getContext()).changeTheme(color);
         listener.onClickTheme(DialogChooseTheme.this);
     }
 

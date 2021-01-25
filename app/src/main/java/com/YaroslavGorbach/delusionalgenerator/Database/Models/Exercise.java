@@ -8,7 +8,6 @@ public class Exercise {
 
     @PrimaryKey
     public int id;
-
     public String name;
     public int category;
     public int pic;

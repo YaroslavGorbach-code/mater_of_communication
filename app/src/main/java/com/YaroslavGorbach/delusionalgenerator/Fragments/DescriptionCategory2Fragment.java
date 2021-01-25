@@ -8,7 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_2;
 import com.YaroslavGorbach.delusionalgenerator.ViewModels.DescriptionCategory2FragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.DescriptionCategory2FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -59,9 +62,12 @@ import com.YaroslavGorbach.delusionalgenerator.R;
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mViewModel.exAim.observe(getViewLifecycleOwner(), aim-> mAimEx_tv.setText(aim));
-            mViewModel.exDescription.observe(getViewLifecycleOwner(), description-> mDescriptionEx_tv.setText(description));
-            mViewModel.exPeriod.observe(getViewLifecycleOwner(), period ->mPeriodEx_tv.setText(period));
+
+            mViewModel.getDescription().observe(getViewLifecycleOwner(), description_category_2 -> {
+                mAimEx_tv.setText(description_category_2.aim);
+                mDescriptionEx_tv.setText(description_category_2.description);
+                mPeriodEx_tv.setText(description_category_2.period);
+            });
         }
     }
 

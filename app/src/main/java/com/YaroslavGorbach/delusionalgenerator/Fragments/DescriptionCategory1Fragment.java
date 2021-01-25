@@ -67,10 +67,11 @@ public class DescriptionCategory1Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel.exAim.observe(getViewLifecycleOwner(), aim-> mAimEx_tv.setText(aim));
-        mViewModel.exDescription.observe(getViewLifecycleOwner(), description-> mDescriptionEx_tv.setText(description));
-        mViewModel.exExample.observe(getViewLifecycleOwner(), example-> mExample_tv.setText(example));
-        mViewModel.exPeriod.observe(getViewLifecycleOwner(), period -> mPeriodEx_tv.setText(period));
-
+        mViewModel.getDescription().observe(getViewLifecycleOwner(), description -> {
+            mAimEx_tv.setText(description.aim);
+            mDescriptionEx_tv.setText(description.description);
+            mExample_tv.setText(description.example);
+            mPeriodEx_tv.setText(description.period);
+        });
     }
 }

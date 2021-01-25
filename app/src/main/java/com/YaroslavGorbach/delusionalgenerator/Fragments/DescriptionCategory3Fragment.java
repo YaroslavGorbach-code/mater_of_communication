@@ -9,8 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+//import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_3;
 import com.YaroslavGorbach.delusionalgenerator.ViewModels.DescriptionCategory3FragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.ViewModels.Factories.DescriptionCategory3FragmentViewModelFactory;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -61,18 +63,19 @@ public class DescriptionCategory3Fragment extends Fragment {
                 getActivity().getApplication(),mExId)).get(DescriptionCategory3FragmentViewModel.class);
 
         return view;
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel.exAim.observe(getViewLifecycleOwner(), aim-> mAimEx_tv.setText(aim));
-        mViewModel.exDescription_1.observe(getViewLifecycleOwner(), part1-> mDescriptionPart_1.setText(part1));
-        mViewModel.exDescription_2.observe(getViewLifecycleOwner(), part2-> mDescriptionPart_2.setText(part2));
-        mViewModel.exDescription_3.observe(getViewLifecycleOwner(), part3-> mDescriptionPart_3.setText(part3));
-        mViewModel.exDescription_4.observe(getViewLifecycleOwner(), part4-> mDescriptionPart_4.setText(part4));
-        mViewModel.exDescription_5.observe(getViewLifecycleOwner(), part5-> mDescriptionPart_5.setText(part5));
+        mViewModel.getDescription().observe(getViewLifecycleOwner(), description_category_3 -> {
+            mAimEx_tv.setText(description_category_3.aim);
+            mDescriptionPart_1.setText(description_category_3.description_part_1);
+            mDescriptionPart_2.setText(description_category_3.description_part_2);
+            mDescriptionPart_3.setText(description_category_3.description_part_3);
+            mDescriptionPart_4.setText(description_category_3.description_part_4);
+            mDescriptionPart_5.setText(description_category_3.description_part_5);
+        });
     }
 }
 
