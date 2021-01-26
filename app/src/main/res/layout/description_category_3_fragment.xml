@@ -32,7 +32,7 @@
         android:letterSpacing="0.1"
         android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:text="@string/Aim_of_exercise_1"
+        android:text="тут должна быть цель"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
