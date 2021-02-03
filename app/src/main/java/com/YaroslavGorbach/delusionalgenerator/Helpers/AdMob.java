@@ -24,8 +24,11 @@ public class AdMob {
     private static final String ADD_PREFERENCES = "ADD_PREFERENCES";
     private static final String CLICK_COUNT = "CLICK_COUNT";
     private SharedPreferences mSettings;
+    private int mCount;
+
 
     public AdMob(Context context){
+        mSettings = context.getSharedPreferences(ADD_PREFERENCES, Context.MODE_PRIVATE);
 
         MobileAds.initialize(context, new OnInitializationCompleteListener() {
             @Override
@@ -71,6 +74,7 @@ public class AdMob {
                     // Make sure to set your reference to null so you don't
                     // show it a second time.
                     mInterstitialAd = null;
+                    mSettings.edit().putInt(CLICK_COUNT, 0).apply();
                 }
             });
         }
@@ -84,14 +88,11 @@ public class AdMob {
     }
 
      public void showInterstitialAd(Activity activity){
-         int count;
-         mSettings = activity.getSharedPreferences(ADD_PREFERENCES, Context.MODE_PRIVATE);
-         count = mSettings.getInt(CLICK_COUNT, 0);
-         mSettings.edit().putInt(CLICK_COUNT, count+1).apply();
 
-         if (mInterstitialAd != null && count>4) {
+         mCount = mSettings.getInt(CLICK_COUNT, 0);
+         mSettings.edit().putInt(CLICK_COUNT, mCount+1).apply();
+         if (mInterstitialAd != null && mCount>4) {
             mInterstitialAd.show(activity);
-             mSettings.edit().putInt(CLICK_COUNT, 0).apply();
          } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.");
         }
