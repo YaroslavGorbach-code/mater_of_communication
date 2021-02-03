@@ -11,9 +11,11 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.Fragments.Dialogs.DialogFirstOpenMainActivity;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -25,18 +27,22 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
 
     private static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
     private static final String FIRST_OPEN = "FIRST_OPEN";
+    private AdMob mAdMod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        mAdMod = new AdMob(this);
 
         /*Установка оброботки нажатий на элементы нижней навигации*/
         setUpNavControllers();
 
         /*Показ диалога с описанием приложения если оно открываеться впервые*/
         showFirsOpenDialog();
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -56,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     toolbar.getMenu().clear();
                     toolbar.inflateMenu(R.menu.menu_description);
                     bottomNavigationView.setVisibility(View.GONE);
+                    mAdMod.showInterstitialAd(this);
                     break;
                 case R.id.exercisesFragment:
                     toolbar.getMenu().clear();

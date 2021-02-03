@@ -25,8 +25,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_arrow_back)
-                .setContentTitle("Бредогенератор сам себя не прокачает!")
+                .setContentTitle("Речь сам себя не улучшит!")
                 .setContentText("Пора чуть-чуть поговорить.")
                 .setSmallIcon(ic_notifi)
                 .setContentIntent(pendingIntent)

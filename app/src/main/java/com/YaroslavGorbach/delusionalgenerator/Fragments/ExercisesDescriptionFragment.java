@@ -33,6 +33,7 @@ public class ExercisesDescriptionFragment extends Fragment {
     private int mExCategory;
     private Menu mMenu;
     private MaterialToolbar mToolbar;
+    private AdMob mAdMod;
 
 
     @Override
@@ -54,8 +55,10 @@ public class ExercisesDescriptionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*Показ банера*/
+
+        /*Показ рекламы*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabDescription));
+
         switch (mExCategory){
             case 1:
                 getParentFragmentManager().beginTransaction()

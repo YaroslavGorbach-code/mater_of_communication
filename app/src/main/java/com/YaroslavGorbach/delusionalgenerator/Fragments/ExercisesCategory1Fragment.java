@@ -54,12 +54,6 @@ public class ExercisesCategory1Fragment extends Fragment {
     private boolean mChronometerState;
 
 
-    public static ExercisesCategory1Fragment newInstance() {
-        return new ExercisesCategory1Fragment();
-    }
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -125,6 +119,7 @@ public class ExercisesCategory1Fragment extends Fragment {
                         new Handler().postDelayed(() -> mStartRecordingButton.setClickable(true), 1000);
                     }
                 }
+
         });
 
         /*При нажатии на большой палец смена его состояния*/
