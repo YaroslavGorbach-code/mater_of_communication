@@ -18,6 +18,8 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.Database.Repo_SQLite;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements DialogChooseTheme.ChooseThemesListener{
 
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     toolbar.inflateMenu(R.menu.menu_description);
                     bottomNavigationView.setVisibility(View.GONE);
                     break;
-                case R.id.exercisesFragment_v_2:
+                case R.id.exercisesFragment:
                     toolbar.getMenu().clear();
                     bottomNavigationView.setVisibility(View.VISIBLE);
                     break;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     toolbar.inflateMenu(R.menu.menu_records);
                     break;
                 case R.id.allExsByCategoryFragment:
+                case R.id.randomTrainingsFragment:
                     toolbar.getMenu().clear();
                     bottomNavigationView.setVisibility(View.GONE);
                     break;
@@ -82,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                 case R.id.exercisesCategory3Fragment:
                     toolbar.getMenu().clear();
                     break;
-
             }
         });
 
@@ -106,23 +108,18 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
     private void setTheme(){
         String color = Repo_SQLite.getInstance(MainActivity.this).getThemeState();
         switch (color){
-
             case "blue":
                 setTheme(R.style.AppTheme_blue);
                 break;
-
             case "green":
                 setTheme(R.style.AppTheme_green);
                 break;
-
             case "orange":
                 setTheme(R.style.AppTheme_orange);
                 break;
-
             case "red":
                 setTheme(R.style.AppTheme_red);
                 break;
-
             case "purple":
                 setTheme(R.style.AppTheme_purple);
                 break;

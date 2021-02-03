@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/exercisesFragment_v_2">
+    app:startDestination="@id/exercisesFragment">
 
     <fragment
-        android:id="@+id/exercisesFragment_v_2"
+        android:id="@+id/exercisesFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment"
         android:label="Все упражнения"
         tools:layout="@layout/fragment_exercises" >
@@ -39,6 +39,9 @@
             app:destination="@id/settingsFragment2"
             app:enterAnim="@anim/fragment_open_enter"
             app:popEnterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/action_exercisesFragment_v_2_to_randomTrainingsFragment"
+            app:destination="@id/randomTrainingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
@@ -165,4 +168,9 @@
         android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.SettingsFragment"
         android:label="Главная"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/randomTrainingsFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.RandomTrainingsFragment"
+        android:label="fragment_rangom_trainings"
+        tools:layout="@layout/fragment_rangom_trainings" />
 </navigation>

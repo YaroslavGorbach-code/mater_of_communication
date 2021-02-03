@@ -2,6 +2,60 @@
 <resources>
 
     <string-array name="professions">
+        <item>Портной</item>
+        <item>Режиссер</item>
+        <item>Слесарь</item>
+        <item>Снегоуборщик</item>
+        <item>Спецназ</item>
+        <item>Стажер</item>
+        <item>Стилист</item>
+        <item>Столяр</item>
+        <item>Судья</item>
+        <item>Таксис</item>
+        <item>Тамада</item>
+        <item>Танкист</item>
+        <item>Танцор</item>
+        <item>Татуировщик</item>
+        <item>Телохранитель</item>
+        <item>Теннисистка</item>
+        <item>Токарь</item>
+        <item>Торговец</item>
+        <item>Травматолог</item>
+        <item>Тракторист</item>
+        <item>Тренер</item>
+        <item>Трубочист</item>
+        <item>Трудовик</item>
+        <item>Упаковщик</item>
+        <item>Учитель</item>
+        <item>Учредитель</item>
+        <item>Фермер</item>
+        <item>Фигурист</item>
+        <item>Физик</item>
+        <item>Филолог</item>
+        <item>Фокусник</item>
+        <item>Фрезеровщик</item>
+        <item>Хирург</item>
+        <item>Хлебороб</item>
+        <item>Хоккеист</item>
+        <item>Циркач</item>
+        <item>Часовщик</item>
+        <item>Чемоданщик</item>
+        <item>Чиновник</item>
+        <item>Шаман</item>
+        <item>Шахматист</item>
+        <item>Шахтер</item>
+        <item>Щахтостроитель</item>
+        <item>Шериф</item>
+        <item>Штангист</item>
+        <item>Штукатурщик</item>
+        <item>Штурман</item>
+        <item>Эколог</item>
+        <item>Экономист</item>
+        <item>Экстрасенс</item>
+        <item>Электромеханик</item>
+        <item>Электромонтажник</item>
+        <item>Электрик</item>
+        <item>Электросварщик</item>
         <item>Резчик по камню</item>
         <item>Хирург</item>
         <item>Космонавт</item>

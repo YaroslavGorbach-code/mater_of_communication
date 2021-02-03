@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.Fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -16,9 +18,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.Adapters.ExercisesListAdapter;
+import com.YaroslavGorbach.delusionalgenerator.Database.Models.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.Helpers.Rand;
 import com.YaroslavGorbach.delusionalgenerator.ViewModels.ExercisesFragmentViewModel;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY;
 
@@ -37,6 +48,9 @@ public class ExercisesFragment extends Fragment {
     private TextView mAllExsCategory2;
     private TextView mAllExsCategory3;
 
+    private ExtendedFloatingActionButton mStartRandomTrainings_bt;
+    private NestedScrollView mScrollView;
+
     private ExercisesFragmentViewModel mViewModel;
 
 
@@ -49,6 +63,8 @@ public class ExercisesFragment extends Fragment {
         mAllExsCategory1 = view.findViewById(R.id.textViewAll1);
         mAllExsCategory2 = view.findViewById(R.id.textViewAll2);
         mAllExsCategory3 = view.findViewById(R.id.textViewAll3);
+        mStartRandomTrainings_bt = view.findViewById(R.id.randomEx);
+        mScrollView = view.findViewById(R.id.scrollView);
         mViewModel = new ViewModelProvider(this).get(ExercisesFragmentViewModel.class);
         setAdapters(view);
         return view;
@@ -80,6 +96,54 @@ public class ExercisesFragment extends Fragment {
                     .setCategoryId(3)
                     .setCategoryName(getString(R.string.category_3_name));
             Navigation.findNavController(view).navigate(action);
+        });
+
+        mStartRandomTrainings_bt.setOnClickListener(v ->{
+            int exCategory = Rand.randInt(1,10);
+            int exId;
+            switch (exCategory){
+                case 1:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                    exId = Rand.randInt(1,14);
+                    exCategory = 1;
+                    break;
+                case 2:
+                    exId = Rand.randInt(20,22);
+                    break;
+                case 3:
+                    exId = Rand.randInt(30,32);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + exCategory);
+            }
+
+            NavDirections action = ExercisesFragmentDirections
+                    .actionExercisesFragmentV2ToExercisesDescriptionFragment3()
+                    .setExId(exId)
+                    .setExCategory(exCategory);
+            Navigation.findNavController(view).navigate(action);
+        });
+
+        mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > oldScrollY) {
+                    YoYo.with(Techniques.RotateOut)
+                            .duration(400)
+                            .playOn(mStartRandomTrainings_bt);
+                } else {
+                    YoYo.with(Techniques.RotateIn)
+                            .duration(400)
+                            .playOn(mStartRandomTrainings_bt);
+                    mStartRandomTrainings_bt.show();
+                }
+            }
         });
     }
 
@@ -139,5 +203,7 @@ public class ExercisesFragment extends Fragment {
             mRecyclerView_category_3.setAdapter(mAdapter_category_3);
         });
     }
+
+
 
 }

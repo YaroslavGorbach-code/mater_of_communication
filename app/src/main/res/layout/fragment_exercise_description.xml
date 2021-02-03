@@ -22,7 +22,7 @@
         android:id="@+id/fragmentDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toTopOf="@+id/button_start_ex_category_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

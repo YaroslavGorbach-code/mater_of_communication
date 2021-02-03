@@ -12,7 +12,6 @@ import com.YaroslavGorbach.delusionalgenerator.Database.Repo;
 import java.util.List;
 
 public class ExercisesFragmentViewModel extends AndroidViewModel {
-
     private final Repo mRepo;
 
     public ExercisesFragmentViewModel(@NonNull Application application) {
@@ -23,4 +22,5 @@ public class ExercisesFragmentViewModel extends AndroidViewModel {
     public LiveData<List<Exercise>> getExByCategory(int category) {
         return mRepo.getExByCategory(category);
     }
+
 }

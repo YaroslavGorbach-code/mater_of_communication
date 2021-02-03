@@ -102,8 +102,6 @@ public class ExercisesCategory1Fragment extends Fragment {
         /*показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabEx1));
 
-        /*навигация назад*/
-
         mEx.observe(getViewLifecycleOwner(), exercise ->
                 mExName = exercise.name);
 

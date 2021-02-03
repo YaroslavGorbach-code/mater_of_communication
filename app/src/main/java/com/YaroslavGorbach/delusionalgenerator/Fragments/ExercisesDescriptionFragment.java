@@ -56,7 +56,6 @@ public class ExercisesDescriptionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         /*Показ банера*/
         AdMob.showBanner(view.findViewById(R.id.adViewTabDescription));
-
         switch (mExCategory){
             case 1:
                 getParentFragmentManager().beginTransaction()
@@ -146,11 +145,4 @@ public class ExercisesDescriptionFragment extends Fragment {
             Navigation.findNavController(view).navigate(action);
         }
     }
-
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        mMenu.clear();
-//    }
 }

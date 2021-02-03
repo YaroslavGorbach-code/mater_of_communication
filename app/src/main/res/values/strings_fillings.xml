@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Worlds_items_filings">
+        <item>ступор</item>
+        <item>стыд</item>
+        <item>успех</item>
+        <item>усталость</item>
+        <item>честность</item>
+        <item>экстаз</item>
+        <item>эмоциональность</item>
         <item>злость</item>
         <item>гнев</item>
         <item>возмущение</item>
