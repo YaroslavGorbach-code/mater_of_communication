@@ -9,8 +9,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Description_dao;
 import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Exercise_dao;
+import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Description_dao;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_1;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_2;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_3;
@@ -22,7 +22,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
         Description_category_1.class,
         Description_category_2.class,
         Description_category_3.class},
-        version = 7)
+        version = 8)
 
 public abstract class Database extends RoomDatabase {
     private static Database sInstance;
@@ -37,6 +37,7 @@ public abstract class Database extends RoomDatabase {
                     .addMigrations(MIGRATION_4_5)
                     .addMigrations(MIGRATION_5_6)
                     .addMigrations(MIGRATION_6_7)
+                    .addMigrations(MIGRATION_7_8)
                     .addCallback(rdc)
                     .build();
         }
@@ -214,6 +215,38 @@ public abstract class Database extends RoomDatabase {
                 Data.insertDescriptionsCategory_3(dao);
             }).start();
 
+        }
+    };
+
+    static final Migration MIGRATION_7_8 = new Migration(7, 8) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            Exercise_dao exDao;
+            exDao = sInstance.exercise_dao();
+            new Thread(() -> {
+                exDao.update(new Exercise(1,"Лингвистические пирамиды",1, R.drawable.ex1_backgraund_v_2, 0, 1));
+                exDao.update(new Exercise(2,"Чем ворон похож на стол",1,R.drawable.ex2_backgraund_v_3, 0, 2));
+                exDao.update(new Exercise(14,"Рассказчик - импровизатор",1,R.drawable.ex14_backgraund_v_2, 0,3));
+                exDao.update(new Exercise(4,"Продвинутое связывание",1,R.drawable.ex4_backgraund_v_3, 0,4));
+                exDao.update(new Exercise(5,"О чем вижу, о том и пою",1,R.drawable.ex5_backgraund_v_2, 0,5));
+                exDao.update(new Exercise(6,"Другие варианты сокращений",1,R.drawable.ex6_backgraund_v_2, 0,6));
+                exDao.update(new Exercise(7,"Волшебный нейминг",1,R.drawable.ex7_backgraund_v_2, 0,7));
+                exDao.update(new Exercise(8,"Купля - продажа",1,R.drawable.ex8_backgraund_v_2, 0,8));
+                exDao.update(new Exercise(9,"Вспомнить все",1,R.drawable.ex9_backgraund_v_2, 0,9));
+                exDao.update(new Exercise(10,"В соавторстве с Далем",1,R.drawable.ex10_backgraund_v_2,0,10));
+                exDao.update(new Exercise(11,"Тест Роршаха",1,R.drawable.ex11_backgraund_v_2, 0,11));
+                exDao.update(new Exercise(12,"Хуже уже не будет",1,R.drawable.ex12_backgraund_v_2, 0,12));
+                exDao.update(new Exercise(13,"Вопрос - ответ",1,R.drawable.ex13_backgraund_v_2, 0,13));
+                exDao.update(new Exercise(3,"Чем ворон похож на стул (чувства)",1,R.drawable.ex3_backgraund_v_2, 0,14));
+
+                exDao.update(new Exercise(20,"Существительные",2,R.drawable.ex20_backgraund_v_2, 0,1));
+                exDao.update(new Exercise(21,"Прилагательные",2,R.drawable.ex21_backgraund_v_2, 0,2));
+                exDao.update(new Exercise(22,"Глаголы",2,R.drawable.ex22_backgraund_v_2, 0,3));
+
+                exDao.update(new Exercise(30,"Простые скороговорки",3,R.drawable.ex30_backgraund_v_2, 0,1));
+                exDao.update(new Exercise(31,"Сложные скороговорки",3,R.drawable.ex31_backgraund_v_2, 0,2));
+                exDao.update(new Exercise(32,"Очень сложные скороговорки",3,R.drawable.ex32_backgraund_v_2, 0,3));
+            }).start();
         }
     };
 

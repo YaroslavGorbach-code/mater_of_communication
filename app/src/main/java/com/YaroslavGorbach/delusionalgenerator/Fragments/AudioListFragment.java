@@ -84,7 +84,7 @@ public class AudioListFragment extends Fragment{
 
 
         /*Показ банера*/
-        AdMob.showBanner(view.findViewById(R.id.adViewTabAudioList));
+        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
 
         return view;
     }

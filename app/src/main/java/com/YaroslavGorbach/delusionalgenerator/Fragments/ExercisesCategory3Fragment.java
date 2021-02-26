@@ -57,7 +57,7 @@ public class ExercisesCategory3Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         /*показ банера*/
-        AdMob.showBanner(view.findViewById(R.id.adViewTabEx3));
+        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
 
         /*оброботка клика на кнопку для показа слудующей скороговорки*/
         mNextTwistButton.setOnClickListener(v->{

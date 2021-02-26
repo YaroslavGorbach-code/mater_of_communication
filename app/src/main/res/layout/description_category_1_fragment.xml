@@ -104,7 +104,7 @@
 
                 <TextView
                     android:id="@+id/textView_description_ex"
-                    android:layout_width="379dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:letterSpacing="0.1"
                     android:padding="10dp"

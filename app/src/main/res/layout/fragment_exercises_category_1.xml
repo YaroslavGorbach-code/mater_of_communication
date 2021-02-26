@@ -8,12 +8,14 @@
     android:orientation="vertical">
 
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adViewTabEx1"
+    <com.google.android.ads.nativetemplates.TemplateView
+        android:id="@+id/my_template"
+        app:gnt_template_type="@layout/gnt_small_template_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-6043694180023070/2709885324"/>
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/description_short"

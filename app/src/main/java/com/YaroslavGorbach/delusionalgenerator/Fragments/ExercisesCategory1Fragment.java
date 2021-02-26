@@ -94,7 +94,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         changeWord();
 
         /*показ банера*/
-        AdMob.showBanner(view.findViewById(R.id.adViewTabEx1));
+        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
 
         mEx.observe(getViewLifecycleOwner(), exercise ->
                 mExName = exercise.name);

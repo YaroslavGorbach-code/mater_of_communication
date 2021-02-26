@@ -4,8 +4,8 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Description_dao;
 import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Exercise_dao;
+import com.YaroslavGorbach.delusionalgenerator.Database.Daos.Description_dao;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_1;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_2;
 import com.YaroslavGorbach.delusionalgenerator.Database.Models.Description_category_3;

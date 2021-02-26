@@ -57,7 +57,7 @@ public class ExercisesDescriptionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         /*Показ рекламы*/
-        AdMob.showBanner(view.findViewById(R.id.adViewTabDescription));
+        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
 
         switch (mExCategory){
             case 1:

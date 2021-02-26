@@ -6,17 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.ExercisesCategory3Fragment">
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adViewTabEx3"
-        android:layout_width="0dp"
+    <com.google.android.ads.nativetemplates.TemplateView
+        android:id="@+id/my_template"
+        app:gnt_template_type="@layout/gnt_small_template_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-6043694180023070/2709885324"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tongue_twister_help"
@@ -28,7 +25,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adViewTabEx3" />
+        app:layout_constraintTop_toBottomOf="@+id/my_template" />
 
     <TextView
         android:id="@+id/twisters"
@@ -39,13 +36,13 @@
         android:gravity="center"
         android:letterSpacing="0.1"
         android:padding="16dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:text="test"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/nextTwist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tongue_twister_help"
         app:layout_constraintVertical_bias="0.45" />
 
     <androidx.appcompat.widget.AppCompatImageButton
