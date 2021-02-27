@@ -241,6 +241,10 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     }
 
     public int getMaxWorldCount(int exId){
-        return  mRepoSQLite.getMaxWorldCount(exId);
+        try {
+            return  mRepoSQLite.getMaxWorldCount(exId);
+        }catch (Exception e){
+            return 0;
+        }
     }
 }
