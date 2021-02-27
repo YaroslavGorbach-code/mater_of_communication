@@ -86,6 +86,12 @@ public class AdMob {
         }
     }
 
+    static public void showBanner(View view) {
+        AdView mAdView = (AdView) view;
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
     public static void showNativeAdd(Activity activity, TemplateView  templateView){
         MobileAds.initialize(activity, "ca-app-pub-6043694180023070~2901457019");
         AdLoader adLoader = new AdLoader.Builder(activity, "ca-app-pub-6043694180023070/4522089359")

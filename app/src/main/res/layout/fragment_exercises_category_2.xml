@@ -59,18 +59,18 @@
                 android:text="Что делать"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_template" />
+                app:layout_constraintTop_toBottomOf="@+id/banner" />
 
-            <com.google.android.ads.nativetemplates.TemplateView
-                android:id="@+id/my_template"
-                app:gnt_template_type="@layout/gnt_small_template_view"
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-6043694180023070/2709885324"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_finish"
@@ -87,7 +87,7 @@
                 app:cornerRadius="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/whatToDo"
+                app:layout_constraintTop_toBottomOf="@+id/whatToDo"
                 app:rippleColor="?colorAccent"
                 tools:ignore="RtlHardcoded" />
 

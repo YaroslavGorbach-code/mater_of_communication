@@ -70,7 +70,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         /*показ банера*/
-        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
+        AdMob.showBanner(view.findViewById(R.id.banner));
 
         mViewModel.exShortDescription.observe(getViewLifecycleOwner(), exShortDesc->
                 mExShortDescription_tv.setText(exShortDesc));
