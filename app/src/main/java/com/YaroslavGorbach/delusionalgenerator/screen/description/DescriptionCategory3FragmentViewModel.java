@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.Description_category_3;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.RepoImpOLD;
 
 public class DescriptionCategory3FragmentViewModel extends AndroidViewModel {
 
@@ -14,8 +14,8 @@ public class DescriptionCategory3FragmentViewModel extends AndroidViewModel {
 
     public DescriptionCategory3FragmentViewModel(@NonNull Application application, int exId) {
         super(application);
-        Repo mRepo = new Repo(application);
-        mDescription = mRepo.getDescription_category_3_ByExId(exId);
+        RepoImpOLD mRepoImpOLD = new RepoImpOLD(application);
+        mDescription = mRepoImpOLD.getDescription_category_3_ByExId(exId);
     }
 
     public LiveData<Description_category_3> getDescription(){

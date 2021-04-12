@@ -7,21 +7,21 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.RepoImpOLD;
 
 public class ExercisesDescriptionViewModel extends AndroidViewModel {
-    private final Repo mRepo;
+    private final RepoImpOLD mRepoImpOLD;
 
     public ExercisesDescriptionViewModel(@NonNull Application application, int exId) {
         super(application);
-        mRepo = new Repo(application);
+        mRepoImpOLD = new RepoImpOLD(application);
     }
 
     public void update(Exercise exercise){
-        mRepo.update(exercise);
+        mRepoImpOLD.update(exercise);
     }
 
     public LiveData<Exercise> getExerciseById(int id) {
-        return mRepo.getExerciseById(id);
+        return mRepoImpOLD.getExerciseById(id);
     }
 }

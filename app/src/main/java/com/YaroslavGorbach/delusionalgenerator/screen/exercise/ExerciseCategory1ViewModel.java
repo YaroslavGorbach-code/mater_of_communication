@@ -13,7 +13,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.RepoImpOLD;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ import java.util.Random;
 
 public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 
-    private final Repo mRepo_;
+    private final RepoImpOLD mRepo_Imp_;
     private final Repo_SQLite mRepoSQLite;
     private final int mIdEx;
     private MediaRecorder mediaRecorder;
@@ -62,7 +62,7 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
 
     public ExerciseCategory1ViewModel(@NonNull Application application, int exId) {
         super(application);
-        mRepo_ = new Repo(application);
+        mRepo_Imp_ = new RepoImpOLD(application);
         mRepoSQLite = Repo_SQLite.getInstance(application);
         mIdEx = exId;
 
@@ -237,7 +237,7 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     }
 
     public LiveData<Exercise> getExerciseById(int mIdEx) {
-        return mRepo_.getExerciseById(mIdEx);
+        return mRepo_Imp_.getExerciseById(mIdEx);
     }
 
     public int getMaxWorldCount(int exId){
