@@ -12,16 +12,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 @androidx.room.Database(entities = {
-        Exercise.class,
-        Description_category_1.class,
-        Description_category_2.class,
-        Description_category_3.class},
-        version = 8)
+        Exercise.class},
+        version = 9)
 
 public abstract class Database extends RoomDatabase {
     private static Database sInstance;
     public abstract Exercise_dao exercise_dao();
-    public abstract Description_dao description_dao();
 
     public static synchronized Database getInstance(Context context){
         if (sInstance == null){
@@ -33,6 +29,7 @@ public abstract class Database extends RoomDatabase {
                     .addMigrations(MIGRATION_6_7)
                     .addMigrations(MIGRATION_7_8)
                     .addCallback(rdc)
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return sInstance;
@@ -178,8 +175,6 @@ public abstract class Database extends RoomDatabase {
     static final Migration MIGRATION_6_7 = new Migration(6, 7) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            Description_dao dao;
-            dao = sInstance.description_dao();
 
             database.execSQL("CREATE TABLE description_category_1_table (" +
                     "exId INTEGER PRIMARY KEY NOT NULL," +
@@ -202,12 +197,6 @@ public abstract class Database extends RoomDatabase {
                     "description_part_3 TEXT," +
                     "description_part_4 TEXT," +
                     "description_part_5 TEXT) " );
-
-            new Thread(() -> {
-                Data.insertDescriptionsCategory_1(dao);
-                Data.insertDescriptionsCategory_2(dao);
-                Data.insertDescriptionsCategory_3(dao);
-            }).start();
 
         }
     };
@@ -247,17 +236,11 @@ public abstract class Database extends RoomDatabase {
     private static final RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
         public void onCreate(SupportSQLiteDatabase db) {
             Exercise_dao exDao;
-            Description_dao descDao;
             exDao = sInstance.exercise_dao();
-            descDao = sInstance.description_dao();
             new Thread(() -> {
                 Data.insertExercisesCategory_1(exDao);
                 Data.insertExercisesCategory_2(exDao);
                 Data.insertExercisesCategory_3(exDao);
-
-                Data.insertDescriptionsCategory_1(descDao);
-                Data.insertDescriptionsCategory_2(descDao);
-                Data.insertDescriptionsCategory_3(descDao);
             }).start();
         }
 

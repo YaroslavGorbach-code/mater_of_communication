@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     toolbar.getMenu().clear();
                     toolbar.inflateMenu(R.menu.menu_clear_statistics);
                     break;
-                case R.id.favoriteExsFragment:
                 case R.id.settingsFragment2:
                     toolbar.setNavigationIcon(null);
                     toolbar.getMenu().clear();

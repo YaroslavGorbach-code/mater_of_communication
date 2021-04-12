@@ -6,12 +6,6 @@
         android:orderInCategory="1"
         android:icon="@drawable/ic_notifi"/>
     <item
-        android:id="@+id/favoriteExsFragment"
-        android:enabled="true"
-        android:title="Избранные"
-        android:orderInCategory="2"
-        android:icon="@drawable/ic_baseline_star"/>
-    <item
         android:id="@+id/audioListFragment"
         android:enabled="true"
         android:title="Записи"
