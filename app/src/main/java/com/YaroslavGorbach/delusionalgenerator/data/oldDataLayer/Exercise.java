@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

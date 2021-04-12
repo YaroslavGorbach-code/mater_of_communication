@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;

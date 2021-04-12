@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.RepoImpOLD;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.RepoImpOLD;
 
 import java.util.List;
 

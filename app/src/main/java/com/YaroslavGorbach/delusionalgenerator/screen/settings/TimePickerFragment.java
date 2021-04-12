@@ -8,7 +8,7 @@ import android.widget.TimePicker;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Calendar;

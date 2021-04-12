@@ -11,7 +11,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.util.ReminderBroadcast;
 
 import java.util.Calendar;

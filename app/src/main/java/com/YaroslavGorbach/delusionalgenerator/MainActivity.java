@@ -15,7 +15,7 @@ import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.screen.settings.DialogChooseTheme;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

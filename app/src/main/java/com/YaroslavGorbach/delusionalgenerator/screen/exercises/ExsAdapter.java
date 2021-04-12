@@ -36,7 +36,7 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
 
     @Override
     public void onBindViewHolder(@NonNull ExsVh holder, int position) {
-        holder.ex_name.setText(getItem(position).name);
+        holder.ex_name.setText(getItem(position).name.getName());
         Glide.with(holder.itemView.getContext()).load(getItem(position).pic).into(holder.ex_image);
     }
 

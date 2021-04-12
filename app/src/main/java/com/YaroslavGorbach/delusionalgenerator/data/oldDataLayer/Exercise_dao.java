@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

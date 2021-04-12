@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 
 public class DialogChooseTheme extends AppCompatDialogFragment {
 

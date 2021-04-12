@@ -11,9 +11,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
-import com.YaroslavGorbach.delusionalgenerator.data.RepoImpOLD;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.RepoImpOLD;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.io.IOException;

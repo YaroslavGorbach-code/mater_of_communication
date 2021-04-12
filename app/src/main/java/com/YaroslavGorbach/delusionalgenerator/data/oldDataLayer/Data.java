@@ -1,10 +1,10 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class Data {
 
-    static void insertExercisesCategory_1(Exercise_dao dao) {
+    public static void insertExercisesCategory_1(Exercise_dao dao) {
         dao.insert(new Exercise(1, "Лингвистические пирамиды", 1, R.drawable.ex1_backgraund_v_2, 0, 1));
         dao.insert(new Exercise(2, "Чем ворон похож на стол", 1, R.drawable.ex2_backgraund_v_3, 0, 2));
         dao.insert(new Exercise(14, "Рассказчик - импровизатор", 1, R.drawable.ex14_backgraund_v_2, 0, 3));
@@ -21,13 +21,13 @@ public class Data {
         dao.insert(new Exercise(3, "Чем ворон похож на стул (чувства)", 1, R.drawable.ex3_backgraund_v_2, 0, 14));
     }
 
-    static void insertExercisesCategory_2(Exercise_dao dao) {
+    public static void insertExercisesCategory_2(Exercise_dao dao) {
         dao.insert(new Exercise(20, "Существительные", 2, R.drawable.ex20_backgraund_v_2, 0, 1));
         dao.insert(new Exercise(21, "Прилагательные", 2, R.drawable.ex21_backgraund_v_2, 0, 2));
         dao.insert(new Exercise(22, "Глаголы", 2, R.drawable.ex22_backgraund_v_2, 0, 3));
     }
 
-    static void insertExercisesCategory_3(Exercise_dao dao) {
+    public static void insertExercisesCategory_3(Exercise_dao dao) {
         dao.insert(new Exercise(30, "Простые скороговорки", 3, R.drawable.ex30_backgraund_v_2, 0, 1));
         dao.insert(new Exercise(31, "Сложные скороговорки", 3, R.drawable.ex31_backgraund_v_2, 0, 2));
         dao.insert(new Exercise(32, "Очень сложные скороговорки", 3, R.drawable.ex32_backgraund_v_2, 0, 3));

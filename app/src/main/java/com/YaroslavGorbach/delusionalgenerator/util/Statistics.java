@@ -3,7 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.util;
 import android.content.Context;
 import android.os.SystemClock;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Repo_SQLite;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

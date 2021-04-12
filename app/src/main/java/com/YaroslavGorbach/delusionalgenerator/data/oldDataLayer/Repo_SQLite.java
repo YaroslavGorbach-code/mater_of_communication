@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer;
 
 import android.content.ContentValues;
 import android.content.Context;

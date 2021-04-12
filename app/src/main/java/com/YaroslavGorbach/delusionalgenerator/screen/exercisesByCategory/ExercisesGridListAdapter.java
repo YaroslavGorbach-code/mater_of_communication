@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.bumptech.glide.Glide;
 
