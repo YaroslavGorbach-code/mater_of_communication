@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/exercisesFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment"
         android:label="Все упражнения"
         tools:layout="@layout/fragment_exercises" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesDescriptionFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.description.ExercisesDescriptionFragment"
         tools:layout="@layout/fragment_exercise_description" >
         <argument
             android:name="exId"
@@ -86,12 +86,12 @@
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.AudioListFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.audioPlayer.AudioListFragment"
         android:label="Записи"
         tools:layout="@layout/activity_audio_list" />
     <fragment
         android:id="@+id/favoriteExsFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.FavoriteExsFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.favorite.FavoriteExsFragment"
         android:label="Избранные"
         tools:layout="@layout/fragment_favorit_exs" >
         <action
@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/allExsByCategoryFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.AllExsByCategoryFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercisesByCategory.AllExsByCategoryFragment"
         android:label="{categoryName}"
         tools:layout="@layout/fragment_all_exs_by_category" >
         <argument
@@ -122,7 +122,7 @@
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory1Fragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory1Fragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory1Fragment"
         tools:layout="@layout/fragment_exercises_category_1">
         <argument
             android:name="idEx"
@@ -131,7 +131,7 @@
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.StatisticsFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.statistics.StatisticsFragment"
         android:label="Статистика"
         tools:layout="@layout/fragment_statistics" >
         <argument
@@ -141,7 +141,7 @@
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory3Fragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory3Fragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory3Fragment"
         tools:layout="@layout/fragment_exercises_category_3">
         <argument
             android:name="exId"
@@ -150,7 +150,7 @@
     </fragment>
     <fragment
         android:id="@+id/exercisesCategory2Fragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.ExercisesCategory2Fragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory2Fragment"
         tools:layout="@layout/fragment_exercises_category_2">
         <argument
             android:name="idEx"
@@ -165,7 +165,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment2"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.SettingsFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.settings.SettingsFragment"
         android:label="Главная"
         tools:layout="@layout/fragment_settings" />
     <fragment

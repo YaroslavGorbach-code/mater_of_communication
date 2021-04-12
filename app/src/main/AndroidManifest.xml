@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme_orange"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -33,7 +33,7 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notifi" />
 
-        <receiver android:name=".Helpers.ReminderBroadcast" />
+        <receiver android:name=".util.ReminderBroadcast" />
     </application>
 
 </manifest>
