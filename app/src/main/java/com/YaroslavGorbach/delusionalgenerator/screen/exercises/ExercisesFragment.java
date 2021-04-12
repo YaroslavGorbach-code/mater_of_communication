@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -23,11 +25,11 @@ public class ExercisesFragment extends Fragment {
         RecyclerView list = view.findViewById(R.id.allExList);
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
 
-            ExsAdapter adapter = new ExsAdapter(exModel -> {
-                Toast.makeText(requireContext(), exModel.name + " cliced!", Toast.LENGTH_LONG).show();
-            });
-            adapter.submitList(vm.getAllExs());
+            ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
+                    .navigate(ExercisesFragmentDirections
+                                    .actionExercisesFragmentToExercisesDescriptionFragment().setExId(exModel.id)));
 
+            adapter.submitList(vm.getAllExs());
             list.setHasFixedSize(true);
             list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
                     false));

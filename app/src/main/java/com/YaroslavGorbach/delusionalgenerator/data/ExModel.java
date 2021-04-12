@@ -7,14 +7,17 @@ public class ExModel {
     public Description description;
     public int favorite;
     public int sort_order;
+    public int id;
 
     public ExModel(
+            int id,
             String name,
             ExCategory category,
             Description description,
             int pic, int favorite,
             int sort_order)
     {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.description = description;
@@ -29,7 +32,7 @@ public class ExModel {
         TONGUE_TWISTER
     }
 
-    static class Description{
+    public static class Description{
         public String aim;
         public String description;
         public String example;

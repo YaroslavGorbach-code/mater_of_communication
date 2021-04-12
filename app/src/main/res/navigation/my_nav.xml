@@ -11,11 +11,6 @@
         android:label="Все упражнения"
         tools:layout="@layout/fragment_exercises" >
         <action
-            android:id="@+id/action_exercisesFragment_v_2_to_exercisesDescriptionFragment3"
-            app:destination="@id/exercisesDescriptionFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:popEnterAnim="@anim/fragment_open_enter" />
-        <action
             android:id="@+id/action_exercisesFragment_v_2_to_audioListFragment"
             app:destination="@id/audioListFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -30,10 +25,6 @@
             app:destination="@id/allExsByCategoryFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:popEnterAnim="@anim/fragment_open_enter" />
-        <argument
-            android:name="idEx"
-            app:argType="integer"
-            android:defaultValue="-1" />
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_settingsFragment2"
             app:destination="@id/settingsFragment2"
@@ -42,11 +33,14 @@
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_randomTrainingsFragment"
             app:destination="@id/randomTrainingsFragment" />
+        <action
+            android:id="@+id/action_exercisesFragment_to_exercisesDescriptionFragment"
+            app:destination="@id/exercisesDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.description.ExercisesDescriptionFragment"
-        tools:layout="@layout/fragment_exercise_description" >
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment"
+        tools:layout="@layout/exercise_description" >
         <argument
             android:name="exId"
             app:argType="integer"
@@ -79,10 +73,6 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
-        <argument
-            android:name="exCategory"
-            app:argType="integer"
-            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"

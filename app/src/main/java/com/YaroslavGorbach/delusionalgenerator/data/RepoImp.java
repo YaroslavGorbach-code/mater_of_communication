@@ -10,6 +10,7 @@ public class RepoImp implements Repo {
 
      public RepoImp(){
          mExercises.add(new ExModel(
+                 0,
                  "Лингвистические пирамиды",
                  ExModel.ExCategory.SPEAKING,
                  new ExModel.Description(

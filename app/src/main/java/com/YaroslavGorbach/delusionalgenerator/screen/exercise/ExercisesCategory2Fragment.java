@@ -83,23 +83,23 @@ public class ExercisesCategory2Fragment extends Fragment {
 
         /*следующее упражнение при нажатии на кнопку*/
         mNext_bt.setOnClickListener(v ->{
-            switch (mExId){
-                case 20:
-                    Navigation.findNavController(view).navigate(ExercisesCategory2FragmentDirections.
-                            actionExercisesCategory2FragmentToExercisesDescriptionFragment().
-                            setExCategory(2).setExId(21));
-                    break;
-                case 21:
-                    Navigation.findNavController(view).navigate(ExercisesCategory2FragmentDirections.
-                            actionExercisesCategory2FragmentToExercisesDescriptionFragment().
-                            setExCategory(2).setExId(22));
-                    break;
-                case 22:
-                    Navigation.findNavController(view).navigate(ExercisesCategory2FragmentDirections.
-                            actionExercisesCategory2FragmentToExercisesDescriptionFragment().
-                            setExCategory(2).setExId(20));
-                    break;
-            }
+//            switch (mExId){
+//                case 20:
+//                    Navigation.findNavController(view).navigate(ExercisesCategory2FragmentDirections.
+//                            actionExercisesCategory2FragmentToExercisesDescriptionFragment().
+//                            setExCategory(2).setExId(21));
+//                    break;
+//                case 21:
+//                    Navigation.findNavController(view).navigate(ExercisesCategory2FragmentDirections.
+//                            actionExercisesCategory2FragmentToExercisesDescriptionFragment().
+//                            setExCategory(2).setExId(22));
+//                    break;
+//                case 22:
+//                    Navigation.findNavController(view).navigate(ExercisesCategory2FragmentDirections.
+//                            actionExercisesCategory2FragmentToExercisesDescriptionFragment().
+//                            setExCategory(2).setExId(20));
+//                    break;
+//            }
         });
 
         /*обзор актуального времени таймера*/

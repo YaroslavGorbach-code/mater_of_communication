@@ -50,8 +50,7 @@ public class FavoriteExsFragment extends Fragment {
             mAdapter = new ExercisesGridListAdapter(exercises, (exercise, position) -> {
                 NavDirections action = FavoriteExsFragmentDirections.
                         actionFavoriteExsFragmentToExercisesDescriptionFragment()
-                        .setExId(exercise.id)
-                        .setExCategory(exercise.category);
+                        .setExId(exercise.id);
                 Navigation.findNavController(view).navigate(action);
             });
 
