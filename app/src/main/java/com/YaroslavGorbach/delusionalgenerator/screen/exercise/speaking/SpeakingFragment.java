@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory1FragmentArgs;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.util.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
@@ -29,7 +30,7 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
-public class ExercisesCategory1Fragment extends Fragment {
+public class SpeakingFragment extends Fragment {
     private ImageButton mButtonStartPause;
     private Chronometer mChronometer_allTime;
     private Chronometer mChronometer_1worldTime;
@@ -48,7 +49,7 @@ public class ExercisesCategory1Fragment extends Fragment {
     private Button mStartRecordingButton;
     private String mExName;
     private LiveData<Exercise> mEx;
-    private ExerciseCategory1ViewModel mViewModel;
+    private SpeakingVm mViewModel;
     private boolean mChronometerState;
 
 
@@ -71,7 +72,7 @@ public class ExercisesCategory1Fragment extends Fragment {
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
         mIdEx = ExercisesCategory1FragmentArgs.fromBundle(requireArguments()).getIdEx();
         mViewModel = new ViewModelProvider(this, new ExerciseCategory1ViewModelFactory(
-                requireActivity().getApplication(), mIdEx)).get(ExerciseCategory1ViewModel.class);
+                requireActivity().getApplication(), mIdEx)).get(SpeakingVm.class);
         mEx = mViewModel.getExerciseById(mIdEx);
         return view;
     }

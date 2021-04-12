@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters;
 
 import android.app.Application;
 
@@ -20,8 +20,8 @@ public class ExerciseCategory3ViewModelFactory extends ViewModelProvider.NewInst
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(ExerciseCategory3ViewModel.class)) {
-            return (T)  new ExerciseCategory3ViewModel(application, id);
+        if (modelClass.isAssignableFrom(TongueTwisterVm.class)) {
+            return (T)  new TongueTwisterVm(application, id);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

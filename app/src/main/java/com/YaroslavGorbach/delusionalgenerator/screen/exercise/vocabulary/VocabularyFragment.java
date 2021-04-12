@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 
 
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory2FragmentArgs;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.ExerciseCategory2ViewModelFactory;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyVm;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.util.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -30,7 +33,7 @@ import static com.YaroslavGorbach.delusionalgenerator.util.getThemeColor.getAcce
 import static com.YaroslavGorbach.delusionalgenerator.util.getThemeColor.getBackgroundColor;
 
 
-public class ExercisesCategory2Fragment extends Fragment {
+public class VocabularyFragment extends Fragment {
     private int mExId;
     private TextView mWordCounter_tv;
     private TextView mTimer_tv;
@@ -40,7 +43,7 @@ public class ExercisesCategory2Fragment extends Fragment {
     private int mCountValue;
     private MaterialButton mFinish_bt;
     private MaterialButton mNext_bt;
-    private ExerciseCategory2ViewModel mViewModel;
+    private VocabularyVm mViewModel;
     private int mWordsNorm;
     private KonfettiView mKonfettiView;
 
@@ -59,7 +62,7 @@ public class ExercisesCategory2Fragment extends Fragment {
         mNext_bt = view.findViewById(R.id.button_next);
         mKonfettiView = view.findViewById(R.id.viewKonfetti);
         mViewModel = new ViewModelProvider(this, new ExerciseCategory2ViewModelFactory(
-                requireActivity().getApplication(),mExId)).get(ExerciseCategory2ViewModel.class);
+                requireActivity().getApplication(),mExId)).get(VocabularyVm.class);
         return view;
     }
 

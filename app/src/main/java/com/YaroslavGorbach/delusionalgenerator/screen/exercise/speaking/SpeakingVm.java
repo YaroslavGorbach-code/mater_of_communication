@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 
 import android.app.Activity;
 import android.app.Application;
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class ExerciseCategory1ViewModel  extends AndroidViewModel {
+public class SpeakingVm extends AndroidViewModel {
 
     private final RepoImpOLD mRepo_Imp_;
     private final Repo_SQLite mRepoSQLite;
@@ -60,7 +60,7 @@ public class ExerciseCategory1ViewModel  extends AndroidViewModel {
     private final MutableLiveData<String> _buttonNextText = new MutableLiveData<>();
     public LiveData<String> buttonNextText = _buttonNextText;
 
-    public ExerciseCategory1ViewModel(@NonNull Application application, int exId) {
+    public SpeakingVm(@NonNull Application application, int exId) {
         super(application);
         mRepo_Imp_ = new RepoImpOLD(application);
         mRepoSQLite = Repo_SQLite.getInstance(application);

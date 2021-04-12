@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 
 import android.app.Application;
 import android.os.CountDownTimer;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class ExerciseCategory2ViewModel extends AndroidViewModel {
+public class VocabularyVm extends AndroidViewModel {
 
     private final Random r = new Random();
 
@@ -55,7 +55,7 @@ public class ExerciseCategory2ViewModel extends AndroidViewModel {
     public LiveData<Integer> exNormWords = _exNormWords;
 
 
-    public ExerciseCategory2ViewModel(@NonNull Application application, int exId) {
+    public VocabularyVm(@NonNull Application application, int exId) {
         super(application);
         startTimer();
         resoldBadList = Arrays.asList(application.getResources().getStringArray(R.array.resultBad));

@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters;
 
 import android.app.Application;
 
@@ -11,13 +11,13 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Random;
 
-public class ExerciseCategory3ViewModel extends AndroidViewModel {
+public class TongueTwisterVm extends AndroidViewModel {
 
     private String[] mTwists = {};
     private final Random r = new Random();
 
 
-    public ExerciseCategory3ViewModel(@NonNull Application application, int exId) {
+    public TongueTwisterVm(@NonNull Application application, int exId) {
         super(application);
 
         switch (exId) {

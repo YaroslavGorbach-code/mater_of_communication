@@ -1,10 +1,12 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingVm;
 
 public class ExerciseCategory1ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
@@ -20,8 +22,8 @@ public class ExerciseCategory1ViewModelFactory extends ViewModelProvider.NewInst
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(ExerciseCategory1ViewModel.class)) {
-            return (T)  new ExerciseCategory1ViewModel(application, id);
+        if (modelClass.isAssignableFrom(SpeakingVm.class)) {
+            return (T)  new SpeakingVm(application, id);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }
