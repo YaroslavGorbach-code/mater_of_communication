@@ -162,17 +162,21 @@ public class Repo_SQLite extends SQLiteOpenHelper {
     public ArrayList<BarEntry> getEntriesWorldCount(int idEx){
         ArrayList<BarEntry> entries = new ArrayList<>();
         int index = 0;
+        try {
+            String[] cols = {ID_EX_W, DATE_W, COUNT_W};
+            Cursor c = getReadableDatabase().query(TABLE_NAME_W, cols, ID_EX_W + "=" + idEx, null,
+                    null,null, null);
 
-        String[] cols = {ID_EX_W, DATE_W, COUNT_W};
-        Cursor c = getReadableDatabase().query(TABLE_NAME_W, cols, ID_EX_W + "=" + idEx, null,
-                null,null, null);
+            while (c.moveToNext()){
+                entries.add(new BarEntry(c.getFloat(2), index));
+                index++;
+            }
 
-        while (c.moveToNext()){
-            entries.add(new BarEntry(c.getFloat(2), index));
-            index++;
+            c.close();
+        }catch (Exception e){
+            return entries;
         }
 
-        c.close();
         return entries;
 
     }

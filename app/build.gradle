@@ -10,8 +10,8 @@ android {
         applicationId "com.YaroslavGorbach.delusionalgenerator"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 32
-        versionName "2.4.3"
+        versionCode 33
+        versionName "2.4.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

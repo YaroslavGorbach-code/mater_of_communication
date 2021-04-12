@@ -61,6 +61,9 @@ public class ExercisesCategory3Fragment extends Fragment {
 
         /*оброботка клика на кнопку для показа слудующей скороговорки*/
         mNextTwistButton.setOnClickListener(v->{
+            YoYo.with(Techniques.Tada)
+                    .duration(400)
+                    .playOn(mNextTwistButton);
             mViewModel.onClick();
         });
 

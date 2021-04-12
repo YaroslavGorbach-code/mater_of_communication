@@ -217,6 +217,7 @@
                         android:paddingEnd="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/category_2_desc_tv" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
