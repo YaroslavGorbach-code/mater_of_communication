@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.component;
 
 import android.content.res.Resources;
-import android.widget.Chronometer;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,28 +8,40 @@ import androidx.lifecycle.MutableLiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.WordType;
+import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer;
 import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.ChronometerImp;
+import com.YaroslavGorbach.delusionalgenerator.feature.voicerecorder.VoiceRecorder;
+import com.YaroslavGorbach.delusionalgenerator.feature.voicerecorder.VoiceRecorderImp;
 
 import java.util.List;
 import java.util.Random;
 
 public class SpeakingExImp implements SpeakingEx {
     private final MutableLiveData<String> _word = new MutableLiveData<>("test");
-    private final com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer mChronometer;
-    private final com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer mChronometerOneWord;
+    private final MutableLiveData<Boolean> mIsRecording = new MutableLiveData<>();
+    private final Chronometer mChronometer;
+    private final Chronometer mChronometerOneWord;
+    private final VoiceRecorder mVoiceRecorder;
 
     private final ExModel mExModel;
     private final Repo mRepo;
     private final Resources mResources;
     private final Random mRandom = new Random();
 
-
-    public SpeakingExImp(ExModel exModel, Repo repo, Resources resources, Chronometer chronometer, Chronometer chronometerOneWord){
+    public SpeakingExImp(
+            ExModel exModel,
+            Repo repo,
+            Resources resources,
+            android.widget.Chronometer chronometer,
+            android.widget.Chronometer chronometerOneWord,
+            String recordPath
+    ){
         mExModel = exModel;
         mRepo = repo;
         mResources = resources;
         mChronometer = new ChronometerImp(chronometer);
         mChronometerOneWord = new ChronometerImp(chronometerOneWord);
+        mVoiceRecorder = new VoiceRecorderImp(recordPath);
         // init immediately
         nextWord();
     }
@@ -47,17 +58,6 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     @Override
-    public void startPauseChronometer() {
-        if (!mChronometer.getState() && !mChronometerOneWord.getState()){
-            mChronometer.start();
-            mChronometerOneWord.start();
-        }else {
-            mChronometer.pause();
-            mChronometerOneWord.pause();
-        }
-    }
-
-    @Override
     public String getShortDesc() {
         return mExModel.shortDesc;
     }
@@ -65,6 +65,33 @@ public class SpeakingExImp implements SpeakingEx {
     @Override
     public LiveData<String> getWord() {
         return _word;
+    }
+
+    @Override
+    public void startPauseChronometer() {
+        if (mChronometer.getState() && mChronometerOneWord.getState()){
+            mChronometer.pause();
+            mChronometerOneWord.pause();
+        }else {
+            mChronometer.start();
+            mChronometerOneWord.start();
+        }
+    }
+
+    @Override
+    public void startStopRecord() {
+        if (mVoiceRecorder.getState()){
+            mVoiceRecorder.stop();
+            mIsRecording.postValue(false);
+        }else {
+            mVoiceRecorder.start();
+            mIsRecording.postValue(true);
+        }
+    }
+
+    @Override
+    public LiveData<Boolean> getRecordingState() {
+        return mIsRecording;
     }
 
 
