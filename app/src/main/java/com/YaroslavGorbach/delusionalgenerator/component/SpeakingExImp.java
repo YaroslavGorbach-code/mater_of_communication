@@ -14,26 +14,32 @@ import java.util.Random;
 
 public class SpeakingExImp implements SpeakingEx {
     private final MutableLiveData<String> _word = new MutableLiveData<>("test");
-    private final ExModel.Name mExName;
+    private final ExModel mExModel;
     private final Repo mRepo;
     private final Resources mResources;
     private final Random mRandom = new Random();
 
-    public SpeakingExImp(ExModel.Name name, Repo repo, Resources resources){
-      mExName = name;
-      mRepo = repo;
-      mResources = resources;
-      nextWord(); // init word immediately
+    public SpeakingExImp(ExModel exModel, Repo repo, Resources resources){
+        mExModel = exModel;
+        mRepo = repo;
+        mResources = resources;
+        // init immediately
+        nextWord();
     }
 
     @Override
     public void nextWord() {
-        switch (mExName){
+        switch (mExModel.name){
             case LINGUISTIC_PYRAMIDS:
                 List<String> words = mRepo.getWords(WordType.NOT_ALIVE, mResources);
                 _word.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
         }
+    }
+
+    @Override
+    public String getShortDesc() {
+        return mExModel.shortDesc;
     }
 
     @Override

@@ -27,7 +27,6 @@ public class SpeakingFragment extends Fragment {
     private long mWorldTimePauseOffSet = 0;
     private Button mButtonFinish;
     private int mIdEx;
-    private TextView mShort_des;
     private TextView mWorldCounter;
     private int mWorldCount;
     private Button mStartRecordingButton;
@@ -41,7 +40,6 @@ public class SpeakingFragment extends Fragment {
         mButtonStartPause = view.findViewById(R.id.button);
         mChronometer_allTime = view.findViewById(R.id.chronometer_allTime);
         mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
-        mShort_des = view.findViewById(R.id.description_short);
         mChronometer_1worldTime = view.findViewById(R.id.chronometer_1world_time);
         mWorldCounter = view.findViewById(R.id.world_counter);
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
@@ -51,13 +49,15 @@ public class SpeakingFragment extends Fragment {
         // init speaking exercise
         Repo repo = new Repo.RepoProvider().provideRepo();
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(mIdEx, repo, getResources())).get(SpeakingVm.class);
-        SpeakingEx speakingEx = vm.speakingEx;
+
+        TextView shortDesc = view.findViewById(R.id.description_short);
+        shortDesc.setText(vm.speakingEx.getShortDesc());
 
         TextView  mWorld = view.findViewById(R.id.world_tv);
-        speakingEx.getWord().observe(getViewLifecycleOwner(), mWorld::setText);
+        vm.speakingEx.getWord().observe(getViewLifecycleOwner(), mWorld::setText);
 
         Button nextWord = view.findViewById(R.id.buttonNextWorld);
-        nextWord.setOnClickListener(v -> speakingEx.nextWord());
+        nextWord.setOnClickListener(v ->  vm.speakingEx.nextWord());
 
         return view;
     }

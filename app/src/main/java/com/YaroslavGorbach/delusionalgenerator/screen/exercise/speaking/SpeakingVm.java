@@ -12,7 +12,7 @@ public class SpeakingVm extends ViewModel {
     public SpeakingEx speakingEx;
 
     SpeakingVm(int exId, Repo repo, Resources resources) {
-        speakingEx = new SpeakingExImp(repo.getExercises().get(exId).name, repo, resources);
+        speakingEx = new SpeakingExImp(repo.getExercises().get(exId), repo, resources);
     }
 
     public static class SpeakingVmFactory extends ViewModelProvider.NewInstanceFactory {

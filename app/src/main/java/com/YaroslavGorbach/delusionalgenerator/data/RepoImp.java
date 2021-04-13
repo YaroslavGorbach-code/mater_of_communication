@@ -19,6 +19,7 @@ public class RepoImp implements Repo {
          mExercises.add(new ExModel(
                  0,
                  ExModel.Name.LINGUISTIC_PYRAMIDS,
+                 "coming soon",
                  ExModel.Category.SPEAKING,
                  new ExModel.Description(
                          "coming soon...",
@@ -59,4 +60,5 @@ public class RepoImp implements Repo {
         }
         return new ArrayList<>();
     }
+
 }
