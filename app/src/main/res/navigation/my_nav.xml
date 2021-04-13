@@ -46,33 +46,24 @@
             app:argType="integer"
             android:defaultValue="-1" />
         <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory3Fragment"
-            app:destination="@id/exercisesCategory3Fragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popUpTo="@id/exercisesDescriptionFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory2Fragment"
-            app:destination="@id/exercisesCategory2Fragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popUpTo="@id/exercisesDescriptionFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_exercisesCategory1Fragment"
-            app:destination="@id/exercisesCategory1Fragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popUpTo="@id/exercisesDescriptionFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
             app:destination="@id/statisticsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_tongue_twister_fragment"
+            app:destination="@id/tongue_twister_fragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_speaking_fragment"
+            app:destination="@id/speaking_fragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_exercisesDescriptionFragment_to_vocabulary_fragment"
+            app:destination="@id/vocabulary_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
@@ -111,7 +102,7 @@
             android:defaultValue="Все упражнения" />
     </fragment>
     <fragment
-        android:id="@+id/exercisesCategory1Fragment"
+        android:id="@+id/speaking_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment"
         tools:layout="@layout/fragment_exercises_category_1">
         <argument
@@ -130,7 +121,7 @@
             android:defaultValue="-1" />
     </fragment>
     <fragment
-        android:id="@+id/exercisesCategory3Fragment"
+        android:id="@+id/tongue_twister_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters.TongueTwisterFragment"
         tools:layout="@layout/fragment_exercises_category_3">
         <argument
@@ -139,7 +130,7 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/exercisesCategory2Fragment"
+        android:id="@+id/vocabulary_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment"
         tools:layout="@layout/fragment_exercises_category_2">
         <argument
@@ -150,7 +141,7 @@
             android:id="@+id/action_exercisesCategory2Fragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment"
             app:enterAnim="@anim/fragment_open_enter"
-            app:popUpTo="@id/exercisesCategory2Fragment"
+            app:popUpTo="@id/vocabulary_fragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment

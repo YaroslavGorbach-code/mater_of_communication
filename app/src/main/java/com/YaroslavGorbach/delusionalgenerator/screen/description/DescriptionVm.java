@@ -16,8 +16,8 @@ public class DescriptionVm extends ViewModel {
         mExId = exId;
     }
 
-    public ExModel.Description getDescription(){
-        return mRepo.getExercises().get(mExId).description;
+    public ExModel getExercise(){
+        return mRepo.getExercises().get(mExId);
     }
 
 

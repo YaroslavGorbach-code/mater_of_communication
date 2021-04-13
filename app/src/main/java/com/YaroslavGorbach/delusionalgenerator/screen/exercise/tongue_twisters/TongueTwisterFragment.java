@@ -14,11 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory3FragmentArgs;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters.ExerciseCategory3ViewModelFactory;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters.TongueTwisterVm;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragmentArgs;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
-import com.YaroslavGorbach.delusionalgenerator.util.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -46,7 +43,7 @@ public class TongueTwisterFragment extends Fragment {
         mNextTwistButton = view.findViewById(R.id.nextTwist);
         mTongueTwisterHelp_tv = view.findViewById(R.id.tongue_twister_help);
         mStartExTime = SystemClock.elapsedRealtime();
-        mExId = ExercisesCategory3FragmentArgs.fromBundle(requireArguments()).getExId();
+        mExId = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
         mViewModel = new ViewModelProvider(this, new ExerciseCategory3ViewModelFactory(requireActivity().getApplication(),
                 mExId)).get(TongueTwisterVm.class);
 
@@ -102,6 +99,5 @@ public class TongueTwisterFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Statistics.insertDataToStatistics(getContext(), mExId, mViewModel.numberOfTwisters.getValue(), mStartExTime);
     }
 }

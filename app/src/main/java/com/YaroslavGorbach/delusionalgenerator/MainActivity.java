@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements DialogChooseTheme
                     toolbar.getMenu().clear();
                     bottomNavigationView.setVisibility(View.GONE);
                     break;
-                case R.id.exercisesCategory1Fragment:
-                case R.id.exercisesCategory2Fragment:
-                case R.id.exercisesCategory3Fragment:
+                case R.id.speaking_fragment:
+                case R.id.vocabulary_fragment:
+                case R.id.tongue_twister_fragment:
                     toolbar.getMenu().clear();
                     break;
             }

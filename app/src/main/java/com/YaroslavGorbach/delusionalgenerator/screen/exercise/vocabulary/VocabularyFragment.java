@@ -15,11 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.ExercisesCategory2FragmentArgs;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.ExerciseCategory2ViewModelFactory;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyVm;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
-import com.YaroslavGorbach.delusionalgenerator.util.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -54,7 +50,7 @@ public class VocabularyFragment extends Fragment {
 
         mWordCounter_tv = view.findViewById(R.id.worldCounterText);
         mTimer_tv = view.findViewById(R.id.timer);
-        mExId = ExercisesCategory2FragmentArgs.fromBundle(requireArguments()).getIdEx();
+        mExId = VocabularyFragmentArgs.fromBundle(requireArguments()).getIdEx();
         mExShortDescription_tv = view.findViewById(R.id.whatToDo);
         mClickArea = view.findViewById(R.id.clickAria);
         mFinishText_tv = view.findViewById(R.id.text_finished);
@@ -167,7 +163,6 @@ public class VocabularyFragment extends Fragment {
                     String.valueOf(mWordsNorm), mViewModel.getBadResoldString()));
         }
 
-        Statistics.insertDataToStatistics(getContext(), mExId, mCountValue, 10);
         mClickArea.setFocusable(false);
         mClickArea.setClickable(false);
         mClickArea.setBackgroundColor(getBackgroundColor(requireContext()));

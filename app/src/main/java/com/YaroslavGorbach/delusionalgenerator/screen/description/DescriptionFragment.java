@@ -4,17 +4,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.data.RepoImp;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.google.android.material.button.MaterialButton;
-
 
 public class DescriptionFragment extends Fragment {
 
@@ -31,9 +29,27 @@ public class DescriptionFragment extends Fragment {
         DescriptionVm vm = new ViewModelProvider(this,
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(),
                         DescriptionFragmentArgs.fromBundle(requireArguments()).getExId())).get(DescriptionVm.class);
-        description.setText(vm.getDescription().description);
+        description.setText(vm.getExercise().description.description); // TODO: 4/12/2021 refactor it
         startEx.setOnClickListener(v -> {
-            // TODO: 4/12/2021 startEx
+            switch (vm.getExercise().category){
+                case SPEAKING:
+                    Navigation.findNavController(view)
+                            .navigate(DescriptionFragmentDirections
+                                    .actionExercisesDescriptionFragmentToSpeakingFragment()
+                                    .setIdEx(vm.getExercise().id));
+                    break;
+                case VOCABULARY:
+                    Navigation.findNavController(view)
+                            .navigate(DescriptionFragmentDirections
+                                    .actionExercisesDescriptionFragmentToVocabularyFragment()
+                                    .setIdEx(vm.getExercise().id));
+                    break;
+                case TONGUE_TWISTER:
+                    Navigation.findNavController(view)
+                            .navigate(DescriptionFragmentDirections
+                                    .actionExercisesDescriptionFragmentToTongueTwisterFragment()
+                                    .setExId(vm.getExercise().id));
+            }
         });
         return view;
     }
