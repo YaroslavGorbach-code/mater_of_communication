@@ -14,19 +14,12 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.YaroslavGorbach.delusionalgenerator.component.SpeakingEx;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class SpeakingFragment extends Fragment {
-    private ImageButton mButtonStartPause;
-    private Chronometer mChronometer_allTime;
-    private Chronometer mChronometer_1worldTime;
-    private long mPauseOffSet = 0;
-    private long mWorldTimePauseOffSet = 0;
     private Button mButtonFinish;
-    private int mIdEx;
     private TextView mWorldCounter;
     private int mWorldCount;
     private Button mStartRecordingButton;
@@ -36,22 +29,24 @@ public class SpeakingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercises_category_1, container, false);
-        /*Поиск всех view и запуск секундомера*/
-        mButtonStartPause = view.findViewById(R.id.button);
-        mChronometer_allTime = view.findViewById(R.id.chronometer_allTime);
         mButtonFinish = view.findViewById(R.id.buttonFinishEx1);
-        mChronometer_1worldTime = view.findViewById(R.id.chronometer_1world_time);
         mWorldCounter = view.findViewById(R.id.world_counter);
         mStartRecordingButton = view.findViewById(R.id.buttonStartRecording);
 
-        mIdEx = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
 
         // init speaking exercise
         Repo repo = new Repo.RepoProvider().provideRepo();
-        SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(mIdEx, repo, getResources())).get(SpeakingVm.class);
+        int exId = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
+        Chronometer chronometer = view.findViewById(R.id.chronometer);
+        Chronometer chronometerOneWord = view.findViewById(R.id.chronometer_one_word);
+        SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
+                exId, repo, getResources(), chronometer, chronometerOneWord)).get(SpeakingVm.class);
 
         TextView shortDesc = view.findViewById(R.id.description_short);
         shortDesc.setText(vm.speakingEx.getShortDesc());
+
+        ImageButton startPause = view.findViewById(R.id.button);
+        startPause.setOnClickListener(v -> vm.speakingEx.startPauseChronometer());
 
         TextView  mWorld = view.findViewById(R.id.world_tv);
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), mWorld::setText);

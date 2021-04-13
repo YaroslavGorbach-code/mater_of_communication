@@ -1,7 +1,10 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.chronometer;
 
+import androidx.lifecycle.LiveData;
+
 public interface Chronometer {
     void start();
-    void stop();
-    boolean isRunning = false;
+    void pause();
+    void reset();
+    boolean getState();
 }

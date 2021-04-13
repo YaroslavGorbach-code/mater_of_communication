@@ -1,39 +1,40 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.chronometer;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer;
+import android.os.SystemClock;
+
 
 public class ChronometerImp implements Chronometer {
+    private long mPauseOffSet = 0;
+    private boolean mIsRunning = false;
+    private final android.widget.Chronometer mChronometer;
+
+    public ChronometerImp(android.widget.Chronometer chronometer){
+        mChronometer = chronometer;
+        start();
+    }
 
     @Override
     public void start() {
-
+        mChronometer.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
+        mChronometer.start();
+        mIsRunning = true;
     }
 
     @Override
-    public void stop() {
-
+    public void pause() {
+        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer.getBase();
+        mChronometer.stop();
+        mIsRunning = false;
     }
 
-//    private void stopChronometer() {
-//        mButtonStartPause.setImageResource(R.drawable.ic_play_arrow50dp);
-//        mPauseOffSet = SystemClock.elapsedRealtime() - mChronometer_allTime.getBase();
-//        mWorldTimePauseOffSet = SystemClock.elapsedRealtime() - mChronometer_1worldTime.getBase();
-//        mChronometer_allTime.stop();
-//        mChronometer_1worldTime.stop();
-//        mButtonNextWorld.setVisibility(View.INVISIBLE);
-//        mButtonFinish.setVisibility(View.VISIBLE);
-//        mChronometerState = false;
-//    }
-//
-//    private void startChronometer() {
-//        mButtonStartPause.setImageResource(R.drawable.ic_pause);
-//        mChronometer_allTime.setBase(SystemClock.elapsedRealtime() - mPauseOffSet);
-//        mChronometer_allTime.start();
-//        mChronometer_1worldTime.setBase(SystemClock.elapsedRealtime() - mWorldTimePauseOffSet);
-//        mChronometer_1worldTime.start();
-//        mButtonFinish.setVisibility(View.INVISIBLE);
-//        mButtonNextWorld.setVisibility(View.VISIBLE);
-//        mChronometerState = true;
-//    }
+    @Override
+    public void reset() {
+        mChronometer.setBase(SystemClock.elapsedRealtime());
+    }
+
+    @Override
+    public boolean getState() {
+        return mIsRunning;
+    }
 
 }

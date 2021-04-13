@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.component;
 
 import android.content.res.Resources;
+import android.widget.Chronometer;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -8,32 +9,51 @@ import androidx.lifecycle.MutableLiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.WordType;
+import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.ChronometerImp;
 
 import java.util.List;
 import java.util.Random;
 
 public class SpeakingExImp implements SpeakingEx {
     private final MutableLiveData<String> _word = new MutableLiveData<>("test");
+    private final com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer mChronometer;
+    private final com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer mChronometerOneWord;
+
     private final ExModel mExModel;
     private final Repo mRepo;
     private final Resources mResources;
     private final Random mRandom = new Random();
 
-    public SpeakingExImp(ExModel exModel, Repo repo, Resources resources){
+
+    public SpeakingExImp(ExModel exModel, Repo repo, Resources resources, Chronometer chronometer, Chronometer chronometerOneWord){
         mExModel = exModel;
         mRepo = repo;
         mResources = resources;
+        mChronometer = new ChronometerImp(chronometer);
+        mChronometerOneWord = new ChronometerImp(chronometerOneWord);
         // init immediately
         nextWord();
     }
 
     @Override
     public void nextWord() {
+        mChronometerOneWord.reset();
         switch (mExModel.name){
             case LINGUISTIC_PYRAMIDS:
                 List<String> words = mRepo.getWords(WordType.NOT_ALIVE, mResources);
                 _word.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
+        }
+    }
+
+    @Override
+    public void startPauseChronometer() {
+        if (!mChronometer.getState() && !mChronometerOneWord.getState()){
+            mChronometer.start();
+            mChronometerOneWord.start();
+        }else {
+            mChronometer.pause();
+            mChronometerOneWord.pause();
         }
     }
 

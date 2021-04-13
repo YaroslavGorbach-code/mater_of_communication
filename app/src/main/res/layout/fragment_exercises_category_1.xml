@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".screen.exercise.speaking.SpeakingFragment"
     android:orientation="vertical">
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-6043694180023070/2709885324"/>
+        app:adUnitId="ca-app-pub-6043694180023070/2709885324" />
 
     <TextView
         android:id="@+id/description_short"
@@ -20,8 +21,7 @@
         android:text="Description short"
         android:layout_gravity="center"
         android:gravity="center"
-        android:padding="10dp">
-    </TextView>
+        android:padding="10dp"/>
 
     <TextView
         android:id="@+id/world_tv"
@@ -33,24 +33,20 @@
         android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="40sp"
-        android:gravity="center"
-        >
-    </TextView>
+        android:gravity="center"/>
 
     <RelativeLayout
         android:id="@+id/thumbAndText"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/thumb_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_up"
-            android:layout_centerInParent="true"
-            />
+            android:layout_centerInParent="true" />
 
         <TextView
             android:id="@+id/textUnderThumb"
@@ -59,10 +55,8 @@
             android:layout_below="@+id/thumb_iv"
             android:layout_centerInParent="true"
             android:text="thumb"
-            android:textColor="?colorAccent"
-            />
+            android:textColor="?colorAccent" />
     </RelativeLayout>
-
 
 
     <androidx.cardview.widget.CardView
@@ -71,8 +65,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="?colorAccent"
         app:cardCornerRadius="20dp"
-        android:layout_margin="20dp"
-        >
+        android:layout_margin="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,35 +73,34 @@
             android:orientation="vertical"
             android:gravity="center">
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-   >
-    <Button
-        android:id="@+id/buttonFinishEx1"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:gravity="center"
-        android:text="завершить"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        />
-    <Button
-        android:id="@+id/buttonNextWorld"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_arrow_right"
-        android:text="следующее слово"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        />
-</FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/buttonFinishEx1"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:gravity="center"
+                    android:text="завершить"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/buttonNextWorld"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:text="следующее слово"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:layout_gravity="center" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/world_counter"
@@ -122,18 +114,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <Chronometer
-                    android:id="@+id/chronometer_1world_time"
+                    android:id="@+id/chronometer_one_word"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:textColor="#ffffff"
                     android:textSize="22sp"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/button"
@@ -141,10 +132,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
-                    android:src="@drawable/ic_pause"
-                    />
+                    android:src="@drawable/ic_pause" />
+
                 <Chronometer
-                    android:id="@+id/chronometer_allTime"
+                    android:id="@+id/chronometer"
                     android:layout_width="wrap_content"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -156,10 +147,10 @@
 
                     />
             </LinearLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/buttonStartRecording"
@@ -171,8 +162,7 @@
                     android:text="Начать запись"
                     android:layout_gravity="center"
                     android:textSize="15sp"
-                    android:textColor="#ffffff"
-                    />
+                    android:textColor="#ffffff" />
             </FrameLayout>
 
         </LinearLayout>
