@@ -44,14 +44,14 @@
                 android:textSize="20sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/worldCounterText"
-                app:layout_constraintStart_toStartOf="@+id/worldCounterText"
+                app:layout_constraintEnd_toEndOf="@+id/wordsCount"
+                app:layout_constraintStart_toStartOf="@+id/wordsCount"
                 app:layout_constraintTop_toBottomOf="@+id/button_next"
                 tools:text="Названо слов: 55. Норма для этого упражнения 55. У вас отличный резульат"
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/whatToDo"
+                android:id="@+id/short_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -87,7 +87,7 @@
                 app:cornerRadius="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/whatToDo"
+                app:layout_constraintTop_toBottomOf="@+id/short_desc"
                 app:rippleColor="?colorAccent"
                 tools:ignore="RtlHardcoded" />
 
@@ -117,15 +117,15 @@
                 android:textColor="?colorAccent"
                 android:textSize="100dp"
                 android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/worldCounterText"
+                app:layout_constraintBottom_toTopOf="@+id/wordsCount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/whatToDo"
+                app:layout_constraintTop_toTopOf="@+id/short_desc"
                 app:layout_constraintVertical_bias="0.495" />
 
             <TextView
-                android:id="@+id/worldCounterText"
+                android:id="@+id/wordsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"

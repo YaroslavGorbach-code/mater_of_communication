@@ -122,7 +122,7 @@
     </fragment>
     <fragment
         android:id="@+id/tongue_twister_fragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters.TongueTwisterFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.tonguetwisters.TongueTwisterFragment"
         tools:layout="@layout/fragment_exercises_category_3">
         <argument
             android:name="exId"

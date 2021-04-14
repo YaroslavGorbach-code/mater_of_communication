@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.speaking_ex;
+package com.YaroslavGorbach.delusionalgenerator.component.speaking;
 
 import androidx.lifecycle.LiveData;
 

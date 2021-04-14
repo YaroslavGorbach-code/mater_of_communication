@@ -38,6 +38,17 @@ public class RepoImp implements Repo {
                  "Произнесите текст в пол голоса, шепотом",
                  "Произнесите вслух, громко, но все ещё медленно и четко",
                  "Теперь пробуйте произносить текст в разных стилях, с разной интонацией, с разной скоростью"));
+
+         mExercises.add(new ExModel(
+                 2,
+                 ExModel.Name.VERBS,
+                 "coming soon",
+                 ExModel.Category.VOCABULARY,
+                 R.drawable.ex20_backgraund_v_2,
+                 "coming soon",
+                 "coming soon",
+                 "coming soon",
+                 "coming soon"));
     }
 
     @Override

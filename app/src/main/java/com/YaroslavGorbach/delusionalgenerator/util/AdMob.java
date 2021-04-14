@@ -32,7 +32,6 @@ public class AdMob {
     private SharedPreferences mSettings;
     private int mCount;
 
-
     public AdMob(Context context){
         mSettings = context.getSharedPreferences(ADD_PREFERENCES, Context.MODE_PRIVATE);
 

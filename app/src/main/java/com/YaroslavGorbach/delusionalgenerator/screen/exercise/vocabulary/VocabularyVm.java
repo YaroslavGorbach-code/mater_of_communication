@@ -1,114 +1,36 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
-
-import android.app.Application;
-import android.os.CountDownTimer;
-import android.text.format.DateUtils;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyEx;
+import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyExImp;
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
-import com.YaroslavGorbach.delusionalgenerator.R;
+public class VocabularyVm extends ViewModel {
+    public final VocabularyEx vocabularyEx;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+    VocabularyVm(Repo repo, int exId){
+        vocabularyEx = new VocabularyExImp(repo.getExercises().get(exId));
+    }
 
-public class VocabularyVm extends AndroidViewModel {
+    public static class VocabularyVmFactory  extends ViewModelProvider.NewInstanceFactory{
+        private final int exId;
+        private final Repo repo;
 
-    private final Random r = new Random();
-
-    // This is when the game is over
-    private final long DONE = 0L;
-
-    // This is the number of milliseconds in a second
-    private final long ONE_SECOND = 1000L;
-
-    // This is the total time
-    private final long COUNTDOWN_TIME = 60000L;
-
-    private final List<String> resoldBadList;
-    private final List<String> resoldGoodList;
-
-    private final MutableLiveData<Long> _currentTime = new MutableLiveData<>();
-
-    // The String version of the current time
-    public LiveData<String> currentTimeString =
-            Transformations.map(_currentTime, DateUtils::formatElapsedTime);
-
-    // Event which triggers the end of the game
-    private final MutableLiveData<Boolean> _eventGameFinish = new MutableLiveData<>(false);
-    public LiveData<Boolean> eventGameFinish = _eventGameFinish;
-
-    private final MutableLiveData<Integer> _countValue = new MutableLiveData<>(0);
-    public LiveData<Integer> countValue = _countValue;
-
-    private final MutableLiveData<String> _nextExName = new MutableLiveData<>();
-    public LiveData<String> nextExName = _nextExName;
-
-    private final MutableLiveData<String> _exShortDescription = new MutableLiveData<>();
-    public LiveData<String> exShortDescription = _exShortDescription;
-
-    private final MutableLiveData<Integer> _exNormWords = new MutableLiveData<>(0);
-    public LiveData<Integer> exNormWords = _exNormWords;
-
-
-    public VocabularyVm(@NonNull Application application, int exId) {
-        super(application);
-        startTimer();
-        resoldBadList = Arrays.asList(application.getResources().getStringArray(R.array.resultBad));
-        resoldGoodList = Arrays.asList(application.getResources().getStringArray(R.array.resultGood));
-        switch (exId){
-            case 20:
-                _exShortDescription.setValue("Назовите как можно больше существительных(Кто? Что?). " +
-                        "После каждого названого слова, нажмите" +
-                        " на экран, для учета результата");
-                _exNormWords.setValue(54);
-                _nextExName.setValue("Прилагательные");
-                break;
-            case 21:
-                _exShortDescription.setValue("Назовите как можно больше прилагательных(Какой? Какое?)." +
-                        " После каждого названого слова, нажмите" +
-                        " на экран, для учета результата");
-                _exNormWords.setValue(46);
-                _nextExName.setValue("Глаголы");
-                break;
-            case 22:
-                _exShortDescription.setValue("Назовите как можно больше глаголов(Что делать? Что сделать?). После каждого названого слова, нажмите" +
-                        " на экран, для учета результата");
-                _exNormWords.setValue(42);
-                _nextExName.setValue("Существительные");
-                break;
+        public VocabularyVmFactory(Repo repo, int exId){
+            super();
+            this.exId = exId;
+            this.repo = repo;
         }
-    }
 
-    private void startTimer() {
-        new CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                _currentTime.setValue(millisUntilFinished / ONE_SECOND);
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (modelClass.isAssignableFrom(VocabularyVm.class)) {
+                return (T)  new VocabularyVm(repo, exId);
             }
-
-            @Override
-            public void onFinish() {
-                _currentTime.setValue(DONE);
-                _eventGameFinish.setValue(true);
-            }
-        }.start();
-    }
-
-    public void valuePlus(){
-        _countValue.setValue((_countValue.getValue()) + 1);
-    }
-
-    public String getBadResoldString(){
-        return resoldBadList.get(r.nextInt(resoldBadList.size()));
-    }
-
-    public String getGoodResoldString(){
-        return resoldGoodList.get(r.nextInt(resoldBadList.size()));
+            throw new IllegalArgumentException("Unknown ViewModel class");
+        }
     }
 
 }

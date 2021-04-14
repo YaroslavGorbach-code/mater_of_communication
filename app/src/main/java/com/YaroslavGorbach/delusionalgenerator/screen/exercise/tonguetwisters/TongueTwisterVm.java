@@ -1,11 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercise.tongue_twisters;
+package com.YaroslavGorbach.delusionalgenerator.screen.exercise.tonguetwisters;
 
 import android.content.res.Resources;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.component.tonguetwister_ex.TongueTwisterEx;
-import com.YaroslavGorbach.delusionalgenerator.component.tonguetwister_ex.TongueTwisterExImp;
+import com.YaroslavGorbach.delusionalgenerator.component.tonguetwisters.TongueTwisterEx;
+import com.YaroslavGorbach.delusionalgenerator.component.tonguetwisters.TongueTwisterExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class TongueTwisterVm extends ViewModel {
