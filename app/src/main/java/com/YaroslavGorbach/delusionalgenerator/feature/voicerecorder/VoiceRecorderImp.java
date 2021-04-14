@@ -19,7 +19,7 @@ public class VoiceRecorderImp implements VoiceRecorder {
     @Override
     public void start() {
         mediaRecorder = new MediaRecorder();
-        DateFormat dataFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT, Locale.getDefault());
+        DateFormat dataFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.LONG, Locale.getDefault());
         Date now = new Date();
         String recordFile = "exName" + dataFormat.format(now) + ".3gp";
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);

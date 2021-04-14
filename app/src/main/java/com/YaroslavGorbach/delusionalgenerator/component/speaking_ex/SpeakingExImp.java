@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component;
+package com.YaroslavGorbach.delusionalgenerator.component.speaking_ex;
 
 import android.content.res.Resources;
 
@@ -59,7 +59,7 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public String getShortDesc() {
-        return mExModel.shortDesc;
+        return mExModel.shortDesc[0];
     }
 
     @Override

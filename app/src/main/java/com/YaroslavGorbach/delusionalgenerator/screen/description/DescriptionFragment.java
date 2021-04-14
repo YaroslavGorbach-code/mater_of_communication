@@ -29,7 +29,7 @@ public class DescriptionFragment extends Fragment {
         DescriptionVm vm = new ViewModelProvider(this,
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(),
                         DescriptionFragmentArgs.fromBundle(requireArguments()).getExId())).get(DescriptionVm.class);
-        description.setText(vm.getExercise().description.description); // TODO: 4/12/2021 refactor it
+        description.setText(vm.getExercise().description);
         startEx.setOnClickListener(v -> {
             switch (vm.getExercise().category){
                 case SPEAKING:

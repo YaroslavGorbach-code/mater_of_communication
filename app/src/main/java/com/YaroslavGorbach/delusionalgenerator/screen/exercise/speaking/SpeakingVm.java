@@ -6,8 +6,8 @@ import android.widget.Chronometer;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.component.SpeakingEx;
-import com.YaroslavGorbach.delusionalgenerator.component.SpeakingExImp;
+import com.YaroslavGorbach.delusionalgenerator.component.speaking_ex.SpeakingEx;
+import com.YaroslavGorbach.delusionalgenerator.component.speaking_ex.SpeakingExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class SpeakingVm extends ViewModel {

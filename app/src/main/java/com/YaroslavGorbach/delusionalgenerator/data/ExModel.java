@@ -4,18 +4,19 @@ public class ExModel {
     public int id;
     public Name name;
     public int pic;
-    public String shortDesc;
     public Category category;
-    public Description description;
+    public String description;
+    public String[] shortDesc;
+
 
     public ExModel(
             int id,
             Name name,
-            String shortDesc,
+            String description,
             Category category,
-            Description description,
-            int pic)
-    {
+            int pic,
+            String...shortDesc
+    ){
         this.id = id;
         this.name = name;
         this.category = category;
@@ -48,27 +49,13 @@ public class ExModel {
         NOUNS("Существительные"),
         ADJECTIVES("Прилагательные"),
         VERBS("Глаголы"),
-        SIMPLE_TONGUE_TWISTERS("Простые скороговорки"),
+        EASY_TONGUE_TWISTERS("Простые скороговорки"),
         DIFFICULT_TONGUE_TWISTERS("Сложные скороговорки"),
         VERY_DIFFICULT_TONGUE_TWISTERS("Очень сложные скороговорки");
         private final String name;
         public String getName(){ return name; }
         Name(String name){
             this.name = name;
-        }
-    }
-
-    public static class Description{
-        public String aim;
-        public String description;
-        public String example;
-        public String period;
-
-        public Description(String aim, String description, String example, String period) {
-            this.aim = aim;
-            this.description = description;
-            this.example = example;
-            this.period = period;
         }
     }
 }

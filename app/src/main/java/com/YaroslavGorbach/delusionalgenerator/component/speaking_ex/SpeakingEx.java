@@ -1,6 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component;
-
-import android.widget.Chronometer;
+package com.YaroslavGorbach.delusionalgenerator.component.speaking_ex;
 
 import androidx.lifecycle.LiveData;
 

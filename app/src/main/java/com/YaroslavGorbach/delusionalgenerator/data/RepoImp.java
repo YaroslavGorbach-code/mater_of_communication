@@ -21,12 +21,23 @@ public class RepoImp implements Repo {
                  ExModel.Name.LINGUISTIC_PYRAMIDS,
                  "coming soon",
                  ExModel.Category.SPEAKING,
-                 new ExModel.Description(
-                         "coming soon...",
-                         "coming soon...",
-                         "coming soon...",
-                         "coming soon..."),
-                 R.drawable.ex1_backgraund_v_2));
+                 R.drawable.ex1_backgraund_v_2,
+                 "coming soon",
+                 "coming soon",
+                 "coming soon",
+                 "coming soon"));
+
+         mExercises.add(new ExModel(
+                 1,
+                 ExModel.Name.EASY_TONGUE_TWISTERS,
+                 "coming soon",
+                 ExModel.Category.TONGUE_TWISTER,
+                 R.drawable.ex30_backgraund_v_2,
+                 "Проговаривайте текст медленно",
+                 "Беззвучно произнесите скороговорку. Движениями губ",
+                 "Произнесите текст в пол голоса, шепотом",
+                 "Произнесите вслух, громко, но все ещё медленно и четко",
+                 "Теперь пробуйте произносить текст в разных стилях, с разной интонацией, с разной скоростью"));
     }
 
     @Override

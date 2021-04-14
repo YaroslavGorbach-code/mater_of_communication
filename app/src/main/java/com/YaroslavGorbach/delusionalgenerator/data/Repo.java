@@ -8,7 +8,7 @@ public interface Repo {
     List<ExModel> getExercises();
     List<String> getWords(WordType type, Resources resources);
 
-      class RepoProvider{
+    class RepoProvider{
         public RepoImp provideRepo(){
             return new RepoImp();
         }
