@@ -7,16 +7,6 @@
     android:background="@android:color/white"
     tools:context=".screen.audioPlayer.AudioListFragment">
 
-    <com.google.android.ads.nativetemplates.TemplateView
-        android:id="@+id/my_template"
-        app:gnt_template_type="@layout/gnt_small_template_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/audio_fragment_image_nothing"
         android:layout_width="140dp"
@@ -49,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_template"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context=".screen.audioPlayer.AudioListFragment">
 
 

@@ -79,9 +79,6 @@ public class AudioListFragment extends Fragment{
         mToolbar = requireActivity().findViewById(R.id.toolbar_main_a);
 
 
-        /*Показ банера*/
-        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
-
         return view;
     }
 

@@ -7,19 +7,6 @@
     tools:context=".screen.description.DescriptionFragment">
 
 
-    <com.google.android.ads.nativetemplates.TemplateView
-        android:id="@+id/my_template"
-        app:gnt_template_type="@layout/gnt_small_template_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
@@ -29,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_start_ex_category_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_template" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.button.MaterialButton

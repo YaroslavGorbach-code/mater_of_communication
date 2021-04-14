@@ -20,8 +20,6 @@ public class DescriptionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.exercise_description, container, false);
-        // show add
-        AdMob.showNativeAdd(getActivity(), view.findViewById(R.id.my_template));
 
         // init description
         MaterialButton startEx = view.findViewById(R.id.button_start_ex_category_1);

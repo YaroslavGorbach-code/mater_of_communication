@@ -7,8 +7,6 @@ import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
 import androidx.fragment.app.DialogFragment;
-
-import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 import java.util.Calendar;
@@ -34,15 +32,6 @@ public class TimePickerFragment extends DialogFragment
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        Repo_SQLite repoSQLite = Repo_SQLite.getInstance(getContext());
-        String hour = String.valueOf(hourOfDay);
-        String min = String.valueOf(minute);
-        if (hourOfDay < 10){
-            hour = "0"+ hourOfDay;
-        }
-        if (minute < 10){
-            min = "0"+ minute;
-        }
-        repoSQLite.setNotificationTime(hour, min);
+        // TODO: 4/14/2021 set nitification time
     }
 }

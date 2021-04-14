@@ -10,8 +10,6 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-
-import com.YaroslavGorbach.delusionalgenerator.data.oldDataLayer.Repo_SQLite;
 import com.YaroslavGorbach.delusionalgenerator.util.ReminderBroadcast;
 
 import java.util.Calendar;
@@ -19,7 +17,7 @@ import java.util.Calendar;
 import static android.content.Context.ALARM_SERVICE;
 
 public class SettingsFragmentViewModel extends AndroidViewModel{
-    private final Repo_SQLite mRepoSQLite;
+
     private final AlarmManager mAlarmManager;
     private final PendingIntent mPendingIntent;
     private static final String CHANNEL_ID = "CHANNEL_ID";
@@ -43,7 +41,7 @@ public class SettingsFragmentViewModel extends AndroidViewModel{
             notificationManager.createNotificationChannel(channel);
         }
 
-        mRepoSQLite = Repo_SQLite.getInstance(application.getApplicationContext());
+
         mAlarmManager = (AlarmManager) application.getApplicationContext()
                 .getSystemService(ALARM_SERVICE);
         Intent mReminderIntent = new Intent(application.getApplicationContext(), ReminderBroadcast.class);
@@ -59,15 +57,14 @@ public class SettingsFragmentViewModel extends AndroidViewModel{
     }
 
     public void setNotification(){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(mRepoSQLite.getNotifyHour()));
-        calendar.set(Calendar.MINUTE, Integer.parseInt(mRepoSQLite.getNotifyMinute()));
-        setAlarm(calendar, mPendingIntent);
-        mRepoSQLite.changeNotificationState(1);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(mRepoSQLite.getNotifyHour()));
+//        calendar.set(Calendar.MINUTE, Integer.parseInt(mRepoSQLite.getNotifyMinute()));
+//        setAlarm(calendar, mPendingIntent);
+//        mRepoSQLite.changeNotificationState(1);
     }
     public void cancelNotification(){
-        mAlarmManager.cancel(mPendingIntent);
-        mRepoSQLite.changeNotificationState(0);
+
     }
 
 
