@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.audioPlayer;
+package com.YaroslavGorbach.delusionalgenerator.screen.records;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +13,18 @@ import com.YaroslavGorbach.delusionalgenerator.util.Time;
 
 import java.io.File;
 
-public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.AudioViewHolder> {
-    private File[] allFiles;
+public class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.AudioViewHolder> {
+    private final File[] allFiles;
     private Time time;
-    private onItemListClick onItemListClick;
+    private final Listener Listener;
 
-    public interface onItemListClick {
-        void onClickListener(File file);
+    public interface Listener {
+        void onPlay(File file);
     }
 
-    public AudioListAdapter(File[] allFiles, onItemListClick onItemListClick) {
+    public RecordsListAdapter(File[] allFiles, Listener Listener) {
         this.allFiles = allFiles;
-        this.onItemListClick = onItemListClick;
+        this.Listener = Listener;
         notifyDataSetChanged();
 
     }
@@ -65,7 +65,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
             duration = itemView.findViewById(R.id.file_duration);
 
             itemView.setOnClickListener(c ->{
-                onItemListClick.onClickListener(allFiles[getAbsoluteAdapterPosition()]);
+                Listener.onPlay(allFiles[getAdapterPosition()]);
             });
 
         }

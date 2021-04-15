@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.audioPlayer.AudioListFragment"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment"
         android:label="Записи"
         tools:layout="@layout/activity_audio_list" />
     <fragment

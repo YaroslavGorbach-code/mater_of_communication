@@ -6,8 +6,8 @@ import android.widget.Chronometer;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.component.speaking.SpeakingEx;
-import com.YaroslavGorbach.delusionalgenerator.component.speaking.SpeakingExImp;
+import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingEx;
+import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class SpeakingVm extends ViewModel {
@@ -18,11 +18,10 @@ public class SpeakingVm extends ViewModel {
             Repo repo,
             Resources resources,
             Chronometer chronometer,
-            Chronometer chronometerOneWord,
-            String recordPath
+            Chronometer chronometerOneWord
     ) {
         speakingEx = new SpeakingExImp(repo.getExercises().get(exId), repo,
-                resources, chronometer, chronometerOneWord, recordPath);
+                resources, chronometer, chronometerOneWord);
     }
 
     public static class SpeakingVmFactory extends ViewModelProvider.NewInstanceFactory {
@@ -31,16 +30,13 @@ public class SpeakingVm extends ViewModel {
         private final Resources resources;
         private final Chronometer chronometer;
         private final Chronometer chronometerOneWord;
-        private final String recordPath;
-
 
         public SpeakingVmFactory(
                 int exId,
                 Repo repo,
                 Resources resources,
                 Chronometer chronometer,
-                Chronometer chronometerOneWord,
-                String recordPath
+                Chronometer chronometerOneWord
         ) {
             super();
             this.repo = repo;
@@ -48,14 +44,13 @@ public class SpeakingVm extends ViewModel {
             this.resources = resources;
             this.chronometer = chronometer;
             this.chronometerOneWord = chronometerOneWord;
-            this.recordPath = recordPath;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(SpeakingVm.class)) {
-                return (T) new SpeakingVm(exId, repo, resources, chronometer, chronometerOneWord, recordPath);
+                return (T) new SpeakingVm(exId, repo, resources, chronometer, chronometerOneWord);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

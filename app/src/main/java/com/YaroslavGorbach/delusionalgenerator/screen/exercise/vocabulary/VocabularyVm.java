@@ -2,8 +2,8 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyEx;
-import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyExImp;
+import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
+import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class VocabularyVm extends ViewModel {

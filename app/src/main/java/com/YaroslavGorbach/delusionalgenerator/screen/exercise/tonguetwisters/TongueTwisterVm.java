@@ -4,8 +4,8 @@ import android.content.res.Resources;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.component.tonguetwisters.TongueTwisterEx;
-import com.YaroslavGorbach.delusionalgenerator.component.tonguetwisters.TongueTwisterExImp;
+import com.YaroslavGorbach.delusionalgenerator.component.tonguetwistersEx.TongueTwisterEx;
+import com.YaroslavGorbach.delusionalgenerator.component.tonguetwistersEx.TongueTwisterExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class TongueTwisterVm extends ViewModel {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".screen.audioPlayer.AudioListFragment">
+    tools:context=".screen.records.RecordsFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/audio_fragment_image_nothing"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".screen.audioPlayer.AudioListFragment">
+        tools:context=".screen.records.RecordsFragment">
 
 
         <androidx.recyclerview.widget.RecyclerView

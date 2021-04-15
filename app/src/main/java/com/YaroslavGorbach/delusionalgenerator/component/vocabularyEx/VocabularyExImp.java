@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.vocabulary;
+package com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

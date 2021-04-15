@@ -26,25 +26,27 @@ public class SpeakingFragment extends Fragment {
         // show add
         AdMob.showBanner(view.findViewById(R.id.banner));
 
-        // init speaking exercise
+        // init vm
         Repo repo = new Repo.RepoProvider().provideRepo();
         int exId = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
         Chronometer chronometer = view.findViewById(R.id.chronometer);
         Chronometer chronometerOneWord = view.findViewById(R.id.chronometer_one_word);
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
-                exId, repo, getResources(), chronometer, chronometerOneWord,
-                requireContext().getExternalFilesDir("/").getAbsolutePath())).get(SpeakingVm.class);
+                exId, repo, getResources(), chronometer, chronometerOneWord)).get(SpeakingVm.class);
 
+        // init short description
         TextView shortDesc = view.findViewById(R.id.description_short);
         shortDesc.setText(vm.speakingEx.getShortDesc());
 
+        // init chronometer
         ImageButton startPause = view.findViewById(R.id.button);
         startPause.setOnClickListener(v -> vm.speakingEx.startPauseChronometer());
 
+        // init start stop record
         Button startStopRecord = view.findViewById(R.id.start_stop_record);
         startStopRecord.setOnClickListener(v -> {
             if (Permissions.checkRecordPermission(requireActivity())){
-                vm.speakingEx.startStopRecord();
+                vm.speakingEx.startStopRecord(requireContext());
             }
         });
         vm.speakingEx.getRecordingState().observe(getViewLifecycleOwner(), isRecording -> {
@@ -52,9 +54,11 @@ public class SpeakingFragment extends Fragment {
                 Toast.makeText(requireContext(), "Запись сохранена", Toast.LENGTH_SHORT).show();
         });
 
-        TextView  mWorld = view.findViewById(R.id.world_tv);
-        vm.speakingEx.getWord().observe(getViewLifecycleOwner(), mWorld::setText);
+        // init word
+        TextView  mWord = view.findViewById(R.id.world_tv);
+        vm.speakingEx.getWord().observe(getViewLifecycleOwner(), mWord::setText);
 
+        // init next word
         Button nextWord = view.findViewById(R.id.buttonNextWorld);
         nextWord.setOnClickListener(v ->  vm.speakingEx.nextWord());
 
