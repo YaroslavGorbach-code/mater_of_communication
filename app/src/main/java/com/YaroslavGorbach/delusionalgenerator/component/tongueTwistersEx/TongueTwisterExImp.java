@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.tonguetwistersEx;
+package com.YaroslavGorbach.delusionalgenerator.component.tongueTwistersEx;
 
 import android.content.res.Resources;
 import androidx.lifecycle.LiveData;

@@ -19,7 +19,7 @@ public class TongueTwisterFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exercises_category_3, container, false);
+        View view = inflater.inflate(R.layout.fragment_tongue_twisters, container, false);
         /*показ банера*/
         AdMob.showBanner(view.findViewById(R.id.banner));
 

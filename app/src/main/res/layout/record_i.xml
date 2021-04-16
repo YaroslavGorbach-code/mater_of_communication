@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_play" />
+        app:srcCompat="@drawable/ic_baseline_play"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/list_title"
@@ -24,7 +25,7 @@
         android:layout_marginStart="24dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Filename"
+        tools:text="Filename"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/file_duration"
         app:layout_constraintStart_toEndOf="@+id/list_play_button"
@@ -34,7 +35,7 @@
         android:id="@+id/list_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        tools:text="@string/s3"
         app:layout_constraintBottom_toBottomOf="@+id/list_play_button"
         app:layout_constraintStart_toStartOf="@+id/list_title"
         app:layout_constraintTop_toBottomOf="@+id/list_title" />
@@ -47,6 +48,7 @@
         android:text="00:00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

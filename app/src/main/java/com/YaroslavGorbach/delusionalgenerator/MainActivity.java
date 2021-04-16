@@ -37,34 +37,20 @@ public class MainActivity extends AppCompatActivity{
             switch (destination.getId()){
                 case R.id.exercisesDescriptionFragment:
                     toolbar.getMenu().clear();
-                    toolbar.inflateMenu(R.menu.menu_description);
                     bottomNavigationView.setVisibility(View.GONE);
                     break;
                 case R.id.exercisesFragment:
                     toolbar.getMenu().clear();
                     bottomNavigationView.setVisibility(View.VISIBLE);
                     break;
-                case R.id.statisticsFragment:
-                    toolbar.getMenu().clear();
-                    toolbar.inflateMenu(R.menu.menu_clear_statistics);
-                    break;
-                case R.id.settingsFragment2:
-                    toolbar.setNavigationIcon(null);
-                    toolbar.getMenu().clear();
-                    break;
-                case R.id.audioListFragment:
-                    toolbar.setNavigationIcon(null);
-                    toolbar.getMenu().clear();
-                    toolbar.inflateMenu(R.menu.menu_records);
-                    break;
-                case R.id.allExsByCategoryFragment:
-                case R.id.randomTrainingsFragment:
-                    toolbar.getMenu().clear();
-                    bottomNavigationView.setVisibility(View.GONE);
-                    break;
                 case R.id.speaking_fragment:
                 case R.id.vocabulary_fragment:
                 case R.id.tongue_twister_fragment:
+                    toolbar.getMenu().clear();
+                    break;
+                case R.id.settingsFragment2:
+                case R.id.audioListFragment:
+                    toolbar.setNavigationIcon(null);
                     toolbar.getMenu().clear();
                     break;
             }

@@ -1,6 +1,5 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ public class SpeakingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exercises_category_1, container, false);
+        View view = inflater.inflate(R.layout.fragment_speaking, container, false);
         // show add
         AdMob.showBanner(view.findViewById(R.id.banner));
 

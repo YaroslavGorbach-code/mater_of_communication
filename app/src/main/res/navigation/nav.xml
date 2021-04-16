@@ -16,23 +16,10 @@
             app:enterAnim="@anim/fragment_open_enter"
             app:popEnterAnim="@anim/fragment_open_enter" />
         <action
-            android:id="@+id/action_exercisesFragment_v_2_to_favoriteExsFragment"
-            app:destination="@id/favoriteExsFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:popEnterAnim="@anim/fragment_open_enter" />
-        <action
-            android:id="@+id/action_exercisesFragment_v_2_to_allExsByCategoryFragment"
-            app:destination="@id/allExsByCategoryFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:popEnterAnim="@anim/fragment_open_enter" />
-        <action
             android:id="@+id/action_exercisesFragment_v_2_to_settingsFragment2"
             app:destination="@id/settingsFragment2"
             app:enterAnim="@anim/fragment_open_enter"
             app:popEnterAnim="@anim/fragment_open_enter" />
-        <action
-            android:id="@+id/action_exercisesFragment_v_2_to_randomTrainingsFragment"
-            app:destination="@id/randomTrainingsFragment" />
         <action
             android:id="@+id/action_exercisesFragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment" />
@@ -45,13 +32,6 @@
             android:name="exId"
             app:argType="integer"
             android:defaultValue="-1" />
-        <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_tongue_twister_fragment"
             app:destination="@id/tongue_twister_fragment"
@@ -71,59 +51,18 @@
         android:label="Записи"
         tools:layout="@layout/activity_audio_list" />
     <fragment
-        android:id="@+id/favoriteExsFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.favorite.FavoriteExsFragment"
-        android:label="Избранные"
-        tools:layout="@layout/fragment_favorit_exs" >
-        <action
-            android:id="@+id/action_favoriteExsFragment_to_exercisesDescriptionFragment"
-            app:destination="@id/exercisesDescriptionFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popUpToInclusive="false" />
-    </fragment>
-    <fragment
-        android:id="@+id/allExsByCategoryFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercisesByCategory.AllExsByCategoryFragment"
-        android:label="{categoryName}"
-        tools:layout="@layout/fragment_all_exs_by_category" >
-        <argument
-            android:name="categoryId"
-            app:argType="integer"
-            android:defaultValue="-1" />
-        <action
-            android:id="@+id/action_allExsByCategoryFragment_to_exercisesDescriptionFragment"
-            app:destination="@id/exercisesDescriptionFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:popEnterAnim="@anim/fragment_open_enter" />
-        <argument
-            android:name="categoryName"
-            app:argType="string"
-            android:defaultValue="Все упражнения" />
-    </fragment>
-    <fragment
         android:id="@+id/speaking_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment"
-        tools:layout="@layout/fragment_exercises_category_1">
+        tools:layout="@layout/fragment_speaking">
         <argument
             android:name="idEx"
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/statisticsFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.statistics.StatisticsFragment"
-        android:label="Статистика"
-        tools:layout="@layout/fragment_statistics" >
-        <argument
-            android:name="exId"
-            app:argType="integer"
-            android:defaultValue="-1" />
-    </fragment>
-    <fragment
         android:id="@+id/tongue_twister_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.tonguetwisters.TongueTwisterFragment"
-        tools:layout="@layout/fragment_exercises_category_3">
+        tools:layout="@layout/fragment_tongue_twisters">
         <argument
             android:name="exId"
             android:defaultValue="-1"
@@ -132,7 +71,7 @@
     <fragment
         android:id="@+id/vocabulary_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment"
-        tools:layout="@layout/fragment_exercises_category_2">
+        tools:layout="@layout/fragment_vocabulary">
         <argument
             android:name="idEx"
             android:defaultValue="-1"
@@ -149,9 +88,4 @@
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.settings.SettingsFragment"
         android:label="Главная"
         tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/randomTrainingsFragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.Fragments.RandomTrainingsFragment"
-        android:label="fragment_rangom_trainings"
-        tools:layout="@layout/fragment_rangom_trainings" />
 </navigation>

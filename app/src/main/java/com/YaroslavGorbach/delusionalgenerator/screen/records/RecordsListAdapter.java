@@ -32,7 +32,7 @@ public class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.
     @NonNull
     @Override
     public AudioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.record_i, parent, false);
         time = new Time();
         return new AudioViewHolder(view);
     }

@@ -1,11 +1,4 @@
 package com.YaroslavGorbach.delusionalgenerator.util;
-
-import android.text.format.DateUtils;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
-
 import java.io.File;
 import java.util.Date;
 import java.util.Locale;
@@ -39,12 +32,11 @@ public class Time {
     }
 
     public String getFileDuration(File file){
-        double duration = file.getAbsoluteFile().length()/2;
+        double duration = file.getAbsoluteFile().length()/2f;
         long durationL = (long) duration;
-        String hms = String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationL),
+        return String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationL),
                 TimeUnit.MILLISECONDS.toMinutes(durationL) % TimeUnit.HOURS.toMinutes(1),
                 TimeUnit.MILLISECONDS.toSeconds(durationL) % TimeUnit.MINUTES.toSeconds(1));
-       return hms;
     }
 
 }

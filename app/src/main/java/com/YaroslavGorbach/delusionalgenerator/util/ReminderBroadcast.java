@@ -13,7 +13,6 @@ import com.YaroslavGorbach.delusionalgenerator.MainActivity;
 import static com.YaroslavGorbach.delusionalgenerator.R.drawable.ic_notifi;
 
 public class ReminderBroadcast extends BroadcastReceiver {
-
     private static final String CHANNEL_ID = "CHANNEL_ID";
     private static final int NOTIFICATION_ID_1 = 1;
     @Override
