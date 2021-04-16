@@ -14,8 +14,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".screen.exercises.ExercisesFragment"
->
+    tools:context=".screen.exercises.ExercisesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allExList"

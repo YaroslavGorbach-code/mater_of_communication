@@ -48,14 +48,12 @@ public class MainActivity extends AppCompatActivity{
                 case R.id.tongue_twister_fragment:
                     toolbar.getMenu().clear();
                     break;
-                case R.id.settingsFragment2:
                 case R.id.audioListFragment:
                     toolbar.setNavigationIcon(null);
                     toolbar.getMenu().clear();
                     break;
             }
         });
-
     }
 }
 

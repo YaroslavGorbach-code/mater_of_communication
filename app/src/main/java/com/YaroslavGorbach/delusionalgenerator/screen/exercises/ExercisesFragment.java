@@ -31,7 +31,7 @@ public class ExercisesFragment extends Fragment {
 
             adapter.submitList(vm.getAllExs());
             list.setHasFixedSize(true);
-            list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+            list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
                     false));
             list.setAdapter(adapter);
 

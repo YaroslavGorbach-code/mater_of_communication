@@ -35,30 +35,6 @@
         android:textSize="40sp"
         android:gravity="center"/>
 
-    <RelativeLayout
-        android:id="@+id/thumbAndText"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/thumb_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_up"
-            android:layout_centerInParent="true" />
-
-        <TextView
-            android:id="@+id/textUnderThumb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/thumb_iv"
-            android:layout_centerInParent="true"
-            android:text="thumb"
-            android:textColor="?colorAccent" />
-    </RelativeLayout>
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView9"
         android:layout_width="match_parent"

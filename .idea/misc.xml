@@ -44,7 +44,10 @@
     </option>
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_description_category_1.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_right.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_share.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_star_outline.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_themes.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/exercisesFragment"
@@ -11,12 +12,4 @@
         android:title="Записи"
         android:orderInCategory="3"
         android:icon="@drawable/ic_voice_stop"/>
-
-    <item
-        android:id="@+id/settingsFragment2"
-        android:enabled="true"
-        android:title="Главная"
-        android:orderInCategory="4"
-        android:icon="@drawable/ic_person"/>
-
 </menu>
