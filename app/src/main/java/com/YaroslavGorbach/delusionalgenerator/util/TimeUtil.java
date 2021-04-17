@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class Time {
+public class TimeUtil {
 
-    public String getTimeAgo(long duration) {
+    public static String getTimeAgo(long duration) {
         Date now = new Date();
         long seconds = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - duration);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(now.getTime() - duration);
@@ -31,7 +31,7 @@ public class Time {
 
     }
 
-    public String getFileDuration(File file){
+    public static String getFileDuration(File file){
         double duration = file.getAbsoluteFile().length()/2f;
         long durationL = (long) duration;
         return String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationL),

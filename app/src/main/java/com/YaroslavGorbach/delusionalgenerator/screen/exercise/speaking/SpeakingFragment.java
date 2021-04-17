@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
@@ -23,28 +24,23 @@ public class SpeakingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        AdMob.showBanner(view.findViewById(R.id.banner));
+        FragmentSpeakingBinding binding = FragmentSpeakingBinding.bind(view);
+        AdMob.showBanner(binding.banner);
 
         // init vm
         Repo repo = new Repo.RepoProvider().provideRepo();
         int exId = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
-        Chronometer chronometer = view.findViewById(R.id.chronometer);
-        Chronometer chronometerOneWord = view.findViewById(R.id.chronometer_one_word);
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
-                exId, repo, getResources(), chronometer, chronometerOneWord)).get(SpeakingVm.class);
+                exId, repo, getResources(), binding.chronometer, binding.chronometerOneWord)).get(SpeakingVm.class);
 
         // init short description
-        TextView shortDesc = view.findViewById(R.id.short_desc);
-        shortDesc.setText(vm.speakingEx.getShortDesc());
+        binding.shortDesc.setText(vm.speakingEx.getShortDesc());
 
         // init chronometer
-        ImageButton startPause = view.findViewById(R.id.pouse_resume);
-        startPause.setOnClickListener(v -> vm.speakingEx.startPauseChronometer());
+        binding.pouseResume.setOnClickListener(v -> vm.speakingEx.startPauseChronometer());
 
         // init start stop record
-        Button startStopRecord = view.findViewById(R.id.start_stop_record);
-        startStopRecord.setOnClickListener(v -> {
+        binding.startStopRecord.setOnClickListener(v -> {
             if (Permissions.checkRecordPermission(requireActivity())){
                 vm.speakingEx.startStopRecord(requireContext());
             }
@@ -55,12 +51,10 @@ public class SpeakingFragment extends Fragment {
         });
 
         // init word
-        TextView  mWord = view.findViewById(R.id.word);
-        vm.speakingEx.getWord().observe(getViewLifecycleOwner(), mWord::setText);
+        vm.speakingEx.getWord().observe(getViewLifecycleOwner(), binding.word::setText);
 
         // init next word
-        Button nextWord = view.findViewById(R.id.next);
-        nextWord.setOnClickListener(v ->  vm.speakingEx.nextWord());
+        binding.next.setOnClickListener(v ->  vm.speakingEx.nextWord());
     }
 
 }

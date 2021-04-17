@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
 
 public class ExercisesFragment extends Fragment {
     Repo repo = new Repo.RepoProvider().provideRepo();
@@ -21,9 +22,9 @@ public class ExercisesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FragmentExercisesBinding binding = FragmentExercisesBinding.bind(view);
 
         // init list
-        RecyclerView list = view.findViewById(R.id.exs_list);
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
 
         ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
@@ -31,10 +32,10 @@ public class ExercisesFragment extends Fragment {
                         .actionExercisesFragmentToExercisesDescriptionFragment().setExId(exModel.id)));
 
         adapter.submitList(vm.getAllExs());
-        list.setHasFixedSize(true);
-        list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
+        binding.exsList.setHasFixedSize(true);
+        binding.exsList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
                 false));
-        list.setAdapter(adapter);
+        binding.exsList.setAdapter(adapter);
     }
 }
 

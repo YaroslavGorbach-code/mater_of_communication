@@ -6,35 +6,32 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.util.Time;
+import com.YaroslavGorbach.delusionalgenerator.databinding.ItemRecordBinding;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
 import java.io.File;
 
-public class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.AudioViewHolder> {
-    private final File[] allFiles;
-    private Time time;
+public class RecordsListAdapter extends ListAdapter<File, RecordsListAdapter.AudioViewHolder> {
+
+    public interface Listener { void onPlay(File file);}
+
     private final Listener Listener;
 
-    public interface Listener {
-        void onPlay(File file);
-    }
-
-    public RecordsListAdapter(File[] allFiles, Listener Listener) {
-        this.allFiles = allFiles;
+    public RecordsListAdapter(Listener Listener) {
+        super(new DiffCallback());
         this.Listener = Listener;
-        notifyDataSetChanged();
-
     }
 
     @NonNull
     @Override
     public AudioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.record_i, parent, false);
-        time = new Time();
-        return new AudioViewHolder(view);
+        return new AudioViewHolder(ItemRecordBinding.bind(LayoutInflater.from(
+                parent.getContext()).inflate(R.layout.item_record, parent, false)));
     }
 
     @Override
@@ -42,38 +39,33 @@ public class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.
         holder.bind(position);
     }
 
-    @Override
-    public int getItemCount() {
-        if (allFiles!=null){
-            return allFiles.length;
-        }else {
-            return 0;
-        }
-    }
-
-
     public class AudioViewHolder extends RecyclerView.ViewHolder {
+        ItemRecordBinding binding;
 
-        private final TextView title;
-        private final TextView date;
-        private final TextView duration;
-
-        public AudioViewHolder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.title);
-            date = itemView.findViewById(R.id.date);
-            duration = itemView.findViewById(R.id.duration);
-
-            itemView.setOnClickListener(c ->{
-                Listener.onPlay(allFiles[getAdapterPosition()]);
-            });
-
+        public AudioViewHolder(ItemRecordBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            itemView.setOnClickListener(c ->
+                    Listener.onPlay(getItem(getBindingAdapterPosition())));
         }
 
         private void bind(int position) {
-            title.setText(allFiles[position].getName());
-            date.setText(time.getTimeAgo(allFiles[position].lastModified()));
-            duration.setText(time.getFileDuration(allFiles[position]));
+            binding.title.setText(getItem(position).getName());
+            binding.date.setText(TimeUtil.getTimeAgo(getItem(position).lastModified()));
+            binding.duration.setText(TimeUtil.getFileDuration(getItem(position)));
+        }
+    }
+
+    private static class DiffCallback extends DiffUtil.ItemCallback<File>{
+
+        @Override
+        public boolean areItemsTheSame(@NonNull File oldItem, @NonNull File newItem) {
+            return false; // TODO: 4/12/2021 implement equals
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull File oldItem, @NonNull File newItem) {
+            return false;
         }
     }
 }

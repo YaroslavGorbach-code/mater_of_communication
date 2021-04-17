@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.google.android.material.button.MaterialButton;
 
 public class DescriptionFragment extends Fragment {
@@ -20,15 +21,13 @@ public class DescriptionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FragmentDescriptionBinding binding = FragmentDescriptionBinding.bind(view);
 
-        // init description
-        MaterialButton startEx = view.findViewById(R.id.start_ex);
-        TextView description = view.findViewById(R.id.description);
         DescriptionVm vm = new ViewModelProvider(this,
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(),
                         DescriptionFragmentArgs.fromBundle(requireArguments()).getExId())).get(DescriptionVm.class);
-        description.setText(vm.getExercise().description);
-        startEx.setOnClickListener(v -> {
+        binding.description.setText(vm.getExercise().description);
+        binding.startEx.setOnClickListener(v -> {
             switch (vm.getExercise().category){
                 case SPEAKING:
                     Navigation.findNavController(view)

@@ -3,8 +3,6 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -13,12 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.databinding.ItemExBinding;
 import com.bumptech.glide.Glide;
 
 public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
-    interface Listener{
-        void onClick(ExModel exModel);
-    }
+    interface Listener{ void onClick(ExModel exModel);}
 
     private final Listener mListener;
 
@@ -27,12 +24,11 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
         mListener = listener;
     }
 
-
     @NonNull
     @Override
     public ExsVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       return new ExsVh(LayoutInflater.from(parent.getContext()).inflate(R.layout.excersice_i,
-               parent, false));
+       return new ExsVh(ItemExBinding.bind(LayoutInflater.from(
+               parent.getContext()).inflate(R.layout.item_ex, parent, false)));
     }
 
     @Override
@@ -40,24 +36,19 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
         holder.bind(getItem(position));
     }
 
-
     public class ExsVh extends RecyclerView.ViewHolder {
-        private final TextView name;
-        private final TextView category;
-        private final ImageView image;
-
-        public ExsVh(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.item_name);
-            image = itemView.findViewById(R.id.item_image);
-            category = itemView.findViewById(R.id.item_category);
-            itemView.setOnClickListener(c -> mListener.onClick(getItem(getBindingAdapterPosition())));
+        ItemExBinding binding;
+        public ExsVh(ItemExBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            binding.getRoot().setOnClickListener(c ->
+                    mListener.onClick(getItem(getBindingAdapterPosition())));
         }
 
         public void bind(ExModel item) {
-            name.setText(item.name.getName());
-            category.setText(item.category.getName());
-            Glide.with(itemView).load(item.pic).into(image);
+            binding.itemName.setText(item.name.getName());
+            binding.itemCategory.setText(item.category.getName());
+            Glide.with(itemView.getContext()).load(item.pic).into(binding.itemImage);
         }
     }
 

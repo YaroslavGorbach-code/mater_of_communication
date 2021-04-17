@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
@@ -22,9 +22,10 @@ public class VocabularyFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FragmentVocabularyBinding binding = FragmentVocabularyBinding.bind(view);
 
         // show add
-        AdMob.showBanner(view.findViewById(R.id.banner));
+        AdMob.showBanner(binding.banner);
 
         // init vm
         int exId = VocabularyFragmentArgs.fromBundle(requireArguments()).getIdEx();
@@ -33,19 +34,17 @@ public class VocabularyFragment extends Fragment {
                 new VocabularyVm.VocabularyVmFactory(repo, exId)).get(VocabularyVm.class);
 
         // init timer value
-        TextView timer = view.findViewById(R.id.timer);
-        vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), value -> timer.setText(String.valueOf(value)));
+        vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), value ->
+                binding.timer.setText(String.valueOf(value)));
 
         // init onClick
-        ConstraintLayout clickArea = view.findViewById(R.id.click_aria);
-        clickArea.setOnClickListener(v -> vm.vocabularyEx.onClick());
+        binding.clickArea.setOnClickListener(v -> vm.vocabularyEx.onClick());
 
         // init words count
-        TextView wordsCount = view.findViewById(R.id.words_count);
-        vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count -> wordsCount.setText(String.valueOf(count)));
+        vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count ->
+                binding.wordsCount.setText(String.valueOf(count)));
 
         // init short desc
-        TextView shortDEsc = view.findViewById(R.id.short_desc);
-        shortDEsc.setText(vm.vocabularyEx.getShortDesc());
+        binding.shortDesc.setText(vm.vocabularyEx.getShortDesc());
     }
 }

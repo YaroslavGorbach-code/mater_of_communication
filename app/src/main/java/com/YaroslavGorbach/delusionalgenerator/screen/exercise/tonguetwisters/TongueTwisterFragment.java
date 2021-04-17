@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTongueTwistersBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
@@ -22,9 +23,9 @@ public class TongueTwisterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        FragmentTongueTwistersBinding binding = FragmentTongueTwistersBinding.bind(view);
         //show add
-        AdMob.showBanner(view.findViewById(R.id.banner));
+        AdMob.showBanner(binding.banner);
 
         // init vm
         int exId = TongueTwisterFragmentArgs.fromBundle(requireArguments()).getExId();
@@ -33,15 +34,12 @@ public class TongueTwisterFragment extends Fragment {
                 new TongueTwisterVm.TongueTwisterVmFactory(exId, repo, getResources())).get(TongueTwisterVm.class);
 
         // init tongue twister
-        TextView tt = view.findViewById(R.id.twister);
-        vm.tongueTwisterEx.getTongueTwister().observe(getViewLifecycleOwner(), tt::setText);
+        vm.tongueTwisterEx.getTongueTwister().observe(getViewLifecycleOwner(), binding.twister::setText);
 
         // init short desc
-        TextView desc = view.findViewById(R.id.short_desc);
-        vm.tongueTwisterEx.getShortDesc().observe(getViewLifecycleOwner(), desc::setText);
+        vm.tongueTwisterEx.getShortDesc().observe(getViewLifecycleOwner(), binding.shortDesc::setText);
 
         // init next tongue twister button
-        ImageButton next = view.findViewById(R.id.next);
-        next.setOnClickListener(v -> vm.tongueTwisterEx.onNextClick());
+        binding.next.setOnClickListener(v -> vm.tongueTwisterEx.onNextClick());
     }
 }
