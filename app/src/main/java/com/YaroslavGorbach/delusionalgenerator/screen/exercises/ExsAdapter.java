@@ -16,6 +16,10 @@ import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.bumptech.glide.Glide;
 
 public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
+    interface Listener{
+        void onClick(ExModel exModel);
+    }
+
     private final Listener mListener;
 
     protected ExsAdapter(Listener listener) {
@@ -23,9 +27,6 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
         mListener = listener;
     }
 
-    interface Listener{
-        void onClick(ExModel exModel);
-    }
 
     @NonNull
     @Override
@@ -36,20 +37,27 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
 
     @Override
     public void onBindViewHolder(@NonNull ExsVh holder, int position) {
-        holder.ex_name.setText(getItem(position).name.getName());
-        Glide.with(holder.itemView.getContext()).load(getItem(position).pic).into(holder.ex_image);
+        holder.bind(getItem(position));
     }
 
 
     public class ExsVh extends RecyclerView.ViewHolder {
-        private final TextView ex_name;
-        private final ImageView ex_image;
+        private final TextView name;
+        private final TextView category;
+        private final ImageView image;
 
         public ExsVh(@NonNull View itemView) {
             super(itemView);
-            ex_name = itemView.findViewById(R.id.ex_name);
-            ex_image = itemView.findViewById(R.id.ex_item_image);
+            name = itemView.findViewById(R.id.ex_name);
+            image = itemView.findViewById(R.id.ex_item_image);
+            category = itemView.findViewById(R.id.ex_category);
             itemView.setOnClickListener(c -> mListener.onClick(getItem(getBindingAdapterPosition())));
+        }
+
+        public void bind(ExModel item) {
+            name.setText(item.name.getName());
+            category.setText(item.category.getName());
+            Glide.with(itemView).load(item.pic).into(image);
         }
     }
 

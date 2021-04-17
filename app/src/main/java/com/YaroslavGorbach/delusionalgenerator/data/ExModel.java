@@ -26,9 +26,14 @@ public class ExModel {
     }
 
     public enum Category {
-        SPEAKING,
-        VOCABULARY,
-        TONGUE_TWISTER
+        SPEAKING("Для развития комуникабельности"),
+        VOCABULARY("Для увеличения словарного запаса"),
+        TONGUE_TWISTER("Для развития четкости речи");
+        private final String name;
+        public String getName(){ return name; }
+        Category(String name){
+            this.name = name;
+        }
     }
 
     public enum Name {
