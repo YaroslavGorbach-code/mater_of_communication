@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/exercisesDescriptionFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment"
-        tools:layout="@layout/exercise_description" >
+        tools:layout="@layout/fragment_description" >
         <argument
             android:name="exId"
             app:argType="integer"
@@ -49,7 +49,7 @@
         android:id="@+id/audioListFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment"
         android:label="Записи"
-        tools:layout="@layout/activity_audio_list" />
+        tools:layout="@layout/fragment_records" />
     <fragment
         android:id="@+id/speaking_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment"

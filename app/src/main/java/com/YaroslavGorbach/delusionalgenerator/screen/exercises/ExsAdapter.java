@@ -48,9 +48,9 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
 
         public ExsVh(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.ex_name);
-            image = itemView.findViewById(R.id.ex_item_image);
-            category = itemView.findViewById(R.id.ex_category);
+            name = itemView.findViewById(R.id.item_name);
+            image = itemView.findViewById(R.id.item_image);
+            category = itemView.findViewById(R.id.item_category);
             itemView.setOnClickListener(c -> mListener.onClick(getItem(getBindingAdapterPosition())));
         }
 

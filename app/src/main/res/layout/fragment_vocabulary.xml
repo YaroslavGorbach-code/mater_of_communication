@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clickAria"
+            android:id="@+id/click_aria"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:selectableItemBackgroundBorderless"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Что делать"
+                tools:text="Что делать"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner" />
@@ -51,24 +51,24 @@
                 android:id="@+id/timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:textColor="?colorPrimary"
                 android:textSize="100sp"
                 android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/wordsCount"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/short_desc"
-                app:layout_constraintVertical_bias="0.495" />
+                app:layout_constraintTop_toTopOf="@+id/banner"
+                app:layout_constraintVertical_bias="0.495"
+                tools:text="0" />
 
             <TextView
-                android:id="@+id/wordsCount"
+                android:id="@+id/words_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:gravity="center"
-                android:text="Названо слов: 0"
+                tools:text="Названо слов: 0"
                 android:textColor="?colorPrimary"
                 android:textSize="30sp"
                 android:visibility="visible"

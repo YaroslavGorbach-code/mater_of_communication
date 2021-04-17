@@ -4,9 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
@@ -37,11 +35,11 @@ public class SpeakingFragment extends Fragment {
                 exId, repo, getResources(), chronometer, chronometerOneWord)).get(SpeakingVm.class);
 
         // init short description
-        TextView shortDesc = view.findViewById(R.id.description_short);
+        TextView shortDesc = view.findViewById(R.id.short_desc);
         shortDesc.setText(vm.speakingEx.getShortDesc());
 
         // init chronometer
-        ImageButton startPause = view.findViewById(R.id.button);
+        ImageButton startPause = view.findViewById(R.id.pouse_resume);
         startPause.setOnClickListener(v -> vm.speakingEx.startPauseChronometer());
 
         // init start stop record
@@ -57,11 +55,11 @@ public class SpeakingFragment extends Fragment {
         });
 
         // init word
-        TextView  mWord = view.findViewById(R.id.world_tv);
+        TextView  mWord = view.findViewById(R.id.word);
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), mWord::setText);
 
         // init next word
-        Button nextWord = view.findViewById(R.id.buttonNextWorld);
+        Button nextWord = view.findViewById(R.id.next);
         nextWord.setOnClickListener(v ->  vm.speakingEx.nextWord());
     }
 

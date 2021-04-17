@@ -8,7 +8,7 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/list_play_button"
+        android:id="@+id/icon_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -19,7 +19,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/list_title"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -27,21 +27,21 @@
         android:maxLines="1"
         tools:text="Filename"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/file_duration"
-        app:layout_constraintStart_toEndOf="@+id/list_play_button"
-        app:layout_constraintTop_toTopOf="@+id/list_play_button" />
+        app:layout_constraintEnd_toStartOf="@+id/duration"
+        app:layout_constraintStart_toEndOf="@+id/icon_play"
+        app:layout_constraintTop_toTopOf="@+id/icon_play" />
 
     <TextView
-        android:id="@+id/list_date"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="@string/s3"
-        app:layout_constraintBottom_toBottomOf="@+id/list_play_button"
-        app:layout_constraintStart_toStartOf="@+id/list_title"
-        app:layout_constraintTop_toBottomOf="@+id/list_title" />
+        app:layout_constraintBottom_toBottomOf="@+id/icon_play"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
-        android:id="@+id/file_duration"
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

@@ -15,21 +15,21 @@
         app:adUnitId="ca-app-pub-6043694180023070/2709885324" />
 
     <TextView
-        android:id="@+id/description_short"
+        android:id="@+id/short_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description short"
+        tools:text="Description short"
         android:layout_gravity="center"
         android:gravity="center"
         android:padding="10dp"/>
 
     <TextView
-        android:id="@+id/world_tv"
+        android:id="@+id/word"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3.5"
         android:letterSpacing="0.1"
-        android:text="world"
+        tools:text="world"
         android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="40sp"
@@ -54,39 +54,16 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/buttonFinishEx1"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|center"
-                    android:gravity="center"
-                    android:text="завершить"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-
-                <Button
-                    android:id="@+id/buttonNextWorld"
+                    android:id="@+id/next"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_arrow_right"
-                    android:text="следующее слово"
+                    android:text="Дальше"
                     android:textColor="#ffffff"
                     android:textSize="20sp"
                     android:layout_gravity="center" />
             </FrameLayout>
-
-            <TextView
-                android:id="@+id/world_counter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="#ffffff"
-                android:text="0/0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,7 +80,7 @@
                     android:gravity="center" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/button"
+                    android:id="@+id/pouse_resume"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -118,10 +95,7 @@
                     android:textColor="#ffffff"
                     android:textSize="22sp"
                     android:gravity="center"
-                    android:layout_gravity="center"
-
-
-                    />
+                    android:layout_gravity="center" />
             </LinearLayout>
 
             <FrameLayout

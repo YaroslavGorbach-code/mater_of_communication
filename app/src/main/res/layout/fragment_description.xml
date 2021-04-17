@@ -12,14 +12,14 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:text="@string/offline_opt_in_decline"
-        app:layout_constraintBottom_toTopOf="@+id/button_start_ex_category_1"
+        app:layout_constraintBottom_toTopOf="@+id/start_ex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_start_ex_category_1"
+        android:id="@+id/start_ex"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

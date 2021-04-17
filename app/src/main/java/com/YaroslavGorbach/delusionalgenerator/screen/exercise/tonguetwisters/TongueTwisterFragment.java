@@ -7,9 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -43,7 +41,7 @@ public class TongueTwisterFragment extends Fragment {
         vm.tongueTwisterEx.getShortDesc().observe(getViewLifecycleOwner(), desc::setText);
 
         // init next tongue twister button
-        ImageButton next = view.findViewById(R.id.nextTwist);
+        ImageButton next = view.findViewById(R.id.next);
         next.setOnClickListener(v -> vm.tongueTwisterEx.onNextClick());
     }
 }

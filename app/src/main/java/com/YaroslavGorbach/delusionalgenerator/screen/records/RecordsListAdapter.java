@@ -60,9 +60,9 @@ public class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.list_title);
-            date = itemView.findViewById(R.id.list_date);
-            duration = itemView.findViewById(R.id.file_duration);
+            title = itemView.findViewById(R.id.title);
+            date = itemView.findViewById(R.id.date);
+            duration = itemView.findViewById(R.id.duration);
 
             itemView.setOnClickListener(c ->{
                 Listener.onPlay(allFiles[getAdapterPosition()]);

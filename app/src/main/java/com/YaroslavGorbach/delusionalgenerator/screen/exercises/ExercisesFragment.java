@@ -1,16 +1,12 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +23,7 @@ public class ExercisesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // init list
-        RecyclerView list = view.findViewById(R.id.allExList);
+        RecyclerView list = view.findViewById(R.id.exs_list);
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
 
         ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)

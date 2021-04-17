@@ -7,13 +7,11 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import android.view.LayoutInflater;
+
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
@@ -39,11 +37,11 @@ public class VocabularyFragment extends Fragment {
         vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), value -> timer.setText(String.valueOf(value)));
 
         // init onClick
-        ConstraintLayout clickArea = view.findViewById(R.id.clickAria);
+        ConstraintLayout clickArea = view.findViewById(R.id.click_aria);
         clickArea.setOnClickListener(v -> vm.vocabularyEx.onClick());
 
         // init words count
-        TextView wordsCount = view.findViewById(R.id.wordsCount);
+        TextView wordsCount = view.findViewById(R.id.words_count);
         vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count -> wordsCount.setText(String.valueOf(count)));
 
         // init short desc

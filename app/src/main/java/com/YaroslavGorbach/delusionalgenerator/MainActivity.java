@@ -7,7 +7,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,8 +26,8 @@ public class MainActivity extends AppCompatActivity{
 
     @SuppressLint("NonConstantResourceId")
     private void setUpNavControllers() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bttm_nav);
-        MaterialToolbar toolbar = findViewById(R.id.toolbar_main_a);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.fragment);
         AppBarConfiguration appBarConfiguration =
