@@ -24,9 +24,6 @@ public class VocabularyFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FragmentVocabularyBinding binding = FragmentVocabularyBinding.bind(view);
 
-        // show add
-        AdMob.showBanner(binding.banner);
-
         // init vm
         int exId = VocabularyFragmentArgs.fromBundle(requireArguments()).getIdEx();
         Repo repo = new Repo.RepoProvider().provideRepo();

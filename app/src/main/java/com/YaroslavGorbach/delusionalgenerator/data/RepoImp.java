@@ -46,8 +46,8 @@ public class RepoImp implements Repo {
                 R.string.description_lp,
                 ExModel.Category.VOCABULARY,
                 R.drawable.ic_list_test,
-                R.string.short_desc_lp
-                )); // TODO: 4/17/2021 short desc incorrect 
+                R.string.short_desc_verbs
+                ));
     }
 
     @Override

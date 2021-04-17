@@ -104,6 +104,11 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     @Override
+    public String getExName() {
+        return mExModel.name.getName();
+    }
+
+    @Override
     public void startPauseChronometer() {
         if (mChronometer.getState() && mChronometerOneWord.getState()){
             mChronometer.pause();
