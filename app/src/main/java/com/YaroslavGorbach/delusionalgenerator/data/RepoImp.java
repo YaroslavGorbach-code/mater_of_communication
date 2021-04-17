@@ -23,7 +23,7 @@ public class RepoImp implements Repo {
         mExercises.add(new ExModel(
                 0,
                 ExModel.Name.LINGUISTIC_PYRAMIDS,
-                "coming soon",
+                R.string.description_lp,
                 ExModel.Category.SPEAKING,
                 R.drawable.ic_list_test,
                 "coming soon",
@@ -34,7 +34,7 @@ public class RepoImp implements Repo {
         mExercises.add(new ExModel(
                 1,
                 ExModel.Name.EASY_TONGUE_TWISTERS,
-                "coming soon",
+                R.string.description_lp,
                 ExModel.Category.TONGUE_TWISTER,
                 R.drawable.ic_list_test,
                 "Проговаривайте текст медленно",
@@ -46,7 +46,7 @@ public class RepoImp implements Repo {
         mExercises.add(new ExModel(
                 2,
                 ExModel.Name.VERBS,
-                "coming soon",
+                R.string.description_lp,
                 ExModel.Category.VOCABULARY,
                 R.drawable.ic_list_test,
                 "coming soon",

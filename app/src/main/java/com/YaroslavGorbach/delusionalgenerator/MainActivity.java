@@ -39,11 +39,13 @@ public class MainActivity extends AppCompatActivity{
             switch (destination.getId()){
                 case R.id.exercisesDescriptionFragment:
                     toolbar.getMenu().clear();
+                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                     break;
                 case R.id.exercisesFragment:
                     toolbar.getMenu().clear();
                     bottomNavigationView.setVisibility(View.VISIBLE);
+                    toolbar.setVisibility(View.VISIBLE);
                     break;
                 case R.id.speaking_fragment:
                 case R.id.vocabulary_fragment:

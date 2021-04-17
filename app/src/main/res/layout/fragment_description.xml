@@ -6,34 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".screen.description.DescriptionFragment">
 
-    <TextView
-        android:id="@+id/description"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_list_test"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/s4"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textSize="22sp" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:text="@string/offline_opt_in_decline"
+        android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/start_ex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_height="wrap_content"
+            android:text="@string/description_lp"
+            android:textSize="18sp" />
+    </ScrollView>
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/start_ex"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:padding="20dp"
-        android:text="Начать !"
-        android:textColor="?colorPrimary"
-        android:textSize="30sp"
-        app:cornerRadius="20dp"
+        android:padding="16dp"
+        android:text="Начать"
+        android:textSize="24sp"
+        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="?colorPrimary" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

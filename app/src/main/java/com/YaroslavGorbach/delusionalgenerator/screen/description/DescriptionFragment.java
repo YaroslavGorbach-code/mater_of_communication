@@ -26,7 +26,9 @@ public class DescriptionFragment extends Fragment {
         DescriptionVm vm = new ViewModelProvider(this,
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(),
                         DescriptionFragmentArgs.fromBundle(requireArguments()).getExId())).get(DescriptionVm.class);
-        binding.description.setText(vm.getExercise().description);
+        binding.description.setText(getString(vm.getExercise().descriptionId));
+        binding.image.setImageResource(vm.getExercise().pic);
+        binding.name.setText(vm.getExercise().name.getName());
         binding.startEx.setOnClickListener(v -> {
             switch (vm.getExercise().category){
                 case SPEAKING:

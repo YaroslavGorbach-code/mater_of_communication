@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment"
-        android:label="Все упражнения"
-        tools:layout="@layout/fragment_exercises" >
+        android:label="Упражнения"
+        tools:layout="@layout/fragment_exercises">
         <action
             android:id="@+id/action_exercisesFragment_v_2_to_audioListFragment"
             app:destination="@id/audioListFragment"
