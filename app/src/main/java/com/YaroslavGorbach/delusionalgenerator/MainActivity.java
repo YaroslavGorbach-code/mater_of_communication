@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity{
                     break;
                 case R.id.speaking_fragment:
                 case R.id.vocabulary_fragment:
-                case R.id.tongue_twister_fragment:
                     toolbar.getMenu().clear();
                     break;
                 case R.id.audioListFragment:

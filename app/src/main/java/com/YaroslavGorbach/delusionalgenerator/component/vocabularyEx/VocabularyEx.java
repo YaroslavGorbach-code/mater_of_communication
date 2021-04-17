@@ -5,6 +5,21 @@ import androidx.lifecycle.LiveData;
 public interface VocabularyEx {
     void onClick();
     int getShortDescId();
+    Result getResultState();
     LiveData<Integer> getClickCount();
     LiveData<Long> getTimerValue();
+    LiveData<Boolean> onTimerFinish();
+
+    enum Result{
+        GOOD(),
+        BAD(),
+        VERY_GOOD();
+        int number;
+        public int getNumber() {
+            return number;
+        }
+        public void setNumber(int number) {
+            this.number = number;
+        }
+    }
 }

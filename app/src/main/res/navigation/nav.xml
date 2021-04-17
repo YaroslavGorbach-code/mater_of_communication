@@ -16,11 +16,6 @@
             app:enterAnim="@anim/fragment_open_enter"
             app:popEnterAnim="@anim/fragment_open_enter" />
         <action
-            android:id="@+id/action_exercisesFragment_v_2_to_settingsFragment2"
-            app:destination="@id/settingsFragment2"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:popEnterAnim="@anim/fragment_open_enter" />
-        <action
             android:id="@+id/action_exercisesFragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment" />
     </fragment>
@@ -33,17 +28,15 @@
             app:argType="integer"
             android:defaultValue="-1" />
         <action
-            android:id="@+id/action_exercisesDescriptionFragment_to_tongue_twister_fragment"
-            app:destination="@id/tongue_twister_fragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_exercisesDescriptionFragment_to_speaking_fragment"
             app:destination="@id/speaking_fragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/exercisesFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_vocabulary_fragment"
             app:destination="@id/vocabulary_fragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/exercisesFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
@@ -60,15 +53,6 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/tongue_twister_fragment"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.tonguetwisters.TongueTwisterFragment"
-        tools:layout="@layout/fragment_tongue_twisters">
-        <argument
-            android:name="exId"
-            android:defaultValue="-1"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/vocabulary_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment"
         tools:layout="@layout/fragment_vocabulary">
@@ -80,12 +64,18 @@
             android:id="@+id/action_exercisesCategory2Fragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment"
             app:enterAnim="@anim/fragment_open_enter"
-            app:popUpTo="@id/vocabulary_fragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/exercisesFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_vocabulary_fragment_to_finishDialog"
+            app:destination="@id/finishDialog" />
     </fragment>
-    <fragment
-        android:id="@+id/settingsFragment2"
-        android:name="com.YaroslavGorbach.delusionalgenerator.screen.settings.SettingsFragment"
-        android:label="Главная"
-        tools:layout="@layout/fragment_settings" />
+    <dialog
+        android:id="@+id/finishDialog"
+        android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.FinishDialog"
+        android:label="FinishDialog" >
+        <argument
+            android:name="result"
+            app:argType="com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx$Result" />
+    </dialog>
 </navigation>

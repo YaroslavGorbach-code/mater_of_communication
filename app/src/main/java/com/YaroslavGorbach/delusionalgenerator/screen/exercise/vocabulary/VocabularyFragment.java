@@ -6,16 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.View;
-import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
-import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
-public class VocabularyFragment extends Fragment {
+public class VocabularyFragment extends Fragment{
 
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
 
@@ -37,11 +36,25 @@ public class VocabularyFragment extends Fragment {
         // init onClick
         binding.clickArea.setOnClickListener(v -> vm.vocabularyEx.onClick());
 
+        // init toolbar
+        binding.toolbar.setNavigationOnClickListener(v->
+                Navigation.findNavController(view).popBackStack());
+
         // init words count
         vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count ->
                 binding.wordsCount.setText(String.valueOf(count)));
 
         // init short desc
         binding.shortDesc.setText(getString(vm.vocabularyEx.getShortDescId()));
+
+        // init finish event
+        vm.vocabularyEx.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
+            if (isFinis){
+                binding.clickArea.setClickable(false);
+                binding.clickArea.setFocusable(false);
+                Navigation.findNavController(view).navigate(VocabularyFragmentDirections
+                        .actionVocabularyFragmentToFinishDialog(vm.vocabularyEx.getResultState()));
+            }
+        });
     }
 }
