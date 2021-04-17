@@ -16,7 +16,7 @@ public class VoiceRecorderImp implements VoiceRecorder {
     @Override
     public void start(Context context, String name) {
         mMediaRecorder = new MediaRecorder();
-        String recordFile = name + ".3gp";
+        String recordFile = name + new Date().getTime() + ".3gp";
         recordFile = recordFile.replace(" ", "_");
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);

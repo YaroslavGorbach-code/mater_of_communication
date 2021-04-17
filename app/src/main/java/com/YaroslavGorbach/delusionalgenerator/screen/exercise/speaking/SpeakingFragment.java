@@ -38,8 +38,12 @@ public class SpeakingFragment extends Fragment {
             }
         });
         vm.speakingEx.getRecordingState().observe(getViewLifecycleOwner(), isRecording -> {
-            if (!isRecording)
+            if (isRecording){
+                binding.startStopRecord.setImageResource(R.drawable.ic_voice_recording);
+            }else {
+                binding.startStopRecord.setImageResource(R.drawable.ic_voice_stop);
                 Toast.makeText(requireContext(), "Запись сохранена", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // init word
