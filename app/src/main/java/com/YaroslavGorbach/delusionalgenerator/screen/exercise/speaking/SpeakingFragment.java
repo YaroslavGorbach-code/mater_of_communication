@@ -3,6 +3,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -31,6 +33,9 @@ public class SpeakingFragment extends Fragment {
         vm.speakingEx.getShortDescId().observe(getViewLifecycleOwner(), descId ->
                 binding.shortDesc.setText(getString(descId)));
 
+        // init toolbar
+        binding.toolbar.setNavigationOnClickListener(v ->
+                Navigation.findNavController(view).popBackStack());
 
         // init start stop record
         binding.startStopRecord.setOnClickListener(v -> {
