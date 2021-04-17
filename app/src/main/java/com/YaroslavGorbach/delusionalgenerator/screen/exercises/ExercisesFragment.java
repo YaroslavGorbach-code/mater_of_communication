@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -18,24 +20,25 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 public class ExercisesFragment extends Fragment {
     Repo repo = new Repo.RepoProvider().provideRepo();
 
+    public ExercisesFragment(){ super(R.layout.fragment_exercises); }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exercises, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         // init list
         RecyclerView list = view.findViewById(R.id.allExList);
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
 
-            ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
-                    .navigate(ExercisesFragmentDirections
-                                    .actionExercisesFragmentToExercisesDescriptionFragment().setExId(exModel.id)));
+        ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
+                .navigate(ExercisesFragmentDirections
+                        .actionExercisesFragmentToExercisesDescriptionFragment().setExId(exModel.id)));
 
-            adapter.submitList(vm.getAllExs());
-            list.setHasFixedSize(true);
-            list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
-                    false));
-            list.setAdapter(adapter);
-
-        return view;
+        adapter.submitList(vm.getAllExs());
+        list.setHasFixedSize(true);
+        list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
+                false));
+        list.setAdapter(adapter);
     }
 }
 

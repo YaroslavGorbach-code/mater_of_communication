@@ -2,6 +2,8 @@ package com.YaroslavGorbach.delusionalgenerator.screen.description;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -16,10 +18,11 @@ import com.google.android.material.button.MaterialButton;
 
 public class DescriptionFragment extends Fragment {
 
+    public DescriptionFragment(){ super(R.layout.exercise_description); }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.exercise_description, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         // init description
         MaterialButton startEx = view.findViewById(R.id.button_start_ex_category_1);
@@ -49,6 +52,5 @@ public class DescriptionFragment extends Fragment {
                                     .setExId(vm.getExercise().id));
             }
         });
-        return view;
     }
 }

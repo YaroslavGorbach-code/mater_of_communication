@@ -2,6 +2,8 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,15 +13,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment;
 import com.YaroslavGorbach.delusionalgenerator.util.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class VocabularyFragment extends Fragment {
 
+    public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_vocabulary, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         // show add
         AdMob.showBanner(view.findViewById(R.id.banner));
@@ -45,7 +49,5 @@ public class VocabularyFragment extends Fragment {
         // init short desc
         TextView shortDEsc = view.findViewById(R.id.short_desc);
         shortDEsc.setText(vm.vocabularyEx.getShortDesc());
-
-        return view;
     }
 }

@@ -1,4 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
@@ -18,11 +20,12 @@ import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
 
 public class SpeakingFragment extends Fragment {
 
+   public SpeakingFragment(){ super(R.layout.fragment_speaking); }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_speaking, container, false);
-        // show add
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         AdMob.showBanner(view.findViewById(R.id.banner));
 
         // init vm
@@ -60,9 +63,8 @@ public class SpeakingFragment extends Fragment {
         // init next word
         Button nextWord = view.findViewById(R.id.buttonNextWorld);
         nextWord.setOnClickListener(v ->  vm.speakingEx.nextWord());
-
-        return view;
     }
+
 }
 
 

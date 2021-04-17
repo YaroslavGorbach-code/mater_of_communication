@@ -2,6 +2,8 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercise.tonguetwisters;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,10 +19,13 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class TongueTwisterFragment extends Fragment {
 
+    public TongueTwisterFragment(){ super(R.layout.fragment_tongue_twisters); }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tongue_twisters, container, false);
-        /*показ банера*/
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //show add
         AdMob.showBanner(view.findViewById(R.id.banner));
 
         // init vm
@@ -40,9 +45,5 @@ public class TongueTwisterFragment extends Fragment {
         // init next tongue twister button
         ImageButton next = view.findViewById(R.id.nextTwist);
         next.setOnClickListener(v -> vm.tongueTwisterEx.onNextClick());
-
-
-
-        return view;
     }
 }

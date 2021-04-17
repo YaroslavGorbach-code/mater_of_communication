@@ -28,12 +28,11 @@ import java.io.File;
 
 public class RecordsFragment extends Fragment {
 
-    @SuppressLint("RestrictedApi")
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_audio_list, container, false);
+    public RecordsFragment(){ super(R.layout.activity_audio_list); }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         //init vn
         Repo repo = new Repo.RepoProvider().provideRepo();
         RecordsVm vm = new ViewModelProvider(this,
@@ -45,8 +44,5 @@ public class RecordsFragment extends Fragment {
                 file -> vm.recordsList.onPlay(file));
         list.setLayoutManager(new LinearLayoutManager(requireContext()));
         list.setAdapter(adapter);
-
-
-        return view;
     }
 }
