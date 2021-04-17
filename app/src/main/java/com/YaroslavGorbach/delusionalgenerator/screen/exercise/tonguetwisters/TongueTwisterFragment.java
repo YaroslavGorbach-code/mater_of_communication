@@ -37,7 +37,8 @@ public class TongueTwisterFragment extends Fragment {
         vm.tongueTwisterEx.getTongueTwister().observe(getViewLifecycleOwner(), binding.twister::setText);
 
         // init short desc
-        vm.tongueTwisterEx.getShortDesc().observe(getViewLifecycleOwner(), binding.shortDesc::setText);
+        vm.tongueTwisterEx.getShortDescId().observe(getViewLifecycleOwner(), id ->
+                binding.shortDesc.setText(getString(id)));
 
         // init next tongue twister button
         binding.next.setOnClickListener(v -> vm.tongueTwisterEx.onNextClick());

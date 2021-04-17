@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 public interface VocabularyEx {
     void onClick();
-    String getShortDesc();
+    int getShortDescId();
     LiveData<Integer> getClickCount();
     LiveData<Long> getTimerValue();
 }

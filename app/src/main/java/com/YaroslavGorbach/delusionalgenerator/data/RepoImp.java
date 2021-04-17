@@ -26,10 +26,7 @@ public class RepoImp implements Repo {
                 R.string.description_lp,
                 ExModel.Category.SPEAKING,
                 R.drawable.ic_list_test,
-                "coming soon",
-                "coming soon",
-                "coming soon",
-                "coming soon"));
+                R.string.short_desc_lp));
 
         mExercises.add(new ExModel(
                 1,
@@ -37,11 +34,11 @@ public class RepoImp implements Repo {
                 R.string.description_lp,
                 ExModel.Category.TONGUE_TWISTER,
                 R.drawable.ic_list_test,
-                "Проговаривайте текст медленно",
-                "Беззвучно произнесите скороговорку. Движениями губ",
-                "Произнесите текст в пол голоса, шепотом",
-                "Произнесите вслух, громко, но все ещё медленно и четко",
-                "Теперь пробуйте произносить текст в разных стилях, с разной интонацией, с разной скоростью"));
+                R.string.short_desc_tt_1,
+                R.string.short_desc_tt_2,
+                R.string.short_desc_tt_3,
+                R.string.short_desc_tt_4,
+                R.string.short_desc_tt_5));
 
         mExercises.add(new ExModel(
                 2,
@@ -49,10 +46,8 @@ public class RepoImp implements Repo {
                 R.string.description_lp,
                 ExModel.Category.VOCABULARY,
                 R.drawable.ic_list_test,
-                "coming soon",
-                "coming soon",
-                "coming soon",
-                "coming soon"));
+                R.string.short_desc_lp
+                )); // TODO: 4/17/2021 short desc incorrect 
     }
 
     @Override

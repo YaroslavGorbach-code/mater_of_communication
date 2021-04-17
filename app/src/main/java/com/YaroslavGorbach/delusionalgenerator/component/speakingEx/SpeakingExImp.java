@@ -60,8 +60,8 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     @Override
-    public String getShortDesc() {
-        return mExModel.shortDesc[0];
+    public int getShortDescId() {
+        return mExModel.shortDescIds[0];
     }
 
     @Override

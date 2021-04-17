@@ -45,6 +45,6 @@ public class VocabularyFragment extends Fragment {
                 binding.wordsCount.setText(String.valueOf(count)));
 
         // init short desc
-        binding.shortDesc.setText(vm.vocabularyEx.getShortDesc());
+        binding.shortDesc.setText(getString(vm.vocabularyEx.getShortDescId()));
     }
 }

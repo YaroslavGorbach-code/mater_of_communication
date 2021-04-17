@@ -9,6 +9,6 @@ public interface SpeakingEx {
     void startPauseChronometer();
     void startStopRecord(Context context);
     LiveData<Boolean> getRecordingState();
-    String getShortDesc();
+    int getShortDescId();
     LiveData<String> getWord();
 }

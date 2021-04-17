@@ -6,7 +6,7 @@ public class ExModel {
     public int pic;
     public Category category;
     public int descriptionId;
-    public String[] shortDesc;
+    public int[] shortDescIds;
 
 
     public ExModel(
@@ -15,12 +15,12 @@ public class ExModel {
             int descriptionId,
             Category category,
             int pic,
-            String...shortDesc
+            int...shortDescIds
     ){
         this.id = id;
         this.name = name;
         this.category = category;
-        this.shortDesc = shortDesc;
+        this.shortDescIds = shortDescIds;
         this.descriptionId = descriptionId;
         this.pic = pic;
     }

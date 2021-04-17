@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,114 +8,87 @@
     tools:context=".screen.exercise.speaking.SpeakingFragment"
     android:orientation="vertical">
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/banner"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-6043694180023070/2709885324" />
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/short_desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="Description short"
+            android:textSize="24dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/short_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Description short"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="10dp"/>
 
     <TextView
         android:id="@+id/word"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.5"
-        android:letterSpacing="0.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:text="world"
+        android:layout_gravity="center"
         android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="40sp"
         android:gravity="center"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView9"
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?colorPrimary"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="20dp">
+        android:layout_gravity="bottom"
+        style="@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface"
+        >
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_marginEnd="16dp"
+           android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+           <Chronometer
+               android:id="@+id/chronometer_one_word"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="?colorPrimarySurface"
+               android:textSize="24sp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+           <Chronometer
+               android:id="@+id/chronometer"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="end"
+               android:textSize="24sp"
+               android:textColor="?colorPrimarySurface"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
-                <Button
-                    android:id="@+id/next"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_right"
-                    android:text="Дальше"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:layout_gravity="center" />
-            </FrameLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?colorPrimarySurface"
+        app:srcCompat="@drawable/ic_arrow_right"
+        app:tint="?colorPrimary"
+        app:layout_anchor="@id/bottomAppBar"
+        tools:ignore="ContentDescription" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Chronometer
-                    android:id="@+id/chronometer_one_word"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:textColor="#ffffff"
-                    android:textSize="22sp"
-                    android:gravity="center" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/pouse_resume"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackground"
-                    android:src="@drawable/ic_pause" />
-
-                <Chronometer
-                    android:id="@+id/chronometer"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:textSize="22sp"
-                    android:gravity="center"
-                    android:layout_gravity="center" />
-            </LinearLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/start_stop_record"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?selectableItemBackground"
-                    android:drawableStart="@drawable/ic_voice_stop"
-                    android:text="Начать запись"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="#ffffff" />
-            </FrameLayout>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/start_stop_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?colorPrimarySurface"
+        app:srcCompat="@drawable/ic_voice_recording"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="16dp"
+        app:tint="?colorPrimary"
+        tools:ignore="ContentDescription" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
