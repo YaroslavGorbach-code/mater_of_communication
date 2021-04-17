@@ -30,7 +30,7 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
     @NonNull
     @Override
     public ExsVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       return new ExsVh(LayoutInflater.from(parent.getContext()).inflate(R.layout.excersice_item,
+       return new ExsVh(LayoutInflater.from(parent.getContext()).inflate(R.layout.excersice_i,
                parent, false));
     }
 
@@ -47,7 +47,7 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
 
         public ExsVh(@NonNull View itemView) {
             super(itemView);
-            ex_name = itemView.findViewById(R.id.item_ex_name);
+            ex_name = itemView.findViewById(R.id.ex_name);
             ex_image = itemView.findViewById(R.id.ex_item_image);
             itemView.setOnClickListener(c -> mListener.onClick(getItem(getBindingAdapterPosition())));
         }
