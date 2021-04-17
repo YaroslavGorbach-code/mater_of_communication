@@ -54,6 +54,7 @@ public class VocabularyFragment extends Fragment{
                 binding.clickArea.setFocusable(false);
                 Navigation.findNavController(view).navigate(VocabularyFragmentDirections
                         .actionVocabularyFragmentToFinishDialog(vm.vocabularyEx.getResultState()));
+                Navigation.findNavController(view).popBackStack();
             }
         });
     }
