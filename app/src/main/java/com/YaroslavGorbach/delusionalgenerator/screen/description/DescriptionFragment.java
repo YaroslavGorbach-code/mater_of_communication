@@ -32,6 +32,7 @@ public class DescriptionFragment extends Fragment {
         binding.startEx.setOnClickListener(v -> {
             switch (vm.getExercise().category){
                 case SPEAKING:
+                case TONGUE_TWISTER:
                     Navigation.findNavController(view)
                             .navigate(DescriptionFragmentDirections
                                     .actionExercisesDescriptionFragmentToSpeakingFragment()
@@ -43,11 +44,6 @@ public class DescriptionFragment extends Fragment {
                                     .actionExercisesDescriptionFragmentToVocabularyFragment()
                                     .setIdEx(vm.getExercise().id));
                     break;
-                case TONGUE_TWISTER:
-                    Navigation.findNavController(view)
-                            .navigate(DescriptionFragmentDirections
-                                    .actionExercisesDescriptionFragmentToTongueTwisterFragment()
-                                    .setExId(vm.getExercise().id));
             }
         });
     }

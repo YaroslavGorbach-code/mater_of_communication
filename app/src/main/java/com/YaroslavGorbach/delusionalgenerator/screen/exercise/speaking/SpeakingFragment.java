@@ -8,18 +8,18 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingTtBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
 
 public class SpeakingFragment extends Fragment {
 
-   public SpeakingFragment(){ super(R.layout.fragment_speaking); }
+   public SpeakingFragment(){ super(R.layout.fragment_speaking_tt); }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FragmentSpeakingBinding binding = FragmentSpeakingBinding.bind(view);
+        FragmentSpeakingTtBinding binding = FragmentSpeakingTtBinding.bind(view);
 
         // init vm
         Repo repo = new Repo.RepoProvider().provideRepo();
@@ -28,7 +28,8 @@ public class SpeakingFragment extends Fragment {
                 exId, repo, getResources(), binding.chronometer, binding.chronometerOneWord)).get(SpeakingVm.class);
 
         // init short description
-        binding.shortDesc.setText(vm.speakingEx.getShortDescId());
+        vm.speakingEx.getShortDescId().observe(getViewLifecycleOwner(), descId ->
+                binding.shortDesc.setText(getString(descId)));
 
 
         // init start stop record
@@ -37,6 +38,7 @@ public class SpeakingFragment extends Fragment {
                 vm.speakingEx.startStopRecord(requireContext());
             }
         });
+
         vm.speakingEx.getRecordingState().observe(getViewLifecycleOwner(), isRecording -> {
             if (isRecording){
                 binding.startStopRecord.setImageResource(R.drawable.ic_voice_recording);
@@ -50,7 +52,7 @@ public class SpeakingFragment extends Fragment {
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), binding.word::setText);
 
         // init next word
-        binding.next.setOnClickListener(v ->  vm.speakingEx.nextWord());
+        binding.next.setOnClickListener(v ->  vm.speakingEx.onNext());
     }
 
 }

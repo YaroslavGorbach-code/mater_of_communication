@@ -53,7 +53,7 @@
     <fragment
         android:id="@+id/speaking_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment"
-        tools:layout="@layout/fragment_speaking">
+        tools:layout="@layout/fragment_speaking_tt">
         <argument
             android:name="idEx"
             android:defaultValue="-1"
