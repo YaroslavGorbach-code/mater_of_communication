@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Развитие коммуникативных навыков</string>
 
-    <string-array name="TextUnderThumb_ex1">
-        <item>Аналогия</item>
-        <item>Обобщение</item>
-        <item>Разобобщения</item>
+    <string-array name="helper_text_lp">
+        <item>Придумайте аналогию для</item>
+        <item>Обобщите</item>
+        <item>Разобобщите</item>
     </string-array>
 
     <string name="category_1_name">Для развития коммуникабельности</string>

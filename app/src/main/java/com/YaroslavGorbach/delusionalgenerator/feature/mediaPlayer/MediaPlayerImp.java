@@ -18,7 +18,6 @@ public class MediaPlayerImp implements MediaPlayer {
             mMediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
-            Log.v("play", "playDSD");
         }
         mMediaPlayer.setOnPreparedListener(android.media.MediaPlayer::start);
         mMediaPlayer.setOnCompletionListener(mp -> {

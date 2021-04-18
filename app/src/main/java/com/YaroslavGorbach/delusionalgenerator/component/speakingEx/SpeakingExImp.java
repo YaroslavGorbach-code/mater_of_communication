@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SpeakingExImp implements SpeakingEx {
-    private final MutableLiveData<String> _word = new MutableLiveData<>("test");
+    private final MutableLiveData<String> _word = new MutableLiveData<>("null");
     private final MutableLiveData<Integer> _shortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
     private final MutableLiveData<Boolean> mIsRecording = new MutableLiveData<>();
     private final Chronometer mChronometer;
@@ -77,6 +77,7 @@ public class SpeakingExImp implements SpeakingEx {
             case LINGUISTIC_PYRAMIDS:
                 words = mRepo.getWords(WordType.NOT_ALIVE, mResources);
                 _word.postValue(words.get(mRandom.nextInt(words.size())));
+                setShortDesc();
                 break;
             case EASY_TONGUE_TWISTERS:
                 words = mRepo.getWords(WordType.EASY_T_T, mResources);
@@ -89,7 +90,7 @@ public class SpeakingExImp implements SpeakingEx {
         if (mExModel.category == ExModel.Category.TONGUE_TWISTER) {
             _shortDesc.postValue(mExModel.shortDescIds[clickCount]);
         }else {
-            _shortDesc.postValue(mExModel.shortDescIds[0]);
+            _shortDesc.postValue(mExModel.shortDescIds[mRandom.nextInt(mExModel.shortDescIds.length)]);
         }
     }
 

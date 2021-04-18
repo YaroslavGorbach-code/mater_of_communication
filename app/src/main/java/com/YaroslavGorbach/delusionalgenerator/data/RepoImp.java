@@ -26,7 +26,9 @@ public class RepoImp implements Repo {
                 R.string.description_lp,
                 ExModel.Category.SPEAKING,
                 R.drawable.ic_list_test,
-                R.string.short_desc_lp));
+                R.string.short_desc_lp_1,
+                R.string.short_desc_lp_2,
+                R.string.short_desc_lp_3));
 
         mExercises.add(new ExModel(
                 1,

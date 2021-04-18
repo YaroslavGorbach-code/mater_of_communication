@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_desc_lp">Обобщайте, разобобщайте, переходите по аналогиям</string>
+    <string name="short_desc_lp_1">Придумайте аналогию</string>
+    <string name="short_desc_lp_2">Обобщите данное слово</string>
+    <string name="short_desc_lp_3">Разобобщите данное слово</string>
+
 
     <string name="short_desc_verbs">"Назовите как можно больше глаголов(Что делать? Что сделать?).
         После каждого названого слова, нажмите на экран, для учета результата"</string>
