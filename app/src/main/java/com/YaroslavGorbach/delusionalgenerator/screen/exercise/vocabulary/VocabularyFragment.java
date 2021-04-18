@@ -25,7 +25,7 @@ public class VocabularyFragment extends Fragment{
 
         // init vm
         int exId = VocabularyFragmentArgs.fromBundle(requireArguments()).getIdEx();
-        Repo repo = new Repo.RepoProvider().provideRepo();
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
                 new VocabularyVm.VocabularyVmFactory(repo, exId)).get(VocabularyVm.class);
 

@@ -15,7 +15,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
 
 public class ExercisesFragment extends Fragment {
-    Repo repo = new Repo.RepoProvider().provideRepo();
+
 
     public ExercisesFragment(){ super(R.layout.fragment_exercises); }
 
@@ -25,7 +25,7 @@ public class ExercisesFragment extends Fragment {
         FragmentExercisesBinding binding = FragmentExercisesBinding.bind(view);
 
         // init list
-        ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
+        ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(ExercisesVm.class);
 
         ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
                 .navigate(ExercisesFragmentDirections

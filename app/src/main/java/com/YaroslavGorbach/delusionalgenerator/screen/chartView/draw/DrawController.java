@@ -143,8 +143,9 @@ public class DrawController {
 		int titleWidth = chart.getTitleWidth();
 		int heightOffset = chart.getHeightOffset();
 
-		canvas.drawLine(titleWidth, heightOffset, titleWidth, height, frameLinePaint);
 		canvas.drawLine(titleWidth, height, width, height, frameLinePaint);
+		canvas.drawLine(titleWidth, heightOffset, titleWidth, height, frameLinePaint);
+
 	}
 
 	private void drawChart(@NonNull Canvas canvas) {

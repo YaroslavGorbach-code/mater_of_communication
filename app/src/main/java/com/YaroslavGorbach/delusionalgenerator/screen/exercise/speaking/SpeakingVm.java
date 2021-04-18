@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingEx;
 import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 
 public class SpeakingVm extends ViewModel {
     public SpeakingEx speakingEx;
@@ -16,12 +18,24 @@ public class SpeakingVm extends ViewModel {
     SpeakingVm(
             int exId,
             Repo repo,
+            StatisticsManager statisticsManager,
             Resources resources,
             Chronometer chronometer,
             Chronometer chronometerOneWord
     ) {
-        speakingEx = new SpeakingExImp(repo.getExercises().get(exId), repo,
-                resources, chronometer, chronometerOneWord);
+        speakingEx = new SpeakingExImp(
+                repo.getExercises().get(exId),
+                repo,
+                statisticsManager,
+                resources,
+                chronometer,
+                chronometerOneWord);
+    }
+
+    @Override
+    protected void onCleared() {
+        speakingEx.saveStatistics();
+        super.onCleared();
     }
 
     public static class SpeakingVmFactory extends ViewModelProvider.NewInstanceFactory {
@@ -30,13 +44,15 @@ public class SpeakingVm extends ViewModel {
         private final Resources resources;
         private final Chronometer chronometer;
         private final Chronometer chronometerOneWord;
+        private final StatisticsManager statisticsManager;
 
         public SpeakingVmFactory(
                 int exId,
                 Repo repo,
                 Resources resources,
                 Chronometer chronometer,
-                Chronometer chronometerOneWord
+                Chronometer chronometerOneWord,
+                StatisticsManager statisticsManager
         ) {
             super();
             this.repo = repo;
@@ -44,13 +60,14 @@ public class SpeakingVm extends ViewModel {
             this.resources = resources;
             this.chronometer = chronometer;
             this.chronometerOneWord = chronometerOneWord;
+            this.statisticsManager = statisticsManager;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(SpeakingVm.class)) {
-                return (T) new SpeakingVm(exId, repo, resources, chronometer, chronometerOneWord);
+                return (T) new SpeakingVm(exId, repo, statisticsManager, resources, chronometer, chronometerOneWord);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

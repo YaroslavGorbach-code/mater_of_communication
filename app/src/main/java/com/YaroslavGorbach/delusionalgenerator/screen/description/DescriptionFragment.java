@@ -8,13 +8,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DescriptionFragment extends Fragment {
     public DescriptionFragment(){ super(R.layout.fragment_description); }
@@ -23,44 +22,52 @@ public class DescriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentDescriptionBinding binding = FragmentDescriptionBinding.bind(view);
+        int exId =  DescriptionFragmentArgs.fromBundle(requireArguments()).getExId();
 
+        // init vm
         DescriptionVm vm = new ViewModelProvider(this,
-                new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(),
-                        DescriptionFragmentArgs.fromBundle(requireArguments()).getExId())).get(DescriptionVm.class);
-        binding.description.setText(getString(vm.getExercise().descriptionId));
-        binding.image.setImageResource(vm.getExercise().pic);
-        binding.name.setText(vm.getExercise().name.getName());
+                new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(requireContext()),
+                        exId)).get(DescriptionVm.class);
+
+        binding.description.setText(getString(vm.description.getDescriptionId()));
+        binding.image.setImageResource(vm.description.getImageId());
+        binding.name.setText(vm.description.getExName().getName());
         binding.startEx.setOnClickListener(v -> {
-            switch (vm.getExercise().category) {
+            switch (vm.description.getCategory()) {
                 case SPEAKING:
                 case TONGUE_TWISTER:
                     Navigation.findNavController(view)
                             .navigate(DescriptionFragmentDirections
                                     .actionExercisesDescriptionFragmentToSpeakingFragment()
-                                    .setIdEx(vm.getExercise().id));
+                                    .setIdEx(exId));
                     break;
                 case VOCABULARY:
                     Navigation.findNavController(view)
                             .navigate(DescriptionFragmentDirections
                                     .actionExercisesDescriptionFragmentToVocabularyFragment()
-                                    .setIdEx(vm.getExercise().id));
+                                    .setIdEx(exId));
                     break;
             }
         });
 
-        List<InputData> dataList = createChartData();
-        binding.chart.setData(dataList);
-    }
+        // init spinner
+        ArrayAdapter<?> adapter =
+                ArrayAdapter.createFromResource(requireContext(), R.array.chart_spinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinner.setAdapter(adapter);
 
-    private List<InputData> createChartData() {
-        List<InputData> dataList = new ArrayList<>();
-        dataList.add(new InputData(10));
-        dataList.add(new InputData(50));
-        dataList.add(new InputData(5));
-        dataList.add(new InputData(20));
-        dataList.add(new InputData(10));
-        dataList.add(new InputData(60));
+        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    binding.chart.setData(vm.description.getStatistics());
 
-        return dataList;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 }

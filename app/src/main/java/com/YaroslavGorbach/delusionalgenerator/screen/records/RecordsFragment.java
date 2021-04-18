@@ -26,7 +26,7 @@ public class RecordsFragment extends Fragment {
         FragmentRecordsBinding binding = FragmentRecordsBinding.bind(view);
 
         //init vm
-        Repo repo = new Repo.RepoProvider().provideRepo();
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         RecordsVm vm = new ViewModelProvider(this,
                 new RecordsVm.RecordsVmFactory(repo)).get(RecordsVm.class);
 

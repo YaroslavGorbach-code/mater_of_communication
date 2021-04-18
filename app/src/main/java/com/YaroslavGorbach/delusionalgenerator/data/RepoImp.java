@@ -4,22 +4,25 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 
-import androidx.lifecycle.LiveData;
-
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
-
-import static com.YaroslavGorbach.delusionalgenerator.data.ExModel.Name.ADJECTIVES;
 
 public class RepoImp implements Repo {
     private final List<ExModel> mExercises = new ArrayList<>();
+    private final List<InputData> mChartWordsNumber = new ArrayList<>();
+    private final List<InputData> mChartWordsTime = new ArrayList<>();
+    private final Database mDatabase;
 
-    public RepoImp() {
+    public RepoImp(Database database) {
+        mDatabase = database;
+
         mExercises.add(new ExModel(
                 0,
                 ExModel.Name.LINGUISTIC_PYRAMIDS,
@@ -49,8 +52,9 @@ public class RepoImp implements Repo {
                 ExModel.Category.VOCABULARY,
                 R.drawable.ic_list_test,
                 R.string.short_desc_verbs
-                ));
+        ));
     }
+
 
     @Override
     public List<ExModel> getExercises() {
@@ -84,6 +88,22 @@ public class RepoImp implements Repo {
         return new ArrayList<>();
     }
 
+    @Override
+    public List<Statistics> getStatistics(int exId) {
+        return mDatabase.statisticsDao().getData(exId);
+    }
+
+    @Override
+    public void addStatistics(Statistics statistics) {
+        mDatabase.statisticsDao().insert(statistics);
+    }
+
+
+    // return only last 10
+//        if (mChartWordsNumber.size() > 10) {
+//            mChartWordsNumber.subList(0, mChartWordsNumber.size() - 10).clear();
+//        }
+//        return mChartWordsNumber;
 
     @Override
     public File[] getRecords(Context context) {

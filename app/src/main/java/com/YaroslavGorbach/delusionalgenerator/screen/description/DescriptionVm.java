@@ -4,20 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.YaroslavGorbach.delusionalgenerator.component.Description.Description;
+import com.YaroslavGorbach.delusionalgenerator.component.Description.DescriptionImp;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class DescriptionVm extends ViewModel {
-    private final Repo mRepo;
-    private final int mExId;
+
+    public final Description description;
 
     public DescriptionVm(Repo repo, int exId){
-        mRepo = repo;
-        mExId = exId;
-    }
-
-    public ExModel getExercise(){
-        return mRepo.getExercises().get(mExId);
+       description = new DescriptionImp(repo, exId);
     }
 
 

@@ -3,7 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 public class ExModel {
     public int id;
     public Name name;
-    public int pic;
+    public int imageId;
     public Category category;
     public int descriptionId;
     public int[] shortDescIds;
@@ -14,7 +14,7 @@ public class ExModel {
             Name name,
             int descriptionId,
             Category category,
-            int pic,
+            int imageId,
             int...shortDescIds
     ){
         this.id = id;
@@ -22,7 +22,7 @@ public class ExModel {
         this.category = category;
         this.shortDescIds = shortDescIds;
         this.descriptionId = descriptionId;
-        this.pic = pic;
+        this.imageId = imageId;
     }
 
     public enum Category {

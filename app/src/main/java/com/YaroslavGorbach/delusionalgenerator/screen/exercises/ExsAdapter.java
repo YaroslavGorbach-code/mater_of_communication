@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -48,7 +47,7 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
         public void bind(ExModel item) {
             binding.itemName.setText(item.name.getName());
             binding.itemCategory.setText(item.category.getName());
-            Glide.with(itemView.getContext()).load(item.pic).into(binding.itemImage);
+            Glide.with(itemView.getContext()).load(item.imageId).into(binding.itemImage);
         }
     }
 

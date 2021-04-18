@@ -11,23 +11,33 @@ import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingTtBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
+
+import java.util.Date;
 
 public class SpeakingFragment extends Fragment {
 
-   public SpeakingFragment(){ super(R.layout.fragment_speaking_tt); }
+    public SpeakingFragment(){ super(R.layout.fragment_speaking_tt); }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentSpeakingTtBinding binding = FragmentSpeakingTtBinding.bind(view);
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
         // init vm
-        Repo repo = new Repo.RepoProvider().provideRepo();
         int exId = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
-                exId, repo, getResources(), binding.chronometer, binding.chronometerOneWord)).get(SpeakingVm.class);
+                exId,
+                repo,
+                getResources(),
+                binding.chronometer,
+                binding.chronometerOneWord,
+                new StatisticsManagerImp()
+        )).get(SpeakingVm.class);
 
         // init short description
         vm.speakingEx.getShortDescId().observe(getViewLifecycleOwner(), descId ->
