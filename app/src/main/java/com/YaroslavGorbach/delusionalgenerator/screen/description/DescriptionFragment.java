@@ -1,5 +1,4 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.description;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,11 +8,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.View;
-import android.widget.TextView;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
-import com.google.android.material.button.MaterialButton;
+import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DescriptionFragment extends Fragment {
     public DescriptionFragment(){ super(R.layout.fragment_description); }
@@ -30,7 +31,7 @@ public class DescriptionFragment extends Fragment {
         binding.image.setImageResource(vm.getExercise().pic);
         binding.name.setText(vm.getExercise().name.getName());
         binding.startEx.setOnClickListener(v -> {
-            switch (vm.getExercise().category){
+            switch (vm.getExercise().category) {
                 case SPEAKING:
                 case TONGUE_TWISTER:
                     Navigation.findNavController(view)
@@ -46,5 +47,20 @@ public class DescriptionFragment extends Fragment {
                     break;
             }
         });
+
+        List<InputData> dataList = createChartData();
+        binding.chart.setData(dataList);
+    }
+
+    private List<InputData> createChartData() {
+        List<InputData> dataList = new ArrayList<>();
+        dataList.add(new InputData(10));
+        dataList.add(new InputData(50));
+        dataList.add(new InputData(5));
+        dataList.add(new InputData(20));
+        dataList.add(new InputData(10));
+        dataList.add(new InputData(60));
+
+        return dataList;
     }
 }

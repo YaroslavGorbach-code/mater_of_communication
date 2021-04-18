@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="ds">
-        <attr name="tabColor" format="color"/>
-        <attr name="themeColor" format="color"/>
-        <attr name="floatingActionButtonBackground" format="color"/>
-    </declare-styleable>
-</resources>
