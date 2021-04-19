@@ -6,6 +6,7 @@ public interface VocabularyEx {
     void onClick();
     int getShortDescId();
     Result getResultState();
+    void saveStatistics();
     LiveData<Integer> getClickCount();
     LiveData<Long> getTimerValue();
     LiveData<Boolean> onTimerFinish();

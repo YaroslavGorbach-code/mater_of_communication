@@ -4,23 +4,32 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
+import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
-import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
+
+import java.util.Date;
 
 public class VocabularyExImp implements VocabularyEx{
     private final MutableLiveData<Integer> clickCount = new MutableLiveData<>(0);
 
     private final Timer mTimer;
     private final ExModel mExModel;
+    private final StatisticsManager mStatisticsManager;
+    private final Repo mRepo;
 
-    public VocabularyExImp(ExModel exModel, Timer timer){
+    public VocabularyExImp(ExModel exModel, Timer timer, StatisticsManager statisticsManager, Repo repo){
         mExModel = exModel;
         mTimer = timer;
+        mStatisticsManager = statisticsManager;
+        mRepo = repo;
         mTimer.start();
     }
 
     @Override
     public void onClick() {
+        mStatisticsManager.calNumberWords();
         clickCount.postValue(clickCount.getValue()+1);
     }
 
@@ -48,6 +57,12 @@ public class VocabularyExImp implements VocabularyEx{
             return result;
         }
         return Result.GOOD;
+    }
+
+    @Override
+    public void saveStatistics() {
+        mRepo.addStatistics(new Statistics(mExModel.getId(),
+                mStatisticsManager.getNumberWords(), new Date().getTime()));
     }
 
     @Override

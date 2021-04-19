@@ -13,6 +13,7 @@ import android.view.View;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
 
 public class VocabularyFragment extends Fragment{
@@ -28,7 +29,7 @@ public class VocabularyFragment extends Fragment{
         int exId = VocabularyFragmentArgs.fromBundle(requireArguments()).getIdEx();
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
-                new VocabularyVm.VocabularyVmFactory(repo, exId, new TimerImp())).get(VocabularyVm.class);
+                new VocabularyVm.VocabularyVmFactory(repo, exId, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
 
         // init timer value
         vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), value ->

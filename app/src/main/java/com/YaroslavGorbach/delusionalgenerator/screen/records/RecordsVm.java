@@ -8,7 +8,6 @@ import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsList
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsListImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayer;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesVm;
 
 public class RecordsVm extends ViewModel {
     public RecordsList recordsList;
