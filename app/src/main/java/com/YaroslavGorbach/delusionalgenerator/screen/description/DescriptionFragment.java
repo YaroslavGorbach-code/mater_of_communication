@@ -51,6 +51,7 @@ public class DescriptionFragment extends Fragment {
         });
 
         // init spinner
+        binding.chart.setData(vm.description.getStatistics());
         ArrayAdapter<?> adapter =
                 ArrayAdapter.createFromResource(requireContext(), R.array.chart_spinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

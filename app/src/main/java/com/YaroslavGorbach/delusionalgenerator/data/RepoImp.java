@@ -10,6 +10,7 @@ import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -93,7 +94,11 @@ public class RepoImp implements Repo {
 
     @Override
     public List<Statistics> getStatistics(int exId) {
-        return mDatabase.statisticsDao().getData(exId);
+        List<Statistics> data = mDatabase.statisticsDao().getData(exId);
+        if (data.isEmpty()){
+            addStatistics(new Statistics(exId, 10, 0));
+        }
+        return data;
     }
 
     @Override

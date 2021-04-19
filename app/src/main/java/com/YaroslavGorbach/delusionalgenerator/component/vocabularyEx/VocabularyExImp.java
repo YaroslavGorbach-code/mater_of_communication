@@ -61,6 +61,7 @@ public class VocabularyExImp implements VocabularyEx{
 
     @Override
     public void saveStatistics() {
+        // we ned to add plus one word
         mRepo.addStatistics(new Statistics(mExModel.getId(),
                 mStatisticsManager.getNumberWords(), new Date().getTime()));
     }
