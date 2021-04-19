@@ -13,7 +13,9 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingTtBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.ChronometerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
+import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
 import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
 
 import java.util.Date;
@@ -34,9 +36,10 @@ public class SpeakingFragment extends Fragment {
                 exId,
                 repo,
                 getResources(),
-                binding.chronometer,
-                binding.chronometerOneWord,
-                new StatisticsManagerImp()
+                new ChronometerImp(binding.chronometer),
+                new ChronometerImp(binding.chronometerOneWord),
+                new StatisticsManagerImp(),
+                new VoiceRecorderImp()
         )).get(SpeakingVm.class);
 
         // init short description

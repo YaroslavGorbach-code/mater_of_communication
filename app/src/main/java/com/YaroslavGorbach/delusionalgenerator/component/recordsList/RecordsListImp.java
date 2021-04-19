@@ -12,9 +12,9 @@ public class RecordsListImp implements RecordsList {
    private final Repo mRepo;
    private final MediaPlayer mMediaPlayer;
 
-    public RecordsListImp(Repo repo){
+    public RecordsListImp(Repo repo, MediaPlayer mediaPlayer){
         mRepo = repo;
-        mMediaPlayer = new MediaPlayerImp();
+        mMediaPlayer = mediaPlayer;
     }
 
     @Override

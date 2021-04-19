@@ -13,6 +13,7 @@ import android.view.View;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayerImp;
 
 import java.util.Arrays;
 
@@ -28,7 +29,7 @@ public class RecordsFragment extends Fragment {
         //init vm
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         RecordsVm vm = new ViewModelProvider(this,
-                new RecordsVm.RecordsVmFactory(repo)).get(RecordsVm.class);
+                new RecordsVm.RecordsVmFactory(repo, new MediaPlayerImp())).get(RecordsVm.class);
 
         //init records list
         RecordsListAdapter adapter = new RecordsListAdapter(file ->

@@ -16,8 +16,6 @@ import java.util.List;
 
 public class RepoImp implements Repo {
     private final List<ExModel> mExercises = new ArrayList<>();
-    private final List<InputData> mChartWordsNumber = new ArrayList<>();
-    private final List<InputData> mChartWordsTime = new ArrayList<>();
     private final Database mDatabase;
 
     public RepoImp(Database database) {
@@ -62,6 +60,11 @@ public class RepoImp implements Repo {
     }
 
     @Override
+    public ExModel getExercise(int id) {
+        return mExercises.get(id);
+    }
+
+    @Override
     public List<String> getWords(WordType type, Resources resources) {
         switch (type) {
             case ALIVE:
@@ -98,12 +101,6 @@ public class RepoImp implements Repo {
         mDatabase.statisticsDao().insert(statistics);
     }
 
-
-    // return only last 10
-//        if (mChartWordsNumber.size() > 10) {
-//            mChartWordsNumber.subList(0, mChartWordsNumber.size() - 10).clear();
-//        }
-//        return mChartWordsNumber;
 
     @Override
     public File[] getRecords(Context context) {

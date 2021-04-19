@@ -10,12 +10,9 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
-import com.YaroslavGorbach.delusionalgenerator.data.WordType;
 import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer;
-import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.ChronometerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
-import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
 
 import java.util.Date;
 import java.util.List;
@@ -41,16 +38,17 @@ public class SpeakingExImp implements SpeakingEx {
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
-            android.widget.Chronometer chronometer,
-            android.widget.Chronometer chronometerOneWord
+            Chronometer chronometer,
+            Chronometer chronometerOneWord,
+            VoiceRecorder voiceRecorder
     ){
         mExModel = exModel;
         mRepo = repo;
         mStatisticsManager = statisticsManager;
         mResources = resources;
-        mChronometer = new ChronometerImp(chronometer);
-        mChronometerOneWord = new ChronometerImp(chronometerOneWord);
-        mVoiceRecorder = new VoiceRecorderImp();
+        mChronometer = chronometer;
+        mChronometerOneWord = chronometerOneWord;
+        mVoiceRecorder = voiceRecorder;
 
         // init immediately
         setShortDesc();
@@ -104,10 +102,10 @@ public class SpeakingExImp implements SpeakingEx {
     public void saveStatistics() {
         if (mExModel.category == ExModel.Category.SPEAKING){
             mRepo.addStatistics(new Statistics(
-                    mExModel.id, mStatisticsManager.getNumberWords(), new Date().getTime()));
+                    mExModel.getId(), mStatisticsManager.getNumberWords(), new Date().getTime()));
         }else {
             mRepo.addStatistics(new Statistics(
-                    mExModel.id, mStatisticsManager.getAverageTime(), new Date().getTime()));
+                    mExModel.getId(), mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
     }
 
@@ -134,12 +132,12 @@ public class SpeakingExImp implements SpeakingEx {
         List<String> words;
         switch (mExModel.name){
             case LINGUISTIC_PYRAMIDS:
-                words = mRepo.getWords(WordType.NOT_ALIVE, mResources);
+                words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
                 _word.postValue(words.get(mRandom.nextInt(words.size())));
                 setShortDesc();
                 break;
             case EASY_TONGUE_TWISTERS:
-                words = mRepo.getWords(WordType.EASY_T_T, mResources);
+                words = mRepo.getWords(Repo.WordType.EASY_T_T, mResources);
                 _word.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
         }

@@ -1,7 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
 
 public class ExModel {
-    public int id;
+    private final int id;
     public Name name;
     public int imageId;
     public Category category;
@@ -23,6 +23,10 @@ public class ExModel {
         this.shortDescIds = shortDescIds;
         this.descriptionId = descriptionId;
         this.imageId = imageId;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public enum Category {

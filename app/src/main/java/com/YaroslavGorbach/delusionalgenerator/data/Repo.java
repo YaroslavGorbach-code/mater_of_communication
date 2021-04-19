@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface Repo {
     List<ExModel> getExercises();
+    ExModel getExercise(int id);
     List<String> getWords(WordType type, Resources resources);
     List<Statistics> getStatistics(int exId);
     void addStatistics(Statistics statistics);
@@ -21,4 +22,17 @@ public interface Repo {
             return new RepoImp(database);
         }
     }
+    public enum WordType {
+        ALIVE,
+        NOT_ALIVE,
+        ABBREVIATION,
+        FILLING,
+        LETTER,
+        PROFESSIONS,
+        TERMS,
+        EASY_T_T,
+        DIFFICULT_T_T,
+        VERY_DIFFICULT_T_T
+    }
+
 }

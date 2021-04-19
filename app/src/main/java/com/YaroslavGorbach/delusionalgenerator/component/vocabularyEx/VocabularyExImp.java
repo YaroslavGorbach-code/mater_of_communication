@@ -6,16 +6,16 @@ import androidx.lifecycle.MutableLiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
-import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
 
 public class VocabularyExImp implements VocabularyEx{
     private final MutableLiveData<Integer> clickCount = new MutableLiveData<>(0);
 
-    private final Timer mTimer = new TimerImp();
+    private final Timer mTimer;
     private final ExModel mExModel;
 
-    public VocabularyExImp(ExModel exModel){
+    public VocabularyExImp(ExModel exModel, Timer timer){
         mExModel = exModel;
+        mTimer = timer;
         mTimer.start();
     }
 

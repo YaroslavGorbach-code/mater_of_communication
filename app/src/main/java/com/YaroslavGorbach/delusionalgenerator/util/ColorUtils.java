@@ -1,11 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.TypedValue;
-
-import androidx.core.content.ContextCompat;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 
