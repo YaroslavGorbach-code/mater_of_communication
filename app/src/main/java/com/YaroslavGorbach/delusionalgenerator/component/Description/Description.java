@@ -10,5 +10,8 @@ public interface Description {
     int getImageId();
     ExModel.Name getExName();
     ExModel.Category getCategory();
-    List<InputData> getStatistics();
+    List<InputData> getStatisticsLast();
+    List<InputData> getStatisticsNext();
+    List<InputData> getStatisticsPrevious();
+
 }

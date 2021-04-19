@@ -12,7 +12,10 @@ public interface Repo {
     List<ExModel> getExercises();
     ExModel getExercise(int id);
     List<String> getWords(WordType type, Resources resources);
-    List<Statistics> getStatistics(int exId);
+    List<Statistics> getStatisticsLast(int exId);
+    List<Statistics> getStatisticsNext(int exId);
+    List<Statistics> getStatisticsPrevious(int exId);
+
     void addStatistics(Statistics statistics);
     File[] getRecords(Context context);
 
@@ -22,7 +25,7 @@ public interface Repo {
             return new RepoImp(database);
         }
     }
-    public enum WordType {
+    enum WordType {
         ALIVE,
         NOT_ALIVE,
         ABBREVIATION,

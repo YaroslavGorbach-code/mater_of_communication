@@ -38,9 +38,29 @@ public class DescriptionImp implements Description {
     }
 
     @Override
-    public List<InputData> getStatistics() {
+    public List<InputData> getStatisticsLast() {
         List<InputData> data = new ArrayList<>();
-        for (Statistics s: mRepo.getStatistics(mExId)){
+        for (Statistics s: mRepo.getStatisticsLast(mExId)){
+            data.add(new InputData(s.value, s.dataTime));
+        }
+        Collections.reverse(data);
+        return data;
+    }
+
+    @Override
+    public List<InputData> getStatisticsNext() {
+        List<InputData> data = new ArrayList<>();
+        for (Statistics s: mRepo.getStatisticsNext(mExId)){
+            data.add(new InputData(s.value, s.dataTime));
+        }
+        Collections.reverse(data);
+        return data;
+    }
+
+    @Override
+    public List<InputData> getStatisticsPrevious() {
+        List<InputData> data = new ArrayList<>();
+        for (Statistics s: mRepo.getStatisticsPrevious(mExId)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);

@@ -5,19 +5,20 @@ import android.content.res.Resources;
 import android.os.Build;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class RepoImp implements Repo {
     private final List<ExModel> mExercises = new ArrayList<>();
     private final Database mDatabase;
+    private long mTimeStatisticsFirs;
+    private long mTimeStatisticsLast;
+
 
     public RepoImp(Database database) {
         mDatabase = database;
@@ -93,21 +94,6 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public List<Statistics> getStatistics(int exId) {
-        List<Statistics> data = mDatabase.statisticsDao().getData(exId);
-        if (data.isEmpty()){
-            addStatistics(new Statistics(exId, 10, 0));
-        }
-        return data;
-    }
-
-    @Override
-    public void addStatistics(Statistics statistics) {
-        mDatabase.statisticsDao().insert(statistics);
-    }
-
-
-    @Override
     public File[] getRecords(Context context) {
 
         File file = new File(context.getExternalFilesDir("/").getAbsolutePath());
@@ -119,4 +105,46 @@ public class RepoImp implements Repo {
         }
         return files;
     }
+
+    @Override
+    public List<Statistics> getStatisticsLast(int exId) {
+        List<Statistics> data = mDatabase.statisticsDao().getStatisticsLast(exId);
+        if (data.isEmpty()){
+            addStatistics(new Statistics(exId, 5, 0));
+            data = mDatabase.statisticsDao().getStatisticsLast(exId);
+        }
+        initStatisticsTime(data);
+
+        return data;
+    }
+
+
+    @Override
+    public List<Statistics> getStatisticsNext(int exId) {
+        List<Statistics> data = mDatabase.statisticsDao().getStatisticsNext(exId ,mTimeStatisticsFirs);
+        if (!data.isEmpty()){
+            initStatisticsTime(data);
+        }
+        return data;
+    }
+
+    @Override
+    public List<Statistics> getStatisticsPrevious(int exId) {
+        List<Statistics> data = mDatabase.statisticsDao().getStatisticsPrevious(exId, mTimeStatisticsLast);
+        if (!data.isEmpty()){
+            initStatisticsTime(data);
+        }
+        return data;
+    }
+
+    @Override
+    public void addStatistics(Statistics statistics) {
+        mDatabase.statisticsDao().insert(statistics);
+    }
+
+    private void initStatisticsTime(List<Statistics> data) {
+        mTimeStatisticsFirs = data.get(0).dataTime;
+        mTimeStatisticsLast = data.get(data.size() - 1).dataTime;
+    }
+
 }

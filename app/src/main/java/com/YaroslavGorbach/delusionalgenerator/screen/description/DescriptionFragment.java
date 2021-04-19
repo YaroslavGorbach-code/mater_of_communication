@@ -8,12 +8,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
+import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
+import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
+
+import java.util.List;
 
 public class DescriptionFragment extends Fragment {
     public DescriptionFragment(){ super(R.layout.fragment_description); }
@@ -50,25 +52,21 @@ public class DescriptionFragment extends Fragment {
             }
         });
 
-        // init spinner
-        binding.chart.setData(vm.description.getStatistics());
-        ArrayAdapter<?> adapter =
-                ArrayAdapter.createFromResource(requireContext(), R.array.chart_spinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinner.setAdapter(adapter);
+        // init statistics
+        if (vm.description.getCategory() == ExModel.Category.TONGUE_TWISTER)
+            binding.statisticsText.setText(R.string.statistics_text_tt);
 
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    binding.chart.setData(vm.description.getStatistics());
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+        binding.chart.setData(vm.description.getStatisticsLast());
+        binding.nextData.setOnClickListener(v -> {
+            List<InputData> data = vm.description.getStatisticsNext();
+            if (data.size()>0)
+           binding.chart.setData(data);
         });
 
+        binding.prevData.setOnClickListener(v -> {
+            List<InputData> data = vm.description.getStatisticsPrevious();
+            if (data.size()>0)
+            binding.chart.setData(data);
+        });
     }
 }
