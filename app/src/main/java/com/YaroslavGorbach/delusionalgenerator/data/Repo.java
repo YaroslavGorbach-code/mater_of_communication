@@ -10,11 +10,11 @@ import java.util.List;
 
 public interface Repo {
     List<ExModel> getExercises();
-    ExModel getExercise(int id);
+    ExModel getExercise(ExModel.Name name);
     List<String> getWords(WordType type, Resources resources);
-    List<Statistics> getStatisticsLast(int exId);
-    List<Statistics> getStatisticsNext(int exId);
-    List<Statistics> getStatisticsPrevious(int exId);
+    List<Statistics> getStatisticsLast(ExModel.Name name);
+    List<Statistics> getStatisticsNext(ExModel.Name name);
+    List<Statistics> getStatisticsPrevious(ExModel.Name name);
 
     void addStatistics(Statistics statistics);
     File[] getRecords(Context context);

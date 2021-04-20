@@ -12,5 +12,5 @@ public interface SpeakingEx {
     LiveData<Boolean> getRecordingState();
     LiveData<Integer> getShortDescId();
     LiveData<String> getWord();
-    String getExName();
+    int getExNameId();
 }

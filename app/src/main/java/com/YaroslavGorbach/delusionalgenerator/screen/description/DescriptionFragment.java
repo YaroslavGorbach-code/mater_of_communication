@@ -24,30 +24,28 @@ public class DescriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentDescriptionBinding binding = FragmentDescriptionBinding.bind(view);
-        int exId =  DescriptionFragmentArgs.fromBundle(requireArguments()).getExId();
+        ExModel.Name name =  DescriptionFragmentArgs.fromBundle(requireArguments()).getExName();
 
         // init vm
         DescriptionVm vm = new ViewModelProvider(this,
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(requireContext()),
-                        exId)).get(DescriptionVm.class);
+                        name)).get(DescriptionVm.class);
 
         binding.description.setText(getString(vm.description.getDescriptionId()));
         binding.image.setImageResource(vm.description.getImageId());
-        binding.name.setText(vm.description.getExName().getName());
+        binding.name.setText(getString(vm.description.getExName().getNameId()));
         binding.startEx.setOnClickListener(v -> {
             switch (vm.description.getCategory()) {
                 case SPEAKING:
                 case TONGUE_TWISTER:
                     Navigation.findNavController(view)
                             .navigate(DescriptionFragmentDirections
-                                    .actionExercisesDescriptionFragmentToSpeakingFragment()
-                                    .setIdEx(exId));
+                                    .actionExercisesDescriptionFragmentToSpeakingFragment(name));
                     break;
                 case VOCABULARY:
                     Navigation.findNavController(view)
                             .navigate(DescriptionFragmentDirections
-                                    .actionExercisesDescriptionFragmentToVocabularyFragment()
-                                    .setIdEx(exId));
+                                    .actionExercisesDescriptionFragmentToVocabularyFragment(name));
                     break;
             }
         });

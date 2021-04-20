@@ -45,7 +45,7 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
         }
 
         public void bind(ExModel item) {
-            binding.itemName.setText(item.name.getName());
+            binding.itemName.setText(itemView.getContext().getString(item.name.getNameId()));
             binding.itemCategory.setText(item.category.getName());
             Glide.with(itemView.getContext()).load(item.imageId).into(binding.itemImage);
         }

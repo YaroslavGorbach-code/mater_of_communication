@@ -18,12 +18,12 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="?listPreferredItemHeightLarge"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             android:padding="8dp"
-            android:scaleType="centerInside"
             tool:ignore="ContentDescription"
-            tool:src="@drawable/ic_list_test" />
+            tool:src="@drawable/ic_lp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/item_name"

@@ -29,7 +29,7 @@ public class ExercisesFragment extends Fragment {
 
         ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
                 .navigate(ExercisesFragmentDirections
-                        .actionExercisesFragmentToExercisesDescriptionFragment().setExId(exModel.getId())));
+                        .actionExercisesFragmentToExercisesDescriptionFragment(exModel.name)));
 
         adapter.submitList(vm.getAllExs());
         binding.exsList.setHasFixedSize(true);

@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 
 import android.view.View;
 
+import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -26,10 +27,10 @@ public class VocabularyFragment extends Fragment{
         FragmentVocabularyBinding binding = FragmentVocabularyBinding.bind(view);
 
         // init vm
-        int exId = VocabularyFragmentArgs.fromBundle(requireArguments()).getIdEx();
+        ExModel.Name name = VocabularyFragmentArgs.fromBundle(requireArguments()).getExName();
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
-                new VocabularyVm.VocabularyVmFactory(repo, exId, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
+                new VocabularyVm.VocabularyVmFactory(repo, name, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
 
         // init timer value
         vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), value ->

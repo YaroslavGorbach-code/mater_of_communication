@@ -19,42 +19,10 @@ public class RepoImp implements Repo {
     private long mTimeStatisticsFirs;
     private long mTimeStatisticsLast;
 
-
     public RepoImp(Database database) {
         mDatabase = database;
-
-        mExercises.add(new ExModel(
-                0,
-                ExModel.Name.LINGUISTIC_PYRAMIDS,
-                R.string.description_lp,
-                ExModel.Category.SPEAKING,
-                R.drawable.ic_list_test,
-                R.string.short_desc_lp_1,
-                R.string.short_desc_lp_2,
-                R.string.short_desc_lp_3));
-
-        mExercises.add(new ExModel(
-                1,
-                ExModel.Name.EASY_TONGUE_TWISTERS,
-                R.string.description_lp,
-                ExModel.Category.TONGUE_TWISTER,
-                R.drawable.ic_list_test,
-                R.string.short_desc_tt_1,
-                R.string.short_desc_tt_2,
-                R.string.short_desc_tt_3,
-                R.string.short_desc_tt_4,
-                R.string.short_desc_tt_5));
-
-        mExercises.add(new ExModel(
-                2,
-                ExModel.Name.VERBS,
-                R.string.description_lp,
-                ExModel.Category.VOCABULARY,
-                R.drawable.ic_list_test,
-                R.string.short_desc_verbs
-        ));
+        createExercises();
     }
-
 
     @Override
     public List<ExModel> getExercises() {
@@ -62,8 +30,12 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public ExModel getExercise(int id) {
-        return mExercises.get(id);
+    public ExModel getExercise(ExModel.Name name) {
+        for (int i = 0; i <mExercises.size()-1; i++) {
+            if (mExercises.get(i).name == name)
+                return mExercises.get(i);
+        }
+        return mExercises.get(mExercises.size()-1);
     }
 
     @Override
@@ -107,21 +79,20 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public List<Statistics> getStatisticsLast(int exId) {
-        List<Statistics> data = mDatabase.statisticsDao().getStatisticsLast(exId);
+    public List<Statistics> getStatisticsLast(ExModel.Name name) {
+        List<Statistics> data = mDatabase.statisticsDao().getStatisticsLast(name);
         if (data.isEmpty()){
-            addStatistics(new Statistics(exId, 5, 0));
-            data = mDatabase.statisticsDao().getStatisticsLast(exId);
+            addStatistics(new Statistics(name, 5, 0));
+            data = mDatabase.statisticsDao().getStatisticsLast(name);
         }
         initStatisticsTime(data);
 
         return data;
     }
 
-
     @Override
-    public List<Statistics> getStatisticsNext(int exId) {
-        List<Statistics> data = mDatabase.statisticsDao().getStatisticsNext(exId ,mTimeStatisticsFirs);
+    public List<Statistics> getStatisticsNext(ExModel.Name name) {
+        List<Statistics> data = mDatabase.statisticsDao().getStatisticsNext(name ,mTimeStatisticsFirs);
         if (!data.isEmpty()){
             initStatisticsTime(data);
         }
@@ -129,8 +100,8 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public List<Statistics> getStatisticsPrevious(int exId) {
-        List<Statistics> data = mDatabase.statisticsDao().getStatisticsPrevious(exId, mTimeStatisticsLast);
+    public List<Statistics> getStatisticsPrevious(ExModel.Name name) {
+        List<Statistics> data = mDatabase.statisticsDao().getStatisticsPrevious(name, mTimeStatisticsLast);
         if (!data.isEmpty()){
             initStatisticsTime(data);
         }
@@ -147,4 +118,33 @@ public class RepoImp implements Repo {
         mTimeStatisticsLast = data.get(data.size() - 1).dataTime;
     }
 
+    private void createExercises() {
+        mExercises.add(new ExModel(
+                ExModel.Name.LINGUISTIC_PYRAMIDS,
+                R.string.description_lp,
+                ExModel.Category.SPEAKING,
+                R.drawable.ic_raven,
+                R.string.short_desc_lp_1,
+                R.string.short_desc_lp_2,
+                R.string.short_desc_lp_3));
+
+        mExercises.add(new ExModel(
+                ExModel.Name.EASY_TONGUE_TWISTERS,
+                R.string.description_lp,
+                ExModel.Category.TONGUE_TWISTER,
+                R.drawable.ic_lp,
+                R.string.short_desc_tt_1,
+                R.string.short_desc_tt_2,
+                R.string.short_desc_tt_3,
+                R.string.short_desc_tt_4,
+                R.string.short_desc_tt_5));
+
+        mExercises.add(new ExModel(
+                ExModel.Name.VERBS,
+                R.string.description_lp,
+                ExModel.Category.VOCABULARY,
+                R.drawable.ic_lp,
+                R.string.short_desc_verbs
+        ));
+    }
 }

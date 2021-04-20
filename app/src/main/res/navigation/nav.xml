@@ -23,10 +23,6 @@
         android:id="@+id/exercisesDescriptionFragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment"
         tools:layout="@layout/fragment_description" >
-        <argument
-            android:name="exId"
-            app:argType="integer"
-            android:defaultValue="-1" />
         <action
             android:id="@+id/action_exercisesDescriptionFragment_to_speaking_fragment"
             app:destination="@id/speaking_fragment"
@@ -37,6 +33,9 @@
             app:destination="@id/vocabulary_fragment"
             app:popUpTo="@id/exercisesFragment"
             app:popUpToInclusive="false" />
+        <argument
+            android:name="exName"
+            app:argType="com.YaroslavGorbach.delusionalgenerator.data.ExModel$Name" />
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
@@ -48,18 +47,13 @@
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment"
         tools:layout="@layout/fragment_speaking_tt">
         <argument
-            android:name="idEx"
-            android:defaultValue="-1"
-            app:argType="integer" />
+            android:name="exName"
+            app:argType="com.YaroslavGorbach.delusionalgenerator.data.ExModel$Name" />
     </fragment>
     <fragment
         android:id="@+id/vocabulary_fragment"
         android:name="com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment"
         tools:layout="@layout/fragment_vocabulary">
-        <argument
-            android:name="idEx"
-            android:defaultValue="-1"
-            app:argType="integer" />
         <action
             android:id="@+id/action_exercisesCategory2Fragment_to_exercisesDescriptionFragment"
             app:destination="@id/exercisesDescriptionFragment"
@@ -69,6 +63,9 @@
         <action
             android:id="@+id/action_vocabulary_fragment_to_finishDialog"
             app:destination="@id/finishDialog" />
+        <argument
+            android:name="exName"
+            app:argType="com.YaroslavGorbach.delusionalgenerator.data.ExModel$Name" />
     </fragment>
     <dialog
         android:id="@+id/finishDialog"

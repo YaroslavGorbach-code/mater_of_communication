@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyExImp;
+import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
@@ -11,8 +12,8 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 public class VocabularyVm extends ViewModel {
     public final VocabularyEx vocabularyEx;
 
-    VocabularyVm(Repo repo, int exId, Timer timer, StatisticsManager statisticsManager){
-        vocabularyEx = new VocabularyExImp(repo.getExercise(exId),  timer, statisticsManager, repo);
+    VocabularyVm(Repo repo, ExModel.Name name, Timer timer, StatisticsManager statisticsManager){
+        vocabularyEx = new VocabularyExImp(repo.getExercise(name),  timer, statisticsManager, repo);
     }
 
     @Override
@@ -22,15 +23,15 @@ public class VocabularyVm extends ViewModel {
     }
 
     public static class VocabularyVmFactory  extends ViewModelProvider.NewInstanceFactory{
-        private final int exId;
+        private final ExModel.Name name;
         private final Repo repo;
         private final Timer timer;
         private final StatisticsManager statisticsManager;
 
 
-        public VocabularyVmFactory(Repo repo, int exId, Timer timer, StatisticsManager statisticsManager){
+        public VocabularyVmFactory(Repo repo, ExModel.Name name, Timer timer, StatisticsManager statisticsManager){
             super();
-            this.exId = exId;
+            this.name = name;
             this.repo = repo;
             this.timer = timer;
             this.statisticsManager = statisticsManager;
@@ -40,7 +41,7 @@ public class VocabularyVm extends ViewModel {
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(VocabularyVm.class)) {
-                return (T)  new VocabularyVm(repo, exId, timer, statisticsManager);
+                return (T)  new VocabularyVm(repo, name, timer, statisticsManager);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.component.speakingEx;
 import android.content.Context;
 import android.content.res.Resources;
 
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -83,8 +84,8 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     @Override
-    public String getExName() {
-        return mExModel.name.getName();
+    public int getExNameId() {
+        return mExModel.name.getNameId();
     }
 
     @Override
@@ -102,10 +103,10 @@ public class SpeakingExImp implements SpeakingEx {
     public void saveStatistics() {
         if (mExModel.category == ExModel.Category.SPEAKING){
             mRepo.addStatistics(new Statistics(
-                    mExModel.getId(), mStatisticsManager.getNumberWords(), new Date().getTime()));
+                    mExModel.name, mStatisticsManager.getNumberWords(), new Date().getTime()));
         }else {
             mRepo.addStatistics(new Statistics(
-                    mExModel.getId(), mStatisticsManager.getAverageTime(), new Date().getTime()));
+                    mExModel.name, mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
     }
 
@@ -115,7 +116,7 @@ public class SpeakingExImp implements SpeakingEx {
             mVoiceRecorder.stop();
             mIsRecording.postValue(false);
         }else {
-            mVoiceRecorder.start(context, mExModel.name.getName());
+            mVoiceRecorder.start(context, context.getString(mExModel.name.getNameId()));
             mIsRecording.postValue(true);
         }
     }
@@ -129,6 +130,7 @@ public class SpeakingExImp implements SpeakingEx {
         mStatisticsManager.calNumberWords();
         mStatisticsManager.calAverageTime();
         mChronometerOneWord.reset();
+
         List<String> words;
         switch (mExModel.name){
             case LINGUISTIC_PYRAMIDS:

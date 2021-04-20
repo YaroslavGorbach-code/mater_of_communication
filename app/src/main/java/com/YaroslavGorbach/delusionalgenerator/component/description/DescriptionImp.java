@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.Description;
+package com.YaroslavGorbach.delusionalgenerator.component.description;
 
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
@@ -11,36 +11,36 @@ import java.util.List;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
-    private final int mExId;
+    private final ExModel.Name mExName;
 
-    public DescriptionImp(Repo repo, int exId){
+    public DescriptionImp(Repo repo, ExModel.Name name){
         mRepo = repo;
-        mExId = exId;
+        mExName = name;
     }
     @Override
     public int getDescriptionId() {
-        return mRepo.getExercises().get(mExId).descriptionId;
+        return mRepo.getExercise(mExName).descriptionId;
     }
 
     @Override
     public int getImageId() {
-        return mRepo.getExercises().get(mExId).imageId;
+        return mRepo.getExercise(mExName).imageId;
     }
 
     @Override
     public ExModel.Name getExName() {
-        return mRepo.getExercises().get(mExId).name;
+        return mRepo.getExercise(mExName).name;
     }
 
     @Override
     public ExModel.Category getCategory() {
-        return mRepo.getExercises().get(mExId).category;
+        return mRepo.getExercise(mExName).category;
     }
 
     @Override
     public List<InputData> getStatisticsLast() {
         List<InputData> data = new ArrayList<>();
-        for (Statistics s: mRepo.getStatisticsLast(mExId)){
+        for (Statistics s: mRepo.getStatisticsLast(mExName)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);
@@ -50,7 +50,7 @@ public class DescriptionImp implements Description {
     @Override
     public List<InputData> getStatisticsNext() {
         List<InputData> data = new ArrayList<>();
-        for (Statistics s: mRepo.getStatisticsNext(mExId)){
+        for (Statistics s: mRepo.getStatisticsNext(mExName)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);
@@ -60,7 +60,7 @@ public class DescriptionImp implements Description {
     @Override
     public List<InputData> getStatisticsPrevious() {
         List<InputData> data = new ArrayList<>();
-        for (Statistics s: mRepo.getStatisticsPrevious(mExId)){
+        for (Statistics s: mRepo.getStatisticsPrevious(mExName)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);

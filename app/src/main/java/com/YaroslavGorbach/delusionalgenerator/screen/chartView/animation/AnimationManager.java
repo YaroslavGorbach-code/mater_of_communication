@@ -25,7 +25,7 @@ public class AnimationManager {
 	public static final int VALUE_NONE = -1;
 	public static final int ALPHA_START = 0;
 	public static final int ALPHA_END = 255;
-	private static final int ANIMATION_DURATION = 250;
+	private static final int ANIMATION_DURATION = 150;
 
 	private final Chart chart;
 	private final AnimatorSet animatorSet;

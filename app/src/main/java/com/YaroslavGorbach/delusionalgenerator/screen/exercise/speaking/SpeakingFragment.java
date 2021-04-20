@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
@@ -31,9 +32,9 @@ public class SpeakingFragment extends Fragment {
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
         // init vm
-        int exId = SpeakingFragmentArgs.fromBundle(requireArguments()).getIdEx();
+        ExModel.Name name = SpeakingFragmentArgs.fromBundle(requireArguments()).getExName();
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
-                exId,
+                name,
                 repo,
                 getResources(),
                 new ChronometerImp(binding.chronometer),

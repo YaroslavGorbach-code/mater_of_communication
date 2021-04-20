@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.Description;
+package com.YaroslavGorbach.delusionalgenerator.component.description;
 
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;

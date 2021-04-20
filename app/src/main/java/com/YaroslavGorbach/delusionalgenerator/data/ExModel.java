@@ -1,7 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
 
+import com.YaroslavGorbach.delusionalgenerator.R;
+
 public class ExModel {
-    private final int id;
     public Name name;
     public int imageId;
     public Category category;
@@ -10,14 +11,12 @@ public class ExModel {
 
 
     public ExModel(
-            int id,
             Name name,
             int descriptionId,
             Category category,
             int imageId,
             int...shortDescIds
     ){
-        this.id = id;
         this.name = name;
         this.category = category;
         this.shortDescIds = shortDescIds;
@@ -25,9 +24,6 @@ public class ExModel {
         this.imageId = imageId;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public enum Category {
         SPEAKING("Для развития комуникабельности"),
@@ -41,30 +37,30 @@ public class ExModel {
     }
 
     public enum Name {
-        LINGUISTIC_PYRAMIDS("Лингвистические пирамиды"),
-        RAVEN_LOOK_LIKE_A_TABLE("Чем ворон похож на стол"),
-        STORYTELLER_IMPROVISER("Рассказчик - импровизатор"),
-        ADVANCED_BINDING("Продвинутое связывание"),
-        WHAT_I_SEE_I_SING_ABOUT("О чем вижу, о том и пою"),
-        OTHER_ABBREVIATIONS("Другие варианты сокращений"),
-        MAGIC_NAMING("Волшебный нейминг"),
-        BUYING_SELLING("Купля - продажа"),
-        REMEMBER_ALL("Вспомнить все"),
-        CO_AUTHORED_WITH_DAHL("В соавторстве с Далем"),
-        RORSCHACH_TEST("Тест Роршаха"),
-        WILL_NOT_BE_WORSE("Хуже уже не будет"),
-        QUESTION_ANSWER("Вопрос - ответ"),
-        RAVEN_LOOK_LIKE_A_TABLE_FILINGS("Чем ворон похож на стул (чувства)"),
-        NOUNS("Существительные"),
-        ADJECTIVES("Прилагательные"),
-        VERBS("Глаголы"),
-        EASY_TONGUE_TWISTERS("Простые скороговорки"),
-        DIFFICULT_TONGUE_TWISTERS("Сложные скороговорки"),
-        VERY_DIFFICULT_TONGUE_TWISTERS("Очень сложные скороговорки");
-        private final String name;
-        public String getName(){ return name; }
-        Name(String name){
-            this.name = name;
+        LINGUISTIC_PYRAMIDS(R.string.ex_linguistic_pyramids_name),
+        RAVEN_LOOK_LIKE_A_TABLE(R.string.ex_raven_look_like_a_table_name),
+        STORYTELLER_IMPROVISER(R.string.ex_storyteller_improviser_name),
+        ADVANCED_BINDING(R.string.ex_advanced_binding_name),
+        WHAT_I_SEE_I_SING_ABOUT(R.string.ex_what_i_see_i_sing_about_name),
+        OTHER_ABBREVIATIONS(R.string.ex_other_abbreviations_name),
+        MAGIC_NAMING(R.string.ex_magic_naming_name),
+        BUYING_SELLING(R.string.ex_buying_selling_name),
+        REMEMBER_ALL(R.string.ex_remember_all_name),
+        CO_AUTHORED_WITH_DAHL(R.string.ex_co_authored_with_dahl_name),
+        RORSCHACH_TEST(R.string.ex_rorschach_test_name),
+        WILL_NOT_BE_WORSE(R.string.ex_will_not_be_worse_name),
+        QUESTION_ANSWER(R.string.ex_question_answer_name),
+        RAVEN_LOOK_LIKE_A_TABLE_FILINGS(R.string.ex_raven_look_like_a_table_filings_name),
+        NOUNS(R.string.ex_nouns_name),
+        ADJECTIVES(R.string.ex_adjectives_name),
+        VERBS(R.string.ex_verbs_name),
+        EASY_TONGUE_TWISTERS(R.string.ex_easy_tongue_twisters_name),
+        DIFFICULT_TONGUE_TWISTERS(R.string.ex_difficult_tongue_twisters_name),
+        VERY_DIFFICULT_TONGUE_TWISTERS(R.string.ex_very_difficult_tongue_twisters_name);
+        private final int nameId;
+        public int getNameId(){ return nameId; }
+        Name(int nameId){
+            this.nameId = nameId;
         }
     }
 }
