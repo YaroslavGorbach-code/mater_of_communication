@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_desc_lp_1">Придумайте аналогию</string>
-    <string name="short_desc_lp_2">Обобщите данное слово</string>
-    <string name="short_desc_lp_3">Разобобщите данное слово</string>
+    <string name="short_desc_linguistic_pyramids_1">Придумайте аналогию</string>
+    <string name="short_desc_linguistic_pyramids_2">Обобщите данное слово</string>
+    <string name="short_desc_linguistic_pyramids_3">Разобобщите данное слово</string>
 
-
+    <string name="short_desc_raven_look_like_a_table">Найдите сходство</string>
+    <string name="short_desc_storyteller_improviser">Составьте рассказ, используя данные слова</string>
+    <string name="short_desc_advanced_binding">Найдите несколько сходств</string>
+    <string name="short_desc_what_i_see_i_sing_about">Описывайте максимально долго данный предмет</string>
+    <string name="short_desc_other_abbreviations">Придумайте необычную расшифровку аббревиатуры</string>
+    <string name="short_desc_magic_naming">Придумайте к этому слову минимум 5 смешных прилагательных</string>
+    <string name="short_desc_buying_selling">Описывайте данный предмет так, как будто вам нужно его продать</string>
+    <string name="short_desc_remember_all">Назовите 15 слов на эту букву</string>
+    <string name="short_desc_co_authored_with_dahl">Дайте подробное определение слову</string>
+    <string name="short_desc_rorschach_test">Придумайте чем данный предмет может быть еще</string>
+    <string name="short_desc_will_not_be_worse">Придумайте ситуацию или фразу худшего в мире</string>
+    <string name="short_desc_question_answer">Дайте развернутый ответ на вопрос</string>
+    <string name="short_desc_raven_look_like_a_table_filings">Найдите сходство</string>
+    <string name="short_desc_nouns">Назовите как можно больше существительных(Кто? Что?).
+        После каждого названого слова, нажмитена экран, для учета результата</string>
+    <string name="short_desc_adjectives">Назовите как можно больше прилагательных(Какой? Какое?).
+        После каждого названого слова, нажмитена экран, для учета результата</string>
     <string name="short_desc_verbs">"Назовите как можно больше глаголов(Что делать? Что сделать?).
         После каждого названого слова, нажмите на экран, для учета результата"</string>
 
