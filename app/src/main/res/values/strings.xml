@@ -7,26 +7,17 @@
         <item>Разобобщите</item>
     </string-array>
 
-    <string name="ex_linguistic_pyramids_name">Лингвистические пирамиды</string>
-    <string name="ex_raven_look_like_a_table_name">Чем ворон похож на стол</string>
-    <string name="ex_storyteller_improviser_name">Рассказчик - импровизатор</string>
-    <string name="ex_advanced_binding_name">Продвинутое связывание</string>
-    <string name="ex_what_i_see_i_sing_about_name">О чем вижу, о том и пою</string>
-    <string name="ex_other_abbreviations_name">Другие варианты сокращений</string>
-    <string name="ex_magic_naming_name">Волшебный нейминг</string>
-    <string name="ex_buying_selling_name">Купля - продажа</string>
-    <string name="ex_remember_all_name">Вспомнить все</string>
-    <string name="ex_co_authored_with_dahl_name">В соавторстве с Далем</string>
-    <string name="ex_rorschach_test_name">Тест Роршаха</string>
-    <string name="ex_will_not_be_worse_name">Хуже уже не будет</string>
-    <string name="ex_question_answer_name">Вопрос - ответ</string>
-    <string name="ex_raven_look_like_a_table_filings_name">Чем ворон похож на стул (чувства)</string>
-    <string name="ex_nouns_name">Существительные</string>
-    <string name="ex_adjectives_name">Прилагательные</string>
-    <string name="ex_verbs_name">Глаголы</string>
-    <string name="ex_easy_tongue_twisters_name">Простые скороговорки</string>
-    <string name="ex_difficult_tongue_twisters_name">Сложные скороговорки</string>
-    <string name="ex_very_difficult_tongue_twisters_name">Очень сложные скороговорки</string>
+    <string name="resultBad">
+        <item>Названо слов %1$d. До нормы не дотягивает, нужно ещё тренироваться.</item>
+    </string>
+
+    <string name="resultVeryGood">
+        <item>Названо слов %1$d. У вас отличный словарный запас!</item>
+    </string>
+
+    <string name="resultGood">
+        <item>Названо слов %1$d. Неплохо, но нужно лучше.</item>
+    </string>
 
     <string name="category_1_name">Для развития коммуникабельности</string>
     <string name="category_2_name">Для увеличения словарного запаса</string>
@@ -34,7 +25,6 @@
 
     <string name="statistics_text">Количество пройденных слов за сессию</string>
     <string name="statistics_text_tt">Среднее количество секунд на скороговорку за сессию</string>
-
 
     <string name="about_app">
 В современном мире именно от умения общаться с окружающими зависит практически все.
