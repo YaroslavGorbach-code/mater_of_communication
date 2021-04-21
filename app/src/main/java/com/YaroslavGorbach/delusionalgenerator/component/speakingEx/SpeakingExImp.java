@@ -60,17 +60,14 @@ public class SpeakingExImp implements SpeakingEx {
     public void onNext() {
         if (mExModel.category == ExModel.Category.TONGUE_TWISTER){
             mClickCount++;
-            if (mClickCount < mExModel.shortDescIds.length){
-                setShortDesc();
-            }
-            if (mClickCount >= mExModel.shortDescIds.length){
+            if (mClickCount >=  mExModel.shortDescIds.length){
                 mClickCount = 0;
-                setShortDesc();
                 setWord();
             }
         }else {
             setWord();
         }
+        setShortDesc();
     }
 
     @Override
@@ -136,7 +133,6 @@ public class SpeakingExImp implements SpeakingEx {
             case LINGUISTIC_PYRAMIDS:
                 words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
                 _word.postValue(words.get(mRandom.nextInt(words.size())));
-                setShortDesc();
                 break;
             case EASY_TONGUE_TWISTERS:
                 words = mRepo.getWords(Repo.WordType.EASY_T_T, mResources);

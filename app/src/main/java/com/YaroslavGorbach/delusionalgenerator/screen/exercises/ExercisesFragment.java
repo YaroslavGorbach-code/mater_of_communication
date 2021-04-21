@@ -32,6 +32,7 @@ public class ExercisesFragment extends Fragment {
                         .actionExercisesFragmentToExercisesDescriptionFragment(exModel.name)));
 
         adapter.submitList(vm.getAllExs());
+        adapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);
         binding.exsList.setHasFixedSize(true);
         binding.exsList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
                 false));
