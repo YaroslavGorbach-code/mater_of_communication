@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.NavUtils;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -36,19 +37,19 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     @Override
     public void openSpeakingEx(ExModel.Name name) {
         getSupportFragmentManager().beginTransaction()
-                .hide(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container)))
-                .add(R.id.main_container, SpeakingFragment.class, SpeakingFragment.argsOf(name))
+                .replace(R.id.main_container, SpeakingFragment.class, SpeakingFragment.argsOf(name))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null).commit();
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
     public void openVocabularyEx(ExModel.Name name) {
         getSupportFragmentManager().beginTransaction()
-                .hide(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container)))
-                .add(R.id.main_container, VocabularyFragment.class, VocabularyFragment.argsOf(name))
+                .replace(R.id.main_container, VocabularyFragment.class, VocabularyFragment.argsOf(name))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null).commit();
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
