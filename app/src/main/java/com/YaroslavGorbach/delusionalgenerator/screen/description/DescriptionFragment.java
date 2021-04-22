@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsetsController;
+import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
@@ -27,6 +30,13 @@ public class DescriptionFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        Window window = requireActivity().getWindow();
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentDescriptionBinding binding = FragmentDescriptionBinding.bind(view);
@@ -37,20 +47,12 @@ public class DescriptionFragment extends Fragment {
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(requireContext()),
                         name)).get(DescriptionVm.class);
 
+
+        // init appBar
         binding.description.setText(getString(vm.description.getDescriptionId()));
         binding.image.setImageResource(vm.description.getImageId());
-        binding.name.setText(getString(vm.description.getExName().getNameId()));
-        binding.startEx.setOnClickListener(v -> {
-            switch (vm.description.getCategory()) {
-                case SPEAKING:
-                case TONGUE_TWISTER:
-                    ((Navigation) requireActivity()).openSpeakingEx(name);
-                    break;
-                case VOCABULARY:
-                    ((Navigation) requireActivity()).openVocabularyEx(name);
-                    break;
-            }
-        });
+        binding.toolbar.setTitle(getString(vm.description.getExName().getNameId()));
+        binding.toolbar.setNavigationOnClickListener(v -> ((Navigation)requireActivity()).up());
 
         // init statistics
         if (vm.description.getCategory() == ExModel.Category.TONGUE_TWISTER)
@@ -68,5 +70,24 @@ public class DescriptionFragment extends Fragment {
             if (data.size()>0)
             binding.chart.setData(data);
         });
+
+        binding.startEx.setOnClickListener(v -> {
+            switch (vm.description.getCategory()) {
+                case SPEAKING:
+                case TONGUE_TWISTER:
+                    ((Navigation) requireActivity()).openSpeakingEx(name);
+                    break;
+                case VOCABULARY:
+                    ((Navigation) requireActivity()).openVocabularyEx(name);
+                    break;
+            }
+        });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Window window = requireActivity().getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }
