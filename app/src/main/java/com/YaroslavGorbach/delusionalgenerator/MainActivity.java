@@ -1,19 +1,26 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity{
+import android.os.Bundle;
+import android.view.WindowManager;
+
+import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
+import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.FinishDialog;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.NavFragment;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
+
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity implements Navigation {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,42 +28,53 @@ public class MainActivity extends AppCompatActivity{
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setUpNavControllers();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().add(R.id.main_container, new NavFragment()).commit();
+        }
     }
 
-    @SuppressLint("NonConstantResourceId")
-    private void setUpNavControllers() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+    @Override
+    public void openSpeakingEx(ExModel.Name name) {
+        getSupportFragmentManager().beginTransaction()
+                .hide(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container)))
+                .add(R.id.main_container, SpeakingFragment.class, SpeakingFragment.argsOf(name))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null).commit();
+    }
 
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+    @Override
+    public void openVocabularyEx(ExModel.Name name) {
+        getSupportFragmentManager().beginTransaction()
+                .hide(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container)))
+                .add(R.id.main_container, VocabularyFragment.class, VocabularyFragment.argsOf(name))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null).commit();
+    }
 
-        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            switch (destination.getId()){
-                case R.id.exercisesDescriptionFragment:
-                    toolbar.getMenu().clear();
-                    toolbar.setVisibility(View.GONE);
-                    bottomNavigationView.setVisibility(View.GONE);
-                    break;
-                case R.id.exercisesFragment:
-                    toolbar.getMenu().clear();
-                    bottomNavigationView.setVisibility(View.VISIBLE);
-                    toolbar.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.speaking_fragment:
-                case R.id.vocabulary_fragment:
-                    toolbar.getMenu().clear();
-                    break;
-                case R.id.audioListFragment:
-                    toolbar.setNavigationIcon(null);
-                    toolbar.getMenu().clear();
-                    break;
-            }
-        });
+    @Override
+    public void openDescription(ExModel.Name name) {
+        getSupportFragmentManager().beginTransaction()
+                .hide(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container)))
+                .add(R.id.main_container, DescriptionFragment.class, DescriptionFragment.argsOf(name))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null).commit();
+    }
+
+    @Override
+    public void showFinishDialog(VocabularyEx.Result result) {
+       FinishDialog alertDialog = new FinishDialog();
+       alertDialog.setArguments(FinishDialog.argsOf(result));
+       alertDialog.show(getSupportFragmentManager(), "null");
+    }
+
+    @Override
+    public void onBackPressed() {
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    @Override
+    public void up() {
+        onBackPressed();
     }
 }
 

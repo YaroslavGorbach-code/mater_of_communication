@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 30
@@ -51,10 +50,6 @@ dependencies {
 
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
-
-    // navigation
-    implementation 'androidx.navigation:navigation-fragment:2.3.5'
-    implementation 'androidx.navigation:navigation-ui:2.3.5'
 
     // room
     implementation "androidx.room:room-runtime:2.2.6"

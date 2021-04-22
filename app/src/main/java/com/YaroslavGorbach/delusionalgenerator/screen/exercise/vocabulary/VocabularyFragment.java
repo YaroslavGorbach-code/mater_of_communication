@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.View;
 
@@ -16,10 +15,17 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBin
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 public class VocabularyFragment extends Fragment{
 
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
+
+    public static Bundle argsOf(ExModel.Name name){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("name", name);
+        return bundle;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -27,7 +33,7 @@ public class VocabularyFragment extends Fragment{
         FragmentVocabularyBinding binding = FragmentVocabularyBinding.bind(view);
 
         // init vm
-        ExModel.Name name = VocabularyFragmentArgs.fromBundle(requireArguments()).getExName();
+        ExModel.Name name = (ExModel.Name) requireArguments().getSerializable("name");
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
                 new VocabularyVm.VocabularyVmFactory(repo, name, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
@@ -40,8 +46,7 @@ public class VocabularyFragment extends Fragment{
         binding.clickArea.setOnClickListener(v -> vm.vocabularyEx.onClick());
 
         // init toolbar
-        binding.toolbar.setNavigationOnClickListener(v->
-                Navigation.findNavController(view).popBackStack());
+        binding.toolbar.setNavigationOnClickListener(v-> ((Navigation)requireActivity()).up());
 
         // init words count
         vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count ->
@@ -55,9 +60,7 @@ public class VocabularyFragment extends Fragment{
             if (isFinis){
                 binding.clickArea.setClickable(false);
                 binding.clickArea.setFocusable(false);
-                Navigation.findNavController(view).navigate(VocabularyFragmentDirections
-                        .actionVocabularyFragmentToFinishDialog(vm.vocabularyEx.getResultState()));
-                Navigation.findNavController(view).popBackStack();
+                ((Navigation)requireActivity()).showFinishDialog(vm.vocabularyEx.getResultState());
             }
         });
     }

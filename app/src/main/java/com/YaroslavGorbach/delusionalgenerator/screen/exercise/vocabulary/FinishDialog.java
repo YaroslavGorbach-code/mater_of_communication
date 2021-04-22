@@ -1,32 +1,49 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
+import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.databinding.DialogVocabularyResultBinding;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class FinishDialog extends DialogFragment {
     // TODO: 4/17/2021 translate
 
+    public static Bundle argsOf(VocabularyEx.Result result) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("result", result);
+        return bundle;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        VocabularyEx.Result result = FinishDialogArgs.fromBundle(requireArguments()).getResult();
+        VocabularyEx.Result result = (VocabularyEx.Result) requireArguments().getSerializable("result");
         DialogVocabularyResultBinding binding
                 = DialogVocabularyResultBinding.inflate(LayoutInflater.from(requireContext()));
         initResult(binding, result);
         return new MaterialAlertDialogBuilder(requireContext())
                 .setView(binding.getRoot())
-                .setPositiveButton("OK", null)
+                .setPositiveButton("OK", (dialog, which) -> ((Navigation)requireActivity()).up())
                 .create();
+    }
+
+    @Override
+    public void onCancel(@NonNull DialogInterface dialog) {
+        super.onCancel(dialog);
+        ((Navigation)requireActivity()).up();
     }
 
     public void initResult(DialogVocabularyResultBinding binding, VocabularyEx.Result result){

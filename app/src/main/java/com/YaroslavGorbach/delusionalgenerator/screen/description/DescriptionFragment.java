@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.View;
 
@@ -14,17 +13,24 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import java.util.List;
 
 public class DescriptionFragment extends Fragment {
     public DescriptionFragment(){ super(R.layout.fragment_description); }
 
+    public static Bundle argsOf(ExModel.Name name){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("name", name);
+        return bundle;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentDescriptionBinding binding = FragmentDescriptionBinding.bind(view);
-        ExModel.Name name =  DescriptionFragmentArgs.fromBundle(requireArguments()).getExName();
+        ExModel.Name name = (ExModel.Name) requireArguments().getSerializable("name");
 
         // init vm
         DescriptionVm vm = new ViewModelProvider(this,
@@ -38,14 +44,10 @@ public class DescriptionFragment extends Fragment {
             switch (vm.description.getCategory()) {
                 case SPEAKING:
                 case TONGUE_TWISTER:
-                    Navigation.findNavController(view)
-                            .navigate(DescriptionFragmentDirections
-                                    .actionExercisesDescriptionFragmentToSpeakingFragment(name));
+                    ((Navigation) requireActivity()).openSpeakingEx(name);
                     break;
                 case VOCABULARY:
-                    Navigation.findNavController(view)
-                            .navigate(DescriptionFragmentDirections
-                                    .actionExercisesDescriptionFragmentToVocabularyFragment(name));
+                    ((Navigation) requireActivity()).openVocabularyEx(name);
                     break;
             }
         });

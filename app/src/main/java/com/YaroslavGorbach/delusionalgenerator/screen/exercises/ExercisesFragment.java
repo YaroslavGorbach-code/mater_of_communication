@@ -7,15 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 public class ExercisesFragment extends Fragment {
-
 
     public ExercisesFragment(){ super(R.layout.fragment_exercises); }
 
@@ -27,9 +26,8 @@ public class ExercisesFragment extends Fragment {
         // init list
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(ExercisesVm.class);
 
-        ExsAdapter adapter = new ExsAdapter(exModel -> Navigation.findNavController(view)
-                .navigate(ExercisesFragmentDirections
-                        .actionExercisesFragmentToExercisesDescriptionFragment(exModel.name)));
+        ExsAdapter adapter = new ExsAdapter(exModel ->
+                ((Navigation) requireActivity()).openDescription(exModel.name));
 
         adapter.submitList(vm.getAllExs());
         adapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);
