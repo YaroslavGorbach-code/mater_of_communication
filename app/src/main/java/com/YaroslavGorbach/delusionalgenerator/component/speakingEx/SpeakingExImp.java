@@ -3,7 +3,6 @@ package com.YaroslavGorbach.delusionalgenerator.component.speakingEx;
 import android.content.Context;
 import android.content.res.Resources;
 
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,7 +10,6 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
-import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
 
@@ -20,11 +18,9 @@ import java.util.List;
 import java.util.Random;
 
 public class SpeakingExImp implements SpeakingEx {
-    private final MutableLiveData<String> _word = new MutableLiveData<>("null");
-    private final MutableLiveData<Integer> _shortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
+    private final MutableLiveData<String> mWord = new MutableLiveData<>("null");
+    private final MutableLiveData<Integer> mShortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
     private final MutableLiveData<Boolean> mIsRecording = new MutableLiveData<>();
-    private final Chronometer mChronometer;
-    private final Chronometer mChronometerOneWord;
     private final VoiceRecorder mVoiceRecorder;
     private final StatisticsManager mStatisticsManager;
 
@@ -39,16 +35,12 @@ public class SpeakingExImp implements SpeakingEx {
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
-            Chronometer chronometer,
-            Chronometer chronometerOneWord,
             VoiceRecorder voiceRecorder
     ){
         mExModel = exModel;
         mRepo = repo;
         mStatisticsManager = statisticsManager;
         mResources = resources;
-        mChronometer = chronometer;
-        mChronometerOneWord = chronometerOneWord;
         mVoiceRecorder = voiceRecorder;
 
         // init immediately
@@ -72,29 +64,14 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public LiveData<Integer> getShortDescId() {
-        return _shortDesc;
+        return mShortDesc;
     }
 
     @Override
     public LiveData<String> getWord() {
-        return _word;
+        return mWord;
     }
 
-    @Override
-    public int getExNameId() {
-        return mExModel.name.getNameId();
-    }
-
-    @Override
-    public void startPauseChronometer() {
-        if (mChronometer.getState() && mChronometerOneWord.getState()){
-            mChronometer.pause();
-            mChronometerOneWord.pause();
-        }else {
-            mChronometer.start();
-            mChronometerOneWord.start();
-        }
-    }
 
     @Override
     public void saveStatistics() {
@@ -108,7 +85,7 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     @Override
-    public void startStopRecord(Context context) {
+    public void onStartStopRecord(Context context) {
         if (mVoiceRecorder.getState()){
             mVoiceRecorder.stop();
             mIsRecording.postValue(false);
@@ -126,26 +103,25 @@ public class SpeakingExImp implements SpeakingEx {
     private void setWord(){
         mStatisticsManager.calNumberWords();
         mStatisticsManager.calAverageTime();
-        mChronometerOneWord.reset();
 
         List<String> words;
         switch (mExModel.name){
             case LINGUISTIC_PYRAMIDS:
                 words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
-                _word.postValue(words.get(mRandom.nextInt(words.size())));
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
             case EASY_TONGUE_TWISTERS:
                 words = mRepo.getWords(Repo.WordType.EASY_T_T, mResources);
-                _word.postValue(words.get(mRandom.nextInt(words.size())));
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
         }
     }
 
     private void setShortDesc() {
         if (mExModel.category == ExModel.Category.TONGUE_TWISTER) {
-            _shortDesc.postValue(mExModel.shortDescIds[mClickCount]);
+            mShortDesc.postValue(mExModel.shortDescIds[mClickCount]);
         }else {
-            _shortDesc.postValue(mExModel.shortDescIds[mRandom.nextInt(mExModel.shortDescIds.length)]);
+            mShortDesc.postValue(mExModel.shortDescIds[mRandom.nextInt(mExModel.shortDescIds.length)]);
         }
     }
 }

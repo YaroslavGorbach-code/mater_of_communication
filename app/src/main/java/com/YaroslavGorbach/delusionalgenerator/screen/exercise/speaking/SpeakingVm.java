@@ -9,7 +9,6 @@ import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingEx;
 import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.chronometer.Chronometer;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
 
@@ -21,8 +20,6 @@ public class SpeakingVm extends ViewModel {
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
-            Chronometer chronometer,
-            Chronometer chronometerOneWord,
             VoiceRecorder voiceRecorder
     ) {
         speakingEx = new SpeakingExImp(
@@ -30,8 +27,6 @@ public class SpeakingVm extends ViewModel {
                 repo,
                 statisticsManager,
                 resources,
-                chronometer,
-                chronometerOneWord,
                 voiceRecorder);
     }
 
@@ -45,8 +40,6 @@ public class SpeakingVm extends ViewModel {
         private final Repo repo;
         private final ExModel.Name name;
         private final Resources resources;
-        private final Chronometer chronometer;
-        private final Chronometer chronometerOneWord;
         private final StatisticsManager statisticsManager;
         private final VoiceRecorder voiceRecorder;
 
@@ -54,8 +47,6 @@ public class SpeakingVm extends ViewModel {
                 ExModel.Name name,
                 Repo repo,
                 Resources resources,
-                Chronometer chronometer,
-                Chronometer chronometerOneWord,
                 StatisticsManager statisticsManager,
                 VoiceRecorder voiceRecorder
         ) {
@@ -63,8 +54,6 @@ public class SpeakingVm extends ViewModel {
             this.repo = repo;
             this.name = name;
             this.resources = resources;
-            this.chronometer = chronometer;
-            this.chronometerOneWord = chronometerOneWord;
             this.statisticsManager = statisticsManager;
             this.voiceRecorder = voiceRecorder;
         }
@@ -73,8 +62,7 @@ public class SpeakingVm extends ViewModel {
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(SpeakingVm.class)) {
-                return (T) new SpeakingVm(name, repo, statisticsManager, resources,
-                        chronometer, chronometerOneWord, voiceRecorder);
+                return (T) new SpeakingVm(name, repo, statisticsManager, resources, voiceRecorder);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

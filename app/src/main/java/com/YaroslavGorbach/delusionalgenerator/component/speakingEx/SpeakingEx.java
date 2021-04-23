@@ -6,11 +6,9 @@ import androidx.lifecycle.LiveData;
 
 public interface SpeakingEx {
     void onNext();
-    void startPauseChronometer();
     void saveStatistics();
-    void startStopRecord(Context context);
+    void onStartStopRecord(Context context);
     LiveData<Boolean> getRecordingState();
     LiveData<Integer> getShortDescId();
     LiveData<String> getWord();
-    int getExNameId();
 }

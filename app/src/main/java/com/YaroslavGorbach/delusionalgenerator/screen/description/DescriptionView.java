@@ -6,7 +6,6 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import java.util.List;
 
