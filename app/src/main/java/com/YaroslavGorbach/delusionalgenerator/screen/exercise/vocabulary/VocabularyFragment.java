@@ -5,9 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
@@ -30,37 +32,29 @@ public class VocabularyFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FragmentVocabularyBinding binding = FragmentVocabularyBinding.bind(view);
-
         // init vm
         ExModel.Name name = (ExModel.Name) requireArguments().getSerializable("name");
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
                 new VocabularyVm.VocabularyVmFactory(repo, name, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
 
-        // init timer value
-        vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), value ->
-                binding.timer.setText(String.valueOf(value)));
+        // init view
+        VocabularyView v = new VocabularyView(FragmentVocabularyBinding.bind(view), new VocabularyView.Callback() {
+            @Override
+            public void onUp() { ((Navigation)requireActivity()).up(); }
 
-        // init onClick
-        binding.clickArea.setOnClickListener(v -> vm.vocabularyEx.onClick());
+            @Override
+            public void onClick() { vm.vocabularyEx.onClick(); }
 
-        // init toolbar
-        binding.toolbar.setNavigationOnClickListener(v-> ((Navigation)requireActivity()).up());
-        binding.toolbar.setTitle(getString(name.getNameId()));
-
-        // init words count
+        });
+        v.setTitle(getString(name.getNameId()));
+        v.setShortDesc(getString(vm.vocabularyEx.getShortDescId()));
+        vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), v::setTimerValue);
         vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count ->
-                binding.wordsCount.setText(String.valueOf(count)));
-
-        // init short desc
-        binding.shortDesc.setText(getString(vm.vocabularyEx.getShortDescId()));
-
-        // init finish event
+                v.setClickCount(String.valueOf(count)));
         vm.vocabularyEx.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
             if (isFinis){
-                binding.clickArea.setClickable(false);
-                binding.clickArea.setFocusable(false);
+                v.onTimerFinish();
                 ((Navigation)requireActivity()).showFinishDialog(vm.vocabularyEx.getResultState());
             }
         });

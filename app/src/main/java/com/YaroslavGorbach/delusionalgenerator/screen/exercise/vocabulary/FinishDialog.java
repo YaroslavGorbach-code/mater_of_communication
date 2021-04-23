@@ -8,18 +8,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.databinding.DialogVocabularyResultBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.Objects;
+
 public class FinishDialog extends DialogFragment {
     // TODO: 4/17/2021 translate
+
 
     public static Bundle argsOf(VocabularyEx.Result result) {
         Bundle bundle = new Bundle();
@@ -36,7 +37,9 @@ public class FinishDialog extends DialogFragment {
         initResult(binding, result);
         return new MaterialAlertDialogBuilder(requireContext())
                 .setView(binding.getRoot())
-                .setPositiveButton("OK", (dialog, which) -> ((Navigation)requireActivity()).up())
+                .setPositiveButton("OK", (dialog, which) -> {
+                  onCancel(dialog);
+                })
                 .create();
     }
 
@@ -46,20 +49,20 @@ public class FinishDialog extends DialogFragment {
         ((Navigation)requireActivity()).up();
     }
 
-    public void initResult(DialogVocabularyResultBinding binding, VocabularyEx.Result result){
+    private void initResult(DialogVocabularyResultBinding binding, VocabularyEx.Result result){
         switch (result){
             case GOOD:
-                binding.resultText.setText(getString(R.string.resultGood, result.getNumber())
+                binding.resultText.setText(getString(R.string.resultGood, result.getNumberWords())
                         .replaceFirst(" ", ""));
                 binding.imageView.setImageResource(R.drawable.ic_good_result);
                 break;
             case BAD:
-                binding.resultText.setText(getString(R.string.resultBad, result.getNumber())
+                binding.resultText.setText(getString(R.string.resultBad, result.getNumberWords())
                         .replaceFirst(" ", ""));
                 binding.imageView.setImageResource(R.drawable.ic_bad_result);
                 break;
             case VERY_GOOD:
-                binding.resultText.setText(getString(R.string.resultVeryGood, result.getNumber())
+                binding.resultText.setText(getString(R.string.resultVeryGood, result.getNumberWords())
                         .replaceFirst(" ", ""));
                 binding.imageView.setImageResource(R.drawable.ic_very_goot_result);
                 break;

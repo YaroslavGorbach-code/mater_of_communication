@@ -12,7 +12,7 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 import java.util.Date;
 
 public class VocabularyExImp implements VocabularyEx{
-    private final MutableLiveData<Integer> clickCount = new MutableLiveData<>(0);
+    private final MutableLiveData<Integer> mClickCount = new MutableLiveData<>(0);
 
     private final Timer mTimer;
     private final ExModel mExModel;
@@ -30,7 +30,7 @@ public class VocabularyExImp implements VocabularyEx{
     @Override
     public void onClick() {
         mStatisticsManager.calNumberWords();
-        clickCount.postValue(clickCount.getValue()+1);
+        mClickCount.postValue(mClickCount.getValue()+1);
     }
 
     @Override
@@ -41,19 +41,19 @@ public class VocabularyExImp implements VocabularyEx{
     @Override
     public Result getResultState() {
         Result result;
-        if (clickCount.getValue()<25){
+        if (mClickCount.getValue()<25){
             result = Result.BAD;
-            result.setNumber(clickCount.getValue());
+            result.setNumberWords(mClickCount.getValue());
             return result;
         }
-        if (clickCount.getValue()>25 && clickCount.getValue()<40){
+        if (mClickCount.getValue()>25 && mClickCount.getValue()<40){
             result = Result.GOOD;
-            result.setNumber(clickCount.getValue());
+            result.setNumberWords(mClickCount.getValue());
             return result;
         }
-        if (clickCount.getValue()>40){
+        if (mClickCount.getValue()>40){
             result = Result.VERY_GOOD;
-            result.setNumber(clickCount.getValue());
+            result.setNumberWords(mClickCount.getValue());
             return result;
         }
         return Result.GOOD;
@@ -68,11 +68,12 @@ public class VocabularyExImp implements VocabularyEx{
 
     @Override
     public LiveData<Integer> getClickCount() {
-        return clickCount;
+        return mClickCount;
     }
 
+
     @Override
-    public LiveData<Long> getTimerValue() {
+    public LiveData<String> getTimerValue() {
         return mTimer.getValue();
     }
 

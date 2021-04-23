@@ -8,19 +8,19 @@ public interface VocabularyEx {
     Result getResultState();
     void saveStatistics();
     LiveData<Integer> getClickCount();
-    LiveData<Long> getTimerValue();
+    LiveData<String> getTimerValue();
     LiveData<Boolean> onTimerFinish();
 
     enum Result{
         GOOD(),
         BAD(),
         VERY_GOOD();
-        int number;
-        public int getNumber() {
-            return number;
+        int numberWords;
+        public int getNumberWords() {
+            return numberWords;
         }
-        public void setNumber(int number) {
-            this.number = number;
+        public void setNumberWords(int numberWords) {
+            this.numberWords = numberWords;
         }
     }
 }

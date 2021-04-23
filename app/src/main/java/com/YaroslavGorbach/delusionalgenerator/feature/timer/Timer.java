@@ -5,5 +5,5 @@ import androidx.lifecycle.LiveData;
 public interface Timer {
     void start();
     LiveData<Boolean> onFinish();
-    LiveData<Long> getValue();
+    LiveData<String> getValue();
 }
