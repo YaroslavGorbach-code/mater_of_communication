@@ -1,5 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.component.description;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
@@ -12,6 +15,7 @@ import java.util.List;
 public class DescriptionImp implements Description {
     private final Repo mRepo;
     private final ExModel.Name mExName;
+    private final MutableLiveData<List<InputData>> mStatisticsData = new MutableLiveData<>();
 
     public DescriptionImp(Repo repo, ExModel.Name name){
         mRepo = repo;
@@ -27,10 +31,6 @@ public class DescriptionImp implements Description {
         return mRepo.getExercise(mExName).imageId;
     }
 
-    @Override
-    public ExModel.Name getExName() {
-        return mRepo.getExercise(mExName).name;
-    }
 
     @Override
     public ExModel.Category getCategory() {
@@ -38,32 +38,35 @@ public class DescriptionImp implements Description {
     }
 
     @Override
-    public List<InputData> getStatisticsLast() {
+    public LiveData<List<InputData>> getStatistics() {
         List<InputData> data = new ArrayList<>();
         for (Statistics s: mRepo.getStatisticsLast(mExName)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);
-        return data;
+        mStatisticsData.postValue(data);
+        return mStatisticsData;
     }
 
     @Override
-    public List<InputData> getStatisticsNext() {
+    public void onStatisticsNext() {
         List<InputData> data = new ArrayList<>();
         for (Statistics s: mRepo.getStatisticsNext(mExName)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);
-        return data;
+        if (!data.isEmpty())
+             mStatisticsData.postValue(data);
     }
 
     @Override
-    public List<InputData> getStatisticsPrevious() {
+    public void onStatisticsPrevious() {
         List<InputData> data = new ArrayList<>();
         for (Statistics s: mRepo.getStatisticsPrevious(mExName)){
             data.add(new InputData(s.value, s.dataTime));
         }
         Collections.reverse(data);
-        return data;
+        if (!data.isEmpty())
+            mStatisticsData.postValue(data);
     }
 }
