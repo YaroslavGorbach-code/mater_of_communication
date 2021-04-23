@@ -67,14 +67,14 @@ public class RepoImp implements Repo {
 
     @Override
     public File[] getRecords(Context context) {
-
         File file = new File(context.getExternalFilesDir("/").getAbsolutePath());
         File[] files = file.listFiles();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             if (files != null)
-                Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
-        }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
+                }
+
         return files;
     }
 

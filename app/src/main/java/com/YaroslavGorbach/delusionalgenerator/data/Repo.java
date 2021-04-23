@@ -15,7 +15,6 @@ public interface Repo {
     List<Statistics> getStatisticsLast(ExModel.Name name);
     List<Statistics> getStatisticsNext(ExModel.Name name);
     List<Statistics> getStatisticsPrevious(ExModel.Name name);
-
     void addStatistics(Statistics statistics);
     File[] getRecords(Context context);
 
