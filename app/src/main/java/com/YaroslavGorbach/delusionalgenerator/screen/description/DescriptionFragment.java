@@ -3,13 +3,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.view.DragEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
@@ -21,9 +23,11 @@ import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 import java.util.List;
 
 public class DescriptionFragment extends Fragment {
-    public DescriptionFragment(){ super(R.layout.fragment_description); }
+    public DescriptionFragment() {
+        super(R.layout.fragment_description);
+    }
 
-    public static Bundle argsOf(ExModel.Name name){
+    public static Bundle argsOf(ExModel.Name name) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
         return bundle;
@@ -32,8 +36,9 @@ public class DescriptionFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Window window = requireActivity().getWindow();
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Window w = requireActivity().getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     @Override
@@ -47,12 +52,21 @@ public class DescriptionFragment extends Fragment {
                 new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(requireContext()),
                         name)).get(DescriptionVm.class);
 
-
         // init appBar
         binding.description.setText(getString(vm.description.getDescriptionId()));
         binding.image.setImageResource(vm.description.getImageId());
         binding.toolbar.setTitle(getString(vm.description.getExName().getNameId()));
-        binding.toolbar.setNavigationOnClickListener(v -> ((Navigation)requireActivity()).up());
+        binding.toolbar.setNavigationOnClickListener(v -> ((Navigation) requireActivity()).up());
+
+        // init show/hide button
+        binding.scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
+                (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    if (scrollY > oldScrollY) {
+                        binding.startEx.hide();
+                    } else {
+                        binding.startEx.show();
+                    }
+        });
 
         // init statistics
         if (vm.description.getCategory() == ExModel.Category.TONGUE_TWISTER)
@@ -61,14 +75,14 @@ public class DescriptionFragment extends Fragment {
         binding.chart.setData(vm.description.getStatisticsLast());
         binding.nextData.setOnClickListener(v -> {
             List<InputData> data = vm.description.getStatisticsNext();
-            if (data.size()>0)
-           binding.chart.setData(data);
+            if (data.size() > 0)
+                binding.chart.setData(data);
         });
 
         binding.prevData.setOnClickListener(v -> {
             List<InputData> data = vm.description.getStatisticsPrevious();
-            if (data.size()>0)
-            binding.chart.setData(data);
+            if (data.size() > 0)
+                binding.chart.setData(data);
         });
 
         binding.startEx.setOnClickListener(v -> {
@@ -82,12 +96,14 @@ public class DescriptionFragment extends Fragment {
                     break;
             }
         });
+
     }
 
     @Override
     public void onStop() {
-        super.onStop();
-        Window window = requireActivity().getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            super.onStop();
+        Window w = requireActivity().getWindow();
+        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 }

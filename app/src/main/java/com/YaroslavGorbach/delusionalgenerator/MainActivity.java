@@ -1,14 +1,11 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.NavUtils;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (savedInstanceState == null) {
@@ -56,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     @Override
     public void openDescription(ExModel.Name name) {
         getSupportFragmentManager().beginTransaction()
-                .hide(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container)))
-                .add(R.id.main_container, DescriptionFragment.class, DescriptionFragment.argsOf(name))
+                .replace(R.id.main_container, DescriptionFragment.class, DescriptionFragment.argsOf(name))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null).commit();
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -71,7 +68,11 @@ public class MainActivity extends AppCompatActivity implements Navigation {
 
     @Override
     public void onBackPressed() {
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        if(getSupportFragmentManager().getBackStackEntryCount()>1){
+            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }else {
+            super.onBackPressed();
+        }
     }
 
     @Override

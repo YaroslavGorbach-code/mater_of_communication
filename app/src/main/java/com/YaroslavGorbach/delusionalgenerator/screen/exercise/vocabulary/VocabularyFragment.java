@@ -47,6 +47,7 @@ public class VocabularyFragment extends Fragment{
 
         // init toolbar
         binding.toolbar.setNavigationOnClickListener(v-> ((Navigation)requireActivity()).up());
+        binding.toolbar.setTitle(getString(name.getNameId()));
 
         // init words count
         vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count ->

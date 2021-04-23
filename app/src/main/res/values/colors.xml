@@ -12,7 +12,7 @@
     <color name="gray_600">#757575</color>
     <color name="gray_700">#616161</color>
     <color name="gray_800">#424242</color>
-    <color name="gray_900">#212121</color>
+    <color name="gray_900">#00000000</color>
 
     <color name="gray">#f4f2ee</color>
     <color name="light_blue">#b2ccde</color>

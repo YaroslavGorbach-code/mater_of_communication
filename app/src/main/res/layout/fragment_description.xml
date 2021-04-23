@@ -1,59 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".screen.description.DescriptionFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="152dp"
+        android:fitsSystemWindows="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?android:statusBarColor"
+            app:statusBarScrim="?android:statusBarColor">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:alpha="0.4"
-                android:padding="8dp"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:scaleX="1.25"
+                android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:scaleX="1.3"
                 android:src="@drawable/ic_raven"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin"
+                android:background="@android:color/transparent"
                 app:navigationIcon="@drawable/ic_arrow_back"
                 app:title="@string/offline_opt_in_decline" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:scrollbars="none"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toTopOf="@+id/start_ex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,11 +114,10 @@
             <com.YaroslavGorbach.delusionalgenerator.screen.chartView.ChartView
                 android:id="@+id/chart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="600dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp" />
-
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -139,9 +134,9 @@
                         android:id="@+id/descriptionTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:gravity="center"
                         android:paddingHorizontal="8dp"
-                        android:layout_marginTop="8dp"
                         android:text="Описание"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                         android:textSize="24sp" />
@@ -151,27 +146,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        tools:text="@string/ex_advanced_binding_desc"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        tools:text="@string/ex_advanced_binding_desc" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/start_ex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:padding="16dp"
-        android:text="Начать"
-        android:textSize="24sp"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|center"
+        android:backgroundTint="?colorPrimary"
+        app:tint="?colorPrimarySurface"
+        android:src="@drawable/ic_next"
+        tools:ignore="ContentDescription" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

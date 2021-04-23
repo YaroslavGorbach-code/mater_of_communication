@@ -53,6 +53,7 @@ public class SpeakingFragment extends Fragment {
         // init toolbar
         binding.toolbar.setNavigationOnClickListener(v ->
                 ((Navigation)requireActivity()).up());
+        binding.toolbar.setTitle(getString(name.getNameId()));
 
         // init start stop record
         binding.startStopRecord.setOnClickListener(v -> {
