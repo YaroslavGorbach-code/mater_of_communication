@@ -8,13 +8,15 @@ import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import java.io.File;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public interface Repo {
     List<ExModel> getExercises();
     ExModel getExercise(ExModel.Name name);
     List<String> getWords(WordType type, Resources resources);
-    List<Statistics> getStatisticsLast(ExModel.Name name);
-    List<Statistics> getStatisticsNext(ExModel.Name name);
-    List<Statistics> getStatisticsPrevious(ExModel.Name name);
+    Observable<Statistics> getStatistics(ExModel.Name name);
+    Observable<Statistics> getStatisticsNext(ExModel.Name name, List<InputData> currentData);
+    Observable<Statistics> getStatisticsPrevious(ExModel.Name name, List<InputData> currentData);
     void addStatistics(Statistics statistics);
     File[] getRecords(Context context);
 

@@ -16,6 +16,8 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class DescriptionFragment extends Fragment {
     public DescriptionFragment() {
         super(R.layout.fragment_description);
@@ -26,6 +28,7 @@ public class DescriptionFragment extends Fragment {
         bundle.putSerializable("name", name);
         return bundle;
     }
+    private final CompositeDisposable disposableContainer = new CompositeDisposable();
 
     @Override
     public void onStart() {
@@ -66,7 +69,7 @@ public class DescriptionFragment extends Fragment {
             public void onNextData() { vm.description.onStatisticsNext(); }
 
             @Override
-            public void onPrevData() {vm.description.onStatisticsPrevious(); }
+            public void onPrevData() { vm.description.onStatisticsPrevious(); }
 
         });
 
@@ -74,7 +77,7 @@ public class DescriptionFragment extends Fragment {
         v.setImageId(vm.description.getImageId());
         v.setDescription(getString(vm.description.getDescriptionId()));
         v.setStatisticsText(vm.description.getCategory());
-        vm.description.getStatistics().observe(getViewLifecycleOwner(),  v::setChartData);
+        vm.description.getStatistics().observe(getViewLifecycleOwner(), v::setChartData);
 
     }
 
@@ -84,5 +87,6 @@ public class DescriptionFragment extends Fragment {
         Window w = requireActivity().getWindow();
         w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        disposableContainer.dispose();
     }
 }

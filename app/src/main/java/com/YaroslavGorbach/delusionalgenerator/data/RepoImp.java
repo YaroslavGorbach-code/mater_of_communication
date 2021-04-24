@@ -5,19 +5,19 @@ import android.content.res.Resources;
 import android.os.Build;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Observable;
 
 public class RepoImp implements Repo {
     private final List<ExModel> mExercises = new ArrayList<>();
     private final Database mDatabase;
-    private long mTimeStatisticsFirs;
-    private long mTimeStatisticsLast;
 
     public RepoImp(Database database) {
         mDatabase = database;
@@ -79,43 +79,34 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public List<Statistics> getStatisticsLast(ExModel.Name name) {
-        List<Statistics> data = mDatabase.statisticsDao().getStatisticsLast(name);
-        if (data.isEmpty()){
-            addStatistics(new Statistics(name, 5, 0));
-            data = mDatabase.statisticsDao().getStatisticsLast(name);
-        }
-        initStatisticsTime(data);
-
-        return data;
+    public Observable<Statistics> getStatistics(ExModel.Name name) {
+        return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                .takeLast(15)
+                .defaultIfEmpty(new Statistics(name, 5, 0));
     }
 
     @Override
-    public List<Statistics> getStatisticsNext(ExModel.Name name) {
-        List<Statistics> data = mDatabase.statisticsDao().getStatisticsNext(name ,mTimeStatisticsFirs);
-        if (!data.isEmpty()){
-            initStatisticsTime(data);
-        }
-        return data;
+    public Observable<Statistics> getStatisticsNext(ExModel.Name name, List<InputData> currentData) {
+        return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                .filter(statistics -> statistics.dataTime > currentData.get(currentData.size()-1).getMillis())
+                .take(15)
+                .switchIfEmpty(Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                .takeLast(15));
     }
 
     @Override
-    public List<Statistics> getStatisticsPrevious(ExModel.Name name) {
-        List<Statistics> data = mDatabase.statisticsDao().getStatisticsPrevious(name, mTimeStatisticsLast);
-        if (!data.isEmpty()){
-            initStatisticsTime(data);
-        }
-        return data;
+    public Observable<Statistics> getStatisticsPrevious(ExModel.Name name, List<InputData> currentData) {
+        return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                .filter(statistics -> statistics.dataTime < currentData.get(0).getMillis())
+                .takeLast(15)
+                .switchIfEmpty(Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                        .takeLast(15));
+
     }
 
     @Override
     public void addStatistics(Statistics statistics) {
         mDatabase.statisticsDao().insert(statistics);
-    }
-
-    private void initStatisticsTime(List<Statistics> data) {
-        mTimeStatisticsFirs = data.get(0).dataTime;
-        mTimeStatisticsLast = data.get(data.size() - 1).dataTime;
     }
 
     private void createExercises() {
