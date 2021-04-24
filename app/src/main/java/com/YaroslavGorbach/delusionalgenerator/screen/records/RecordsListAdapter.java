@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +51,13 @@ public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.A
         }
 
         private void bind(Record record) {
+            if (record.isPlaying){
+                binding.iconPlay.setImageDrawable(
+                        ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_pause));
+            }else {
+                binding.iconPlay.setImageDrawable(
+                        ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_play));
+            }
             binding.title.setText(record.getName());
             binding.date.setText(TimeUtil.getTimeAgo(record.getLastModified()));
             binding.duration.setText(record.getDuration());
@@ -60,7 +68,7 @@ public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.A
 
         @Override
         public boolean areItemsTheSame(@NonNull Record oldItem, @NonNull Record newItem) {
-            return false; // TODO: 4/12/2021 implement equals
+            return oldItem == newItem;
         }
 
         @Override

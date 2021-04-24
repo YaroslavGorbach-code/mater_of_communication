@@ -1,9 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer;
 
-import java.io.File;
-
+import com.YaroslavGorbach.delusionalgenerator.data.Record;
 public interface MediaPlayer {
-    void play(File file);
+    void play(Record record);
     void pause();
     void stop();
 }

@@ -26,9 +26,8 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RecordsFragment extends Fragment {
-
     public RecordsFragment(){ super(R.layout.fragment_records); }
-    private final CompositeDisposable disposable = new CompositeDisposable();
+    private final CompositeDisposable bag = new CompositeDisposable();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -38,15 +37,12 @@ public class RecordsFragment extends Fragment {
         //init vm
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         RecordsVm vm = new ViewModelProvider(this,
-                new RecordsVm.RecordsVmFactory(repo, new MediaPlayerImp())).get(RecordsVm.class);
+                new RecordsVm.RecordsVmFactory(repo, requireContext(), bag)).get(RecordsVm.class);
 
         //init records list
-        RecordsListAdapter adapter = new RecordsListAdapter(file ->
-                vm.recordsList.onPlay(file.getFile()));
-        disposable.add(vm.recordsList.getRecords(requireContext())
-                .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe((Consumer<List<Record>>) adapter::submitList));
+        RecordsListAdapter adapter = new RecordsListAdapter(record ->
+                vm.recordsList.onPlay(record));
+        vm.recordsList.getRecords().observe(getViewLifecycleOwner(), adapter::submitList);
         binding.recordsList.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recordsList.setAdapter(adapter);
     }
@@ -54,6 +50,6 @@ public class RecordsFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        disposable.dispose();
+        bag.dispose();
     }
 }

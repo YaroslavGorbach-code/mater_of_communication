@@ -3,9 +3,11 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
-import java.io.File;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -19,7 +21,7 @@ public interface Repo {
     Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData);
     Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData);
     void addStatistics(Statistics statistics);
-    Single<List<Record>> getRecords(Context context);
+    Single<List<Record>> getRecordsFromFile(Context context);
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

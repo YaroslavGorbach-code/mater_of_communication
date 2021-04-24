@@ -16,7 +16,6 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
@@ -68,16 +67,18 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public Single<List<Record>> getRecords(Context context) {
+    public Single<List<Record>> getRecordsFromFile(Context context) {
         File files = new File(context.getExternalFilesDir("/").getAbsolutePath());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Observable.fromArray(files.listFiles())
-                   .map(Record::new)
-                     .toSortedList(Comparator.comparingLong(Record::getLastModified).reversed());
+           return Observable.fromArray(files.listFiles())
+                    .map(Record::new)
+                    .toSortedList(Comparator.comparingLong(Record::getLastModified).reversed())
+                    .subscribeOn(Schedulers.io());
         }else {
             return Observable.fromArray(files.listFiles())
-                    .map(Record::new).toList();
-
+                    .map(Record::new)
+                     .toList()
+                     .subscribeOn(Schedulers.io());
         }
     }
 
