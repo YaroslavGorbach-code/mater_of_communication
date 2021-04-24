@@ -37,11 +37,4 @@ public class Record {
         return duration;
     }
 
-    public boolean equals(@Nullable Record record) {
-        return Objects.equals(lastModified, record.lastModified)
-                && Objects.equals(name, record.name)
-                && Objects.equals(duration, record.duration)
-                && Objects.equals(isPlaying, record.isPlaying);
-
-    }
 }
