@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class ExercisesVm extends ViewModel {
         mRepo = repo;
     }
 
-    public List<ExModel> getAllExs() {
+    public List<Exercise> getAllExs() {
         return mRepo.getExercises();
     }
 

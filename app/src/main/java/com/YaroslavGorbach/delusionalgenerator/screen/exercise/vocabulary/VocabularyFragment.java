@@ -5,13 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
-import android.widget.Toast;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -23,7 +21,7 @@ public class VocabularyFragment extends Fragment{
 
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
 
-    public static Bundle argsOf(ExModel.Name name){
+    public static Bundle argsOf(Exercise.Name name){
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
         return bundle;
@@ -33,7 +31,7 @@ public class VocabularyFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // init vm
-        ExModel.Name name = (ExModel.Name) requireArguments().getSerializable("name");
+        Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
                 new VocabularyVm.VocabularyVmFactory(repo, name, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);

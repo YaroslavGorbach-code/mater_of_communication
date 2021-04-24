@@ -9,15 +9,13 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.FinishDialog;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.NavFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements Navigation {
 
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openSpeakingEx(ExModel.Name name) {
+    public void openSpeakingEx(Exercise.Name name) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, SpeakingFragment.class, SpeakingFragment.argsOf(name))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openVocabularyEx(ExModel.Name name) {
+    public void openVocabularyEx(Exercise.Name name) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, VocabularyFragment.class, VocabularyFragment.argsOf(name))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openDescription(ExModel.Name name) {
+    public void openDescription(Exercise.Name name) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, DescriptionFragment.class, DescriptionFragment.argsOf(name))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

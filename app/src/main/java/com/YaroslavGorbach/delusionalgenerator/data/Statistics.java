@@ -7,11 +7,11 @@ import androidx.room.PrimaryKey;
 public class Statistics {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    public ExModel.Name exName;
+    public Exercise.Name exName;
     public int value;
     public long dataTime;
 
-    public Statistics(ExModel.Name exName, int value, long dataTime) {
+    public Statistics(Exercise.Name exName, int value, long dataTime) {
         this.exName = exName;
         this.value = value;
         this.dataTime = dataTime;

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
@@ -20,7 +20,7 @@ public class SpeakingFragment extends Fragment {
 
     public SpeakingFragment(){ super(R.layout.fragment_speaking); }
 
-    public static Bundle argsOf(ExModel.Name name){
+    public static Bundle argsOf(Exercise.Name name){
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
         return bundle;
@@ -32,7 +32,7 @@ public class SpeakingFragment extends Fragment {
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
         // init vm
-        ExModel.Name name = (ExModel.Name)requireArguments().getSerializable("name");
+        Exercise.Name name = (Exercise.Name)requireArguments().getSerializable("name");
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
                 name,
                 repo,

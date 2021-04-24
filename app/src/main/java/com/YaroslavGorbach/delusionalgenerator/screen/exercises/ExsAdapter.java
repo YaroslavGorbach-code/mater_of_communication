@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemExBinding;
 import com.bumptech.glide.Glide;
 
-public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
-    interface Listener{ void onClick(ExModel exModel);}
+public class ExsAdapter extends ListAdapter<Exercise, ExsAdapter.ExsVh> {
+    interface Listener{ void onClick(Exercise exercise);}
 
     private final Listener mListener;
 
@@ -44,22 +44,22 @@ public class ExsAdapter extends ListAdapter<ExModel, ExsAdapter.ExsVh> {
                     mListener.onClick(getItem(getBindingAdapterPosition())));
         }
 
-        public void bind(ExModel item) {
+        public void bind(Exercise item) {
             binding.itemName.setText(itemView.getContext().getString(item.name.getNameId()));
             binding.itemCategory.setText(item.category.getName());
             Glide.with(itemView.getContext()).load(item.imageId).into(binding.itemImage);
         }
     }
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<ExModel>{
+    private static class DiffCallback extends DiffUtil.ItemCallback<Exercise>{
 
         @Override
-        public boolean areItemsTheSame(@NonNull ExModel oldItem, @NonNull ExModel newItem) {
+        public boolean areItemsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
             return false; // TODO: 4/12/2021 implement equals
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull ExModel oldItem, @NonNull ExModel newItem) {
+        public boolean areContentsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
             return false;
         }
     }

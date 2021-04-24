@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 
-public class ExModel {
+public class Exercise {
     public Name name;
     public int imageId;
     public Category category;
@@ -10,7 +10,7 @@ public class ExModel {
     public int[] shortDescIds;
 
 
-    public ExModel(
+    public Exercise(
             Name name,
             int descriptionId,
             Category category,

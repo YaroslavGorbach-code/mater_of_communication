@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayerImp;
@@ -41,11 +42,11 @@ public class RecordsFragment extends Fragment {
 
         //init records list
         RecordsListAdapter adapter = new RecordsListAdapter(file ->
-                vm.recordsList.onPlay(file));
+                vm.recordsList.onPlay(file.getFile()));
         disposable.add(vm.recordsList.getRecords(requireContext())
                 .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe((Consumer<List<File>>) adapter::submitList));
+                .subscribe((Consumer<List<Record>>) adapter::submitList));
         binding.recordsList.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recordsList.setAdapter(adapter);
     }

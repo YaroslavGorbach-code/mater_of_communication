@@ -1,7 +1,5 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer;
 
-import android.util.Log;
-
 import java.io.File;
 import java.io.IOException;
 

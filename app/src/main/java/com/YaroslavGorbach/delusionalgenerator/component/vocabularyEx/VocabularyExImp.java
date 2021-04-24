@@ -3,7 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
@@ -11,21 +11,19 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 
 import java.util.Date;
 
-import io.reactivex.rxjava3.functions.Consumer;
-
 public class VocabularyExImp implements VocabularyEx{
     private final MutableLiveData<Integer> mClickCount = new MutableLiveData<>(0);
 
     private final Timer mTimer;
-    private ExModel mExModel;
+    private Exercise mExercise;
     private final StatisticsManager mStatisticsManager;
     private final Repo mRepo;
 
-    public VocabularyExImp(ExModel.Name name, Timer timer, StatisticsManager statisticsManager, Repo repo){
+    public VocabularyExImp(Exercise.Name name, Timer timer, StatisticsManager statisticsManager, Repo repo){
         mTimer = timer;
         mStatisticsManager = statisticsManager;
         mRepo = repo;
-        mRepo.getExercise(name).subscribe(exModel -> mExModel = exModel).dispose();
+        mRepo.getExercise(name).subscribe(exModel -> mExercise = exModel).dispose();
         mTimer.start();
     }
 
@@ -37,7 +35,7 @@ public class VocabularyExImp implements VocabularyEx{
 
     @Override
     public int getShortDescId() {
-        return mExModel.shortDescIds[0];
+        return mExercise.shortDescIds[0];
     }
 
     @Override
@@ -64,7 +62,7 @@ public class VocabularyExImp implements VocabularyEx{
     @Override
     public void saveStatistics() {
         // we ned to add plus one word
-        mRepo.addStatistics(new Statistics(mExModel.name,
+        mRepo.addStatistics(new Statistics(mExercise.name,
                 mStatisticsManager.getNumberWords(), new Date().getTime()));
     }
 

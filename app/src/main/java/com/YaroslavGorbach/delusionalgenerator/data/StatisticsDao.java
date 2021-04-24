@@ -13,5 +13,5 @@ public interface StatisticsDao {
     void insert(Statistics statistics);
 
     @Query("SELECT * FROM statistics WHERE exName == :name ORDER BY dataTime")
-    List<Statistics> getStatistics(ExModel.Name name);
+    List<Statistics> getStatistics(Exercise.Name name);
 }

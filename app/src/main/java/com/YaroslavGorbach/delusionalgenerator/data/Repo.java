@@ -12,14 +12,14 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 
 public interface Repo {
-    List<ExModel> getExercises();
-    Single<ExModel> getExercise(ExModel.Name name);
+    List<Exercise> getExercises();
+    Single<Exercise> getExercise(Exercise.Name name);
     List<String> getWords(WordType type, Resources resources);
-    Observable<Statistics> getStatistics(ExModel.Name name);
-    Observable<Statistics> getStatisticsNext(ExModel.Name name, List<InputData> currentData);
-    Observable<Statistics> getStatisticsPrevious(ExModel.Name name, List<InputData> currentData);
+    Observable<Statistics> getStatistics(Exercise.Name name);
+    Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData);
+    Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData);
     void addStatistics(Statistics statistics);
-    Single<List<File>> getRecords(Context context);
+    Single<List<Record>> getRecords(Context context);
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

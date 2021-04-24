@@ -3,7 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.description;
 import androidx.core.widget.NestedScrollView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
@@ -46,8 +46,8 @@ public class DescriptionView {
         mBinding.description.setText(description);
     }
 
-    public void setStatisticsText(ExModel.Category category){
-        if (category == ExModel.Category.TONGUE_TWISTER)
+    public void setStatisticsText(Exercise.Category category){
+        if (category == Exercise.Category.TONGUE_TWISTER)
             mBinding.statisticsText.setText(R.string.statistics_text_tt);
     }
 

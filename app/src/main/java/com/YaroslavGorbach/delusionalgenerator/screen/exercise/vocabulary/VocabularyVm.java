@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyExImp;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
@@ -12,7 +12,7 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 public class VocabularyVm extends ViewModel {
     public final VocabularyEx vocabularyEx;
 
-    VocabularyVm(Repo repo, ExModel.Name name, Timer timer, StatisticsManager statisticsManager){
+    VocabularyVm(Repo repo, Exercise.Name name, Timer timer, StatisticsManager statisticsManager){
         vocabularyEx = new VocabularyExImp(name,  timer, statisticsManager, repo);
     }
 
@@ -23,13 +23,13 @@ public class VocabularyVm extends ViewModel {
     }
 
     public static class VocabularyVmFactory  extends ViewModelProvider.NewInstanceFactory{
-        private final ExModel.Name name;
+        private final Exercise.Name name;
         private final Repo repo;
         private final Timer timer;
         private final StatisticsManager statisticsManager;
 
 
-        public VocabularyVmFactory(Repo repo, ExModel.Name name, Timer timer, StatisticsManager statisticsManager){
+        public VocabularyVmFactory(Repo repo, Exercise.Name name, Timer timer, StatisticsManager statisticsManager){
             super();
             this.name = name;
             this.repo = repo;

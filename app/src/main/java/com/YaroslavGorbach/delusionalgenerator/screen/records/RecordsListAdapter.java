@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemRecordBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
 import java.io.File;
 
-public class RecordsListAdapter extends ListAdapter<File, RecordsListAdapter.AudioViewHolder> {
+public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.AudioViewHolder> {
 
-    public interface Listener { void onPlay(File file);}
-
+    public interface Listener { void onPlay(Record record);}
     private final Listener Listener;
 
     public RecordsListAdapter(Listener Listener) {
@@ -36,7 +36,7 @@ public class RecordsListAdapter extends ListAdapter<File, RecordsListAdapter.Aud
 
     @Override
     public void onBindViewHolder(@NonNull AudioViewHolder holder, int position) {
-        holder.bind(position);
+        holder.bind(getItem(position));
     }
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {
@@ -49,22 +49,22 @@ public class RecordsListAdapter extends ListAdapter<File, RecordsListAdapter.Aud
                     Listener.onPlay(getItem(getBindingAdapterPosition())));
         }
 
-        private void bind(int position) {
-            binding.title.setText(getItem(position).getName());
-            binding.date.setText(TimeUtil.getTimeAgo(getItem(position).lastModified()));
-            binding.duration.setText(TimeUtil.getFileDuration(getItem(position)));
+        private void bind(Record record) {
+            binding.title.setText(record.getName());
+            binding.date.setText(TimeUtil.getTimeAgo(record.getLastModified()));
+            binding.duration.setText(record.getDuration());
         }
     }
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<File>{
+    private static class DiffCallback extends DiffUtil.ItemCallback<Record>{
 
         @Override
-        public boolean areItemsTheSame(@NonNull File oldItem, @NonNull File newItem) {
+        public boolean areItemsTheSame(@NonNull Record oldItem, @NonNull Record newItem) {
             return false; // TODO: 4/12/2021 implement equals
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull File oldItem, @NonNull File newItem) {
+        public boolean areContentsTheSame(@NonNull Record oldItem, @NonNull Record newItem) {
             return false;
         }
     }

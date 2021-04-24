@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.component.description;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import java.util.List;
@@ -10,32 +10,32 @@ import java.util.List;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
-    private ExModel mExModel;
+    private Exercise mExercise;
     private final MutableLiveData<List<InputData>> mStatisticsData = new MutableLiveData<>();
 
-    public DescriptionImp(Repo repo, ExModel.Name name){
+    public DescriptionImp(Repo repo, Exercise.Name name){
         mRepo = repo;
-        repo.getExercise(name).subscribe(exModel -> mExModel = exModel).dispose();
+        repo.getExercise(name).subscribe(exModel -> mExercise = exModel).dispose();
     }
 
     @Override
     public int getDescriptionId() {
-        return mExModel.descriptionId;
+        return mExercise.descriptionId;
     }
 
     @Override
     public int getImageId() {
-        return mExModel.imageId;
+        return mExercise.imageId;
     }
 
     @Override
-    public ExModel.Category getCategory() {
-        return mExModel.category;
+    public Exercise.Category getCategory() {
+        return mExercise.category;
     }
 
     @Override
     public LiveData<List<InputData>> getStatistics() {
-        mRepo.getStatistics(mExModel.name)
+        mRepo.getStatistics(mExercise.name)
                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                 .toList()
                 .subscribe(mStatisticsData::postValue).dispose();
@@ -44,7 +44,7 @@ public class DescriptionImp implements Description {
 
     @Override
     public void onStatisticsNext() {
-         mRepo.getStatisticsNext(mExModel.name, mStatisticsData.getValue())
+         mRepo.getStatisticsNext(mExercise.name, mStatisticsData.getValue())
                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                 .toList()
                 .subscribe(mStatisticsData::postValue).dispose();
@@ -52,7 +52,7 @@ public class DescriptionImp implements Description {
 
     @Override
     public void onStatisticsPrevious() {
-         mRepo.getStatisticsPrevious(mExModel.name, mStatisticsData.getValue())
+         mRepo.getStatisticsPrevious(mExercise.name, mStatisticsData.getValue())
                  .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                  .toList()
                  .subscribe(mStatisticsData::postValue).dispose();

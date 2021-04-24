@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
@@ -23,7 +23,7 @@ public class DescriptionFragment extends Fragment {
         super(R.layout.fragment_description);
     }
 
-    public static Bundle argsOf(ExModel.Name name) {
+    public static Bundle argsOf(Exercise.Name name) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
         return bundle;
@@ -41,7 +41,7 @@ public class DescriptionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ExModel.Name name = (ExModel.Name) requireArguments().getSerializable("name");
+        Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
 
         // init vm
         DescriptionVm vm = new ViewModelProvider(this,

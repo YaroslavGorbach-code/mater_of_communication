@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.ExModel;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
@@ -17,8 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import io.reactivex.rxjava3.functions.Consumer;
-
 public class SpeakingExImp implements SpeakingEx {
     private final MutableLiveData<String> mWord = new MutableLiveData<>("null");
     private final MutableLiveData<Integer> mShortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
@@ -26,14 +24,14 @@ public class SpeakingExImp implements SpeakingEx {
     private final VoiceRecorder mVoiceRecorder;
     private final StatisticsManager mStatisticsManager;
 
-    private ExModel mExModel;
+    private Exercise mExercise;
     private final Repo mRepo;
     private final Resources mResources;
     private final Random mRandom = new Random();
     private int mClickCount = 0;
 
     public SpeakingExImp(
-            ExModel.Name name,
+            Exercise.Name name,
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
@@ -43,7 +41,7 @@ public class SpeakingExImp implements SpeakingEx {
         mStatisticsManager = statisticsManager;
         mResources = resources;
         mVoiceRecorder = voiceRecorder;
-        mRepo.getExercise(name).subscribe(exModel -> mExModel = exModel).dispose();
+        mRepo.getExercise(name).subscribe(exModel -> mExercise = exModel).dispose();
 
         // init immediately
         setShortDesc();
@@ -52,9 +50,9 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void onNext() {
-        if (mExModel.category == ExModel.Category.TONGUE_TWISTER){
+        if (mExercise.category == Exercise.Category.TONGUE_TWISTER){
             mClickCount++;
-            if (mClickCount >=  mExModel.shortDescIds.length){
+            if (mClickCount >=  mExercise.shortDescIds.length){
                 mClickCount = 0;
                 setWord();
             }
@@ -77,12 +75,12 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void saveStatistics() {
-        if (mExModel.category == ExModel.Category.SPEAKING){
+        if (mExercise.category == Exercise.Category.SPEAKING){
             mRepo.addStatistics(new Statistics(
-                    mExModel.name, mStatisticsManager.getNumberWords(), new Date().getTime()));
+                    mExercise.name, mStatisticsManager.getNumberWords(), new Date().getTime()));
         }else {
             mRepo.addStatistics(new Statistics(
-                    mExModel.name, mStatisticsManager.getAverageTime(), new Date().getTime()));
+                    mExercise.name, mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
     }
 
@@ -92,7 +90,7 @@ public class SpeakingExImp implements SpeakingEx {
             mVoiceRecorder.stop();
             mIsRecording.postValue(false);
         }else {
-            mVoiceRecorder.start(context, context.getString(mExModel.name.getNameId()));
+            mVoiceRecorder.start(context, context.getString(mExercise.name.getNameId()));
             mIsRecording.postValue(true);
         }
     }
@@ -107,7 +105,7 @@ public class SpeakingExImp implements SpeakingEx {
         mStatisticsManager.calAverageTime();
 
         List<String> words;
-        switch (mExModel.name){
+        switch (mExercise.name){
             case LINGUISTIC_PYRAMIDS:
                 words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
                 mWord.postValue(words.get(mRandom.nextInt(words.size())));
@@ -120,10 +118,10 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     private void setShortDesc() {
-        if (mExModel.category == ExModel.Category.TONGUE_TWISTER) {
-            mShortDesc.postValue(mExModel.shortDescIds[mClickCount]);
+        if (mExercise.category == Exercise.Category.TONGUE_TWISTER) {
+            mShortDesc.postValue(mExercise.shortDescIds[mClickCount]);
         }else {
-            mShortDesc.postValue(mExModel.shortDescIds[mRandom.nextInt(mExModel.shortDescIds.length)]);
+            mShortDesc.postValue(mExercise.shortDescIds[mRandom.nextInt(mExercise.shortDescIds.length)]);
         }
     }
 }

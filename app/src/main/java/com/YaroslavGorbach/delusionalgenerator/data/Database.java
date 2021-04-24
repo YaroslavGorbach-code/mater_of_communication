@@ -25,13 +25,13 @@ public abstract class Database extends RoomDatabase {
 
     public static class Converters {
         @TypeConverter
-        public static int fromNameToString(ExModel.Name name) {
+        public static int fromNameToString(Exercise.Name name) {
             return name == null ? null : name.ordinal();
         }
 
         @TypeConverter
-        public static ExModel.Name fromStringToName(int nameId) {
-            return (ExModel.Name.values()[nameId]);
+        public static Exercise.Name fromStringToName(int nameId) {
+            return (Exercise.Name.values()[nameId]);
         }
     }
 }
