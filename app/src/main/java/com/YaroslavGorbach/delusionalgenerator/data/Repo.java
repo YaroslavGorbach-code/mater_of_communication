@@ -9,16 +9,17 @@ import java.io.File;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 
 public interface Repo {
     List<ExModel> getExercises();
-    ExModel getExercise(ExModel.Name name);
+    Single<ExModel> getExercise(ExModel.Name name);
     List<String> getWords(WordType type, Resources resources);
     Observable<Statistics> getStatistics(ExModel.Name name);
     Observable<Statistics> getStatisticsNext(ExModel.Name name, List<InputData> currentData);
     Observable<Statistics> getStatisticsPrevious(ExModel.Name name, List<InputData> currentData);
     void addStatistics(Statistics statistics);
-    File[] getRecords(Context context);
+    Single<List<File>> getRecords(Context context);
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

@@ -10,32 +10,32 @@ import java.util.List;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
-    private final ExModel.Name mExName;
+    private ExModel mExModel;
     private final MutableLiveData<List<InputData>> mStatisticsData = new MutableLiveData<>();
 
     public DescriptionImp(Repo repo, ExModel.Name name){
         mRepo = repo;
-        mExName = name;
+        repo.getExercise(name).subscribe(exModel -> mExModel = exModel).dispose();
     }
 
     @Override
     public int getDescriptionId() {
-        return mRepo.getExercise(mExName).descriptionId;
+        return mExModel.descriptionId;
     }
 
     @Override
     public int getImageId() {
-        return mRepo.getExercise(mExName).imageId;
+        return mExModel.imageId;
     }
 
     @Override
     public ExModel.Category getCategory() {
-        return mRepo.getExercise(mExName).category;
+        return mExModel.category;
     }
 
     @Override
     public LiveData<List<InputData>> getStatistics() {
-        mRepo.getStatistics(mExName)
+        mRepo.getStatistics(mExModel.name)
                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                 .toList()
                 .subscribe(mStatisticsData::postValue).dispose();
@@ -44,7 +44,7 @@ public class DescriptionImp implements Description {
 
     @Override
     public void onStatisticsNext() {
-         mRepo.getStatisticsNext(mExName, mStatisticsData.getValue())
+         mRepo.getStatisticsNext(mExModel.name, mStatisticsData.getValue())
                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                 .toList()
                 .subscribe(mStatisticsData::postValue).dispose();
@@ -52,7 +52,7 @@ public class DescriptionImp implements Description {
 
     @Override
     public void onStatisticsPrevious() {
-         mRepo.getStatisticsPrevious(mExName, mStatisticsData.getValue())
+         mRepo.getStatisticsPrevious(mExModel.name, mStatisticsData.getValue())
                  .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                  .toList()
                  .subscribe(mStatisticsData::postValue).dispose();

@@ -23,7 +23,7 @@ public class SpeakingVm extends ViewModel {
             VoiceRecorder voiceRecorder
     ) {
         speakingEx = new SpeakingExImp(
-                repo.getExercise(name),
+                name,
                 repo,
                 statisticsManager,
                 resources,

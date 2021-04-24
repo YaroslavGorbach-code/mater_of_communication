@@ -11,19 +11,21 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 
 import java.util.Date;
 
+import io.reactivex.rxjava3.functions.Consumer;
+
 public class VocabularyExImp implements VocabularyEx{
     private final MutableLiveData<Integer> mClickCount = new MutableLiveData<>(0);
 
     private final Timer mTimer;
-    private final ExModel mExModel;
+    private ExModel mExModel;
     private final StatisticsManager mStatisticsManager;
     private final Repo mRepo;
 
-    public VocabularyExImp(ExModel exModel, Timer timer, StatisticsManager statisticsManager, Repo repo){
-        mExModel = exModel;
+    public VocabularyExImp(ExModel.Name name, Timer timer, StatisticsManager statisticsManager, Repo repo){
         mTimer = timer;
         mStatisticsManager = statisticsManager;
         mRepo = repo;
+        mRepo.getExercise(name).subscribe(exModel -> mExModel = exModel).dispose();
         mTimer.start();
     }
 

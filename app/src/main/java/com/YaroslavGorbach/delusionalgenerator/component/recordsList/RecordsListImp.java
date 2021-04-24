@@ -7,6 +7,9 @@ import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayer;
 import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayerImp;
 
 import java.io.File;
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Single;
 
 public class RecordsListImp implements RecordsList {
    private final Repo mRepo;
@@ -18,7 +21,7 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
-    public File[] getRecords(Context context) {
+    public Single<List<File>> getRecords(Context context) {
         return mRepo.getRecords(context);
     }
 

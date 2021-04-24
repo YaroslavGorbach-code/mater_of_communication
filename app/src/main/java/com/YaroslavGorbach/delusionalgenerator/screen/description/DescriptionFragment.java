@@ -28,7 +28,7 @@ public class DescriptionFragment extends Fragment {
         bundle.putSerializable("name", name);
         return bundle;
     }
-    private final CompositeDisposable disposableContainer = new CompositeDisposable();
+    private final CompositeDisposable mDisposableContainer = new CompositeDisposable();
 
     @Override
     public void onStart() {
@@ -87,6 +87,6 @@ public class DescriptionFragment extends Fragment {
         Window w = requireActivity().getWindow();
         w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        disposableContainer.dispose();
+        mDisposableContainer.dispose();
     }
 }

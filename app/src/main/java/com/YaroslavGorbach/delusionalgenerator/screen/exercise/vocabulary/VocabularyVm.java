@@ -13,7 +13,7 @@ public class VocabularyVm extends ViewModel {
     public final VocabularyEx vocabularyEx;
 
     VocabularyVm(Repo repo, ExModel.Name name, Timer timer, StatisticsManager statisticsManager){
-        vocabularyEx = new VocabularyExImp(repo.getExercise(name),  timer, statisticsManager, repo);
+        vocabularyEx = new VocabularyExImp(name,  timer, statisticsManager, repo);
     }
 
     @Override

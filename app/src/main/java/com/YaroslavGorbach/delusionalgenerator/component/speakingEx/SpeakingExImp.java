@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import io.reactivex.rxjava3.functions.Consumer;
+
 public class SpeakingExImp implements SpeakingEx {
     private final MutableLiveData<String> mWord = new MutableLiveData<>("null");
     private final MutableLiveData<Integer> mShortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
@@ -24,24 +26,24 @@ public class SpeakingExImp implements SpeakingEx {
     private final VoiceRecorder mVoiceRecorder;
     private final StatisticsManager mStatisticsManager;
 
-    private final ExModel mExModel;
+    private ExModel mExModel;
     private final Repo mRepo;
     private final Resources mResources;
     private final Random mRandom = new Random();
     private int mClickCount = 0;
 
     public SpeakingExImp(
-            ExModel exModel,
+            ExModel.Name name,
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
             VoiceRecorder voiceRecorder
     ){
-        mExModel = exModel;
         mRepo = repo;
         mStatisticsManager = statisticsManager;
         mResources = resources;
         mVoiceRecorder = voiceRecorder;
+        mRepo.getExercise(name).subscribe(exModel -> mExModel = exModel).dispose();
 
         // init immediately
         setShortDesc();

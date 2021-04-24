@@ -13,7 +13,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableEmitter;
+import io.reactivex.rxjava3.core.CompletableOnSubscribe;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.functions.Predicate;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
     private final List<ExModel> mExercises = new ArrayList<>();
@@ -30,12 +37,10 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public ExModel getExercise(ExModel.Name name) {
-        for (int i = 0; i <mExercises.size()-1; i++) {
-            if (mExercises.get(i).name == name)
-                return mExercises.get(i);
-        }
-        return mExercises.get(mExercises.size()-1);
+    public Single<ExModel> getExercise(ExModel.Name name) {
+       return Observable.fromIterable(mExercises)
+                .filter(exModel -> exModel.name == name)
+                .firstOrError();
     }
 
     @Override
@@ -66,16 +71,16 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public File[] getRecords(Context context) {
+    public Single<List<File>> getRecords(Context context) {
         File file = new File(context.getExternalFilesDir("/").getAbsolutePath());
-        File[] files = file.listFiles();
 
-            if (files != null)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Observable.fromArray(file.listFiles())
+                    .toSortedList(Comparator.comparingLong(File::lastModified).reversed());
+        }else {
+            return Observable.fromArray(file.listFiles()).toList();
 
-        return files;
+        }
     }
 
     @Override
@@ -106,7 +111,10 @@ public class RepoImp implements Repo {
 
     @Override
     public void addStatistics(Statistics statistics) {
-        mDatabase.statisticsDao().insert(statistics);
+        Completable.create(emitter -> mDatabase.statisticsDao().insert(statistics))
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+                .dispose();
     }
 
     private void createExercises() {
