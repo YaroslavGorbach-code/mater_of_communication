@@ -120,6 +120,11 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
+    public void onDelete(Record record) {
+        mRepo.deleteRecord(record);
+    }
+
+    @Override
     public LiveData<Integer> getDuration() {
        return mMediaPlayer.getDuration();
     }

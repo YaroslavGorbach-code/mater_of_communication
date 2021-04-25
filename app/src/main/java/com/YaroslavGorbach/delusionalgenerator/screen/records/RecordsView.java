@@ -1,21 +1,19 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.records;
 
-import android.animation.ValueAnimator;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.transition.Fade;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
-
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
 import com.google.android.material.transition.MaterialFade;
-import com.google.android.material.transition.MaterialFadeThrough;
 
 import java.util.List;
 
@@ -26,6 +24,11 @@ public class RecordsView {
         void onSkipPrevious();
         void onPauseResume();
         void onSeekTo(int progress);
+        void onSwipe(Record record);
+    }
+
+    public interface ItemSwipeCallback{
+        void onSwipe(RecyclerView.ViewHolder viewHolder);
     }
 
     private final RecordsAdapter mAdapter;
@@ -56,6 +59,11 @@ public class RecordsView {
             showPlayerView(binding.player.getRoot(), binding.getRoot());
         });
 
+        SwipeDeleteDecor swipeDeleteDecor = new SwipeDeleteDecor(viewHolder ->
+                callback.onSwipe(mAdapter.getData().get(viewHolder.getBindingAdapterPosition())),
+                ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.delete_record_hint_bg));
+        binding.recordsList.addItemDecoration(swipeDeleteDecor);
+        swipeDeleteDecor.attachToRecyclerView(binding.recordsList);
         binding.recordsList.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.recordsList.setAdapter(mAdapter);
 
@@ -88,9 +96,7 @@ public class RecordsView {
         Transition transition = new MaterialFade();
         transition.setDuration(400);
         transition.addTarget(R.id.player);
-
         TransitionManager.beginDelayedTransition(viewGroup, transition);
         view.setVisibility(View.VISIBLE);
-
     }
 }

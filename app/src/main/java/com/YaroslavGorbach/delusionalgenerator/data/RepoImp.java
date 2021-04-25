@@ -116,6 +116,11 @@ public class RepoImp implements Repo {
                 .dispose();
     }
 
+    @Override
+    public void deleteRecord(Record record) {
+        record.getFile().delete();
+    }
+
     private void createExercises() {
         mExercises.add(new Exercise(
                 Exercise.Name.LINGUISTIC_PYRAMIDS,

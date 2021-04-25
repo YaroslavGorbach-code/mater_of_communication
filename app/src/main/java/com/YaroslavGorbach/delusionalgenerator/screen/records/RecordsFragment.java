@@ -53,6 +53,12 @@ public class RecordsFragment extends Fragment {
 
             @Override
             public void onSeekTo(int progress) { vm.recordsList.onSeekTo(progress); }
+
+            @Override
+            public void onSwipe(Record record) {
+                vm.recordsList.onDelete(record);
+                vm.recordsList.getRecordsFromFile();
+            }
         });
         vm.recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);
         vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), v::setIsPlaying);

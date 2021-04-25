@@ -30,6 +30,10 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.AudioVie
         notifyDataSetChanged();
     }
 
+    public List<Record> getData(){
+        return mData;
+    }
+
     @NonNull
     @Override
     public AudioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

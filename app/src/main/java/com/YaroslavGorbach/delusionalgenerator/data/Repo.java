@@ -21,6 +21,7 @@ public interface Repo {
     Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData);
     Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData);
     void addStatistics(Statistics statistics);
+    void deleteRecord(Record record);
     Single<List<Record>> getRecordsFromFile(Context context);
 
     class RepoProvider{
