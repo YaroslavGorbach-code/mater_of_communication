@@ -8,9 +8,12 @@ import java.util.List;
 public interface RecordsList {
     LiveData<List<Record>> getRecords();
     void onPlay(Record record);
-    LiveData<Boolean> getPlayerState();
+    LiveData<Boolean> getIsPlaying();
     void onPauseResume();
     void onStop();
     void onNextRecord();
     void onPrevRecord();
+    LiveData<Integer> getDuration();
+    LiveData<Integer> getProgress();
+    void onSeekTo(int progress);
 }

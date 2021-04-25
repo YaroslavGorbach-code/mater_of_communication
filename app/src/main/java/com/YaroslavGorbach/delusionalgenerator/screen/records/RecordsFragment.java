@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SeekBar;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
@@ -39,13 +40,16 @@ public class RecordsFragment extends Fragment {
         binding.recordsList.setAdapter(adapter);
 
         // init player
-        vm.recordsList.getPlayerState().observe(getViewLifecycleOwner(), isPlaying -> {
+        vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), isPlaying -> {
             if (isPlaying){
                 binding.include.playerStartPause.setImageResource(R.drawable.ic_pause_round);
             }else {
                 binding.include.playerStartPause.setImageResource(R.drawable.ic_play_round);
             }
         });
+
+        vm.recordsList.getDuration().observe(getViewLifecycleOwner(), binding.include.playerSeekBar::setMax);
+        vm.recordsList.getProgress().observe(getViewLifecycleOwner(), binding.include.playerSeekBar::setProgress);
 
         binding.include.playerSkipNext.setOnClickListener(v -> {
             vm.recordsList.onNextRecord();
@@ -57,6 +61,23 @@ public class RecordsFragment extends Fragment {
 
         binding.include.playerStartPause.setOnClickListener(v -> {
             vm.recordsList.onPauseResume();
+        });
+
+        binding.include.playerSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                vm.recordsList.onPauseResume();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                vm.recordsList.onSeekTo(seekBar.getProgress());
+                vm.recordsList.onPauseResume();
+            }
         });
     }
 

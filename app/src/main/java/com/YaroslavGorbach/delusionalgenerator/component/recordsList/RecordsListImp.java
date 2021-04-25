@@ -68,7 +68,7 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
-    public LiveData<Boolean> getPlayerState() {
+    public LiveData<Boolean> getIsPlaying() {
         return mIsPlaying;
     }
 
@@ -86,7 +86,9 @@ public class RecordsListImp implements RecordsList {
     public void onNextRecord() {
         List<Record> records = Objects.requireNonNull(mRecords.getValue());
         for (int i = 0; i < records.size()-1; i++) {
-            if (records.get(i).getName().equals(mMediaPlayer.getCurrentRecord().getName()) && i+1!=records.size()) {
+            if (mMediaPlayer.getRecord()!=null
+                    && records.get(i).getName().equals(mMediaPlayer.getRecord().getName())
+                    && i+1!=records.size()) {
                 mMediaPlayer.play(records.get(i+1));
                 break;
             }
@@ -98,10 +100,27 @@ public class RecordsListImp implements RecordsList {
     public void onPrevRecord() {
         List<Record> records = Objects.requireNonNull(mRecords.getValue());
         for (int i = 0; i <records.size(); i++) {
-            if (records.get(i).getName().equals(mMediaPlayer.getCurrentRecord().getName()) && i-1!=-1) {
+            if (mMediaPlayer.getRecord()!=null
+                    && records.get(i).getName().equals(mMediaPlayer.getRecord().getName())
+                    && i-1!=-1) {
                 mMediaPlayer.play(records.get(i-1));
                 break;
             }
         }
+    }
+
+    @Override
+    public LiveData<Integer> getDuration() {
+       return mMediaPlayer.getDuration();
+    }
+
+    @Override
+    public LiveData<Integer> getProgress() {
+        return mMediaPlayer.getProgress();
+    }
+
+    @Override
+    public void onSeekTo(int progress) {
+        mMediaPlayer.seekToo(progress);
     }
 }
