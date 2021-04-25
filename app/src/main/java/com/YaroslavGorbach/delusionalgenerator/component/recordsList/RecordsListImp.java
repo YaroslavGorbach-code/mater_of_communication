@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.component.recordsList;
+
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,37 +13,39 @@ import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayerIm
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.functions.Predicate;
 
 public class RecordsListImp implements RecordsList {
-   private final MediaPlayer mMediaPlayer;
-   private final MutableLiveData<List<Record>> mRecords = new MutableLiveData<>();
+    private final MediaPlayer mMediaPlayer;
+    private final MutableLiveData<List<Record>> mRecords = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> mIsPlaying = new MutableLiveData<>();
 
-    public RecordsListImp(Repo repo, Context context, CompositeDisposable bag){
+    public RecordsListImp(Repo repo, Context context, CompositeDisposable bag) {
         bag.add(repo.getRecordsFromFile(context).subscribe(mRecords::postValue));
-        mMediaPlayer  = new MediaPlayerImp(new MediaPlayerImp.Callback() {
+        mMediaPlayer = new MediaPlayerImp(new MediaPlayerImp.Callback() {
             @Override
             public void start(Record record) {
-               bag.add(Observable.fromIterable(mRecords.getValue())
-                       .filter(record1 -> record1.name.equals(record.name))
-                       .map(record1 -> {
-                           record1.isPlaying = true;
-                           return record1;
-                       })
-                       .subscribe(playingRecord -> {
-                           ArrayList<Record> list = new ArrayList<>(mRecords.getValue());
-                           if(Collections.replaceAll(list, record, playingRecord))
-                           mRecords.postValue(list);
-                       }));
+                mIsPlaying.postValue(true);
+                bag.add(Observable.fromIterable(Objects.requireNonNull(mRecords.getValue()))
+                        .filter(record1 -> record1.getName().equals(record.getName()))
+                        .map(record1 -> {
+                            record1.isPlaying = true;
+                            return record1;
+                        })
+                        .subscribe(playingRecord -> {
+                            ArrayList<Record> list = new ArrayList<>(mRecords.getValue());
+                            if (Collections.replaceAll(list, record, playingRecord))
+                                mRecords.postValue(list);
+                        }));
             }
 
             @Override
             public void finish() {
-                bag.add(Observable.fromIterable(mRecords.getValue())
+                mIsPlaying.postValue(false);
+                bag.add(Observable.fromIterable(Objects.requireNonNull(mRecords.getValue()))
                         .map(record1 -> {
                             record1.isPlaying = false;
                             return record1;
@@ -53,6 +54,7 @@ public class RecordsListImp implements RecordsList {
                         .subscribe(mRecords::postValue));
             }
         });
+
     }
 
     @Override
@@ -66,12 +68,40 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
+    public LiveData<Boolean> getPlayerState() {
+        return mIsPlaying;
+    }
+
+    @Override
+    public void onPauseResume() {
+        mMediaPlayer.pauseResume();
+    }
+
+    @Override
     public void onStop() {
         mMediaPlayer.stop();
     }
 
     @Override
-    public void onPause() {
-        mMediaPlayer.pause();
+    public void onNextRecord() {
+        List<Record> records = Objects.requireNonNull(mRecords.getValue());
+        for (int i = 0; i < records.size()-1; i++) {
+            if (records.get(i).getName().equals(mMediaPlayer.getCurrentRecord().getName()) && i+1!=records.size()) {
+                mMediaPlayer.play(records.get(i+1));
+                break;
+            }
+        }
+
+    }
+
+    @Override
+    public void onPrevRecord() {
+        List<Record> records = Objects.requireNonNull(mRecords.getValue());
+        for (int i = 0; i <records.size(); i++) {
+            if (records.get(i).getName().equals(mMediaPlayer.getCurrentRecord().getName()) && i-1!=-1) {
+                mMediaPlayer.play(records.get(i-1));
+                break;
+            }
+        }
     }
 }

@@ -1,14 +1,10 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.records;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -16,16 +12,22 @@ import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemRecordBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
-import java.io.File;
+import java.util.List;
 
-public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.AudioViewHolder> {
+public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.AudioViewHolder> {
 
     public interface Listener { void onPlay(Record record);}
     private final Listener Listener;
+    private List<Record> mData;
 
-    public RecordsListAdapter(Listener Listener) {
-        super(new DiffCallback());
+    public RecordsAdapter(Listener Listener) {
         this.Listener = Listener;
+        this.setHasStableIds(true);
+    }
+
+    public void setData(List<Record> data){
+        mData = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -37,7 +39,17 @@ public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.A
 
     @Override
     public void onBindViewHolder(@NonNull AudioViewHolder holder, int position) {
-        holder.bind(getItem(position));
+        holder.bind(mData.get(position));
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return mData.get(position).getLastModified();
+    }
+
+    @Override
+    public int getItemCount() {
+        return mData.size();
     }
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {
@@ -47,16 +59,17 @@ public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.A
             super(binding.getRoot());
             this.binding = binding;
             itemView.setOnClickListener(c ->
-                    Listener.onPlay(getItem(getBindingAdapterPosition())));
+                    Listener.onPlay(mData.get(getBindingAdapterPosition())));
         }
+
 
         private void bind(Record record) {
             if (record.isPlaying){
                 binding.iconPlay.setImageDrawable(
-                        ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_pause));
+                        ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_pause_round));
             }else {
                 binding.iconPlay.setImageDrawable(
-                        ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_play));
+                        ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_play_round));
             }
             binding.title.setText(record.getName());
             binding.date.setText(TimeUtil.getTimeAgo(record.getLastModified()));
@@ -64,16 +77,4 @@ public class RecordsListAdapter extends ListAdapter<Record, RecordsListAdapter.A
         }
     }
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<Record>{
-
-        @Override
-        public boolean areItemsTheSame(@NonNull Record oldItem, @NonNull Record newItem) {
-            return oldItem == newItem;
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Record oldItem, @NonNull Record newItem) {
-            return false;
-        }
-    }
 }

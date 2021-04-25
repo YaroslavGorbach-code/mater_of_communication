@@ -30,11 +30,34 @@ public class RecordsFragment extends Fragment {
                 new RecordsVm.RecordsVmFactory(repo, requireContext(), bag)).get(RecordsVm.class);
 
         //init records list
-        RecordsAdapter adapter = new RecordsAdapter(record ->
-                vm.recordsList.onPlay(record));
+        RecordsAdapter adapter = new RecordsAdapter(record ->{
+            vm.recordsList.onPlay(record);
+            binding.include.playerRecordName.setText(record.getName());
+        });
         vm.recordsList.getRecords().observe(getViewLifecycleOwner(), adapter::setData);
         binding.recordsList.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recordsList.setAdapter(adapter);
+
+        // init player
+        vm.recordsList.getPlayerState().observe(getViewLifecycleOwner(), isPlaying -> {
+            if (isPlaying){
+                binding.include.playerStartPause.setImageResource(R.drawable.ic_pause_round);
+            }else {
+                binding.include.playerStartPause.setImageResource(R.drawable.ic_play_round);
+            }
+        });
+
+        binding.include.playerSkipNext.setOnClickListener(v -> {
+            vm.recordsList.onNextRecord();
+        });
+
+        binding.include.playerSkipPrevious.setOnClickListener(v->{
+            vm.recordsList.onPrevRecord();
+        });
+
+        binding.include.playerStartPause.setOnClickListener(v -> {
+            vm.recordsList.onPauseResume();
+        });
     }
 
     @Override
