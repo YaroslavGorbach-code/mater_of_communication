@@ -4,13 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.SeekBar;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
 
@@ -18,72 +17,43 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class RecordsFragment extends Fragment {
     public RecordsFragment(){ super(R.layout.fragment_records); }
-    private final CompositeDisposable bag = new CompositeDisposable();
+    private final CompositeDisposable mBag = new CompositeDisposable();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FragmentRecordsBinding binding = FragmentRecordsBinding.bind(view);
 
         //init vm
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         RecordsVm vm = new ViewModelProvider(this,
-                new RecordsVm.RecordsVmFactory(repo, requireContext(), bag)).get(RecordsVm.class);
+                new RecordsVm.RecordsVmFactory(repo, requireContext(), mBag)).get(RecordsVm.class);
 
-        //init records list
-        RecordsAdapter adapter = new RecordsAdapter(record ->{
-            vm.recordsList.onPlay(record);
-            binding.include.playerRecordName.setText(record.getName());
-        });
-        vm.recordsList.getRecords().observe(getViewLifecycleOwner(), adapter::setData);
-        binding.recordsList.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.recordsList.setAdapter(adapter);
-
-        // init player
-        vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), isPlaying -> {
-            if (isPlaying){
-                binding.include.playerStartPause.setImageResource(R.drawable.ic_pause_round);
-            }else {
-                binding.include.playerStartPause.setImageResource(R.drawable.ic_play_round);
-            }
-        });
-
-        vm.recordsList.getDuration().observe(getViewLifecycleOwner(), binding.include.playerSeekBar::setMax);
-        vm.recordsList.getProgress().observe(getViewLifecycleOwner(), binding.include.playerSeekBar::setProgress);
-
-        binding.include.playerSkipNext.setOnClickListener(v -> {
-            vm.recordsList.onNextRecord();
-        });
-
-        binding.include.playerSkipPrevious.setOnClickListener(v->{
-            vm.recordsList.onPrevRecord();
-        });
-
-        binding.include.playerStartPause.setOnClickListener(v -> {
-            vm.recordsList.onPauseResume();
-        });
-
-        binding.include.playerSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        // init view
+        RecordsView v = new RecordsView(FragmentRecordsBinding.bind(view), new RecordsView.Callback() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            }
+            public void onRecord(Record record) { vm.recordsList.onPlay(record); }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                vm.recordsList.onPauseResume();
-            }
+            public void onSkipNext() { vm.recordsList.onSkipNext(); }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                vm.recordsList.onSeekTo(seekBar.getProgress());
-                vm.recordsList.onPauseResume();
-            }
+            public void onSkipPrevious() { vm.recordsList.onSkipPrevious(); }
+
+            @Override
+            public void onPauseResume() { vm.recordsList.onPauseResume(); }
+
+            @Override
+            public void onSeekTo(int progress) { vm.recordsList.onSeekTo(progress); }
         });
+        vm.recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);
+        vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), v::setIsPlaying);
+        vm.recordsList.getDuration().observe(getViewLifecycleOwner(), v::setDuration);
+        vm.recordsList.getProgress().observe(getViewLifecycleOwner(), v::setProgress);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        bag.dispose();
+        mBag.dispose();
     }
 }

@@ -83,7 +83,7 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
-    public void onNextRecord() {
+    public void onSkipNext() {
         List<Record> records = Objects.requireNonNull(mRecords.getValue());
         for (int i = 0; i < records.size()-1; i++) {
             if (mMediaPlayer.getRecord()!=null
@@ -97,7 +97,7 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
-    public void onPrevRecord() {
+    public void onSkipPrevious() {
         List<Record> records = Objects.requireNonNull(mRecords.getValue());
         for (int i = 0; i <records.size(); i++) {
             if (mMediaPlayer.getRecord()!=null

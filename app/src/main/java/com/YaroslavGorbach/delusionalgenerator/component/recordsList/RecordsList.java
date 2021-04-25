@@ -11,8 +11,8 @@ public interface RecordsList {
     LiveData<Boolean> getIsPlaying();
     void onPauseResume();
     void onStop();
-    void onNextRecord();
-    void onPrevRecord();
+    void onSkipNext();
+    void onSkipPrevious();
     LiveData<Integer> getDuration();
     LiveData<Integer> getProgress();
     void onSeekTo(int progress);
