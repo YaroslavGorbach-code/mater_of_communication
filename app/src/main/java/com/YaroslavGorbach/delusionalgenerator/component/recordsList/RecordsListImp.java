@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.component.recordsList;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,16 +16,25 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RecordsListImp implements RecordsList {
     private final MediaPlayer mMediaPlayer;
     private final MutableLiveData<List<Record>> mRecords = new MutableLiveData<>();
     private final MutableLiveData<Boolean> mIsPlaying = new MutableLiveData<>();
+    private final Repo mRepo;
+    private final Context mContext;
+    private final CompositeDisposable mBag;
 
     public RecordsListImp(Repo repo, Context context, CompositeDisposable bag) {
-        bag.add(repo.getRecordsFromFile(context).subscribe(mRecords::postValue));
+        mRepo = repo;
+        mContext = context;
+        mBag = bag;
+        getRecordsFromFile();
         mMediaPlayer = new MediaPlayerImp(new MediaPlayerImp.Callback() {
             @Override
             public void start(Record record) {
@@ -117,6 +127,12 @@ public class RecordsListImp implements RecordsList {
     @Override
     public LiveData<Integer> getProgress() {
         return mMediaPlayer.getProgress();
+    }
+
+    @Override
+    public void getRecordsFromFile() {
+        mBag.add(mRepo.getRecordsFromFile(mContext)
+                .subscribe(mRecords::postValue));
     }
 
     @Override

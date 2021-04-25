@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -18,6 +20,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class RecordsFragment extends Fragment {
     public RecordsFragment(){ super(R.layout.fragment_records); }
     private final CompositeDisposable mBag = new CompositeDisposable();
+    private RecordsVm vm;
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        vm.recordsList.getRecordsFromFile();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -25,7 +34,7 @@ public class RecordsFragment extends Fragment {
 
         //init vm
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-        RecordsVm vm = new ViewModelProvider(this,
+        vm = new ViewModelProvider(this,
                 new RecordsVm.RecordsVmFactory(repo, requireContext(), mBag)).get(RecordsVm.class);
 
         // init view

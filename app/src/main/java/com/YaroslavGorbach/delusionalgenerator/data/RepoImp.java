@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -72,13 +73,12 @@ public class RepoImp implements Repo {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
            return Observable.fromArray(files.listFiles())
                     .map(Record::new)
-                    .toSortedList(Comparator.comparingLong(Record::getLastModified).reversed())
-                    .subscribeOn(Schedulers.io());
+                    .toSortedList(Comparator.comparingLong(Record::getLastModified).reversed());
         }else {
             return Observable.fromArray(files.listFiles())
-                    .map(Record::new)
-                     .toList()
-                     .subscribeOn(Schedulers.io());
+                     .map(Record::new)
+                     .toList();
+
         }
     }
 
