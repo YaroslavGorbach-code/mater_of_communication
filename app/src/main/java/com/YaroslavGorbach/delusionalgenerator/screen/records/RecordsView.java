@@ -1,13 +1,21 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.records;
 
+import android.animation.ValueAnimator;
 import android.os.Build;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.transition.Fade;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
+import com.google.android.material.transition.MaterialFade;
+import com.google.android.material.transition.MaterialFadeThrough;
 
 import java.util.List;
 
@@ -18,7 +26,6 @@ public class RecordsView {
         void onSkipPrevious();
         void onPauseResume();
         void onSeekTo(int progress);
-
     }
 
     private final RecordsAdapter mAdapter;
@@ -26,7 +33,7 @@ public class RecordsView {
 
     public RecordsView(FragmentRecordsBinding binding, Callback callback){
         mBinding = binding;
-        binding.include.playerSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        binding.player.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { }
 
@@ -39,13 +46,14 @@ public class RecordsView {
                 callback.onPauseResume();
             }
         });
-        mBinding.include.playerStartPause.setOnClickListener(v-> callback.onPauseResume());
-        mBinding.include.playerSkipNext.setOnClickListener(v-> callback.onSkipNext());
-        mBinding.include.playerSkipPrevious.setOnClickListener(v-> callback.onSkipPrevious());
+        mBinding.player.startPause.setOnClickListener(v-> callback.onPauseResume());
+        mBinding.player.skipNext.setOnClickListener(v-> callback.onSkipNext());
+        mBinding.player.skipPrevious.setOnClickListener(v-> callback.onSkipPrevious());
 
         mAdapter = new RecordsAdapter(record ->{
             callback.onRecord(record);
-            binding.include.playerRecordName.setText(record.getName());
+            binding.player.recordName.setText(record.getName());
+            showPlayerView(binding.player.getRoot(), binding.getRoot());
         });
 
         binding.recordsList.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
@@ -58,21 +66,31 @@ public class RecordsView {
 
     public void setIsPlaying(boolean isPlaying){
         if (isPlaying){
-            mBinding.include.playerStartPause.setImageResource(R.drawable.ic_pause_round);
+            mBinding.player.startPause.setImageResource(R.drawable.ic_pause_round);
         }else {
-            mBinding.include.playerStartPause.setImageResource(R.drawable.ic_play_round);
+            mBinding.player.startPause.setImageResource(R.drawable.ic_play_round);
         }
     }
 
     public void setDuration(int duration){
-        mBinding.include.playerSeekBar.setMax(duration);
+        mBinding.player.seekBar.setMax(duration);
     }
 
     public void setProgress(int progress){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            mBinding.include.playerSeekBar.setProgress(progress, true);
+            mBinding.player.seekBar.setProgress(progress, true);
         }else {
-            mBinding.include.playerSeekBar.setProgress(progress);
+            mBinding.player.seekBar.setProgress(progress);
         }
+    }
+
+    private void showPlayerView(View view, ViewGroup viewGroup){
+        Transition transition = new MaterialFade();
+        transition.setDuration(400);
+        transition.addTarget(R.id.player);
+
+        TransitionManager.beginDelayedTransition(viewGroup, transition);
+        view.setVisibility(View.VISIBLE);
+
     }
 }
