@@ -112,8 +112,7 @@ public class RepoImp implements Repo {
     public void addStatistics(Statistics statistics) {
         Completable.create(emitter -> mDatabase.statisticsDao().insert(statistics))
                 .subscribeOn(Schedulers.io())
-                .subscribe()
-                .dispose();
+                .subscribe();
     }
 
     @Override

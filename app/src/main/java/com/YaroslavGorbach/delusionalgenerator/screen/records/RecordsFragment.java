@@ -5,9 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -55,9 +53,8 @@ public class RecordsFragment extends Fragment {
             public void onSeekTo(int progress) { vm.recordsList.onSeekTo(progress); }
 
             @Override
-            public void onSwipe(Record record) {
-                vm.recordsList.onDelete(record);
-                vm.recordsList.getRecordsFromFile();
+            public void onRemove(Record record) {
+                vm.recordsList.onRemove(record);
             }
         });
         vm.recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);

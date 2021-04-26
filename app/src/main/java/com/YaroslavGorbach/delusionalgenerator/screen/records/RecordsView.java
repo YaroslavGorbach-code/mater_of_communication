@@ -13,6 +13,8 @@ import androidx.transition.TransitionManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.MaterialFade;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class RecordsView {
         void onSkipPrevious();
         void onPauseResume();
         void onSeekTo(int progress);
-        void onSwipe(Record record);
+        void onRemove(Record record);
     }
 
     public interface ItemSwipeCallback{
@@ -56,12 +58,41 @@ public class RecordsView {
         mAdapter = new RecordsAdapter(record ->{
             callback.onRecord(record);
             binding.player.recordName.setText(record.getName());
-            showPlayerView(binding.player.getRoot(), binding.getRoot());
+            setPlayerVisibility(binding.player.getRoot(), binding.getRoot(), true);
         });
 
-        SwipeDeleteDecor swipeDeleteDecor = new SwipeDeleteDecor(viewHolder ->
-                callback.onSwipe(mAdapter.getData().get(viewHolder.getBindingAdapterPosition())),
-                ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.delete_record_hint_bg));
+        SwipeDeleteDecor swipeDeleteDecor = new SwipeDeleteDecor(new ItemSwipeCallback() {
+            boolean undo = false;
+            @Override
+            public void onSwipe(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getBindingAdapterPosition();
+                Record item = mAdapter.getData().get(position);
+                mAdapter.getData().remove(item);
+                mAdapter.notifyDataSetChanged();
+
+                Snackbar.make(binding.getRoot(), "Запись удалена", Snackbar.LENGTH_LONG)
+                        .setAction("ОТМЕНА", v -> {
+                            mAdapter.getData().add(position, item);
+                            mAdapter.notifyDataSetChanged();
+                            undo = true;
+                        })
+                        .addCallback(new Snackbar.Callback(){
+                            @Override
+                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                super.onDismissed(transientBottomBar, event);
+                                if (!undo){
+                                    if (item.isPlaying){
+                                        setPlayerVisibility(binding.player.getRoot(), binding.getRoot(), false);
+                                    }
+                                    callback.onRemove(item);
+                                    undo = false;
+                                }
+                            }
+                        })
+                        .show();
+            }
+        },ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.delete_record_hint_bg));
+
         binding.recordsList.addItemDecoration(swipeDeleteDecor);
         swipeDeleteDecor.attachToRecyclerView(binding.recordsList);
         binding.recordsList.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
@@ -92,11 +123,13 @@ public class RecordsView {
         }
     }
 
-    private void showPlayerView(View view, ViewGroup viewGroup){
+
+    private void setPlayerVisibility(View view, ViewGroup viewGroup, boolean isVisible){
         Transition transition = new MaterialFade();
         transition.setDuration(400);
         transition.addTarget(R.id.player);
         TransitionManager.beginDelayedTransition(viewGroup, transition);
-        view.setVisibility(View.VISIBLE);
+        if (isVisible) view.setVisibility(View.VISIBLE); else view.setVisibility(View.GONE);
     }
+
 }

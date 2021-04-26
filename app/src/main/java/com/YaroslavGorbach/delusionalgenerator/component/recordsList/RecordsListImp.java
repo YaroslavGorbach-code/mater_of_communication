@@ -120,7 +120,9 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
-    public void onDelete(Record record) {
+    public void onRemove(Record record) {
+        if (record.isPlaying)
+            mMediaPlayer.stop();
         mRepo.deleteRecord(record);
     }
 

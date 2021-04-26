@@ -17,7 +17,7 @@ public interface RecordsList {
     void onStop();
     void onSkipNext();
     void onSkipPrevious();
-    void onDelete(Record record);
+    void onRemove(Record record);
     LiveData<Integer> getDuration();
     LiveData<Integer> getProgress();
     void getRecordsFromFile();

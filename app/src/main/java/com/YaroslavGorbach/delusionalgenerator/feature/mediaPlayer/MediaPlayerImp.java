@@ -50,7 +50,7 @@ public class MediaPlayerImp implements MediaPlayer {
 
     @Override
     public void pauseResume() {
-        if (mCurrentRecord != null && mCurrentRecord.isPlaying) {
+        if (mMediaPlayer!=null && mCurrentRecord != null && mCurrentRecord.isPlaying) {
             mCallback.finish();
             mMediaPlayer.pause();
             mProgressHandler.removeCallbacks(progressRunnable);
