@@ -62,10 +62,11 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.AudioVie
         public AudioViewHolder(ItemRecordBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            itemView.setOnClickListener(c ->
-                    Listener.onPlay(mData.get(getBindingAdapterPosition())));
+            itemView.setOnClickListener(c ->{
+                if(getBindingAdapterPosition()!=-1)
+                    Listener.onPlay(mData.get(getBindingAdapterPosition()));
+            });
         }
-
 
         private void bind(Record record) {
             if (record.isPlaying){

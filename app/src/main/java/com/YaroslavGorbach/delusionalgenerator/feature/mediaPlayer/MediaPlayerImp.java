@@ -49,27 +49,36 @@ public class MediaPlayerImp implements MediaPlayer {
     }
 
     @Override
-    public void pauseResume() {
-        if (mMediaPlayer!=null && mCurrentRecord != null && mCurrentRecord.isPlaying) {
+    public void stop() {
+        if (mMediaPlayer!=null){
             mCallback.finish();
-            mMediaPlayer.pause();
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
             mProgressHandler.removeCallbacks(progressRunnable);
-        } else if (mCurrentRecord != null && mMediaPlayer!=null) {
-            mCallback.start(mCurrentRecord);
-            mMediaPlayer.start();
-            initProgressRunnable();
-        }else if (mMediaPlayer==null){
-            play(mCurrentRecord);
         }
     }
 
     @Override
-    public void stop() {
-        mCallback.finish();
-        mMediaPlayer.stop();
-        mMediaPlayer.release();
-        mMediaPlayer = null;
-        mProgressHandler.removeCallbacks(progressRunnable);
+    public void pause() {
+        if (mMediaPlayer!=null){
+            mCallback.finish();
+            mMediaPlayer.pause();
+            mCurrentRecord.isPause = true;
+            mProgressHandler.removeCallbacks(progressRunnable);
+        }
+    }
+
+    @Override
+    public void resume() {
+        if (mMediaPlayer!=null){
+            mCallback.start(mCurrentRecord);
+            mMediaPlayer.start();
+            mCurrentRecord.isPause = false;
+            initProgressRunnable();
+        }else if (mCurrentRecord!=null){
+            play(mCurrentRecord);
+        }
     }
 
     @Override
@@ -90,7 +99,9 @@ public class MediaPlayerImp implements MediaPlayer {
 
     @Override
     public void seekToo(int progress) {
-        mMediaPlayer.seekTo(progress);
+        if (mMediaPlayer!=null){
+            mMediaPlayer.seekTo(progress);
+        }
     }
 
     private void initProgressRunnable(){

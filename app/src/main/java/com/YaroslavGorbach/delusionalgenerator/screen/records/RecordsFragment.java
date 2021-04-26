@@ -47,7 +47,10 @@ public class RecordsFragment extends Fragment {
             public void onSkipPrevious() { vm.recordsList.onSkipPrevious(); }
 
             @Override
-            public void onPauseResume() { vm.recordsList.onPauseResume(); }
+            public void onPause() { vm.recordsList.onPause(); }
+
+            @Override
+            public void onResume() { vm.recordsList.onResume(); }
 
             @Override
             public void onSeekTo(int progress) { vm.recordsList.onSeekTo(progress); }

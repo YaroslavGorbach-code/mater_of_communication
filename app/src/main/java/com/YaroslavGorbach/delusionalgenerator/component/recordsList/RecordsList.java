@@ -13,7 +13,8 @@ public interface RecordsList {
     LiveData<List<Record>> getRecords();
     void onPlay(Record record);
     LiveData<Boolean> getIsPlaying();
-    void onPauseResume();
+    void onPause();
+    void onResume();
     void onStop();
     void onSkipNext();
     void onSkipPrevious();

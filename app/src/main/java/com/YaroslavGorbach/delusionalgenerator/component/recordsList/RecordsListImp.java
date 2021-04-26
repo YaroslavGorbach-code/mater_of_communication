@@ -83,8 +83,13 @@ public class RecordsListImp implements RecordsList {
     }
 
     @Override
-    public void onPauseResume() {
-        mMediaPlayer.pauseResume();
+    public void onPause() {
+        mMediaPlayer.pause();
+    }
+
+    @Override
+    public void onResume() {
+        mMediaPlayer.resume();
     }
 
     @Override

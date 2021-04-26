@@ -10,6 +10,9 @@ public class Record {
     private final String name;
     private final String duration;
     public boolean isPlaying = false;
+    public boolean isPause = false;
+
+
 
     public Record(File file) {
         this.file = file;
@@ -33,5 +36,6 @@ public class Record {
     public String getDuration() {
         return duration;
     }
+
 
 }

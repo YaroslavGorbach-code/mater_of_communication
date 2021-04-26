@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 public interface MediaPlayer {
     void play(Record record);
-    void pauseResume();
     void stop();
+    void pause();
+    void resume();
     LiveData<Integer> getProgress();
     Record getRecord();
     LiveData<Integer> getDuration();

@@ -13,7 +13,6 @@ import androidx.transition.TransitionManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.MaterialFade;
 
@@ -24,7 +23,8 @@ public class RecordsView {
         void onRecord(Record record);
         void onSkipNext();
         void onSkipPrevious();
-        void onPauseResume();
+        void onPause();
+        void onResume();
         void onSeekTo(int progress);
         void onRemove(Record record);
     }
@@ -35,6 +35,7 @@ public class RecordsView {
 
     private final RecordsAdapter mAdapter;
     private final FragmentRecordsBinding mBinding;
+    private boolean mIsPlaying = false;
 
     public RecordsView(FragmentRecordsBinding binding, Callback callback){
         mBinding = binding;
@@ -43,15 +44,21 @@ public class RecordsView {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { callback.onPauseResume(); }
+            public void onStartTrackingTouch(SeekBar seekBar) { callback.onPause(); }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 callback.onSeekTo(seekBar.getProgress());
-                callback.onPauseResume();
+                callback.onResume();
             }
         });
-        mBinding.player.startPause.setOnClickListener(v-> callback.onPauseResume());
+        mBinding.player.startPause.setOnClickListener(v-> {
+            if (mIsPlaying){
+                callback.onPause();
+            }else {
+                callback.onResume();
+            }
+        });
         mBinding.player.skipNext.setOnClickListener(v-> callback.onSkipNext());
         mBinding.player.skipPrevious.setOnClickListener(v-> callback.onSkipPrevious());
 
@@ -67,6 +74,7 @@ public class RecordsView {
             public void onSwipe(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getBindingAdapterPosition();
                 Record item = mAdapter.getData().get(position);
+                undo = false;
                 mAdapter.getData().remove(item);
                 mAdapter.notifyDataSetChanged();
 
@@ -81,11 +89,9 @@ public class RecordsView {
                             public void onDismissed(Snackbar transientBottomBar, int event) {
                                 super.onDismissed(transientBottomBar, event);
                                 if (!undo){
-                                    if (item.isPlaying){
+                                    if (item.isPlaying || item.isPause)
                                         setPlayerVisibility(binding.player.getRoot(), binding.getRoot(), false);
-                                    }
                                     callback.onRemove(item);
-                                    undo = false;
                                 }
                             }
                         })
@@ -104,6 +110,7 @@ public class RecordsView {
     }
 
     public void setIsPlaying(boolean isPlaying){
+        mIsPlaying = isPlaying;
         if (isPlaying){
             mBinding.player.startPause.setImageResource(R.drawable.ic_pause_round);
         }else {
