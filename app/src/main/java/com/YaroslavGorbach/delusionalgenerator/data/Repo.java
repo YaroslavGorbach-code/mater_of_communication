@@ -23,6 +23,8 @@ public interface Repo {
     void addStatistics(Statistics statistics);
     void deleteRecord(Record record);
     Single<List<Record>> getRecordsFromFile(Context context);
+    int getProgress();
+    int getTrainingDays();
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

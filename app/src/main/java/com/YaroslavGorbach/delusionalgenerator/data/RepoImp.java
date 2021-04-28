@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
@@ -82,6 +83,16 @@ public class RepoImp implements Repo {
                      .toList();
 
         }
+    }
+
+    @Override
+    public int getProgress() {
+        return new Random().nextInt(100);
+    }
+
+    @Override
+    public int getTrainingDays() {
+        return new Random().nextInt(360);
     }
 
     @Override

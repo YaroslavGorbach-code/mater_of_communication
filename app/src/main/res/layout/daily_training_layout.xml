@@ -57,7 +57,7 @@
                 android:layout_toEndOf="@+id/item_image"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Дней подряд: 3"
+                tool:text="Дней подряд: 3"
                 android:textSize="12sp" />
 
 
@@ -68,7 +68,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginBottom="8dp"
-                android:progress="50" />
+                tool:progress="50" />
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>

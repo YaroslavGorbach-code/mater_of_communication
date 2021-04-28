@@ -25,25 +25,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <include
+                android:id="@+id/daily_training"
                 layout="@layout/daily_training_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
             <include
+                android:id="@+id/categories"
                 layout="@layout/categories_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/all_exs_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Все упражнения"
-                android:textSize="18sp"
                 android:paddingHorizontal="16dp"
+                android:text="Все упражнения"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exs_list"
                 android:layout_width="match_parent"
