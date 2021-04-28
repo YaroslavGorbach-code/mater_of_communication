@@ -39,7 +39,7 @@ public class DailyTrainingFragment extends Fragment {
 
         // init list
         DailyTrainingExsAdapter adapter = new DailyTrainingExsAdapter();
-        vm.dailyTraining.getExercises().subscribe((Consumer<List<DailyTrainingEx>>) adapter::submitList);
+        adapter.submitList(vm.dailyTraining.getExercises());
         binding.exercises.setAdapter(adapter);
         binding.exercises.setLayoutManager(new LinearLayoutManager(requireContext()));
 

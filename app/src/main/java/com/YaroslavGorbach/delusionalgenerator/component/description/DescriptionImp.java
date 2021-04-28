@@ -9,12 +9,12 @@ import java.util.List;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
-    private Exercise mExercise;
+    private final Exercise mExercise;
     private final MutableLiveData<List<InputData>> mStatisticsData = new MutableLiveData<>();
 
     public DescriptionImp(Repo repo, Exercise.Name name){
         mRepo = repo;
-        repo.getExercise(name).subscribe(exModel -> mExercise = exModel).dispose();
+        mExercise = repo.getExercise(name);
     }
 
     @Override

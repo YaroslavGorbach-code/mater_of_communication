@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.core.Single;
 
 public interface Repo {
     List<Exercise> getExercises();
-    Single<Exercise> getExercise(Exercise.Name name);
+    Exercise getExercise(Exercise.Name name);
     List<String> getWords(WordType type, Resources resources);
     Observable<Statistics> getStatistics(Exercise.Name name);
     Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData);

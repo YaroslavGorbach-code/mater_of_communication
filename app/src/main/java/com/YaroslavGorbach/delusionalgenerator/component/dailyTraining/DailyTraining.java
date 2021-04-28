@@ -10,5 +10,5 @@ import io.reactivex.rxjava3.core.Single;
 public interface DailyTraining {
     int getProgress();
     int getDays();
-    Single<List<DailyTrainingEx>> getExercises();
+    List<DailyTrainingEx> getExercises();
 }

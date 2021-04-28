@@ -1,7 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingEx;
+import com.YaroslavGorbach.delusionalgenerator.databinding.ItemDailyTrainingExBinding;
+
 
 public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyTrainingExsAdapter.Vh> {
 
@@ -20,7 +22,8 @@ public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyT
     @NonNull
     @Override
     public Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Vh(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_daily_training_ex, parent, false));
+        return new Vh(ItemDailyTrainingExBinding.bind(LayoutInflater.from(
+                parent.getContext()).inflate(R.layout.item_daily_training_ex, parent, false)));
     }
 
     @Override
@@ -29,13 +32,18 @@ public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyT
     }
 
     public static class Vh extends RecyclerView.ViewHolder {
+        final ItemDailyTrainingExBinding mBinding;
 
-        public Vh(View itemView) {
-            super(itemView);
+        public Vh(ItemDailyTrainingExBinding binding) {
+            super(binding.getRoot());
+            mBinding = binding;
         }
 
+        @SuppressLint("SetTextI18n")
         void bind(DailyTrainingEx ex){
-
+            mBinding.name.setText(itemView.getContext().getString(ex.getExercise().name.getNameId()));
+            mBinding.image.setImageResource(ex.getExercise().imageId);
+            mBinding.aim.setText("Пройдено слов " + ex.done + "/" + ex.getAim()); // TODO: 4/28/2021 fix it later
         }
     }
 

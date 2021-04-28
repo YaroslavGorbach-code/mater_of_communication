@@ -14,7 +14,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -22,13 +21,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
     private final List<Exercise> mExercises = new ArrayList<>();
-    private final DailyTrainingM mDailyTraining;
     private final Database mDatabase;
 
     public RepoImp(Database database) {
         mDatabase = database;
         createExercises();
-        mDailyTraining = createDailyTraining();
     }
 
     @Override
@@ -37,10 +34,11 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public Single<Exercise> getExercise(Exercise.Name name) {
+    public Exercise getExercise(Exercise.Name name) {
        return Observable.fromIterable(mExercises)
                 .filter(exModel -> exModel.name == name)
-                .firstOrError();
+                .firstOrError()
+                .blockingGet();
     }
 
     @Override
@@ -89,7 +87,12 @@ public class RepoImp implements Repo {
 
     @Override
     public DailyTrainingM getDailyTraining() {
-        return mDailyTraining;
+        return new DailyTrainingM(
+                0L,
+                0L,
+                0,
+                0,
+                new DailyTrainingEx(getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS), 2, 0));
     }
 
 
@@ -131,18 +134,6 @@ public class RepoImp implements Repo {
         record.getFile().delete();
     }
 
-    private DailyTrainingM createDailyTraining(){
-        int progress = new Random().nextInt(100);
-        int days = new Random().nextInt(360);
-        return new DailyTrainingM(
-                0L,
-                0L,
-                progress,
-                days,
-                Exercise.Name.LINGUISTIC_PYRAMIDS,
-                Exercise.Name.WHAT_I_SEE_I_SING_ABOUT,
-                Exercise.Name.VERBS);
-    }
 
     private void createExercises() {
         mExercises.add(new Exercise(

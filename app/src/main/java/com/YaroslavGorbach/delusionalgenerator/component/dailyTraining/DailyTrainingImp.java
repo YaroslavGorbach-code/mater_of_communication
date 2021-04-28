@@ -1,13 +1,10 @@
 package com.YaroslavGorbach.delusionalgenerator.component.dailyTraining;
-
 import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingEx;
 import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingM;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-
 import java.util.Arrays;
 import java.util.List;
-
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.core.Single;
@@ -21,6 +18,7 @@ public class DailyTrainingImp implements DailyTraining {
         mRepo = repo;
         mDailyTraining = mRepo.getDailyTraining();
     }
+
     @Override
     public int getProgress() {
         return mDailyTraining.progress;
@@ -32,10 +30,7 @@ public class DailyTrainingImp implements DailyTraining {
     }
 
     @Override
-    public Single<List<DailyTrainingEx>> getExercises() {
-         return Observable.fromIterable(Arrays.asList(mDailyTraining.exNames))
-                 .flatMap((Function<Exercise.Name, ObservableSource<DailyTrainingEx>>) name ->
-                         Observable.just(new DailyTrainingEx()))
-                 .toList();
+    public List<DailyTrainingEx> getExercises() {
+       return Arrays.asList(mDailyTraining.exercises);
     }
 }

@@ -24,7 +24,7 @@ public class SpeakingExImp implements SpeakingEx {
     private final VoiceRecorder mVoiceRecorder;
     private final StatisticsManager mStatisticsManager;
 
-    private Exercise mExercise;
+    private final Exercise mExercise;
     private final Repo mRepo;
     private final Resources mResources;
     private final Random mRandom = new Random();
@@ -41,7 +41,7 @@ public class SpeakingExImp implements SpeakingEx {
         mStatisticsManager = statisticsManager;
         mResources = resources;
         mVoiceRecorder = voiceRecorder;
-        mRepo.getExercise(name).subscribe(exModel -> mExercise = exModel).dispose();
+        mExercise = mRepo.getExercise(name);
 
         // init immediately
         setShortDesc();

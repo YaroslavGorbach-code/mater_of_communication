@@ -15,7 +15,7 @@ public class VocabularyExImp implements VocabularyEx{
     private final MutableLiveData<Integer> mClickCount = new MutableLiveData<>(0);
 
     private final Timer mTimer;
-    private Exercise mExercise;
+    private final Exercise mExercise;
     private final StatisticsManager mStatisticsManager;
     private final Repo mRepo;
 
@@ -23,7 +23,7 @@ public class VocabularyExImp implements VocabularyEx{
         mTimer = timer;
         mStatisticsManager = statisticsManager;
         mRepo = repo;
-        mRepo.getExercise(name).subscribe(exModel -> mExercise = exModel).dispose();
+        mExercise = mRepo.getExercise(name);
         mTimer.start();
     }
 
