@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Упражнения по категориям"
-        android:layout_marginTop="32dp"
         android:textSize="18sp"
         android:paddingHorizontal="8dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
