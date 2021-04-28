@@ -57,6 +57,8 @@ public class RepoImp implements Repo {
                 return Arrays.asList(resources.getStringArray(R.array.professions));
             case TERMS:
                 return Arrays.asList(resources.getStringArray(R.array.Terms));
+            case QUESTIONS:
+                return Arrays.asList(resources.getStringArray(R.array.questions));
             case EASY_T_T:
                 return Arrays.asList(resources.getStringArray(R.array.twisters_easy));
             case DIFFICULT_T_T:

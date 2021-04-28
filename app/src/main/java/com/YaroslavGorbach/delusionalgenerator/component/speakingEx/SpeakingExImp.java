@@ -103,15 +103,67 @@ public class SpeakingExImp implements SpeakingEx {
     private void setWord(){
         mStatisticsManager.calNumberWords();
         mStatisticsManager.calAverageTime();
-
         List<String> words;
+        List<String> words2;
         switch (mExercise.name){
             case LINGUISTIC_PYRAMIDS:
+            case WHAT_I_SEE_I_SING_ABOUT:
+            case MAGIC_NAMING:
+            case BUYING_SELLING:
+            case RORSCHACH_TEST:
                 words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
                 mWord.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
+            case RAVEN_LOOK_LIKE_A_TABLE:
+                words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
+                words2 = mRepo.getWords(Repo.WordType.ALIVE, mResources);
+                mWord.postValue(words2.get(mRandom.nextInt(words2.size())) + " - " + words.get(mRandom.nextInt(words.size())));
+                break;
+            case STORYTELLER_IMPROVISER:
+                words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
+                words2 = mRepo.getWords(Repo.WordType.ALIVE, mResources);
+                mWord.postValue(words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())) + ", "+
+                        words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())));
+                break;
+            case REMEMBER_ALL:
+                words = mRepo.getWords(Repo.WordType.LETTER, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case OTHER_ABBREVIATIONS:
+                words = mRepo.getWords(Repo.WordType.ABBREVIATION, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case ADVANCED_BINDING:
+                words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())) + " - " + words.get(mRandom.nextInt(words.size())));
+                break;
+            case CO_AUTHORED_WITH_DAHL:
+                words = mRepo.getWords(Repo.WordType.TERMS, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case WILL_NOT_BE_WORSE:
+                words = mRepo.getWords(Repo.WordType.PROFESSIONS, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case QUESTION_ANSWER:
+                words = mRepo.getWords(Repo.WordType.QUESTIONS, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case RAVEN_LOOK_LIKE_A_TABLE_FILINGS:
+                words = mRepo.getWords(Repo.WordType.FILLING, mResources);
+                words2 = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
+                mWord.postValue(words2.get(mRandom.nextInt(words2.size())) + " - " + words.get(mRandom.nextInt(words.size())));
+                break;
             case EASY_TONGUE_TWISTERS:
                 words = mRepo.getWords(Repo.WordType.EASY_T_T, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case DIFFICULT_TONGUE_TWISTERS:
+                words = mRepo.getWords(Repo.WordType.DIFFICULT_T_T, mResources);
+                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                break;
+            case VERY_DIFFICULT_TONGUE_TWISTERS:
+                words = mRepo.getWords(Repo.WordType.VERY_DIFFICULT_T_T, mResources);
                 mWord.postValue(words.get(mRandom.nextInt(words.size())));
                 break;
         }

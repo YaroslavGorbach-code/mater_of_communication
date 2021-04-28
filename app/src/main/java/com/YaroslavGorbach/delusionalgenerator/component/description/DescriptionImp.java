@@ -7,7 +7,6 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import java.util.List;
 
-
 public class DescriptionImp implements Description {
     private final Repo mRepo;
     private Exercise mExercise;

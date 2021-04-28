@@ -38,6 +38,7 @@ public interface Repo {
         LETTER,
         PROFESSIONS,
         TERMS,
+        QUESTIONS,
         EASY_T_T,
         DIFFICULT_T_T,
         VERY_DIFFICULT_T_T
