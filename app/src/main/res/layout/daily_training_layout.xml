@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/itemEx"
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="?listPreferredItemHeightLarge"
         android:layout_marginHorizontal="8dp"

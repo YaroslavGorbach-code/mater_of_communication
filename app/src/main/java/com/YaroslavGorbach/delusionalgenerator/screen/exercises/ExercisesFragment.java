@@ -39,9 +39,7 @@ public class ExercisesFragment extends Fragment {
         binding.exsList.setAdapter(adapter);
 
         // init daily training
-        binding.dailyTraining.getRoot().setOnClickListener(v -> {
-            // TODO: 4/28/2021 open daily training
-        });
+        binding.dailyTraining.item.setOnClickListener(v -> ((Navigation)requireActivity()).openDailyTraining());
         binding.dailyTraining.itemDays.setText("Дней подряд: " + vm.dailyTraining.getDays()); // TODO: 4/28/2021 fix it later
         binding.dailyTraining.progressIndicator.setProgress(vm.dailyTraining.getProgress());
     }

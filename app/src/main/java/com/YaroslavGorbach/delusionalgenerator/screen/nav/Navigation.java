@@ -8,5 +8,6 @@ public interface Navigation {
     void openVocabularyEx(Exercise.Name name);
     void openDescription(Exercise.Name name);
     void showFinishDialog(VocabularyEx.Result result);
+    void openDailyTraining();
     void up();
 }

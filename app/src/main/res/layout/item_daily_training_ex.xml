@@ -23,7 +23,7 @@
             android:scaleType="fitCenter"
             android:padding="8dp"
             tool:ignore="ContentDescription"
-            tool:src="@drawable/ic_lp" />
+            android:src="@drawable/ic_lp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/item_name"
@@ -44,8 +44,19 @@
             android:layout_toEndOf="@+id/item_image"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/s1"
+            android:text="Пройдено слов: 0/10"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+
+        <ImageView
+            android:id="@+id/icon_next"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_next"
+            android:padding="15dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentEnd="true"/>
     </RelativeLayout>
+
+
 
 </com.google.android.material.card.MaterialCardView>

@@ -22,11 +22,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
     private final List<Exercise> mExercises = new ArrayList<>();
+    private final DailyTrainingM mDailyTraining;
     private final Database mDatabase;
 
     public RepoImp(Database database) {
         mDatabase = database;
         createExercises();
+        mDailyTraining = createDailyTraining();
     }
 
     @Override
@@ -86,14 +88,10 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public int getProgress() {
-        return new Random().nextInt(100);
+    public DailyTrainingM getDailyTraining() {
+        return mDailyTraining;
     }
 
-    @Override
-    public int getTrainingDays() {
-        return new Random().nextInt(360);
-    }
 
     @Override
     public Observable<Statistics> getStatistics(Exercise.Name name) {
@@ -131,6 +129,19 @@ public class RepoImp implements Repo {
     @Override
     public void deleteRecord(Record record) {
         record.getFile().delete();
+    }
+
+    private DailyTrainingM createDailyTraining(){
+        int progress = new Random().nextInt(100);
+        int days = new Random().nextInt(360);
+        return new DailyTrainingM(
+                0L,
+                0L,
+                progress,
+                days,
+                Exercise.Name.LINGUISTIC_PYRAMIDS,
+                Exercise.Name.WHAT_I_SEE_I_SING_ABOUT,
+                Exercise.Name.VERBS);
     }
 
     private void createExercises() {

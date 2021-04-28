@@ -37,6 +37,7 @@ public class ExsAdapter extends ListAdapter<Exercise, ExsAdapter.ExsVh> {
 
     public class ExsVh extends RecyclerView.ViewHolder {
         ItemExBinding binding;
+
         public ExsVh(ItemExBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
@@ -55,7 +56,7 @@ public class ExsAdapter extends ListAdapter<Exercise, ExsAdapter.ExsVh> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
-            return false; // TODO: 4/12/2021 implement equals
+            return false;
         }
 
         @Override

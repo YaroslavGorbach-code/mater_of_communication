@@ -10,6 +10,7 @@ import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining.DailyTrainingFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.FinishDialog;
@@ -62,6 +63,15 @@ public class MainActivity extends AppCompatActivity implements Navigation {
        FinishDialog alertDialog = new FinishDialog();
        alertDialog.setArguments(FinishDialog.argsOf(result));
        alertDialog.show(getSupportFragmentManager(), "null");
+    }
+
+    @Override
+    public void openDailyTraining() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_container, new DailyTrainingFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
