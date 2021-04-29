@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -14,9 +15,14 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.ItemDailyTrainingExBi
 
 
 public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyTrainingExsAdapter.Vh> {
+    private final Listener mListener;
+    public interface Listener{
+        void onClick(DailyTrainingEx dailyTrainingEx);
+    }
 
-    public DailyTrainingExsAdapter() {
+    public DailyTrainingExsAdapter(Listener listener) {
         super(new DiffCallback());
+        mListener = listener;
     }
 
     @NonNull
@@ -31,12 +37,13 @@ public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyT
         holder.bind(getItem(position));
     }
 
-    public static class Vh extends RecyclerView.ViewHolder {
+    public class Vh extends RecyclerView.ViewHolder {
         final ItemDailyTrainingExBinding mBinding;
 
         public Vh(ItemDailyTrainingExBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
+            binding.item.setOnClickListener(v -> mListener.onClick(getItem(getBindingAdapterPosition())));
         }
 
         @SuppressLint("SetTextI18n")
@@ -51,12 +58,12 @@ public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyT
 
         @Override
         public boolean areItemsTheSame(@NonNull DailyTrainingEx oldItem, @NonNull DailyTrainingEx newItem) {
-            return false;
+            return true;
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull DailyTrainingEx oldItem, @NonNull DailyTrainingEx newItem) {
-            return false;
+            return oldItem.done == newItem.done;
         }
     }
 }

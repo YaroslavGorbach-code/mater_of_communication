@@ -4,20 +4,29 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.SystemClock;
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
+import com.YaroslavGorbach.delusionalgenerator.screen.chartView.utils.DateUtils;
+import com.google.android.gms.common.util.DataUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -83,32 +92,40 @@ public class RepoImp implements Repo {
             return Observable.fromArray(files.listFiles())
                      .map(Record::new)
                      .toList();
-
         }
     }
 
     @Override
-    public DailyTrainingM getDailyTraining() {
-         DailyTrainingM trainingM = mDatabase.dailyTrainingDao().getDailyTraining();
-         if (trainingM == null){
-             DailyTrainingM trainingMNew = new DailyTrainingM(
-                     SystemClock.currentThreadTimeMillis(),
-                     0L,
-                     0,
-                     0,
-                     createDailyTrainingExs());
-             mDatabase.dailyTrainingDao().insert(trainingMNew);
-             trainingM = mDatabase.dailyTrainingDao().getDailyTraining();
-         }
-         return trainingM;
+    public Observable<DailyTrainingM> getDailyTraining() {
+        long currentTime = new Date().getTime();
+        String currentDate = DateUtils.format(currentTime);
+        return  mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
+            if (training != null && !DateUtils.format(training.date).equals(currentDate)) {
+                DailyTrainingM trainingNew = new DailyTrainingM(
+                        currentTime,
+                        0,
+                        training.days,
+                        createDailyTrainingExs());
+                mDatabase.dailyTrainingDao().insert(trainingNew);
+                return trainingNew;
+            }else {
+                return training;
+            }
+        });
+    }
+
+    @Override
+    public void updateDailyTraining(DailyTrainingM dailyTrainingM) {
+        mDatabase.dailyTrainingDao().insert(dailyTrainingM);
     }
 
     private ArrayList<DailyTrainingEx> createDailyTrainingExs() {
         ArrayList<DailyTrainingEx> exercises = new ArrayList<>();
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.BUYING_SELLING), 10, 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS), 10, 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT), 10, 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS), 5, 0));
+        Random random = new Random();
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.BUYING_SELLING), random.nextInt(10), 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS), random.nextInt(10), 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT), random.nextInt(10), 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS), random.nextInt(5), 0));
         exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.VERBS), 1, 0));
         exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.NOUNS), 1, 0));
         exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.ADJECTIVES), 1, 0));

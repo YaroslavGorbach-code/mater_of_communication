@@ -18,4 +18,5 @@ public class DailyTrainingEx {
     public Exercise getExercise() {
         return exercise;
     }
+
 }

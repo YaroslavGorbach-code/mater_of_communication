@@ -1,36 +1,42 @@
 package com.YaroslavGorbach.delusionalgenerator.component.dailyTraining;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingEx;
 import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingM;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-
-import java.util.List;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
-
 
 public class DailyTrainingImp implements DailyTraining {
     private final Repo mRepo;
-    private final DailyTrainingM mDailyTraining;
+    private final Observable<DailyTrainingM> mDailyTraining;
 
-    public DailyTrainingImp(Repo repo){
-         mRepo = repo;
-         mDailyTraining = mRepo.getDailyTraining();
+    public DailyTrainingImp(Repo repo) {
+        mRepo = repo;
+        mDailyTraining = mRepo.getDailyTraining();
+    }
 
+
+    @Override
+    public Observable<DailyTrainingM> getDailyTraining() {
+        return mDailyTraining;
     }
 
     @Override
-    public int getProgress() {
-        return mDailyTraining.progress;
-    }
+    public void changeExProgress(DailyTrainingEx dailyTrainingEx) {
+        // TODO: 4/29/2021 fix it
+       DailyTrainingM dailyTrainingM = mDailyTraining.blockingFirst();
 
-    @Override
-    public int getDays() {
-        return mDailyTraining.days;
-    }
+       Observable.fromIterable(dailyTrainingM.exercises).map(dailyTrainingEx1 -> {
+           if (dailyTrainingEx.getExercise().name == dailyTrainingEx1.getExercise().name)
+                dailyTrainingEx1.done = dailyTrainingEx1.done + 1;
+           return dailyTrainingEx1;
+       }).toList().subscribe(dailyTrainingExes -> {
+           dailyTrainingM.exercises.clear();
+           dailyTrainingM.exercises.addAll(dailyTrainingExes);
+           mRepo.updateDailyTraining(dailyTrainingM);
+       });
 
-    @Override
-    public Single<List<DailyTrainingEx>> getExercises() {
-       return Observable.fromIterable(mDailyTraining.exercises).toList();
     }
 }

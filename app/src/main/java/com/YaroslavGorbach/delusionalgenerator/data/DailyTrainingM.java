@@ -9,16 +9,14 @@ import java.util.ArrayList;
 public class DailyTrainingM {
     @PrimaryKey(autoGenerate = true)
     public long id;
-    public long data;
-    public Long oldData;
+    public long date;
     public int progress;
     public int days;
     public ArrayList<DailyTrainingEx> exercises;
 
-    public DailyTrainingM(long data, Long oldData, int progress, int days, ArrayList<DailyTrainingEx> exercises) {
-        this.data = data;
+    public DailyTrainingM(long date, int progress, int days, ArrayList<DailyTrainingEx> exercises) {
+        this.date = date;
         this.exercises = exercises;
-        this.oldData = oldData;
         this.progress = progress;
         this.days = days;
     }

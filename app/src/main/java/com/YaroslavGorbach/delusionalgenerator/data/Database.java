@@ -1,6 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
@@ -16,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-@androidx.room.Database(entities = {Statistics.class, DailyTrainingM.class},  version = 19)
+@androidx.room.Database(entities = {Statistics.class, DailyTrainingM.class},  version = 20)
 @TypeConverters({Database.ConvertersNameToString.class, Database.ConvertersNameToArray.class})
 public abstract class Database extends RoomDatabase {
     private static Database sInstance = null;
@@ -27,6 +29,20 @@ public abstract class Database extends RoomDatabase {
         if (sInstance == null){
             sInstance = Room.databaseBuilder(context, Database.class, "db")
                     .allowMainThreadQueries()
+                    .addCallback(new Callback() {
+                        @Override
+                        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                            super.onCreate(db);
+                            // room observable does not work if table is empty
+                            ContentValues cv = new ContentValues();
+                            cv.put("id", 0);
+                            cv.put("date", 0);
+                            cv.put("progress", 0);
+                            cv.put("days", 0);
+                            cv.put("exercises", "null");
+                            db.insert("DailyTrainingM", SQLiteDatabase.CONFLICT_REPLACE, cv);
+                        }
+                    })
                     .fallbackToDestructiveMigration()
                     .build();
         }
@@ -49,15 +65,12 @@ public abstract class Database extends RoomDatabase {
     public static class ConvertersNameToArray {
         @TypeConverter
         public static ArrayList<DailyTrainingEx> fromString(String value) {
-            Type listType = new TypeToken<ArrayList<DailyTrainingEx>>() {}.getType();
-            return new Gson().fromJson(value, listType);
+            return new Gson().fromJson(value, new TypeToken<ArrayList<DailyTrainingEx>>() {}.getType());
         }
 
         @TypeConverter
         public static String fromArrayList(ArrayList<DailyTrainingEx> list) {
-            Gson gson = new Gson();
-            String json = gson.toJson(list);
-            return json;
+            return new Gson().toJson(list);
         }
 
     }
