@@ -1,17 +1,27 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
 
 import android.content.Context;
+import android.os.SystemClock;
+
+import androidx.annotation.NonNull;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-@androidx.room.Database(entities = {Statistics.class},  version = 6)
-@TypeConverters(Database.Converters.class)
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+@androidx.room.Database(entities = {Statistics.class, DailyTrainingM.class},  version = 19)
+@TypeConverters({Database.ConvertersNameToString.class, Database.ConvertersNameToArray.class})
 public abstract class Database extends RoomDatabase {
     private static Database sInstance = null;
     public abstract StatisticsDao statisticsDao();
+    public abstract DailyTrainingDao dailyTrainingDao();
 
     public static Database getInstance(Context context){
         if (sInstance == null){
@@ -23,7 +33,8 @@ public abstract class Database extends RoomDatabase {
         return sInstance;
     }
 
-    public static class Converters {
+
+    public static class ConvertersNameToString {
         @TypeConverter
         public static int fromNameToString(Exercise.Name name) {
             return name == null ? null : name.ordinal();
@@ -33,5 +44,21 @@ public abstract class Database extends RoomDatabase {
         public static Exercise.Name fromStringToName(int nameId) {
             return (Exercise.Name.values()[nameId]);
         }
+    }
+
+    public static class ConvertersNameToArray {
+        @TypeConverter
+        public static ArrayList<DailyTrainingEx> fromString(String value) {
+            Type listType = new TypeToken<ArrayList<DailyTrainingEx>>() {}.getType();
+            return new Gson().fromJson(value, listType);
+        }
+
+        @TypeConverter
+        public static String fromArrayList(ArrayList<DailyTrainingEx> list) {
+            Gson gson = new Gson();
+            String json = gson.toJson(list);
+            return json;
+        }
+
     }
 }

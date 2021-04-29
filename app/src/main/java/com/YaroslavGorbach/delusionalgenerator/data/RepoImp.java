@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.SystemClock;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
@@ -17,6 +18,7 @@ import java.util.Random;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
@@ -87,12 +89,30 @@ public class RepoImp implements Repo {
 
     @Override
     public DailyTrainingM getDailyTraining() {
-        return new DailyTrainingM(
-                0L,
-                0L,
-                0,
-                0,
-                new DailyTrainingEx(getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS), 2, 0));
+         DailyTrainingM trainingM = mDatabase.dailyTrainingDao().getDailyTraining();
+         if (trainingM == null){
+             DailyTrainingM trainingMNew = new DailyTrainingM(
+                     SystemClock.currentThreadTimeMillis(),
+                     0L,
+                     0,
+                     0,
+                     createDailyTrainingExs());
+             mDatabase.dailyTrainingDao().insert(trainingMNew);
+             trainingM = mDatabase.dailyTrainingDao().getDailyTraining();
+         }
+         return trainingM;
+    }
+
+    private ArrayList<DailyTrainingEx> createDailyTrainingExs() {
+        ArrayList<DailyTrainingEx> exercises = new ArrayList<>();
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.BUYING_SELLING), 10, 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS), 10, 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT), 10, 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS), 5, 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.VERBS), 1, 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.NOUNS), 1, 0));
+        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.ADJECTIVES), 1, 0));
+        return exercises;
     }
 
 

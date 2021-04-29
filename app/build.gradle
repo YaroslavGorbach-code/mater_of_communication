@@ -54,6 +54,7 @@ dependencies {
     // room
     implementation "androidx.room:room-runtime:2.3.0"
     annotationProcessor "androidx.room:room-compiler:2.3.0"
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     // adds
     implementation 'com.google.firebase:firebase-ads:20.0.0'
