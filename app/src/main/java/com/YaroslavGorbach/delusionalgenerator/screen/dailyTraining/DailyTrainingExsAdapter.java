@@ -2,7 +2,6 @@ package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -10,14 +9,14 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingEx;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemDailyTrainingExBinding;
 
 
-public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyTrainingExsAdapter.Vh> {
+public class DailyTrainingExsAdapter extends ListAdapter<Exercise, DailyTrainingExsAdapter.Vh> {
     private final Listener mListener;
     public interface Listener{
-        void onClick(DailyTrainingEx dailyTrainingEx);
+        void onClick(Exercise exercise);
     }
 
     public DailyTrainingExsAdapter(Listener listener) {
@@ -47,23 +46,23 @@ public class DailyTrainingExsAdapter extends ListAdapter<DailyTrainingEx, DailyT
         }
 
         @SuppressLint("SetTextI18n")
-        void bind(DailyTrainingEx ex){
-            mBinding.name.setText(itemView.getContext().getString(ex.getExercise().name.getNameId()));
-            mBinding.image.setImageResource(ex.getExercise().imageId);
-            mBinding.aim.setText("Пройдено слов " + ex.done + "/" + ex.getAim()); // TODO: 4/28/2021 fix it later
+        void bind(Exercise ex){
+            mBinding.name.setText(itemView.getContext().getString(ex.getName().getNameId()));
+            mBinding.image.setImageResource(ex.getImageId());
+            mBinding.aim.setText("Пройдено слов " + ex.getDone() + "/" + ex.getAim()); // TODO: 4/28/2021 fix it later
         }
     }
 
-    public static class DiffCallback extends DiffUtil.ItemCallback<DailyTrainingEx>{
+    public static class DiffCallback extends DiffUtil.ItemCallback<Exercise>{
 
         @Override
-        public boolean areItemsTheSame(@NonNull DailyTrainingEx oldItem, @NonNull DailyTrainingEx newItem) {
+        public boolean areItemsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
             return true;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull DailyTrainingEx oldItem, @NonNull DailyTrainingEx newItem) {
-            return oldItem.done == newItem.done;
+        public boolean areContentsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
+            return oldItem.getDone() == newItem.getDone();
         }
     }
 }

@@ -19,22 +19,22 @@ public class DescriptionImp implements Description {
 
     @Override
     public int getDescriptionId() {
-        return mExercise.descriptionId;
+        return mExercise.getDescriptionId();
     }
 
     @Override
     public int getImageId() {
-        return mExercise.imageId;
+        return mExercise.getImageId();
     }
 
     @Override
     public Exercise.Category getCategory() {
-        return mExercise.category;
+        return mExercise.getCategory();
     }
 
     @Override
     public LiveData<List<InputData>> getStatistics() {
-        mRepo.getStatistics(mExercise.name)
+        mRepo.getStatistics(mExercise.getName())
                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                 .toList()
                 .subscribe(mStatisticsData::postValue).dispose();
@@ -43,7 +43,7 @@ public class DescriptionImp implements Description {
 
     @Override
     public void onStatisticsNext() {
-         mRepo.getStatisticsNext(mExercise.name, mStatisticsData.getValue())
+         mRepo.getStatisticsNext(mExercise.getName(), mStatisticsData.getValue())
                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                 .toList()
                 .subscribe(mStatisticsData::postValue).dispose();
@@ -51,7 +51,7 @@ public class DescriptionImp implements Description {
 
     @Override
     public void onStatisticsPrevious() {
-         mRepo.getStatisticsPrevious(mExercise.name, mStatisticsData.getValue())
+         mRepo.getStatisticsPrevious(mExercise.getName(), mStatisticsData.getValue())
                  .map(statistics -> new InputData(statistics.value, statistics.dataTime))
                  .toList()
                  .subscribe(mStatisticsData::postValue).dispose();

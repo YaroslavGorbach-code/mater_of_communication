@@ -35,7 +35,7 @@ public class VocabularyExImp implements VocabularyEx{
 
     @Override
     public int getShortDescId() {
-        return mExercise.shortDescIds[0];
+        return mExercise.getShortDescIds()[0];
     }
 
     @Override
@@ -62,7 +62,7 @@ public class VocabularyExImp implements VocabularyEx{
     @Override
     public void saveStatistics() {
         // we ned to add plus one word
-        mRepo.addStatistics(new Statistics(mExercise.name,
+        mRepo.addStatistics(new Statistics(mExercise.getName(),
                 mStatisticsManager.getNumberWords(), new Date().getTime()));
     }
 

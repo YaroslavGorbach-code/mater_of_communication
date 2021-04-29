@@ -50,9 +50,9 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void onNext() {
-        if (mExercise.category == Exercise.Category.TONGUE_TWISTER){
+        if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER){
             mClickCount++;
-            if (mClickCount >=  mExercise.shortDescIds.length){
+            if (mClickCount >=  mExercise.getShortDescIds().length){
                 mClickCount = 0;
                 setWord();
             }
@@ -75,12 +75,12 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void saveStatistics() {
-        if (mExercise.category == Exercise.Category.SPEAKING){
+        if (mExercise.getCategory() == Exercise.Category.SPEAKING){
             mRepo.addStatistics(new Statistics(
-                    mExercise.name, mStatisticsManager.getNumberWords(), new Date().getTime()));
+                    mExercise.getName(), mStatisticsManager.getNumberWords(), new Date().getTime()));
         }else {
             mRepo.addStatistics(new Statistics(
-                    mExercise.name, mStatisticsManager.getAverageTime(), new Date().getTime()));
+                    mExercise.getName(), mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
     }
 
@@ -90,7 +90,7 @@ public class SpeakingExImp implements SpeakingEx {
             mVoiceRecorder.stop();
             mIsRecording.postValue(false);
         }else {
-            mVoiceRecorder.start(context, context.getString(mExercise.name.getNameId()));
+            mVoiceRecorder.start(context, context.getString(mExercise.getName().getNameId()));
             mIsRecording.postValue(true);
         }
     }
@@ -105,7 +105,7 @@ public class SpeakingExImp implements SpeakingEx {
         mStatisticsManager.calAverageTime();
         List<String> words;
         List<String> words2;
-        switch (mExercise.name){
+        switch (mExercise.getName()){
             case LINGUISTIC_PYRAMIDS:
             case WHAT_I_SEE_I_SING_ABOUT:
             case MAGIC_NAMING:
@@ -170,10 +170,10 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     private void setShortDesc() {
-        if (mExercise.category == Exercise.Category.TONGUE_TWISTER) {
-            mShortDesc.postValue(mExercise.shortDescIds[mClickCount]);
+        if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER) {
+            mShortDesc.postValue(mExercise.getShortDescIds()[mClickCount]);
         }else {
-            mShortDesc.postValue(mExercise.shortDescIds[mRandom.nextInt(mExercise.shortDescIds.length)]);
+            mShortDesc.postValue(mExercise.getShortDescIds()[mRandom.nextInt(mExercise.getShortDescIds().length)]);
         }
     }
 }

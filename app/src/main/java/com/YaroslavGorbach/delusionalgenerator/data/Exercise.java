@@ -3,12 +3,49 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import com.YaroslavGorbach.delusionalgenerator.R;
 
 public class Exercise {
-    public Name name;
-    public int imageId;
-    public Category category;
-    public int descriptionId;
-    public int[] shortDescIds;
+    private final Name name;
+    private final int imageId;
+    private final Category category;
+    private int aim = 0;
+    private int done = 0;
+    private final int descriptionId;
+    private final int[] shortDescIds;
 
+    public void setAim(int aim) {
+        this.aim = aim;
+    }
+
+    public void setDone(int done) {
+        this.done = done;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public int getImageId() {
+        return imageId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public int getAim() {
+        return aim;
+    }
+
+    public int getDone() {
+        return done;
+    }
+
+    public int getDescriptionId() {
+        return descriptionId;
+    }
+
+    public int[] getShortDescIds() {
+        return shortDescIds;
+    }
 
     public Exercise(
             Name name,

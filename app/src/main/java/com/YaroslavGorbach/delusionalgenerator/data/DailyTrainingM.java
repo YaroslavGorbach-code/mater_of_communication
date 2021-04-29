@@ -12,9 +12,9 @@ public class DailyTrainingM {
     public long date;
     public int progress;
     public int days;
-    public ArrayList<DailyTrainingEx> exercises;
+    public ArrayList<Exercise> exercises;
 
-    public DailyTrainingM(long date, int progress, int days, ArrayList<DailyTrainingEx> exercises) {
+    public DailyTrainingM(long date, int progress, int days, ArrayList<Exercise> exercises) {
         this.date = date;
         this.exercises = exercises;
         this.progress = progress;

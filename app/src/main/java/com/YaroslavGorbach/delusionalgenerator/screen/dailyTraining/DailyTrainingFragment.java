@@ -1,27 +1,20 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingEx;
-import com.YaroslavGorbach.delusionalgenerator.data.DailyTrainingM;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDailyTrainingBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
-import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.functions.Consumer;
 
 public class DailyTrainingFragment extends Fragment {
     public DailyTrainingFragment(){
@@ -43,7 +36,7 @@ public class DailyTrainingFragment extends Fragment {
 
         // init list
         DailyTrainingExsAdapter adapter = new DailyTrainingExsAdapter(dailyTrainingEx -> {
-            ((Navigation)requireActivity()).openDescription(dailyTrainingEx.getExercise().name);
+            ((Navigation)requireActivity()).openDescription(dailyTrainingEx.getName());
         });
 
         vm.dailyTraining.getDailyTraining()

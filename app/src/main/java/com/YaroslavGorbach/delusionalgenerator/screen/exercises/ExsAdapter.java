@@ -46,9 +46,9 @@ public class ExsAdapter extends ListAdapter<Exercise, ExsAdapter.ExsVh> {
         }
 
         public void bind(Exercise item) {
-            binding.itemName.setText(itemView.getContext().getString(item.name.getNameId()));
-            binding.itemCategory.setText(item.category.getName());
-            Glide.with(itemView.getContext()).load(item.imageId).into(binding.itemImage);
+            binding.itemName.setText(itemView.getContext().getString(item.getName().getNameId()));
+            binding.itemCategory.setText(item.getCategory().getName());
+            Glide.with(itemView.getContext()).load(item.getImageId()).into(binding.itemImage);
         }
     }
 
@@ -56,12 +56,12 @@ public class ExsAdapter extends ListAdapter<Exercise, ExsAdapter.ExsVh> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
-            return false;
+            return true;
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
-            return false;
+            return true;
         }
     }
 }

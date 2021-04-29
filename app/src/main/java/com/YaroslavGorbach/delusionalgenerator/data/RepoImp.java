@@ -47,7 +47,7 @@ public class RepoImp implements Repo {
     @Override
     public Exercise getExercise(Exercise.Name name) {
        return Observable.fromIterable(mExercises)
-                .filter(exModel -> exModel.name == name)
+                .filter(exModel -> exModel.getName() == name)
                 .firstOrError()
                 .blockingGet();
     }
@@ -119,16 +119,19 @@ public class RepoImp implements Repo {
         mDatabase.dailyTrainingDao().insert(dailyTrainingM);
     }
 
-    private ArrayList<DailyTrainingEx> createDailyTrainingExs() {
-        ArrayList<DailyTrainingEx> exercises = new ArrayList<>();
+    private ArrayList<Exercise> createDailyTrainingExs() {
+        ArrayList<Exercise> exercises = new ArrayList<>();
         Random random = new Random();
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.BUYING_SELLING), random.nextInt(10), 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS), random.nextInt(10), 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT), random.nextInt(10), 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS), random.nextInt(5), 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.VERBS), 1, 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.NOUNS), 1, 0));
-        exercises.add(new DailyTrainingEx(getExercise(Exercise.Name.ADJECTIVES), 1, 0));
+        exercises.add(getExercise(Exercise.Name.BUYING_SELLING));
+        exercises.add((getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS)));
+        exercises.add((getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT)));
+        exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
+        exercises.add((getExercise(Exercise.Name.VERBS)));
+        exercises.add((getExercise(Exercise.Name.NOUNS)));
+        exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
+        for (Exercise e: exercises) {
+            e.setAim(random.nextInt(10));
+        }
         return exercises;
     }
 

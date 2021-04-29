@@ -35,7 +35,7 @@ public class ExercisesFragment extends Fragment {
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(ExercisesVm.class);
 
         ExsAdapter adapter = new ExsAdapter(exModel ->
-                ((Navigation) requireActivity()).openDescription(exModel.name));
+                ((Navigation) requireActivity()).openDescription(exModel.getName()));
 
         adapter.submitList(vm.getAllExs());
         adapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);

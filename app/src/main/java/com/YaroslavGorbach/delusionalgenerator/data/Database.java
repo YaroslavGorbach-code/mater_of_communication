@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-@androidx.room.Database(entities = {Statistics.class, DailyTrainingM.class},  version = 20)
+@androidx.room.Database(entities = {Statistics.class, DailyTrainingM.class},  version = 21)
 @TypeConverters({Database.ConvertersNameToString.class, Database.ConvertersNameToArray.class})
 public abstract class Database extends RoomDatabase {
     private static Database sInstance = null;
@@ -64,12 +64,12 @@ public abstract class Database extends RoomDatabase {
 
     public static class ConvertersNameToArray {
         @TypeConverter
-        public static ArrayList<DailyTrainingEx> fromString(String value) {
-            return new Gson().fromJson(value, new TypeToken<ArrayList<DailyTrainingEx>>() {}.getType());
+        public static ArrayList<Exercise> fromString(String value) {
+            return new Gson().fromJson(value, new TypeToken<ArrayList<Exercise>>() {}.getType());
         }
 
         @TypeConverter
-        public static String fromArrayList(ArrayList<DailyTrainingEx> list) {
+        public static String fromArrayList(ArrayList<Exercise> list) {
             return new Gson().toJson(list);
         }
 
