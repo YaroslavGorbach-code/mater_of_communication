@@ -40,8 +40,7 @@ public class TrainingFragment extends Fragment {
             ((Navigation)requireActivity()).openDescription(dailyTrainingEx.getName(), Exercise.Type.DAILY);
         });
 
-        vm.training
-                .observeOn(AndroidSchedulers.mainThread())
+        vm.training.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dailyTrainingM -> {
                     adapter.submitList(dailyTrainingM.exercises);
                 });

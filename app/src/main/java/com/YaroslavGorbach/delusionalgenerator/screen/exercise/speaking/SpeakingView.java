@@ -1,10 +1,15 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.Toast;
+
+import androidx.core.util.Pair;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
+
+import java.util.Objects;
 
 public class SpeakingView {
     interface Callback{
@@ -13,9 +18,11 @@ public class SpeakingView {
         void onStartStopRecord();
     }
     private final FragmentSpeakingBinding mBinding;
+    private final Callback mCallback;
 
     public SpeakingView(FragmentSpeakingBinding binding, Callback callback){
         mBinding = binding;
+        mCallback = callback;
         mBinding.chronometer.start();
         mBinding.chronometerOneWord.start();
 
@@ -37,6 +44,16 @@ public class SpeakingView {
         mBinding.word.setText(word);
     }
 
+    public void setDoneAndAim(Pair<Integer, Integer> doneAndAim){
+        mBinding.aimAndDone.setVisibility(View.VISIBLE);
+        if (doneAndAim.first == doneAndAim.second - 1){
+            mBinding.next.setImageResource(R.drawable.ic_done);
+        }
+        if (Objects.equals(doneAndAim.first, doneAndAim.second)){
+            mCallback.onUp();
+        }
+        mBinding.aimAndDone.setText(doneAndAim.first +"/"+doneAndAim.second);
+    }
 
     public void changeButtonImage(boolean isRecording){
         if (isRecording){

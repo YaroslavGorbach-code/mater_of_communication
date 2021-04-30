@@ -33,10 +33,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/aim"
+        android:id="@+id/aim_and_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0/10"
+        tools:text="0/10"
+        android:visibility="gone"
+        tools:visibility="visible"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         app:layout_anchor="@+id/word"
         app:layout_anchorGravity="top|center" />

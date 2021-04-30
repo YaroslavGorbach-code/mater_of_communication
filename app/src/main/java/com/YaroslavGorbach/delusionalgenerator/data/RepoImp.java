@@ -96,7 +96,7 @@ public class RepoImp implements Repo {
                         currentTime,
                         0,
                         training.days,
-                        createDailyTrainingExs());
+                        generateTrainingExs());
                 mDatabase.dailyTrainingDao().insert(trainingNew);
                 return trainingNew;
             } else {
@@ -121,7 +121,7 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public int getTrainingDone(Exercise exercise) {
+    public int getTrainingExDone(Exercise exercise) {
         Training training = getTraining().blockingFirst();
         return Observable.fromIterable(training.exercises).filter(exercise1 ->
                 exercise1.getName() == exercise.getName()).blockingFirst().done;
@@ -129,13 +129,13 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public int getTrainingAim(Exercise exercise) {
+    public int getTrainingExAim(Exercise exercise) {
         Training training = getTraining().blockingFirst();
         return Observable.fromIterable(training.exercises).filter(exercise1 ->
                 exercise1.getName() == exercise.getName()).blockingFirst().aim;
     }
 
-    private ArrayList<Exercise> createDailyTrainingExs() {
+    private ArrayList<Exercise> generateTrainingExs() {
         ArrayList<Exercise> exercises = new ArrayList<>();
         Random random = new Random();
         exercises.add(getExercise(Exercise.Name.BUYING_SELLING));

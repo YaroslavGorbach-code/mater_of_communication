@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.component.speakingEx;
 import android.content.Context;
 import android.content.res.Resources;
 
+import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -19,6 +20,7 @@ import java.util.Random;
 
 public class SpeakingExImp implements SpeakingEx {
     private final MutableLiveData<String> mWord = new MutableLiveData<>("null");
+    private final MutableLiveData<Pair<Integer, Integer>> mDoneAndAim = new MutableLiveData<>(new Pair<>(0, 0));
     private final MutableLiveData<Integer> mShortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
     private final MutableLiveData<Boolean> mIsRecording = new MutableLiveData<>();
     private final VoiceRecorder mVoiceRecorder;
@@ -45,8 +47,8 @@ public class SpeakingExImp implements SpeakingEx {
         mExercise = mRepo.getExercise(name);
         mExercise.type = type;
         if (mExercise.type == Exercise.Type.DAILY) {
-            mExercise.done = repo.getTrainingDone(mExercise);
-            mExercise.aim = repo.getTrainingAim(mExercise);
+            mExercise.done = repo.getTrainingExDone(mExercise);
+            mExercise.aim = repo.getTrainingExAim(mExercise);
         }
 
         // init immediately
@@ -56,8 +58,8 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void onNext() {
+        mClickCount++;
         if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER) {
-            mClickCount++;
             if (mClickCount >= mExercise.getShortDescIds().length) {
                 mClickCount = 0;
                 setWord();
@@ -77,6 +79,12 @@ public class SpeakingExImp implements SpeakingEx {
     public LiveData<String> getWord() {
         return mWord;
     }
+
+    @Override
+    public LiveData<Pair<Integer, Integer>> getDoneAndAim() {
+        return mDoneAndAim;
+    }
+
 
     @Override
     public void saveStatistics() {
@@ -108,9 +116,12 @@ public class SpeakingExImp implements SpeakingEx {
     private void setWord() {
         if (mExercise.type == Exercise.Type.DAILY) {
             if (mExercise.done < mExercise.aim) {
-                mExercise.done++;
+                if ( mClickCount > 0)
+                    mExercise.done++;
+                mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
                 mRepo.updateTrainingDone(mExercise);
             }
+
         }
         mStatisticsManager.calNumberWords();
         mStatisticsManager.calAverageTime();

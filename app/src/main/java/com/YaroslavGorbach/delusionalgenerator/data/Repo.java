@@ -22,8 +22,8 @@ public interface Repo {
     Single<List<Record>> getRecordsFromFile(Context context);
     Observable<Training> getTraining();
     void updateTrainingDone(Exercise exercise);
-    int getTrainingDone(Exercise exercise);
-    int getTrainingAim(Exercise exercise);
+    int getTrainingExDone(Exercise exercise);
+    int getTrainingExAim(Exercise exercise);
 
 
     class RepoProvider{
