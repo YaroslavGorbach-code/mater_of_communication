@@ -13,14 +13,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
             android:padding="8dp"
             tool:ignore="ContentDescription"
             tool:src="@drawable/ic_lp" />
@@ -32,7 +30,7 @@
             android:layout_toEndOf="@+id/item_image"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingVertical="8dp"
+            android:paddingTop="8dp"
             android:text="@string/s3"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
 
@@ -44,6 +42,7 @@
             android:layout_toEndOf="@+id/item_image"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingTop="4dp"
             android:text="@string/s1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
     </RelativeLayout>

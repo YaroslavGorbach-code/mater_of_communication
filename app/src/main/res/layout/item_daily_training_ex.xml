@@ -5,26 +5,24 @@
     android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeightLarge"
-    android:focusable="true"
-    android:clickable="true"
     android:layout_marginBottom="8dp"
     android:background="?selectableItemBackground"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="3dp">
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
             android:padding="8dp"
-            tool:ignore="ContentDescription"
-            android:src="@drawable/ic_lp" />
+            android:src="@drawable/ic_lp"
+            tool:ignore="ContentDescription" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/name"
@@ -34,12 +32,12 @@
             android:layout_toEndOf="@+id/image"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingVertical="8dp"
+            android:paddingTop="8dp"
             android:text="@string/s3"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/aim"
+            android:id="@+id/category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
@@ -47,19 +45,32 @@
             android:layout_toEndOf="@+id/image"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Пройдено слов: 0/10"
+            android:paddingTop="4dp"
+            android:text="@string/s1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/aim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category"
+            android:layout_toStartOf="@+id/ic_complete"
+            android:layout_toEndOf="@+id/image"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="4dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            tool:text="Cлов: 0/10" />
 
         <ImageView
             android:id="@+id/ic_complete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_next"
-            android:padding="15dp"
+            android:layout_alignParentEnd="true"
+            android:padding="16dp"
             android:scaleType="centerCrop"
-            android:layout_alignParentEnd="true"/>
+            android:src="@drawable/ic_next" />
     </RelativeLayout>
-
 
 
 </com.google.android.material.card.MaterialCardView>

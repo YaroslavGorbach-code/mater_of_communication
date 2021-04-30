@@ -51,6 +51,7 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
             mBinding.name.setText(itemView.getContext().getString(ex.getName().getNameId()));
             mBinding.image.setImageResource(ex.getImageId());
             mBinding.aim.setText(ex.done + "/" + ex.aim);
+            mBinding.category.setText(ex.getCategory().getName());
             if (ex.getCategory() == Exercise.Category.VOCABULARY) mBinding.aim.setVisibility(View.GONE);
             if (ex.done == ex.aim) mBinding.icComplete.setImageResource(R.drawable.ic_done);
         }

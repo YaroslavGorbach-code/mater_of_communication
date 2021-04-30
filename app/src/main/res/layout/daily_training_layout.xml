@@ -1,77 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item"
         android:layout_width="match_parent"
-        android:layout_height="?listPreferredItemHeightLarge"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="150dp"
         android:layout_marginBottom="32dp"
         android:background="?selectableItemBackground"
-        android:focusable="true"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="8dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
+    <ImageView
                 android:id="@+id/item_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/progress_indicator"
-                android:layout_alignParentTop="true"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_lp"
+                android:src="@drawable/ic_monatain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tool:ignore="ContentDescription" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/item_image"
+                android:layout_below="@+id/item_image"
+                android:layout_alignParentStart="true"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:paddingVertical="8dp"
                 android:text="Ежедневная тренеровка"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_image" />
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/item_days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_name"
-                android:layout_toEndOf="@+id/item_image"
+                android:layout_alignEnd="@+id/item_name"
+                android:layout_alignParentStart="true"
                 android:ellipsize="end"
+                android:gravity="center"
                 android:maxLines="1"
-                tool:text="Дней подряд: 3"
-                android:textSize="12sp" />
-
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_name"
+                app:layout_constraintStart_toStartOf="@+id/item_name"
+                app:layout_constraintTop_toBottomOf="@+id/item_name"
+                tool:text="Дней подряд: 3" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progress_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="8dp"
+                app:indicatorColor="#02FF0E"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 tool:progress="50" />
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
