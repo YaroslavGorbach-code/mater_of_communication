@@ -121,7 +121,6 @@ public class SpeakingExImp implements SpeakingEx {
                 mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
                 mRepo.updateTrainingDone(mExercise);
             }
-
         }
         mStatisticsManager.calNumberWords();
         mStatisticsManager.calAverageTime();

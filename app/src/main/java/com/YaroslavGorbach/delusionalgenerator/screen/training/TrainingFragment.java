@@ -36,8 +36,9 @@ public class TrainingFragment extends Fragment {
                 ((Navigation)requireActivity()).up());
 
         // init list
-        TrainingListAdapter adapter = new TrainingListAdapter(dailyTrainingEx -> {
-            ((Navigation)requireActivity()).openDescription(dailyTrainingEx.getName(), Exercise.Type.DAILY);
+        TrainingListAdapter adapter = new TrainingListAdapter(exercise -> {
+                if (exercise.done != exercise.aim)
+            ((Navigation)requireActivity()).openDescription(exercise.getName(), Exercise.Type.DAILY);
         });
 
         vm.training.observeOn(AndroidSchedulers.mainThread())

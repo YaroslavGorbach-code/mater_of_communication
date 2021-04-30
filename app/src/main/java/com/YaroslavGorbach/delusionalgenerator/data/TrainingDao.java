@@ -15,4 +15,5 @@ public interface TrainingDao {
 
     @Query("SELECT * FROM Training ORDER BY date DESC LIMIT 1")
     Observable<Training> getDailyTraining();
+
 }

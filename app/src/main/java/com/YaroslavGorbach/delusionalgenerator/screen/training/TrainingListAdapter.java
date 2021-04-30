@@ -50,6 +50,7 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
             mBinding.name.setText(itemView.getContext().getString(ex.getName().getNameId()));
             mBinding.image.setImageResource(ex.getImageId());
             mBinding.aim.setText("Пройдено слов " + ex.done + "/" + ex.aim); // TODO: 4/28/2021 fix it later
+            if (ex.done == ex.aim) mBinding.icComplete.setImageResource(R.drawable.ic_done);
         }
     }
 

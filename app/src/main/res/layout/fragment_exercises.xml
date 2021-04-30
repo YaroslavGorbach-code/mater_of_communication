@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/daily_training"
+                android:id="@+id/training"
                 layout="@layout/daily_training_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

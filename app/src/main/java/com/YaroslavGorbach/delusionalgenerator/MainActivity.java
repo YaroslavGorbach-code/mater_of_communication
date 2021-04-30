@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openDailyTraining() {
+    public void openTraining() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, new TrainingFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

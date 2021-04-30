@@ -17,6 +17,7 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBind
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.functions.Consumer;
 
 public class ExercisesFragment extends Fragment {
     public ExercisesFragment(){ super(R.layout.fragment_exercises); }
@@ -40,13 +41,12 @@ public class ExercisesFragment extends Fragment {
                 false));
         binding.exsList.setAdapter(adapter);
 
-        // init daily training
-        binding.dailyTraining.item.setOnClickListener(v -> ((Navigation)requireActivity()).openDailyTraining());
-        vm.training
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dailyTrainingM -> {
-            binding.dailyTraining.itemDays.setText("Дней подряд: " + dailyTrainingM.days); // TODO: 4/28/2021 fix it later
-            binding.dailyTraining.progressIndicator.setProgress(dailyTrainingM.progress);
+        // init  training
+        binding.training.item.setOnClickListener(v -> ((Navigation)requireActivity()).openTraining());
+        vm.training.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(training -> {
+                    binding.training.itemDays.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
+                    training.getProgress().subscribe(binding.training.progressIndicator::setProgress);
         });
     }
 }

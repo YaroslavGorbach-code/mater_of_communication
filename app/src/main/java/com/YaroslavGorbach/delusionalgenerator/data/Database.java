@@ -35,7 +35,6 @@ public abstract class Database extends RoomDatabase {
                             ContentValues cv = new ContentValues();
                             cv.put("id", 0);
                             cv.put("date", 0);
-                            cv.put("progress", 0);
                             cv.put("days", 0);
                             cv.put("exercises", "null");
                             db.insert("Training", SQLiteDatabase.CONFLICT_REPLACE, cv);

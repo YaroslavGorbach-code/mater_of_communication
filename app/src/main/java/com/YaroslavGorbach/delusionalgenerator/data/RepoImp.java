@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
+import android.util.Log;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
@@ -18,7 +19,9 @@ import java.util.Random;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
@@ -94,7 +97,6 @@ public class RepoImp implements Repo {
             if (training != null && !DateUtils.format(training.date).equals(currentDate)) {
                 Training trainingNew = new Training(
                         currentTime,
-                        0,
                         training.days,
                         generateTrainingExs());
                 mDatabase.dailyTrainingDao().insert(trainingNew);
@@ -108,17 +110,18 @@ public class RepoImp implements Repo {
     @Override
     public void updateTrainingDone(Exercise exercise) {
         Training training = getTraining().blockingFirst();
-        Observable.fromIterable(training.exercises).map(dailyTrainingEx1 -> {
-            if (exercise.getName() == dailyTrainingEx1.getName())
-                dailyTrainingEx1.done = exercise.done;
-            return dailyTrainingEx1;
-        }).toList().subscribe(dailyTrainingExes -> {
+        Observable.fromIterable(training.exercises).map(exNew -> {
+            if (exercise.getName() == exNew.getName()){
+                exNew.done = exercise.done;
+            }
+            return exNew;
+        }).toList().subscribe(trainingExes -> {
             training.exercises.clear();
-            training.exercises.addAll(dailyTrainingExes);
+            training.exercises.addAll(trainingExes);
             mDatabase.dailyTrainingDao().insert(training);
         });
-
     }
+
 
     @Override
     public int getTrainingExDone(Exercise exercise) {
@@ -135,6 +138,7 @@ public class RepoImp implements Repo {
                 exercise1.getName() == exercise.getName()).blockingFirst().aim;
     }
 
+
     private ArrayList<Exercise> generateTrainingExs() {
         ArrayList<Exercise> exercises = new ArrayList<>();
         Random random = new Random();
@@ -148,6 +152,8 @@ public class RepoImp implements Repo {
         for (Exercise e : exercises) {
             e.type = Exercise.Type.DAILY;
             e.aim = random.nextInt(10);
+            if (e.aim==0)
+                e.aim = 1;
         }
         return exercises;
     }

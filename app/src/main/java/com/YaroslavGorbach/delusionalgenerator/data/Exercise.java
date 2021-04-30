@@ -32,6 +32,14 @@ public class Exercise {
         return shortDescIds;
     }
 
+    public int getProgress(){
+        if (done!= 0 && done % aim == 0){
+            return 100;
+        }else {
+            return (done % aim) * 10;
+        }
+    }
+
     public Exercise(
             Name name,
             int descriptionId,

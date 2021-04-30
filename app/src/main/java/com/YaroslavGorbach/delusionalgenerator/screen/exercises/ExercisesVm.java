@@ -21,6 +21,7 @@ public class ExercisesVm extends ViewModel {
     }
 
 
+
     public static class ExercisesVmFactory extends ViewModelProvider.NewInstanceFactory {
         private final Repo repo;
 
