@@ -8,11 +8,11 @@ import io.reactivex.rxjava3.core.Observable;
 
 
 @Dao
-public interface DailyTrainingDao {
+public interface TrainingDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(DailyTrainingM dailyTrainingM);
+    void insert(Training training);
 
-    @Query("SELECT * FROM dailytrainingm ORDER BY date DESC LIMIT 1")
-    Observable<DailyTrainingM> getDailyTraining();
+    @Query("SELECT * FROM Training ORDER BY date DESC LIMIT 1")
+    Observable<Training> getDailyTraining();
 }

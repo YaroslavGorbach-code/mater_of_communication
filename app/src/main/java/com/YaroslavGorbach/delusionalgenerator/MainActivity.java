@@ -10,7 +10,7 @@ import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining.DailyTrainingFragment;
+import com.YaroslavGorbach.delusionalgenerator.screen.training.TrainingFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.FinishDialog;
@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openSpeakingEx(Exercise.Name name) {
+    public void openSpeakingEx(Exercise.Name name, Exercise.Type type) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, SpeakingFragment.class, SpeakingFragment.argsOf(name))
+                .replace(R.id.main_container, SpeakingFragment.class, SpeakingFragment.argsOf(name, type))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openDescription(Exercise.Name name) {
+    public void openDescription(Exercise.Name name, Exercise.Type type) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, DescriptionFragment.class, DescriptionFragment.argsOf(name))
+                .replace(R.id.main_container, DescriptionFragment.class, DescriptionFragment.argsOf(name, type))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     @Override
     public void openDailyTraining() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, new DailyTrainingFragment())
+                .replace(R.id.main_container, new TrainingFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();

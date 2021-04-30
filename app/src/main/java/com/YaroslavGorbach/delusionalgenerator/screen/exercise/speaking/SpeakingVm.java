@@ -17,6 +17,7 @@ public class SpeakingVm extends ViewModel {
 
     SpeakingVm(
             Exercise.Name name,
+            Exercise.Type type,
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
@@ -24,6 +25,7 @@ public class SpeakingVm extends ViewModel {
     ) {
         speakingEx = new SpeakingExImp(
                 name,
+                type,
                 repo,
                 statisticsManager,
                 resources,
@@ -38,6 +40,7 @@ public class SpeakingVm extends ViewModel {
 
     public static class SpeakingVmFactory extends ViewModelProvider.NewInstanceFactory {
         private final Repo repo;
+        private final Exercise.Type type;
         private final Exercise.Name name;
         private final Resources resources;
         private final StatisticsManager statisticsManager;
@@ -45,6 +48,7 @@ public class SpeakingVm extends ViewModel {
 
         public SpeakingVmFactory(
                 Exercise.Name name,
+                Exercise.Type type,
                 Repo repo,
                 Resources resources,
                 StatisticsManager statisticsManager,
@@ -53,6 +57,7 @@ public class SpeakingVm extends ViewModel {
             super();
             this.repo = repo;
             this.name = name;
+            this.type = type;
             this.resources = resources;
             this.statisticsManager = statisticsManager;
             this.voiceRecorder = voiceRecorder;
@@ -62,7 +67,7 @@ public class SpeakingVm extends ViewModel {
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(SpeakingVm.class)) {
-                return (T) new SpeakingVm(name, repo, statisticsManager, resources, voiceRecorder);
+                return (T) new SpeakingVm(name, type, repo, statisticsManager, resources, voiceRecorder);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

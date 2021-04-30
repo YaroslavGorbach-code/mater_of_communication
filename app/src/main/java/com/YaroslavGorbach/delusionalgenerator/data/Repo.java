@@ -3,8 +3,6 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 
-import androidx.lifecycle.LiveData;
-
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
 import java.util.List;
@@ -22,8 +20,11 @@ public interface Repo {
     void addStatistics(Statistics statistics);
     void deleteRecord(Record record);
     Single<List<Record>> getRecordsFromFile(Context context);
-    Observable<DailyTrainingM> getDailyTraining();
-    void updateDailyTraining(DailyTrainingM dailyTrainingM);
+    Observable<Training> getTraining();
+    void updateTrainingDone(Exercise exercise);
+    int getTrainingDone(Exercise exercise);
+    int getTrainingAim(Exercise exercise);
+
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

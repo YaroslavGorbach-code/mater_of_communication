@@ -13,12 +13,12 @@ import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemExBinding;
 import com.bumptech.glide.Glide;
 
-public class ExsAdapter extends ListAdapter<Exercise, ExsAdapter.ExsVh> {
+public class ExsListAdapter extends ListAdapter<Exercise, ExsListAdapter.ExsVh> {
     interface Listener{ void onClick(Exercise exercise);}
 
     private final Listener mListener;
 
-    protected ExsAdapter(Listener listener) {
+    protected ExsListAdapter(Listener listener) {
         super(new DiffCallback());
         mListener = listener;
     }

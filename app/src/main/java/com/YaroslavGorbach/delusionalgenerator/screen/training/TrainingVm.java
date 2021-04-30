@@ -1,19 +1,18 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
+package com.YaroslavGorbach.delusionalgenerator.screen.training;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.YaroslavGorbach.delusionalgenerator.component.dailyTraining.DailyTraining;
-import com.YaroslavGorbach.delusionalgenerator.component.dailyTraining.DailyTrainingImp;
+import com.YaroslavGorbach.delusionalgenerator.data.Training;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionVm;
 
-public class DailyTrainingVm extends ViewModel {
-    public final DailyTraining dailyTraining;
+import io.reactivex.rxjava3.core.Observable;
 
-    public DailyTrainingVm(Repo repo){
-        dailyTraining = new DailyTrainingImp(repo);
+public class TrainingVm extends ViewModel {
+    public final Observable<Training> training;
+
+    public TrainingVm(Repo repo){
+        training = repo.getTraining();
     }
 
     public static class DailyTrainingVmFactory extends ViewModelProvider.NewInstanceFactory {
@@ -27,8 +26,8 @@ public class DailyTrainingVm extends ViewModel {
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass.isAssignableFrom(DailyTrainingVm.class)) {
-                return (T)  new DailyTrainingVm(repo);
+            if (modelClass.isAssignableFrom(TrainingVm.class)) {
+                return (T)  new TrainingVm(repo);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

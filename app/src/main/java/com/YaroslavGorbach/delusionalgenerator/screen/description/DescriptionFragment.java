@@ -23,9 +23,10 @@ public class DescriptionFragment extends Fragment {
         super(R.layout.fragment_description);
     }
 
-    public static Bundle argsOf(Exercise.Name name) {
+    public static Bundle argsOf(Exercise.Name name, Exercise.Type type) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
+        bundle.putSerializable("type", type);
         return bundle;
     }
     private final CompositeDisposable mDisposableContainer = new CompositeDisposable();
@@ -41,7 +42,9 @@ public class DescriptionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
+        Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
 
         // init vm
         DescriptionVm vm = new ViewModelProvider(this,
@@ -57,7 +60,7 @@ public class DescriptionFragment extends Fragment {
                 switch (vm.description.getCategory()) {
                     case SPEAKING:
                     case TONGUE_TWISTER:
-                        ((Navigation) requireActivity()).openSpeakingEx(name);
+                        ((Navigation) requireActivity()).openSpeakingEx(name, type);
                         break;
                     case VOCABULARY:
                         ((Navigation) requireActivity()).openVocabularyEx(name);

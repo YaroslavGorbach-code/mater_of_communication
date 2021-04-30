@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
+package com.YaroslavGorbach.delusionalgenerator.screen.training;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -13,13 +13,13 @@ import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemDailyTrainingExBinding;
 
 
-public class DailyTrainingExsAdapter extends ListAdapter<Exercise, DailyTrainingExsAdapter.Vh> {
+public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapter.Vh> {
     private final Listener mListener;
     public interface Listener{
         void onClick(Exercise exercise);
     }
 
-    public DailyTrainingExsAdapter(Listener listener) {
+    public TrainingListAdapter(Listener listener) {
         super(new DiffCallback());
         mListener = listener;
     }
@@ -49,7 +49,7 @@ public class DailyTrainingExsAdapter extends ListAdapter<Exercise, DailyTraining
         void bind(Exercise ex){
             mBinding.name.setText(itemView.getContext().getString(ex.getName().getNameId()));
             mBinding.image.setImageResource(ex.getImageId());
-            mBinding.aim.setText("Пройдено слов " + ex.getDone() + "/" + ex.getAim()); // TODO: 4/28/2021 fix it later
+            mBinding.aim.setText("Пройдено слов " + ex.done + "/" + ex.aim); // TODO: 4/28/2021 fix it later
         }
     }
 
@@ -62,7 +62,7 @@ public class DailyTrainingExsAdapter extends ListAdapter<Exercise, DailyTraining
 
         @Override
         public boolean areContentsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
-            return oldItem.getDone() == newItem.getDone();
+            return oldItem.done == newItem.done;
         }
     }
 }

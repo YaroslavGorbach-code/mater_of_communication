@@ -32,16 +32,22 @@ public class SpeakingExImp implements SpeakingEx {
 
     public SpeakingExImp(
             Exercise.Name name,
+            Exercise.Type type,
             Repo repo,
             StatisticsManager statisticsManager,
             Resources resources,
             VoiceRecorder voiceRecorder
-    ){
+    ) {
         mRepo = repo;
         mStatisticsManager = statisticsManager;
         mResources = resources;
         mVoiceRecorder = voiceRecorder;
         mExercise = mRepo.getExercise(name);
+        mExercise.type = type;
+        if (mExercise.type == Exercise.Type.DAILY) {
+            mExercise.done = repo.getTrainingDone(mExercise);
+            mExercise.aim = repo.getTrainingAim(mExercise);
+        }
 
         // init immediately
         setShortDesc();
@@ -50,13 +56,13 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void onNext() {
-        if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER){
+        if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER) {
             mClickCount++;
-            if (mClickCount >=  mExercise.getShortDescIds().length){
+            if (mClickCount >= mExercise.getShortDescIds().length) {
                 mClickCount = 0;
                 setWord();
             }
-        }else {
+        } else {
             setWord();
         }
         setShortDesc();
@@ -72,13 +78,12 @@ public class SpeakingExImp implements SpeakingEx {
         return mWord;
     }
 
-
     @Override
     public void saveStatistics() {
-        if (mExercise.getCategory() == Exercise.Category.SPEAKING){
+        if (mExercise.getCategory() == Exercise.Category.SPEAKING) {
             mRepo.addStatistics(new Statistics(
                     mExercise.getName(), mStatisticsManager.getNumberWords(), new Date().getTime()));
-        }else {
+        } else {
             mRepo.addStatistics(new Statistics(
                     mExercise.getName(), mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
@@ -86,10 +91,10 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void onStartStopRecord(Context context) {
-        if (mVoiceRecorder.getState()){
+        if (mVoiceRecorder.getState()) {
             mVoiceRecorder.stop();
             mIsRecording.postValue(false);
-        }else {
+        } else {
             mVoiceRecorder.start(context, context.getString(mExercise.getName().getNameId()));
             mIsRecording.postValue(true);
         }
@@ -100,12 +105,18 @@ public class SpeakingExImp implements SpeakingEx {
         return mIsRecording;
     }
 
-    private void setWord(){
+    private void setWord() {
+        if (mExercise.type == Exercise.Type.DAILY) {
+            if (mExercise.done < mExercise.aim) {
+                mExercise.done++;
+                mRepo.updateTrainingDone(mExercise);
+            }
+        }
         mStatisticsManager.calNumberWords();
         mStatisticsManager.calAverageTime();
         List<String> words;
         List<String> words2;
-        switch (mExercise.getName()){
+        switch (mExercise.getName()) {
             case LINGUISTIC_PYRAMIDS:
             case WHAT_I_SEE_I_SING_ABOUT:
             case MAGIC_NAMING:
@@ -122,7 +133,7 @@ public class SpeakingExImp implements SpeakingEx {
             case STORYTELLER_IMPROVISER:
                 words = mRepo.getWords(Repo.WordType.NOT_ALIVE, mResources);
                 words2 = mRepo.getWords(Repo.WordType.ALIVE, mResources);
-                mWord.postValue(words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())) + ", "+
+                mWord.postValue(words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())) + ", " +
                         words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())));
                 break;
             case REMEMBER_ALL:
@@ -172,7 +183,7 @@ public class SpeakingExImp implements SpeakingEx {
     private void setShortDesc() {
         if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER) {
             mShortDesc.postValue(mExercise.getShortDescIds()[mClickCount]);
-        }else {
+        } else {
             mShortDesc.postValue(mExercise.getShortDescIds()[mRandom.nextInt(mExercise.getShortDescIds().length)]);
         }
     }

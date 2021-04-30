@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.dailyTraining;
+package com.YaroslavGorbach.delusionalgenerator.screen.training;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +10,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDailyTrainingBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
-public class DailyTrainingFragment extends Fragment {
-    public DailyTrainingFragment(){
+public class TrainingFragment extends Fragment {
+    public TrainingFragment(){
         super(R.layout.fragment_daily_training);
     }
 
@@ -27,19 +28,19 @@ public class DailyTrainingFragment extends Fragment {
         FragmentDailyTrainingBinding binding = FragmentDailyTrainingBinding.bind(view);
 
         // init vm
-        DailyTrainingVm vm = new ViewModelProvider(this,
-                new DailyTrainingVm.DailyTrainingVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(DailyTrainingVm.class);
+        TrainingVm vm = new ViewModelProvider(this,
+                new TrainingVm.DailyTrainingVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(TrainingVm.class);
 
         // init app bar
         binding.toolbar.setNavigationOnClickListener(v ->
                 ((Navigation)requireActivity()).up());
 
         // init list
-        DailyTrainingExsAdapter adapter = new DailyTrainingExsAdapter(dailyTrainingEx -> {
-            ((Navigation)requireActivity()).openDescription(dailyTrainingEx.getName());
+        TrainingListAdapter adapter = new TrainingListAdapter(dailyTrainingEx -> {
+            ((Navigation)requireActivity()).openDescription(dailyTrainingEx.getName(), Exercise.Type.DAILY);
         });
 
-        vm.dailyTraining.getDailyTraining()
+        vm.training
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dailyTrainingM -> {
                     adapter.submitList(dailyTrainingM.exercises);

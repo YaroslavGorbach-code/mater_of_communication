@@ -3,7 +3,6 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 import androidx.room.Room;
@@ -15,15 +14,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-@androidx.room.Database(entities = {Statistics.class, DailyTrainingM.class},  version = 21)
+@androidx.room.Database(entities = {Statistics.class, Training.class},  version = 21)
 @TypeConverters({Database.ConvertersNameToString.class, Database.ConvertersNameToArray.class})
 public abstract class Database extends RoomDatabase {
     private static Database sInstance = null;
     public abstract StatisticsDao statisticsDao();
-    public abstract DailyTrainingDao dailyTrainingDao();
+    public abstract TrainingDao dailyTrainingDao();
 
     public static Database getInstance(Context context){
         if (sInstance == null){
@@ -40,7 +38,7 @@ public abstract class Database extends RoomDatabase {
                             cv.put("progress", 0);
                             cv.put("days", 0);
                             cv.put("exercises", "null");
-                            db.insert("DailyTrainingM", SQLiteDatabase.CONFLICT_REPLACE, cv);
+                            db.insert("Training", SQLiteDatabase.CONFLICT_REPLACE, cv);
                         }
                     })
                     .fallbackToDestructiveMigration()

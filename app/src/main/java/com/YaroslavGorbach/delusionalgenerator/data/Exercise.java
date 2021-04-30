@@ -6,18 +6,11 @@ public class Exercise {
     private final Name name;
     private final int imageId;
     private final Category category;
-    private int aim = 0;
-    private int done = 0;
+    public Type type = Type.COMMON;
+    public int aim;
+    public int done;
     private final int descriptionId;
     private final int[] shortDescIds;
-
-    public void setAim(int aim) {
-        this.aim = aim;
-    }
-
-    public void setDone(int done) {
-        this.done = done;
-    }
 
     public Name getName() {
         return name;
@@ -29,14 +22,6 @@ public class Exercise {
 
     public Category getCategory() {
         return category;
-    }
-
-    public int getAim() {
-        return aim;
-    }
-
-    public int getDone() {
-        return done;
     }
 
     public int getDescriptionId() {
@@ -61,6 +46,10 @@ public class Exercise {
         this.imageId = imageId;
     }
 
+    public enum Type{
+        COMMON,
+        DAILY
+    }
 
     public enum Category {
         SPEAKING("Для развития комуникабельности"),

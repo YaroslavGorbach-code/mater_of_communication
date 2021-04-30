@@ -20,9 +20,10 @@ public class SpeakingFragment extends Fragment {
 
     public SpeakingFragment(){ super(R.layout.fragment_speaking); }
 
-    public static Bundle argsOf(Exercise.Name name){
+    public static Bundle argsOf(Exercise.Name name, Exercise.Type type){
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
+        bundle.putSerializable("type", type);
         return bundle;
     }
 
@@ -33,8 +34,11 @@ public class SpeakingFragment extends Fragment {
 
         // init vm
         Exercise.Name name = (Exercise.Name)requireArguments().getSerializable("name");
+        Exercise.Type type = (Exercise.Type)requireArguments().getSerializable("type");
+
         SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
                 name,
+                type,
                 repo,
                 getResources(),
                 new StatisticsManagerImp(),

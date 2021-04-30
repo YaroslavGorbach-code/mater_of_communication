@@ -3,26 +3,23 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.YaroslavGorbach.delusionalgenerator.component.dailyTraining.DailyTraining;
-import com.YaroslavGorbach.delusionalgenerator.component.dailyTraining.DailyTrainingImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.Training;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public class ExercisesVm extends ViewModel {
-    private final Repo mRepo;
-    public final DailyTraining dailyTraining;
+    public final Observable<Training> training;
+    public final List<Exercise> exercises;
 
     public ExercisesVm(Repo repo) {
-        mRepo = repo;
-        dailyTraining = new DailyTrainingImp(repo);
+        training = repo.getTraining();
+        exercises = repo.getExercises();
     }
 
-    public List<Exercise> getAllExs() {
-        return mRepo.getExercises();
-    }
 
     public static class ExercisesVmFactory extends ViewModelProvider.NewInstanceFactory {
         private final Repo repo;

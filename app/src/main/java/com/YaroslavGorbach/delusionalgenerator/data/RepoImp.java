@@ -3,15 +3,10 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.os.SystemClock;
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.utils.DateUtils;
-import com.google.android.gms.common.util.DataUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,13 +16,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
@@ -46,7 +37,7 @@ public class RepoImp implements Repo {
 
     @Override
     public Exercise getExercise(Exercise.Name name) {
-       return Observable.fromIterable(mExercises)
+        return Observable.fromIterable(mExercises)
                 .filter(exModel -> exModel.getName() == name)
                 .firstOrError()
                 .blockingGet();
@@ -85,38 +76,63 @@ public class RepoImp implements Repo {
     public Single<List<Record>> getRecordsFromFile(Context context) {
         File files = new File(context.getExternalFilesDir("/").getAbsolutePath());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-           return Observable.fromArray(files.listFiles())
+            return Observable.fromArray(files.listFiles())
                     .map(Record::new)
                     .toSortedList(Comparator.comparingLong(Record::getLastModified).reversed());
-        }else {
+        } else {
             return Observable.fromArray(files.listFiles())
-                     .map(Record::new)
-                     .toList();
+                    .map(Record::new)
+                    .toList();
         }
     }
 
     @Override
-    public Observable<DailyTrainingM> getDailyTraining() {
+    public Observable<Training> getTraining() {
         long currentTime = new Date().getTime();
         String currentDate = DateUtils.format(currentTime);
-        return  mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
+        return mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
             if (training != null && !DateUtils.format(training.date).equals(currentDate)) {
-                DailyTrainingM trainingNew = new DailyTrainingM(
+                Training trainingNew = new Training(
                         currentTime,
                         0,
                         training.days,
                         createDailyTrainingExs());
                 mDatabase.dailyTrainingDao().insert(trainingNew);
                 return trainingNew;
-            }else {
+            } else {
                 return training;
             }
         });
     }
 
     @Override
-    public void updateDailyTraining(DailyTrainingM dailyTrainingM) {
-        mDatabase.dailyTrainingDao().insert(dailyTrainingM);
+    public void updateTrainingDone(Exercise exercise) {
+        Training training = getTraining().blockingFirst();
+        Observable.fromIterable(training.exercises).map(dailyTrainingEx1 -> {
+            if (exercise.getName() == dailyTrainingEx1.getName())
+                dailyTrainingEx1.done = exercise.done;
+            return dailyTrainingEx1;
+        }).toList().subscribe(dailyTrainingExes -> {
+            training.exercises.clear();
+            training.exercises.addAll(dailyTrainingExes);
+            mDatabase.dailyTrainingDao().insert(training);
+        });
+
+    }
+
+    @Override
+    public int getTrainingDone(Exercise exercise) {
+        Training training = getTraining().blockingFirst();
+        return Observable.fromIterable(training.exercises).filter(exercise1 ->
+                exercise1.getName() == exercise.getName()).blockingFirst().done;
+
+    }
+
+    @Override
+    public int getTrainingAim(Exercise exercise) {
+        Training training = getTraining().blockingFirst();
+        return Observable.fromIterable(training.exercises).filter(exercise1 ->
+                exercise1.getName() == exercise.getName()).blockingFirst().aim;
     }
 
     private ArrayList<Exercise> createDailyTrainingExs() {
@@ -129,8 +145,9 @@ public class RepoImp implements Repo {
         exercises.add((getExercise(Exercise.Name.VERBS)));
         exercises.add((getExercise(Exercise.Name.NOUNS)));
         exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
-        for (Exercise e: exercises) {
-            e.setAim(random.nextInt(10));
+        for (Exercise e : exercises) {
+            e.type = Exercise.Type.DAILY;
+            e.aim = random.nextInt(10);
         }
         return exercises;
     }
@@ -146,10 +163,10 @@ public class RepoImp implements Repo {
     @Override
     public Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData) {
         return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
-                .filter(statistics -> statistics.dataTime > currentData.get(currentData.size()-1).getMillis())
+                .filter(statistics -> statistics.dataTime > currentData.get(currentData.size() - 1).getMillis())
                 .take(15)
                 .switchIfEmpty(Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
-                .takeLast(15));
+                        .takeLast(15));
     }
 
     @Override
