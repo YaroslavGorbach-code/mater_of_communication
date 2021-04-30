@@ -19,12 +19,17 @@ public class VocabularyExImp implements VocabularyEx{
     private final StatisticsManager mStatisticsManager;
     private final Repo mRepo;
 
-    public VocabularyExImp(Exercise.Name name, Timer timer, StatisticsManager statisticsManager, Repo repo){
+    public VocabularyExImp(Exercise.Name name, Exercise.Type type, Timer timer, StatisticsManager statisticsManager, Repo repo){
         mTimer = timer;
-        mStatisticsManager = statisticsManager;
         mRepo = repo;
         mExercise = mRepo.getExercise(name);
+        mExercise.type = type;
+        mStatisticsManager = statisticsManager;
         mTimer.start();
+        if (mExercise.type == Exercise.Type.DAILY) {
+            mExercise.done = repo.getTrainingExDone(mExercise);
+            mExercise.aim = repo.getTrainingExAim(mExercise);
+        }
     }
 
     @Override
@@ -40,6 +45,10 @@ public class VocabularyExImp implements VocabularyEx{
 
     @Override
     public Result getResultState() {
+        if (mExercise.type == Exercise.Type.DAILY){
+            mExercise.done ++;
+            mRepo.updateTrainingDone(mExercise);
+        }
         Result result;
         if (mClickCount.getValue()<25){
             result = Result.BAD;
@@ -70,7 +79,6 @@ public class VocabularyExImp implements VocabularyEx{
     public LiveData<Integer> getClickCount() {
         return mClickCount;
     }
-
 
     @Override
     public LiveData<String> getTimerValue() {

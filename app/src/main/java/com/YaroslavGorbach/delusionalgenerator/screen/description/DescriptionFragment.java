@@ -63,7 +63,7 @@ public class DescriptionFragment extends Fragment {
                         ((Navigation) requireActivity()).openSpeakingEx(name, type);
                         break;
                     case VOCABULARY:
-                        ((Navigation) requireActivity()).openVocabularyEx(name);
+                        ((Navigation) requireActivity()).openVocabularyEx(name, type);
                         break;
                 }
             }

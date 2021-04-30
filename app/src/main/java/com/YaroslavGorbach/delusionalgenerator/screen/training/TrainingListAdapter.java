@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.training;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -49,7 +50,8 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
         void bind(Exercise ex){
             mBinding.name.setText(itemView.getContext().getString(ex.getName().getNameId()));
             mBinding.image.setImageResource(ex.getImageId());
-            mBinding.aim.setText("Пройдено слов " + ex.done + "/" + ex.aim); // TODO: 4/28/2021 fix it later
+            mBinding.aim.setText(ex.done + "/" + ex.aim);
+            if (ex.getCategory() == Exercise.Category.VOCABULARY) mBinding.aim.setVisibility(View.GONE);
             if (ex.done == ex.aim) mBinding.icComplete.setImageResource(R.drawable.ic_done);
         }
     }

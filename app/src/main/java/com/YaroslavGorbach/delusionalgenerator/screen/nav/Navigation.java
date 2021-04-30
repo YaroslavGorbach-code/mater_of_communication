@@ -5,7 +5,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 
 public interface Navigation {
     void openSpeakingEx(Exercise.Name name, Exercise.Type type);
-    void openVocabularyEx(Exercise.Name name);
+    void openVocabularyEx(Exercise.Name name, Exercise.Type type);
     void openDescription(Exercise.Name name, Exercise.Type type);
     void showFinishDialog(VocabularyEx.Result result);
     void openTraining();

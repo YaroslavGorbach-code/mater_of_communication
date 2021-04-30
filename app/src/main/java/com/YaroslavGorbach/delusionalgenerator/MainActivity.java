@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements Navigation {
     }
 
     @Override
-    public void openVocabularyEx(Exercise.Name name) {
+    public void openVocabularyEx(Exercise.Name name, Exercise.Type type) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, VocabularyFragment.class, VocabularyFragment.argsOf(name))
+                .replace(R.id.main_container, VocabularyFragment.class, VocabularyFragment.argsOf(name, type))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();

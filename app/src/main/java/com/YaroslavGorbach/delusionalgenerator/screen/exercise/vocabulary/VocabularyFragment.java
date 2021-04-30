@@ -21,9 +21,10 @@ public class VocabularyFragment extends Fragment{
 
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
 
-    public static Bundle argsOf(Exercise.Name name){
+    public static Bundle argsOf(Exercise.Name name, Exercise.Type type){
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
+        bundle.putSerializable("type", type);
         return bundle;
     }
 
@@ -32,9 +33,11 @@ public class VocabularyFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
+        Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
+
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
-                new VocabularyVm.VocabularyVmFactory(repo, name, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
+                new VocabularyVm.VocabularyVmFactory(repo, name, type, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
 
         // init view
         VocabularyView v = new VocabularyView(FragmentVocabularyBinding.bind(view), new VocabularyView.Callback() {
@@ -45,6 +48,7 @@ public class VocabularyFragment extends Fragment{
             public void onClick() { vm.vocabularyEx.onClick(); }
 
         });
+
         v.setTitle(getString(name.getNameId()));
         v.setShortDesc(getString(vm.vocabularyEx.getShortDescId()));
         vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), v::setTimerValue);

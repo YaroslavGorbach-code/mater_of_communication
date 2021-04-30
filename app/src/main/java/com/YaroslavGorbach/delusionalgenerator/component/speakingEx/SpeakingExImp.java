@@ -61,8 +61,8 @@ public class SpeakingExImp implements SpeakingEx {
         mClickCount++;
         if (mExercise.getCategory() == Exercise.Category.TONGUE_TWISTER) {
             if (mClickCount >= mExercise.getShortDescIds().length) {
-                mClickCount = 0;
                 setWord();
+                mClickCount = 0;
             }
         } else {
             setWord();
@@ -84,7 +84,6 @@ public class SpeakingExImp implements SpeakingEx {
     public LiveData<Pair<Integer, Integer>> getDoneAndAim() {
         return mDoneAndAim;
     }
-
 
     @Override
     public void saveStatistics() {

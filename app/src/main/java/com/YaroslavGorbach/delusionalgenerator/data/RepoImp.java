@@ -113,6 +113,7 @@ public class RepoImp implements Repo {
         Observable.fromIterable(training.exercises).map(exNew -> {
             if (exercise.getName() == exNew.getName()){
                 exNew.done = exercise.done;
+                Log.v("done", ""+ exNew.done);
             }
             return exNew;
         }).toList().subscribe(trainingExes -> {
@@ -151,9 +152,10 @@ public class RepoImp implements Repo {
         exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
         for (Exercise e : exercises) {
             e.type = Exercise.Type.DAILY;
-            e.aim = random.nextInt(10);
-            if (e.aim==0)
-                e.aim = 1;
+            if (e.getCategory() == Exercise.Category.SPEAKING) e.aim = random.nextInt(10);
+            if (e.getCategory() == Exercise.Category.TONGUE_TWISTER) e.aim = random.nextInt(5);
+            if (e.getCategory() == Exercise.Category.VOCABULARY) e.aim = 1;
+            if (e.aim==0) e.aim = 1;
         }
         return exercises;
     }
