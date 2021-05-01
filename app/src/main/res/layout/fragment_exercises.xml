@@ -28,7 +28,7 @@
 
             <include
                 android:id="@+id/training"
-                layout="@layout/daily_training_layout"
+                layout="@layout/training_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

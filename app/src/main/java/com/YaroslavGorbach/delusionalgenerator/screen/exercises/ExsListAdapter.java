@@ -46,9 +46,9 @@ public class ExsListAdapter extends ListAdapter<Exercise, ExsListAdapter.ExsVh> 
         }
 
         public void bind(Exercise item) {
-            binding.itemName.setText(itemView.getContext().getString(item.getName().getNameId()));
-            binding.itemCategory.setText(item.getCategory().getName());
-            Glide.with(itemView.getContext()).load(item.getImageId()).into(binding.itemImage);
+            binding.name.setText(itemView.getContext().getString(item.getName().getNameId()));
+            binding.category.setText(item.getCategory().getName());
+            Glide.with(itemView.getContext()).load(item.getImageId()).into(binding.image);
         }
     }
 

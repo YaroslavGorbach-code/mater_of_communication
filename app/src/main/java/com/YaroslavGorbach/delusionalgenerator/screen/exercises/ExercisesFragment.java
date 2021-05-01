@@ -46,7 +46,7 @@ public class ExercisesFragment extends Fragment {
         binding.training.item.setOnClickListener(v -> ((Navigation)requireActivity()).openTraining());
         vm.training.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(training -> {
-                    binding.training.itemDays.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
+                    binding.training.days.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
                     binding.training.progressIndicator.setProgress(training.getProgress());
         });
     }

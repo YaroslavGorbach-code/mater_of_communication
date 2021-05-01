@@ -12,28 +12,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDailyTrainingBinding;
+import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public class TrainingFragment extends Fragment {
     public TrainingFragment(){
-        super(R.layout.fragment_daily_training);
+        super(R.layout.fragment_training);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FragmentDailyTrainingBinding binding = FragmentDailyTrainingBinding.bind(view);
+        FragmentTrainingBinding binding = FragmentTrainingBinding.bind(view);
 
         // init vm
         TrainingVm vm = new ViewModelProvider(this,
                 new TrainingVm.DailyTrainingVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(TrainingVm.class);
 
-        // init app bar
-        binding.toolbar.setNavigationOnClickListener(v ->
-                ((Navigation)requireActivity()).up());
 
         // init list
         TrainingListAdapter adapter = new TrainingListAdapter(exercise -> {
@@ -41,9 +38,14 @@ public class TrainingFragment extends Fragment {
             ((Navigation)requireActivity()).openDescription(exercise.getName(), Exercise.Type.DAILY);
         });
 
+        // init app bar
+        binding.training.close.setVisibility(View.VISIBLE);
+        binding.training.close.setOnClickListener(v-> ((Navigation)requireActivity()).up());
         vm.training.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dailyTrainingM -> {
-                    adapter.submitList(dailyTrainingM.exercises);
+                .subscribe(training -> {
+                    adapter.submitList(training.exercises);
+                    binding.training.days.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
+                    binding.training.progressIndicator.setProgress(training.getProgress());
                 });
 
         binding.exercises.setAdapter(adapter);
