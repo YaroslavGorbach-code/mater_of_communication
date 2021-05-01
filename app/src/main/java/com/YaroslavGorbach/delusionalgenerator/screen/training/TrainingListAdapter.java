@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.databinding.ItemDailyTrainingExBinding;
+import com.YaroslavGorbach.delusionalgenerator.databinding.ItemTrainingExBinding;
 
 
 public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapter.Vh> {
@@ -28,8 +28,8 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
     @NonNull
     @Override
     public Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Vh(ItemDailyTrainingExBinding.bind(LayoutInflater.from(
-                parent.getContext()).inflate(R.layout.item_daily_training_ex, parent, false)));
+        return new Vh(ItemTrainingExBinding.bind(LayoutInflater.from(
+                parent.getContext()).inflate(R.layout.item_training_ex, parent, false)));
     }
 
     @Override
@@ -38,9 +38,9 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
     }
 
     public class Vh extends RecyclerView.ViewHolder {
-        final ItemDailyTrainingExBinding mBinding;
+        final ItemTrainingExBinding mBinding;
 
-        public Vh(ItemDailyTrainingExBinding binding) {
+        public Vh(ItemTrainingExBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
             binding.item.setOnClickListener(v -> mListener.onClick(getItem(getBindingAdapterPosition())));

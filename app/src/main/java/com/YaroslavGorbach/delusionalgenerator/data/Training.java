@@ -39,11 +39,15 @@ public class Training {
                         return this.progress;
                     })
                     .map(progress ->{
-                        if (progress > 97) return 100;
+                        if (progress == 99) return 100;
                         else return progress;
                     }).blockingLast(0);
         }else {
             return 0;
         }
+    }
+
+    public boolean getIsOver(){
+        return !Observable.fromIterable(exercises).any(exercise -> exercise.done != exercise.aim).blockingGet();
     }
 }

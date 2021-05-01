@@ -46,6 +46,10 @@ public class TrainingFragment extends Fragment {
                     adapter.submitList(training.exercises);
                     binding.training.days.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
                     binding.training.progressIndicator.setProgress(training.getProgress());
+                    if (training.getIsOver()){
+                        binding.exercises.setVisibility(View.GONE);
+                        binding.trainingIsOver.setVisibility(View.VISIBLE);
+                    }
                 });
 
         binding.exercises.setAdapter(adapter);

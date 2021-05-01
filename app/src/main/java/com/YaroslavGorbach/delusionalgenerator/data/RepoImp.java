@@ -86,7 +86,7 @@ public class RepoImp implements Repo {
         Date currentTime = new Date();
         return mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
             if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) >= 1) {
-                if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || training.getProgress() < 100)
+                if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || !training.getIsOver())
                     training.days = 0;
                 Training trainingNew = new Training(
                         currentTime,
@@ -111,7 +111,7 @@ public class RepoImp implements Repo {
         }).toList().blockingGet();
         training.exercises.clear();
         training.exercises.addAll(newList);
-        if (training.getProgress() == 100) training.days++;
+        if (training.getIsOver()) training.days++;
         mDatabase.dailyTrainingDao().insert(training);
     }
 
@@ -137,10 +137,10 @@ public class RepoImp implements Repo {
         exercises.add(getExercise(Exercise.Name.BUYING_SELLING));
         exercises.add((getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS)));
         exercises.add((getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT)));
-        exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
-        exercises.add((getExercise(Exercise.Name.VERBS)));
-        exercises.add((getExercise(Exercise.Name.NOUNS)));
-        exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
+//        exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
+//        exercises.add((getExercise(Exercise.Name.VERBS)));
+//        exercises.add((getExercise(Exercise.Name.NOUNS)));
+//        exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
         for (Exercise e : exercises) {
             e.type = Exercise.Type.DAILY;
             if (e.getCategory() == Exercise.Category.SPEAKING) e.aim = random.nextInt(10);
