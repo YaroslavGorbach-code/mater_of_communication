@@ -15,9 +15,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @androidx.room.Database(entities = {Statistics.class, Training.class},  version = 21)
-@TypeConverters({Database.NameToString.class, Database.ListToString.class})
+@TypeConverters({Database.NameToString.class, Database.ListToString.class, Database.DateToLong.class})
 public abstract class Database extends RoomDatabase {
     private static Database sInstance = null;
     public abstract StatisticsDao statisticsDao();
@@ -68,6 +69,21 @@ public abstract class Database extends RoomDatabase {
         @TypeConverter
         public static String fromArrayList(ArrayList<Exercise> list) {
             return new Gson().toJson(list);
+        }
+
+    }
+
+    public static class DateToLong {
+        @TypeConverter
+        public static Date fromLong(long value) {
+            Date date = new Date();
+            date.setTime(value);
+            return date;
+        }
+
+        @TypeConverter
+        public static long fromDate(Date date) {
+            return date.getTime();
         }
 
     }

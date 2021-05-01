@@ -83,10 +83,11 @@ public class RepoImp implements Repo {
 
     @Override
     public Observable<Training> getTraining() {
-        long currentTime = new Date().getTime();
-        String currentDate = TimeUtil.formatShort(currentTime);
+        Date currentTime = new Date();
         return mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
-            if (training != null && !TimeUtil.formatShort(training.date).equals(currentDate)) {
+            if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) >= 1) {
+                if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || training.getProgress() < 100)
+                    training.days = 0;
                 Training trainingNew = new Training(
                         currentTime,
                         training.days,
@@ -100,12 +101,13 @@ public class RepoImp implements Repo {
     }
 
     @Override
-    public void updateTrainingDone(Exercise exercise) {
+    public void updateTrainingEx(Exercise exercise) {
         Training training = getTraining().blockingFirst();
-       List<Exercise> newList = Observable.fromIterable(training.exercises).map(exNew -> {
+        List<Exercise> newList = Observable.fromIterable(training.exercises).map(exNew -> {
             if (exercise.getName() == exNew.getName()) {
                 exNew.done = exercise.done;
             }
+            if (training.getProgress() >= 100) training.days++;
             return exNew;
         }).toList().blockingGet();
         training.exercises.clear();

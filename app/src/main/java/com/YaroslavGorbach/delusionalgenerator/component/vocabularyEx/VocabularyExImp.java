@@ -47,7 +47,7 @@ public class VocabularyExImp implements VocabularyEx{
     public Result getResultState() {
         if (mExercise.type == Exercise.Type.DAILY){
             mExercise.done ++;
-            mRepo.updateTrainingDone(mExercise);
+            mRepo.updateTrainingEx(mExercise);
         }
         Result result;
         if (mClickCount.getValue()<25){

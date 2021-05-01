@@ -21,7 +21,7 @@ public interface Repo {
     void deleteRecord(Record record);
     Single<List<Record>> getRecordsFromFile(Context context);
     Observable<Training> getTraining();
-    void updateTrainingDone(Exercise exercise);
+    void updateTrainingEx(Exercise exercise);
     int getTrainingExDone(Exercise exercise);
     int getTrainingExAim(Exercise exercise);
 

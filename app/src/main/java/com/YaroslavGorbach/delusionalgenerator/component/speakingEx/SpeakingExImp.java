@@ -118,7 +118,7 @@ public class SpeakingExImp implements SpeakingEx {
                 if ( mClickCount > 0)
                     mExercise.done++;
                 mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
-                mRepo.updateTrainingDone(mExercise);
+                mRepo.updateTrainingEx(mExercise);
             }
         }
         mStatisticsManager.calNumberWords();

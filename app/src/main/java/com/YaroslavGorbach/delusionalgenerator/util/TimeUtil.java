@@ -44,9 +44,8 @@ public class TimeUtil {
         return format.format(millis);
     }
 
-    public static String formatShort(long millis){
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
-        return format.format(millis);
+    public static long getDaysBetween(long start, long end){
+        return TimeUnit.DAYS.convert(end - start, TimeUnit.MILLISECONDS);
     }
 
 }
