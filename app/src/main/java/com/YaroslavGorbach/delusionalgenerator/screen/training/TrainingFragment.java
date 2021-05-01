@@ -48,8 +48,8 @@ public class TrainingFragment extends Fragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-       // mBag.dispose();
+    public void onDestroy() {
+        super.onDestroy();
+        mBag.dispose();
     }
 }

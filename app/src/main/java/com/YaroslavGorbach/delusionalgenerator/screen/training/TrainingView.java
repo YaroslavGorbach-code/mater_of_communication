@@ -19,7 +19,7 @@ public class TrainingView {
 
     public TrainingView(FragmentTrainingBinding binding, Callback callback){
         mBinding = binding;
-        mAdapter= new TrainingListAdapter(callback::onTraining);
+        mAdapter = new TrainingListAdapter(callback::onTraining);
         binding.exercises.setAdapter(mAdapter);
         binding.exercises.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.training.close.setVisibility(View.VISIBLE);
