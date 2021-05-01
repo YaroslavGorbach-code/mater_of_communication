@@ -28,9 +28,15 @@ public class Training {
         this.days = days;
     }
 
-    public Observable<Integer> getProgress() {
+    public Integer getProgress() {
        return Observable.fromIterable(exercises)
                .flatMap((Function<Exercise, ObservableSource<Integer>>) exercise -> Observable.just(exercise.getProgress()))
-               .map(progress -> this.progress = this.progress + progress/exercises.size());
+               .map(progress -> this.progress = this.progress + progress/exercises.size())
+                .map(progress ->{
+                    Log.v("progress", "" + progress);
+                    if (progress > 97) return 100;
+                    else return progress;
+                })
+               .blockingLast(0);
     }
 }

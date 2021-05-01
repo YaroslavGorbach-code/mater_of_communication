@@ -20,8 +20,6 @@ public class ExercisesVm extends ViewModel {
         exercises = repo.getExercises();
     }
 
-
-
     public static class ExercisesVmFactory extends ViewModelProvider.NewInstanceFactory {
         private final Repo repo;
 

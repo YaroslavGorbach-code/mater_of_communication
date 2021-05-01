@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,7 @@ public class ExercisesFragment extends Fragment {
         vm.training.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(training -> {
                     binding.training.itemDays.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
-                    training.getProgress().subscribe(binding.training.progressIndicator::setProgress);
+                    binding.training.progressIndicator.setProgress(training.getProgress());
         });
     }
 }

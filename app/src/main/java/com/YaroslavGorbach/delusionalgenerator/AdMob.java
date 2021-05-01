@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.util;
+package com.YaroslavGorbach.delusionalgenerator;
 
 import android.content.Context;
 import android.content.SharedPreferences;

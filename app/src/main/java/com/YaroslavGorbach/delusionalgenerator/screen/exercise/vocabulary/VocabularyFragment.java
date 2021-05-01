@@ -18,7 +18,6 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 public class VocabularyFragment extends Fragment{
-
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
 
     public static Bundle argsOf(Exercise.Name name, Exercise.Type type){

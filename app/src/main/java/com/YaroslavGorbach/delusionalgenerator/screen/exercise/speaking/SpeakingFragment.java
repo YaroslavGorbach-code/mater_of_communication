@@ -14,7 +14,7 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBindi
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
-import com.YaroslavGorbach.delusionalgenerator.util.Permissions;
+import com.YaroslavGorbach.delusionalgenerator.util.PermissionsUtil;
 
 public class SpeakingFragment extends Fragment {
 
@@ -55,7 +55,7 @@ public class SpeakingFragment extends Fragment {
 
             @Override
             public void onStartStopRecord() {
-                if (Permissions.checkRecordPermission(requireActivity())){
+                if (PermissionsUtil.checkRecordPermission(requireActivity())){
                     vm.speakingEx.onStartStopRecord(requireContext());
                 }
             }

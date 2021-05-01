@@ -1,7 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.component.recordsList;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,11 +15,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RecordsListImp implements RecordsList {
     private final MediaPlayer mMediaPlayer;
@@ -100,11 +96,11 @@ public class RecordsListImp implements RecordsList {
     @Override
     public void onSkipNext() {
         List<Record> records = Objects.requireNonNull(mRecords.getValue());
-        for (int i = 0; i < records.size()-1; i++) {
-            if (mMediaPlayer.getRecord()!=null
+        for (int i = 0; i < records.size() - 1; i++) {
+            if (mMediaPlayer.getRecord() != null
                     && records.get(i).getName().equals(mMediaPlayer.getRecord().getName())
-                    && i+1!=records.size()) {
-                mMediaPlayer.play(records.get(i+1));
+                    && i + 1 != records.size()) {
+                mMediaPlayer.play(records.get(i + 1));
                 break;
             }
         }
@@ -114,11 +110,11 @@ public class RecordsListImp implements RecordsList {
     @Override
     public void onSkipPrevious() {
         List<Record> records = Objects.requireNonNull(mRecords.getValue());
-        for (int i = 0; i <records.size(); i++) {
-            if (mMediaPlayer.getRecord()!=null
+        for (int i = 0; i < records.size(); i++) {
+            if (mMediaPlayer.getRecord() != null
                     && records.get(i).getName().equals(mMediaPlayer.getRecord().getName())
-                    && i-1!=-1) {
-                mMediaPlayer.play(records.get(i-1));
+                    && i - 1 != -1) {
+                mMediaPlayer.play(records.get(i - 1));
                 break;
             }
         }
@@ -133,7 +129,7 @@ public class RecordsListImp implements RecordsList {
 
     @Override
     public LiveData<Integer> getDuration() {
-       return mMediaPlayer.getDuration();
+        return mMediaPlayer.getDuration();
     }
 
     @Override

@@ -12,8 +12,6 @@ public class Record {
     public boolean isPlaying = false;
     public boolean isPause = false;
 
-
-
     public Record(File file) {
         this.file = file;
         lastModified = file.lastModified();

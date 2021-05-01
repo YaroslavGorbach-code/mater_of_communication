@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsManagerImp implements StatisticsManager {
-
     private int mNumberWords = 0;
     private long mTimeStart = 0;
     private final List<Long> mValues = new ArrayList<>();

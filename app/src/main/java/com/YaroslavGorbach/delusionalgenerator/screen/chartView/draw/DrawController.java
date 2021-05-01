@@ -14,8 +14,8 @@ import com.YaroslavGorbach.delusionalgenerator.screen.chartView.animation.data.A
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.Chart;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.DrawData;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.utils.DateUtils;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.utils.ValueUtils;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
 import java.util.List;
 
@@ -114,7 +114,7 @@ public class DrawController {
 		for (int i = 0; i < inputDataList.size(); i++) {
 
 			InputData inputData = inputDataList.get(i);
-			String date = DateUtils.format(inputData.getMillis());
+			String date = TimeUtil.formatDD(inputData.getMillis());
 			int dateWidth = (int) frameTextPaint.measureText(date);
 
 			int x;

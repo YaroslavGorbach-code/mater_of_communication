@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 
 import androidx.core.app.ActivityCompat;
 
-public class Permissions {
+public class PermissionsUtil {
     private static final String recordPermission = Manifest.permission.RECORD_AUDIO;
     private static final int PERMISSION_CODE = 21;
 

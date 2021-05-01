@@ -20,8 +20,6 @@ import java.util.Objects;
 
 public class FinishDialog extends DialogFragment {
     // TODO: 4/17/2021 translate
-
-
     public static Bundle argsOf(VocabularyEx.Result result) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("result", result);

@@ -33,7 +33,7 @@ public class Exercise {
     }
 
     public int getProgress(){
-        if (done!= 0 && done % aim == 0){
+        if (done!= 0 && done % aim == 0 || done == aim){
             return 100;
         }else {
             return (done % aim) * 10;
@@ -62,7 +62,7 @@ public class Exercise {
     public enum Category {
         SPEAKING("Для развития комуникабельности"),
         VOCABULARY("Для увеличения словарного запаса"),
-        TONGUE_TWISTER("Для развития четкости речи");
+        TONGUE_TWISTER("Для улутьшения четкости речи");
         private final String name;
         public String getName(){ return name; }
         Category(String name){

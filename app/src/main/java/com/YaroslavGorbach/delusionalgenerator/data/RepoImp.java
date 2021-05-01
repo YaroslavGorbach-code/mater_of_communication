@@ -2,26 +2,21 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Build;
-import android.util.Log;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.utils.DateUtils;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
@@ -78,23 +73,20 @@ public class RepoImp implements Repo {
     @Override
     public Single<List<Record>> getRecordsFromFile(Context context) {
         File files = new File(context.getExternalFilesDir("/").getAbsolutePath());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Observable.fromArray(files.listFiles())
-                    .map(Record::new)
-                    .toSortedList(Comparator.comparingLong(Record::getLastModified).reversed());
-        } else {
-            return Observable.fromArray(files.listFiles())
-                    .map(Record::new)
-                    .toList();
-        }
+        return Observable.fromArray(files.listFiles())
+                .map(Record::new)
+                .toSortedList((o1, o2) -> {
+                    if (o1.getLastModified() < o2.getLastModified()) return 1;
+                    else return 0;
+                });
     }
 
     @Override
     public Observable<Training> getTraining() {
         long currentTime = new Date().getTime();
-        String currentDate = DateUtils.format(currentTime);
+        String currentDate = TimeUtil.formatShort(currentTime);
         return mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
-            if (training != null && !DateUtils.format(training.date).equals(currentDate)) {
+            if (training != null && !TimeUtil.formatShort(training.date).equals(currentDate)) {
                 Training trainingNew = new Training(
                         currentTime,
                         training.days,
@@ -110,17 +102,15 @@ public class RepoImp implements Repo {
     @Override
     public void updateTrainingDone(Exercise exercise) {
         Training training = getTraining().blockingFirst();
-        Observable.fromIterable(training.exercises).map(exNew -> {
-            if (exercise.getName() == exNew.getName()){
+       List<Exercise> newList = Observable.fromIterable(training.exercises).map(exNew -> {
+            if (exercise.getName() == exNew.getName()) {
                 exNew.done = exercise.done;
-                Log.v("done", ""+ exNew.done);
             }
             return exNew;
-        }).toList().subscribe(trainingExes -> {
-            training.exercises.clear();
-            training.exercises.addAll(trainingExes);
-            mDatabase.dailyTrainingDao().insert(training);
-        });
+        }).toList().blockingGet();
+        training.exercises.clear();
+        training.exercises.addAll(newList);
+        mDatabase.dailyTrainingDao().insert(training);
     }
 
 
@@ -129,7 +119,6 @@ public class RepoImp implements Repo {
         Training training = getTraining().blockingFirst();
         return Observable.fromIterable(training.exercises).filter(exercise1 ->
                 exercise1.getName() == exercise.getName()).blockingFirst().done;
-
     }
 
     @Override
@@ -155,7 +144,7 @@ public class RepoImp implements Repo {
             if (e.getCategory() == Exercise.Category.SPEAKING) e.aim = random.nextInt(10);
             if (e.getCategory() == Exercise.Category.TONGUE_TWISTER) e.aim = random.nextInt(5);
             if (e.getCategory() == Exercise.Category.VOCABULARY) e.aim = 1;
-            if (e.aim==0) e.aim = 1;
+            if (e.aim == 0) e.aim = 1;
         }
         return exercises;
     }

@@ -1,5 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.util;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,6 @@ public class TimeUtil {
         } else {
             return days + " days ago";
         }
-
     }
 
     public static String getFileDuration(File file){
@@ -37,6 +37,16 @@ public class TimeUtil {
         return String.format(Locale.US,"%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(durationL),
                 TimeUnit.MILLISECONDS.toMinutes(durationL) % TimeUnit.HOURS.toMinutes(1),
                 TimeUnit.MILLISECONDS.toSeconds(durationL) % TimeUnit.MINUTES.toSeconds(1));
+    }
+
+    public static String formatDD(long millis){
+        SimpleDateFormat format = new SimpleDateFormat("dd", Locale.getDefault());
+        return format.format(millis);
+    }
+
+    public static String formatShort(long millis){
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
+        return format.format(millis);
     }
 
 }
