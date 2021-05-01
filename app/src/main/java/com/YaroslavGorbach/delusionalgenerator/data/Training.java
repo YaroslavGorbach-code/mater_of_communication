@@ -34,7 +34,10 @@ public class Training {
         if (exercises !=null) {
             return Observable.fromIterable(exercises)
                     .flatMap((Function<Exercise, ObservableSource<Integer>>) exercise -> Observable.just(exercise.getProgress()))
-                    .map(progress -> this.progress = this.progress + progress/exercises.size())
+                    .map(progress -> {
+                        this.progress = this.progress + progress/exercises.size();
+                        return this.progress;
+                    })
                     .map(progress ->{
                         if (progress > 97) return 100;
                         else return progress;
