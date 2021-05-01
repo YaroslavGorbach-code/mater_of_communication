@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
@@ -16,44 +15,41 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBindi
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class TrainingFragment extends Fragment {
     public TrainingFragment(){
         super(R.layout.fragment_training);
     }
 
+    private final CompositeDisposable mBag = new CompositeDisposable();
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FragmentTrainingBinding binding = FragmentTrainingBinding.bind(view);
 
         // init vm
         TrainingVm vm = new ViewModelProvider(this,
                 new TrainingVm.DailyTrainingVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(TrainingVm.class);
 
-
-        // init list
-        TrainingListAdapter adapter = new TrainingListAdapter(exercise -> {
+        // init view
+        TrainingView v = new TrainingView(FragmentTrainingBinding.bind(view), new TrainingView.Callback() {
+            @Override
+            public void onTraining(Exercise exercise) {
                 if (exercise.done != exercise.aim)
-            ((Navigation)requireActivity()).openDescription(exercise.getName(), Exercise.Type.DAILY);
+                    ((Navigation)requireActivity()).openDescription(exercise.getName(), Exercise.Type.DAILY);
+            }
+
+            @Override
+            public void onUp() { ((Navigation)requireActivity()).up(); }
         });
 
-        // init app bar
-        binding.training.close.setVisibility(View.VISIBLE);
-        binding.training.close.setOnClickListener(v-> ((Navigation)requireActivity()).up());
-        vm.training.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(training -> {
-                    adapter.submitList(training.exercises);
-                    binding.training.days.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
-                    binding.training.progressIndicator.setProgress(training.getProgress());
-                    if (training.getIsOver()){
-                        binding.exercises.setVisibility(View.GONE);
-                        binding.trainingIsOver.setVisibility(View.VISIBLE);
-                    }
-                });
+        mBag.add(vm.training.observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));
+    }
 
-        binding.exercises.setAdapter(adapter);
-        binding.exercises.setLayoutManager(new LinearLayoutManager(requireContext()));
-
+    @Override
+    public void onStop() {
+        super.onStop();
+       // mBag.dispose();
     }
 }
