@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
+
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
@@ -19,32 +20,20 @@ import com.google.android.material.transition.MaterialFade;
 import java.util.List;
 
 public class RecordsView {
-    public interface Callback{
-        void onRecord(Record record);
-        void onSkipNext();
-        void onSkipPrevious();
-        void onPause();
-        void onResume();
-        void onSeekTo(int progress);
-        void onRemove(Record record);
-    }
-
-    public interface ItemSwipeCallback{
-        void onSwipe(RecyclerView.ViewHolder viewHolder);
-    }
-
     private final RecordsAdapter mAdapter;
     private final FragmentRecordsBinding mBinding;
     private boolean mIsPlaying = false;
-
-    public RecordsView(FragmentRecordsBinding binding, Callback callback){
+    public RecordsView(FragmentRecordsBinding binding, Callback callback) {
         mBinding = binding;
         binding.player.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { }
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { callback.onPause(); }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                callback.onPause();
+            }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -52,17 +41,17 @@ public class RecordsView {
                 callback.onResume();
             }
         });
-        mBinding.player.startPause.setOnClickListener(v-> {
-            if (mIsPlaying){
+        mBinding.player.startPause.setOnClickListener(v -> {
+            if (mIsPlaying) {
                 callback.onPause();
-            }else {
+            } else {
                 callback.onResume();
             }
         });
-        mBinding.player.skipNext.setOnClickListener(v-> callback.onSkipNext());
-        mBinding.player.skipPrevious.setOnClickListener(v-> callback.onSkipPrevious());
+        mBinding.player.skipNext.setOnClickListener(v -> callback.onSkipNext());
+        mBinding.player.skipPrevious.setOnClickListener(v -> callback.onSkipPrevious());
 
-        mAdapter = new RecordsAdapter(record ->{
+        mAdapter = new RecordsAdapter(record -> {
             callback.onRecord(record);
             binding.player.recordName.setText(record.getName());
             setPlayerVisibility(binding.player.getRoot(), binding.getRoot(), true);
@@ -70,6 +59,7 @@ public class RecordsView {
 
         SwipeDeleteDecor swipeDeleteDecor = new SwipeDeleteDecor(new ItemSwipeCallback() {
             boolean undo = false;
+
             @Override
             public void onSwipe(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getBindingAdapterPosition();
@@ -81,23 +71,22 @@ public class RecordsView {
                 Snackbar.make(binding.getRoot(), "Запись удалена", Snackbar.LENGTH_LONG)
                         .setAction("ОТМЕНА", v -> {
                             mAdapter.getData().add(position, item);
-                            mAdapter.notifyDataSetChanged();
+                            setRecords(mAdapter.getData());
                             undo = true;
                         })
-                        .addCallback(new Snackbar.Callback(){
+                        .addCallback(new Snackbar.Callback() {
                             @Override
                             public void onDismissed(Snackbar transientBottomBar, int event) {
                                 super.onDismissed(transientBottomBar, event);
-                                if (!undo){
-                                    if (item.isPlaying || item.isPause)
-                                        setPlayerVisibility(binding.player.getRoot(), binding.getRoot(), false);
+                                if (!undo) {
                                     callback.onRemove(item);
+                                    setRecords(mAdapter.getData());
                                 }
                             }
                         })
                         .show();
             }
-        },ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.delete_record_hint_bg));
+        }, ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.delete_record_hint_bg));
 
         binding.recordsList.addItemDecoration(swipeDeleteDecor);
         swipeDeleteDecor.attachToRecyclerView(binding.recordsList);
@@ -105,38 +94,68 @@ public class RecordsView {
         binding.recordsList.setAdapter(mAdapter);
 
     }
-    public void setRecords(List<Record> records){
-        mAdapter.setData(records);
+
+    public void setRecords(List<Record> records) {
+        if (records.isEmpty()) {
+            mBinding.noRecords.setVisibility(View.VISIBLE);
+            mBinding.recordsList.setVisibility(View.GONE);
+            setPlayerVisibility(mBinding.player.getRoot(), mBinding.getRoot(), false);
+        } else {
+            mBinding.noRecords.setVisibility(View.GONE);
+            mBinding.recordsList.setVisibility(View.VISIBLE);
+            mAdapter.setData(records);
+        }
     }
 
-    public void setIsPlaying(boolean isPlaying){
+    public void setIsPlaying(boolean isPlaying) {
         mIsPlaying = isPlaying;
-        if (isPlaying){
+        if (isPlaying) {
             mBinding.player.startPause.setImageResource(R.drawable.ic_pause_round);
-        }else {
+        } else {
             mBinding.player.startPause.setImageResource(R.drawable.ic_play_round);
         }
     }
 
-    public void setDuration(int duration){
+    public void setDuration(int duration) {
         mBinding.player.seekBar.setMax(duration);
     }
 
-    public void setProgress(int progress){
+    public void setProgress(int progress) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mBinding.player.seekBar.setProgress(progress, true);
-        }else {
+        } else {
             mBinding.player.seekBar.setProgress(progress);
         }
     }
 
-
-    private void setPlayerVisibility(View view, ViewGroup viewGroup, boolean isVisible){
+    private void setPlayerVisibility(View view, ViewGroup viewGroup, boolean isVisible) {
         Transition transition = new MaterialFade();
         transition.setDuration(400);
         transition.addTarget(R.id.player);
         TransitionManager.beginDelayedTransition(viewGroup, transition);
-        if (isVisible) view.setVisibility(View.VISIBLE); else view.setVisibility(View.GONE);
+        if (isVisible) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.GONE);
+    }
+
+    public interface Callback {
+        void onRecord(Record record);
+
+        void onSkipNext();
+
+        void onSkipPrevious();
+
+        void onPause();
+
+        void onResume();
+
+        void onSeekTo(int progress);
+
+        void onRemove(Record record);
+    }
+
+
+    public interface ItemSwipeCallback {
+        void onSwipe(RecyclerView.ViewHolder viewHolder);
     }
 
 }

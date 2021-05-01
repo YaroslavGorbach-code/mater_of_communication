@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Упражнения по категориям"
         android:textSize="18sp"
-        android:paddingHorizontal="8dp"
+        android:paddingHorizontal="16dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
