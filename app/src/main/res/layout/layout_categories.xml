@@ -37,10 +37,10 @@
 
             <ImageView
                 android:id="@+id/image_speaking"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:padding="8dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_lp"
                 tool:ignore="ContentDescription" />
 
@@ -100,12 +100,12 @@
 
             <ImageView
                 android:id="@+id/image_vocabulary"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:padding="8dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 tool:ignore="ContentDescription"
-                android:src="@drawable/ic_lp" />
+                android:src="@drawable/ic_open_book" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name_vocabulary"
@@ -166,10 +166,10 @@
 
             <ImageView
                 android:id="@+id/image_tt"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:padding="8dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_lp"
                 tool:ignore="ContentDescription" />
 
