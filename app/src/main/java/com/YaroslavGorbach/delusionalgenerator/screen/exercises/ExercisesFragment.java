@@ -19,6 +19,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class ExercisesFragment extends Fragment {
     public interface Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
+        void openExsByCategory(Exercise.Category category);
         void openTraining();
     }
 
@@ -42,13 +43,21 @@ public class ExercisesFragment extends Fragment {
             }
 
             @Override
+            public void onCategory(Exercise.Category category) {
+                ((Router) requireParentFragment()).openExsByCategory(category);
+            }
+
+            @Override
             public void onTraining() {
                 ((Router) requireParentFragment()).openTraining();
             }
 
         });
-        v.setExercises(vm.exercises);
-        mBag.add(vm.training.observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));
+        v.setExercises(vm.exercises.getExercises());
+        v.setSpeakingCount(vm.exercises.getExercises(Exercise.Category.SPEAKING).size());
+        v.setVocabularyCount(vm.exercises.getExercises(Exercise.Category.VOCABULARY).size());
+        v.setTongueTwistersCount(vm.exercises.getExercises(Exercise.Category.TONGUE_TWISTER).size());
+        mBag.add(vm.exercises.getTraining().observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));
     }
 
     @Override

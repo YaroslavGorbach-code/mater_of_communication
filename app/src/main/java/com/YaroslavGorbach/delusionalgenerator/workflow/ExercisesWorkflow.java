@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercises.bycategory.ByCategoryFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment;
 
-public class ExercisesWorkflow extends Fragment implements ExercisesFragment.Router {
+public class ExercisesWorkflow extends Fragment implements ExercisesFragment.Router, ByCategoryFragment.Router {
 
     public interface Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
@@ -34,6 +36,18 @@ public class ExercisesWorkflow extends Fragment implements ExercisesFragment.Rou
     @Override
     public void openExercise(Exercise.Name name, Exercise.Type type) {
        ((Router)requireParentFragment()).openExercise(name, type);
+    }
+
+    @Override
+    public void openExsByCategory(Exercise.Category category) {
+        Fragment fragment = new ByCategoryFragment();
+        fragment.setArguments(ByCategoryFragment.argsOf(category));
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.exercises_container, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

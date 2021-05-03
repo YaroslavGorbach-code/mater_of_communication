@@ -34,6 +34,14 @@ public class RepoImp implements Repo {
     }
 
     @Override
+    public List<Exercise> getExercises(Exercise.Category category) {
+        return Observable.fromIterable(mExercises)
+                .filter(exercise -> exercise.getCategory() == category)
+                .toList()
+                .blockingGet();
+    }
+
+    @Override
     public Exercise getExercise(Exercise.Name name) {
         return Observable.fromIterable(mExercises)
                 .filter(exModel -> exModel.getName() == name)
@@ -342,7 +350,7 @@ public class RepoImp implements Repo {
         mExercises.add(new Exercise(
                 Exercise.Name.REMEMBER_ALL,
                 R.string.ex_remember_all_desc,
-                Exercise.Category.SPEAKING,
+                Exercise.Category.VOCABULARY,
                 R.drawable.ic_memory,
                 R.string.short_desc_remember_all));
 

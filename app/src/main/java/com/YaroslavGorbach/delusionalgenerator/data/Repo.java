@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Single;
 
 public interface Repo {
     List<Exercise> getExercises();
+    List<Exercise> getExercises(Exercise.Category category);
     Exercise getExercise(Exercise.Name name);
     List<String> getWords(WordType type, Resources resources);
     Observable<Statistics> getStatistics(Exercise.Name name);
@@ -24,6 +25,7 @@ public interface Repo {
     void updateTrainingEx(Exercise exercise);
     int getTrainingExDone(Exercise exercise);
     int getTrainingExAim(Exercise exercise);
+
 
 
     class RepoProvider{

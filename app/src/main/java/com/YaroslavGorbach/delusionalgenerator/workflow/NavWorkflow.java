@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 
 public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
@@ -15,8 +16,6 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
         void openTraining();
     }
-    private final Fragment mExercisesWorkflow = new ExercisesWorkflow();
-    private final Fragment mRecordsFragment = new RecordsFragment();
 
     public NavWorkflow(){
         super(R.layout.workflow_nav);
@@ -26,20 +25,14 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null){
+            Fragment fragment = new ExercisesWorkflow();
             getChildFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.nav_container, mExercisesWorkflow)
-                    .setPrimaryNavigationFragment(mExercisesWorkflow)
-                    .commit();
-
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.nav_container, mRecordsFragment, null)
-                    .setPrimaryNavigationFragment(mRecordsFragment)
-                    .hide(mRecordsFragment)
-                    .commit();
+                        .beginTransaction()
+                        .add(R.id.nav_container, fragment)
+                        .setPrimaryNavigationFragment(fragment)
+                        .commit();
+                }
         }
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -47,30 +40,26 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
        WorkflowNavBinding binding = WorkflowNavBinding.bind(view);
        binding.bottomNav.setOnNavigationItemSelectedListener(item -> {
            if (binding.bottomNav.getSelectedItemId() != item.getItemId()) {
+               Fragment fragment = new ExercisesWorkflow();
                switch (item.getItemId()){
                    case R.id.menu_nav_exercises:
-                       getChildFragmentManager()
-                               .beginTransaction()
-                               .hide(mRecordsFragment)
-                               .show(mExercisesWorkflow)
-                               .commit();
+                       fragment = new ExercisesWorkflow();
                        break;
                    case R.id.menu_nav_records:
-                       getChildFragmentManager()
-                               .beginTransaction()
-                               .hide(mExercisesWorkflow)
-                               .show(mRecordsFragment)
-                               .commit();
+                       fragment = new RecordsFragment();
                        break;
                }
-
+               getChildFragmentManager()
+                       .beginTransaction()
+                       .replace(R.id.nav_container, fragment)
+                       .setPrimaryNavigationFragment(fragment)
+                       .commit();
            } else {
                getChildFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
            }
            return true;
        });
     }
-
 
     @Override
     public void openExercise(Exercise.Name name, Exercise.Type type) {

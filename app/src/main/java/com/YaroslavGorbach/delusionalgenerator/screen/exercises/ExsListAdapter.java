@@ -14,11 +14,11 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.ItemExBinding;
 import com.bumptech.glide.Glide;
 
 public class ExsListAdapter extends ListAdapter<Exercise, ExsListAdapter.ExsVh> {
-    interface Listener{ void onClick(Exercise exercise);}
+    public interface Listener{ void onClick(Exercise exercise);}
 
     private final Listener mListener;
 
-    protected ExsListAdapter(Listener listener) {
+    public ExsListAdapter(Listener listener) {
         super(new DiffCallback());
         mListener = listener;
     }
@@ -48,7 +48,6 @@ public class ExsListAdapter extends ListAdapter<Exercise, ExsListAdapter.ExsVh> 
         public void bind(Exercise item) {
             binding.name.setText(itemView.getContext().getString(item.getName().getNameId()));
             binding.category.setText(item.getCategory().getName());
-            if (item.getName() == Exercise.Name.REMEMBER_ALL) binding.category.setText(Exercise.Category.VOCABULARY.getName());
             Glide.with(itemView.getContext()).load(item.getImageId()).into(binding.image);
         }
     }

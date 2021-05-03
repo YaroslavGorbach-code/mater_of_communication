@@ -68,7 +68,8 @@ public class DescriptionFragment extends Fragment {
                         ((Router) requireParentFragment()).openSpeaking(name, type);
                         break;
                     case VOCABULARY:
-                        ((Router) requireParentFragment()).openVocabulary(name, type);
+                        if (name == Exercise.Name.REMEMBER_ALL) ((Router) requireParentFragment()).openSpeaking(name, type);
+                        else ((Router) requireParentFragment()).openVocabulary(name, type);
                         break;
                 }
             }
