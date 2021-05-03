@@ -12,14 +12,17 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class ExercisesFragment extends Fragment {
-    private final CompositeDisposable mBag = new CompositeDisposable();
+    public interface Router{
+        void openExercise(Exercise.Name name, Exercise.Type type);
+        void openTraining();
+    }
 
+    private final CompositeDisposable mBag = new CompositeDisposable();
     public ExercisesFragment() {
         super(R.layout.fragment_exercises);
     }
@@ -35,12 +38,12 @@ public class ExercisesFragment extends Fragment {
         ExercisesView v = new ExercisesView(FragmentExercisesBinding.bind(view), new ExercisesView.Callback() {
             @Override
             public void onExercise(Exercise exercise) {
-                ((Navigation) requireActivity()).openDescription(exercise.getName(), Exercise.Type.COMMON);
+                ((Router) requireParentFragment()).openExercise(exercise.getName(), Exercise.Type.COMMON);
             }
 
             @Override
             public void onTraining() {
-                ((Navigation) requireActivity()).openTraining();
+                ((Router) requireParentFragment()).openTraining();
             }
 
         });

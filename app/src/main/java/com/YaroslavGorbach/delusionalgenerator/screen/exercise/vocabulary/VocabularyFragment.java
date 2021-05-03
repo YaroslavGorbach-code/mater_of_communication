@@ -15,7 +15,6 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBin
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 public class VocabularyFragment extends Fragment{
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
@@ -41,7 +40,7 @@ public class VocabularyFragment extends Fragment{
         // init view
         VocabularyView v = new VocabularyView(FragmentVocabularyBinding.bind(view), new VocabularyView.Callback() {
             @Override
-            public void onUp() { ((Navigation)requireActivity()).up(); }
+            public void onUp() { requireActivity().onBackPressed(); }
 
             @Override
             public void onClick() { vm.vocabularyEx.onClick(); }
@@ -56,7 +55,9 @@ public class VocabularyFragment extends Fragment{
         vm.vocabularyEx.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
             if (isFinis){
                 v.onTimerFinish();
-                ((Navigation)requireActivity()).showFinishDialog(vm.vocabularyEx.getResultState());
+                FinishDialog alertDialog = new FinishDialog();
+                alertDialog.setArguments(FinishDialog.argsOf(vm.vocabularyEx.getResultState()));
+                alertDialog.show(getChildFragmentManager(), "null");
             }
         });
     }

@@ -13,7 +13,6 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 import com.YaroslavGorbach.delusionalgenerator.util.PermissionsUtil;
 
 public class SpeakingFragment extends Fragment {
@@ -48,7 +47,7 @@ public class SpeakingFragment extends Fragment {
         // init view
         SpeakingView v = new SpeakingView(FragmentSpeakingBinding.bind(view), new SpeakingView.Callback() {
             @Override
-            public void onUp() {((Navigation)requireActivity()).up();}
+            public void onUp() { requireActivity().onBackPressed();}
 
             @Override
             public void onNext() { vm.speakingEx.onNext(); }

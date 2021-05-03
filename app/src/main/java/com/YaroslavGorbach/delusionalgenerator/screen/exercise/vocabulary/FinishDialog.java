@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,10 +12,7 @@ import androidx.fragment.app.DialogFragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
 import com.YaroslavGorbach.delusionalgenerator.databinding.DialogVocabularyResultBinding;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.Objects;
 
 public class FinishDialog extends DialogFragment {
     // TODO: 4/17/2021 translate
@@ -44,7 +40,7 @@ public class FinishDialog extends DialogFragment {
     @Override
     public void onCancel(@NonNull DialogInterface dialog) {
         super.onCancel(dialog);
-        ((Navigation)requireActivity()).up();
+        requireActivity().onBackPressed();
     }
 
     private void initResult(DialogVocabularyResultBinding binding, VocabularyEx.Result result){

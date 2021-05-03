@@ -53,7 +53,8 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.AudioVie
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        if (mData!=null) return mData.size();
+        else return 0;
     }
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {

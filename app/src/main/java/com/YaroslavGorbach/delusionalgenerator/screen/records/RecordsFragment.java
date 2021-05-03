@@ -23,7 +23,7 @@ public class RecordsFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        vm.recordsList.getRecordsFromFile();
+        //vm.recordsList.getRecordsFromFile();
     }
 
     @Override

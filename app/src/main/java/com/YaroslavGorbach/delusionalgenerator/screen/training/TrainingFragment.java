@@ -12,12 +12,14 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBinding;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class TrainingFragment extends Fragment {
+    public interface Router{
+        void openExercise(Exercise.Name name, Exercise.Type daily);
+    }
     public TrainingFragment(){
         super(R.layout.fragment_training);
     }
@@ -37,11 +39,11 @@ public class TrainingFragment extends Fragment {
             @Override
             public void onTraining(Exercise exercise) {
                 if (exercise.done != exercise.aim)
-                    ((Navigation)requireActivity()).openDescription(exercise.getName(), Exercise.Type.DAILY);
+                    ((Router)requireActivity()).openExercise(exercise.getName(), Exercise.Type.DAILY);
             }
 
             @Override
-            public void onUp() { ((Navigation)requireActivity()).up(); }
+            public void onUp() { requireActivity().onBackPressed(); }
         });
 
         mBag.add(vm.training.observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));

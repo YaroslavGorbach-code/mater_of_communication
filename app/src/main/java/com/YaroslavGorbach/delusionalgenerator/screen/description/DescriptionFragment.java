@@ -14,11 +14,16 @@ import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
-import com.YaroslavGorbach.delusionalgenerator.screen.nav.Navigation;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class DescriptionFragment extends Fragment {
+
+    public interface Router{
+        void openSpeaking(Exercise.Name name, Exercise.Type type);
+        void openVocabulary(Exercise.Name name, Exercise.Type type);
+    }
+
     public DescriptionFragment() {
         super(R.layout.fragment_description);
     }
@@ -53,17 +58,17 @@ public class DescriptionFragment extends Fragment {
         // init v
         DescriptionView v = new DescriptionView(FragmentDescriptionBinding.bind(view), new DescriptionView.Callback() {
             @Override
-            public void onUp() { ((Navigation)requireActivity()).up(); }
+            public void onUp() { requireActivity().onBackPressed(); }
 
             @Override
             public void onStartEx() {
                 switch (vm.description.getCategory()) {
                     case SPEAKING:
                     case TONGUE_TWISTER:
-                        ((Navigation) requireActivity()).openSpeakingEx(name, type);
+                        ((Router) requireParentFragment()).openSpeaking(name, type);
                         break;
                     case VOCABULARY:
-                        ((Navigation) requireActivity()).openVocabularyEx(name, type);
+                        ((Router) requireParentFragment()).openVocabulary(name, type);
                         break;
                 }
             }
