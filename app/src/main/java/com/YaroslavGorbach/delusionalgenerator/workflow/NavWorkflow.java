@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
@@ -16,6 +15,8 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
         void openTraining();
     }
+    private final Fragment mExercisesWorkflow = new ExercisesWorkflow();
+    private final Fragment mRecordsFragment = new RecordsFragment();
 
     public NavWorkflow(){
         super(R.layout.workflow_nav);
@@ -25,11 +26,17 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null){
-            Fragment fragment = new ExercisesWorkflow();
             getChildFragmentManager()
                     .beginTransaction()
-                    .add(R.id.nav_container, fragment)
-                    .setPrimaryNavigationFragment(fragment)
+                    .add(R.id.nav_container, mExercisesWorkflow)
+                    .setPrimaryNavigationFragment(mExercisesWorkflow)
+                    .commit();
+
+            getChildFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.nav_container, mRecordsFragment, null)
+                    .setPrimaryNavigationFragment(mRecordsFragment)
+                    .hide(mRecordsFragment)
                     .commit();
         }
     }
@@ -40,21 +47,23 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
        WorkflowNavBinding binding = WorkflowNavBinding.bind(view);
        binding.bottomNav.setOnNavigationItemSelectedListener(item -> {
            if (binding.bottomNav.getSelectedItemId() != item.getItemId()) {
-               Fragment fragment = null;
                switch (item.getItemId()){
                    case R.id.menu_nav_exercises:
-                       fragment = new ExercisesWorkflow();
+                       getChildFragmentManager()
+                               .beginTransaction()
+                               .hide(mRecordsFragment)
+                               .show(mExercisesWorkflow)
+                               .commit();
                        break;
                    case R.id.menu_nav_records:
-                       fragment = new RecordsFragment();
+                       getChildFragmentManager()
+                               .beginTransaction()
+                               .hide(mExercisesWorkflow)
+                               .show(mRecordsFragment)
+                               .commit();
                        break;
                }
-              getChildFragmentManager()
-                      .beginTransaction()
-                      .replace(R.id.nav_container, fragment)
-                      .setPrimaryNavigationFragment(fragment)
-                      .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                      .commit();
+
            } else {
                getChildFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
            }

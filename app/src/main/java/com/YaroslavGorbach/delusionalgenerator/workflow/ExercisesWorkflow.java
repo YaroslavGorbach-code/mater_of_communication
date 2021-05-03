@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment;
-import com.YaroslavGorbach.delusionalgenerator.screen.training.TrainingFragment;
 
 public class ExercisesWorkflow extends Fragment implements ExercisesFragment.Router {
 
@@ -41,6 +40,5 @@ public class ExercisesWorkflow extends Fragment implements ExercisesFragment.Rou
     public void openTraining() {
         ((Router)requireParentFragment()).openTraining();
     }
-
 
 }

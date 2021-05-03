@@ -39,7 +39,7 @@ public class TrainingFragment extends Fragment {
             @Override
             public void onTraining(Exercise exercise) {
                 if (exercise.done != exercise.aim)
-                    ((Router)requireActivity()).openExercise(exercise.getName(), Exercise.Type.DAILY);
+                    ((Router)requireParentFragment()).openExercise(exercise.getName(), Exercise.Type.DAILY);
             }
 
             @Override
