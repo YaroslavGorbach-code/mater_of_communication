@@ -64,7 +64,7 @@ public class SpeakingExImp implements SpeakingEx {
                 setWord();
                 mClickCount = 0;
             }
-        } else {
+        }else {
             setWord();
         }
         setShortDesc();
@@ -146,8 +146,13 @@ public class SpeakingExImp implements SpeakingEx {
                         words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())));
                 break;
             case REMEMBER_ALL:
-                words = mRepo.getWords(Repo.WordType.LETTER, mResources);
-                mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                if (mExercise.type == Exercise.Type.COMMON){
+                    words = mRepo.getWords(Repo.WordType.LETTER, mResources);
+                    mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                }else if (mClickCount == 0){
+                    words = mRepo.getWords(Repo.WordType.LETTER, mResources);
+                    mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                }
                 break;
             case OTHER_ABBREVIATIONS:
                 words = mRepo.getWords(Repo.WordType.ABBREVIATION, mResources);

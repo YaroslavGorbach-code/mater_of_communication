@@ -17,10 +17,10 @@ import io.reactivex.rxjava3.functions.Function;
 @Entity
 public class Training {
     @PrimaryKey(autoGenerate = true)
-    public long id;
     public Date date;
     @Ignore
     private int progress;
+    public int number;
     public int days;
     public ArrayList<Exercise> exercises;
 

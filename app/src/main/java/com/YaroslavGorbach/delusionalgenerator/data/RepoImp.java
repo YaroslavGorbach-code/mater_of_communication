@@ -91,7 +91,7 @@ public class RepoImp implements Repo {
                 Training trainingNew = new Training(
                         currentTime,
                         training.days,
-                        generateTrainingExs());
+                        generateTrainingExs(training));
                 mDatabase.dailyTrainingDao().insert(trainingNew);
                 return trainingNew;
             } else {
@@ -111,7 +111,7 @@ public class RepoImp implements Repo {
         }).toList().blockingGet();
         training.exercises.clear();
         training.exercises.addAll(newList);
-        if (training.getIsOver()) training.days++;
+        if (training.getIsOver()) { training.days++; training.number++; }
         mDatabase.dailyTrainingDao().insert(training);
     }
 
@@ -130,27 +130,82 @@ public class RepoImp implements Repo {
                 exercise1.getName() == exercise.getName()).blockingFirst().aim;
     }
 
-
-    private ArrayList<Exercise> generateTrainingExs() {
-        ArrayList<Exercise> exercises = new ArrayList<>();
+    private ArrayList<Exercise> generateTrainingExs(Training training) {
         Random random = new Random();
-        exercises.add(getExercise(Exercise.Name.BUYING_SELLING));
-        exercises.add((getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS)));
-        exercises.add((getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT)));
-//        exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
-//        exercises.add((getExercise(Exercise.Name.VERBS)));
-//        exercises.add((getExercise(Exercise.Name.NOUNS)));
-//        exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        if (training.number < 10){
+            exercises.add((getExercise(Exercise.Name.EASY_TONGUE_TWISTERS)));
+        }
+        if (training.number > 10 && training.number < 20){
+            exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
+        }
+        if (training.number > 20){
+            exercises.add((getExercise(Exercise.Name.VERY_DIFFICULT_TONGUE_TWISTERS)));
+        }
+
+        switch (random.nextInt(3)){
+            case 0:
+                exercises.add((getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS)));
+                exercises.add((getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT)));
+                exercises.add((getExercise(Exercise.Name.CO_AUTHORED_WITH_DAHL)));
+                break;
+            case 1:
+                exercises.add((getExercise(Exercise.Name.RAVEN_LOOK_LIKE_A_TABLE)));
+                exercises.add((getExercise(Exercise.Name.QUESTION_ANSWER)));
+                exercises.add((getExercise(Exercise.Name.RORSCHACH_TEST)));
+                break;
+            case 2:
+                exercises.add(getExercise(Exercise.Name.REMEMBER_ALL));
+                exercises.add((getExercise(Exercise.Name.MAGIC_NAMING)));
+                exercises.add((getExercise(Exercise.Name.BUYING_SELLING)));
+                exercises.add((getExercise(Exercise.Name.ADVANCED_BINDING)));
+                break;
+            case 3:
+                exercises.add((getExercise(Exercise.Name.OTHER_ABBREVIATIONS)));
+                exercises.add((getExercise(Exercise.Name.WILL_NOT_BE_WORSE)));
+                exercises.add((getExercise(Exercise.Name.RAVEN_LOOK_LIKE_A_TABLE_FILINGS)));
+                exercises.add(getExercise(Exercise.Name.BUYING_SELLING));
+        }
+        exercises.add((getExercise(Exercise.Name.VERBS)));
+        exercises.add((getExercise(Exercise.Name.NOUNS)));
+        exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
+
         for (Exercise e : exercises) {
             e.type = Exercise.Type.DAILY;
-            if (e.getCategory() == Exercise.Category.SPEAKING) e.aim = random.nextInt(10);
-            if (e.getCategory() == Exercise.Category.TONGUE_TWISTER) e.aim = random.nextInt(5);
-            if (e.getCategory() == Exercise.Category.VOCABULARY) e.aim = 1;
-            if (e.aim == 0) e.aim = 1;
+            switch (e.getName()){
+                case LINGUISTIC_PYRAMIDS:
+                case OTHER_ABBREVIATIONS:
+                case MAGIC_NAMING:
+                case RORSCHACH_TEST:
+                    e.aim = 10;
+                    break;
+                case RAVEN_LOOK_LIKE_A_TABLE:
+                case STORYTELLER_IMPROVISER:
+                case ADVANCED_BINDING:
+                case WHAT_I_SEE_I_SING_ABOUT:
+                case BUYING_SELLING:
+                case CO_AUTHORED_WITH_DAHL:
+                case WILL_NOT_BE_WORSE:
+                case QUESTION_ANSWER:
+                case RAVEN_LOOK_LIKE_A_TABLE_FILINGS:
+                    e.aim = 5;
+                case EASY_TONGUE_TWISTERS:
+                case DIFFICULT_TONGUE_TWISTERS:
+                case VERY_DIFFICULT_TONGUE_TWISTERS:
+                    e.aim = 3;
+                    break;
+                case NOUNS:
+                case ADJECTIVES:
+                case VERBS:
+                    e.aim = 1;
+                    break;
+                case REMEMBER_ALL:
+                    e.aim = 15;
+                    break;
+            }
         }
         return exercises;
     }
-
 
     @Override
     public Observable<Statistics> getStatistics(Exercise.Name name) {
@@ -190,7 +245,6 @@ public class RepoImp implements Repo {
         record.getFile().delete();
     }
 
-
     private void createExercises() {
         mExercises.add(new Exercise(
                 Exercise.Name.LINGUISTIC_PYRAMIDS,
@@ -214,13 +268,6 @@ public class RepoImp implements Repo {
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_promotional,
                 R.string.short_desc_storyteller_improviser));
-
-        mExercises.add(new Exercise(
-                Exercise.Name.REMEMBER_ALL,
-                R.string.ex_remember_all_desc,
-                Exercise.Category.SPEAKING,
-                R.drawable.ic_memory,
-                R.string.short_desc_remember_all));
 
         mExercises.add(new Exercise(
                 Exercise.Name.WHAT_I_SEE_I_SING_ABOUT,
@@ -291,6 +338,13 @@ public class RepoImp implements Repo {
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_raven_2,
                 R.string.short_desc_raven_look_like_a_table_filings));
+
+        mExercises.add(new Exercise(
+                Exercise.Name.REMEMBER_ALL,
+                R.string.ex_remember_all_desc,
+                Exercise.Category.SPEAKING,
+                R.drawable.ic_memory,
+                R.string.short_desc_remember_all));
 
         mExercises.add(new Exercise(
                 Exercise.Name.NOUNS,

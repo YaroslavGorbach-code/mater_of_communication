@@ -34,9 +34,9 @@ public abstract class Database extends RoomDatabase {
                             super.onCreate(db);
                             // room observable does not work if table is empty
                             ContentValues cv = new ContentValues();
-                            cv.put("id", 0);
                             cv.put("date", 0);
                             cv.put("days", 0);
+                            cv.put("number", 0);
                             cv.put("exercises", "null");
                             db.insert("Training", SQLiteDatabase.CONFLICT_REPLACE, cv);
                         }
