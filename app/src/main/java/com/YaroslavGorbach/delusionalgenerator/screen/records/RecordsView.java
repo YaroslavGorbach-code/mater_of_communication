@@ -20,6 +20,20 @@ import com.google.android.material.transition.MaterialFade;
 import java.util.List;
 
 public class RecordsView {
+    public interface Callback {
+        void onRecord(Record record);
+        void onSkipNext();
+        void onSkipPrevious();
+        void onPause();
+        void onResume();
+        void onSeekTo(int progress);
+        void onRemove(Record record);
+    }
+
+    public interface ItemSwipeCallback {
+        void onSwipe(RecyclerView.ViewHolder viewHolder);
+    }
+
     private final RecordsAdapter mAdapter;
     private final FragmentRecordsBinding mBinding;
     private boolean mIsPlaying = false;
@@ -66,12 +80,16 @@ public class RecordsView {
                 Record item = mAdapter.getData().get(position);
                 undo = false;
                 mAdapter.getData().remove(item);
-                mAdapter.notifyDataSetChanged();
+                mAdapter.notifyItemRemoved(position);
+                showNoRecordsIcon(mAdapter.getData().isEmpty());
+                if (mBinding.player.recordName.getText().equals(item.getName()))
+                    setPlayerVisibility(mBinding.player.getRoot(), mBinding.getRoot(), false);
 
                 Snackbar.make(binding.getRoot(), "Запись удалена", Snackbar.LENGTH_LONG)
                         .setAction("ОТМЕНА", v -> {
                             mAdapter.getData().add(position, item);
-                            setRecords(mAdapter.getData());
+                            mAdapter.notifyItemInserted(position);
+                            showNoRecordsIcon(mAdapter.getData().isEmpty());
                             undo = true;
                         })
                         .addCallback(new Snackbar.Callback() {
@@ -96,14 +114,15 @@ public class RecordsView {
     }
 
     public void setRecords(List<Record> records) {
-        if (records.isEmpty()) {
+            showNoRecordsIcon(records.isEmpty());
+            mAdapter.setData(records);
+    }
+
+    private void showNoRecordsIcon(boolean isVisible){
+        if (isVisible) {
             mBinding.noRecords.setVisibility(View.VISIBLE);
-            mBinding.recordsList.setVisibility(View.GONE);
-            setPlayerVisibility(mBinding.player.getRoot(), mBinding.getRoot(), false);
         } else {
             mBinding.noRecords.setVisibility(View.GONE);
-            mBinding.recordsList.setVisibility(View.VISIBLE);
-            mAdapter.setData(records);
         }
     }
 
@@ -135,27 +154,6 @@ public class RecordsView {
         TransitionManager.beginDelayedTransition(viewGroup, transition);
         if (isVisible) view.setVisibility(View.VISIBLE);
         else view.setVisibility(View.GONE);
-    }
-
-    public interface Callback {
-        void onRecord(Record record);
-
-        void onSkipNext();
-
-        void onSkipPrevious();
-
-        void onPause();
-
-        void onResume();
-
-        void onSeekTo(int progress);
-
-        void onRemove(Record record);
-    }
-
-
-    public interface ItemSwipeCallback {
-        void onSwipe(RecyclerView.ViewHolder viewHolder);
     }
 
 }
