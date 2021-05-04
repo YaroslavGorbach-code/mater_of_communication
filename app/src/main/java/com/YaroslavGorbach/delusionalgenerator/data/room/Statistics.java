@@ -11,12 +11,12 @@ public class Statistics {
     private int id;
     public Exercise.Name exName;
     public int value;
-    public long dataTime;
+    public long time;
 
-    public Statistics(Exercise.Name exName, int value, long dataTime) {
+    public Statistics(Exercise.Name exName, int value, long time) {
         this.exName = exName;
         this.value = value;
-        this.dataTime = dataTime;
+        this.time = time;
     }
 
     public void setId(int id) {

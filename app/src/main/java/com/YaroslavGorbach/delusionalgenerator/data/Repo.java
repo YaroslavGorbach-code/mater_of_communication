@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
 import java.util.List;
 
@@ -19,8 +18,8 @@ public interface Repo {
     Exercise getExercise(Exercise.Name name);
     List<String> getWords(WordType type, Resources resources);
     Observable<Statistics> getStatistics(Exercise.Name name);
-    Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData);
-    Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData);
+    Observable<Statistics> getStatisticsNext(Exercise.Name name, ChartInputData currentData);
+    Observable<Statistics> getStatisticsPrevious(Exercise.Name name, ChartInputData currentData);
     void addStatistics(Statistics statistics);
     void deleteRecord(Record record);
     Single<List<Record>> getRecords(Context context);

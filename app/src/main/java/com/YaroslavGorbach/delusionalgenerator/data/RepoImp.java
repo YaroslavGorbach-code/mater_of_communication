@@ -1,22 +1,15 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
-
 import android.content.Context;
 import android.content.res.Resources;
-
-import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -191,26 +184,25 @@ public class RepoImp implements Repo {
     @Override
     public Observable<Statistics> getStatistics(Exercise.Name name) {
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                .takeLast(15);
+                .takeLast(8);
     }
 
     @Override
-    public Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData) {
+    public Observable<Statistics> getStatisticsNext(Exercise.Name name, ChartInputData currentData) {
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                .filter(statistics -> statistics.dataTime > currentData.get(currentData.size() - 1).getMillis())
-                .take(15)
+                .filter(statistics -> statistics.time > currentData.getTime().get(currentData.getTime().size() - 1))
+                .take(8)
                 .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                        .takeLast(15));
+                        .takeLast(8));
     }
 
     @Override
-    public Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData) {
+    public Observable<Statistics> getStatisticsPrevious(Exercise.Name name, ChartInputData currentData) {
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                .filter(statistics -> statistics.dataTime < currentData.get(0).getMillis())
-                .takeLast(15)
+                .filter(statistics -> statistics.time < currentData.getTime().get(0))
+                .takeLast(8)
                 .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                        .takeLast(15));
-
+                .takeLast(8));
     }
 
     @Override

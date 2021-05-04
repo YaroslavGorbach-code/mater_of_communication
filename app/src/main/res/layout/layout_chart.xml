@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -55,13 +56,22 @@
             app:layout_constraintTop_toTopOf="@+id/statistics_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.YaroslavGorbach.delusionalgenerator.screen.chartView.ChartView
-        android:id="@+id/chart"
+    <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="600dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+            <im.dacer.androidcharts.LineView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:id="@+id/chart" />
+    </HorizontalScrollView>
+<!--    <com.YaroslavGorbach.delusionalgenerator.screen.chartView.ChartView-->
+<!--        android:id="@+id/chart"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="600dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="8dp" />-->
 
     <LinearLayout
         android:id="@+id/no_data"

@@ -1,15 +1,16 @@
 package com.YaroslavGorbach.delusionalgenerator.component.description;
+import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 
+import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface Description {
     int getDescriptionId();
     int getImageId();
     Exercise.Category getCategory();
-    LiveData<List<InputData>> getStatistics();
+    LiveData<ChartInputData> getChartData();
     void onStatisticsNext();
     void onStatisticsPrevious();
 

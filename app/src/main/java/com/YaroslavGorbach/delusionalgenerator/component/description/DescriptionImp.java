@@ -2,17 +2,18 @@ package com.YaroslavGorbach.delusionalgenerator.component.description;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
-import java.util.List;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
     private final Exercise mExercise;
-    private final MutableLiveData<List<InputData>> mStatisticsData = new MutableLiveData<>();
+    private final MutableLiveData<ChartInputData> mStatisticsData = new MutableLiveData<>();
 
-    public DescriptionImp(Repo repo, Exercise.Name name){
+    public DescriptionImp(Repo repo, Exercise.Name name) {
         mRepo = repo;
         mExercise = repo.getExercise(name);
     }
@@ -33,27 +34,40 @@ public class DescriptionImp implements Description {
     }
 
     @Override
-    public LiveData<List<InputData>> getStatistics() {
+    public LiveData<ChartInputData> getChartData() {
+        ChartInputData inputData = new ChartInputData();
         mRepo.getStatistics(mExercise.getName())
-                .map(statistics -> new InputData(statistics.value, statistics.dataTime))
-                .toList()
-                .subscribe(mStatisticsData::postValue).dispose();
+                .forEach(statistics -> {
+                    inputData.addValue(statistics.value);
+                    inputData.addTime(statistics.time);
+                    inputData.addLabel(TimeUtil.formatDD(statistics.time));
+                });
+        mStatisticsData.setValue(inputData);
         return mStatisticsData;
     }
 
+
     @Override
     public void onStatisticsNext() {
-         mRepo.getStatisticsNext(mExercise.getName(), mStatisticsData.getValue())
-                .map(statistics -> new InputData(statistics.value, statistics.dataTime))
-                .toList()
-                .subscribe(mStatisticsData::postValue).dispose();
+        ChartInputData inputData = new ChartInputData();
+        mRepo.getStatisticsNext(mExercise.getName(), mStatisticsData.getValue())
+                 .forEach(statistics -> {
+                     inputData.addValue(statistics.value);
+                     inputData.addTime(statistics.time);
+                     inputData.addLabel(TimeUtil.formatDD(statistics.time));
+                 });
+        mStatisticsData.setValue(inputData);
     }
 
     @Override
     public void onStatisticsPrevious() {
-         mRepo.getStatisticsPrevious(mExercise.getName(), mStatisticsData.getValue())
-                 .map(statistics -> new InputData(statistics.value, statistics.dataTime))
-                 .toList()
-                 .subscribe(mStatisticsData::postValue).dispose();
+        ChartInputData inputData = new ChartInputData();
+        mRepo.getStatisticsPrevious(mExercise.getName(), mStatisticsData.getValue())
+                 .forEach(statistics -> {
+                     inputData.addValue(statistics.value);
+                     inputData.addTime(statistics.time);
+                     inputData.addLabel(TimeUtil.formatDD(statistics.time));
+                 });
+        mStatisticsData.setValue(inputData);
     }
 }

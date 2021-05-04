@@ -4,12 +4,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -86,7 +87,7 @@ public class DescriptionFragment extends Fragment {
         v.setImageId(vm.description.getImageId());
         v.setDescription(getString(vm.description.getDescriptionId()));
         v.setStatisticsText(vm.description.getCategory());
-        vm.description.getStatistics().observe(getViewLifecycleOwner(), v::setChartData);
+        vm.description.getChartData().observe(getViewLifecycleOwner(), v::setChartData);
 
     }
 
