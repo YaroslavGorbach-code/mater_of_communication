@@ -3,7 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.training;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.data.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 import io.reactivex.rxjava3.core.Observable;

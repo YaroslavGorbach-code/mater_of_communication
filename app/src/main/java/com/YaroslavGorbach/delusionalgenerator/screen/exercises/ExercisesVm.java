@@ -6,13 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.Exercises;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.ExercisesImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.data.Training;
-
-import java.util.List;
-
-import io.reactivex.rxjava3.core.Observable;
 
 public class ExercisesVm extends ViewModel {
     public final Exercises exercises;

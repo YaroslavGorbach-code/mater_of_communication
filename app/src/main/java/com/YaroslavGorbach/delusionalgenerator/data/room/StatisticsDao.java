@@ -1,8 +1,10 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.room;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 
 import java.util.List;
 

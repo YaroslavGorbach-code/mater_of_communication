@@ -3,6 +3,9 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 
 import java.util.List;
@@ -27,13 +30,13 @@ public interface Repo {
     int getTrainingExAim(Exercise exercise);
 
 
-
     class RepoProvider{
         public RepoImp provideRepo(Context context){
-            Database database = Database.getInstance(context);
-            return new RepoImp(database);
+            RoomDb roomDb = RoomDb.getInstance(context);
+            return new RepoImp(roomDb);
         }
     }
+
     enum WordType {
         ALIVE,
         NOT_ALIVE,

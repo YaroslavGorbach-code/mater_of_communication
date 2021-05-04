@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.room;
 
 import android.util.Log;
 import android.util.Pair;
@@ -6,6 +6,8 @@ import android.util.Pair;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,12 +37,9 @@ public class Training {
             return Observable.fromIterable(exercises)
                     .flatMap((Function<Exercise, ObservableSource<Integer>>) exercise -> Observable.just(exercise.getProgress()))
                     .map(progress -> {
+                        if (getIsOver())return 100;
                         this.progress = this.progress + progress/exercises.size();
                         return this.progress;
-                    })
-                    .map(progress ->{
-                        if (progress == 99) return 100;
-                        else return progress;
                     }).blockingLast(0);
         }else {
             return 0;

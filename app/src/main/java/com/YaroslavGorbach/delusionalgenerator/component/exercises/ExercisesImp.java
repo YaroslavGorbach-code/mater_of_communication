@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.component.exercises;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.data.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 
 import java.util.List;
 

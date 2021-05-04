@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.screen.chartView.data.InputData;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 
@@ -21,10 +24,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
     private final List<Exercise> mExercises = new ArrayList<>();
-    private final Database mDatabase;
+    private final RoomDb mRoomDb;
 
-    public RepoImp(Database database) {
-        mDatabase = database;
+    public RepoImp(RoomDb roomDb) {
+        mRoomDb = roomDb;
         createExercises();
     }
 
@@ -92,7 +95,7 @@ public class RepoImp implements Repo {
     @Override
     public Observable<Training> getTraining() {
         Date currentTime = new Date();
-        return mDatabase.dailyTrainingDao().getDailyTraining().map(training -> {
+        return mRoomDb.dailyTrainingDao().getDailyTraining().map(training -> {
             if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) >= 1) {
                 if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || !training.getIsOver())
                     training.days = 0;
@@ -100,7 +103,7 @@ public class RepoImp implements Repo {
                         currentTime,
                         training.days,
                         generateTrainingExs(training));
-                mDatabase.dailyTrainingDao().insert(trainingNew);
+                mRoomDb.dailyTrainingDao().insert(trainingNew);
                 return trainingNew;
             } else {
                 return training;
@@ -120,7 +123,7 @@ public class RepoImp implements Repo {
         training.exercises.clear();
         training.exercises.addAll(newList);
         if (training.getIsOver()) { training.days++; training.number++; }
-        mDatabase.dailyTrainingDao().insert(training);
+        mRoomDb.dailyTrainingDao().insert(training);
     }
 
 
@@ -163,10 +166,10 @@ public class RepoImp implements Repo {
                 exercises.add((getExercise(Exercise.Name.RORSCHACH_TEST)));
                 break;
             case 2:
-                exercises.add(getExercise(Exercise.Name.REMEMBER_ALL));
                 exercises.add((getExercise(Exercise.Name.MAGIC_NAMING)));
                 exercises.add((getExercise(Exercise.Name.BUYING_SELLING)));
                 exercises.add((getExercise(Exercise.Name.ADVANCED_BINDING)));
+                exercises.add(getExercise(Exercise.Name.REMEMBER_ALL));
                 break;
             case 3:
                 exercises.add((getExercise(Exercise.Name.OTHER_ABBREVIATIONS)));
@@ -217,33 +220,33 @@ public class RepoImp implements Repo {
 
     @Override
     public Observable<Statistics> getStatistics(Exercise.Name name) {
-        return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+        return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                 .takeLast(15)
                 .defaultIfEmpty(new Statistics(name, 3, 0));
     }
 
     @Override
     public Observable<Statistics> getStatisticsNext(Exercise.Name name, List<InputData> currentData) {
-        return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+        return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                 .filter(statistics -> statistics.dataTime > currentData.get(currentData.size() - 1).getMillis())
                 .take(15)
-                .switchIfEmpty(Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                         .takeLast(15));
     }
 
     @Override
     public Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData) {
-        return Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+        return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                 .filter(statistics -> statistics.dataTime < currentData.get(0).getMillis())
                 .takeLast(15)
-                .switchIfEmpty(Observable.fromIterable(mDatabase.statisticsDao().getStatistics(name))
+                .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                         .takeLast(15));
 
     }
 
     @Override
     public void addStatistics(Statistics statistics) {
-        Completable.create(emitter -> mDatabase.statisticsDao().insert(statistics))
+        Completable.create(emitter -> mRoomDb.statisticsDao().insert(statistics))
                 .subscribeOn(Schedulers.io())
                 .subscribe();
     }
@@ -258,7 +261,7 @@ public class RepoImp implements Repo {
                 Exercise.Name.LINGUISTIC_PYRAMIDS,
                 R.string.ex_linguistic_pyramids_desc,
                 Exercise.Category.SPEAKING,
-                R.drawable.ic_lp,
+                R.drawable.ic_piramids,
                 R.string.short_desc_linguistic_pyramids_1,
                 R.string.short_desc_linguistic_pyramids_2,
                 R.string.short_desc_linguistic_pyramids_3));

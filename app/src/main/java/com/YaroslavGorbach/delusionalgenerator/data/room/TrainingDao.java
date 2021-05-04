@@ -1,11 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.room;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import io.reactivex.rxjava3.core.Observable;
 
+import io.reactivex.rxjava3.core.Observable;
 
 @Dao
 public interface TrainingDao {

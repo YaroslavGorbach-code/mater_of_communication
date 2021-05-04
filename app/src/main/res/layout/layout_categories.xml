@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:padding="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_lp"
+                android:src="@drawable/ic_talking_people"
                 tool:ignore="ContentDescription" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -73,8 +73,7 @@
                 android:scaleType="fitCenter"
                 tool:text="13"
                 android:textColor="#fafafa"
-                tool:ignore="ContentDescription"
-                tool:src="@drawable/ic_lp" />
+                tool:ignore="ContentDescription"/>
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -136,8 +135,7 @@
                 android:scaleType="fitCenter"
                 tool:text="4"
                 android:textColor="#fafafa"
-                tool:ignore="ContentDescription"
-                tool:src="@drawable/ic_lp" />
+                tool:ignore="ContentDescription" />
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -170,7 +168,7 @@
                 android:layout_height="match_parent"
                 android:padding="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_lp"
+                android:src="@drawable/ic_speaking_man"
                 tool:ignore="ContentDescription" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -202,8 +200,7 @@
                 tool:text="3"
                 android:textColor="#fafafa"
                 android:textSize="12dp"
-                tool:ignore="ContentDescription,SpUsage"
-                tool:src="@drawable/ic_lp" />
+                tool:ignore="ContentDescription,SpUsage" />
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
