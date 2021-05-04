@@ -139,7 +139,7 @@ public class RecordsListImp implements RecordsList {
 
     @Override
     public void getRecordsFromFile() {
-        mBag.add(mRepo.getRecordsFromFile(mContext)
+        mBag.add(mRepo.getRecords(mContext)
                 .subscribe(mRecords::postValue));
     }
 

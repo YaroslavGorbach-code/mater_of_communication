@@ -23,7 +23,7 @@ public interface Repo {
     Observable<Statistics> getStatisticsPrevious(Exercise.Name name, List<InputData> currentData);
     void addStatistics(Statistics statistics);
     void deleteRecord(Record record);
-    Single<List<Record>> getRecordsFromFile(Context context);
+    Single<List<Record>> getRecords(Context context);
     Observable<Training> getTraining();
     void updateTrainingEx(Exercise exercise);
     int getTrainingExDone(Exercise exercise);
@@ -33,7 +33,7 @@ public interface Repo {
     class RepoProvider{
         public RepoImp provideRepo(Context context){
             RoomDb roomDb = RoomDb.getInstance(context);
-            return new RepoImp(roomDb);
+            return new RepoImp(roomDb, new InMemoryDbImp());
         }
     }
 
