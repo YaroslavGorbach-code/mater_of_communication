@@ -45,14 +45,14 @@ public class SpeakingView {
     }
 
     public void setDoneAndAim(Pair<Integer, Integer> doneAndAim){
-        mBinding.aimAndDone.setVisibility(View.VISIBLE);
+        mBinding.aimAndDoneLayout.setVisibility(View.VISIBLE);
         if (doneAndAim.first == doneAndAim.second - 1){
             mBinding.next.setImageResource(R.drawable.ic_done);
         }
         if (Objects.equals(doneAndAim.first, doneAndAim.second)){
             mCallback.onUp();
         }
-        mBinding.aimAndDone.setText(doneAndAim.first +"/"+doneAndAim.second);
+        mBinding.aimAndDoneText.setText(doneAndAim.first +"/"+doneAndAim.second);
     }
 
     public void changeButtonImage(boolean isRecording){

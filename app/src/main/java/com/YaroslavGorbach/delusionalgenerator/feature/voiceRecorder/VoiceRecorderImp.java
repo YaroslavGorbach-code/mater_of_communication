@@ -4,6 +4,8 @@ import android.content.Context;
 import android.media.MediaRecorder;
 import android.util.Log;
 
+import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
@@ -16,7 +18,7 @@ public class VoiceRecorderImp implements VoiceRecorder {
     @Override
     public void start(Context context, String name) {
         mMediaRecorder = new MediaRecorder();
-        String recordFile = name + new Date().getTime() + ".3gp";
+        String recordFile = name + TimeUtil.formatRecord(new Date().getTime()) + ".3gp";
         recordFile = recordFile.replace(" ", "_");
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);

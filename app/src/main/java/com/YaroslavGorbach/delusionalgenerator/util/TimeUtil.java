@@ -43,6 +43,10 @@ public class TimeUtil {
         SimpleDateFormat format = new SimpleDateFormat("dd", Locale.getDefault());
         return format.format(millis);
     }
+    public static String formatRecord(long millis){
+        SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.getDefault());
+        return format.format(millis);
+    }
 
     public static long getDaysBetween(long start, long end){
         return TimeUnit.DAYS.convert(end - start, TimeUnit.MILLISECONDS);

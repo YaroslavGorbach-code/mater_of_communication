@@ -70,7 +70,7 @@ public class InMemoryDbImp implements InMemoryDb {
                 Exercise.Name.LINGUISTIC_PYRAMIDS,
                 R.string.ex_linguistic_pyramids_desc,
                 Exercise.Category.SPEAKING,
-                R.drawable.ic_piramids,
+                R.drawable.ic_pyramids,
                 R.string.short_desc_linguistic_pyramids_1,
                 R.string.short_desc_linguistic_pyramids_2,
                 R.string.short_desc_linguistic_pyramids_3));

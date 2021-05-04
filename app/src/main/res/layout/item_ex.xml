@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:padding="8dp"
             tool:ignore="ContentDescription"
-            tool:src="@drawable/ic_lp" />
+            tool:src="@drawable/ic_pyramids" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/name"

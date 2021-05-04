@@ -33,17 +33,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/aim_and_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0/10"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-        app:layout_anchor="@+id/word"
-        app:layout_anchorGravity="top|center" />
-
-    <TextView
             android:id="@+id/word"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -113,6 +102,33 @@
         android:layout_marginEnd="16dp"
         app:tint="@null"
         tools:ignore="ContentDescription" />
+
+    <FrameLayout
+        android:id="@+id/aim_and_done_layout"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="16dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:backgroundTint="?colorPrimary"
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/aim_and_done_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="10dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="?android:colorBackground"
+            android:layout_gravity="center"
+            tools:text="10/22"/>
+
+    </FrameLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
