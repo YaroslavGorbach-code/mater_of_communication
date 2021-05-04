@@ -191,8 +191,7 @@ public class RepoImp implements Repo {
     @Override
     public Observable<Statistics> getStatistics(Exercise.Name name) {
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                .takeLast(15)
-                .defaultIfEmpty(new Statistics(name, 3, 0));
+                .takeLast(15);
     }
 
     @Override

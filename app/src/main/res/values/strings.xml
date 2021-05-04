@@ -23,8 +23,9 @@
     <string name="category_2_name">Для увеличения словарного запаса</string>
     <string name="category_3_name">Для развития дикции</string>
 
-    <string name="statistics_text">Пройдено за сессию</string>
+    <string name="statistics_text_speaking">Пройдено за сессию</string>
     <string name="statistics_text_tt">Среднее количество секунд на скороговорку за сессию</string>
+    <string name="statistics_text_vocabulary">Названо слов за сессию</string>
 
     <string name="about_app">
 В современном мире именно от умения общаться с окружающими зависит практически все.

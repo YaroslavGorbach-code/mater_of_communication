@@ -87,10 +87,12 @@ public class SpeakingExImp implements SpeakingEx {
 
     @Override
     public void saveStatistics() {
-        if (mExercise.getCategory() == Exercise.Category.SPEAKING) {
+        if (mExercise.getCategory() == Exercise.Category.SPEAKING
+                || mExercise.getName() == Exercise.Name.REMEMBER_ALL
+        ) {
             mRepo.addStatistics(new Statistics(
                     mExercise.getName(), mStatisticsManager.getNumberWords(), new Date().getTime()));
-        } else {
+        } else if (mExercise.getCategory() == Exercise.Category.VOCABULARY){
             mRepo.addStatistics(new Statistics(
                     mExercise.getName(), mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
@@ -146,12 +148,14 @@ public class SpeakingExImp implements SpeakingEx {
                         words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())));
                 break;
             case REMEMBER_ALL:
-                if (mExercise.type == Exercise.Type.COMMON){
+                mExercise.done++;
+                mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
+                if ( mClickCount == 0){
                     words = mRepo.getWords(Repo.WordType.LETTER, mResources);
                     mWord.postValue(words.get(mRandom.nextInt(words.size())));
-                }else if (mClickCount == 0){
-                    words = mRepo.getWords(Repo.WordType.LETTER, mResources);
-                    mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                    mExercise.done = 0;
+                    mExercise.aim = 15;
+                    mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
                 }
                 break;
             case OTHER_ABBREVIATIONS:

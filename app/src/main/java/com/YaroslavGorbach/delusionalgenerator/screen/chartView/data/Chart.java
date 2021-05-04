@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Chart {
 
-	public static final int CHART_PARTS = 3;
+	public static final int CHART_PARTS = 1;
 	public static final int MAX_ITEMS_COUNT = 15;
 	public static final int CHART_PART_VALUE = 100;
 	public static final int TEXT_SIZE_OFFSET = 10;

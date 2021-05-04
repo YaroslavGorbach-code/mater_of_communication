@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsManagerImp implements StatisticsManager {
-    private int mNumberWords = 0;
-    private long mTimeStart = 0;
+    private int mNumberWords = -1;
+    private long mTimeStart = 1;
     private final List<Long> mValues = new ArrayList<>();
 
     @Override
@@ -17,10 +17,8 @@ public class StatisticsManagerImp implements StatisticsManager {
 
     @Override
     public void calAverageTime() {
-        if (mTimeStart != 0) {
-            long timeEnd = SystemClock.elapsedRealtime();
-            mValues.add(timeEnd - mTimeStart);
-        }
+        long timeEnd = SystemClock.elapsedRealtime();
+        mValues.add(timeEnd - mTimeStart);
         mTimeStart = SystemClock.elapsedRealtime();
     }
 

@@ -1,5 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.description;
 
+import android.view.View;
+
 import androidx.core.widget.NestedScrollView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -23,8 +25,8 @@ public class DescriptionView {
         mBinding = binding;
         binding.toolbar.setNavigationOnClickListener(v-> callback.onUp());
         binding.startEx.setOnClickListener(v -> callback.onStartEx());
-        binding.nextData.setOnClickListener(v -> callback.onNextData());
-        binding.prevData.setOnClickListener(v -> callback.onPrevData());
+        binding.chartLayout.nextData.setOnClickListener(v -> callback.onNextData());
+        binding.chartLayout.prevData.setOnClickListener(v -> callback.onPrevData());
 
         // init show/hide button
         binding.scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
@@ -48,11 +50,21 @@ public class DescriptionView {
 
     public void setStatisticsText(Exercise.Category category){
         if (category == Exercise.Category.TONGUE_TWISTER)
-            mBinding.statisticsText.setText(R.string.statistics_text_tt);
+            mBinding.chartLayout.statisticsText.setText(R.string.statistics_text_tt);
+        if (category == Exercise.Category.VOCABULARY)
+            mBinding.chartLayout.statisticsText.setText(R.string.statistics_text_vocabulary);
+        if (category == Exercise.Category.SPEAKING)
+            mBinding.chartLayout.statisticsText.setText(R.string.statistics_text_speaking);
     }
 
     public void setChartData(List<InputData> data){
-        mBinding.chart.setData(data);
+        if (data.isEmpty()) showNoData();
+        else mBinding.chartLayout.chart.setData(data);
+    }
+
+    public void showNoData(){
+        mBinding.chartLayout.noData.setVisibility(View.VISIBLE);
+        mBinding.chartLayout.chart.setVisibility(View.GONE);
     }
 
 }
