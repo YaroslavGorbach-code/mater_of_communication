@@ -1,5 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Toast;
@@ -17,8 +19,10 @@ public class SpeakingView {
         void onNext();
         void onStartStopRecord();
     }
+
     private final FragmentSpeakingBinding mBinding;
     private final Callback mCallback;
+    private final Handler mHandler= new Handler(Looper.getMainLooper());
 
     public SpeakingView(FragmentSpeakingBinding binding, Callback callback){
         mBinding = binding;
@@ -27,7 +31,11 @@ public class SpeakingView {
         mBinding.chronometerOneWord.start();
 
         binding.toolbar.setNavigationOnClickListener(v -> callback.onUp());
-        binding.startStopRecord.setOnClickListener(v -> callback.onStartStopRecord());
+        binding.startStopRecord.setOnClickListener(v -> {
+            v.setClickable(false);
+            callback.onStartStopRecord();
+            mHandler.postDelayed(() -> v.setClickable(true),500);
+        });
         binding.next.setOnClickListener(v -> callback.onNext());
     }
 

@@ -17,6 +17,7 @@ import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Consumer;
 
 public class RecordsListImp implements RecordsList {
     private final MediaPlayer mMediaPlayer;
@@ -140,7 +141,10 @@ public class RecordsListImp implements RecordsList {
     @Override
     public void getRecordsFromFile() {
         mBag.add(mRepo.getRecords(mContext)
-                .subscribe(mRecords::postValue));
+                .subscribe(records -> {
+                    Collections.reverse(records);
+                    mRecords.setValue(records);
+                }));
     }
 
     @Override

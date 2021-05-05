@@ -44,7 +44,7 @@ public class TimeUtil {
         return format.format(millis);
     }
     public static String formatRecord(long millis){
-        SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());
         return format.format(millis);
     }
 

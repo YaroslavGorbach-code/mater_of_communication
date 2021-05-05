@@ -70,5 +70,6 @@ public class RecordsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         mBag.dispose();
+        vm.recordsList.onStop();
     }
 }
