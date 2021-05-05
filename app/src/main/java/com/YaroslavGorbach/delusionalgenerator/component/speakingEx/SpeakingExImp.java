@@ -150,15 +150,18 @@ public class SpeakingExImp implements SpeakingEx {
                         words2.get(mRandom.nextInt(words2.size())) + ", " + words.get(mRandom.nextInt(words.size())));
                 break;
             case REMEMBER_ALL:
-                mExercise.done++;
-                mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
-                if ( mClickCount == 0){
-                    words = mRepo.getWords(Repo.WordType.LETTER, mResources);
-                    mWord.postValue(words.get(mRandom.nextInt(words.size())));
-                    mExercise.done = 0;
-                    mExercise.aim = 15;
+                if (mExercise.type == Exercise.Type.COMMON){
+                    mExercise.done++;
                     mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
                 }
+                if ( mClickCount == 0 && mExercise.type == Exercise.Type.COMMON){
+                    mExercise.done = 0;
+                    mExercise.aim = 15;
+                    words = mRepo.getWords(Repo.WordType.LETTER, mResources);
+                    mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                    mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
+                }
+
                 break;
             case OTHER_ABBREVIATIONS:
                 words = mRepo.getWords(Repo.WordType.ABBREVIATION, mResources);

@@ -47,7 +47,7 @@ public class ExsListAdapter extends ListAdapter<Exercise, ExsListAdapter.ExsVh> 
 
         public void bind(Exercise item) {
             binding.name.setText(itemView.getContext().getString(item.getName().getNameId()));
-            binding.category.setText(item.getCategory().getName());
+            binding.category.setText(item.getCategory().getNameId());
             Glide.with(itemView.getContext()).load(item.getImageId()).into(binding.image);
         }
     }

@@ -25,15 +25,12 @@ public class AboutAppFragment extends Fragment {
 
         ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter(getChildFragmentManager());
         binding.pager.setAdapter(adapter);
-
     }
-
 
     private static class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
-
 
         @NonNull
         @Override

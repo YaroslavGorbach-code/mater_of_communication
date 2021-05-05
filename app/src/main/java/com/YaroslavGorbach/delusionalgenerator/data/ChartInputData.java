@@ -6,7 +6,7 @@ public class ChartInputData {
     private final ArrayList<ArrayList<Integer>> chartData = new ArrayList<>();
     private final ArrayList<Integer> data = new ArrayList<>();
     private final ArrayList<Long> time = new ArrayList<>();
-    private  ArrayList<String> labels = new ArrayList<>();
+    private final ArrayList<String> labels = new ArrayList<>();
 
 
     public ArrayList<ArrayList<Integer>> getData() {

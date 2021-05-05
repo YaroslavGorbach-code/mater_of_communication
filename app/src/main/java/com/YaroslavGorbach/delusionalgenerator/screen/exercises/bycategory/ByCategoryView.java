@@ -27,8 +27,8 @@ public class ByCategoryView {
 
     }
 
-    public void setTitle(String s){
-        mBinding.toolbar.setTitle(s);
+    public void setTitle(int categoryId){
+        mBinding.toolbar.setTitle(mBinding.getRoot().getContext().getString(categoryId));
     }
 
     public void setExercises(List<Exercise> exercises) {

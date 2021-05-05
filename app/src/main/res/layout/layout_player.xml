@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +19,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:lines="1"
-            android:text="track name"
+            tools:text="track name"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -36,7 +37,8 @@
             app:layout_constraintEnd_toStartOf="@+id/start_pause"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/start_pause" />
+            app:layout_constraintTop_toTopOf="@+id/start_pause"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/start_pause"
@@ -47,7 +49,8 @@
             app:layout_constraintEnd_toStartOf="@+id/skip_next"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/skip_previous"
-            app:layout_constraintTop_toBottomOf="@+id/record_name" />
+            app:layout_constraintTop_toBottomOf="@+id/record_name"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/skip_next"
@@ -60,7 +63,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/start_pause"
-            app:layout_constraintTop_toTopOf="@+id/start_pause" />
+            app:layout_constraintTop_toTopOf="@+id/start_pause"
+            tools:ignore="ContentDescription" />
 
         <SeekBar
             android:id="@+id/seek_bar"

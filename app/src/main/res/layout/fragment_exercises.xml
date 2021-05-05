@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
-                android:text="Все упражнения"
+                android:text="@string/all_exercises"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"

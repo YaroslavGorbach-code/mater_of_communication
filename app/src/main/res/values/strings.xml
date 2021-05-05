@@ -7,24 +7,34 @@
         <item>Разобобщите</item>
     </string-array>
 
-    <string name="resultBad">
-        <item>Названо слов %1$d. До нормы не дотягивает, нужно ещё тренироваться.</item>
-    </string>
+    <string name="resultBad">Названо слов %1$d. До нормы не дотягивает, нужно ещё тренироваться.</string>
+    <string name="resultVeryGood">Названо слов %1$d. У вас отличный словарный запас!</string>
+    <string name="resultGood">Названо слов %1$d. Неплохо, но нужно лучше.</string>
 
-    <string name="resultVeryGood">
-        <item>Названо слов %1$d. У вас отличный словарный запас!</item>
-    </string>
-
-    <string name="resultGood">
-        <item>Названо слов %1$d. Неплохо, но нужно лучше.</item>
-    </string>
-
-    <string name="category_1_name">Для развития коммуникабельности</string>
-    <string name="category_2_name">Для увеличения словарного запаса</string>
-    <string name="category_3_name">Для развития дикции</string>
+    <string name="category_speaking_name">Для развития коммуникабельности</string>
+    <string name="category_vocabulary_name">Для увеличения словарного запаса</string>
+    <string name="category_tt_name">Для улутьшения диуции</string>
 
     <string name="statistics_text_speaking">Пройдено за сессию</string>
     <string name="statistics_text_tt">Среднее количество секунд на скороговорку за сессию</string>
     <string name="statistics_text_vocabulary">Названо слов за сессию</string>
+
+    <string name="record_saved">Запись сохранена </string>
+    <string name="close">закрыть</string>
+    <string name="days_without_interruption">Дней подряд: %1$d</string>
+    <string name="record_deleted">Запись удалена</string>
+    <string name="cancel">Отмена</string>
+    <string name="description">Описание</string>
+    <string name="all_exercises">Все упражнения</string>
+    <string name="start">Начать</string>
+    <string name="no_records">Записей нет</string>
+    <string name="training_done_title">На сегодня все</string>
+    <string name="training_done_text">следующая тренеровка будет доступна завтра</string>
+    <string name="exercises_by_category">Упражнения по категориям</string>
+    <string name="no_data">Нет данных</string>
+    <string name="daily_training">Ежедневная тренеровка</string>
+    <string name="exercises">Упражнения</string>
+    <string name="records">Записи</string>
+
 
 </resources>

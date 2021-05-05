@@ -73,7 +73,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Названо слов: 0" />
+            tools:text="0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

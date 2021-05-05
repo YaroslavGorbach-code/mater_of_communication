@@ -10,7 +10,6 @@ import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 public class DescriptionVm extends ViewModel {
-
     public final Description description;
 
     public DescriptionVm(Repo repo, Exercise.Name name){

@@ -8,6 +8,7 @@ public class VocabularyView {
         void onUp();
         void onClick();
     }
+
     private final FragmentVocabularyBinding mBinding;
 
     public VocabularyView(FragmentVocabularyBinding binding, Callback callback){

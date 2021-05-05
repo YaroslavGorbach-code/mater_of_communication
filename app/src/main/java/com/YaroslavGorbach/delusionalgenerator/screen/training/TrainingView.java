@@ -4,6 +4,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBinding;
@@ -29,7 +30,7 @@ public class TrainingView {
 
     public void setTraining(Training training) {
         mAdapter.submitList(training.exercises);
-        mBinding.training.days.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
+        mBinding.training.days.setText(mBinding.getRoot().getContext().getString(R.string.days_without_interruption, training.days));
         mBinding.training.progressIndicator.setProgress(training.getProgress());
         if (training.getIsOver()){
             mBinding.exercises.setVisibility(View.GONE);

@@ -65,13 +65,6 @@
                 android:layout_height="300dp"
                 android:id="@+id/chart" />
     </HorizontalScrollView>
-<!--    <com.YaroslavGorbach.delusionalgenerator.screen.chartView.ChartView-->
-<!--        android:id="@+id/chart"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="600dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_marginBottom="8dp" />-->
 
     <LinearLayout
         android:id="@+id/no_data"
@@ -96,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Нет данных"
+            android:text="@string/no_data"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

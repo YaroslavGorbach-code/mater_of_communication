@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
@@ -38,7 +39,7 @@ public class ExercisesView {
     }
 
     public void setTraining(Training training) {
-        mBinding.training.days.setText("Дней подряд: " + training.days); // TODO: 4/28/2021 fix it later
+        mBinding.training.days.setText(mBinding.getRoot().getContext().getString(R.string.days_without_interruption, training.days));
         mBinding.training.progressIndicator.setProgress(training.getProgress());
     }
 

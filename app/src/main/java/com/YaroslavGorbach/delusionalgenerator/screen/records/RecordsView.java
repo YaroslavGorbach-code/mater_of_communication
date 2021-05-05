@@ -82,11 +82,14 @@ public class RecordsView {
                 mAdapter.getData().remove(item);
                 mAdapter.notifyItemRemoved(position);
                 showNoRecordsIcon(mAdapter.getData().isEmpty());
-                if (mBinding.player.recordName.getText().equals(item.getName()))
-                    setPlayerVisibility(mBinding.player.getRoot(), mBinding.getRoot(), false);
 
-                Snackbar.make(binding.getRoot(), "Запись удалена", Snackbar.LENGTH_LONG)
-                        .setAction("ОТМЕНА", v -> {
+                if (mBinding.player.recordName.getText().equals(item.getName())){
+                    setPlayerVisibility(mBinding.player.getRoot(), mBinding.getRoot(), false);
+                    callback.onPause();
+                }
+
+                Snackbar.make(binding.getRoot(), R.string.record_deleted, Snackbar.LENGTH_LONG)
+                        .setAction(mBinding.getRoot().getContext().getString(R.string.cancel), v -> {
                             mAdapter.getData().add(position, item);
                             mAdapter.notifyItemInserted(position);
                             showNoRecordsIcon(mAdapter.getData().isEmpty());

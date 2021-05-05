@@ -41,14 +41,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Записей нет"
+            android:text="@string/no_records"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

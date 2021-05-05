@@ -11,7 +11,6 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentPageFourBinding;
 
 public class PageFourFragment extends Fragment {
-
     public PageFourFragment(){
         super(R.layout.fragment_page_four);
     }

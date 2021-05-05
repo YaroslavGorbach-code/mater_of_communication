@@ -60,13 +60,13 @@ public class Exercise {
     }
 
     public enum Category {
-        SPEAKING("Для развития комуникабельности"),
-        VOCABULARY("Для увеличения словарного запаса"),
-        TONGUE_TWISTER("Для улутьшения четкости речи");
-        private final String name;
-        public String getName(){ return name; }
-        Category(String name){
-            this.name = name;
+        SPEAKING(R.string.category_speaking_name),
+        VOCABULARY(R.string.category_vocabulary_name),
+        TONGUE_TWISTER(R.string.category_tt_name);
+        private final int nameId;
+        public int getNameId(){ return nameId; }
+        Category(int nameId){
+            this.nameId = nameId;
         }
     }
 

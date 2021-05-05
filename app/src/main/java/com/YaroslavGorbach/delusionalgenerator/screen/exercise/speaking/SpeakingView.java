@@ -1,5 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -52,6 +53,7 @@ public class SpeakingView {
         mBinding.word.setText(word);
     }
 
+    @SuppressLint("SetTextI18n")
     public void setDoneAndAim(Pair<Integer, Integer> doneAndAim){
         mBinding.aimAndDoneLayout.setVisibility(View.VISIBLE);
         if (doneAndAim.first == doneAndAim.second - 1){
@@ -68,7 +70,7 @@ public class SpeakingView {
             mBinding.startStopRecord.setImageResource(R.drawable.ic_voice_recording);
         }else {
             mBinding.startStopRecord.setImageResource(R.drawable.ic_voice_stop);
-            Toast.makeText(mBinding.getRoot().getContext(), "Запись сохранена", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mBinding.getRoot().getContext(), mBinding.getRoot().getContext().getString(R.string.record_saved), Toast.LENGTH_SHORT).show();
         }
     }
 }

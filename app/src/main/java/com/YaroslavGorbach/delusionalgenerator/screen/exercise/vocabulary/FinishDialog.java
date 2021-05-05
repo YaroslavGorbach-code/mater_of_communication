@@ -31,7 +31,7 @@ public class FinishDialog extends DialogFragment {
         initResult(binding, result);
         return new MaterialAlertDialogBuilder(requireContext())
                 .setView(binding.getRoot())
-                .setPositiveButton("OK", (dialog, which) -> {
+                .setPositiveButton(getString(R.string.close), (dialog, which) -> {
                   onCancel(dialog);
                 })
                 .create();

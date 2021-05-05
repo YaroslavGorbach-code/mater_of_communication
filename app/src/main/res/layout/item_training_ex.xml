@@ -69,7 +69,8 @@
             android:layout_alignParentEnd="true"
             android:padding="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_next" />
+            android:src="@drawable/ic_next"
+            tool:ignore="ContentDescription" />
     </RelativeLayout>
 
 

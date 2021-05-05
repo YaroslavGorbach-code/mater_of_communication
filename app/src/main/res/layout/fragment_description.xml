@@ -83,7 +83,7 @@
                         android:layout_marginTop="8dp"
                         android:gravity="center"
                         android:paddingHorizontal="8dp"
-                        android:text="Описание"
+                        android:text="@string/description"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                         android:textSize="24sp" />
 

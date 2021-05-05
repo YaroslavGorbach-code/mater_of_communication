@@ -11,6 +11,13 @@ import com.YaroslavGorbach.delusionalgenerator.util.ColorUtils;
 import im.dacer.androidcharts.LineView;
 
 public class DescriptionView {
+    public interface Callback {
+        void onUp();
+        void onStartEx();
+        void onNextData();
+        void onPrevData();
+    }
+
     private final FragmentDescriptionBinding mBinding;
 
     public DescriptionView(FragmentDescriptionBinding binding, Callback callback) {
@@ -69,15 +76,4 @@ public class DescriptionView {
         mBinding.chartLayout.noData.setVisibility(View.VISIBLE);
         mBinding.chartLayout.chart.setVisibility(View.GONE);
     }
-
-    interface Callback {
-        void onUp();
-
-        void onStartEx();
-
-        void onNextData();
-
-        void onPrevData();
-    }
-
 }

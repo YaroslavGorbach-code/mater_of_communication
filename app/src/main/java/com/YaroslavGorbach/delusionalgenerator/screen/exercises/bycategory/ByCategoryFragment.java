@@ -49,7 +49,7 @@ public class ByCategoryFragment extends Fragment {
         });
 
         v.setExercises(vm.exercises.getExercises(category));
-        v.setTitle(category.getName());
+        v.setTitle(category.getNameId());
 
     }
 }
