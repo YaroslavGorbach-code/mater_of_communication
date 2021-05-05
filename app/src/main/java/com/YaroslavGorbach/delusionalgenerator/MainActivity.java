@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.NavWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .beginTransaction()
                     .add(R.id.main_container, fragment)
                     .setPrimaryNavigationFragment(fragment)
+                    .commit();
+
+            // TODO: 5/5/2021 delete it later
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, new AboutAppFragment())
+                    .addToBackStack(null)
                     .commit();
         }
     }
