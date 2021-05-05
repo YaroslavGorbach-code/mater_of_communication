@@ -1,14 +1,15 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.statistics;
 
 import android.os.SystemClock;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsManagerImp implements StatisticsManager {
-    private int mNumberWords = -1;
-    private long mTimeStart = 1;
-    private final List<Long> mValues = new ArrayList<>();
+    private int mNumberWords = 0;
+    private long mTimeStart = SystemClock.elapsedRealtime();
+    private final List<Integer> mValues = new ArrayList<>();
 
     @Override
     public void calNumberWords() {
@@ -18,13 +19,14 @@ public class StatisticsManagerImp implements StatisticsManager {
     @Override
     public void calAverageTime() {
         long timeEnd = SystemClock.elapsedRealtime();
-        mValues.add(timeEnd - mTimeStart);
+        int seconds = (int) ((timeEnd - mTimeStart)/1000);
+        mValues.add(seconds);
         mTimeStart = SystemClock.elapsedRealtime();
     }
 
     @Override
     public int getAverageTime() {
-        return calculateAverage(mValues)/1000;
+        return calculateAverage(mValues);
     }
 
     @Override
@@ -32,14 +34,14 @@ public class StatisticsManagerImp implements StatisticsManager {
         return mNumberWords;
     }
 
-    private int calculateAverage(List <Long> list) {
-        Long sum = 0L;
+    private int calculateAverage(List <Integer> list) {
+        int sum = 0;
         if(!list.isEmpty()) {
-            for (Long mark : list) {
-                sum += mark;
+            for (int mark : list) {
+                sum = sum + mark;
             }
-            return sum.intValue() / list.size();
+            return sum / list.size();
         }
-        return sum.intValue();
+        return sum;
     }
 }

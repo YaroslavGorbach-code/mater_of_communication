@@ -92,7 +92,7 @@ public class SpeakingExImp implements SpeakingEx {
         ) {
             mRepo.addStatistics(new Statistics(
                     mExercise.getName(), mStatisticsManager.getNumberWords(), new Date().getTime()));
-        } else if (mExercise.getCategory() == Exercise.Category.VOCABULARY){
+        } else{
             mRepo.addStatistics(new Statistics(
                     mExercise.getName(), mStatisticsManager.getAverageTime(), new Date().getTime()));
         }
@@ -123,8 +123,10 @@ public class SpeakingExImp implements SpeakingEx {
                 mRepo.updateTrainingEx(mExercise);
             }
         }
-        mStatisticsManager.calNumberWords();
-        mStatisticsManager.calAverageTime();
+        if (mClickCount>0){
+            mStatisticsManager.calNumberWords();
+            mStatisticsManager.calAverageTime();
+        }
         List<String> words;
         List<String> words2;
         switch (mExercise.getName()) {

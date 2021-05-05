@@ -163,6 +163,7 @@ public class RepoImp implements Repo {
                 case QUESTION_ANSWER:
                 case RAVEN_LOOK_LIKE_A_TABLE_FILINGS:
                     e.aim = 5;
+                    break;
                 case EASY_TONGUE_TWISTERS:
                 case DIFFICULT_TONGUE_TWISTERS:
                 case VERY_DIFFICULT_TONGUE_TWISTERS:
