@@ -1,3 +1,4 @@
+include ':addtemplates'
 include ':nativetemplates'
 include ':app'
 rootProject.name='delusional generator'

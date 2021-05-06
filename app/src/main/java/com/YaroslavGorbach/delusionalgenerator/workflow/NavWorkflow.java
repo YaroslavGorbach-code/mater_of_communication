@@ -49,6 +49,7 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
        binding.bottomNav.setOnNavigationItemSelectedListener(item -> {
            if (binding.bottomNav.getSelectedItemId() != item.getItemId()) {
                Fragment fragment = new ExercisesWorkflow();
+
                switch (item.getItemId()){
                    case R.id.menu_nav_exercises:
                        fragment = new ExercisesWorkflow();
@@ -91,7 +92,7 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
         mRepo.setNotificationCalendar(calendar);
         NotificationManager notificationManager = ContextCompat.getSystemService(requireContext(), NotificationManager.class);
         if (isAllow){
-            new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, requireContext(),calendar.getTimeInMillis(), text);
+            new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, requireContext(), calendar.getTimeInMillis(), text);
         }else {
             notificationManager.cancelAll();
         }

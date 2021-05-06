@@ -14,7 +14,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.Calendar;
 
 public class NotificationDialog extends DialogFragment {
-
     public interface Host{
         void onApply(boolean checkBox, String text, Calendar calendar);
     }
