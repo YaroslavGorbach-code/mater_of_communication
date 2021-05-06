@@ -12,6 +12,8 @@ import com.YaroslavGorbach.delusionalgenerator.MainActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver;
 
+import static com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver.EXTRA_MESSAGE;
+
 public class MyNotificationManagerImp implements MyNotificationManager {
     @Override
     public void sendNotification(NotificationManager notificationManager, Context context, String messageBody) {
@@ -37,8 +39,9 @@ public class MyNotificationManagerImp implements MyNotificationManager {
     }
 
     @Override
-    public void sendNotificationOnTime(NotificationManager notificationManager, Context context, String messageBody, long time) {
+    public void sendNotificationOnTime(NotificationManager notificationManager, Context context, long time, String messageBody) {
         Intent notifyIntent = new Intent(context, AlarmReceiver.class);
+        notifyIntent.putExtra(EXTRA_MESSAGE, messageBody);
         PendingIntent notifyPendingIntent = PendingIntent.getBroadcast(
                 context,
                 0,

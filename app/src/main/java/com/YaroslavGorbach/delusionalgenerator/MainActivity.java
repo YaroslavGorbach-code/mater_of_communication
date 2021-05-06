@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .replace(R.id.main_container, new AboutAppFragment())
                     .addToBackStack(null)
                     .commit();
-             NotificationManager notificationManager = ContextCompat.getSystemService(this, NotificationManager.class);
-            new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, this,"it`s me, Jon", SystemClock.elapsedRealtime() + 100);
         }
     }
 

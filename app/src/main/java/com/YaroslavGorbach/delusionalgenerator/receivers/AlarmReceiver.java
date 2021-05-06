@@ -12,10 +12,11 @@ import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificati
 
 public class AlarmReceiver extends BroadcastReceiver {
 
+    public static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
         MyNotificationManager myNotificationManager = new MyNotificationManagerImp();
-        myNotificationManager.sendNotification(notificationManager, context, "is`s me again");
+        myNotificationManager.sendNotification(notificationManager, context, intent.getStringExtra(EXTRA_MESSAGE));
     }
 }

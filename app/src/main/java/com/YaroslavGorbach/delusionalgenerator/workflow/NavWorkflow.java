@@ -1,17 +1,25 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow;
+import android.app.NotificationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesFragment;
+import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
+import com.YaroslavGorbach.delusionalgenerator.screen.exercises.NotificationDialog;
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 
-public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
+import java.util.Calendar;
+
+public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host{
+
     public interface Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
         void openTraining();
@@ -44,9 +52,11 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
                switch (item.getItemId()){
                    case R.id.menu_nav_exercises:
                        fragment = new ExercisesWorkflow();
+                       binding.toolbar.setTitle(getString(R.string.title_exercises));
                        break;
                    case R.id.menu_nav_records:
                        fragment = new RecordsFragment();
+                       binding.toolbar.setTitle(getString(R.string.title_records));
                        break;
                }
                getChildFragmentManager()
@@ -59,6 +69,22 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router{
            }
            return true;
        });
+
+       binding.toolbar.setOnMenuItemClickListener(menuItem-> {
+
+           if (menuItem.getItemId() == R.id.menu_toolber_notifications) {
+               NotificationDialog dialog =  new NotificationDialog();
+               dialog.setArguments(NotificationDialog.argsOf(12,10, "i`am here", true));
+               dialog.show(getChildFragmentManager(), null);
+           }
+           return true;
+       });
+    }
+
+    @Override
+    public void onApply(boolean checkBox, String text, Calendar calendar) {
+        NotificationManager notificationManager = ContextCompat.getSystemService(requireContext(), NotificationManager.class);
+        new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, requireContext(),calendar.getTimeInMillis(), text);
     }
 
     @Override

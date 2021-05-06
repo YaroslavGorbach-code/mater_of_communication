@@ -37,6 +37,11 @@
     <string name="records">Записи</string>
     <string name="notification_channel_id">1</string>
     <string name="notification_title">test title</string>
+    <string name="notification_text">Notification text</string>
+    <string name="notifications">Уведомления</string>
+    <string name="apply">Применить</string>
+    <string name="title_exercises">Упражнения</string>
+    <string name="title_records">Записи</string>
 
 
 </resources>

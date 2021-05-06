@@ -6,6 +6,6 @@ import android.util.Log;
 
 public interface MyNotificationManager {
     void sendNotification(NotificationManager notificationManager, Context context, String messageBody);
-    void sendNotificationOnTime(NotificationManager notificationManager, Context context, String messageBody, long time);
+    void sendNotificationOnTime(NotificationManager notificationManager, Context context, long time, String messageBody);
 
 }
