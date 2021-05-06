@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
+package com.YaroslavGorbach.delusionalgenerator.workflow;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Calendar;
 
-
 public class NotificationDialog extends DialogFragment {
 
     public interface Host{
@@ -25,7 +24,7 @@ public class NotificationDialog extends DialogFragment {
         bundle.putInt("hour", hour);
         bundle.putInt("minute", minute);
         bundle.putString("text", text);
-        bundle.putBoolean("isAllowed", isAllowed);
+        bundle.putBoolean("isAllow", isAllowed);
         return bundle;
     }
 
@@ -36,11 +35,11 @@ public class NotificationDialog extends DialogFragment {
         final Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, requireArguments().getInt("hour"));
         c.set(Calendar.MINUTE, requireArguments().getInt("minute"));
-        boolean isAllowed = requireArguments().getBoolean("isAllowed");
+        boolean isAllow = requireArguments().getBoolean("isAllow");
         String text  = requireArguments().getString("text");
 
         binding.time.setText(c.get(Calendar.HOUR_OF_DAY) +":"+ c.get(Calendar.MINUTE));
-        binding.checkBox.setChecked(isAllowed);
+        binding.checkBox.setChecked(isAllow);
         binding.text.setText(text);
         TimePickerDialog timePicker = new TimePickerDialog(requireContext(), (view, h, m) -> {
             binding.time.setText(h +":"+ m);

@@ -7,6 +7,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 
+import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -27,11 +28,19 @@ public interface Repo {
     void updateTrainingEx(Exercise exercise);
     int getTrainingExDone(Exercise exercise);
     int getTrainingExAim(Exercise exercise);
+    boolean getFirstOpen();
+    void setFirstOpen(boolean firstOpen);
+    Calendar getNotificationCalendar();
+    void setNotificationCalendar (Calendar calendar);
+    String getNotificationText();
+    void setNotificationText(String text);
+    boolean getNotificationIsAllow();
+    void setNotificationIsAllow(boolean isAllow);
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){
             RoomDb roomDb = RoomDb.getInstance(context);
-            return new RepoImp(roomDb, new InMemoryDbImp());
+            return new RepoImp(roomDb, new InMemoryDbImp(), new SharedPrefStorageImp(context));
         }
     }
 

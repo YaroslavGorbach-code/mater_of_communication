@@ -15,11 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.NavWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements NavWorkflow.Router {
 
@@ -39,12 +42,23 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
 
-            // TODO: 5/5/2021 delete it later it is for testing
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.main_container, new AboutAppFragment())
-                    .addToBackStack(null)
-                    .commit();
+            Repo repo = new Repo.RepoProvider().provideRepo(this);
+            if (repo.getFirstOpen()){
+                repo.setNotificationText(getString(R.string.notification_text));
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_container, new AboutAppFragment())
+                        .addToBackStack(null)
+                        .commit();
+
+                NotificationManager notificationManager = ContextCompat.getSystemService(this, NotificationManager.class);
+                new MyNotificationManagerImp().sendNotificationOnTime(
+                        notificationManager,
+                        this,
+                        repo.getNotificationCalendar().getTimeInMillis() + TimeUnit.DAYS.toMillis(1),
+                        repo.getNotificationText());
+            }
+            repo.setFirstOpen(false);
         }
     }
 

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_toolber_notifications"
+        android:id="@+id/menu_toolbar_notifications"
         android:title="@string/notifications"
         app:showAsAction="never"/>
 </menu>

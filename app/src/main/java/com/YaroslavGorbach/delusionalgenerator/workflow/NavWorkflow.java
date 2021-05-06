@@ -1,19 +1,17 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow;
 import android.app.NotificationManager;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercises.NotificationDialog;
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 
 import java.util.Calendar;
@@ -28,10 +26,12 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
     public NavWorkflow(){
         super(R.layout.workflow_nav);
     }
+    private Repo mRepo;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRepo = new Repo.RepoProvider().provideRepo(requireContext());
         if (savedInstanceState == null){
             Fragment fragment = new ExercisesWorkflow();
             getChildFragmentManager()
@@ -71,10 +71,13 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
        });
 
        binding.toolbar.setOnMenuItemClickListener(menuItem-> {
-
-           if (menuItem.getItemId() == R.id.menu_toolber_notifications) {
+           if (menuItem.getItemId() == R.id.menu_toolbar_notifications) {
                NotificationDialog dialog =  new NotificationDialog();
-               dialog.setArguments(NotificationDialog.argsOf(12,10, "i`am here", true));
+               dialog.setArguments(NotificationDialog.argsOf(
+                       mRepo.getNotificationCalendar().get(Calendar.HOUR_OF_DAY),
+                       mRepo.getNotificationCalendar().get(Calendar.MINUTE),
+                       mRepo.getNotificationText(),
+                       mRepo.getNotificationIsAllow()));
                dialog.show(getChildFragmentManager(), null);
            }
            return true;
@@ -82,9 +85,16 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
     }
 
     @Override
-    public void onApply(boolean checkBox, String text, Calendar calendar) {
+    public void onApply(boolean isAllow, String text, Calendar calendar) {
+        mRepo.setNotificationIsAllow(isAllow);
+        mRepo.setNotificationText(text);
+        mRepo.setNotificationCalendar(calendar);
         NotificationManager notificationManager = ContextCompat.getSystemService(requireContext(), NotificationManager.class);
-        new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, requireContext(),calendar.getTimeInMillis(), text);
+        if (isAllow){
+            new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, requireContext(),calendar.getTimeInMillis(), text);
+        }else {
+            notificationManager.cancelAll();
+        }
     }
 
     @Override

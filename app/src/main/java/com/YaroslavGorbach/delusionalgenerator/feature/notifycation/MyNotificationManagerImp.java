@@ -12,6 +12,7 @@ import com.YaroslavGorbach.delusionalgenerator.MainActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver;
 
+import static com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver.EXTRA_ALLOW;
 import static com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver.EXTRA_MESSAGE;
 
 public class MyNotificationManagerImp implements MyNotificationManager {

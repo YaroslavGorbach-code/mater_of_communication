@@ -7,6 +7,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -18,10 +19,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class RepoImp implements Repo {
     private final RoomDb mRoomDb;
     private final InMemoryDb mInMemoryDb;
+    private final SharedPrefStorage mSharedPrefStorage;
 
-    public RepoImp(RoomDb roomDb, InMemoryDb inMemoryDb) {
+    public RepoImp(RoomDb roomDb, InMemoryDb inMemoryDb, SharedPrefStorage storage) {
         mRoomDb = roomDb;
         mInMemoryDb = inMemoryDb;
+        mSharedPrefStorage = storage;
     }
 
     @Override
@@ -102,6 +105,50 @@ public class RepoImp implements Repo {
         Training training = getTraining().blockingFirst();
         return Observable.fromIterable(training.exercises).filter(exercise1 ->
                 exercise1.getName() == exercise.getName()).blockingFirst().aim;
+    }
+
+    @Override
+    public boolean getFirstOpen() {
+        return mSharedPrefStorage.getFirstOpen();
+    }
+
+    @Override
+    public void setFirstOpen(boolean firstOpen) {
+        mSharedPrefStorage.setFirstOpen(firstOpen);
+    }
+
+    @Override
+    public Calendar getNotificationCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, mSharedPrefStorage.getNotificationHour());
+        calendar.set(Calendar.MINUTE, mSharedPrefStorage.getNotificationMinute());
+        return calendar;
+    }
+
+    @Override
+    public void setNotificationCalendar(Calendar calendar) {
+        mSharedPrefStorage.setNotificationHour(calendar.get(Calendar.HOUR_OF_DAY));
+        mSharedPrefStorage.setNotificationMinute(calendar.get(Calendar.MINUTE));
+    }
+
+    @Override
+    public String getNotificationText() {
+        return mSharedPrefStorage.getNotificationText();
+    }
+
+    @Override
+    public void setNotificationText(String text) {
+        mSharedPrefStorage.setNotificationText(text);
+    }
+
+    @Override
+    public boolean getNotificationIsAllow() {
+        return mSharedPrefStorage.getNotificationIsAllow();
+    }
+
+    @Override
+    public void setNotificationIsAllow(boolean isEnable) {
+        mSharedPrefStorage.setNotificationIsAllow(isEnable);
     }
 
     private ArrayList<Exercise> generateTrainingExs(Training training) {
