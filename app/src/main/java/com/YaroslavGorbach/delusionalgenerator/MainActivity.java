@@ -1,14 +1,21 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.NavWorkflow;
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        createChannel();
 
         if (savedInstanceState == null) {
             Fragment fragment = new NavWorkflow();
@@ -31,12 +39,14 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
 
-            // TODO: 5/5/2021 delete it later
+            // TODO: 5/5/2021 delete it later it is for testing
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.main_container, new AboutAppFragment())
                     .addToBackStack(null)
                     .commit();
+             NotificationManager notificationManager = ContextCompat.getSystemService(this, NotificationManager.class);
+            new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, this,"it`s me, Jon", SystemClock.elapsedRealtime() + 100);
         }
     }
 
@@ -64,6 +74,21 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                 .commit();
     }
 
+    private void createChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(
+                    "1",
+                    "App notification",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setDescription("App notification");
+            NotificationManager notificationManager = this.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
 }
 
 

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemTrainingExBinding;
+import com.bumptech.glide.Glide;
 
 
 public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapter.Vh> {
@@ -49,7 +50,7 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
         @SuppressLint("SetTextI18n")
         void bind(Exercise ex){
             mBinding.name.setText(itemView.getContext().getString(ex.getName().getNameId()));
-            mBinding.image.setImageResource(ex.getImageId());
+            Glide.with(itemView.getContext()).load(ex.getImageId()).into(mBinding.image);
             mBinding.aim.setText(ex.done + "/" + ex.aim);
             mBinding.category.setText(ex.getCategory().getNameId());
             if (ex.getCategory() == Exercise.Category.VOCABULARY) mBinding.aim.setVisibility(View.GONE);

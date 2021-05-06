@@ -28,7 +28,6 @@ public interface Repo {
     int getTrainingExDone(Exercise exercise);
     int getTrainingExAim(Exercise exercise);
 
-
     class RepoProvider{
         public RepoImp provideRepo(Context context){
             RoomDb roomDb = RoomDb.getInstance(context);

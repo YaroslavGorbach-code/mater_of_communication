@@ -161,6 +161,10 @@ public class SpeakingExImp implements SpeakingEx {
                     mWord.postValue(words.get(mRandom.nextInt(words.size())));
                     mDoneAndAim.setValue(new Pair<>(mExercise.done, mExercise.aim));
                 }
+                if (mClickCount == 0 && mExercise.type == Exercise.Type.DAILY){
+                    words = mRepo.getWords(Repo.WordType.LETTER, mResources);
+                    mWord.postValue(words.get(mRandom.nextInt(words.size())));
+                }
 
                 break;
             case OTHER_ABBREVIATIONS:

@@ -117,7 +117,7 @@ public class RepoImp implements Repo {
             exercises.add((getExercise(Exercise.Name.VERY_DIFFICULT_TONGUE_TWISTERS)));
         }
 
-        switch (random.nextInt(3)){
+        switch (random.nextInt(4)){
             case 0:
                 exercises.add((getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS)));
                 exercises.add((getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT)));
