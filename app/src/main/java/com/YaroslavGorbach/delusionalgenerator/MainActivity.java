@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.YaroslavGorbach.delusionalgenerator.component.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
@@ -31,10 +32,13 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Repo repo = new Repo.RepoProvider().provideRepo(this);
+
+        // if first open shack system theme and set it as app
         if (repo.getFirstOpen()){
             int nightModeFlags = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             repo.setNightMod(nightModeFlags == Configuration.UI_MODE_NIGHT_YES);
         }
+
         if (repo.getNightMod()){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }else {
@@ -43,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
+
+        BillingManager billingManager = new BillingManager(this, () -> {});
+        billingManager.queryPurchases(() -> repo.setAdIsAllow(false));
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, initializationStatus -> {});
@@ -55,9 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
 
-            MobileAds.initialize(this, initializationStatus -> {});
 
-            // show trip and notification tomorrow is it is the first app open
+            // show trip and notification tomorrow if it is the first app open
             if (repo.getFirstOpen()){
                 repo.setNotificationText(getString(R.string.notification_text));
                 getSupportFragmentManager()

@@ -5,7 +5,7 @@ import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
@@ -23,9 +23,10 @@ public class ExercisesView {
 
     private final ExsListAdapter mAdapter;
     private final FragmentExercisesBinding mBinding;
-    private AdManager mAdManager = new AdManager();
+    private AdManager mAdManager;
 
-    public ExercisesView(FragmentExercisesBinding binding, Callback callback){
+    public ExercisesView(FragmentExercisesBinding binding, Callback callback, AdManager adManager){
+        mAdManager = adManager;
         mBinding = binding;
         mAdapter = new ExsListAdapter(callback::onExercise);
         mAdapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);

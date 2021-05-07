@@ -15,5 +15,7 @@ public interface SharedPrefStorage {
     int getInterstitialAdCount();
     void setNightMod(boolean nightMod);
     boolean getNightMod();
+    boolean getAdIsAllow();
+    void setAdIsAllow(boolean isAdRemoved);
 
 }

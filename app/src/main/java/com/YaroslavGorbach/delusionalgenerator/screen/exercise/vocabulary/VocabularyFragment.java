@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
@@ -32,13 +32,15 @@ public class VocabularyFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
+
+        mAdManager = new AdManager(repo);
         mAdManager.loadInterstitialAd(view.getContext());
 
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
 
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         VocabularyVm vm = new ViewModelProvider(this,
                 new VocabularyVm.VocabularyVmFactory(repo, name, type, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
 

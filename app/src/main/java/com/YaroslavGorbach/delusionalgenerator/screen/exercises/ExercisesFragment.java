@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
@@ -32,8 +33,9 @@ public class ExercisesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         // init vm
-        ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(ExercisesVm.class);
+        ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
 
         // init view
         ExercisesView v = new ExercisesView(FragmentExercisesBinding.bind(view), new ExercisesView.Callback() {
@@ -52,7 +54,8 @@ public class ExercisesFragment extends Fragment {
                 ((Router) requireParentFragment()).openTraining();
             }
 
-        });
+        },new AdManager(repo));
+
         v.setExercises(vm.exercises.getExercises());
         v.setSpeakingCount(vm.exercises.getExercises(Exercise.Category.SPEAKING).size());
         v.setVocabularyCount(vm.exercises.getExercises(Exercise.Category.VOCABULARY).size());

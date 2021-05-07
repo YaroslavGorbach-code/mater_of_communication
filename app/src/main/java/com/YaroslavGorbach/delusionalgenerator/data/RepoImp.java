@@ -175,6 +175,16 @@ public class RepoImp implements Repo {
         mSharedPrefStorage.setNightMod(nightMod);
     }
 
+    @Override
+    public boolean getAdIsAllow() {
+        return mSharedPrefStorage.getAdIsAllow();
+    }
+
+    @Override
+    public void setAdIsAllow(boolean isAllow) {
+        mSharedPrefStorage.setAdIsAllow(isAllow);
+    }
+
     private ArrayList<Exercise> generateTrainingExs(Training training) {
         Random random = new Random();
         ArrayList<Exercise> exercises = new ArrayList<>();

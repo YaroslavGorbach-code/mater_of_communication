@@ -80,4 +80,14 @@ public class SharedPrefStorageImp implements SharedPrefStorage {
         return mSharedPreferences.getBoolean("nightMod", false);
     }
 
+    @Override
+    public boolean getAdIsAllow() {
+        return mSharedPreferences.getBoolean("adIsAllow", true);
+    }
+
+    @Override
+    public void setAdIsAllow(boolean isAllow) {
+        mSharedPreferences.edit().putBoolean("adIsAllow", isAllow).apply();
+    }
+
 }

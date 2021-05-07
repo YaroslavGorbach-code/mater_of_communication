@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -17,21 +17,23 @@ import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecord
 import com.YaroslavGorbach.delusionalgenerator.util.PermissionsUtil;
 
 public class SpeakingFragment extends Fragment {
-
     public SpeakingFragment(){ super(R.layout.fragment_speaking); }
+
     public static Bundle argsOf(Exercise.Name name, Exercise.Type type){
         Bundle bundle = new Bundle();
         bundle.putSerializable("name", name);
         bundle.putSerializable("type", type);
         return bundle;
     }
-    private final AdManager mAdManager = new AdManager();
+
+    private AdManager mAdManager;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdManager.loadInterstitialAd(view.getContext());
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
+        mAdManager = new AdManager(repo);
+        mAdManager.loadInterstitialAd(view.getContext());
 
         // init vm
         Exercise.Name name = (Exercise.Name)requireArguments().getSerializable("name");

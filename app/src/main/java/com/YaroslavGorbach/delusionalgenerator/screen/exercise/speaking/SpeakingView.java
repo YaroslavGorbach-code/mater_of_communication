@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.core.util.Pair;
 
-import com.YaroslavGorbach.delusionalgenerator.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 

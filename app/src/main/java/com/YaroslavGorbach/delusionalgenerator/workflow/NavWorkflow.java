@@ -2,7 +2,10 @@ package com.YaroslavGorbach.delusionalgenerator.workflow;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -11,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.YaroslavGorbach.delusionalgenerator.MainActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
@@ -18,6 +22,7 @@ import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificati
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host{
 
@@ -87,6 +92,13 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
            if (menuItem.getItemId() == R.id.menu_toolbar_them){
                mRepo.setNightMod(!mRepo.getNightMod());
                requireActivity().recreate();
+           }
+           if (menuItem.getItemId() == R.id.menu_toolbar_remove_ad){
+               BillingManager billingManager = new BillingManager(requireActivity(), () ->{
+                   mRepo.setAdIsAllow(false);
+                   requireActivity().recreate();
+               });
+               billingManager.showPurchasesDialog(requireActivity());
            }
            return true;
        });

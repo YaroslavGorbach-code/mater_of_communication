@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
@@ -59,7 +60,7 @@ public class RecordsFragment extends Fragment {
             public void onRemove(Record record) {
                 vm.recordsList.onRemove(record);
             }
-        });
+        },new AdManager(repo));
         vm.recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);
         vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), v::setIsPlaying);
         vm.recordsList.getDuration().observe(getViewLifecycleOwner(), v::setDuration);

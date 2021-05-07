@@ -40,6 +40,8 @@ public interface Repo {
     void incInterstitialAdCount();
     boolean getNightMod();
     void setNightMod(boolean nightMod);
+    boolean getAdIsAllow();
+    void setAdIsAllow(boolean isAllow);
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

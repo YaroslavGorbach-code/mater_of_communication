@@ -1,6 +1,5 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 
-import com.YaroslavGorbach.delusionalgenerator.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 
 public class VocabularyView {
