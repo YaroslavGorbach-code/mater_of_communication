@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
 
+            MobileAds.initialize(this, initializationStatus -> {});
+
             Repo repo = new Repo.RepoProvider().provideRepo(this);
             if (repo.getFirstOpen()){
                 repo.setNotificationText(getString(R.string.notification_text));
