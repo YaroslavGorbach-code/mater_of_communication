@@ -60,7 +60,6 @@ dependencies {
     // adds
     implementation 'com.google.firebase:firebase-ads:20.1.0'
     implementation 'com.google.android.gms:play-services-ads:20.1.0'
-    implementation project(':addtemplates')
 
     // RX
     implementation "io.reactivex.rxjava3:rxjava:3.0.11-RC5"

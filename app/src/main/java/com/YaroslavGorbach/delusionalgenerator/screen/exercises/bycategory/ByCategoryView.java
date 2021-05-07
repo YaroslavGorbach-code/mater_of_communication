@@ -12,23 +12,15 @@ public class ByCategoryView {
 
     public interface Callback{
         void onExercise(Exercise exercise);
-        void onUp();
     }
 
     private final ExsListAdapter mAdapter;
-    private final FragmentByCategoryBinding mBinding;
 
     public ByCategoryView(FragmentByCategoryBinding binding, Callback callback){
-        mBinding = binding;
         mAdapter = new ExsListAdapter(callback::onExercise);
         binding.list.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.list.setAdapter(mAdapter);
-        binding.toolbar.setNavigationOnClickListener(v -> callback.onUp());
 
-    }
-
-    public void setTitle(int categoryId){
-        mBinding.toolbar.setTitle(mBinding.getRoot().getContext().getString(categoryId));
     }
 
     public void setExercises(List<Exercise> exercises) {

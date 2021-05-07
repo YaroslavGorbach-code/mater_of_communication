@@ -13,7 +13,7 @@
 
     <string name="category_speaking_name">Для развития коммуникабельности</string>
     <string name="category_vocabulary_name">Для увеличения словарного запаса</string>
-    <string name="category_tt_name">Для улутьшения диуции</string>
+    <string name="category_tt_name">Для улутьшения дикции</string>
 
     <string name="statistics_text_speaking">Пройдено за сессию</string>
     <string name="statistics_text_tt">Среднее количество секунд на скороговорку за сессию</string>

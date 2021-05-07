@@ -28,7 +28,7 @@ public class AdMob {
         mAdView.loadAd(adRequest);
     }
 
-    public void refreshAd(Activity activity, ViewGroup adPlaceholder) {
+    public void showNativeAd(Activity activity, ViewGroup adPlaceholder) {
         AdLoader.Builder builder = new AdLoader.Builder(activity, "ca-app-pub-6043694180023070/4522089359");
         builder.forNativeAd(ad -> {
             if (activity.isDestroyed() || activity.isFinishing() || activity.isChangingConfigurations()) {

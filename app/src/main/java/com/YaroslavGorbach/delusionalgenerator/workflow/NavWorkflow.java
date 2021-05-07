@@ -94,7 +94,9 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
         if (isAllow){
             new MyNotificationManagerImp().sendNotificationOnTime(notificationManager, requireContext(), calendar.getTimeInMillis(), text);
         }else {
-            notificationManager.cancelAll();
+            if (notificationManager != null) {
+                notificationManager.cancelAll();
+            }
         }
     }
 

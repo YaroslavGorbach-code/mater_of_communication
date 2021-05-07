@@ -11,9 +11,7 @@ import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificati
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 
 public class AlarmReceiver extends BroadcastReceiver {
-
     public static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    public static String EXTRA_ALLOW = "EXTRA_ALLOW";
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -38,18 +38,10 @@ public class ByCategoryFragment extends Fragment {
                 new ExercisesVm.ExercisesVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(ExercisesVm.class);
 
         // init view
-        ByCategoryView v = new ByCategoryView(FragmentByCategoryBinding.bind(view), new ByCategoryView.Callback() {
-            @Override
-            public void onExercise(Exercise exercise) {
-                ((ByCategoryFragment.Router)requireParentFragment()).openExercise(exercise.getName(), exercise.type);
-            }
-
-            @Override
-            public void onUp() { requireActivity().onBackPressed(); }
-        });
+        ByCategoryView v = new ByCategoryView(FragmentByCategoryBinding.bind(view), exercise ->
+                ((Router)requireParentFragment()).openExercise(exercise.getName(), exercise.type));
 
         v.setExercises(vm.exercises.getExercises(category));
-        v.setTitle(category.getNameId());
 
     }
 }

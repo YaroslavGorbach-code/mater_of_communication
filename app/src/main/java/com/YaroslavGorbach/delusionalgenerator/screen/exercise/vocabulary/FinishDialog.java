@@ -45,18 +45,15 @@ public class FinishDialog extends DialogFragment {
     private void initResult(DialogVocabularyResultBinding binding, VocabularyEx.Result result){
         switch (result){
             case GOOD:
-                binding.resultText.setText(getString(R.string.resultGood, result.getNumberWords())
-                        .replaceFirst(" ", ""));
+                binding.resultText.setText(getString(R.string.resultGood, result.getNumberWords()));
                 binding.imageView.setImageResource(R.drawable.ic_good_result);
                 break;
             case BAD:
-                binding.resultText.setText(getString(R.string.resultBad, result.getNumberWords())
-                        .replaceFirst(" ", ""));
+                binding.resultText.setText(getString(R.string.resultBad, result.getNumberWords()));
                 binding.imageView.setImageResource(R.drawable.ic_bad_result);
                 break;
             case VERY_GOOD:
-                binding.resultText.setText(getString(R.string.resultVeryGood, result.getNumberWords())
-                        .replaceFirst(" ", ""));
+                binding.resultText.setText(getString(R.string.resultVeryGood, result.getNumberWords()));
                 binding.imageView.setImageResource(R.drawable.ic_very_goot_result);
                 break;
         }
