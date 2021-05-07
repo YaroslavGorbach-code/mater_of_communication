@@ -1,23 +1,44 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.YaroslavGorbach.delusionalgenerator.AdMob;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
+import com.YaroslavGorbach.delusionalgenerator.databinding.LayoutNativeAdBinding;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.VideoOptions;
+import com.google.android.gms.ads.nativead.MediaView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdOptions;
+import com.google.android.gms.ads.nativead.NativeAdView;
 
 import java.util.List;
 
 public class ExercisesView {
+
     public interface Callback{
         void onExercise(Exercise exercise);
         void onCategory(Exercise.Category category);
         void onTraining();
     }
+
     private final ExsListAdapter mAdapter;
     private final FragmentExercisesBinding mBinding;
+    private AdMob mAdMob = new AdMob();
 
     public ExercisesView(FragmentExercisesBinding binding, Callback callback){
         mBinding = binding;
@@ -53,4 +74,7 @@ public class ExercisesView {
         mBinding.categories.countSpeaking.setText(String.valueOf(count));
     }
 
+    public void refreshAd(Activity activity) {
+        mAdMob.refreshAd(activity, mBinding.adPlaceholder);
+    }
 }

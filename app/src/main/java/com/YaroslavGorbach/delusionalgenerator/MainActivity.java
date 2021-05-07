@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
@@ -21,6 +22,9 @@ import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.NavWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
+
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this, initializationStatus -> {});
 
         if (savedInstanceState == null) {
             Fragment fragment = new NavWorkflow();

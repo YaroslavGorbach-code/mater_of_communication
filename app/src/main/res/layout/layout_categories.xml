@@ -197,10 +197,11 @@
                 android:gravity="center"
                 android:padding="4dp"
                 android:scaleType="fitCenter"
-                tool:text="3"
                 android:textColor="#fafafa"
                 android:textSize="12dp"
-                tool:ignore="ContentDescription,SpUsage" />
+                tool:ignore="ContentDescription,SpUsage"
+                tool:text="3" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
