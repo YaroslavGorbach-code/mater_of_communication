@@ -5,7 +5,7 @@ import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
@@ -23,10 +23,8 @@ public class ExercisesView {
 
     private final ExsListAdapter mAdapter;
     private final FragmentExercisesBinding mBinding;
-    private AdManager mAdManager;
 
-    public ExercisesView(FragmentExercisesBinding binding, Callback callback, AdManager adManager){
-        mAdManager = adManager;
+    public ExercisesView(FragmentExercisesBinding binding, Callback callback){
         mBinding = binding;
         mAdapter = new ExsListAdapter(callback::onExercise);
         mAdapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);
@@ -60,7 +58,7 @@ public class ExercisesView {
         mBinding.categories.countSpeaking.setText(String.valueOf(count));
     }
 
-    public void refreshAd(Activity activity) {
-        mAdManager.showNativeAd(activity, mBinding.adPlaceholder);
+    public void refreshAd(Activity activity, AdManager adManager) {
+        adManager.showNativeAd(activity, mBinding.adPlaceholder);
     }
 }

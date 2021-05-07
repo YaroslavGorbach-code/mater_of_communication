@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component;
+package com.YaroslavGorbach.delusionalgenerator.feature;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 

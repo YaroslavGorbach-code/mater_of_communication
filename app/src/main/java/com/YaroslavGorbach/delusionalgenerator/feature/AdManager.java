@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component;
+package com.YaroslavGorbach.delusionalgenerator.feature;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -38,7 +38,7 @@ import java.util.Objects;
 public class AdManager {
     private NativeAd mNativeAd;
     private InterstitialAd mInterstitialAd;
-    private Repo mRepo;
+    private final Repo mRepo;
 
     public AdManager(Repo repo){
         mRepo = repo;

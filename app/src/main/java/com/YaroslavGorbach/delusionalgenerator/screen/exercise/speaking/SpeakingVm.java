@@ -9,11 +9,13 @@ import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingEx;
 import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
 
 public class SpeakingVm extends ViewModel {
     public SpeakingEx speakingEx;
+    public AdManager adManager;
 
     SpeakingVm(
             Exercise.Name name,
@@ -30,6 +32,7 @@ public class SpeakingVm extends ViewModel {
                 statisticsManager,
                 resources,
                 voiceRecorder);
+        adManager = new AdManager(repo);
     }
 
     @Override

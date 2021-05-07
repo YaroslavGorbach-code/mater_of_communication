@@ -1,10 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow;
 import android.app.NotificationManager;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,9 +9,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.YaroslavGorbach.delusionalgenerator.MainActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.component.BillingManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
@@ -22,7 +18,6 @@ import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificati
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 
 import java.util.Calendar;
-import java.util.List;
 
 public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host{
 

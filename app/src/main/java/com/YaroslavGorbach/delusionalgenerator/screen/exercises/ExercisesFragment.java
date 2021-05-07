@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
@@ -34,6 +34,7 @@ public class ExercisesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
+
         // init vm
         ExercisesVm vm = new ViewModelProvider(this, new ExercisesVm.ExercisesVmFactory(repo)).get(ExercisesVm.class);
 
@@ -54,13 +55,13 @@ public class ExercisesFragment extends Fragment {
                 ((Router) requireParentFragment()).openTraining();
             }
 
-        },new AdManager(repo));
+        });
 
         v.setExercises(vm.exercises.getExercises());
         v.setSpeakingCount(vm.exercises.getExercises(Exercise.Category.SPEAKING).size());
         v.setVocabularyCount(vm.exercises.getExercises(Exercise.Category.VOCABULARY).size());
         v.setTongueTwistersCount(vm.exercises.getExercises(Exercise.Category.TONGUE_TWISTER).size());
-        v.refreshAd(requireActivity());
+        v.refreshAd(requireActivity(), vm.adManager);
         mBag.add(vm.exercises.getTraining().observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));
     }
 

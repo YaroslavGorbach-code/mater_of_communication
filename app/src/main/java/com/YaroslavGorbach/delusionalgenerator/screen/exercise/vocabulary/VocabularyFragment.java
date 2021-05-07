@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
@@ -18,7 +18,6 @@ import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsMana
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
 
 public class VocabularyFragment extends Fragment{
-    private AdManager mAdManager;
 
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
 
@@ -29,19 +28,18 @@ public class VocabularyFragment extends Fragment{
         return bundle;
     }
 
+    private VocabularyVm vm;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
-        mAdManager = new AdManager(repo);
-        mAdManager.loadInterstitialAd(view.getContext());
-
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
 
-        VocabularyVm vm = new ViewModelProvider(this,
+        vm = new ViewModelProvider(this,
                 new VocabularyVm.VocabularyVmFactory(repo, name, type, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
 
         // init view
@@ -67,11 +65,13 @@ public class VocabularyFragment extends Fragment{
                 alertDialog.show(getChildFragmentManager(), "null");
             }
         });
+        vm.adManager.loadInterstitialAd(view.getContext());
+
     }
 
     @Override
     public void onDestroy() {
-        mAdManager.showInterstitial(requireActivity());
+        vm.adManager.showInterstitial(requireActivity());
         super.onDestroy();
     }
 }

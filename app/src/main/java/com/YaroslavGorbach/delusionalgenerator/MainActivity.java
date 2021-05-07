@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.YaroslavGorbach.delusionalgenerator.component.BillingManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .add(R.id.main_container, fragment)
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
-
 
             // show trip and notification tomorrow if it is the first app open
             if (repo.getFirstOpen()){

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -26,20 +26,17 @@ public class SpeakingFragment extends Fragment {
         return bundle;
     }
 
-    private AdManager mAdManager;
-
+    private SpeakingVm vm;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-        mAdManager = new AdManager(repo);
-        mAdManager.loadInterstitialAd(view.getContext());
 
         // init vm
         Exercise.Name name = (Exercise.Name)requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type)requireArguments().getSerializable("type");
 
-        SpeakingVm vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
+        vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
                 name,
                 type,
                 repo,
@@ -72,12 +69,14 @@ public class SpeakingFragment extends Fragment {
         vm.speakingEx.getShortDescId().observe(getViewLifecycleOwner(), id -> v.setShortDesc(getString(id)));
         vm.speakingEx.getRecordingState().observe(getViewLifecycleOwner(), v::changeButtonImage);
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), v::setWord);
+        vm.adManager.loadInterstitialAd(view.getContext());
+
 
     }
 
     @Override
     public void onDestroy() {
-        mAdManager.showInterstitial(requireActivity());
+        vm.adManager.showInterstitial(requireActivity());
         super.onDestroy();
     }
 }

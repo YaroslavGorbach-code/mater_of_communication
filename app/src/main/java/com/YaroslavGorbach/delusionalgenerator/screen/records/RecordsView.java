@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
-import com.YaroslavGorbach.delusionalgenerator.component.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
@@ -34,10 +34,10 @@ public class RecordsView {
     public interface ItemSwipeCallback {
         void onSwipe(RecyclerView.ViewHolder viewHolder);
     }
-
     private final RecordsAdapter mAdapter;
     private final FragmentRecordsBinding mBinding;
     private boolean mIsPlaying = false;
+
     public RecordsView(FragmentRecordsBinding binding, Callback callback, AdManager adManager) {
 
         // show Ad
