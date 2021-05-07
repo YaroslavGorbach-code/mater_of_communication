@@ -110,6 +110,11 @@ public class SpeakingExImp implements SpeakingEx {
     }
 
     @Override
+    public void stopRecording() {
+        mVoiceRecorder.stop();
+    }
+
+    @Override
     public LiveData<Boolean> getRecordingState() {
         return mIsRecording;
     }

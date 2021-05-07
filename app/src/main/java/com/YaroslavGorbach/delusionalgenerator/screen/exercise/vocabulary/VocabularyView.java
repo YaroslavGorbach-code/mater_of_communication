@@ -1,5 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
 
+import com.YaroslavGorbach.delusionalgenerator.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 
 public class VocabularyView {
@@ -12,6 +13,9 @@ public class VocabularyView {
     private final FragmentVocabularyBinding mBinding;
 
     public VocabularyView(FragmentVocabularyBinding binding, Callback callback){
+        // show Ad
+        new AdManager().showBanner(binding.getRoot().getContext(), binding.bannerContainer);
+
         mBinding = binding;
         binding.clickArea.setOnClickListener(v -> callback.onClick());
         binding.toolbar.setNavigationOnClickListener(v -> callback.onUp());

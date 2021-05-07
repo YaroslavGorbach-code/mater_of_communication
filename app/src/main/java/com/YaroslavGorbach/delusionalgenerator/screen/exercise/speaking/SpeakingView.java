@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.core.util.Pair;
 
+import com.YaroslavGorbach.delusionalgenerator.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 
@@ -26,6 +27,9 @@ public class SpeakingView {
     private final Handler mHandler= new Handler(Looper.getMainLooper());
 
     public SpeakingView(FragmentSpeakingBinding binding, Callback callback){
+        // show Ad
+        new AdManager().showBanner(binding.getRoot().getContext(), binding.bannerContainer);
+
         mBinding = binding;
         mCallback = callback;
         mBinding.chronometer.start();

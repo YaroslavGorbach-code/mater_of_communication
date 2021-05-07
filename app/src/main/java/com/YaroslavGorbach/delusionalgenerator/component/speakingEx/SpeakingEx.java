@@ -9,6 +9,7 @@ public interface SpeakingEx {
     void onNext();
     void saveStatistics();
     void onStartStopRecord(Context context);
+    void stopRecording();
     LiveData<Boolean> getRecordingState();
     LiveData<Integer> getShortDescId();
     LiveData<String> getWord();

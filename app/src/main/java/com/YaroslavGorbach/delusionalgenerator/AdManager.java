@@ -1,6 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.nativead.NativeAd;
@@ -19,13 +21,17 @@ import com.google.android.gms.ads.nativead.NativeAdView;
 
 import java.util.Objects;
 
-public class AdMob {
+public class AdManager {
     private NativeAd mNativeAd;
 
-    public static void showBanner(View view) {
-        AdView mAdView = (AdView) view;
+    public void showBanner(Context context, ViewGroup adContainer) {
+        AdView adView = new AdView(context);
+        adView.setAdUnitId("ca-app-pub-6043694180023070/2709885324");
+        adView.setAdSize(new AdSize(AdSize.FULL_WIDTH, AdSize.AUTO_HEIGHT));
+        adContainer.removeAllViews();
+        adContainer.addView(adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        adView.loadAd(adRequest);
     }
 
     public void showNativeAd(Activity activity, ViewGroup adPlaceholder) {

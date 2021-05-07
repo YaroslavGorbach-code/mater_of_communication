@@ -35,6 +35,7 @@ public class SpeakingVm extends ViewModel {
     @Override
     protected void onCleared() {
         speakingEx.saveStatistics();
+        speakingEx.stopRecording();
         super.onCleared();
     }
 

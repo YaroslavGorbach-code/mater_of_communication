@@ -70,6 +70,7 @@ public class SpeakingFragment extends Fragment {
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), v::setWord);
 
     }
+
 }
 
 

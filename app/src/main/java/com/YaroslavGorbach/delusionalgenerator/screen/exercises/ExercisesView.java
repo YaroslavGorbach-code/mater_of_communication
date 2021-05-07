@@ -5,7 +5,7 @@ import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.AdMob;
+import com.YaroslavGorbach.delusionalgenerator.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
@@ -23,7 +23,7 @@ public class ExercisesView {
 
     private final ExsListAdapter mAdapter;
     private final FragmentExercisesBinding mBinding;
-    private AdMob mAdMob = new AdMob();
+    private AdManager mAdManager = new AdManager();
 
     public ExercisesView(FragmentExercisesBinding binding, Callback callback){
         mBinding = binding;
@@ -60,6 +60,6 @@ public class ExercisesView {
     }
 
     public void refreshAd(Activity activity) {
-        mAdMob.showNativeAd(activity, mBinding.adPlaceholder);
+        mAdManager.showNativeAd(activity, mBinding.adPlaceholder);
     }
 }
