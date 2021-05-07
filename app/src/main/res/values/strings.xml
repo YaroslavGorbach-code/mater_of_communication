@@ -43,6 +43,7 @@
     <string name="title_exercises">Упражнения</string>
     <string name="title_records">Записи</string>
     <string name="ad_attribution">Ad</string>
+    <string name="light_dark_theme">Темная тема</string>
 
 
 </resources>

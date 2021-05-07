@@ -2,13 +2,12 @@ package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
@@ -23,8 +22,6 @@ import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.NavWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +30,16 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        Repo repo = new Repo.RepoProvider().provideRepo(this);
+        if (repo.getFirstOpen()){
+            int nightModeFlags = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            repo.setNightMod(nightModeFlags == Configuration.UI_MODE_NIGHT_YES);
+        }
+        if (repo.getNightMod()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
 
             MobileAds.initialize(this, initializationStatus -> {});
 
-            Repo repo = new Repo.RepoProvider().provideRepo(this);
+            // show trip and notification tomorrow is it is the first app open
             if (repo.getFirstOpen()){
                 repo.setNotificationText(getString(R.string.notification_text));
                 getSupportFragmentManager()

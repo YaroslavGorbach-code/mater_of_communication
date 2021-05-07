@@ -38,6 +38,8 @@ public interface Repo {
     void setNotificationIsAllow(boolean isAllow);
     boolean interstitialAdIsAllow();
     void incInterstitialAdCount();
+    boolean getNightMod();
+    void setNightMod(boolean nightMod);
 
     class RepoProvider{
         public RepoImp provideRepo(Context context){

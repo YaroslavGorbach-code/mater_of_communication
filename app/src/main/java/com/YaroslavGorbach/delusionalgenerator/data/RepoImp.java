@@ -165,6 +165,16 @@ public class RepoImp implements Repo {
         }
     }
 
+    @Override
+    public boolean getNightMod() {
+        return mSharedPrefStorage.getNightMod();
+    }
+
+    @Override
+    public void setNightMod(boolean nightMod) {
+        mSharedPrefStorage.setNightMod(nightMod);
+    }
+
     private ArrayList<Exercise> generateTrainingExs(Training training) {
         Random random = new Random();
         ArrayList<Exercise> exercises = new ArrayList<>();

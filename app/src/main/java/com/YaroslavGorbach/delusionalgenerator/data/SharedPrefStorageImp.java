@@ -70,4 +70,14 @@ public class SharedPrefStorageImp implements SharedPrefStorage {
         return mSharedPreferences.getInt("interstitialAdCount",2);
     }
 
+    @Override
+    public void setNightMod(boolean nightMod) {
+        mSharedPreferences.edit().putBoolean("nightMod", nightMod).apply();
+    }
+
+    @Override
+    public boolean getNightMod() {
+        return mSharedPreferences.getBoolean("nightMod", false);
+    }
+
 }

@@ -13,4 +13,7 @@ public interface SharedPrefStorage {
     void setNotificationIsAllow(boolean isEnable);
     void setInterstitialAdCount(int count);
     int getInterstitialAdCount();
+    void setNightMod(boolean nightMod);
+    boolean getNightMod();
+
 }
