@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.util.ColorUtils;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.VideoOptions;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
@@ -23,6 +34,8 @@ import java.util.Objects;
 
 public class AdManager {
     private NativeAd mNativeAd;
+    private InterstitialAd mInterstitialAd;
+    private Repo mRepo;
 
     public void showBanner(Context context, ViewGroup adContainer) {
         AdView adView = new AdView(context);
@@ -38,9 +51,11 @@ public class AdManager {
         AdLoader.Builder builder = new AdLoader.Builder(activity, "ca-app-pub-6043694180023070/4522089359");
         builder.forNativeAd(ad -> {
             if (activity.isDestroyed() || activity.isFinishing() || activity.isChangingConfigurations()) {
+                if (mNativeAd!=null)
                 mNativeAd.destroy();
                 return;
             }
+
             if (mNativeAd != null) {
                 mNativeAd.destroy();
             }
@@ -57,7 +72,46 @@ public class AdManager {
         builder.withNativeAdOptions(adOptions);
         AdLoader adLoader = builder.build();
         adLoader.loadAd(new AdRequest.Builder().build());
+    }
 
+    public void showInterstitial(Activity activity) {
+        if (mInterstitialAd != null && mRepo.interstitialAdIsAllow()) mInterstitialAd.show(activity);
+        mRepo.incInterstitialAdCount();
+    }
+
+    public void loadInterstitialAd(Context context) {
+        mRepo = new Repo.RepoProvider().provideRepo(context);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(
+                context,
+                "ca-app-pub-6043694180023070/5649596511",
+                adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        mInterstitialAd = interstitialAd;
+                        interstitialAd.setFullScreenContentCallback(
+                                new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        mInterstitialAd = null;
+                                    }
+
+                                    @Override
+                                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                                        mInterstitialAd = null;
+                                    }
+
+                                    @Override
+                                    public void onAdShowedFullScreenContent() { }
+                                });
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mInterstitialAd = null;
+                    }
+                });
     }
 
     private void populateNativeAdView(NativeAd nativeAd, NativeAdView adView) {

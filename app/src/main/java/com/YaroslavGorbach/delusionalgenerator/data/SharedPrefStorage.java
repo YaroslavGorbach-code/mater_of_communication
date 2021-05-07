@@ -11,4 +11,6 @@ public interface SharedPrefStorage {
     void setNotificationText(String text);
     boolean getNotificationIsAllow();
     void setNotificationIsAllow(boolean isEnable);
+    void setInterstitialAdCount(int count);
+    int getInterstitialAdCount();
 }

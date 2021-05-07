@@ -2,7 +2,10 @@ package com.YaroslavGorbach.delusionalgenerator.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 

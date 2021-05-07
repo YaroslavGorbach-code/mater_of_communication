@@ -151,6 +151,20 @@ public class RepoImp implements Repo {
         mSharedPrefStorage.setNotificationIsAllow(isEnable);
     }
 
+    @Override
+    public boolean interstitialAdIsAllow() {
+        return mSharedPrefStorage.getInterstitialAdCount() >= 2;
+    }
+
+    @Override
+    public void incInterstitialAdCount() {
+        if (mSharedPrefStorage.getInterstitialAdCount() < 2){
+            mSharedPrefStorage.setInterstitialAdCount(mSharedPrefStorage.getInterstitialAdCount()+1);
+        }else {
+            mSharedPrefStorage.setInterstitialAdCount(0);
+        }
+    }
+
     private ArrayList<Exercise> generateTrainingExs(Training training) {
         Random random = new Random();
         ArrayList<Exercise> exercises = new ArrayList<>();

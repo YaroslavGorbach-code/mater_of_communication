@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
+import com.YaroslavGorbach.delusionalgenerator.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
@@ -17,6 +18,8 @@ import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsMana
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
 
 public class VocabularyFragment extends Fragment{
+    private AdManager mAdManager;
+
     public VocabularyFragment(){ super(R.layout.fragment_vocabulary); }
 
     public static Bundle argsOf(Exercise.Name name, Exercise.Type type){
@@ -29,6 +32,8 @@ public class VocabularyFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mAdManager.loadInterstitialAd(view.getContext());
+
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
@@ -60,5 +65,11 @@ public class VocabularyFragment extends Fragment{
                 alertDialog.show(getChildFragmentManager(), "null");
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        mAdManager.showInterstitial(requireActivity());
+        super.onDestroy();
     }
 }

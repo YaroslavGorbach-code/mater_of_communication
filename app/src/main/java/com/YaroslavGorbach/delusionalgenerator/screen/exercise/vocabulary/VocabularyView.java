@@ -13,9 +13,6 @@ public class VocabularyView {
     private final FragmentVocabularyBinding mBinding;
 
     public VocabularyView(FragmentVocabularyBinding binding, Callback callback){
-        // show Ad
-        new AdManager().showBanner(binding.getRoot().getContext(), binding.bannerContainer);
-
         mBinding = binding;
         binding.clickArea.setOnClickListener(v -> callback.onClick());
         binding.toolbar.setNavigationOnClickListener(v -> callback.onUp());

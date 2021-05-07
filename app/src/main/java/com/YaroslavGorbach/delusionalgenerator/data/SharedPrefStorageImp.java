@@ -60,4 +60,14 @@ public class SharedPrefStorageImp implements SharedPrefStorage {
         mSharedPreferences.edit().putBoolean("notificationIsAllow", isEnable).apply();
     }
 
+    @Override
+    public void setInterstitialAdCount(int count) {
+        mSharedPreferences.edit().putInt("interstitialAdCount", count).apply();
+    }
+
+    @Override
+    public int getInterstitialAdCount() {
+        return mSharedPreferences.getInt("interstitialAdCount",2);
+    }
+
 }
