@@ -22,10 +22,11 @@ public class Training {
     private int progress;
 
 
-    public Training(Date date, int days, ArrayList<Exercise> exercises) {
+    public Training(Date date, int days, int number, ArrayList<Exercise> exercises) {
         this.date = date;
         this.exercises = exercises;
         this.days = days;
+        this.number = number;
     }
 
     public Integer getProgress() {

@@ -1,6 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
+
 import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
@@ -68,6 +70,7 @@ public class RepoImp implements Repo {
                 Training trainingNew = new Training(
                         currentTime,
                         training.days,
+                        training.number,
                         generateTrainingExs(training));
                 mRoomDb.dailyTrainingDao().insert(trainingNew);
                 return trainingNew;
@@ -88,7 +91,10 @@ public class RepoImp implements Repo {
         }).toList().blockingGet();
         training.exercises.clear();
         training.exercises.addAll(newList);
-        if (training.getIsOver()) { training.days++; training.number++; }
+        if (training.getIsOver()) {
+            training.days++;
+            training.number++;
+        }
         mRoomDb.dailyTrainingDao().insert(training);
     }
 
@@ -187,15 +193,14 @@ public class RepoImp implements Repo {
 
     private ArrayList<Exercise> generateTrainingExs(Training training) {
         Random random = new Random();
+        Log.v("numberT", String.valueOf(training.number));
         ArrayList<Exercise> exercises = new ArrayList<>();
-        if (training.number < 10){
-            exercises.add((getExercise(Exercise.Name.EASY_TONGUE_TWISTERS)));
-        }
-        if (training.number > 10 && training.number < 20){
+        if (training.number >= 10 && training.number < 20){
             exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
-        }
-        if (training.number > 20){
+        }else if (training.number >= 20){
             exercises.add((getExercise(Exercise.Name.VERY_DIFFICULT_TONGUE_TWISTERS)));
+        }else {
+            exercises.add((getExercise(Exercise.Name.EASY_TONGUE_TWISTERS)));
         }
 
         switch (random.nextInt(4)){
