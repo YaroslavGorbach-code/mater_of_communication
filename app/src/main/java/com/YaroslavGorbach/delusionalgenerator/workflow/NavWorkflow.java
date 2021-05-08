@@ -1,7 +1,10 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow;
 import android.app.NotificationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +19,12 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.WorkflowNavBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
+import com.YaroslavGorbach.delusionalgenerator.workflow.ExercisesWorkflow;
+import com.YaroslavGorbach.delusionalgenerator.workflow.NotificationDialog;
 
 import java.util.Calendar;
 
-public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host{
+public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host {
 
     public interface Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
@@ -89,14 +94,24 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
                requireActivity().recreate();
            }
            if (menuItem.getItemId() == R.id.menu_toolbar_remove_ad){
-               BillingManager billingManager = new BillingManager(requireActivity(), () ->{
-                   mRepo.setAdIsAllow(false);
-                   requireActivity().recreate();
-               });
+               BillingManager billingManager = new BillingManager(requireActivity());
                billingManager.showPurchasesDialog(requireActivity());
+
            }
            return true;
        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        BillingManager billingManager = new BillingManager(requireActivity());
+        billingManager.queryPurchases(isAdRemoved -> {
+            if (isAdRemoved && mRepo.getAdIsAllow()){
+                mRepo.setAdIsAllow(false);
+                requireActivity().recreate();
+            }
+        });
     }
 
     @Override

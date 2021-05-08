@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
 
-        BillingManager billingManager = new BillingManager(this, () -> {});
-        billingManager.queryPurchases(() -> repo.setAdIsAllow(false));
+        BillingManager billingManager = new BillingManager(this);
+        billingManager.queryPurchases(isRemoved -> repo.setAdIsAllow(!isRemoved));
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, initializationStatus -> {});

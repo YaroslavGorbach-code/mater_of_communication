@@ -3,6 +3,7 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 
 import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
@@ -18,21 +19,21 @@ import java.util.List;
 public class BillingManager {
 
     public interface Callback{
-        void onAdRemoved();
+        void onAdRemoved(boolean isAdRemoved);
     }
 
     private BillingClient mBillingClient;
 
-    public BillingManager(Activity activity, Callback callback) {
-        initBillingClient(activity, callback);
+    public BillingManager(Activity activity) {
+        initBillingClient(activity);
     }
 
-    private void initBillingClient(Activity activity, Callback callback){
+    private void initBillingClient(Activity activity){
         mBillingClient = BillingClient.newBuilder(activity)
                 .setListener((billingResult, purchases) -> {
                     if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases!=null){
                         for (Purchase purchase :purchases) {
-                            handlePurchase(purchase, callback);
+                            handlePurchase(purchase);
                         }
                     }
                 }).enablePendingPurchases().build();
@@ -68,27 +69,22 @@ public class BillingManager {
             @Override
             public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
                 List<Purchase> purchases = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP).getPurchasesList();
-                if (purchases!=null && !purchases.isEmpty()){
-
-                    callback.onAdRemoved();
-//                    mBillingClient.consumeAsync(
-//                            ConsumeParams.newBuilder().setPurchaseToken(purchases.get(0).getPurchaseToken()).build(),
-//                            (billingResult1, s) -> { });
-                }
+                callback.onAdRemoved(purchases != null && !purchases.isEmpty());
             }
+
             @Override
             public void onBillingServiceDisconnected() { }
         });
     }
 
-    private void handlePurchase(Purchase purchase, Callback callback) {
+    private void handlePurchase(Purchase purchase) {
         if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
             if (!purchase.isAcknowledged()) {
                 AcknowledgePurchaseParams acknowledgePurchaseParams =
                         AcknowledgePurchaseParams.newBuilder()
                                 .setPurchaseToken(purchase.getPurchaseToken())
                                 .build();
-                mBillingClient.acknowledgePurchase(acknowledgePurchaseParams, billingResult -> callback.onAdRemoved());
+                mBillingClient.acknowledgePurchase(acknowledgePurchaseParams, billingResult -> {});
             }
         }
     }
