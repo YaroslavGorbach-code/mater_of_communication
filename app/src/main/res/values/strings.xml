@@ -13,7 +13,7 @@
 
     <string name="category_speaking_name">Для развития коммуникабельности</string>
     <string name="category_vocabulary_name">Для увеличения словарного запаса</string>
-    <string name="category_tt_name">Для улутьшения дикции</string>
+    <string name="category_tt_name">Для улучшения дикции</string>
 
     <string name="statistics_text_speaking">Пройдено за сессию</string>
     <string name="statistics_text_tt">Среднее количество секунд на скороговорку за сессию</string>
@@ -29,15 +29,15 @@
     <string name="start">Начать</string>
     <string name="no_records">Записей нет</string>
     <string name="training_done_title">На сегодня все</string>
-    <string name="training_done_text">следующая тренеровка будет доступна завтра</string>
+    <string name="training_done_text">следующая тренировка будет доступна завтра</string>
     <string name="exercises_by_category">Упражнения по категориям</string>
     <string name="no_data">Нет данных</string>
-    <string name="daily_training">Ежедневная тренеровка</string>
+    <string name="daily_training">Ежедневная тренировка</string>
     <string name="exercises">Упражнения</string>
     <string name="records">Записи</string>
     <string name="notification_channel_id">1</string>
     <string name="notification_title">test title</string>
-    <string name="notification_text">Пришоло время поговорить!</string>
+    <string name="notification_text">Пришло время поговорить!</string>
     <string name="notifications">Уведомления</string>
     <string name="apply">Применить</string>
     <string name="title_exercises">Упражнения</string>
