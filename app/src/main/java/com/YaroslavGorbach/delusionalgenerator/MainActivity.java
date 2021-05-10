@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
@@ -32,26 +33,13 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Repo repo = new Repo.RepoProvider().provideRepo(this);
-
-        // if first open shack system theme and set it as app
-        if (repo.getFirstOpen()){
-            int nightModeFlags = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            repo.setNightMod(nightModeFlags == Configuration.UI_MODE_NIGHT_YES);
-        }
-
-        if (repo.getNightMod()){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        createChannel();
-
+        Repo repo = new Repo.RepoProvider().provideRepo(this);
         BillingManager billingManager = new BillingManagerImp(this);
-        billingManager.queryPurchases(isRemoved -> repo.setAdIsAllow(!isRemoved));
+        billingManager.queryPurchases(isRemoved -> {
+            repo.setAdIsAllow(!isRemoved);
+        });
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, initializationStatus -> {});
@@ -64,15 +52,16 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
 
+            createChannel();
             // show trip and notification tomorrow if it is the first app open
             if (repo.getFirstOpen()){
-                repo.setNotificationText(getString(R.string.notification_text));
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.main_container, new AboutAppFragment())
                         .addToBackStack(null)
                         .commit();
 
+                repo.setNotificationText(getString(R.string.notification_text));
                 NotificationManager notificationManager = ContextCompat.getSystemService(this, NotificationManager.class);
                 new MyNotificationManagerImp().sendNotificationOnTime(
                         notificationManager,

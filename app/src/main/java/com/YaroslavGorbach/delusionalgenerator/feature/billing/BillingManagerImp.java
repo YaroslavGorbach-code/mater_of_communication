@@ -47,7 +47,7 @@ public class BillingManagerImp implements BillingManager {
                     params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
 
                     mBillingClient.querySkuDetailsAsync(params.build(), (billingResult2, skuDetailsList) -> {
-                        if (skuDetailsList != null) {
+                        if (skuDetailsList != null && !skuDetailsList.isEmpty()) {
                             BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
                                     .setSkuDetails(skuDetailsList.get(0))
                                     .build();
@@ -71,7 +71,7 @@ public class BillingManagerImp implements BillingManager {
                 callback.onAdRemoved(purchases != null && !purchases.isEmpty());
 
                 // FOR TEST ONLY
-               //mBillingClient.consumeAsync( ConsumeParams.newBuilder().setPurchaseToken(purchases.get(0).getPurchaseToken()).build(), (billingResult1, s) -> {});
+                //mBillingClient.consumeAsync( ConsumeParams.newBuilder().setPurchaseToken(purchases.get(0).getPurchaseToken()).build(), (billingResult1, s) -> {});
             }
 
             @Override

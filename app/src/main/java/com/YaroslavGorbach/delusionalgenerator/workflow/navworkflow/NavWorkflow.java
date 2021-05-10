@@ -1,11 +1,11 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow;
-import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,6 +25,7 @@ import com.YaroslavGorbach.delusionalgenerator.workflow.NotificationDialog;
 import java.util.Calendar;
 
 public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host {
+
     public interface Router{
         void openExercise(Exercise.Name name, Exercise.Type type);
         void openTraining();
@@ -87,8 +88,7 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
                mVm.showNotificationDialog(getChildFragmentManager());
            }
            if (menuItem.getItemId() == R.id.menu_toolbar_them){
-               mVm.changeNightMod();
-               requireActivity().recreate();
+               mVm.changeNightMod(requireActivity());
            }
            if (menuItem.getItemId() == R.id.menu_toolbar_remove_ad){
                 mVm.billingManager.showPurchasesDialog();
@@ -126,10 +126,5 @@ public class NavWorkflow extends Fragment implements ExercisesWorkflow.Router, N
         ((Router)requireActivity()).openTraining();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mVm.billingManager.endConnection();
-    }
 }
 

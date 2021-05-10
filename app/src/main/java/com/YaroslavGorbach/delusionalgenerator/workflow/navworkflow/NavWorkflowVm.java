@@ -1,7 +1,11 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow;
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;
@@ -9,13 +13,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManager;
-import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingVm;
 import com.YaroslavGorbach.delusionalgenerator.workflow.NotificationDialog;
 
 import java.util.Calendar;
 
 public class NavWorkflowVm extends ViewModel {
-    private final Repo mRepo;
+    // TODO: 5/10/2021 make private
+    public final Repo mRepo;
     public final BillingManager billingManager;
     private final MyNotificationManager mMyNotificationManager;
 
@@ -34,8 +38,15 @@ public class NavWorkflowVm extends ViewModel {
                 mRepo.getNotificationIsAllow()));
         dialog.show(fragmentManager, null);
     }
-    public void changeNightMod(){
+    public void changeNightMod(Activity activity){
         mRepo.setNightMod(!mRepo.getNightMod());
+        if (mRepo.getNightMod()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        activity.finish();
+        activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
     public void disallowAd() {

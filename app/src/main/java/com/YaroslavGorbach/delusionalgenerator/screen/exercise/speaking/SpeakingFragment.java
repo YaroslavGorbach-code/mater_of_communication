@@ -26,6 +26,7 @@ public class SpeakingFragment extends Fragment {
     }
 
     private SpeakingVm vm;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
