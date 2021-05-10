@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
@@ -38,10 +38,10 @@ public class RecordsView {
     private final FragmentRecordsBinding mBinding;
     private boolean mIsPlaying = false;
 
-    public RecordsView(FragmentRecordsBinding binding, Callback callback, AdManager adManager) {
+    public RecordsView(FragmentRecordsBinding binding, Callback callback, AdManagerImp adManagerImp) {
 
         // show Ad
-        adManager.showBanner(binding.getRoot().getContext(), binding.bannerContainer);
+        adManagerImp.showBanner(binding.getRoot().getContext(), binding.bannerContainer);
 
         mBinding = binding;
         binding.player.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

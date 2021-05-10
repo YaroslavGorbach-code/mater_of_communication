@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
@@ -65,13 +64,13 @@ public class VocabularyFragment extends Fragment{
                 alertDialog.show(getChildFragmentManager(), "null");
             }
         });
-        vm.adManager.loadInterstitialAd(view.getContext());
+        vm.adManagerImp.loadInterstitialAd(view.getContext());
 
     }
 
     @Override
     public void onDestroy() {
-        vm.adManager.showInterstitial(requireActivity());
+        vm.adManagerImp.showInterstitial(requireActivity());
         super.onDestroy();
     }
 }

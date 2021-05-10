@@ -15,7 +15,7 @@ import java.util.Calendar;
 
 public class NotificationDialog extends DialogFragment {
     public interface Host{
-        void onApply(boolean checkBox, String text, Calendar calendar);
+        void onNotificationApply(boolean checkBox, String text, Calendar calendar);
     }
 
     public static Bundle argsOf(int hour, int minute, String text, boolean isAllowed) {
@@ -53,7 +53,7 @@ public class NotificationDialog extends DialogFragment {
         return new MaterialAlertDialogBuilder(requireContext())
                 .setView(binding.getRoot())
                 .setPositiveButton(getString(R.string.apply), (dialog, which) -> {
-                   ((Host)getParentFragment()).onApply(binding.checkBox.isChecked(), binding.text.getText().toString(), c);
+                   ((Host)getParentFragment()).onNotificationApply(binding.checkBox.isChecked(), binding.text.getText().toString(), c);
                 })
                 .create();
     }

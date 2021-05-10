@@ -5,7 +5,7 @@ import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
@@ -58,7 +58,7 @@ public class ExercisesView {
         mBinding.categories.countSpeaking.setText(String.valueOf(count));
     }
 
-    public void refreshAd(Activity activity, AdManager adManager) {
-        adManager.showNativeAd(activity, mBinding.adPlaceholder);
+    public void refreshAd(Activity activity, AdManagerImp adManagerImp) {
+        adManagerImp.showNativeAd(activity, mBinding.adPlaceholder);
     }
 }

@@ -9,18 +9,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsList;
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsListImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayer;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class RecordsVm extends ViewModel {
     public RecordsList recordsList;
-    public AdManager adManager;
+    public AdManagerImp adManagerImp;
 
     public RecordsVm(Repo repo, Context context, CompositeDisposable bag){
         recordsList = new RecordsListImp(repo, context, bag);
-        adManager = new AdManager(repo);
+        adManagerImp = new AdManagerImp(repo);
     }
 
     public static class RecordsVmFactory extends ViewModelProvider.NewInstanceFactory {

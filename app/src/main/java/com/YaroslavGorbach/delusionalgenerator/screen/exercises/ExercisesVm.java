@@ -7,15 +7,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.Exercises;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.ExercisesImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 
 public class ExercisesVm extends ViewModel {
     public final Exercises exercises;
-    public final AdManager adManager;
+    public final AdManagerImp adManagerImp;
 
     public ExercisesVm(Repo repo) {
        exercises = new ExercisesImp(repo);
-       adManager = new AdManager(repo);
+       adManagerImp = new AdManagerImp(repo);
     }
 
     public static class ExercisesVmFactory extends ViewModelProvider.NewInstanceFactory {

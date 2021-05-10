@@ -6,17 +6,17 @@ import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.Vocabulary
 import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 
 public class VocabularyVm extends ViewModel {
     public final VocabularyEx vocabularyEx;
-    public final AdManager adManager;
+    public final AdManagerImp adManagerImp;
 
     VocabularyVm(Repo repo, Exercise.Name name, Exercise.Type type, Timer timer, StatisticsManager statisticsManager){
         vocabularyEx = new VocabularyExImp(name, type, timer, statisticsManager, repo);
-        adManager = new AdManager(repo);
+        adManagerImp = new AdManagerImp(repo);
     }
 
     @Override

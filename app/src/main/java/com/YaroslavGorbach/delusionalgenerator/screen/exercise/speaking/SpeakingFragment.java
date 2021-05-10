@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -69,14 +68,14 @@ public class SpeakingFragment extends Fragment {
         vm.speakingEx.getShortDescId().observe(getViewLifecycleOwner(), id -> v.setShortDesc(getString(id)));
         vm.speakingEx.getRecordingState().observe(getViewLifecycleOwner(), v::changeButtonImage);
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), v::setWord);
-        vm.adManager.loadInterstitialAd(view.getContext());
-
+        vm.adManagerImp.loadInterstitialAd(view.getContext());
 
     }
 
+
     @Override
     public void onDestroy() {
-        vm.adManager.showInterstitial(requireActivity());
+        vm.adManagerImp.showInterstitial(requireActivity());
         super.onDestroy();
     }
 }

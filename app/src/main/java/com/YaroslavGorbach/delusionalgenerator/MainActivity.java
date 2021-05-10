@@ -14,13 +14,14 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.BillingManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
+import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
-import com.YaroslavGorbach.delusionalgenerator.workflow.NavWorkflow;
+import com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow.NavWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
 import com.google.android.gms.ads.MobileAds;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         createChannel();
 
-        BillingManager billingManager = new BillingManager(this);
+        BillingManager billingManager = new BillingManagerImp(this);
         billingManager.queryPurchases(isRemoved -> repo.setAdIsAllow(!isRemoved));
 
         // Initialize the Mobile Ads SDK.
