@@ -3,6 +3,8 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
+
 public class SharedPrefStorageImp implements SharedPrefStorage {
     private final SharedPreferences mSharedPreferences;
 
@@ -67,7 +69,7 @@ public class SharedPrefStorageImp implements SharedPrefStorage {
 
     @Override
     public int getInterstitialAdCount() {
-        return mSharedPreferences.getInt("interstitialAdCount",2);
+        return mSharedPreferences.getInt("interstitialAdCount", AdManager.INTERSTITIAL_SHOW_LIMIT);
     }
 
     @Override

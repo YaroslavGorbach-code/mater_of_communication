@@ -6,6 +6,7 @@ import android.util.Log;
 import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 import java.io.File;
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class RepoImp implements Repo {
                         currentTime,
                         training.days,
                         training.number,
-                        generateTrainingExs(training));
+                        Training.generateTrainingExs(training, this));
                 mRoomDb.dailyTrainingDao().insert(trainingNew);
                 return trainingNew;
             } else {
@@ -159,12 +160,12 @@ public class RepoImp implements Repo {
 
     @Override
     public boolean interstitialAdIsAllow() {
-        return mSharedPrefStorage.getInterstitialAdCount() >= 2;
+        return mSharedPrefStorage.getInterstitialAdCount() >= AdManager.INTERSTITIAL_SHOW_LIMIT;
     }
 
     @Override
     public void incInterstitialAdCount() {
-        if (mSharedPrefStorage.getInterstitialAdCount() < 2){
+        if (mSharedPrefStorage.getInterstitialAdCount() < AdManager.INTERSTITIAL_SHOW_LIMIT){
             mSharedPrefStorage.setInterstitialAdCount(mSharedPrefStorage.getInterstitialAdCount()+1);
         }else {
             mSharedPrefStorage.setInterstitialAdCount(0);
@@ -191,82 +192,6 @@ public class RepoImp implements Repo {
         mSharedPrefStorage.setAdIsAllow(isAllow);
     }
 
-    private ArrayList<Exercise> generateTrainingExs(Training training) {
-        Random random = new Random();
-        Log.v("numberT", String.valueOf(training.number));
-        ArrayList<Exercise> exercises = new ArrayList<>();
-        if (training.number >= 10 && training.number < 20){
-            exercises.add((getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
-        }else if (training.number >= 20){
-            exercises.add((getExercise(Exercise.Name.VERY_DIFFICULT_TONGUE_TWISTERS)));
-        }else {
-            exercises.add((getExercise(Exercise.Name.EASY_TONGUE_TWISTERS)));
-        }
-
-        switch (random.nextInt(4)){
-            case 0:
-                exercises.add((getExercise(Exercise.Name.LINGUISTIC_PYRAMIDS)));
-                exercises.add((getExercise(Exercise.Name.WHAT_I_SEE_I_SING_ABOUT)));
-                exercises.add((getExercise(Exercise.Name.CO_AUTHORED_WITH_DAHL)));
-                break;
-            case 1:
-                exercises.add((getExercise(Exercise.Name.RAVEN_LOOK_LIKE_A_TABLE)));
-                exercises.add((getExercise(Exercise.Name.QUESTION_ANSWER)));
-                exercises.add((getExercise(Exercise.Name.RORSCHACH_TEST)));
-                break;
-            case 2:
-                exercises.add((getExercise(Exercise.Name.MAGIC_NAMING)));
-                exercises.add((getExercise(Exercise.Name.BUYING_SELLING)));
-                exercises.add((getExercise(Exercise.Name.ADVANCED_BINDING)));
-                exercises.add(getExercise(Exercise.Name.REMEMBER_ALL));
-                break;
-            case 3:
-                exercises.add((getExercise(Exercise.Name.OTHER_ABBREVIATIONS)));
-                exercises.add((getExercise(Exercise.Name.WILL_NOT_BE_WORSE)));
-                exercises.add((getExercise(Exercise.Name.RAVEN_LOOK_LIKE_A_TABLE_FILINGS)));
-                exercises.add(getExercise(Exercise.Name.BUYING_SELLING));
-        }
-        exercises.add((getExercise(Exercise.Name.VERBS)));
-        exercises.add((getExercise(Exercise.Name.NOUNS)));
-        exercises.add((getExercise(Exercise.Name.ADJECTIVES)));
-
-        for (Exercise e : exercises) {
-            e.type = Exercise.Type.DAILY;
-            switch (e.getName()){
-                case LINGUISTIC_PYRAMIDS:
-                case OTHER_ABBREVIATIONS:
-                case MAGIC_NAMING:
-                case RORSCHACH_TEST:
-                    e.aim = 10;
-                    break;
-                case RAVEN_LOOK_LIKE_A_TABLE:
-                case STORYTELLER_IMPROVISER:
-                case ADVANCED_BINDING:
-                case WHAT_I_SEE_I_SING_ABOUT:
-                case BUYING_SELLING:
-                case CO_AUTHORED_WITH_DAHL:
-                case WILL_NOT_BE_WORSE:
-                case QUESTION_ANSWER:
-                case RAVEN_LOOK_LIKE_A_TABLE_FILINGS:
-                    e.aim = 5;
-                    break;
-                case EASY_TONGUE_TWISTERS:
-                case DIFFICULT_TONGUE_TWISTERS:
-                case VERY_DIFFICULT_TONGUE_TWISTERS:
-                    e.aim = 3;
-                    break;
-                case NOUNS:
-                case ADJECTIVES:
-                case VERBS:
-                    e.aim = 1;
-                    break;
-                case REMEMBER_ALL:
-                    e.aim = 15;
-                    break;
-            }
-        }
-        return exercises;
-    }
 
     @Override
     public Observable<Statistics> getStatistics(Exercise.Name name) {
