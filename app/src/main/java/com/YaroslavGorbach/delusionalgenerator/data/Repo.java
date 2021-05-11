@@ -18,9 +18,9 @@ public interface Repo {
     List<Exercise> getExercises(Exercise.Category category);
     Exercise getExercise(Exercise.Name name);
     List<String> getWords(WordType type, Resources resources);
-    Observable<Statistics> getStatistics(Exercise.Name name);
-    Observable<Statistics> getStatisticsNext(Exercise.Name name, ChartInputData currentData);
-    Observable<Statistics> getStatisticsPrevious(Exercise.Name name, ChartInputData currentData);
+    Observable<ChartInputData> getChartData(Exercise.Name name);
+    Observable<ChartInputData> getNextChartData(Exercise.Name name, ChartInputData currentData);
+    Observable<ChartInputData> getPreviousChartData(Exercise.Name name, ChartInputData currentData);
     void addStatistics(Statistics statistics);
     void deleteRecord(Record record);
     Single<List<Record>> getRecords(Context context);

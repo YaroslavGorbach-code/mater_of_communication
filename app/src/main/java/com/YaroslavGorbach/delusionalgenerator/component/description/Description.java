@@ -11,7 +11,7 @@ public interface Description {
     int getImageId();
     Exercise.Category getCategory();
     LiveData<ChartInputData> getChartData();
-    void onStatisticsNext();
-    void onStatisticsPrevious();
+    void onChartNext();
+    void onChartBack();
 
 }

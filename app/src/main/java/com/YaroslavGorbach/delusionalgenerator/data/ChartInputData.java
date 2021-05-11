@@ -3,6 +3,7 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import java.util.ArrayList;
 
 public class ChartInputData {
+    public static final int MAX_ITEMS_COUNT = 8;
     private final ArrayList<ArrayList<Integer>> chartData = new ArrayList<>();
     private final ArrayList<Integer> data = new ArrayList<>();
     private final ArrayList<Long> time = new ArrayList<>();

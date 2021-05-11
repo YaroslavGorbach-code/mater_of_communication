@@ -4,14 +4,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.component.description.DescriptionImp;
-import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -77,10 +75,10 @@ public class DescriptionFragment extends Fragment {
             }
 
             @Override
-            public void onNextData() { vm.description.onStatisticsNext(); }
+            public void onNextData() { vm.description.onChartNext(); }
 
             @Override
-            public void onPrevData() { vm.description.onStatisticsPrevious(); }
+            public void onPrevData() { vm.description.onChartBack(); }
 
         });
 

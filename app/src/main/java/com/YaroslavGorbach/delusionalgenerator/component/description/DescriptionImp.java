@@ -6,7 +6,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
+
+import io.reactivex.rxjava3.functions.Consumer;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
@@ -35,39 +36,21 @@ public class DescriptionImp implements Description {
 
     @Override
     public LiveData<ChartInputData> getChartData() {
-        ChartInputData inputData = new ChartInputData();
-        mRepo.getStatistics(mExercise.getName())
-                .forEach(statistics -> {
-                    inputData.addValue(statistics.value);
-                    inputData.addTime(statistics.time);
-                    inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
-                });
-        mStatisticsData.setValue(inputData);
+        mRepo.getChartData(mExercise.getName())
+                .subscribe(mStatisticsData::setValue);
         return mStatisticsData;
     }
 
 
     @Override
-    public void onStatisticsNext() {
-        ChartInputData inputData = new ChartInputData();
-        mRepo.getStatisticsNext(mExercise.getName(), mStatisticsData.getValue())
-                 .forEach(statistics -> {
-                     inputData.addValue(statistics.value);
-                     inputData.addTime(statistics.time);
-                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
-                 });
-        mStatisticsData.setValue(inputData);
+    public void onChartNext() {
+        mRepo.getNextChartData(mExercise.getName(), mStatisticsData.getValue())
+                .subscribe(mStatisticsData::setValue);
     }
 
     @Override
-    public void onStatisticsPrevious() {
-        ChartInputData inputData = new ChartInputData();
-        mRepo.getStatisticsPrevious(mExercise.getName(), mStatisticsData.getValue())
-                 .forEach(statistics -> {
-                     inputData.addValue(statistics.value);
-                     inputData.addTime(statistics.time);
-                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
-                 });
-        mStatisticsData.setValue(inputData);
+    public void onChartBack() {
+        mRepo.getPreviousChartData(mExercise.getName(), mStatisticsData.getValue())
+                .subscribe(mStatisticsData::setValue);
     }
 }

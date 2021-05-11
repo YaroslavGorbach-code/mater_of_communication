@@ -1,22 +1,24 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
+
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 
 import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
+
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepoImp implements Repo {
@@ -47,7 +49,7 @@ public class RepoImp implements Repo {
 
     @Override
     public List<String> getWords(WordType type, Resources resources) {
-       return mInMemoryDb.getWords(type, resources);
+        return mInMemoryDb.getWords(type, resources);
     }
 
     @Override
@@ -165,9 +167,9 @@ public class RepoImp implements Repo {
 
     @Override
     public void incInterstitialAdCount() {
-        if (mSharedPrefStorage.getInterstitialAdCount() < AdManager.INTERSTITIAL_SHOW_LIMIT){
-            mSharedPrefStorage.setInterstitialAdCount(mSharedPrefStorage.getInterstitialAdCount()+1);
-        }else {
+        if (mSharedPrefStorage.getInterstitialAdCount() < AdManager.INTERSTITIAL_SHOW_LIMIT) {
+            mSharedPrefStorage.setInterstitialAdCount(mSharedPrefStorage.getInterstitialAdCount() + 1);
+        } else {
             mSharedPrefStorage.setInterstitialAdCount(0);
         }
     }
@@ -194,27 +196,47 @@ public class RepoImp implements Repo {
 
 
     @Override
-    public Observable<Statistics> getStatistics(Exercise.Name name) {
+    public Observable<ChartInputData> getChartData(Exercise.Name name) {
+        ChartInputData inputData = new ChartInputData();
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                .takeLast(8);
+                .takeLast(ChartInputData.MAX_ITEMS_COUNT)
+                .flatMap((Function<Statistics, ObservableSource<ChartInputData>>) statistics -> {
+                    inputData.addValue(statistics.value);
+                    inputData.addTime(statistics.time);
+                    inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
+                    return Observable.just(inputData);
+                });
     }
 
     @Override
-    public Observable<Statistics> getStatisticsNext(Exercise.Name name, ChartInputData currentData) {
+    public Observable<ChartInputData> getNextChartData(Exercise.Name name, ChartInputData currentData) {
+        ChartInputData inputData = new ChartInputData();
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                 .filter(statistics -> statistics.time > currentData.getTime().get(currentData.getTime().size() - 1))
-                .take(8)
-                .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                        .takeLast(8));
+                .take(ChartInputData.MAX_ITEMS_COUNT)
+                .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name)).takeLast(ChartInputData.MAX_ITEMS_COUNT))
+                .flatMap((Function<Statistics, ObservableSource<ChartInputData>>) statistics -> {
+                    inputData.addValue(statistics.value);
+                    inputData.addTime(statistics.time);
+                    inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
+                    return Observable.just(inputData);
+                });
     }
 
     @Override
-    public Observable<Statistics> getStatisticsPrevious(Exercise.Name name, ChartInputData currentData) {
+    public Observable<ChartInputData> getPreviousChartData(Exercise.Name name, ChartInputData currentData) {
+        ChartInputData inputData = new ChartInputData();
         return Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
                 .filter(statistics -> statistics.time < currentData.getTime().get(0))
-                .takeLast(8)
+                .takeLast(ChartInputData.MAX_ITEMS_COUNT)
                 .switchIfEmpty(Observable.fromIterable(mRoomDb.statisticsDao().getStatistics(name))
-                .takeLast(8));
+                        .takeLast(ChartInputData.MAX_ITEMS_COUNT))
+                 .flatMap((Function<Statistics, ObservableSource<ChartInputData>>) statistics -> {
+                     inputData.addValue(statistics.value);
+                     inputData.addTime(statistics.time);
+                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
+                     return Observable.just(inputData);
+                 });
     }
 
     @Override
