@@ -1,37 +1,24 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.records;
+import android.app.Application;
+
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.YaroslavGorbach.delusionalgenerator.App;
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsList;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.di.DaggerRecordsComponent;
+import com.YaroslavGorbach.delusionalgenerator.di.RecordsComponent;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
-public class RecordsVm extends ViewModel {
-    public RecordsList recordsList;
-    public AdManager adManager;
+public class RecordsVm extends AndroidViewModel {
+    public RecordsComponent recordsComponent;
 
-    public RecordsVm(RecordsList recordsList, AdManager adManager) {
-        this.recordsList = recordsList;
-        this.adManager = adManager;
+    public RecordsVm(@NonNull Application application) {
+        super(application);
+        recordsComponent = DaggerRecordsComponent.factory().create(application, ((App)application).appComponent);
     }
 
-    public static class RecordsVmFactory extends ViewModelProvider.NewInstanceFactory {
-        private final RecordsList recordsList;
-        private final AdManager adManager;
-
-        public RecordsVmFactory(RecordsList recordsList, AdManager adManager) {
-            super();
-            this.recordsList = recordsList;
-            this.adManager = adManager;
-        }
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass.isAssignableFrom(RecordsVm.class)) {
-                return (T) new RecordsVm(recordsList, adManager);
-            }
-            throw new IllegalArgumentException("Unknown ViewModel class");
-        }
-    }
 }

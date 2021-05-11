@@ -9,69 +9,66 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsList;
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsListImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class RecordsFragment extends Fragment {
     public RecordsFragment(){ super(R.layout.fragment_records); }
-    private final CompositeDisposable mBag = new CompositeDisposable();
-    private RecordsVm vm;
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        vm.recordsList.getRecordsFromFile();
-    }
+    @Inject RecordsList recordsList;
+    @Inject AdManager adManager;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         //init vm
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-        vm = new ViewModelProvider(this,
-                new RecordsVm.RecordsVmFactory(new RecordsListImp(repo, requireContext(), mBag), new AdManagerImp(repo))).get(RecordsVm.class);
+        RecordsVm vm = new ViewModelProvider(this).get(RecordsVm.class);
+        vm.recordsComponent.inject(this);
 
         // init view
         RecordsView v = new RecordsView(FragmentRecordsBinding.bind(view), new RecordsView.Callback() {
             @Override
-            public void onRecord(Record record) { vm.recordsList.onPlay(record); }
+            public void onRecord(Record record) { recordsList.onPlay(record); }
 
             @Override
-            public void onSkipNext() { vm.recordsList.onSkipNext(); }
+            public void onSkipNext() { recordsList.onSkipNext(); }
 
             @Override
-            public void onSkipPrevious() { vm.recordsList.onSkipPrevious(); }
+            public void onSkipPrevious() { recordsList.onSkipPrevious(); }
 
             @Override
-            public void onPause() { vm.recordsList.onPause(); }
+            public void onPause() { recordsList.onPause(); }
 
             @Override
-            public void onResume() { vm.recordsList.onResume(); }
+            public void onResume() { recordsList.onResume(); }
 
             @Override
-            public void onSeekTo(int progress) { vm.recordsList.onSeekTo(progress); }
+            public void onSeekTo(int progress) { recordsList.onSeekTo(progress); }
 
             @Override
             public void onRemove(Record record) {
-                vm.recordsList.onRemove(record);
+                recordsList.onRemove(record);
             }
-        },vm.adManager);
-        vm.recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);
-        vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), v::setIsPlaying);
-        vm.recordsList.getDuration().observe(getViewLifecycleOwner(), v::setDuration);
-        vm.recordsList.getProgress().observe(getViewLifecycleOwner(), v::setProgress);
+        },adManager);
+        recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);
+        recordsList.getIsPlaying().observe(getViewLifecycleOwner(), v::setIsPlaying);
+        recordsList.getDuration().observe(getViewLifecycleOwner(), v::setDuration);
+        recordsList.getProgress().observe(getViewLifecycleOwner(), v::setProgress);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mBag.dispose();
-        vm.recordsList.onStop();
+        recordsList.onStop();
     }
 }

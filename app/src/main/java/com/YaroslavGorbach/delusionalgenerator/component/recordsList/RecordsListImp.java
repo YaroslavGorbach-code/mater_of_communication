@@ -25,18 +25,16 @@ public class RecordsListImp implements RecordsList {
     private final MutableLiveData<Boolean> mIsPlaying = new MutableLiveData<>();
     private final Repo mRepo;
     private final Context mContext;
-    private final CompositeDisposable mBag;
 
-    public RecordsListImp(Repo repo, Context context, CompositeDisposable bag) {
+    public RecordsListImp(Repo repo, Context context) {
         mRepo = repo;
         mContext = context;
-        mBag = bag;
         getRecordsFromFile();
         mMediaPlayer = new MediaPlayerImp(new MediaPlayerImp.Callback() {
             @Override
             public void start(Record record) {
                 mIsPlaying.postValue(true);
-                bag.add(Observable.fromIterable(Objects.requireNonNull(mRecords.getValue()))
+                Observable.fromIterable(Objects.requireNonNull(mRecords.getValue()))
                         .filter(record1 -> record1.getName().equals(record.getName()))
                         .map(record1 -> {
                             record1.isPlaying = true;
@@ -46,19 +44,19 @@ public class RecordsListImp implements RecordsList {
                             ArrayList<Record> list = new ArrayList<>(mRecords.getValue());
                             if (Collections.replaceAll(list, record, playingRecord))
                                 mRecords.postValue(list);
-                        }));
+                        });
             }
 
             @Override
             public void finish() {
                 mIsPlaying.postValue(false);
-                bag.add(Observable.fromIterable(Objects.requireNonNull(mRecords.getValue()))
+                Observable.fromIterable(Objects.requireNonNull(mRecords.getValue()))
                         .map(record1 -> {
                             record1.isPlaying = false;
                             return record1;
                         })
                         .toList()
-                        .subscribe(mRecords::postValue));
+                        .subscribe(mRecords::postValue);
             }
         });
 
@@ -140,11 +138,11 @@ public class RecordsListImp implements RecordsList {
 
     @Override
     public void getRecordsFromFile() {
-        mBag.add(mRepo.getRecords(mContext)
+        mRepo.getRecords(mContext)
                 .subscribe(records -> {
                     Collections.reverse(records);
                     mRecords.setValue(records);
-                }));
+                });
     }
 
     @Override
