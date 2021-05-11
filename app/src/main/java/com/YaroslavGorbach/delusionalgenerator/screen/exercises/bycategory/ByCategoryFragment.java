@@ -8,12 +8,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.exercises.Exercises;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.ExercisesImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentByCategoryBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesVm;
+
+import javax.inject.Inject;
 
 public class ByCategoryFragment extends Fragment {
     public interface Router{
@@ -30,21 +33,20 @@ public class ByCategoryFragment extends Fragment {
         return bundle;
     }
 
+    @Inject Exercises exercises;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Exercise.Category category = (Exercise.Category)requireArguments().getSerializable("category");
 
-        // init vm
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-        ExercisesVm vm = new ViewModelProvider(this,
-                new ExercisesVm.ExercisesVmFactory(new ExercisesImp(repo), new AdManagerImp(repo))).get(ExercisesVm.class);
+        ExercisesVm vm = new ViewModelProvider(this).get(ExercisesVm.class);
+        vm.exercisesComponent.inject(this);
 
         // init view
         ByCategoryView v = new ByCategoryView(FragmentByCategoryBinding.bind(view), exercise ->
                 ((Router)requireParentFragment()).openExercise(exercise.getName(), exercise.type));
 
-        v.setExercises(vm.exercises.getExercises(category));
+        v.setExercises(exercises.getExercises(category));
 
     }
 }
