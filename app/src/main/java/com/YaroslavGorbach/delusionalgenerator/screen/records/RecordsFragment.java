@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsListImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
@@ -33,7 +35,7 @@ public class RecordsFragment extends Fragment {
         //init vm
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         vm = new ViewModelProvider(this,
-                new RecordsVm.RecordsVmFactory(repo, requireContext(), mBag)).get(RecordsVm.class);
+                new RecordsVm.RecordsVmFactory(new RecordsListImp(repo, requireContext(), mBag), new AdManagerImp(repo))).get(RecordsVm.class);
 
         // init view
         RecordsView v = new RecordsView(FragmentRecordsBinding.bind(view), new RecordsView.Callback() {
@@ -59,7 +61,7 @@ public class RecordsFragment extends Fragment {
             public void onRemove(Record record) {
                 vm.recordsList.onRemove(record);
             }
-        },vm.adManagerImp);
+        },vm.adManager);
         vm.recordsList.getRecords().observe(getViewLifecycleOwner(), v::setRecords);
         vm.recordsList.getIsPlaying().observe(getViewLifecycleOwner(), v::setIsPlaying);
         vm.recordsList.getDuration().observe(getViewLifecycleOwner(), v::setDuration);

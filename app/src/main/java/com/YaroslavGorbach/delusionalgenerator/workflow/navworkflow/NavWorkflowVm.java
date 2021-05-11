@@ -13,13 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManager;
-import com.YaroslavGorbach.delusionalgenerator.workflow.NotificationDialog;
 
 import java.util.Calendar;
 
 public class NavWorkflowVm extends ViewModel {
-    // TODO: 5/10/2021 make private
-    public final Repo mRepo;
+    private final Repo mRepo;
     public final BillingManager billingManager;
     private final MyNotificationManager mMyNotificationManager;
 

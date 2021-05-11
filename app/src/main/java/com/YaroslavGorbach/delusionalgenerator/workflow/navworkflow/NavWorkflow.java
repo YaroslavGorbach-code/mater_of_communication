@@ -1,11 +1,9 @@
 package com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,7 +18,6 @@ import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificati
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExercisesWorkflow;
-import com.YaroslavGorbach.delusionalgenerator.workflow.NotificationDialog;
 
 import java.util.Calendar;
 

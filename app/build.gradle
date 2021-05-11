@@ -7,8 +7,8 @@ android {
         applicationId "com.YaroslavGorbach.delusionalgenerator"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 36
-        versionName "3.0.2"
+        versionCode 37
+        versionName "3.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -71,7 +71,5 @@ dependencies {
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation "com.android.billingclient:billing:3.0.3"
-    implementation 'com.jraska:falcon:2.1.1'
-
 
 }

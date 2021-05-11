@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.exercises.ExercisesImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentByCategoryBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExercisesVm;
 
 public class ByCategoryFragment extends Fragment {
@@ -34,8 +36,9 @@ public class ByCategoryFragment extends Fragment {
         Exercise.Category category = (Exercise.Category)requireArguments().getSerializable("category");
 
         // init vm
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         ExercisesVm vm = new ViewModelProvider(this,
-                new ExercisesVm.ExercisesVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(ExercisesVm.class);
+                new ExercisesVm.ExercisesVmFactory(new ExercisesImp(repo), new AdManagerImp(repo))).get(ExercisesVm.class);
 
         // init view
         ByCategoryView v = new ByCategoryView(FragmentByCategoryBinding.bind(view), exercise ->

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;
@@ -40,7 +40,7 @@ public class DescriptionImp implements Description {
                 .forEach(statistics -> {
                     inputData.addValue(statistics.value);
                     inputData.addTime(statistics.time);
-                    inputData.addLabel(TimeUtil.formatDD(statistics.time));
+                    inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
                 });
         mStatisticsData.setValue(inputData);
         return mStatisticsData;
@@ -54,7 +54,7 @@ public class DescriptionImp implements Description {
                  .forEach(statistics -> {
                      inputData.addValue(statistics.value);
                      inputData.addTime(statistics.time);
-                     inputData.addLabel(TimeUtil.formatDD(statistics.time));
+                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
                  });
         mStatisticsData.setValue(inputData);
     }
@@ -66,7 +66,7 @@ public class DescriptionImp implements Description {
                  .forEach(statistics -> {
                      inputData.addValue(statistics.value);
                      inputData.addTime(statistics.time);
-                     inputData.addLabel(TimeUtil.formatDD(statistics.time));
+                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
                  });
         mStatisticsData.setValue(inputData);
     }

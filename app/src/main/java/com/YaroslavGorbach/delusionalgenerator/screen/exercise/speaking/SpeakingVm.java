@@ -1,38 +1,17 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
-
-import android.content.res.Resources;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingEx;
-import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingExImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
 public class SpeakingVm extends ViewModel {
     public SpeakingEx speakingEx;
-    public AdManagerImp adManagerImp;
+    public AdManager adManager;
 
-    SpeakingVm(
-            Exercise.Name name,
-            Exercise.Type type,
-            Repo repo,
-            StatisticsManager statisticsManager,
-            Resources resources,
-            VoiceRecorder voiceRecorder
-    ) {
-        speakingEx = new SpeakingExImp(
-                name,
-                type,
-                repo,
-                statisticsManager,
-                resources,
-                voiceRecorder);
-        adManagerImp = new AdManagerImp(repo);
+    SpeakingVm(SpeakingEx speakingEx, AdManager adManager) {
+        this.speakingEx = speakingEx;
+        this.adManager = adManager;
     }
 
     @Override
@@ -43,35 +22,23 @@ public class SpeakingVm extends ViewModel {
     }
 
     public static class SpeakingVmFactory extends ViewModelProvider.NewInstanceFactory {
-        private final Repo repo;
-        private final Exercise.Type type;
-        private final Exercise.Name name;
-        private final Resources resources;
-        private final StatisticsManager statisticsManager;
-        private final VoiceRecorder voiceRecorder;
+        private final SpeakingEx speakingEx;
+        private final AdManager adManager;
 
         public SpeakingVmFactory(
-                Exercise.Name name,
-                Exercise.Type type,
-                Repo repo,
-                Resources resources,
-                StatisticsManager statisticsManager,
-                VoiceRecorder voiceRecorder
+                SpeakingEx speakingEx,
+                AdManager adManager
         ) {
             super();
-            this.repo = repo;
-            this.name = name;
-            this.type = type;
-            this.resources = resources;
-            this.statisticsManager = statisticsManager;
-            this.voiceRecorder = voiceRecorder;
+            this.speakingEx = speakingEx;
+            this.adManager = adManager;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(SpeakingVm.class)) {
-                return (T) new SpeakingVm(name, type, repo, statisticsManager, resources, voiceRecorder);
+                return (T) new SpeakingVm(speakingEx, adManager);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

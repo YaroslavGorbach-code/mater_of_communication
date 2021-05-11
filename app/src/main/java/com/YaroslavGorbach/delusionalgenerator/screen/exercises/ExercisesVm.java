@@ -6,31 +6,35 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.Exercises;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.ExercisesImp;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 
 public class ExercisesVm extends ViewModel {
     public final Exercises exercises;
-    public final AdManagerImp adManagerImp;
+    public final AdManager adManager;
 
-    public ExercisesVm(Repo repo) {
-       exercises = new ExercisesImp(repo);
-       adManagerImp = new AdManagerImp(repo);
+    public ExercisesVm(Exercises exercises, AdManager adManager) {
+      this.exercises = exercises;
+      this.adManager = adManager;
     }
 
     public static class ExercisesVmFactory extends ViewModelProvider.NewInstanceFactory {
-        private final Repo repo;
+        private final Exercises exercises;
+        private final AdManager adManager;
 
-        public ExercisesVmFactory(Repo repo){
+        public ExercisesVmFactory(Exercises exercises, AdManager adManager){
             super();
-            this.repo = repo;
+            this.exercises = exercises;
+            this.adManager = adManager;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass.isAssignableFrom(ExercisesVm.class)) {
-                return (T)  new ExercisesVm(repo);
+                return (T)  new ExercisesVm(exercises, adManager);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

@@ -2,14 +2,11 @@ package com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder;
 
 import android.content.Context;
 import android.media.MediaRecorder;
-import android.util.Log;
 
-import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class VoiceRecorderImp implements VoiceRecorder {
     private boolean mIsRecording = false;
@@ -19,7 +16,7 @@ public class VoiceRecorderImp implements VoiceRecorder {
     public void start(Context context, String name) {
         mMediaRecorder = new MediaRecorder();
         long time = new Date().getTime();
-        String recordFile = name + TimeUtil.formatRecord(time) + ".3gp";
+        String recordFile = name + TimeAndDataUtil.formatRecord(time) + ".3gp";
         recordFile = recordFile.replace(" ", "_");
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);

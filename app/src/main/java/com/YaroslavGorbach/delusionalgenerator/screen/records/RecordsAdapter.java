@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemRecordBinding;
-import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 
 import java.util.List;
 
@@ -78,7 +78,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.AudioVie
                         ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_play_round));
             }
             binding.title.setText(record.getName());
-            binding.date.setText(TimeUtil.getTimeAgo(record.getLastModified()));
+            binding.date.setText(TimeAndDataUtil.getTimeAgo(record.getLastModified()));
             binding.duration.setText(record.getDuration());
         }
     }

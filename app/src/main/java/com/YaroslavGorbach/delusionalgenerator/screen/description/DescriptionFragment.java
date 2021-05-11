@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.YaroslavGorbach.delusionalgenerator.component.description.DescriptionImp;
 import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
@@ -49,13 +50,13 @@ public class DescriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
-
-        // init vm
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
         DescriptionVm vm = new ViewModelProvider(this,
-                new DescriptionVm.DescriptionVmFactory(new Repo.RepoProvider().provideRepo(requireContext()),
-                        name)).get(DescriptionVm.class);
+                new DescriptionVm.DescriptionVmFactory(new DescriptionImp(repo, name))).get(DescriptionVm.class);
+
         // init v
         DescriptionView v = new DescriptionView(FragmentDescriptionBinding.bind(view), new DescriptionView.Callback() {
             @Override

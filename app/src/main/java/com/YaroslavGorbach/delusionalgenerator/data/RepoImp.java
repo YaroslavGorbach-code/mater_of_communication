@@ -6,7 +6,7 @@ import android.util.Log;
 import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
-import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,8 +64,8 @@ public class RepoImp implements Repo {
     public Observable<Training> getTraining() {
         Date currentTime = new Date();
         return mRoomDb.dailyTrainingDao().getDailyTraining().map(training -> {
-            if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) >= 1) {
-                if (TimeUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || !training.getIsOver())
+            if (TimeAndDataUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) >= 1) {
+                if (TimeAndDataUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || !training.getIsOver())
                     training.days = 0;
                 Training trainingNew = new Training(
                         currentTime,

@@ -1,24 +1,18 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.ad;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.util.ColorUtils;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -35,7 +29,7 @@ import com.google.android.gms.ads.nativead.NativeAdView;
 
 import java.util.Objects;
 
-public class AdManagerImp {
+public class AdManagerImp implements AdManager {
     private NativeAd mNativeAd;
     private InterstitialAd mInterstitialAd;
     private final Repo mRepo;
@@ -56,6 +50,7 @@ public class AdManagerImp {
         }
     }
 
+    @Override
     public void showNativeAd(Activity activity, ViewGroup adPlaceholder) {
         if (mRepo.getAdIsAllow()){
             AdLoader.Builder builder = new AdLoader.Builder(activity, "ca-app-pub-6043694180023070/4522089359");
@@ -85,13 +80,15 @@ public class AdManagerImp {
         }
     }
 
-    public void showInterstitial(Activity activity) {
+    @Override
+    public void showInterstitialAd(Activity activity) {
         if (mRepo.getAdIsAllow()){
             if (mInterstitialAd != null && mRepo.interstitialAdIsAllow()) mInterstitialAd.show(activity);
             mRepo.incInterstitialAdCount();
         }
     }
 
+    @Override
     public void loadInterstitialAd(Context context) {
         if (mRepo.getAdIsAllow()){
             AdRequest adRequest = new AdRequest.Builder().build();

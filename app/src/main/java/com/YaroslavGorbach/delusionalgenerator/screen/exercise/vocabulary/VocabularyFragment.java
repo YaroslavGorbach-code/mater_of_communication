@@ -9,10 +9,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
+import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
 
@@ -32,14 +34,14 @@ public class VocabularyFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
         vm = new ViewModelProvider(this,
-                new VocabularyVm.VocabularyVmFactory(repo, name, type, new TimerImp(), new StatisticsManagerImp())).get(VocabularyVm.class);
+                new VocabularyVm.VocabularyVmFactory(new VocabularyExImp(
+                        name, type, new TimerImp(), new StatisticsManagerImp(), repo), new AdManagerImp(repo))).get(VocabularyVm.class);
 
         // init view
         VocabularyView v = new VocabularyView(FragmentVocabularyBinding.bind(view), new VocabularyView.Callback() {
@@ -64,13 +66,13 @@ public class VocabularyFragment extends Fragment{
                 alertDialog.show(getChildFragmentManager(), "null");
             }
         });
-        vm.adManagerImp.loadInterstitialAd(view.getContext());
+        vm.adManager.loadInterstitialAd(view.getContext());
 
     }
 
     @Override
     public void onDestroy() {
-        vm.adManagerImp.showInterstitial(requireActivity());
+        vm.adManager.showInterstitialAd(requireActivity());
         super.onDestroy();
     }
 }

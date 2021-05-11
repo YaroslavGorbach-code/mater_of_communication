@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
+import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingExImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
 import com.YaroslavGorbach.delusionalgenerator.util.PermissionsUtil;
@@ -30,20 +32,21 @@ public class SpeakingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
         // init vm
         Exercise.Name name = (Exercise.Name)requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type)requireArguments().getSerializable("type");
+        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
-        vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(
+        vm = new ViewModelProvider(this, new SpeakingVm.SpeakingVmFactory(new SpeakingExImp(
                 name,
                 type,
                 repo,
-                getResources(),
                 new StatisticsManagerImp(),
-                new VoiceRecorderImp()
-        )).get(SpeakingVm.class);
+                getResources(),
+                new VoiceRecorderImp()),
+                new AdManagerImp(repo))
+        ).get(SpeakingVm.class);
 
         // init view
         SpeakingView v = new SpeakingView(FragmentSpeakingBinding.bind(view), new SpeakingView.Callback() {
@@ -69,14 +72,14 @@ public class SpeakingFragment extends Fragment {
         vm.speakingEx.getShortDescId().observe(getViewLifecycleOwner(), id -> v.setShortDesc(getString(id)));
         vm.speakingEx.getRecordingState().observe(getViewLifecycleOwner(), v::changeButtonImage);
         vm.speakingEx.getWord().observe(getViewLifecycleOwner(), v::setWord);
-        vm.adManagerImp.loadInterstitialAd(view.getContext());
+        vm.adManager.loadInterstitialAd(view.getContext());
 
     }
 
 
     @Override
     public void onDestroy() {
-        vm.adManagerImp.showInterstitial(requireActivity());
+        vm.adManager.showInterstitialAd(requireActivity());
         super.onDestroy();
     }
 }

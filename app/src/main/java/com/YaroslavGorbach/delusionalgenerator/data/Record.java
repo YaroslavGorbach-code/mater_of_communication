@@ -1,6 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.data;
 
-import com.YaroslavGorbach.delusionalgenerator.util.TimeUtil;
+import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public class Record {
         this.file = file;
         lastModified = file.lastModified();
         name = file.getName();
-        duration = TimeUtil.getFileDuration(file);
+        duration = TimeAndDataUtil.getFileDuration(file);
     }
 
     public File getFile() {
