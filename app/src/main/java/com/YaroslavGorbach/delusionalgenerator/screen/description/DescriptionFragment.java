@@ -9,13 +9,20 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.YaroslavGorbach.delusionalgenerator.component.description.Description;
 import com.YaroslavGorbach.delusionalgenerator.component.description.DescriptionImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
+import static com.YaroslavGorbach.delusionalgenerator.data.Exercise.Category.SPEAKING;
+import static com.YaroslavGorbach.delusionalgenerator.data.Exercise.Category.TONGUE_TWISTER;
+import static com.YaroslavGorbach.delusionalgenerator.data.Exercise.Category.VOCABULARY;
 
 public class DescriptionFragment extends Fragment {
 
@@ -35,6 +42,7 @@ public class DescriptionFragment extends Fragment {
         return bundle;
     }
     private final CompositeDisposable mDisposableContainer = new CompositeDisposable();
+    @Inject Description description;
 
     @Override
     public void onStart() {
@@ -51,9 +59,9 @@ public class DescriptionFragment extends Fragment {
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-        DescriptionVm vm = new ViewModelProvider(this,
-                new DescriptionVm.DescriptionVmFactory(new DescriptionImp(repo, name))).get(DescriptionVm.class);
+
+        DescriptionVm vm = new ViewModelProvider(this).get(DescriptionVm.class);
+        vm.getDescriptionComponent(name).inject(this);
 
         // init v
         DescriptionView v = new DescriptionView(FragmentDescriptionBinding.bind(view), new DescriptionView.Callback() {
@@ -62,7 +70,7 @@ public class DescriptionFragment extends Fragment {
 
             @Override
             public void onStartEx() {
-                switch (vm.description.getCategory()) {
+                switch (description.getCategory()) {
                     case SPEAKING:
                     case TONGUE_TWISTER:
                         ((Router) requireParentFragment()).openSpeaking(name, type);
@@ -75,18 +83,18 @@ public class DescriptionFragment extends Fragment {
             }
 
             @Override
-            public void onNextData() { vm.description.onChartNext(); }
+            public void onNextData() { description.onChartNext(); }
 
             @Override
-            public void onPrevData() { vm.description.onChartBack(); }
+            public void onPrevData() { description.onChartBack(); }
 
         });
 
         v.setTitle(getString(name.getNameId()));
-        v.setImageId(vm.description.getImageId());
-        v.setDescription(getString(vm.description.getDescriptionId()));
-        v.setStatisticsText(vm.description.getCategory());
-        vm.description.getChartData().observe(getViewLifecycleOwner(), v::setChartData);
+        v.setImageId(description.getImageId());
+        v.setDescription(getString(description.getDescriptionId()));
+        v.setStatisticsText(description.getCategory());
+        description.getChartData().observe(getViewLifecycleOwner(), v::setChartData);
 
     }
 
