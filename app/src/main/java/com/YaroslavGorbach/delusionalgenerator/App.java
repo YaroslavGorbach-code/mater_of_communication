@@ -1,12 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.Application;
-import android.content.res.Configuration;
 
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.room.Insert;
-
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.di.AppComponent;
 import com.YaroslavGorbach.delusionalgenerator.di.DaggerAppComponent;
 

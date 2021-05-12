@@ -11,9 +11,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBinding;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class TrainingFragment extends Fragment {
@@ -25,14 +29,15 @@ public class TrainingFragment extends Fragment {
     }
 
     private final CompositeDisposable mBag = new CompositeDisposable();
+    @Inject Observable<Training> training;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // init vm
-        TrainingVm vm = new ViewModelProvider(this,
-                new TrainingVm.DailyTrainingVmFactory(new Repo.RepoProvider().provideRepo(requireContext()))).get(TrainingVm.class);
+        TrainingVm vm = new ViewModelProvider(this).get(TrainingVm.class);
+        vm.trainingComponent.inject(this);
 
         // init view
         TrainingView v = new TrainingView(FragmentTrainingBinding.bind(view), new TrainingView.Callback() {
@@ -46,7 +51,7 @@ public class TrainingFragment extends Fragment {
             public void onUp() { requireActivity().onBackPressed(); }
         });
 
-        mBag.add(vm.training.observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));
+        mBag.add(training.observeOn(AndroidSchedulers.mainThread()).subscribe(v::setTraining));
     }
 
     @Override
