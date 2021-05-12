@@ -1,6 +1,5 @@
 package com.YaroslavGorbach.delusionalgenerator.component.navmenu;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +9,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManager;
@@ -24,7 +21,7 @@ public class NavMenuImp implements NavMenu {
     private final Repo mRepo;
     private final MyNotificationManager mNotificationManager;
 
-    public NavMenuImp(BillingManager billingManager, Repo repo, MyNotificationManager notificationManager){
+    public NavMenuImp(BillingManager billingManager, Repo repo, MyNotificationManager notificationManager) {
         mBillingManager = billingManager;
         mRepo = repo;
         mNotificationManager = notificationManager;
@@ -44,9 +41,9 @@ public class NavMenuImp implements NavMenu {
     @Override
     public void changeNightMod(FragmentActivity activity) {
         mRepo.setNightMod(!mRepo.getNightMod());
-        if (mRepo.getNightMod()){
+        if (mRepo.getNightMod()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
@@ -62,9 +59,9 @@ public class NavMenuImp implements NavMenu {
         mRepo.setNotificationText(text);
         mRepo.setNotificationCalendar(calendar);
         NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
-        if (isAllow){
+        if (isAllow) {
             mNotificationManager.sendNotificationOnTime(notificationManager, context, calendar.getTimeInMillis(), text);
-        }else {
+        } else {
             if (notificationManager != null) {
                 notificationManager.cancelAll();
             }
