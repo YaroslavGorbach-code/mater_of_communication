@@ -2,15 +2,12 @@ package com.YaroslavGorbach.delusionalgenerator;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,13 +19,13 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
-import com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow.NavWorkflow;
+import com.YaroslavGorbach.delusionalgenerator.screen.nav.NavFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity implements NavWorkflow.Router {
+public class MainActivity extends AppCompatActivity implements NavFragment.Router {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavWorkflow.Route
         MobileAds.initialize(this, initializationStatus -> {});
 
         if (savedInstanceState == null) {
-            Fragment fragment = new NavWorkflow();
+            Fragment fragment = new NavFragment();
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.main_container, fragment)

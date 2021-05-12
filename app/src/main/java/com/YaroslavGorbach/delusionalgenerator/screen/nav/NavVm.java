@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow;
+package com.YaroslavGorbach.delusionalgenerator.screen.nav;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -16,12 +16,12 @@ import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificati
 
 import java.util.Calendar;
 
-public class NavWorkflowVm extends ViewModel {
+public class NavVm extends ViewModel {
     private final Repo mRepo;
     public final BillingManager billingManager;
     private final MyNotificationManager mMyNotificationManager;
 
-    public NavWorkflowVm(Repo repo, BillingManager billingManager, MyNotificationManager myNotificationManager) {
+    public NavVm(Repo repo, BillingManager billingManager, MyNotificationManager myNotificationManager) {
         mRepo = repo;
         this.billingManager = billingManager;
         mMyNotificationManager = myNotificationManager;
@@ -84,8 +84,8 @@ public class NavWorkflowVm extends ViewModel {
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass.isAssignableFrom(NavWorkflowVm.class)) {
-                return (T) new NavWorkflowVm(repo, billingManager, myNotificationManager);
+            if (modelClass.isAssignableFrom(NavVm.class)) {
+                return (T) new NavVm(repo, billingManager, myNotificationManager);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

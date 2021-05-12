@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.workflow.navworkflow;
+package com.YaroslavGorbach.delusionalgenerator.screen.nav;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
