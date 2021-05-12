@@ -19,15 +19,13 @@ public class NavView {
 
         binding.bottomNav.setOnNavigationItemSelectedListener(item -> {
             if (binding.bottomNav.getSelectedItemId() != item.getItemId()) {
-                switch (item.getItemId()) {
-                    case R.id.menu_nav_exercises:
-                        callback.onNavItem(new ExercisesFragment());
-                        binding.toolbar.setTitle(binding.getRoot().getContext().getString(R.string.title_exercises));
-                        break;
-                    case R.id.menu_nav_records:
-                        callback.onNavItem(new RecordsFragment());
-                        binding.toolbar.setTitle(binding.getRoot().getContext().getString(R.string.title_records));
-                        break;
+                if (item.getItemId() == R.id.menu_nav_exercises){
+                    callback.onNavItem(new ExercisesFragment());
+                    binding.toolbar.setTitle(binding.getRoot().getContext().getString(R.string.title_exercises));
+                }
+                if (item.getItemId() == R.id.menu_nav_records){
+                    callback.onNavItem(new RecordsFragment());
+                    binding.toolbar.setTitle(binding.getRoot().getContext().getString(R.string.title_records));
                 }
             } else {
                 callback.onNavSameItem();
