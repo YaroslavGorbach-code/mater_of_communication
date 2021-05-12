@@ -205,7 +205,7 @@ public class RepoImp implements Repo {
                     inputData.addTime(statistics.time);
                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
                     return Observable.just(inputData);
-                });
+                }).defaultIfEmpty(inputData);
     }
 
     @Override
@@ -220,7 +220,7 @@ public class RepoImp implements Repo {
                     inputData.addTime(statistics.time);
                     inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
                     return Observable.just(inputData);
-                });
+                }).defaultIfEmpty(inputData);
     }
 
     @Override
@@ -236,7 +236,7 @@ public class RepoImp implements Repo {
                      inputData.addTime(statistics.time);
                      inputData.addLabel(TimeAndDataUtil.formatDD(statistics.time));
                      return Observable.just(inputData);
-                 });
+                 }).defaultIfEmpty(inputData);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.description;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import androidx.core.widget.NestedScrollView;
 import com.YaroslavGorbach.delusionalgenerator.R;
@@ -61,7 +62,7 @@ public class DescriptionView {
     }
 
     public void setChartData(ChartInputData chartData) {
-        if (chartData.isEmpty()){
+        if (chartData == null || chartData.isEmpty()){
             showNoData();
         } else {
             mBinding.chartLayout.chart.setDrawDotLine(false);
