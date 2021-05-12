@@ -37,7 +37,6 @@ public class DescriptionView {
                         binding.startEx.show();
                     }
                 });
-
     }
 
     public void setTitle(String title) {

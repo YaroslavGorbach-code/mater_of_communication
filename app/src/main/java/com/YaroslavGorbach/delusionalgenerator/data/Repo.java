@@ -43,13 +43,6 @@ public interface Repo {
     boolean getAdIsAllow();
     void setAdIsAllow(boolean isAllow);
 
-    class RepoProvider{
-        public RepoImp provideRepo(Context context){
-            RoomDb roomDb = RoomDb.getInstance(context);
-            return new RepoImp(roomDb, new InMemoryDbImp(), new SharedPrefStorageImp(context));
-        }
-    }
-
     enum WordType {
         ALIVE,
         NOT_ALIVE,
