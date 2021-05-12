@@ -10,7 +10,7 @@ import dagger.Provides;
 import io.reactivex.rxjava3.core.Observable;
 
 @ViewModelScope
-@Component(dependencies = AppComponent.class, modules = TrainingComponent.TrainingModule.class)
+@Component(dependencies = AppComponent.class, modules = {TrainingComponent.TrainingModule.class})
 public interface TrainingComponent {
 
     void inject(TrainingFragment trainingFragment);

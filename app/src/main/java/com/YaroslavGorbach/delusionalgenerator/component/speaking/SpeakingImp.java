@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.speakingEx;
+package com.YaroslavGorbach.delusionalgenerator.component.speaking;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class SpeakingExImp implements SpeakingEx {
+public class SpeakingImp implements Speaking {
     private final MutableLiveData<String> mWord = new MutableLiveData<>("null");
     private final MutableLiveData<Pair<Integer, Integer>> mDoneAndAim = new MutableLiveData<>(new Pair<>(0, 0));
     private final MutableLiveData<Integer> mShortDesc = new MutableLiveData<>(R.string.short_desc_tt_1);
@@ -32,7 +32,7 @@ public class SpeakingExImp implements SpeakingEx {
     private final Random mRandom = new Random();
     private int mClickCount = 0;
 
-    public SpeakingExImp(
+    public SpeakingImp(
             Exercise.Name name,
             Exercise.Type type,
             Repo repo,

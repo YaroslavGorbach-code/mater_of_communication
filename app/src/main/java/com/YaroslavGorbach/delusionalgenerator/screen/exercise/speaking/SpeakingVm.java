@@ -1,46 +1,28 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking;
+
+import android.app.Application;
+import android.content.res.Resources;
+
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import com.YaroslavGorbach.delusionalgenerator.component.speakingEx.SpeakingEx;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
+import androidx.lifecycle.AndroidViewModel;
 
-public class SpeakingVm extends ViewModel {
-    public SpeakingEx speakingEx;
-    public AdManager adManager;
+import com.YaroslavGorbach.delusionalgenerator.App;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.di.DaggerSpeakingComponent;
+import com.YaroslavGorbach.delusionalgenerator.di.SpeakingComponent;
 
-    SpeakingVm(SpeakingEx speakingEx, AdManager adManager) {
-        this.speakingEx = speakingEx;
-        this.adManager = adManager;
+public class SpeakingVm extends AndroidViewModel {
+    private SpeakingComponent speakingComponent = null;
+
+    public SpeakingVm(@NonNull Application application) {
+        super(application);
     }
 
-    @Override
-    protected void onCleared() {
-        speakingEx.saveStatistics();
-        speakingEx.stopRecording();
-        super.onCleared();
-    }
-
-    public static class SpeakingVmFactory extends ViewModelProvider.NewInstanceFactory {
-        private final SpeakingEx speakingEx;
-        private final AdManager adManager;
-
-        public SpeakingVmFactory(
-                SpeakingEx speakingEx,
-                AdManager adManager
-        ) {
-            super();
-            this.speakingEx = speakingEx;
-            this.adManager = adManager;
+    public SpeakingComponent getSpeakingComponent(Exercise.Name name, Exercise.Type type, Resources res) {
+        if (speakingComponent == null) {
+             speakingComponent = DaggerSpeakingComponent.factory().create(name, type, res, ((App)getApplication()).appComponent);
         }
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass.isAssignableFrom(SpeakingVm.class)) {
-                return (T) new SpeakingVm(speakingEx, adManager);
-            }
-            throw new IllegalArgumentException("Unknown ViewModel class");
-        }
+        return speakingComponent;
     }
+
 }

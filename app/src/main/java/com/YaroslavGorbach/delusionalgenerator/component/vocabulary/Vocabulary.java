@@ -1,8 +1,8 @@
-package com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx;
+package com.YaroslavGorbach.delusionalgenerator.component.vocabulary;
 
 import androidx.lifecycle.LiveData;
 
-public interface VocabularyEx {
+public interface Vocabulary {
     void onClick();
 
     int getShortDescId();

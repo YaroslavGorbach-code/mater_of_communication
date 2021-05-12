@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
-import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyExImp;
+import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
@@ -40,7 +40,7 @@ public class VocabularyFragment extends Fragment{
         Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
 
         vm = new ViewModelProvider(this,
-                new VocabularyVm.VocabularyVmFactory(new VocabularyExImp(
+                new VocabularyVm.VocabularyVmFactory(new VocabularyImp(
                         name, type, new TimerImp(), new StatisticsManagerImp(), repo), new AdManagerImp(repo))).get(VocabularyVm.class);
 
         // init view
@@ -49,20 +49,20 @@ public class VocabularyFragment extends Fragment{
             public void onUp() { requireActivity().onBackPressed(); }
 
             @Override
-            public void onClick() { vm.vocabularyEx.onClick(); }
+            public void onClick() { vm.vocabulary.onClick(); }
 
         });
 
         v.setTitle(getString(name.getNameId()));
-        v.setShortDesc(getString(vm.vocabularyEx.getShortDescId()));
-        vm.vocabularyEx.getTimerValue().observe(getViewLifecycleOwner(), v::setTimerValue);
-        vm.vocabularyEx.getClickCount().observe(getViewLifecycleOwner(), count ->
+        v.setShortDesc(getString(vm.vocabulary.getShortDescId()));
+        vm.vocabulary.getTimerValue().observe(getViewLifecycleOwner(), v::setTimerValue);
+        vm.vocabulary.getClickCount().observe(getViewLifecycleOwner(), count ->
                 v.setClickCount(String.valueOf(count)));
-        vm.vocabularyEx.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
+        vm.vocabulary.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
             if (isFinis){
                 v.onTimerFinish();
                 FinishDialog alertDialog = new FinishDialog();
-                alertDialog.setArguments(FinishDialog.argsOf(vm.vocabularyEx.getResultState()));
+                alertDialog.setArguments(FinishDialog.argsOf(vm.vocabulary.getResultState()));
                 alertDialog.show(getChildFragmentManager(), "null");
             }
         });

@@ -10,12 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx.VocabularyEx;
+import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.Vocabulary;
 import com.YaroslavGorbach.delusionalgenerator.databinding.DialogVocabularyResultBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class FinishDialog extends DialogFragment {
-    public static Bundle argsOf(VocabularyEx.Result result) {
+    public static Bundle argsOf(Vocabulary.Result result) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("result", result);
         return bundle;
@@ -24,7 +24,7 @@ public class FinishDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        VocabularyEx.Result result = (VocabularyEx.Result) requireArguments().getSerializable("result");
+        Vocabulary.Result result = (Vocabulary.Result) requireArguments().getSerializable("result");
         DialogVocabularyResultBinding binding
                 = DialogVocabularyResultBinding.inflate(LayoutInflater.from(requireContext()));
         initResult(binding, result);
@@ -42,7 +42,7 @@ public class FinishDialog extends DialogFragment {
         requireActivity().onBackPressed();
     }
 
-    private void initResult(DialogVocabularyResultBinding binding, VocabularyEx.Result result){
+    private void initResult(DialogVocabularyResultBinding binding, Vocabulary.Result result){
         switch (result){
             case GOOD:
                 binding.resultText.setText(getString(R.string.resultGood, result.getNumberWords()));

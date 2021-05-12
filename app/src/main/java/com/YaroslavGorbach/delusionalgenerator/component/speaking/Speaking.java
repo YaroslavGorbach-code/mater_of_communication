@@ -1,11 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.component.speakingEx;
+package com.YaroslavGorbach.delusionalgenerator.component.speaking;
 
 import android.content.Context;
 
 import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 
-public interface SpeakingEx {
+public interface Speaking {
     void onNext();
     void saveStatistics();
     void onStartStopRecord(Context context);

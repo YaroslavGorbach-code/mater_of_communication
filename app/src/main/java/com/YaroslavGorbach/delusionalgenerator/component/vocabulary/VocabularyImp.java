@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.component.vocabularyEx;
+package com.YaroslavGorbach.delusionalgenerator.component.vocabulary;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,7 +11,7 @@ import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 
 import java.util.Date;
 
-public class VocabularyExImp implements VocabularyEx{
+public class VocabularyImp implements Vocabulary {
     private final MutableLiveData<Integer> mClickCount = new MutableLiveData<>(0);
 
     private final Timer mTimer;
@@ -19,7 +19,7 @@ public class VocabularyExImp implements VocabularyEx{
     private final StatisticsManager mStatisticsManager;
     private final Repo mRepo;
 
-    public VocabularyExImp(Exercise.Name name, Exercise.Type type, Timer timer, StatisticsManager statisticsManager, Repo repo){
+    public VocabularyImp(Exercise.Name name, Exercise.Type type, Timer timer, StatisticsManager statisticsManager, Repo repo){
         mTimer = timer;
         mRepo = repo;
         mExercise = mRepo.getExercise(name);
