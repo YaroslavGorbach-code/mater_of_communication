@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
@@ -48,7 +49,6 @@ public class NavMenuImp implements NavMenu {
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        activity.recreate();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class NavMenuImp implements NavMenu {
     }
 
     @Override
-    public boolean getAdmenuItemAllow() {
+    public boolean getAdMenuItemAllow() {
         return !mRepo.getAdIsAllow();
     }
 }

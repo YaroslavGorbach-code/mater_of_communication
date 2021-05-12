@@ -84,7 +84,7 @@ public class NavFragment extends Fragment implements ExercisesWorkflow.Router, N
             }
         });
 
-        if (navMenu.getAdmenuItemAllow()) {
+        if (navMenu.getAdMenuItemAllow()) {
             v.removeAdMenuItem();
         }
     }

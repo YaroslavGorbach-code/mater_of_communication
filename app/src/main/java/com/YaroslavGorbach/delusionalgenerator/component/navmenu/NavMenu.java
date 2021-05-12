@@ -20,5 +20,5 @@ public interface NavMenu {
 
     void queryPurchases(FragmentActivity activity);
 
-    boolean getAdmenuItemAllow();
+    boolean getAdMenuItemAllow();
 }
