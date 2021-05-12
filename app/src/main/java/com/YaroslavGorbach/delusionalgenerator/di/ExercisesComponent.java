@@ -13,7 +13,8 @@ import dagger.Module;
 import dagger.Provides;
 
 @ViewModelScope
-@Component(dependencies = AppComponent.class, modules = ExercisesComponent.ExercisesModule.class)
+@Component(dependencies = AppComponent.class,
+        modules = {ExercisesComponent.ExercisesModule.class, AdModule.class})
 public interface ExercisesComponent {
 
     void inject(ExercisesFragment exercisesFragment);
@@ -30,12 +31,6 @@ public interface ExercisesComponent {
         @Provides
         public Exercises provideExercises(Repo repo) {
             return new ExercisesImp(repo);
-        }
-
-        @ViewModelScope
-        @Provides
-        public AdManager provideAdManager(Repo repo) {
-            return new AdManagerImp(repo);
         }
     }
 

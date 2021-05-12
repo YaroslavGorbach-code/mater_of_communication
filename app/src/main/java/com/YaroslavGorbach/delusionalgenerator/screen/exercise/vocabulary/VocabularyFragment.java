@@ -9,14 +9,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
+import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.Vocabulary;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.di.VocabularyComponent;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
+
+import javax.inject.Inject;
 
 public class VocabularyFragment extends Fragment{
 
@@ -29,19 +34,18 @@ public class VocabularyFragment extends Fragment{
         return bundle;
     }
 
-    private VocabularyVm vm;
+    @Inject Vocabulary vocabulary;
+    @Inject AdManager adManager;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         // init vm
         Exercise.Name name = (Exercise.Name) requireArguments().getSerializable("name");
         Exercise.Type type = (Exercise.Type) requireArguments().getSerializable("type");
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-
-        vm = new ViewModelProvider(this,
-                new VocabularyVm.VocabularyVmFactory(new VocabularyImp(
-                        name, type, new TimerImp(), new StatisticsManagerImp(), repo), new AdManagerImp(repo))).get(VocabularyVm.class);
+        VocabularyVm vm = new ViewModelProvider(this).get(VocabularyVm.class);
+        vm.getVocabularyComponent(name, type).inject(this);
 
         // init view
         VocabularyView v = new VocabularyView(FragmentVocabularyBinding.bind(view), new VocabularyView.Callback() {
@@ -49,30 +53,31 @@ public class VocabularyFragment extends Fragment{
             public void onUp() { requireActivity().onBackPressed(); }
 
             @Override
-            public void onClick() { vm.vocabulary.onClick(); }
+            public void onClick() { vocabulary.onClick(); }
 
         });
 
         v.setTitle(getString(name.getNameId()));
-        v.setShortDesc(getString(vm.vocabulary.getShortDescId()));
-        vm.vocabulary.getTimerValue().observe(getViewLifecycleOwner(), v::setTimerValue);
-        vm.vocabulary.getClickCount().observe(getViewLifecycleOwner(), count ->
+        v.setShortDesc(getString(vocabulary.getShortDescId()));
+        vocabulary.getTimerValue().observe(getViewLifecycleOwner(), v::setTimerValue);
+        vocabulary.getClickCount().observe(getViewLifecycleOwner(), count ->
                 v.setClickCount(String.valueOf(count)));
-        vm.vocabulary.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
+        vocabulary.onTimerFinish().observe(getViewLifecycleOwner(), isFinis -> {
             if (isFinis){
                 v.onTimerFinish();
                 FinishDialog alertDialog = new FinishDialog();
-                alertDialog.setArguments(FinishDialog.argsOf(vm.vocabulary.getResultState()));
+                alertDialog.setArguments(FinishDialog.argsOf(vocabulary.getResultState()));
                 alertDialog.show(getChildFragmentManager(), "null");
             }
         });
-        vm.adManager.loadInterstitialAd(view.getContext());
+        adManager.loadInterstitialAd(view.getContext());
 
     }
 
     @Override
     public void onDestroy() {
-        vm.adManager.showInterstitialAd(requireActivity());
+        vocabulary.saveStatistics();
+        adManager.showInterstitialAd(requireActivity());
         super.onDestroy();
     }
 }

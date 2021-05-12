@@ -16,7 +16,8 @@ import dagger.Module;
 import dagger.Provides;
 
 @ViewModelScope
-@Component(dependencies = AppComponent.class, modules = RecordsComponent.RecordsModule.class)
+@Component(dependencies = AppComponent.class,
+        modules = {RecordsComponent.RecordsModule.class, AdModule.class})
 public interface RecordsComponent {
     void inject(RecordsFragment recordsFragment);
 
@@ -34,10 +35,5 @@ public interface RecordsComponent {
             return new RecordsListImp(repo, context);
         }
 
-        @ViewModelScope
-        @Provides
-        public AdManager provideAdManager(Repo repo) {
-            return new AdManagerImp(repo);
-        }
     }
 }

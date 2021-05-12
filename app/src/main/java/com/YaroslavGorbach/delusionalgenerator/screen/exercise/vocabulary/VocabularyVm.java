@@ -1,43 +1,37 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary;
+import android.app.Application;
+
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.YaroslavGorbach.delusionalgenerator.App;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.Vocabulary;
+import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.di.DaggerVocabularyComponent;
+import com.YaroslavGorbach.delusionalgenerator.di.VocabularyComponent;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
-public class VocabularyVm extends ViewModel {
-    public final Vocabulary vocabulary;
-    public final AdManager adManager;
+public class VocabularyVm extends AndroidViewModel {
+  private VocabularyComponent vocabularyComponent;
 
-    VocabularyVm(Vocabulary vocabulary, AdManager adManager){
-        this.vocabulary = vocabulary;
-        this.adManager = adManager;
+    public VocabularyVm(@NonNull Application application) {
+        super(application);
     }
 
-    @Override
-    protected void onCleared() {
-        vocabulary.saveStatistics();
-        super.onCleared();
-    }
-
-    public static class VocabularyVmFactory  extends ViewModelProvider.NewInstanceFactory{
-      private final Vocabulary vocabulary;
-      private final AdManager adManager;
-
-        public VocabularyVmFactory(Vocabulary vocabulary, AdManager adManager){
-            super();
-            this.vocabulary = vocabulary;
-            this.adManager = adManager;
+    public VocabularyComponent getVocabularyComponent(Exercise.Name name, Exercise.Type type) {
+        if (vocabularyComponent==null){
+            vocabularyComponent = DaggerVocabularyComponent.factory().create(name, type,  ((App)getApplication()).appComponent);
         }
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass.isAssignableFrom(VocabularyVm.class)) {
-                return (T)  new VocabularyVm(vocabulary, adManager);
-            }
-            throw new IllegalArgumentException("Unknown ViewModel class");
-        }
+        return vocabularyComponent;
     }
+
+    //    @Override
+//    protected void onCleared() {
+//        vocabulary.saveStatistics();
+//        super.onCleared();
+//    }
+
 
 }

@@ -10,6 +10,7 @@ import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
+import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
 
 import dagger.BindsInstance;
@@ -19,7 +20,7 @@ import dagger.Provides;
 
 @ViewModelScope
 @Component(dependencies = AppComponent.class,
-        modules = {SpeakingComponent.SpeakingModule.class, CommonExercisesModule.class})
+        modules = {SpeakingComponent.SpeakingModule.class, CommonExercisesModule.class, AdModule.class})
 public interface SpeakingComponent {
 
     void inject(SpeakingFragment speakingFragment);
@@ -34,7 +35,14 @@ public interface SpeakingComponent {
     }
 
     @Module
-    class SpeakingModule{
+    class SpeakingModule {
+
+        @ViewModelScope
+        @Provides
+        VoiceRecorder provideVoiceRecorder() {
+            return new VoiceRecorderImp();
+        }
+
 
         @ViewModelScope
         @Provides
@@ -43,14 +51,8 @@ public interface SpeakingComponent {
                                    Repo repo,
                                    StatisticsManager statisticsManager,
                                    Resources res,
-                                   VoiceRecorder voiceRecorder){
+                                   VoiceRecorder voiceRecorder) {
             return new SpeakingImp(name, type, repo, statisticsManager, res, voiceRecorder);
-        }
-
-        @ViewModelScope
-        @Provides
-        public AdManager provideAdManager(Repo repo) {
-            return new AdManagerImp(repo);
         }
     }
 }
