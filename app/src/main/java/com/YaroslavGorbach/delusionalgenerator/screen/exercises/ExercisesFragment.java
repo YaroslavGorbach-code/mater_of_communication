@@ -10,12 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.Exercises;
-import com.YaroslavGorbach.delusionalgenerator.component.exercises.ExercisesImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 
 import javax.inject.Inject;
 
@@ -23,19 +20,22 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class ExercisesFragment extends Fragment {
-    public interface Router{
+
+    public interface Router {
         void openExercise(Exercise.Name name, Exercise.Type type);
+
         void openExsByCategory(Exercise.Category category);
+
         void openTraining();
     }
 
     private final CompositeDisposable mBag = new CompositeDisposable();
+    @Inject Exercises exercises;
+    @Inject AdManager adManager;
+
     public ExercisesFragment() {
         super(R.layout.fragment_exercises);
     }
-
-    @Inject Exercises exercises;
-    @Inject AdManager adManager;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

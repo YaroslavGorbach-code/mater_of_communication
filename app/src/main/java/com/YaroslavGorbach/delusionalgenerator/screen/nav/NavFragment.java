@@ -10,17 +10,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.component.navmenu.NavMenu;
 import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentNavBinding;
-import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExercisesWorkflow;
 
 import java.util.Calendar;
+
+import javax.inject.Inject;
 
 public class NavFragment extends Fragment implements ExercisesWorkflow.Router, NotificationDialog.Host {
 
@@ -33,29 +30,28 @@ public class NavFragment extends Fragment implements ExercisesWorkflow.Router, N
         super(R.layout.fragment_nav);
     }
 
-    private NavVm mVm;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState == null) {
-            Fragment fragment = new ExercisesWorkflow();
+        if (savedInstanceState == null){
+            ExercisesWorkflow fragment = new ExercisesWorkflow();
             getChildFragmentManager()
                     .beginTransaction()
-                    .add(R.id.nav_container, fragment)
+                    .replace(R.id.nav_container, fragment)
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
         }
-        Repo repo = new Repo.RepoProvider().provideRepo(requireContext());
-        BillingManager billingManager = new BillingManagerImp(requireActivity());
-        MyNotificationManager myNotificationManager = new MyNotificationManagerImp();
-        mVm = new ViewModelProvider(this, new NavVm.NavWorkflowVmFactory(
-                repo, billingManager, myNotificationManager)).get(NavVm.class);
     }
+
+    @Inject NavMenu navMenu;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // init vm
+        NavVm vm  = new ViewModelProvider(this).get(NavVm.class);
+        vm.getNavComponent(requireActivity()).inject(this);
 
         // init view
         NavView v = new NavView(FragmentNavBinding.bind(view), new NavView.Callback() {
@@ -77,36 +73,31 @@ public class NavFragment extends Fragment implements ExercisesWorkflow.Router, N
             @Override
             public void onMenuItem(int itemId) {
                 if (itemId == R.id.menu_toolbar_notifications) {
-                    mVm.showNotificationDialog(getChildFragmentManager());
+                    navMenu.showNotificationDialog(getChildFragmentManager());
                 }
                 if (itemId == R.id.menu_toolbar_them) {
-                    mVm.changeNightMod(requireActivity());
+                    navMenu.changeNightMod(requireActivity());
                 }
                 if (itemId == R.id.menu_toolbar_remove_ad) {
-                    mVm.billingManager.showPurchasesDialog();
+                    navMenu.showPurchasesDialog(requireActivity());
                 }
             }
         });
 
-        if (!mVm.getAdIsAllow()) {
-            v.removeRemoveAdMenuItem();
+        if (navMenu.getAdmenuItemAllow()) {
+            v.removeAdMenuItem();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mVm.billingManager.queryPurchases(isAdRemoved -> {
-            if (isAdRemoved && mVm.getAdIsAllow()) {
-                mVm.disallowAd();
-                requireActivity().recreate();
-            }
-        });
+        navMenu.queryPurchases(requireActivity());
     }
 
     @Override
     public void onNotificationApply(boolean isAllow, String text, Calendar calendar) {
-        mVm.setNotification(isAllow, text, calendar, requireContext());
+        navMenu.onNotificationApply(isAllow, text, calendar, requireContext());
     }
 
     @Override

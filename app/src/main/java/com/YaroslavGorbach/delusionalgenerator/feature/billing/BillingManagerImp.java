@@ -18,11 +18,9 @@ import java.util.List;
 
 public class BillingManagerImp implements BillingManager {
     private BillingClient mBillingClient;
-    private final Activity mActivity;
 
     public BillingManagerImp(Activity activity) {
         initBillingClient(activity);
-        mActivity = activity;
     }
 
     private void initBillingClient(Activity activity) {
@@ -36,7 +34,8 @@ public class BillingManagerImp implements BillingManager {
                 }).enablePendingPurchases().build();
     }
 
-    public void showPurchasesDialog() {
+    @Override
+    public void showPurchasesDialog(Activity activity) {
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
             public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
@@ -51,7 +50,7 @@ public class BillingManagerImp implements BillingManager {
                             BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
                                     .setSkuDetails(skuDetailsList.get(0))
                                     .build();
-                            int responseCode = mBillingClient.launchBillingFlow(mActivity, billingFlowParams).getResponseCode();
+                            int responseCode = mBillingClient.launchBillingFlow(activity, billingFlowParams).getResponseCode();
                         }
                     });
                 }
@@ -63,6 +62,7 @@ public class BillingManagerImp implements BillingManager {
         });
     }
 
+    @Override
     public void queryPurchases(Callback callback) {
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
