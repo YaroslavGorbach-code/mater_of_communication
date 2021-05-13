@@ -1,11 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.inmemory;
 
-import android.content.Context;
 import android.content.res.Resources;
 
-import java.util.List;
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 
-import io.reactivex.rxjava3.core.Single;
+import java.util.List;
 
 public interface InMemoryDb {
     List<Exercise> getExercises();

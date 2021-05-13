@@ -2,9 +2,8 @@ package com.YaroslavGorbach.delusionalgenerator.di;
 
 import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.Vocabulary;
 import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.Timer;
 import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;

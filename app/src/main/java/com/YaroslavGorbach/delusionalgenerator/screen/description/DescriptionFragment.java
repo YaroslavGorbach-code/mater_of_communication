@@ -10,19 +10,13 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.YaroslavGorbach.delusionalgenerator.component.description.Description;
-import com.YaroslavGorbach.delusionalgenerator.component.description.DescriptionImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
-import static com.YaroslavGorbach.delusionalgenerator.data.Exercise.Category.SPEAKING;
-import static com.YaroslavGorbach.delusionalgenerator.data.Exercise.Category.TONGUE_TWISTER;
-import static com.YaroslavGorbach.delusionalgenerator.data.Exercise.Category.VOCABULARY;
 
 public class DescriptionFragment extends Fragment {
 

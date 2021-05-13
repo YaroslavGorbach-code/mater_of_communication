@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManagerImp;

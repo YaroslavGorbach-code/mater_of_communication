@@ -1,12 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.component.recordsList;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import java.util.List;
-
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 
 public interface RecordsList {

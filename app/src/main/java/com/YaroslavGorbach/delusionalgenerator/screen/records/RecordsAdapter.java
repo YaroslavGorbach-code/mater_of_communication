@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.ItemRecordBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 

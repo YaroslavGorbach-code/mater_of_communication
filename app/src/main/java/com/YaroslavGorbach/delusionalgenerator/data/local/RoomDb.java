@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data.room;
+package com.YaroslavGorbach.delusionalgenerator.data.local;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 
 @androidx.room.Database(entities = {Statistics.class, Training.class},  version = 21)
 @TypeConverters({Converters.NameToString.class, Converters.ListToString.class, Converters.DateToLong.class})

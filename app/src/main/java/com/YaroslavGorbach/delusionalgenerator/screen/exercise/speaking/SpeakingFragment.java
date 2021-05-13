@@ -8,15 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.component.speaking.Speaking;
-import com.YaroslavGorbach.delusionalgenerator.component.speaking.SpeakingImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
 import com.YaroslavGorbach.delusionalgenerator.util.PermissionsUtil;
 
 import javax.inject.Inject;

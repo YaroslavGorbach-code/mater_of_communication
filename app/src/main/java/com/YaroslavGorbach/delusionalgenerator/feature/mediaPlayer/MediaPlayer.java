@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer;
 
 import androidx.lifecycle.LiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 public interface MediaPlayer {
     void play(Record record);
     void stop();

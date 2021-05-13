@@ -1,8 +1,9 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.YaroslavGorbach.delusionalgenerator.data.local.SharedPrefStorage;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
 public class SharedPrefStorageImp implements SharedPrefStorage {

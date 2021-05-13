@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.screen.training.TrainingFragment;
 
 public class TrainingWorkflow extends Fragment implements TrainingFragment.Router {

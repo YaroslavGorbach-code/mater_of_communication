@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.domain;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 

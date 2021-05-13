@@ -4,14 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.App;
-import com.YaroslavGorbach.delusionalgenerator.component.description.Description;
-import com.YaroslavGorbach.delusionalgenerator.component.description.DescriptionImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.di.DaggerDescriptionComponent;
 import com.YaroslavGorbach.delusionalgenerator.di.DescriptionComponent;
 

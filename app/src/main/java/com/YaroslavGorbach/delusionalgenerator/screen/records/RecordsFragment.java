@@ -10,16 +10,11 @@ import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsList;
-import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsListImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 
 import javax.inject.Inject;
-
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class RecordsFragment extends Fragment {
     public RecordsFragment(){ super(R.layout.fragment_records); }

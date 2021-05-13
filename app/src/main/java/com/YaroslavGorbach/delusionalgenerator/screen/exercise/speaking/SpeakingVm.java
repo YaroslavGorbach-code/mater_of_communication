@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.YaroslavGorbach.delusionalgenerator.App;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.di.DaggerSpeakingComponent;
 import com.YaroslavGorbach.delusionalgenerator.di.SpeakingComponent;
 

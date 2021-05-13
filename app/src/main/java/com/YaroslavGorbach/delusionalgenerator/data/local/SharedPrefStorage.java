@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.local;
 
 public interface SharedPrefStorage {
     boolean getFirstOpen();

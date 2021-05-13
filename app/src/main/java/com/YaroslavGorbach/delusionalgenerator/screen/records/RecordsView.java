@@ -12,9 +12,8 @@ import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentRecordsBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.MaterialFade;

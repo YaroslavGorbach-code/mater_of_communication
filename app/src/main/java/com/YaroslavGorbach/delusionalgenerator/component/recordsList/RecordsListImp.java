@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayer;
 import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayerImp;
@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.functions.Consumer;
 
 public class RecordsListImp implements RecordsList {
     private final MediaPlayer mMediaPlayer;

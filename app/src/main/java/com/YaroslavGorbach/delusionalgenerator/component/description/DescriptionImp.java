@@ -3,11 +3,9 @@ package com.YaroslavGorbach.delusionalgenerator.component.description;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-
-import io.reactivex.rxjava3.functions.Consumer;
 
 public class DescriptionImp implements Description {
     private final Repo mRepo;

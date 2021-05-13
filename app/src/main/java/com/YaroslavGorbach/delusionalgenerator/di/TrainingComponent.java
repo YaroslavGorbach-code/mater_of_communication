@@ -1,6 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.di;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 import com.YaroslavGorbach.delusionalgenerator.screen.training.TrainingFragment;
 
 

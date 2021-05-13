@@ -10,16 +10,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.View;
 
 import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.Vocabulary;
-import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.VocabularyImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentVocabularyBinding;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.di.VocabularyComponent;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.feature.timer.TimerImp;
 
 import javax.inject.Inject;
 

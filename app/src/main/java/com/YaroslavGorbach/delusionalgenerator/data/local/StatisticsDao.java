@@ -1,10 +1,11 @@
-package com.YaroslavGorbach.delusionalgenerator.data.room;
+package com.YaroslavGorbach.delusionalgenerator.data.local;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
 
 import java.util.List;
 

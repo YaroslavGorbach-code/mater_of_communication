@@ -1,7 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.component.exercises;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 
 import java.util.List;
 

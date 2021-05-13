@@ -5,8 +5,8 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBinding;
 
 public class TrainingView {

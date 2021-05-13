@@ -3,9 +3,14 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.inmemory.InMemoryDb;
+import com.YaroslavGorbach.delusionalgenerator.data.local.RoomDb;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.local.SharedPrefStorage;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 
