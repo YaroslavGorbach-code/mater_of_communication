@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.navmenu.NavMenu;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentNavBinding;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExercisesWorkflow;
 

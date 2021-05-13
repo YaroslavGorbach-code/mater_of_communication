@@ -3,9 +3,11 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Statistics;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 
 import java.util.Calendar;
 import java.util.List;

@@ -4,10 +4,8 @@ import android.content.res.Resources;
 
 import com.YaroslavGorbach.delusionalgenerator.component.speaking.Speaking;
 import com.YaroslavGorbach.delusionalgenerator.component.speaking.SpeakingImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
 import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;

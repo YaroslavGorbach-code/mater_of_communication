@@ -5,12 +5,11 @@ import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
-import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import com.YaroslavGorbach.delusionalgenerator.data.room.Training;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
+import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 
 import java.util.List;
 

@@ -1,9 +1,7 @@
-package com.YaroslavGorbach.delusionalgenerator.data.room;
+package com.YaroslavGorbach.delusionalgenerator.data.domain;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 
 @Entity
 public class Statistics {

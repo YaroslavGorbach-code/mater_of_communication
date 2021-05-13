@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.component.exercises.Exercises;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentExercisesBinding;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 

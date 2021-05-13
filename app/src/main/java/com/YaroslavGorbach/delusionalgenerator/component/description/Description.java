@@ -1,10 +1,8 @@
 package com.YaroslavGorbach.delusionalgenerator.component.description;
-import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 
-import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
-import java.util.ArrayList;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 
 public interface Description {
     int getDescriptionId();

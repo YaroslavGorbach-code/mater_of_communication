@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.vocabulary.VocabularyFragment;

@@ -1,8 +1,8 @@
-package com.YaroslavGorbach.delusionalgenerator.data.room;
+package com.YaroslavGorbach.delusionalgenerator.data.local;
 
 import androidx.room.TypeConverter;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

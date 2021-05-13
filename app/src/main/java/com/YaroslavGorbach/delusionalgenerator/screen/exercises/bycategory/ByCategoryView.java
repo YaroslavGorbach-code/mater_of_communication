@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercises.bycategory;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentByCategoryBinding;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercises.ExsListAdapter;
 

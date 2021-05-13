@@ -4,10 +4,7 @@ import android.content.Context;
 
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsList;
 import com.YaroslavGorbach.delusionalgenerator.component.recordsList.RecordsListImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.records.RecordsFragment;
 
 import dagger.BindsInstance;

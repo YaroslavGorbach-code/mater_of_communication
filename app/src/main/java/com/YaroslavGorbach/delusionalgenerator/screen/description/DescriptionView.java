@@ -1,11 +1,10 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.description;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import androidx.core.widget.NestedScrollView;
 import com.YaroslavGorbach.delusionalgenerator.R;
-import com.YaroslavGorbach.delusionalgenerator.data.ChartInputData;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.ColorUtils;
 

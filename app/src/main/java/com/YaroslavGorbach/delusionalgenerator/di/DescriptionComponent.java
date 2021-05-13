@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.di;
 
 import com.YaroslavGorbach.delusionalgenerator.component.description.Description;
 import com.YaroslavGorbach.delusionalgenerator.component.description.DescriptionImp;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.screen.description.DescriptionFragment;
 

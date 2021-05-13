@@ -2,12 +2,12 @@ package com.YaroslavGorbach.delusionalgenerator.di;
 
 import android.content.Context;
 
-import com.YaroslavGorbach.delusionalgenerator.data.InMemoryDbImp;
+import com.YaroslavGorbach.delusionalgenerator.data.inmemory.InMemoryDbImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.RepoImp;
 import com.YaroslavGorbach.delusionalgenerator.data.RepoProvider;
-import com.YaroslavGorbach.delusionalgenerator.data.SharedPrefStorageImp;
-import com.YaroslavGorbach.delusionalgenerator.data.room.RoomDb;
+import com.YaroslavGorbach.delusionalgenerator.data.local.SharedPrefStorageImp;
+import com.YaroslavGorbach.delusionalgenerator.data.local.RoomDb;
 
 import javax.inject.Singleton;
 

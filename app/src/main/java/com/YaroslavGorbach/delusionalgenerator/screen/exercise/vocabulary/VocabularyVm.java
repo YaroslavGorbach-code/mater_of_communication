@@ -3,15 +3,11 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.YaroslavGorbach.delusionalgenerator.App;
-import com.YaroslavGorbach.delusionalgenerator.component.vocabulary.Vocabulary;
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.di.DaggerVocabularyComponent;
 import com.YaroslavGorbach.delusionalgenerator.di.VocabularyComponent;
-import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
 public class VocabularyVm extends AndroidViewModel {
   private VocabularyComponent vocabularyComponent;

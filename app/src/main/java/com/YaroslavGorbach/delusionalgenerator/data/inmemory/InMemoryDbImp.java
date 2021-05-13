@@ -1,6 +1,10 @@
-package com.YaroslavGorbach.delusionalgenerator.data;
+package com.YaroslavGorbach.delusionalgenerator.data.inmemory;
 import android.content.res.Resources;
 import com.YaroslavGorbach.delusionalgenerator.R;
+import com.YaroslavGorbach.delusionalgenerator.data.Repo;
+import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
+import com.YaroslavGorbach.delusionalgenerator.data.inmemory.InMemoryDb;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

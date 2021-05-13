@@ -1,11 +1,10 @@
-package com.YaroslavGorbach.delusionalgenerator.data.room;
+package com.YaroslavGorbach.delusionalgenerator.data.domain;
 import android.util.Log;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.YaroslavGorbach.delusionalgenerator.data.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 
 import java.util.ArrayList;
