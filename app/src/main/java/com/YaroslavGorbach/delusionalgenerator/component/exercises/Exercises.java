@@ -11,4 +11,5 @@ public interface Exercises {
     Observable<Training> getTraining();
     List<Exercise> getExercises();
     List<Exercise> getExercises(Exercise.Category category);
+    Exercise getRandomEx();
 }

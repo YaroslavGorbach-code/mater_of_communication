@@ -25,7 +25,6 @@ public class ExercisesFragment extends Fragment {
         void openExercise(Exercise.Name name, Exercise.Type type);
 
         void openExsByCategory(Exercise.Category category);
-
         void openTraining();
     }
 
@@ -58,6 +57,11 @@ public class ExercisesFragment extends Fragment {
             @Override
             public void onTraining() {
                 ((Router) requireParentFragment()).openTraining();
+            }
+
+            @Override
+            public void onRandom() {
+                ((Router) requireParentFragment()).openExercise(exercises.getRandomEx().getName(), Exercise.Type.COMMON);
             }
 
         });

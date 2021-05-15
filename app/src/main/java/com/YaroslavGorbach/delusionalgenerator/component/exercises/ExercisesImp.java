@@ -5,6 +5,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 
 import java.util.List;
+import java.util.Random;
 
 import io.reactivex.rxjava3.core.Observable;
 
@@ -27,5 +28,11 @@ public class ExercisesImp implements Exercises {
     @Override
     public List<Exercise> getExercises(Exercise.Category category) {
         return mRepo.getExercises(category);
+    }
+
+    @Override
+    public Exercise getRandomEx() {
+        Random random = new Random();
+        return getExercises().get(random.nextInt(getExercises().size()));
     }
 }

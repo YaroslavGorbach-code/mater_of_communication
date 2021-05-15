@@ -60,7 +60,7 @@ public class SpeakingView {
             mBinding.next.setImageResource(R.drawable.ic_done);
         }
         if (Objects.equals(doneAndAim.first, doneAndAim.second)){
-            mCallback.onUp();
+            mHandler.postDelayed(mCallback::onUp,500);
         }
         mBinding.aimAndDoneText.setText(doneAndAim.first +"/"+doneAndAim.second);
     }

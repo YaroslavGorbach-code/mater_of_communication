@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.screen.exercises;
 
 import android.app.Activity;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ public class ExercisesView {
         void onExercise(Exercise exercise);
         void onCategory(Exercise.Category category);
         void onTraining();
+        void onRandom();
     }
 
     private final ExsListAdapter mAdapter;
@@ -26,6 +28,17 @@ public class ExercisesView {
 
     public ExercisesView(FragmentExercisesBinding binding, Callback callback){
         mBinding = binding;
+
+        // init show/hide button
+        binding.scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
+                (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    if (scrollY > oldScrollY) {
+                        binding.startRandomEx.hide();
+                    } else {
+                        binding.startRandomEx.show();
+                    }
+                });
+
         mAdapter = new ExsListAdapter(callback::onExercise);
         mAdapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);
         binding.exsList.setHasFixedSize(true);
@@ -37,6 +50,7 @@ public class ExercisesView {
         binding.categories.vocabulary.setOnClickListener(v -> callback.onCategory(Exercise.Category.VOCABULARY));
         binding.categories.speaking.setOnClickListener(v -> callback.onCategory(Exercise.Category.SPEAKING));
         binding.categories.tongueTwisters.setOnClickListener(v -> callback.onCategory(Exercise.Category.TONGUE_TWISTER));
+        binding.startRandomEx.setOnClickListener(v -> {callback.onRandom();});
     }
 
     void setExercises(List<Exercise> exercises){
