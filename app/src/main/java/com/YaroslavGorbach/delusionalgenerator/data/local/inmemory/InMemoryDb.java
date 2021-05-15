@@ -1,4 +1,4 @@
-package com.YaroslavGorbach.delusionalgenerator.data.inmemory;
+package com.YaroslavGorbach.delusionalgenerator.data.local.inmemory;
 
 import android.content.res.Resources;
 

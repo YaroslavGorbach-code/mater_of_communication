@@ -2,7 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.di;
 
 import android.content.Context;
 
-import com.YaroslavGorbach.delusionalgenerator.data.inmemory.InMemoryDbImp;
+import com.YaroslavGorbach.delusionalgenerator.data.local.inmemory.InMemoryDbImp;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.RepoImp;
 import com.YaroslavGorbach.delusionalgenerator.data.RepoProvider;

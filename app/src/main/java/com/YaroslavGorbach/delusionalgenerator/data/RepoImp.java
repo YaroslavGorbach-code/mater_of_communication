@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
-import com.YaroslavGorbach.delusionalgenerator.data.inmemory.InMemoryDb;
+import com.YaroslavGorbach.delusionalgenerator.data.local.inmemory.InMemoryDb;
 import com.YaroslavGorbach.delusionalgenerator.data.local.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;

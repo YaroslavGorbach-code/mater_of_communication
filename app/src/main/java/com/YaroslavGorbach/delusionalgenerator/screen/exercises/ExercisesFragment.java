@@ -23,7 +23,6 @@ public class ExercisesFragment extends Fragment {
 
     public interface Router {
         void openExercise(Exercise.Name name, Exercise.Type type);
-
         void openExsByCategory(Exercise.Category category);
         void openTraining();
     }
