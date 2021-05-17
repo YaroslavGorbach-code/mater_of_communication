@@ -55,7 +55,6 @@ public class Training {
 
     public static ArrayList<Exercise> generateTrainingExs(Training training, Repo repo) {
         Random random = new Random();
-        Log.v("numberT", String.valueOf(training.number));
         ArrayList<Exercise> exercises = new ArrayList<>();
         if (training.number >= 10 && training.number < 20){
             exercises.add((repo.getExercise(Exercise.Name.DIFFICULT_TONGUE_TWISTERS)));
@@ -94,6 +93,7 @@ public class Training {
 
         for (Exercise e : exercises) {
             e.type = Exercise.Type.DAILY;
+            e.done = 0;
             switch (e.getName()){
                 case LINGUISTIC_PYRAMIDS:
                 case OTHER_ABBREVIATIONS:

@@ -11,7 +11,7 @@ import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentTrainingBindi
 
 public class TrainingView {
     public interface Callback{
-        void onTraining(Exercise exercise);
+        void onExercise(Exercise exercise);
         void onUp();
     }
 
@@ -20,7 +20,7 @@ public class TrainingView {
 
     public TrainingView(FragmentTrainingBinding binding, Callback callback){
         mBinding = binding;
-        mAdapter = new TrainingListAdapter(callback::onTraining);
+        mAdapter = new TrainingListAdapter(callback::onExercise);
         binding.exercises.setAdapter(mAdapter);
         binding.exercises.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.training.close.setVisibility(View.VISIBLE);
