@@ -72,9 +72,8 @@ public class RepoImp implements Repo {
     public Observable<Training> getTraining() {
         Date currentTime = new Date();
         return mRoomDb.dailyTrainingDao().getDailyTraining().map(training -> {
-            if (TimeAndDataUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) >= 1) {
-                if (TimeAndDataUtil.getDaysBetween(training.date.getTime(), currentTime.getTime()) > 1 || !training.getIsOver())
-                    training.days = 0;
+            if (TimeAndDataUtil.isNewTrainingAllow(training.date, currentTime)) {
+                if (!training.getIsOver()) training.days = 0;
                 Training trainingNew = new Training(
                         currentTime,
                         training.days,

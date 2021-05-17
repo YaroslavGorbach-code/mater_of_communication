@@ -48,6 +48,8 @@ public class Training {
     }
 
     public boolean getIsOver(){
+        if (exercises==null)
+            return false;
         return !Observable.fromIterable(exercises).any(exercise -> exercise.done != exercise.aim).blockingGet();
     }
 
