@@ -94,7 +94,7 @@
                         android:justificationMode="inter_word"
                         android:padding="8dp"
                         android:textSize="18sp"
-                        tools:text="@string/ex_advanced_binding_desc"
+                        tools:text="@string/advanced_binding_desc"
                         tools:ignore="UnusedAttribute" />
                 </LinearLayout>
 

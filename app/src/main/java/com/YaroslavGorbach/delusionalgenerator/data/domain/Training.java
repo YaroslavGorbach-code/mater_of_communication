@@ -110,6 +110,7 @@ public class Training {
                 case WILL_NOT_BE_WORSE:
                 case QUESTION_ANSWER:
                 case RAVEN_LOOK_LIKE_A_TABLE_FILINGS:
+                case REMEMBER_ALL:
                     e.aim = 5;
                     break;
                 case EASY_TONGUE_TWISTERS:
@@ -121,9 +122,6 @@ public class Training {
                 case ADJECTIVES:
                 case VERBS:
                     e.aim = 1;
-                    break;
-                case REMEMBER_ALL:
-                    e.aim = 15;
                     break;
             }
         }

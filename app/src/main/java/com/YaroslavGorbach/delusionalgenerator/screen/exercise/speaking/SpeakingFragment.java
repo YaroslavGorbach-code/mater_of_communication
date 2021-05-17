@@ -58,7 +58,7 @@ public class SpeakingFragment extends Fragment {
         });
 
         v.setTitle(getString(name.getNameId()));
-        if (type == Exercise.Type.DAILY || name == Exercise.Name.REMEMBER_ALL){
+        if (type == Exercise.Type.DAILY){
             speaking.getDoneAndAim().observe(getViewLifecycleOwner(), v::setDoneAndAim);
         }
         speaking.getShortDescId().observe(getViewLifecycleOwner(), id -> v.setShortDesc(getString(id)));

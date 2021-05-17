@@ -71,7 +71,7 @@ public class InMemoryDbImp implements InMemoryDb {
     private void createExercises() {
         mExercises.add(new Exercise(
                 Exercise.Name.LINGUISTIC_PYRAMIDS,
-                R.string.ex_linguistic_pyramids_desc,
+                R.string.linguistic_pyramids_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_pyramids,
                 R.string.short_desc_linguistic_pyramids_1,
@@ -80,112 +80,112 @@ public class InMemoryDbImp implements InMemoryDb {
 
         mExercises.add(new Exercise(
                 Exercise.Name.RAVEN_LOOK_LIKE_A_TABLE,
-                R.string.ex_raven_look_like_a_table_desc,
+                R.string.raven_look_like_a_table_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_raven,
                 R.string.short_desc_raven_look_like_a_table));
 
         mExercises.add(new Exercise(
                 Exercise.Name.STORYTELLER_IMPROVISER,
-                R.string.ex_storyteller_improviser_desc,
+                R.string.storyteller_improviser_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_promotional,
                 R.string.short_desc_storyteller_improviser));
 
         mExercises.add(new Exercise(
                 Exercise.Name.WHAT_I_SEE_I_SING_ABOUT,
-                R.string.ex_what_i_see_i_sing_about_desc,
+                R.string.what_i_see_i_sing_about_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_person_with_microfon,
                 R.string.short_desc_what_i_see_i_sing_about));
 
         mExercises.add(new Exercise(
                 Exercise.Name.OTHER_ABBREVIATIONS,
-                R.string.ex_other_abbreviations_desc,
+                R.string.other_abbreviations_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_letter,
                 R.string.short_desc_other_abbreviations));
 
         mExercises.add(new Exercise(
                 Exercise.Name.MAGIC_NAMING,
-                R.string.ex_magic_naming_desc,
+                R.string.magic_naming_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_magic,
                 R.string.short_desc_magic_naming));
 
         mExercises.add(new Exercise(
                 Exercise.Name.BUYING_SELLING,
-                R.string.ex_buying_selling_desc,
+                R.string.buying_selling_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_cart,
                 R.string.short_desc_buying_selling));
 
         mExercises.add(new Exercise(
                 Exercise.Name.ADVANCED_BINDING,
-                R.string.ex_advanced_binding_desc,
+                R.string.advanced_binding_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_cahain,
                 R.string.short_desc_advanced_binding));
 
         mExercises.add(new Exercise(
                 Exercise.Name.CO_AUTHORED_WITH_DAHL,
-                R.string.ex_co_authored_with_dahl_desc,
+                R.string.co_authored_with_dahl_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_pen,
                 R.string.short_desc_co_authored_with_dahl));
 
         mExercises.add(new Exercise(
                 Exercise.Name.RORSCHACH_TEST,
-                R.string.ex_rorschach_test_desc,
+                R.string.rorschach_test_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_butterfly,
                 R.string.short_desc_rorschach_test));
 
         mExercises.add(new Exercise(
                 Exercise.Name.WILL_NOT_BE_WORSE,
-                R.string.ex_will_not_be_worse_desc,
+                R.string.will_not_be_worse_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_thomb_down,
                 R.string.short_desc_will_not_be_worse));
 
         mExercises.add(new Exercise(
                 Exercise.Name.QUESTION_ANSWER,
-                R.string.ex_question_answer_desc,
+                R.string.question_answer_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_qestion,
                 R.string.short_desc_question_answer));
 
         mExercises.add(new Exercise(
                 Exercise.Name.RAVEN_LOOK_LIKE_A_TABLE_FILINGS,
-                R.string.ex_raven_look_like_a_table_filings_desc,
+                R.string.raven_look_like_a_table_filings_desc,
                 Exercise.Category.SPEAKING,
                 R.drawable.ic_raven_2,
                 R.string.short_desc_raven_look_like_a_table_filings));
 
         mExercises.add(new Exercise(
                 Exercise.Name.REMEMBER_ALL,
-                R.string.ex_remember_all_desc,
-                Exercise.Category.VOCABULARY,
+                R.string.remember_all_desc,
+                Exercise.Category.SPEAKING,
                 R.drawable.ic_memory,
                 R.string.short_desc_remember_all));
 
         mExercises.add(new Exercise(
                 Exercise.Name.NOUNS,
-                R.string.ex_nouns_desc,
+                R.string.nouns_desc,
                 Exercise.Category.VOCABULARY,
                 R.drawable.ic_book_1,
                 R.string.short_desc_nouns));
 
         mExercises.add(new Exercise(
                 Exercise.Name.ADJECTIVES,
-                R.string.ex_adjectives_desc,
+                R.string.adjectives_desc,
                 Exercise.Category.VOCABULARY,
                 R.drawable.ic_book_2,
                 R.string.short_desc_adjectives));
 
         mExercises.add(new Exercise(
                 Exercise.Name.VERBS,
-                R.string.ex_verbs_desc,
+                R.string.verbs_desc,
                 Exercise.Category.VOCABULARY,
                 R.drawable.ic_book_3,
                 R.string.short_desc_verbs
@@ -193,7 +193,7 @@ public class InMemoryDbImp implements InMemoryDb {
 
         mExercises.add(new Exercise(
                 Exercise.Name.EASY_TONGUE_TWISTERS,
-                R.string.ex_tongue_twisters_desc,
+                R.string.tongue_twisters_desc,
                 Exercise.Category.TONGUE_TWISTER,
                 R.drawable.ic_lips_2,
                 R.string.short_desc_tt_1,
@@ -204,7 +204,7 @@ public class InMemoryDbImp implements InMemoryDb {
 
         mExercises.add(new Exercise(
                 Exercise.Name.DIFFICULT_TONGUE_TWISTERS,
-                R.string.ex_tongue_twisters_desc,
+                R.string.tongue_twisters_desc,
                 Exercise.Category.TONGUE_TWISTER,
                 R.drawable.ic_lips_1,
                 R.string.short_desc_tt_1,
@@ -215,7 +215,7 @@ public class InMemoryDbImp implements InMemoryDb {
 
         mExercises.add(new Exercise(
                 Exercise.Name.VERY_DIFFICULT_TONGUE_TWISTERS,
-                R.string.ex_tongue_twisters_desc,
+                R.string.tongue_twisters_desc,
                 Exercise.Category.TONGUE_TWISTER,
                 R.drawable.ic_lips_3,
                 R.string.short_desc_tt_1,
