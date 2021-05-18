@@ -11,6 +11,7 @@ import androidx.core.util.Pair;
 
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
+import com.YaroslavGorbach.delusionalgenerator.util.ViewUtil;
 
 import java.util.Objects;
 
@@ -50,6 +51,7 @@ public class SpeakingView {
 
     public void setWord(String word){
         mBinding.chronometerOneWord.setBase(SystemClock.elapsedRealtime());
+        mBinding.word.setTextSize(ViewUtil.getCorrectTextSize(word.length()));
         mBinding.word.setText(word);
     }
 
