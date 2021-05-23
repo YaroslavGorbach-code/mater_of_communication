@@ -198,6 +198,11 @@ public class RepoImp implements Repo {
         mSharedPrefStorage.setAdIsAllow(isAllow);
     }
 
+    @Override
+    public boolean isAscAppReviewAllow() {
+        return getTraining().blockingFirst().days > 1;
+    }
+
 
     @Override
     public Observable<ChartInputData> getChartData(Exercise.Name name) {

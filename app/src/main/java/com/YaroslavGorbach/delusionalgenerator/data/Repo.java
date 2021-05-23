@@ -44,6 +44,7 @@ public interface Repo {
     void setNightMod(boolean nightMod);
     boolean getAdIsAllow();
     void setAdIsAllow(boolean isAllow);
+    boolean isAscAppReviewAllow();
 
     enum WordType {
         ALIVE,

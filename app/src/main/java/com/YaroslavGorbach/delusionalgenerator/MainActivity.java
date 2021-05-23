@@ -18,6 +18,10 @@ import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.NavFragment;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.tasks.Task;
 
 import java.util.concurrent.TimeUnit;
 
@@ -57,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements NavFragment.Route
                         repo.getNotificationText());
             }
             repo.setFirstOpen(false);
+        }
+
+        if (repo.isAscAppReviewAllow()) {
+            ReviewManager manager = ReviewManagerFactory.create(this);
+            Task<ReviewInfo> request = manager.requestReviewFlow();
+            request.addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    ReviewInfo reviewInfo = task.getResult();
+                    Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
+                }
+            });
         }
     }
 
