@@ -1,5 +1,6 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.records;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class RecordsView {
     public interface ItemSwipeCallback {
         void onSwipe(RecyclerView.ViewHolder viewHolder);
     }
+
     private final RecordsAdapter mAdapter;
     private final FragmentRecordsBinding mBinding;
     private boolean mIsPlaying = false;
@@ -79,6 +81,7 @@ public class RecordsView {
         SwipeDeleteDecor swipeDeleteDecor = new SwipeDeleteDecor(new ItemSwipeCallback() {
             boolean undo = false;
 
+            @SuppressLint("ShowToast")
             @Override
             public void onSwipe(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getBindingAdapterPosition();
@@ -99,8 +102,7 @@ public class RecordsView {
                             mAdapter.notifyItemInserted(position);
                             showNoRecordsIcon(mAdapter.getData().isEmpty());
                             undo = true;
-                        })
-                        .addCallback(new Snackbar.Callback() {
+                        }).addCallback(new Snackbar.Callback() {
                             @Override
                             public void onDismissed(Snackbar transientBottomBar, int event) {
                                 super.onDismissed(transientBottomBar, event);
@@ -109,8 +111,7 @@ public class RecordsView {
                                     setRecords(mAdapter.getData());
                                 }
                             }
-                        })
-                        .show();
+                        }).show();
             }
         }, ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.delete_record_hint_bg));
 
@@ -118,7 +119,6 @@ public class RecordsView {
         swipeDeleteDecor.attachToRecyclerView(binding.recordsList);
         binding.recordsList.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.recordsList.setAdapter(mAdapter);
-
     }
 
     public void setRecords(List<Record> records) {

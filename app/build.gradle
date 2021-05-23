@@ -41,7 +41,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.recyclerview:recyclerview:1.2.0"
     implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
 
     // ViewModel
@@ -73,5 +73,7 @@ dependencies {
     implementation 'im.dacer:AndroidCharts:1.0.4'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation "com.android.billingclient:billing:3.0.3"
+    implementation "com.android.billingclient:billing:4.0.0"
+    implementation 'com.google.android.play:core:1.10.0'
+
 }
