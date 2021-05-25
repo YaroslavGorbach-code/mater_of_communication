@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.util;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -48,6 +49,11 @@ public class TimeAndDataUtil {
     public static String formatRecord(long millis) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());
         return format.format(millis);
+    }
+
+    public static long getDaysBetween(Date lastReview, Date current){
+        long diff =  current.getTime() - lastReview.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     public static boolean isNewTrainingAllow(Date trainingDate, Date currentDate) {

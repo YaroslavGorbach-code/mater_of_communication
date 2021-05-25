@@ -17,5 +17,6 @@ public interface SharedPrefStorage {
     boolean getNightMod();
     boolean getAdIsAllow();
     void setAdIsAllow(boolean isAdRemoved);
-
+    void setTimeLastReviewAsc(long time);
+    long getTimeLastReviewAsc();
 }

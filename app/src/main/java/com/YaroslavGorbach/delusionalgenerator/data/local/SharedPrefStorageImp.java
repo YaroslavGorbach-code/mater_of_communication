@@ -93,4 +93,14 @@ public class SharedPrefStorageImp implements SharedPrefStorage {
         mSharedPreferences.edit().putBoolean("adIsAllow", isAllow).apply();
     }
 
+    @Override
+    public void setTimeLastReviewAsc(long time) {
+        mSharedPreferences.edit().putLong("timeLastReviewAsc", time).apply();
+    }
+
+    @Override
+    public long getTimeLastReviewAsc() {
+        return mSharedPreferences.getLong("timeLastReviewAsc", 0);
+    }
+
 }

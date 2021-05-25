@@ -10,6 +10,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -45,6 +46,7 @@ public interface Repo {
     boolean getAdIsAllow();
     void setAdIsAllow(boolean isAllow);
     boolean isAscAppReviewAllow();
+    void setDateLastReviewAsc(Date date);
 
     enum WordType {
         ALIVE,

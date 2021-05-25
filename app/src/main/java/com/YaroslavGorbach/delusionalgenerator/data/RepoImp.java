@@ -2,6 +2,7 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
@@ -104,8 +105,7 @@ public class RepoImp implements Repo {
         }
         mRoomDb.dailyTrainingDao().insert(training);
     }
-
-
+    
     @Override
     public int getTrainingExDone(Exercise exercise) {
         Training training = getTraining().blockingFirst();
@@ -200,7 +200,15 @@ public class RepoImp implements Repo {
 
     @Override
     public boolean isAscAppReviewAllow() {
-        return getTraining().blockingFirst().days > 1;
+        return getTraining().blockingFirst().number > 1
+                && TimeAndDataUtil.getDaysBetween(
+                new Date(mSharedPrefStorage.getTimeLastReviewAsc()), new Date()) > 6;
+
+    }
+
+    @Override
+    public void setDateLastReviewAsc(Date date) {
+        mSharedPrefStorage.setTimeLastReviewAsc(date.getTime());
     }
 
 

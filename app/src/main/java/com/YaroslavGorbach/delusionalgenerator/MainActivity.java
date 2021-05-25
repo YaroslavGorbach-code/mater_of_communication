@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -21,8 +22,10 @@ import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements NavFragment.Router {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavFragment.Route
                 if (task.isSuccessful()) {
                     ReviewInfo reviewInfo = task.getResult();
                     Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
+                    flow.addOnCompleteListener(task1 -> repo.setDateLastReviewAsc(new Date()));
                 }
             });
         }

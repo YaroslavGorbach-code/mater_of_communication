@@ -46,5 +46,6 @@
     <string name="light_dark_theme">Темная тема</string>
     <string name="remove_ad">Убрать рекламу</string>
     <string name="ad_removed_message">Спасибо за покупку! Изменения вступят в силу после перезагрузки приложения.</string>
+    <string name="rate">Оценить</string>
 
 </resources>

@@ -41,7 +41,7 @@ public class ByCategoryFragment extends Fragment {
 
         // init view
         ByCategoryView v = new ByCategoryView(FragmentByCategoryBinding.bind(view), exercise ->
-                ((Router)requireParentFragment()).openExercise(exercise.getName(), exercise.type));
+                ((Router)requireParentFragment()).openExercise(exercise.getName(), Exercise.Type.COMMON));
 
         v.setExercises(exercises.getExercises(category));
 
