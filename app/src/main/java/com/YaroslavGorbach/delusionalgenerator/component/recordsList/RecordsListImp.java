@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
-import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayer;
-import com.YaroslavGorbach.delusionalgenerator.feature.mediaPlayer.MediaPlayerImp;
+import com.YaroslavGorbach.delusionalgenerator.feature.player.MediaPlayer;
+import com.YaroslavGorbach.delusionalgenerator.feature.player.MediaPlayerImp;
 
 import java.util.ArrayList;
 import java.util.Collections;

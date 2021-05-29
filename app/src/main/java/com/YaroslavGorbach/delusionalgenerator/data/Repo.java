@@ -39,7 +39,7 @@ public interface Repo {
     void setNotificationText(String text);
     boolean getNotificationIsAllow();
     void setNotificationIsAllow(boolean isAllow);
-    boolean interstitialAdIsAllow();
+    boolean getInterstitialAdIsAllow();
     void incInterstitialAdCount();
     boolean getNightMod();
     void setNightMod(boolean nightMod);

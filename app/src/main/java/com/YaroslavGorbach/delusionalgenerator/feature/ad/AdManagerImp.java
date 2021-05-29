@@ -83,7 +83,7 @@ public class AdManagerImp implements AdManager {
     @Override
     public void showInterstitialAd(Activity activity) {
         if (mRepo.getAdIsAllow()){
-            if (mInterstitialAd != null && mRepo.interstitialAdIsAllow()) mInterstitialAd.show(activity);
+            if (mInterstitialAd != null && mRepo.getInterstitialAdIsAllow()) mInterstitialAd.show(activity);
             mRepo.incInterstitialAdCount();
         }
     }

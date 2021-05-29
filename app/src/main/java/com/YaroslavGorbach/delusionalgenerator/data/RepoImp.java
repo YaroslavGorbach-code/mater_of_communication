@@ -2,16 +2,16 @@ package com.YaroslavGorbach.delusionalgenerator.data;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 
 import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Record;
 import com.YaroslavGorbach.delusionalgenerator.data.local.inmemory.InMemoryDb;
-import com.YaroslavGorbach.delusionalgenerator.data.local.RoomDb;
+import com.YaroslavGorbach.delusionalgenerator.data.local.pref.notifications.NotificationPrefStorage;
+import com.YaroslavGorbach.delusionalgenerator.data.local.room.RoomDb;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Training;
-import com.YaroslavGorbach.delusionalgenerator.data.local.SharedPrefStorage;
+import com.YaroslavGorbach.delusionalgenerator.data.local.pref.common.CommonPrefStorage;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 import com.YaroslavGorbach.delusionalgenerator.util.TimeAndDataUtil;
 
@@ -30,12 +30,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class RepoImp implements Repo {
     private final RoomDb mRoomDb;
     private final InMemoryDb mInMemoryDb;
-    private final SharedPrefStorage mSharedPrefStorage;
+    private final CommonPrefStorage mCommonPrefStorage;
+    private final NotificationPrefStorage mNotificationPrefStorage;
 
-    public RepoImp(RoomDb roomDb, InMemoryDb inMemoryDb, SharedPrefStorage storage) {
+    public RepoImp(
+            RoomDb roomDb,
+            InMemoryDb inMemoryDb,
+            CommonPrefStorage commonPrefs,
+            NotificationPrefStorage notificationPrefs) {
         mRoomDb = roomDb;
         mInMemoryDb = inMemoryDb;
-        mSharedPrefStorage = storage;
+        mCommonPrefStorage = commonPrefs;
+        mNotificationPrefStorage = notificationPrefs;
     }
 
     @Override
@@ -122,93 +128,93 @@ public class RepoImp implements Repo {
 
     @Override
     public boolean getFirstOpen() {
-        return mSharedPrefStorage.getFirstOpen();
+        return mCommonPrefStorage.getFirstOpen();
     }
 
     @Override
     public void setFirstOpen(boolean firstOpen) {
-        mSharedPrefStorage.setFirstOpen(firstOpen);
+        mCommonPrefStorage.setFirstOpen(firstOpen);
     }
 
     @Override
     public Calendar getNotificationCalendar() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, mSharedPrefStorage.getNotificationHour());
-        calendar.set(Calendar.MINUTE, mSharedPrefStorage.getNotificationMinute());
+        calendar.set(Calendar.HOUR_OF_DAY, mNotificationPrefStorage.getNotificationHour());
+        calendar.set(Calendar.MINUTE, mNotificationPrefStorage.getNotificationMinute());
         return calendar;
     }
 
     @Override
     public void setNotificationCalendar(Calendar calendar) {
-        mSharedPrefStorage.setNotificationHour(calendar.get(Calendar.HOUR_OF_DAY));
-        mSharedPrefStorage.setNotificationMinute(calendar.get(Calendar.MINUTE));
+        mNotificationPrefStorage.setNotificationHour(calendar.get(Calendar.HOUR_OF_DAY));
+        mNotificationPrefStorage.setNotificationMinute(calendar.get(Calendar.MINUTE));
     }
 
     @Override
     public String getNotificationText() {
-        return mSharedPrefStorage.getNotificationText();
+        return mNotificationPrefStorage.getNotificationText();
     }
 
     @Override
     public void setNotificationText(String text) {
-        mSharedPrefStorage.setNotificationText(text);
+        mNotificationPrefStorage.setNotificationText(text);
     }
 
     @Override
     public boolean getNotificationIsAllow() {
-        return mSharedPrefStorage.getNotificationIsAllow();
+        return mNotificationPrefStorage.getNotificationIsAllow();
     }
 
     @Override
     public void setNotificationIsAllow(boolean isEnable) {
-        mSharedPrefStorage.setNotificationIsAllow(isEnable);
+        mNotificationPrefStorage.setNotificationIsAllow(isEnable);
     }
 
     @Override
-    public boolean interstitialAdIsAllow() {
-        return mSharedPrefStorage.getInterstitialAdCount() >= AdManager.INTERSTITIAL_SHOW_LIMIT;
+    public boolean getInterstitialAdIsAllow() {
+        return mCommonPrefStorage.getInterstitialAdCount() >= AdManager.INTERSTITIAL_SHOW_LIMIT;
     }
 
     @Override
     public void incInterstitialAdCount() {
-        if (mSharedPrefStorage.getInterstitialAdCount() < AdManager.INTERSTITIAL_SHOW_LIMIT) {
-            mSharedPrefStorage.setInterstitialAdCount(mSharedPrefStorage.getInterstitialAdCount() + 1);
+        if (mCommonPrefStorage.getInterstitialAdCount() < AdManager.INTERSTITIAL_SHOW_LIMIT) {
+            mCommonPrefStorage.setInterstitialAdCount(mCommonPrefStorage.getInterstitialAdCount() + 1);
         } else {
-            mSharedPrefStorage.setInterstitialAdCount(0);
+            mCommonPrefStorage.setInterstitialAdCount(0);
         }
     }
 
     @Override
     public boolean getNightMod() {
-        return mSharedPrefStorage.getNightMod();
+        return mCommonPrefStorage.getNightMod();
     }
 
     @Override
     public void setNightMod(boolean nightMod) {
-        mSharedPrefStorage.setNightMod(nightMod);
+        mCommonPrefStorage.setNightMod(nightMod);
     }
 
     @Override
     public boolean getAdIsAllow() {
-        return mSharedPrefStorage.getAdIsAllow();
+        return mCommonPrefStorage.getAdIsAllow();
     }
 
     @Override
     public void setAdIsAllow(boolean isAllow) {
-        mSharedPrefStorage.setAdIsAllow(isAllow);
+        mCommonPrefStorage.setAdIsAllow(isAllow);
     }
 
     @Override
     public boolean isAscAppReviewAllow() {
         return getTraining().blockingFirst().number > 1
                 && TimeAndDataUtil.getDaysBetween(
-                new Date(mSharedPrefStorage.getTimeLastReviewAsc()), new Date()) > 6;
+                new Date(mCommonPrefStorage.getTimeLastReviewAsc()), new Date()) > 6;
 
     }
 
     @Override
     public void setDateLastReviewAsc(Date date) {
-        mSharedPrefStorage.setTimeLastReviewAsc(date.getTime());
+        mCommonPrefStorage.setTimeLastReviewAsc(date.getTime());
     }
 
 

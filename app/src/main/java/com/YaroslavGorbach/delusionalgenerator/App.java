@@ -25,6 +25,7 @@ public class App extends Application implements RepoProvider {
         super.onCreate();
         appComponent = DaggerAppComponent.factory().create(DaggerRepoComponent.factory().create(this));
         createChannel();
+
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, initializationStatus -> {});
 

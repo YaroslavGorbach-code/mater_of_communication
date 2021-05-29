@@ -12,7 +12,7 @@ import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Statistics;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
+import com.YaroslavGorbach.delusionalgenerator.feature.recorder.VoiceRecorder;
 
 import java.util.Date;
 import java.util.List;

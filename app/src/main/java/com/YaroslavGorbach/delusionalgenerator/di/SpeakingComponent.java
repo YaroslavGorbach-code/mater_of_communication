@@ -7,8 +7,8 @@ import com.YaroslavGorbach.delusionalgenerator.component.speaking.SpeakingImp;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.data.Repo;
 import com.YaroslavGorbach.delusionalgenerator.feature.statistics.StatisticsManager;
-import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorder;
-import com.YaroslavGorbach.delusionalgenerator.feature.voiceRecorder.VoiceRecorderImp;
+import com.YaroslavGorbach.delusionalgenerator.feature.recorder.VoiceRecorder;
+import com.YaroslavGorbach.delusionalgenerator.feature.recorder.VoiceRecorderImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.exercise.speaking.SpeakingFragment;
 
 import dagger.BindsInstance;
