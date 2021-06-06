@@ -9,4 +9,10 @@
     <style name="BaseAppTheme.v23" parent="BaseAppTheme.DayNight">
         <item name="android:statusBarColor">?colorPrimarySurface</item>
     </style>
+
+    <style name="InteractiveItem">
+        <item name="android:foreground">?selectableItemBackground</item>
+        <item name="android:stateListAnimator">@animator/interactive_item</item>
+    </style>
+
 </resources>

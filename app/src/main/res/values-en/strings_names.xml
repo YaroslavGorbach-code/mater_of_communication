@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ex_linguistic_pyramids_name">Linguistic pyramids</string>
+    <string name="ex_raven_look_like_a_table_name">How does a raven look like a table</string>
+    <string name="ex_storyteller_improviser_name">Storyteller - improviser</string>
+    <string name="ex_advanced_binding_name">Advanced binding</string>
+    <string name="ex_what_i_see_i_sing_about_name">What I see, I sing about</string>
+    <string name="ex_other_abbreviations_name">Other abbreviations</string>
+    <string name="ex_magic_naming_name">Magic naming</string>
+    <string name="ex_buying_selling_name">Purchase and sale</string>
+    <string name="ex_remember_all_name">Remember all</string>
+    <string name="ex_co_authored_with_dahl_name">Co-authored with Dahl</string>
+    <string name="ex_rorschach_test_name">Rorschach test</string>
+    <string name="ex_will_not_be_worse_name">It won\'t get any worse</string>
+    <string name="ex_question_answer_name">Question answer</string>
+    <string name="ex_raven_look_like_a_table_filings_name">How does a raven look like a chair (feelings)</string>
+    <string name="ex_nouns_name">Nouns</string>
+    <string name="ex_adjectives_name">Adjectives</string>
+    <string name="ex_verbs_name">Verbs</string>
+    <string name="ex_easy_tongue_twisters_name">Simple tongue twisters</string>
+    <string name="ex_difficult_tongue_twisters_name">Complex tongue twisters</string>
+    <string name="ex_very_difficult_tongue_twisters_name">Very difficult tongue twisters</string>
+</resources>

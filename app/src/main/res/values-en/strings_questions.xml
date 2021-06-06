@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="questions">
+        <item> What\'s your ideal way to spend your vacation? </item>
+        <item> What makes you dislike a person? </item>
+        <item> Do you consider yourself a confident person? Why or why not? </item>
+        <item> What are you most proud of? </item>
+        <item> What would be your best version of yourself? </item>
+        <item> What life experience did you miss? </item>
+        <item> When are you really "you"? </item>
+        <item> What musical instrument would you like to play? </item>
+        <item> What\'s the best compliment you\'ve ever received? </item>
+        <item> How old would you like to live? </item>
+        <item> Under what circumstances did you fall out with some of your close friends? </item>
+        <item> When did an ordinary event or accident completely change the course of your life? </item>
+        <item> Are you / are you satisfied with the people you surround yourself with? Why, why not? </item>
+        <item> If you could go to any country in the world for one month, where would you go? </item>
+        <item> How superstitious are you? </item>
+        <item> What has been a recurring theme in your life? </item>
+        <item> What was your most inappropriate or embarrassing fart? </item>
+        <item> What do you think happens after death? </item>
+        <item> What are your top five rules for living? </item>
+        <item> What\'s your favorite thing in your house? </item>
+        <item> What gives meaning to your life? </item>
+        <item> What would you like to tell people but can\'t? </item>
+        <item> What traits do you find most attractive in people? </item>
+        <item> What secret have you never told anyone? </item>
+        <item> What little treats do you enjoy the most? </item>
+        <item> Who is the most annoying person you know? </item>
+        <item> What\'s your biggest mistake so far? </item>
+        <item> What have you fought / fought your whole life? </item>
+        <item> What\'s the biggest change you would like to make in your life? </item>
+        <item> What do you want from life? </item>
+        <item> What calms you the most? </item>
+        <item> What things do you find disgusting? </item>
+        <item> What would your ideal life look like? </item>
+        <item> If you were paid to follow your dreams, what would you do / do? </item>
+        <item> What\'s your most embarrassing story while you were sick? </item>
+        <item> What friend have you not remembered for a long time? </item>
+        <item> What\'s the craziest thing that happened at your job? </item>
+        <item> Who do you behave well with but secretly dislike? </item>
+        <item> If money weren\'t an issue, how would you decorate your / our home without my help? </item>
+        <item> How well do you read people? </item>
+        <item> Do you see your future positively? </item>
+        <item> Who do you want to be like / like, or who do you look up to the most? </item>
+        <item> What have been the healthiest and most unhealthy times in your life? </item>
+        <item> What are you worried about? </item>
+        <item> What\'s the scariest / creepiest place you\'ve ever been? </item>
+        <item> Do you think the world is getting better or worse? Why? </item>
+        <item> How do you think society is changing? Will we change with him? </item>
+        <item> Worst thing people are proud of? </item>
+        <item> What was the biggest betrayal you experienced? </item>
+        <item> What would be the best gift? </item>
+        <item> What are you afraid of? </item>
+        <item> What makes you feel super cool / cool? </item>
+        <item> What is taking up too much space in your life? </item>
+        <item> What was the hardest lesson you had to learn? </item>
+        <item> What part of you as a person still needs a lot of work? </item>
+        <item> What words of wisdom are stuck in your head? </item>
+        <item> How well do you know yourself? </item>
+        <item> What\'s your best flaw? </item>
+        <item> Do you prefer to live in the countryside, in the city or in the metropolis? Why? </item>
+        <item> What are your fondest memories of a tree / trees? </item>
+        <item> What are the best feelings for you? </item>
+        <item> What\'s the most unethical thing that you do regularly? </item>
+        <item> What could be more difficult than it sounds? </item>
+        <item> What do you think you were born for? </item>
+        <item> What was your biggest financial mistake? </item>
+        <item> What makes you lose faith in humanity? </item>
+        <item> What was the most painful thing you heard? </item>
+        <item> What do you enjoy doing the most when you have time? </item>
+        <item> What is normal now, but 100 years from now will be considered unethical and barbaric? </item>
+        <item> Do you believe in luck and bad luck? What about things that bring good luck and bad luck? </item>
+        <item> If you had a million dollars for charity, what kind of charity would you do? </item>
+        <item> What are many people afraid of, but you are not? </item>
+        <item> If you could start a business, what type of business would you open? </item>
+        <item> What lies have you believed for an incredibly long time? </item>
+        <item> What are the three most important turning points in your life? </item>
+        <item> Which animal are you most afraid of? </item>
+        <item> What scandal happened in your area or city when you were growing up? </item>
+        <item> How well do you think you would survive in prison? </item>
+        <item> What is the most embarrassing social situation you have been in? </item>
+        <item> What scares you every day? </item>
+        <item> When was the last time you cried? </item>
+        <item> What\'s your biggest regret? </item>
+        <item> Is it better to trust people or not? And why? </item>
+        <item> What are your best and worst qualities? </item>
+        <item> Who do you miss the most? </item>
+        <item> What\'s the hardest life lesson you\'ve learned? </item>
+        <item> What do you take for granted? </item>
+        <item> What stressful situation have you ever been in? How did you / did you deal with this? </item>
+        <item> What\'s the most ambitious thing you\'ve ever tried / tried to do? </item>
+        <item> How often do you change your mind? </item>
+        <item> What was your biggest opportunity? </item>
+        <item> What should people enjoy more because it won\'t last long? </item>
+        <item> What question do you want people to ask more often? </item>
+        <item> What\'s the saddest thing in your life that no one knows about? </item>
+        <item> What are you most sentimental / sentimental about? </item>
+        <item> Do people look down on you more often or, on the contrary, look up to you? Why is that? </item>
+        <item> What question do you most want an answer to? </item>
+        <item> What are the characteristics of a superficial person? </item>
+        <item> What are you looking forward to the most during the day? </item>
+        <item> When is your favorite time of day? </item>
+        <item> What\'s the best way to improve yourself? </item>
+        <item> Which three words best describe you? </item>
+        <item> How well do you work under a lot of pressure? </item>
+        <item> What is your weakness? </item>
+        <item> What\'s bad for you, and you know it, but you still can\'t get rid of it? </item>
+        <item> What is the greatest service you have done for someone? </item>
+        <item> What brings you the most joy? </item>
+        <item> What are you deliberately ignoring, even though you know you must / should solve it? </item>
+        <item> What would you like to be better at? </item>
+        <item> What is the best or worst thing you inherited from your parents? </item>
+        <item> What are your childhood habits? </item>
+        <item> What was your favorite family vacation or vacation as a child? </item>
+        <item> How traditional was your family? </item>
+        <item> Children are often very much like their parents. How do you want to be different
+            from your parents? And how do you want to be like them? </item>
+        <item> What subjects did you love and hate the most in school? </item>
+        <item> What unusual game did you often play as a child? </item>
+        <item> Which movie seriously traumatized you as a child or adult? </item>
+        <item> What irrational fears did you have as a child? </item>
+        <item> Which toy played a significant role in your childhood? </item>
+        <item> What are your earliest memories? </item>
+        <item> What is the best way to raise children? </item>
+        <item> What shows do you like? </item>
+        <item> How often do you exercise? </item>
+        <item> What\'s your favorite drink? </item>
+        <item> What is your dream car? </item>
+        <item> What job will you be terrible at? </item>
+        <item> What skill would you like to learn? </item>
+        <item> What would your ideal room look like? </item>
+        <item> What film title best describes your life? </item>
+        <item> What age do you want to live at? </item>
+        <item> What art do you like best? </item>
+        <item> What is taking too long of your time? </item>
+        <item> What would you like to know more about? </item>
+        <item> What\'s the best way to start the day? </item>
+        <item> How different was your life a year ago? </item>
+        <item> Where is the most interesting place you\'ve been? </item>
+        <item> What city would you like to live in? </item>
+        <item> What is special about the place where you grew up? </item>
+        <item> What fictional place would you like to visit? </item>
+        <item> What\'s the most moving thing you\'ve ever seen? </item>
+        <item> How do you rest after a hard day at work? </item>
+        <item> What popular TV show or movie do you refuse to watch? </item>
+        <item> What job do you think you are really good at? </item>
+        <item> What\'s the best way to spend your time? </item>
+        <item> What do you really want but can\'t afford yet? </item>
+        <item> What\'s the happiest thing that happened to you? </item>
+        <item> What little things make your day better? </item>
+        <item> What are you waiting for in the coming months? </item>
+        <item> What is your favorite piece of clothing? </item>
+        <item> What universe of games or movies would you like to live in? </item>
+        <item> What question would you like to know the answer to? </item>
+        <item> What are you most looking forward to in the next 10 years? </item>
+        <item> What\'s the most annoying question you get asked regularly? </item>
+        <item> If you didn\'t need to sleep, what would you do during the extra time? </item>
+        <item> What most people consider a luxury, but don\'t you think you could live without it? </item>
+        <item> What would be your first question after awakening from cryogenic freezing for 100 years? </item>
+        <item> Something a ton of people are passionate about but you just don\'t understand? </item>
+        <item> What risks are worth taking? </item>
+        <item> When do you feel truly "alive"? </item>
+        <item> Which book influenced you the most? </item>
+        <item> What would be the scariest monster you can imagine? </item>
+        <item> What\'s your favorite scent? </item>
+        <item> What mistake do you keep making over and over again? </item>
+        <item> What\'s the strangest thing you\'ve encountered? </item>
+        <item> If you had a personal flag, what would be on it? </item>
+        <item> If your life was a book, what would it be called? </item>
+        <item> What would you do if you were the only person on Earth? </item>
+        <item> When people look at you, what do you think they see / think? </item>
+        <item> There are two types of people in this world. What are the two types? </item>
+        <item> What personality trait do you value most and what do you dislike most? </item>
+        <item> Where do you see yourself living when you retire? </item>
+        <item> How do you feel about climate change? </item>
+        <item> What can you talk about all day? </item>
+        <item> What was the last funny video you saw? </item>
+        <item> What do you do to relieve stress? </item>
+        <item> What are you obsessed with? </item>
+        <item> What\'s your favorite way to waste your time? </item>
+        <item> What do you think of tattoos? </item>
+        <item> If you were to start a business, what would it be? </item>
+        <item> Have you ever given a presentation to a large group of people? How did it go? </item>
+        <item> What\'s the strangest dream you\'ve ever had? </item>
+        <item> Who in your life brings you the most joy? </item>
+        <item> What\'s the most annoying habit? </item>
+        <item> What\'s your favorite season? Why? </item>
+        <item> What\'s more important, having a nice car or a great house? Why? </item>
+        <item> What animal or insect do you want humans to kill? </item>
+        <item> What do you carry with you wherever you go? </item>
+        <item> How much time do you spend on the Internet? What do you usually do? </item>
+        <item> What\'s the most disgusting habit some people have? </item>
+        <item> Has there ever been an event in your life that defies explanation? </item>
+        <item> If you could find out the answer to one question about your future, what would that question be? </item>
+        <item> What\'s your stupidest fear? </item>
+        <item> What\'s the best show currently on TV? </item>
+        <item> What will be the future of TV series? </item>
+        <item> What cartoons did you watch as a child? </item>
+        <item> What TV show do you want your life to be like? </item>
+        <item> Do you like reality shows? Why? </item>
+        <item> Do you prefer fiction or non-fiction? </item>
+        <item> What\'s your favorite movie soundtrack? </item>
+        <item> Do you like classical music? </item>
+        <item> How has technology changed the music industry? </item>
+        <item> What\'s the most addictive mobile game you\'ve played? </item>
+        <item> Do you write more or call more? Why? </item>
+        <item> What phones will be like in 10 years? </item>
+        <item> What would you like your phone to do? </item>
+        <item> What\'s the most annoying thing about your phone? </item>
+        <item> How do you feel if you accidentally left your phone at home? </item>
+        <item> What\'s the hardest sport to succeed in? </item>
+        <item> Do athletes deserve high wages? Why or why not? </item>
+        <item> What defines sport? Is fishing a sport? How about video game tournaments? </item>
+        <item> What\'s the best way to travel? (Airplane, car, train, etc.) </item>
+        <item> Do you prefer to travel alone or with a group? </item>
+        <item> How do you think traveling to many different countries changes a person? </item>
+        <item> What was the best invention of the last 50 years? </item>
+        <item> Does technology make life easier or harder? </item>
+        <item> What new technology excites you the most? </item>
+        <item> What do you think the next big technological advance will be? </item>
+        <item> What technology would look like magic or a miracle to people in medieval Europe? </item>
+        <item> Can you think of any technologies that made the world worse? </item>
+        <item> Does fashion help society in any way? </item>
+        <item> Do you care about fashion? What style of clothing do you usually wear? </item>
+        <item> How do you plan to make the world a better place? </item>
+        <item> Do you prefer summer or winter fun? </item>
+        <item> What\'s most refreshing on a hot summer day? </item>
+        <item> What\'s the best thing to do on a cold winter day? </item>
+        <item> What\'s your favorite holiday? </item>
+        <item> Do you want more or less holidays? Why? </item>
+        <item> What do you think of online education? </item>
+        <item> What is the future of education? </item>
+        <item> What do you think of homeschooling? </item>
+        <item> How can governments make education more effective? </item>
+        <item> What\'s your favorite cuisine or type of food? </item>
+        <item> What food looks disgusting but delicious? </item>
+        <item> What food do you know you shouldn\'t eat but can\'t stop? </item>
+        <item> Do you like spicy food? Why or why not? What\'s the hottest thing you\'ve ever eaten? </item>
+        <item> If you had a personal talisman, what would it be? </item>
+        <item> If you were king / queen, what would the throne look like? </item>
+        <item> Time freezes for everyone but you for one day. What do you do? </item>
+        <item> If you could call someone in the world and talk for an hour, who would you call? </item>
+        <item> What does your name mean? </item>
+        <item> What is the most important part of a friendship? </item>
+        <item> What food can you eat every day? </item>
+        <item> What was your favorite childhood toy? </item>
+        <item> What do you think about when you hear the word "stylish"? </item>
+        <item> What work doesn\'t exist now, but will exist in the future? </item>
+        <item> How ambitious are you? </item>
+        <item> How would you define ideal weather? </item>
+        <item> What is your favorite season? </item>
+        <item> Do you prefer swimming in summer or skiing in winter? </item>
+        <item> Are you worried about climate change? </item>
+        <item> What do you think the weather will be like in 50 years? </item>
+        <item> When was the last time the weather ruined one of your plans? </item>
+        <item> What do you think the weather was like 3,000 years ago? Was it different than today? </item>
+        <item> What is your country\'s traditional food? </item>
+        <item> What happens too often in films? </item>
+        <item> What movies do you like the most? </item>
+        <item> What movie could you watch over and over? </item>
+        <item> What is your favorite actress? </item>
+        <item> Who is your favorite movie character? </item>
+        <item> How often do you watch TV? </item>
+        <item> What do you think of advertising while watching TV? </item>
+        <item> Who is your favorite actor? </item>
+        <item> Do you think watching TV can be educational? </item>
+        <item> What annoys you about most TV shows / movies? </item>
+        <item> Who is your favorite actress? </item>
+        <item> What is your hobby? </item>
+        <item> Why do you think people need hobbies? </item>
+        <item> Could you make money with your hobby? </item>
+        <item> What do you think is the most valuable hobby? </item>
+        <item> What is your most boring hobby? </item>
+        <item> Would you rather write, paint or sing well? </item>
+        <item> What\'s the strangest hobby you\'ve ever heard? </item>
+        <item> Do you think some hobbies can be dangerous? </item>
+        <item> Do you prefer watching TV, playing video games or reading a book? </item>
+        <item> Which do you think is more important: a healthy diet or regular exercise? </item>
+        <item> Do you like dancing? </item>
+        <item> What kind of sport did you like as a child? </item>
+        <item> Do you think all people should have a hobby? </item>
+        <item> What do you think is a sport? </item>
+        <item> Have you ever played golf? </item>
+        <item> Do you have any allergies? </item>
+        <item> What do you think of vegan / vegetarian food? </item>
+        <item> Have you ever thought about becoming a vegan / vegetarian? </item>
+        <item> What do you consider healthy food? </item>
+        <item> Have you ever smoked? </item>
+        <item> Do you have scars on your body? What\'s the story behind them? </item>
+        <item> Have you ever been abroad? </item>
+        <item> Would you like to travel abroad alone? </item>
+        <item> Do you speak foreign languages? </item>
+        <item> What\'s the most beautiful city you\'ve ever visited? </item>
+        <item> Do you prefer the sea or the mountains? </item>
+        <item> What\'s your favorite animal? </item>
+        <item> Which animal is the smartest? </item>
+        <item> Are you a dog or cat lover? </item>
+        <item> What\'s the most fun fact you know about animals? </item>
+        <item> Which animal is the most beautiful in your opinion? </item>
+        <item> What is the most useless animal in your opinion? </item>
+        <item> What would you do if a bear approached you? </item>
+        <item> Where would you like to buy a home? </item>
+        <item> Do you prefer an apartment or a house? </item>
+        <item> Would you rather live alone, with family or friends? </item>
+        <item> Are you passionate about interior design? </item>
+        <item> What do you think of houseplants? </item>
+        <item> Would you rent a room to a stranger? </item>
+        <item> What celebrity would you like to meet? </item>
+        <item> Have you ever seen a celebrity in real life? </item>
+        <item> Who is the smartest celebrity in your opinion? </item>
+        <item> If you could put one celebrity in jail, who would you choose? </item>
+        <item> If you could erase one piece (song, movie, book) from history, what would you choose and why? </item>
+        <item> Who is the best politician in the world in your opinion? </item>
+        <item> Which song is stuck in your head right now? </item>
+        <item> What\'s your favorite genre of music? </item>
+        <item> If you had to sing karaoke right now, which song would you choose? </item>
+        <item> What do you think of the supernatural? </item>
+        <item> Do you have a phobia? </item>
+        <item> What was the most frightening experience? </item>
+        <item> What are you most afraid of? </item>
+        <item> What are you dreaming about? </item>
+        <item> The job you dream of? </item>
+        <item> How do you see yourself in 20 years? </item>
+        <item> Who is the most inspiring person you know? </item>
+        <item> Who was your childhood idol? </item>
+        <item> What goals have you already achieved in your life? </item>
+        <item> Do you like shopping? </item>
+        <item> What\'s the most useless thing you\'ve ever bought? </item>
+        <item> Do you prefer to shop online or at your local store? </item>
+        <item> What\'s the best gift you\'ve ever made for someone? </item>
+        <item> Which brand do you dislike the most and why? </item>
+        <item> Have you ever tried online dating? </item>
+        <item> What\'s your worst date? </item>
+        <item> What was your best first date? </item>
+        <item> What do you think of marriage? </item>
+        <item> Do you believe in love at first sight? </item>
+        <item> Do you have enough free time in your life? </item>
+        <item> What will you do next weekend? </item>
+        <item> How do you usually spend your Sundays? </item>
+        <item> What games did you like as a child? </item>
+        <item> What did you usually do after school? </item>
+        <item> What do you think is art? </item>
+        <item> Do you consider yourself hardworking? If so, why? </item>
+        <item> Do you prefer physical or mental work? </item>
+        <item> What do you like best: school life or work? </item>
+        <item> What did you dream of doing as a child? </item>
+        <item> What qualities make a good boss? </item>
+        <item> How important do you think good relationships between colleagues are? </item>
+        <item> What is your opinion on the salary of politicians? </item>
+        <item> What would you do if you became unemployed and unable to get a job? </item>
+        <item> What professions do you think are paying too well today? </item>
+        <item> What should be taught in school? </item>
+        <item> What is the meaning of life? </item>
+        <item> What does freedom mean? </item>
+        <item> Do you believe in karma? </item>
+        <item> How would you define infinity? </item>
+        <item> What is your opinion on religion? </item>
+        <item> Do you think we have a soul? </item>
+        <item> Who do you think was / is the most successful person of all time? </item>
+        <item> What does love mean to you? </item>
+        <item> What do you think is more important: money or freedom? </item>
+        <item> Do you think love can last forever? </item>
+        <item> How do you think happiness is related to intelligence? Is there a connection? </item>
+        <item> Do you believe in aliens? </item>
+        <item> What do you think existed before the universe? </item>
+        <item> Do you believe in life on other planets? </item>
+        <item> Do you think there was a time when magic existed? </item>
+        <item> Do you read / believe in horoscopes? </item>
+        <item> Do you think something like a zombie apocalypse could happen? </item>
+        <item> What do you think about garbage sorting? </item>
+        <item> What do you think the climate situation will be in 100 years? </item>
+        <item> What is more important to you: real or virtual friends? </item>
+        <item> What\'s positive about social media? </item>
+        <item> How do you determine work-life balance? </item>
+        <item> What causes stress in your life? </item>
+        <item> Do you consider yourself a happy person? </item>
+        <item> What is the secret of happiness? </item>
+        <item> What do you think about stereotypes? </item>
+        <item> What do you think was the biggest mistake in history? </item>
+        <item> What do you think of legends? Do you think they are at least partially real? </item>
+        <item> Which politician who is currently in power will be mentioned in the history books? </item>
+        <item> How do you define morality? </item>
+        <item> What is your definition of ethics? </item>
+        <item> If you found an expensive item like a smartphone or wallet on the street, what would you do? </item>
+        <item> What qualities make a person good? </item>
+        <item> What qualities make a person bad? </item>
+        <item> Would you risk your life to save another person? </item>
+        <item> Have you ever had a remorse? </item>
+        <item> How do you define the term friend? </item>
+        <item> What do you think of marriage and children? </item>
+        <item> How important are friends to you? </item>
+        <item> How would you describe your humor? What makes you laugh? </item>
+    </string-array>
+</resources>

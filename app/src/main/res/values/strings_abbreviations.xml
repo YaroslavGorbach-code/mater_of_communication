@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string-array name="Worlds_items_abbreviations">
         <item>ААЛ</item>
         <item>ААС</item>
@@ -253,5 +252,4 @@
         <item>ЮАУ</item>
         <item>ЮВ</item>
     </string-array>
-
 </resources>

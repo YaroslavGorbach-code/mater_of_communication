@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+       <string name="linguistic_pyramids_desc">The exercise will help you understand your thinking patterns,
+           develop skills of generalization, separation and transition by analogy.
+           Your task is to assign the item to a higher class,
+           split into a lower class or find an analogy.
+           An example is a mug. The mug can be defined
+           to a higher class - tableware. Thus, we switched to 1
+           class upstairs (generalized the mug over the dishes). A cup of coffee,
+           tea, half a liter, aluminum, porcelain
+           divided into different subspecies of mugs).
+           Other types of dishes, plates, bowls, etc. are analogies
+    </string>
+
+    <string name="raven_look_like_a_table_desc">Exercise will help you break your own stereotypes,
+        habits of thinking in a certain way.
+        There will be two words on the screen, you need to say how one is similar to another.
+        For example, a hedgehog and a motorcycle. The motorcycle has spikes on its wheels
+        the hedgehog also has thorns - needles, he can
+        gather in a ball like a wheel. After practicing this exercise for a few days,
+        you can easily explain to anyone why a mosquito and champagne represent
+        are two sides of the same coin.
+    </string>
+
+    <string name="raven_look_like_a_table_filings_desc">Exercise will help break your own stereotypes,
+        habits of thinking in a certain way.
+        You will be given two words to complete the exercise.
+        The first is an emotion or state, and the second is an object.
+        Try to tell how similar they are.
+        After several repetitions of this exercise, you
+        can easily say what the soul and the tank have in common.
+        Elementary: helicopters are the souls of dead tanks!
+    </string>
+
+    <string name="advanced_binding_desc">This exercise will help you develop the ability to create multiple
+        connections between two objects.
+        There will be two words on the screen. Try to find similarities
+        between two seemingly unrelated objects.
+        For example, how is a watch similar to a player?
+        The wheel on the side of the clock is used to set the time, and in the player
+        special buttons do this. If the wheel can be rotated back and forth,
+        then the player has two buttons that rotate the cassette back and forth.
+        The arrow on the watch helps us understand what it is showing.
+        In the player, this function is a screen
+    </string>
+
+    <string name="what_i_see_i_sing_about_desc">The exercise will teach you how to build a logical sequence
+        thoughts during a conversation.
+        On the screen you will see the name of the item,
+        Your task is to tell something on this topic as long as possible.
+        Why is this important on a human scale?
+        What is it used for? Its history, functions and reasons for its birth.
+        You can also raise the issue of its vital necessity to maintain world peace.
+        To begin with, try to describe the topic for at least 2-3 minutes,
+        with experience, the bar needs to be raised higher and higher.
+        With regular practice, you can soon make your way to an hour-long lecture about an eraser, a chair, or a cabinet door.
+        For example, flowers. Flowers are plants that grow in the ground,
+        require watering and sun. Therefore, they only grow in summer. They come in different shapes, different colors.
+        My favourite flowers…
+    </string>
+
+    <string name="storyteller_improviser_desc">Exercises will help you practice the following skills: skill
+        build a logical sequence
+        in the story, move from thought to thought, constantly talk about something.
+        You will be given 4 words to do the exercises. Using these words, try to compose a small
+        (sentences 5-6) a story in which all words are included,
+        were used according to some logic and, preferably,
+        used in order.
+        For example, a window, a phone, a snail, slippers.
+        I was looking out the window, at that moment the phone rang
+        running to the pipe, I almost stepped on a snail,
+        it is unclear how he ended up in my house. Probably,
+        climbed through the open window. It\'s good that I didn\'t step on it, otherwise I would have to rip off it from my slippers.
+    </string>
+
+    <string name="other_abbreviations_desc">Exercise will help you develop skills
+        associative connections, creative thinking, integrate everything together and at once.
+        The abbreviation will appear on the screen. Your task is to come up with a decoding of this abbreviation,
+        as unlike as possible in meaning to the original.
+        Examples: DSM - System Modulation Database. FSD - Faces
+        URC - Union of Right Comrades.
+    </string>
+
+    <string name="magic_naming_desc">The exercise will help you develop an "alternative" view of things,
+        the ability to discuss what is happening "from a different angle."
+        Your task is to come up with as many adjectives as possible for the noun,
+        and endow the word with new unexpected properties.
+        Examples: orange mood, sour hat,
+        monotonous plate, ringing pills,
+        pale fork, crisp chair.
+    </string>
+
+    <string name="buying_selling_desc">This exercise will help you develop persuasion skills.
+        It\'s kind of like a classic "sell me a pen" problem in a job interview.
+        Describe the positive qualities of the subject,
+        pay attention to its disadvantages in particular, prove how people need it.
+        For example, a pen.
+        I am ready to offer you a pen that you can always carry with you.
+        It\'s not too big and will fit in any pocket. It doesn\'t leak
+        so you won\'t stain your clothes. She also has a large supply of ink.
+        - with active use, they are enough for six months. Moreover,
+        it can be written anywhere and in any way - even on the ceiling or on a very uneven surface.
+    </string>
+
+    <string name="remember_all_desc">Exercise will help you build up your vocabulary.
+        Your task is to name at least 15 words that begin with the letter that will be on the page.
+        For example: abbreviation, application, applicant, aqualung, action,
+        address, administration, abstraction, agent, agreement, airplane,
+        airport, alarm, angle, animal
+    </string>
+
+    <string name="co_authored_with_dahl_desc">This exercise will help you develop your creative thinking skills.
+        Your task is to give an extremely precise and detailed definition of the word.
+        Develop your thought and do not limit yourself to one sentence, explain the meaning of the word as follows,
+        so that the possibility of confusing it with another was excluded.
+        For example, shocking. Shocking is an action aimed at causing
+        is extremely surprised on the verge of shock, which is often accompanied by the exclamation "Waaaaah!
+       </string>
+
+    <string name="rorschach_test_desc">The exercise will help you develop your imagination and creative thinking skills.
+        Your task is to come up with what else the subject given to you can be.
+        For example, an ashtray is a cemetery of cigarette butts.
+    </string>
+
+    <string name="will_not_be_worse_desc">This exercise will help you develop your creative thinking skills.
+        Your task is to come up with what he can say, do,
+        the worst representative of a particular profession in the world.
+        For example, the worst hairdresser in the world cuts hair with gasoline and a lighter.
+    </string>
+
+    <string name="question_answer_desc">The exercise will help develop ease of speech, the ability to answer any questions.
+        Your task is to answer the question as fully and creatively as possible.
+        Don\'t be limited to one sentence, try
+        talk as long as possible.
+        For example, how do you spend your free time?
+        I usefully spend my time reading books.
+        With the help of books, I gain knowledge and become smarter. For example, I recently read a book
+        "Anatomy of the human body" and now I know how a person works.
+        In my free time I also go in for sports. Sport makes me stronger and healthier…
+    </string>
+
+    <string name="nouns_desc">The exercise will help you expand your active vocabulary.
+        You have one minute to name as many nouns as possible.
+        You cannot repeat yourself. After the spoken word
+        click anywhere on the screen to record the result.
+        This exercise is great for extracting words from passive vocabulary.
+        Good mark - 54 words or more.
+    </string>
+
+    <string name="adjectives_desc">The exercise will help you expand your active vocabulary.
+        You have one minute to name as many as possible adjectives.
+        You cannot repeat yourself. After the spoken word
+        click anywhere on the screen to record the result.
+        This exercise is great for pulling words out of passive vocabulary.
+        Good mark - 46 words or more.
+    </string>
+
+    <string name="verbs_desc">The exercise will help you expand your active vocabulary.
+        You have one minute to name as many verbs as possible.
+        You cannot repeat yourself. After the spoken word
+        click anywhere on the screen to record the result.
+        This exercise is excellent for "pulling" words from the passive stock.
+        Good mark - 42 words or more.
+    </string>
+
+    <string name="tongue_twisters_desc">Tongue twisters will improve your speech intelligibility.
+        First you need to say the text slowly.
+        Don\'t try to pick up speed right away. This is mistake.
+        After you\'ve already learned slowly
+        pronounce a tongue twister after reading all the syllables
+        and letters, work on articulation.
+        Say the tongue twister silently.
+        After you have worked
+        with a movement of your lips, pronounce the text in a voice to the floor, in a whisper.
+        In this case, the pronounced sounds should be clear,
+        Even though they sound quiet.
+        So, you learned clearly and distinctly, quietly
+        pronounce a tongue twister. It\'s time to say it out loud
+        but still slow and clear. Take your time to pronounce quickly.
+        Only now, when you have completed the 4 previous steps, worked through the text,
+        learned a tongue twister at a slow pace, learned to pronounce it in a whisper
+        and loudly you can move on to acting. Now try to pronounce
+        text in different styles, with different intonation, at different speeds. Smoothly, in a melodious voice,
+        quickly, with accents (accents), acceleration, deceleration, lower voice, increase, rhythmically,
+        try to sing, then quickly again
+    </string>
+
+</resources>

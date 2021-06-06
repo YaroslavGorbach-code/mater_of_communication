@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="professions">
+        <item> Tailor </item>
+        <item> Director </item>
+        <item> Locksmith </item>
+        <item> Snow blower </item>
+        <item> Special Forces </item>
+        <item> Trainee </item>
+        <item> Stylist </item>
+        <item> Joiner </item>
+        <item> Judge </item>
+        <item> Taxis </item>
+        <item> Tankman </item>
+        <item> Dancer </item>
+        <item> Tattoo Artist </item>
+        <item> Bodyguard </item>
+        <item> Tennis player </item>
+        <item> Turner </item>
+        <item> Merchant </item>
+        <item> Traumatologist </item>
+        <item> Tractor driver </item>
+        <item> Trainer </item>
+        <item> Chimney sweep </item>
+        <item> Maid </item>
+        <item> Packer </item>
+        <item> Teacher </item>
+        <item> Founder </item>
+        <item> Farmer </item>
+        <item> Skater </item>
+        <item> Physicist </item>
+        <item> Philologist </item>
+        <item> Magician </item>
+        <item> Milling cutter </item>
+        <item> Surgeon </item>
+        <item> Grain grower </item>
+        <item> Hockey player </item>
+        <item> Circus </item>
+        <item> Watchmaker </item>
+        <item> Suitcase </item>
+        <item> Shaman </item>
+        <item> Chess Player </item>
+        <item> Miner </item>
+        <item> Mine Builder </item>
+        <item> Sheriff </item>
+        <item> Weightlifter </item>
+        <item> Plasterer </item>
+        <item> Navigator </item>
+        <item> Ecologist </item>
+        <item> Economist </item>
+        <item> Psychic </item>
+        <item> Mechanic </item>
+        <item> Electrician </item>
+        <item> Electrician </item>
+        <item> Electric welder </item>
+        <item> Stone Carver </item>
+        <item> Surgeon </item>
+        <item> Astronaut </item>
+        <item> Director </item>
+        <item> Graphic Designer </item>
+        <item> Web Designer </item>
+        <item> Architect-designer </item>
+        <item> Designer </item>
+        <item> Resuscitator </item>
+        <item> Landscape Architect </item>
+        <item> Confectioner </item>
+        <item> Architect-restorer </item>
+        <item> Firefighter </item>
+        <item> Pilot </item>
+        <item> Chemical Analysis Laboratory Assistant </item>
+        <item> Cinema Artist </item>
+        <item> City Planner </item>
+        <item> Private detective </item>
+        <item> Sound engineer </item>
+        <item> Aviation Engineer </item>
+        <item> Researcher </item>
+        <item> Astrophysicist </item>
+        <item> Lifeguard </item>
+        <item> Architect </item>
+        <item> Geneticist </item>
+        <item> Forensic expert </item>
+        <item> Medical Laboratory Technician </item>
+        <item> Virologist </item>
+        <item> Judge </item>
+        <item> Manager </item>
+        <item> Programmer-developer </item>
+        <item> Chef </item>
+        <item> Air traffic controller </item>
+        <item> Producer </item>
+        <item> Engineer </item>
+        <item> Illustrator </item>
+        <item> Test Engineer </item>
+        <item> International journalist </item>
+        <item> Photojournalist </item>
+        <item> Biotechnologist </item>
+        <item> Web Programmer </item>
+        <item> Restorer </item>
+        <item> Interior Designer </item>
+        <item> Actor </item>
+        <item> Flight attendant (stewardess) </item>
+        <item> Sound engineer </item>
+        <item> Military pilot </item>
+        <item> Neuropsychologist </item>
+        <item> TV presenter </item>
+        <item> Astronomer </item>
+        <item> Biochemist </item>
+        <item> Engineer </item>
+        <item> System Programmer </item>
+        <item> Chemist </item>
+        <item> Investigator </item>
+        <item> Prosecutor </item>
+        <item> Plastic surgeon </item>
+        <item> Doctor </item>
+        <item> Lawyer </item>
+        <item> Biophysicist </item>
+        <item> Security Systems Specialist </item>
+        <item> Psychotherapist </item>
+        <item> Veterinary Paramedic </item>
+        <item> Mobile Developer </item>
+        <item> Veterinarian </item>
+        <item> Translator </item>
+        <item> Artist </item>
+        <item> Diplomat </item>
+        <item> Correspondent </item>
+        <item> Dentist Surgeon </item>
+        <item> Anesthesiologist </item>
+        <item> Database Administrator </item>
+        <item> Writer </item>
+        <item> Journalist </item>
+        <item> Composer </item>
+        <item> Fashion Designer </item>
+        <item> Geographer </item>
+        <item> Civil Engineer </item>
+        <item> Pediatrician </item>
+        <item> Zoologist </item>
+        <item> Advertising Manager </item>
+        <item> Oil Refining Technologist </item>
+        <item> Painter </item>
+        <item> Psychologist </item>
+        <item> Laboratory Assistant </item>
+        <item> Musician </item>
+        <item> Lawyer </item>
+        <item> Fashion Designer </item>
+        <item> Archaeologist </item>
+        <item> Freight Forwarder </item>
+        <item> History Teacher </item>
+        <item> History Teacher </item>
+        <item> Videographer </item>
+        <item> Bartender </item>
+        <item> Radio and TV presenter </item>
+        <item> Greener </item>
+        <item> English teacher </item>
+        <item> Taster </item>
+        <item> Writer </item>
+        <item> Dispatcher </item>
+        <item> Baker </item>
+        <item> Decorator </item>
+        <item> Photographer </item>
+        <item> Neurologist </item>
+        <item> Insurance agent </item>
+        <item> Jeweler </item>
+        <item> Mechanic </item>
+        <item> Editor </item>
+        <item> Artist-sculptor </item>
+        <item> Editor </item>
+        <item> Dentist </item>
+        <item> Head of Human Resources </item>
+        <item> Fitness Instructor </item>
+        <item> Diver </item>
+        <item> Diver </item>
+        <item> Dance Teacher </item>
+        <item> Sociologist </item>
+        <item> Winemaker </item>
+        <item> Banker </item>
+        <item> Bank agent </item>
+        <item> Bank agent </item>
+        <item> Singer </item>
+        <item> Physicist </item>
+        <item> Furniture Designer </item>
+        <item> Guitarist </item>
+        <item> Linguist </item>
+        <item> Blogger </item>
+        <item> Trainer </item>
+        <item> Choreographer </item>
+        <item> Stuntman </item>
+        <item> Farmer </item>
+        <item> Soldier </item>
+        <item> Taster </item>
+        <item> Mathematician </item>
+    </string-array>
+</resources>

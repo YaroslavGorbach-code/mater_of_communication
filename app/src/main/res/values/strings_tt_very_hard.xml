@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="twisters_hard">
-
+    <string-array name="twisters_very_hard">
         <item>Интервьюер интервента интервьюировал.</item>
         <item>Скороговорун скороговорил скоровыговаривал,
             Что всех скороговорок не перескороговоришь не перескоровыговариваешь,

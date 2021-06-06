@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="short_desc_linguistic_pyramids_1">Come up with an analogy</string>
+    <string name="short_desc_linguistic_pyramids_2">Assign the item to a higher class</string>
+    <string name="short_desc_linguistic_pyramids_3">Disunite</string>
+
+    <string name="short_desc_raven_look_like_a_table">Name the similarity</string>
+    <string name="short_desc_storyteller_improviser">Compose a story using these words</string>
+    <string name="short_desc_advanced_binding">What are some similarities?</string>
+    <string name="short_desc_what_i_see_i_sing_about">Describe the subject as long as possible</string>
+    <string name="short_desc_other_abbreviations">Come up with an unusual acronym decoding</string>
+    <string name="short_desc_magic_naming">Come up with at least 5 funny adjectives for this word</string>
+    <string name="short_desc_buying_selling">Describe the item as if you need to sell it</string>
+    <string name="short_desc_remember_all">Name at least 15 words that start with this letter</string>
+    <string name="short_desc_co_authored_with_dahl">What is the detailed definition of a word?</string>
+    <string name="short_desc_rorschach_test">Think of what else this item can be</string>
+    <string name="short_desc_will_not_be_worse">Name the worst situation or phrase </string>
+    <string name="short_desc_question_answer">Answer the question</string>
+    <string name="short_desc_raven_look_like_a_table_filings">Find similarities</string>
+    <string name="short_desc_nouns">Name as many nouns as you can.
+        After the named word, click on the screen to take into account the result</string>
+    <string name="short_desc_adjectives">Name as many adjectives as you can.
+         After the named word, click on the screen to take into account the result.</string>
+    <string name="short_desc_verbs">"Name as many verbs  as you can.
+       After the named word, click on the screen to take into account the result."</string>
+
+    <string name="short_desc_tt_1">Speak text slowly</string>
+    <string name="short_desc_tt_2">Say the tongue twister silently. Lip movements</string>
+    <string name="short_desc_tt_3">Speak the text in a half voice, in a whisper</string>
+    <string name="short_desc_tt_4">Speak aloud, loudly, but still slowly and clearly</string>
+    <string name="short_desc_tt_5">Now try to pronounce the text in different styles, with different intonations, at different speeds</string>
+</resources>

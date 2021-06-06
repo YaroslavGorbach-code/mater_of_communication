@@ -1,12 +1,6 @@
 <resources>
     <string name="app_name">Мастер общения</string>
 
-    <string-array name="helper_text_lp">
-        <item>Придумайте аналогию</item>
-        <item>Обобщите</item>
-        <item>Разобобщите</item>
-    </string-array>
-
     <string name="resultBad">Названо слов %1$d. До нормы не дотягивает, нужно ещё тренироваться.</string>
     <string name="resultVeryGood">Названо слов %1$d. У вас отличный словарный запас!</string>
     <string name="resultGood">Названо слов %1$d. Неплохо, но нужно лучше.</string>
@@ -36,7 +30,6 @@
     <string name="exercises">Упражнения</string>
     <string name="records">Записи</string>
     <string name="notification_channel_id">1</string>
-    <string name="notification_title">test title</string>
     <string name="notification_text">Пришло время поговорить!</string>
     <string name="notifications">Уведомления</string>
     <string name="apply">Применить</string>
@@ -45,7 +38,4 @@
     <string name="ad_attribution">Ad</string>
     <string name="light_dark_theme">Темная тема</string>
     <string name="remove_ad">Убрать рекламу</string>
-    <string name="ad_removed_message">Спасибо за покупку! Изменения вступят в силу после перезагрузки приложения.</string>
-    <string name="rate">Оценить</string>
-
 </resources>

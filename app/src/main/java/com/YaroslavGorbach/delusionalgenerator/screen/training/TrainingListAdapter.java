@@ -54,7 +54,7 @@ public class TrainingListAdapter extends ListAdapter<Exercise, TrainingListAdapt
             mBinding.aim.setText(ex.done + "/" + ex.aim);
             mBinding.category.setText(ex.getCategory().getNameId());
             if (ex.getCategory() == Exercise.Category.VOCABULARY) mBinding.aim.setVisibility(View.GONE);
-            if (ex.done == ex.aim) mBinding.icComplete.setImageResource(R.drawable.ic_done);
+            if (ex.done == ex.aim) mBinding.icComplete.setImageResource(R.drawable.ic_done_round);
         }
     }
 

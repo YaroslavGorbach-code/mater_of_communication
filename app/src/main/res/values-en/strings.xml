@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Master of communication</string>
+
+    <string name="resultBad">Words named %1$d. It does not reach the norm, you still need to train.</string>
+    <string name="resultVeryGood">Words named %1$d. You have an excellent vocabulary!</string>
+    <string name="resultGood">Named words %1$d. Not bad, but not enough</string>
+
+    <string name="category_speaking_name">For the development of communication skills</string>
+    <string name="category_vocabulary_name">To increase your vocabulary</string>
+    <string name="category_tt_name">To improve diction</string>
+
+    <string name="statistics_text_speaking">Completed per session</string>
+    <string name="statistics_text_tt">Average number of seconds per tongue twister per session</string>
+    <string name="statistics_text_vocabulary">Named words per session</string>
+
+    <string name="record_saved">Record saved</string>
+    <string name="close">close</string>
+    <string name="days_without_interruption">Days in a row: %1$d</string>
+    <string name="record_deleted">Record deleted</string>
+    <string name="cancel">Cancel</string>
+    <string name="description">Description</string>
+    <string name="all_exercises">All exercises</string>
+    <string name="start">Start</string>
+    <string name="no_records">No entries</string>
+    <string name="training_done_title">That\'s all for today</string>
+    <string name="training_done_text">next training will be available tomorrow</string>
+    <string name="exercises_by_category">Exercises by category</string>
+    <string name="no_data">There is no data</string>
+    <string name="daily_training">Daily training</string>
+    <string name="exercises">Exercises</string>
+    <string name="records">Recordings</string>
+    <string name="notification_channel_id">1</string>
+    <string name="notification_text">It\'s time to talk!</string>
+    <string name="notifications">Notifications</string>
+    <string name="apply">Apply</string>
+    <string name="title_exercises">Exercises</string>
+    <string name="title_records">Recordings</string>
+    <string name="ad_attribution">Ad</string>
+    <string name="light_dark_theme">Dark theme</string>
+    <string name="remove_ad">Remove ads</string>
+</resources>

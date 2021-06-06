@@ -18,4 +18,8 @@
         <item name="android:background">?colorPrimarySurface</item>
     </style>
 
+    <style name="InteractiveItem">
+        <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
 </resources>

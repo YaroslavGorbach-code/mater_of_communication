@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="page_one_title">Foreword </string>
+    <string name = "page_one_text"> In the modern world, almost
+        it all depends on the ability to communicate with others.
+        It is always easy for those who do it well
+        find friends, partners, quickly move along
+        career ladder. Not everyone has a connection
+        skills, but they can be learned</string>
+
+    <string name="page_two_title">Our goal </string>
+    <string name = "page_two_text"> We want to help you in the comprehensive development of your communication skills, namely:
+          the ability to constantly speak on any topic, increase vocabulary, improve diction</string>
+
+    <string name="page_three_title">What to do?</string>
+    <string name="page_three_text">To achieve the desired result, you need to perform the exercises that are presented in the appendix.
+        You will see tangible results in just a few weeks.
+        Communication with people will no longer seem like torture, but will become pleasant.
+        You will learn how to communicate with anyone</string>
+
+    <string name="page_four_title">Conclusion</string>
+    <string name="page_four_text">If you want to learn how to better interact with others,
+        know that this is a worthy goal, the achievement of which can
+        completely change the quality of your life. I wish you success!</string>
+</resources>
