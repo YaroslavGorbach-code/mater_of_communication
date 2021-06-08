@@ -15,4 +15,5 @@ public interface NavMenu {
     void onNotificationApply(boolean isAllow, String text, Calendar calendar, Context requireContext);
     void queryPurchases(FragmentActivity activity);
     boolean getAdMenuItemAllow();
+    void changeLanguage(FragmentActivity requireActivity);
 }

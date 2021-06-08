@@ -217,6 +217,16 @@ public class RepoImp implements Repo {
         mCommonPrefStorage.setTimeLastReviewAsc(date.getTime());
     }
 
+    @Override
+    public boolean getLocaleIsEn() {
+        return mCommonPrefStorage.getIsEnLanguage();
+    }
+
+    @Override
+    public void setIsEnLanguage(boolean is) {
+        mCommonPrefStorage.setLocaleIsEn(is);
+    }
+
 
     @Override
     public Observable<ChartInputData> getChartData(Exercise.Name name) {

@@ -38,4 +38,5 @@
     <string name="ad_attribution">Ad</string>
     <string name="light_dark_theme">Темная тема</string>
     <string name="remove_ad">Убрать рекламу</string>
+    <string name="change_language">Change language to English </string>
 </resources>

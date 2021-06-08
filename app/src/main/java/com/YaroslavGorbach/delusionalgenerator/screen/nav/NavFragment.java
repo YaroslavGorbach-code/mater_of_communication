@@ -81,6 +81,9 @@ public class NavFragment extends Fragment implements ExercisesWorkflow.Router, N
                 if (itemId == R.id.menu_toolbar_remove_ad) {
                     navMenu.showPurchasesDialog(requireActivity());
                 }
+                if (itemId == R.id.menu_toolbar_change_language) {
+                    navMenu.changeLanguage(requireActivity());
+                }
             }
         });
 

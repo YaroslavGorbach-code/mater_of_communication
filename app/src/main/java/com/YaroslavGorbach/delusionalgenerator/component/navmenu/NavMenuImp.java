@@ -83,4 +83,11 @@ public class NavMenuImp implements NavMenu {
     public boolean getAdMenuItemAllow() {
         return !mRepo.getAdIsAllow();
     }
+
+    @Override
+    public void changeLanguage(FragmentActivity activity) {
+        mRepo.setIsEnLanguage(!mRepo.getLocaleIsEn());
+        activity.finish();
+        activity.startActivity(new Intent(activity, activity.getClass()));
+    }
 }

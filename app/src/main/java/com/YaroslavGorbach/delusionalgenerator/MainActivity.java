@@ -4,7 +4,6 @@ import android.app.NotificationManager;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -17,12 +16,12 @@ import com.YaroslavGorbach.delusionalgenerator.feature.billing.BillingManagerImp
 import com.YaroslavGorbach.delusionalgenerator.feature.notifycation.MyNotificationManagerImp;
 import com.YaroslavGorbach.delusionalgenerator.screen.aboutapp.AboutAppFragment;
 import com.YaroslavGorbach.delusionalgenerator.screen.nav.NavFragment;
+import com.YaroslavGorbach.delusionalgenerator.util.LocaleUtil;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 
 import java.util.Date;
@@ -46,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavFragment.Route
                     .add(R.id.main_container, fragment)
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
+
+            if (repo.getLocaleIsEn()) {
+                LocaleUtil.setLocale(this, "en");
+            }else {
+                LocaleUtil.setLocale(this, "ru");
+            }
 
             // show trip and notification tomorrow if it is the first app open
             if (repo.getFirstOpen()) {

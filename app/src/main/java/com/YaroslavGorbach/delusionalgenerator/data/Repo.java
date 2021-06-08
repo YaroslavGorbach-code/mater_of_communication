@@ -47,6 +47,8 @@ public interface Repo {
     void setAdIsAllow(boolean isAllow);
     boolean isAscAppReviewAllow();
     void setDateLastReviewAsc(Date date);
+    boolean getLocaleIsEn();
+    void setIsEnLanguage(boolean is);
 
     enum WordType {
         ALIVE,

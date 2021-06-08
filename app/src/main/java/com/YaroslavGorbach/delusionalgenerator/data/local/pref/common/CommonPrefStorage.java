@@ -11,4 +11,6 @@ public interface CommonPrefStorage {
     void setAdIsAllow(boolean isAdRemoved);
     void setTimeLastReviewAsc(long time);
     long getTimeLastReviewAsc();
+    boolean getIsEnLanguage();
+    void setLocaleIsEn(boolean is);
 }

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import com.YaroslavGorbach.delusionalgenerator.data.local.pref.common.CommonPrefStorage;
 import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
+import java.util.Locale;
+
 public class CommonPrefStorageImp implements CommonPrefStorage {
     private final SharedPreferences mSharedPreferences;
 
@@ -61,6 +63,16 @@ public class CommonPrefStorageImp implements CommonPrefStorage {
     @Override
     public long getTimeLastReviewAsc() {
         return mSharedPreferences.getLong("timeLastReviewAsc", 0);
+    }
+
+    @Override
+    public boolean getIsEnLanguage() {
+        return mSharedPreferences.getBoolean("IsLocaleEn", Locale.getDefault().getLanguage().equals(new Locale("en").getLanguage()));
+    }
+
+    @Override
+    public void setLocaleIsEn(boolean is) {
+        mSharedPreferences.edit().putBoolean("IsLocaleEn", is).apply();
     }
 
 }
