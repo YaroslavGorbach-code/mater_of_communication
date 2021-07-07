@@ -34,6 +34,7 @@ public class NavFragment extends Fragment implements ExercisesWorkflow.Router, N
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null){
+
             ExercisesWorkflow fragment = new ExercisesWorkflow();
             getChildFragmentManager()
                     .beginTransaction()

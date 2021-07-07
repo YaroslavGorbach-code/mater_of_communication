@@ -43,7 +43,7 @@ public class RecordsView {
     public RecordsView(FragmentRecordsBinding binding, Callback callback, AdManager adManager) {
 
         // show Ad
-        adManager.showBanner(binding.getRoot().getContext(), binding.bannerContainer);
+        //adManager.showBanner(binding.getRoot().getContext(), binding.bannerContainer);
 
         mBinding = binding;
         binding.player.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
