@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.YaroslavGorbach.delusionalgenerator"
         minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 50
-        versionName "3.1.6"
+        targetSdkVersion 31
+        versionCode 52
+        versionName "3.1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,8 +41,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
@@ -57,19 +57,19 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     // google
-    implementation 'com.google.firebase:firebase-ads:20.2.0'
-    implementation 'com.google.android.gms:play-services-ads:20.2.0'
+    implementation 'com.google.firebase:firebase-ads:20.3.0'
+    implementation 'com.google.android.gms:play-services-ads:20.3.0'
     implementation "com.android.billingclient:billing:4.0.0"
     implementation 'com.google.android.play:core:1.10.0'
 
     // RX
-    implementation "io.reactivex.rxjava3:rxjava:3.0.11-RC5"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.13"
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation "androidx.room:room-rxjava3:2.3.0"
 
     // di
-    implementation 'com.google.dagger:dagger:2.33'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.33'
+    implementation 'com.google.dagger:dagger:2.37'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.37'
 
     // other libraries
     implementation 'im.dacer:AndroidCharts:1.0.4'

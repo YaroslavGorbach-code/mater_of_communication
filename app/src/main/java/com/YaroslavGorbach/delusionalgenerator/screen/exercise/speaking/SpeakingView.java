@@ -13,6 +13,8 @@ import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentSpeakingBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.ViewUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class SpeakingView {
@@ -39,6 +41,7 @@ public class SpeakingView {
             mHandler.postDelayed(() -> v.setClickable(true),500);
         });
         binding.next.setOnClickListener(v -> callback.onNext());
+        Map<String, String> d = new HashMap<String, String>();
     }
 
     public void setShortDesc(String desc){
