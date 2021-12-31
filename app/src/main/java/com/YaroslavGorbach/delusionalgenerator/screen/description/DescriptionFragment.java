@@ -37,6 +37,7 @@ public class DescriptionFragment extends Fragment {
         return bundle;
     }
     private final CompositeDisposable mDisposableContainer = new CompositeDisposable();
+
     @Inject Description description;
 
     @Override

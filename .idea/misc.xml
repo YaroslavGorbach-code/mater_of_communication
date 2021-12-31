@@ -3,8 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/drawable/ic_lamp.xml" value="0.2169230769230769" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/drawable/ic_sign.xml" value="0.2169230769230769" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/drawable/ic_target.xml" value="0.2169230769230769" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/drawable/ic_voice_recording.xml" value="0.2203125" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/drawable/ic_voice_stop.xml" value="0.2203125" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/dialog_notification.xml" value="0.18" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_about_app.xml" value="0.16757246376811594" />
         <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_description.xml" value="0.1" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_nav.xml" value="0.1" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_page_four.xml" value="0.16757246376811594" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_page_one.xml" value="0.16757246376811594" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_page_three.xml" value="0.16757246376811594" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_page_two.xml" value="0.16757246376811594" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/fragment_speaking.xml" value="0.25" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/layout_chart.xml" value="0.1" />
         <entry key="..\:/Projects/delusional_generator/app/src/main/res/layout/layout_training.xml" value="0.1118659420289855" />
+        <entry key="..\:/Projects/delusional_generator/app/src/main/res/menu/manu_nav.xml" value="0.1935185185185185" />
       </map>
     </option>
   </component>

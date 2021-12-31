@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.YaroslavGorbach.delusionalgenerator"
         minSdkVersion 23
-        targetSdkVersion 31
-        versionCode 52
-        versionName "3.1.8"
+        targetSdkVersion 32
+        versionCode 53
+        versionName "3.1.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -75,6 +75,4 @@ dependencies {
     implementation 'im.dacer:AndroidCharts:1.0.4'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-
-
 }
