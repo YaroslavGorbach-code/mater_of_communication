@@ -1,14 +1,18 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.notifycation;
+
+import static com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver.EXTRA_MESSAGE;
+
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.core.app.NotificationCompat;
+
 import com.YaroslavGorbach.delusionalgenerator.MainActivity;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver;
-import static com.YaroslavGorbach.delusionalgenerator.receivers.AlarmReceiver.EXTRA_MESSAGE;
 
 public class MyNotificationManagerImp implements MyNotificationManager {
     @Override
@@ -19,7 +23,7 @@ public class MyNotificationManagerImp implements MyNotificationManager {
                 context,
                 notificationId,
                 contentIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
                 context,
@@ -41,7 +45,7 @@ public class MyNotificationManagerImp implements MyNotificationManager {
                 context,
                 0,
                 notifyIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
         );
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, notifyPendingIntent);
