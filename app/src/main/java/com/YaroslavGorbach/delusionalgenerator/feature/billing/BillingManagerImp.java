@@ -1,5 +1,7 @@
 package com.YaroslavGorbach.delusionalgenerator.feature.billing;
 
+import static com.android.billingclient.api.BillingClient.ProductType.INAPP;
+
 import android.app.Activity;
 
 import androidx.annotation.NonNull;
@@ -9,8 +11,8 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.android.billingclient.api.SkuDetailsParams;
 
 import java.util.ArrayList;
@@ -67,8 +69,7 @@ public class BillingManagerImp implements BillingManager {
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
             public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
-                List<Purchase> purchases = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP).getPurchasesList();
-                callback.onAdRemoved(purchases != null && !purchases.isEmpty());
+                mBillingClient.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(INAPP).build(), (billingResult1, list) -> callback.onAdRemoved(!list.isEmpty()));
 
                 // FOR TEST ONLY
                 //mBillingClient.consumeAsync( ConsumeParams.newBuilder().setPurchaseToken(purchases.get(0).getPurchaseToken()).build(), (billingResult1, s) -> {});
