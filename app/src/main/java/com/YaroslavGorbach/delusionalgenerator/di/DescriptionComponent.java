@@ -12,7 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @ViewModelScope
-@Component(dependencies = AppComponent.class, modules = DescriptionComponent.DescriptionModule.class)
+@Component(dependencies = AppComponent.class, modules = {DescriptionComponent.DescriptionModule.class, AdModule.class})
 public interface DescriptionComponent {
 
     void inject(DescriptionFragment descriptionFragment);

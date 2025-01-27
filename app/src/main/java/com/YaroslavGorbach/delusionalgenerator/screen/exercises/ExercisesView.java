@@ -73,7 +73,7 @@ public class ExercisesView {
     }
 
     public void refreshAd(Activity activity, AdManager adManager) {
-       adManager.showNativeAd(activity, mBinding.adPlaceholder);
+//       adManager.showNativeAd(activity, mBinding.adPlaceholder);
 //        // show Ad
         //adManager.showBanner(activity, mBinding.adPlaceholder);
 

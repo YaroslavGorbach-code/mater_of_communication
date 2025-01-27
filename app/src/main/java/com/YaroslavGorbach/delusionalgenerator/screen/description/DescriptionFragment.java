@@ -14,6 +14,7 @@ import com.YaroslavGorbach.delusionalgenerator.component.description.Description
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
+import com.YaroslavGorbach.delusionalgenerator.feature.ad.AdManager;
 
 import javax.inject.Inject;
 
@@ -40,12 +41,17 @@ public class DescriptionFragment extends Fragment {
 
     @Inject Description description;
 
+    @Inject
+    AdManager adManager;
+
     @Override
     public void onStart() {
         super.onStart();
         Window w = requireActivity().getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        adManager.showInterstitialAd(requireActivity());
     }
 
     @Override

@@ -19,10 +19,10 @@ import com.YaroslavGorbach.delusionalgenerator.screen.nav.NavFragment;
 import com.YaroslavGorbach.delusionalgenerator.util.LocaleUtil;
 import com.YaroslavGorbach.delusionalgenerator.workflow.ExerciseWorkflow;
 import com.YaroslavGorbach.delusionalgenerator.workflow.TrainingWorkflow;
+import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.Task;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;

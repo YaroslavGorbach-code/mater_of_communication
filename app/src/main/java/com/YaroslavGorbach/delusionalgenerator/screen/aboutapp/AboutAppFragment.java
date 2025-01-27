@@ -25,6 +25,8 @@ public class AboutAppFragment extends Fragment {
 
         ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter(getChildFragmentManager());
         binding.pager.setAdapter(adapter);
+
+        binding.pageIndicatorView.attachTo(binding.pager);
     }
 
     private static class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

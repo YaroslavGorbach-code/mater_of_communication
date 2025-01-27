@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.exercise.speaking.SpeakingFragment"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".screen.exercise.speaking.SpeakingFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,19 +23,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:padding="8dp"
             android:gravity="center"
+            android:padding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
             app:autoSizeMaxTextSize="20sp"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform"
             tools:text="Description short" />
     </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_marginVertical="130dp">
+        android:layout_marginVertical="130dp"
+        android:gravity="center">
+
         <TextView
             android:id="@+id/word"
             android:layout_width="wrap_content"
@@ -43,8 +45,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="8dp"
-            android:textSize="50sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textSize="50sp"
             tools:text="world" />
     </ScrollView>
 
@@ -52,34 +54,34 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        >
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_marginEnd="16dp"
-           android:layout_height="match_parent">
+        android:layout_gravity="bottom">
 
-           <Chronometer
-               android:id="@+id/chronometer_one_word"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textColor="?colorPrimary"
-               android:textSize="24sp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp">
 
-           <Chronometer
-               android:id="@+id/chronometer"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:gravity="end"
-               android:textColor="?colorPrimary"
-               android:textSize="24sp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
-       </androidx.constraintlayout.widget.ConstraintLayout>
+            <Chronometer
+                android:id="@+id/chronometer_one_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?colorPrimary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="?colorPrimary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -87,38 +89,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="?colorPrimary"
-        app:tint="?colorPrimarySurface"
-        app:srcCompat="@drawable/ic_next"
         app:layout_anchor="@id/bottomAppBar"
+        app:srcCompat="@drawable/ic_next"
+        app:tint="?colorPrimarySurface"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/start_stop_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="75dp"
         android:backgroundTint="?colorPrimary"
         app:srcCompat="@drawable/ic_voice_stop"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="75dp"
-        android:layout_marginEnd="16dp"
         app:tint="@null"
         tools:ignore="ContentDescription" />
 
     <FrameLayout
         android:id="@+id/aim_and_done_layout"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="75dp"
         android:clickable="false"
         android:focusable="false"
-        android:layout_gravity="bottom|start"
-        android:layout_marginStart="16dp">
+        android:visibility="gone">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
-            android:backgroundTint="?colorPrimary"
             android:layout_height="wrap_content"
+            android:backgroundTint="?colorPrimary"
             android:clickable="false"
             android:focusable="false"
             tools:ignore="ContentDescription" />
@@ -127,13 +129,13 @@
             android:id="@+id/aim_and_done_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="10dp"
+            android:layout_gravity="center"
             android:clickable="false"
+            android:elevation="10dp"
             android:focusable="false"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="?android:colorBackground"
-            android:layout_gravity="center"
-            tools:text="10/22"/>
+            tools:text="10/22" />
     </FrameLayout>
 
 

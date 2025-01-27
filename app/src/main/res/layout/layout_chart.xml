@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content">
-            <im.dacer.androidcharts.LineView
+            <com.YaroslavGorbach.delusionalgenerator.screen.description.LineView
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
                 android:id="@+id/chart" />

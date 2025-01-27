@@ -1,14 +1,16 @@
 package com.YaroslavGorbach.delusionalgenerator.screen.description;
+
 import android.graphics.Color;
 import android.view.View;
+
 import androidx.core.widget.NestedScrollView;
+
 import com.YaroslavGorbach.delusionalgenerator.R;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.ChartInputData;
 import com.YaroslavGorbach.delusionalgenerator.data.domain.Exercise;
 import com.YaroslavGorbach.delusionalgenerator.databinding.FragmentDescriptionBinding;
 import com.YaroslavGorbach.delusionalgenerator.util.ColorUtils;
 
-import im.dacer.androidcharts.LineView;
 
 public class DescriptionView {
     public interface Callback {
@@ -73,6 +75,6 @@ public class DescriptionView {
 
     private void showNoData() {
         mBinding.chartLayout.noData.setVisibility(View.VISIBLE);
-        mBinding.chartLayout.chart.setVisibility(View.GONE);
+//        mBinding.chartLayout.chart.setVisibility(View.GONE);
     }
 }
